@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151920"/><stop offset="1" stop-color="#07080A"/></linearGradient>
+<radialGradient id="b" cx=".7" cy=".22" r=".7"><stop offset="0" stop-color="#4F7BFF" stop-opacity=".35"/><stop offset="1" stop-color="#4F7BFF" stop-opacity="0"/></radialGradient>
+<radialGradient id="g" cx=".2" cy=".95" r=".6"><stop offset="0" stop-color="#D6B36C" stop-opacity=".22"/><stop offset="1" stop-color="#D6B36C" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="800" height="1000" fill="url(#bg)"/><rect width="800" height="1000" fill="url(#b)"/><rect width="800" height="1000" fill="url(#g)"/>
+<g fill="none" stroke="#FFFFFF" stroke-opacity=".06"><circle cx="400" cy="470" r="230"/><circle cx="400" cy="470" r="320"/></g>
+<rect x="290" y="360" width="220" height="220" rx="44" fill="none" stroke="#D6B36C" stroke-opacity=".7" stroke-width="2"/>
+<text x="400" y="505" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="120" fill="#D6B36C">GA</text>
+</svg>
