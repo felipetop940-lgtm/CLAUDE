@@ -53,6 +53,7 @@ em { font-family: "CG", serif; font-style: italic; font-weight: 500; color: var(
 .browserbar { position: absolute; left: 0; right: 0; top: 0; height: 150px; padding-top: 70px; background: #111419; border-bottom: 1px solid rgba(255,255,255,.08); display: flex; justify-content: center; }
 .url { height: 58px; padding: 0 26px; border-radius: 30px; background: rgba(255,255,255,.06); display: flex; align-items: center; gap: 10px; font-size: 26px; }
 .url i { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
+.fhead { position: absolute; left: 0; top: 64px !important; width: 100%; z-index: 3; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
 .pending { position: absolute; left: 40px; right: 40px; top: 360px; text-align: center; }
 .pending h3 { font-size: 58px; font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
 .pending p { margin-top: 30px; font-size: 26px; color: var(--gray); }
@@ -139,10 +140,13 @@ em { font-family: "CG", serif; font-style: italic; font-weight: 500; color: var(
   <section class="scene" id="s-fernando">
     <div class="tagtop">Projeto real · <b>criado por mim</b></div>
     <div class="phone" id="phone2" style="top:300px;height:1140px"><div class="notch"></div><div class="screen">
-      <div class="browserbar"><div class="url"><i></i>fernandoaugustodr.com.br</div></div>
-      <!-- PRÉVIA: substituir por capturas reais do site do Fernando -->
-      <div class="pending"><h3>Dr. Fernando<br><em>Augusto</em></h3><p>[ capturas do site entram aqui ]</p></div>
+      <img id="fimg" src="src/fernando-scroll.jpg" alt="">
+      <img class="fhead" src="src/fernando-header.jpg" alt="">
     </div></div>
+    <div class="chip" id="f1" style="left:40px;top:560px"><i class="d"></i><b>Apresentação</b></div>
+    <div class="chip" id="f2" style="right:40px;top:760px"><i class="d"></i>Como <b>funciona</b></div>
+    <div class="chip" id="f3" style="left:40px;top:980px"><i class="d"></i><b>Especialidades</b></div>
+    <div class="chip" id="f4" style="right:40px;top:1200px"><i class="d"></i>Agenda no <b>WhatsApp</b></div>
   </section>
 
   <!-- 5. Planos -->
@@ -244,7 +248,14 @@ function render(t) {
     ['c1', 'c2', 'c3', 'c4'].forEach((id, i) => { const k = ease(prog(t, s.start + .9 + i * 1.25, .6)); const el = $(id); el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * 30}px) scale(${.9 + .1 * k})`; }); }
 
   // 4. Fernando
-  { const s = S.fernando, p = ease(prog(t, s.start, .9)); $('phone2').style.transform = `translateY(${(1 - p) * 300}px)`; }
+  { const s = S.fernando, p = ease(prog(t, s.start, .9)); $('phone2').style.transform = `translateY(${(1 - p) * 300}px)`;
+    // Rolagem com pausas: topo → foto → metodologia → especialidades → agendamento
+    const K = [[0, 0], [1.4, 0], [2.6, 1150], [6.0, 1150], [7.2, 2750], [7.9, 2750], [8.9, 4400], [9.3, 4400], [10.6, 8000]];
+    const lt = t - s.start; let y = K[K.length - 1][1];
+    for (let i = 0; i < K.length - 1; i++) { const [t0, y0] = K[i], [t1, y1] = K[i + 1]; if (lt < t1) { y = y0 + (y1 - y0) * easeIO((lt - t0) / (t1 - t0)); break; } }
+    if (lt < 0) y = 0;
+    $('fimg').style.transform = `translateY(${-y}px)`;
+    [['f1', 5.3], ['f2', 6.3], ['f3', 8.1], ['f4', 9.4]].forEach(([id, a]) => { const k = ease(prog(lt, a, .5)); const el = $(id); el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * 30}px) scale(${.9 + .1 * k})`; }); }
 
   // 5. Planos: cards entram e o valor conta
   { const s = S.plans;

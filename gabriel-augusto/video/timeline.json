@@ -31,31 +31,31 @@
   {
    "key": "fernando",
    "start": 21.61,
-   "vo": 5.811,
-   "end": 28.321,
-   "text": "E esse é o site do doutor Fernando Augusto, que eu criei para apresentar o trabalho dele com autoridade."
+   "vo": 11.737,
+   "end": 34.547,
+   "text": "E esse é o site do doutor Fernando Augusto, médico em Goiânia. Eu criei a página inteira. Apresentação, como funciona o tratamento, especialidades, e o agendamento direto pelo WhatsApp."
   },
   {
    "key": "plans",
-   "start": 28.321,
+   "start": 34.547,
    "vo": 9.694,
-   "end": 38.815,
+   "end": 45.041,
    "text": "O plano Essencial sai por duzentos e cinquenta reais, com duas rodadas de ajuste. O Premium Page, por trezentos e vinte, já inclui edição de vídeo e cinco rodadas."
   },
   {
    "key": "delivery",
-   "start": 38.815,
+   "start": 45.041,
    "vo": 3.529,
-   "end": 42.844,
+   "end": 49.07,
    "text": "Entrega em dois a sete dias, e você fala direto comigo."
   },
   {
    "key": "cta",
-   "start": 42.844,
+   "start": 49.07,
    "vo": 4.638,
-   "end": 50.082,
+   "end": 56.308,
    "text": "Clica no botão e me chama no WhatsApp. Seu próximo cliente está te procurando."
   }
  ],
- "total": 50.08
+ "total": 56.31
 }
