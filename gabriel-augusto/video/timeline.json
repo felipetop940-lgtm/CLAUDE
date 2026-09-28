@@ -1,0 +1,61 @@
+{
+ "scenes": [
+  {
+   "key": "hook",
+   "start": 0.7,
+   "vo": 3.337,
+   "end": 4.387,
+   "text": "Antes de te chamar, o seu cliente te pesquisa na internet."
+  },
+  {
+   "key": "hook2",
+   "start": 4.387,
+   "vo": 4.371,
+   "end": 9.258,
+   "text": "E o que ele encontra ali decide se ele fala com você, ou com o seu concorrente."
+  },
+  {
+   "key": "intro",
+   "start": 9.258,
+   "vo": 4.529,
+   "end": 14.287,
+   "text": "Eu sou o Gabriel, e crio sites profissionais para quem vive da própria reputação."
+  },
+  {
+   "key": "site",
+   "start": 14.287,
+   "vo": 6.323,
+   "end": 21.61,
+   "text": "Esse é o meu site. Elegante, rápido, perfeito no celular, e com cada botão levando direto para o WhatsApp."
+  },
+  {
+   "key": "fernando",
+   "start": 21.61,
+   "vo": 5.811,
+   "end": 28.321,
+   "text": "E esse é o site do doutor Fernando Augusto, que eu criei para apresentar o trabalho dele com autoridade."
+  },
+  {
+   "key": "plans",
+   "start": 28.321,
+   "vo": 9.694,
+   "end": 38.815,
+   "text": "O plano Essencial sai por duzentos e cinquenta reais, com duas rodadas de ajuste. O Premium Page, por trezentos e vinte, já inclui edição de vídeo e cinco rodadas."
+  },
+  {
+   "key": "delivery",
+   "start": 38.815,
+   "vo": 3.529,
+   "end": 42.844,
+   "text": "Entrega em dois a sete dias, e você fala direto comigo."
+  },
+  {
+   "key": "cta",
+   "start": 42.844,
+   "vo": 4.638,
+   "end": 50.082,
+   "text": "Clica no botão e me chama no WhatsApp. Seu próximo cliente está te procurando."
+  }
+ ],
+ "total": 50.08
+}

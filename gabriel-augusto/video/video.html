@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Vídeo — Gabriel Augusto</title>
+<style>
+@font-face { font-family: "IT"; font-weight: 400 600; src: url("../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "CG"; font-style: italic; src: url("../assets/fonts/cormorant-garamond-italic.woff2") format("woff2"); }
+:root { --gold: #D6B36C; --blue: #4F7BFF; --gray: #9BA2AE; --white: #F5F6F8; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #07080A; }
+body { font-family: "IT", sans-serif; color: var(--white); -webkit-font-smoothing: antialiased; }
+em { font-family: "CG", serif; font-style: italic; font-weight: 500; color: var(--gold); }
+.stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+.bg { position: absolute; inset: 0; background:
+  radial-gradient(900px circle at var(--gx, 70%) var(--gy, 25%), rgba(79,123,255,.20), transparent 60%),
+  radial-gradient(800px circle at 10% 100%, rgba(214,179,108,.10), transparent 60%); }
+.grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 90px 90px; -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000, transparent 70%); opacity: .55; }
+.scene { position: absolute; inset: 0; opacity: 0; will-change: opacity, transform; }
+.center { position: absolute; left: 90px; right: 90px; }
+
+/* Marca no topo (zona segura) */
+.brand { position: absolute; top: 120px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 16px; font-weight: 600; font-size: 30px; letter-spacing: -.01em; }
+.mark { width: 64px; height: 64px; border: 2px solid rgba(214,179,108,.6); border-radius: 16px; display: grid; place-items: center; font-family: "CG"; font-style: italic; color: var(--gold); font-size: 34px; }
+
+/* Cena 1 — gancho */
+.search { top: 470px; height: 118px; border: 2px solid rgba(255,255,255,.14); border-radius: 60px; background: rgba(21,25,32,.85); display: flex; align-items: center; gap: 22px; padding: 0 40px; font-size: 38px; color: var(--white); }
+.search svg { width: 44px; height: 44px; stroke: var(--gold); fill: none; stroke-width: 2.2; flex-shrink: 0; }
+.caret { display: inline-block; width: 3px; height: 44px; background: var(--gold); vertical-align: middle; margin-left: 4px; }
+.big { font-weight: 500; font-size: 104px; line-height: 1.02; letter-spacing: -.035em; }
+.big em { font-size: 1.12em; }
+.line { display: block; overflow: hidden; padding: .06em 0 .1em; }
+.line > span { display: inline-block; }
+.hook-text { top: 700px; }
+.hook2-text { top: 620px; }
+
+/* Cena 3 — apresentação */
+.monogram { position: absolute; left: 50%; top: 560px; width: 260px; height: 260px; margin-left: -130px; border: 3px solid rgba(214,179,108,.7); border-radius: 60px; display: grid; place-items: center; font-family: "CG"; font-style: italic; font-size: 140px; color: var(--gold); box-shadow: 0 0 120px rgba(214,179,108,.18); }
+.intro-name { top: 900px; text-align: center; font-size: 92px; font-weight: 500; letter-spacing: -.035em; }
+.intro-sub { top: 1030px; text-align: center; font-size: 34px; color: var(--gray); letter-spacing: .14em; text-transform: uppercase; }
+
+/* Celular */
+.phone { position: absolute; left: 50%; top: 250px; width: 620px; height: 1180px; margin-left: -310px; border-radius: 76px; background: #0C0E12; border: 2px solid rgba(255,255,255,.16); box-shadow: 0 80px 160px -40px rgba(0,0,0,.9), 0 0 0 12px #14171d, 0 0 0 14px rgba(255,255,255,.08); overflow: hidden; }
+.phone .screen { position: absolute; inset: 18px; border-radius: 60px; overflow: hidden; background: #07080A; }
+.phone .screen img { position: absolute; left: 0; top: 64px; width: 100%; }
+.phone .screen::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 64px; background: #07080A; z-index: 2; }
+.notch { position: absolute; left: 50%; top: 32px; width: 150px; height: 40px; margin-left: -75px; border-radius: 30px; background: #000; z-index: 3; }
+.chip { position: absolute; padding: 20px 30px; border-radius: 60px; background: rgba(16,19,24,.92); border: 2px solid rgba(214,179,108,.45); font-size: 34px; font-weight: 500; white-space: nowrap; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8); }
+.chip b { color: var(--gold); font-weight: 600; }
+.chip .d { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); margin-right: 16px; vertical-align: middle; box-shadow: 0 0 16px var(--gold); }
+
+/* Fernando (prévia pendente) */
+.browserbar { position: absolute; left: 0; right: 0; top: 0; height: 150px; padding-top: 70px; background: #111419; border-bottom: 1px solid rgba(255,255,255,.08); display: flex; justify-content: center; }
+.url { height: 58px; padding: 0 26px; border-radius: 30px; background: rgba(255,255,255,.06); display: flex; align-items: center; gap: 10px; font-size: 26px; }
+.url i { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
+.pending { position: absolute; left: 40px; right: 40px; top: 360px; text-align: center; }
+.pending h3 { font-size: 58px; font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+.pending p { margin-top: 30px; font-size: 26px; color: var(--gray); }
+.tagtop { position: absolute; top: 225px; left: 0; right: 0; text-align: center; font-size: 28px; letter-spacing: .16em; text-transform: uppercase; color: var(--gray); }
+.tagtop b { color: var(--gold); font-weight: 600; }
+
+/* Planos */
+.plans-title { top: 230px; text-align: center; font-size: 84px; font-weight: 500; letter-spacing: -.035em; }
+.plan { position: absolute; left: 110px; right: 110px; height: 390px; border-radius: 44px; padding: 50px 56px; border: 2px solid rgba(255,255,255,.1); background: #0E1116; }
+.plan.premium { border-color: rgba(214,179,108,.6); background: linear-gradient(180deg, rgba(214,179,108,.10), transparent 60%), #111419; box-shadow: 0 0 120px -30px rgba(214,179,108,.45); }
+.plan .name { font-size: 46px; font-weight: 500; letter-spacing: -.02em; }
+.plan .price { font-size: 128px; font-weight: 500; letter-spacing: -.05em; line-height: 1; margin-top: 18px; }
+.plan .price small { font-size: 40px; color: var(--gray); font-weight: 400; margin-right: 8px; letter-spacing: 0; vertical-align: 60px; }
+.plan .feat { position: absolute; right: 56px; top: 70px; text-align: right; font-size: 32px; line-height: 1.6; color: var(--gray); }
+.plan .feat b { color: var(--white); font-weight: 600; }
+.flag { position: absolute; left: 56px; top: -26px; padding: 10px 22px; border-radius: 30px; background: var(--gold); color: #07080A; font-size: 24px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+
+/* Entrega */
+.ring { position: absolute; left: 50%; top: 420px; width: 460px; height: 460px; margin-left: -230px; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring .days { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+.ring .days strong { display: block; font-size: 120px; font-weight: 500; letter-spacing: -.05em; line-height: 1; }
+.ring .days span { font-size: 36px; color: var(--gray); }
+.deliv-1 { top: 960px; text-align: center; font-size: 76px; font-weight: 500; letter-spacing: -.035em; }
+.deliv-2 { top: 1060px; text-align: center; font-size: 40px; color: var(--gray); }
+
+/* CTA */
+.cta-title { top: 360px; text-align: center; font-size: 96px; font-weight: 500; line-height: 1.04; letter-spacing: -.035em; }
+.wa-btn { position: absolute; left: 50%; top: 800px; width: 760px; margin-left: -380px; height: 150px; border-radius: 80px; background: var(--gold); color: #07080A; display: flex; align-items: center; justify-content: center; gap: 22px; font-size: 48px; font-weight: 600; }
+.wa-btn svg { width: 58px; height: 58px; fill: #07080A; }
+.pulse { position: absolute; left: 50%; top: 800px; width: 760px; height: 150px; margin-left: -380px; border-radius: 80px; border: 3px solid var(--gold); }
+.cta-info { top: 1020px; text-align: center; font-size: 40px; color: var(--gray); line-height: 1.7; }
+.cta-info b { color: var(--white); font-weight: 500; }
+
+/* Legendas (acima da área de interface dos Reels) */
+.subs { position: absolute; left: 70px; right: 70px; top: 1470px; text-align: center; font-size: 50px; font-weight: 600; line-height: 1.25; letter-spacing: -.01em; text-shadow: 0 4px 30px rgba(0,0,0,.9); }
+.subs span { background: rgba(7,8,10,.72); padding: 8px 20px; border-radius: 16px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.subs .hl { color: var(--gold); }
+.progress { position: absolute; left: 90px; right: 90px; top: 72px; height: 5px; border-radius: 4px; background: rgba(255,255,255,.1); overflow: hidden; }
+.progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--blue), var(--gold)); transform-origin: 0 50%; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="bg" id="bg"></div><div class="grid"></div>
+  <div class="progress"><i id="prog"></i></div>
+
+  <!-- 1. Gancho -->
+  <section class="scene" id="s-hook">
+    <div class="center search" id="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span id="q"></span><span class="caret" id="caret"></span></div>
+    <div class="center big hook-text">
+      <span class="line"><span>Antes de te chamar,</span></span>
+      <span class="line"><span>seu cliente</span></span>
+      <span class="line"><span><em>te pesquisa.</em></span></span>
+    </div>
+  </section>
+
+  <section class="scene" id="s-hook2">
+    <div class="center big hook2-text">
+      <span class="line"><span>Ele fala</span></span>
+      <span class="line"><span>com você…</span></span>
+      <span class="line"><span>ou com o seu</span></span>
+      <span class="line"><span><em>concorrente?</em></span></span>
+    </div>
+  </section>
+
+  <!-- 2. Apresentação (sem rosto) -->
+  <section class="scene" id="s-intro">
+    <div class="monogram" id="mono">GA</div>
+    <div class="center intro-name">Gabriel <em>Augusto</em></div>
+    <div class="center intro-sub">Sites profissionais · Goiânia/GO</div>
+  </section>
+
+  <!-- 3. Site do Gabriel -->
+  <section class="scene" id="s-site">
+    <div class="phone" id="phone1"><div class="notch"></div><div class="screen"><img id="scrollimg" src="src/site-scroll.jpg" alt=""></div></div>
+    <div class="chip" id="c1" style="left:40px;top:430px"><i class="d"></i><b>Elegante</b></div>
+    <div class="chip" id="c2" style="right:40px;top:640px"><i class="d"></i><b>Rápido</b></div>
+    <div class="chip" id="c3" style="left:40px;top:900px"><i class="d"></i>Perfeito no <b>celular</b></div>
+    <div class="chip" id="c4" style="right:40px;top:1160px"><i class="d"></i>1 clique até o <b>WhatsApp</b></div>
+  </section>
+
+  <!-- 4. Site do Fernando -->
+  <section class="scene" id="s-fernando">
+    <div class="tagtop">Projeto real · <b>criado por mim</b></div>
+    <div class="phone" id="phone2" style="top:300px;height:1140px"><div class="notch"></div><div class="screen">
+      <div class="browserbar"><div class="url"><i></i>fernandoaugustodr.com.br</div></div>
+      <!-- PRÉVIA: substituir por capturas reais do site do Fernando -->
+      <div class="pending"><h3>Dr. Fernando<br><em>Augusto</em></h3><p>[ capturas do site entram aqui ]</p></div>
+    </div></div>
+  </section>
+
+  <!-- 5. Planos -->
+  <section class="scene" id="s-plans">
+    <div class="center plans-title">Preço <em>fechado.</em></div>
+    <div class="plan" id="p1" style="top:470px">
+      <div class="name">Essencial</div>
+      <div class="price"><small>R$</small><span id="n1">250</span></div>
+      <div class="feat">Site profissional<br><b>2 rodadas</b> de ajuste<br>Vídeo: <b>+ R$ 38</b></div>
+    </div>
+    <div class="plan premium" id="p2" style="top:930px">
+      <span class="flag">Mais completo</span>
+      <div class="name">Premium Page</div>
+      <div class="price"><small>R$</small><span id="n2">320</span></div>
+      <div class="feat"><b>Vídeo editado</b> incluso<br><b>5 rodadas</b> de ajuste<br>Tudo do Essencial</div>
+    </div>
+  </section>
+
+  <!-- 6. Entrega -->
+  <section class="scene" id="s-delivery">
+    <div class="ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="2"/><circle id="arc" cx="50" cy="50" r="46" fill="none" stroke="url(#gr)" stroke-width="2.4" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/><defs><linearGradient id="gr"><stop offset="0" stop-color="#4F7BFF"/><stop offset="1" stop-color="#D6B36C"/></linearGradient></defs></svg>
+      <div class="days"><div><strong>2 a 7</strong><span>dias</span></div></div></div>
+    <div class="center deliv-1">Entrega <em>rápida.</em></div>
+    <div class="center deliv-2">E você fala direto comigo.</div>
+  </section>
+
+  <!-- 7. Chamada final -->
+  <section class="scene" id="s-cta">
+    <div class="center cta-title">Seu próximo cliente está <em>te procurando.</em></div>
+    <div class="pulse" id="pulse"></div>
+    <div class="wa-btn" id="wabtn"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>Me chama no WhatsApp</div>
+    <div class="center cta-info"><b>(62) 98259-5333</b><br>@august0_oliv</div>
+  </section>
+
+  <div class="brand" id="brand"><span class="mark">GA</span>Gabriel Augusto</div>
+  <div class="subs" id="subs"></div>
+</div>
+
+<script>
+/* Linha do tempo determinística: render(t) desenha o quadro exato do segundo t. */
+const TL = __TIMELINE__;
+const S = Object.fromEntries(TL.scenes.map(s => [s.key, s]));
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+const easeIO = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const prog = (t, a, d) => clamp((t - a) / d);
+
+// Cena visível por intervalo; cenas agrupadas compartilham o fundo
+const groups = { 's-hook': ['hook'], 's-hook2': ['hook2'], 's-intro': ['intro'], 's-site': ['site'], 's-fernando': ['fernando'], 's-plans': ['plans'], 's-delivery': ['delivery'], 's-cta': ['cta'] };
+function sceneAlpha(t, a, b) { const fi = .45, fo = .4; return Math.min(prog(t, a - .05, fi), 1 - prog(t, b - fo, fo)); }
+
+// Legendas: frase dividida em blocos curtos, tempo proporcional ao número de letras
+const SUBS = [];
+const DISPLAY = [[/duzentos e cinquenta reais/g, 'R$ 250'], [/trezentos e vinte/g, 'R$ 320'], [/dois a sete dias/g, '2 a 7 dias'], [/duas rodadas/g, '2 rodadas'], [/cinco rodadas/g, '5 rodadas'], [/doutor/g, 'Dr.']];
+TL.scenes.forEach(s => {
+  let txt = s.text; DISPLAY.forEach(([r, v]) => { txt = txt.replace(r, v); });
+  const words = txt.split(' '); const chunks = []; let cur = [];
+  words.forEach(w => { cur.push(w); if (cur.length >= 5 || /[,.?]$/.test(w) && cur.length >= 3) { chunks.push(cur.join(' ')); cur = []; } });
+  if (cur.length) chunks.push(cur.join(' '));
+  const total = chunks.reduce((n, c) => n + c.length, 0); let acc = s.start;
+  chunks.forEach(c => { const d = s.vo * c.length / total; SUBS.push({ a: acc, b: acc + d, text: c }); acc += d; });
+});
+const HL = /(Gabriel|WhatsApp|Essencial|Premium Page|R\$ 250|R\$ 320|2 a 7 dias|Fernando Augusto|concorrente)/g;
+
+function lineIn(scope, t, start, gap = .12) {
+  scope.querySelectorAll('.line > span').forEach((el, i) => {
+    const p = ease(prog(t, start + i * gap, .7));
+    el.style.transform = `translateY(${(1 - p) * 110}%)`;
+  });
+}
+
+function render(t) {
+  $('prog').style.transform = `scaleX(${clamp(t / TL.total)})`;
+  $('bg').style.setProperty('--gx', (70 - 30 * Math.sin(t / 6)) + '%');
+  $('bg').style.setProperty('--gy', (25 + 12 * Math.cos(t / 5)) + '%');
+  for (const id in groups) { const s = S[groups[id][0]]; const el = $(id); const a = sceneAlpha(t, s.start, s.end); el.style.opacity = a; el.style.visibility = a > 0 ? 'visible' : 'hidden'; }
+
+  // 1. Gancho: busca digitada + título
+  { const s = S.hook, q = 'melhor profissional perto de mim'; const n = Math.floor(clamp((t - s.start) / 1.6) * q.length);
+    $('q').textContent = q.slice(0, n); $('caret').style.opacity = (Math.floor(t * 2) % 2) ? 1 : .2;
+    $('search').style.transform = `translateY(${(1 - ease(prog(t, s.start - .1, .6))) * 40}px)`;
+    lineIn($('s-hook'), t, s.start + 1.2); }
+  lineIn($('s-hook2'), t, S.hook2.start + .1, .22);
+
+  // 2. Monograma
+  { const s = S.intro, p = ease(prog(t, s.start, .9)); $('mono').style.transform = `scale(${.6 + .4 * p}) rotate(${(1 - p) * -8}deg)`; $('mono').style.opacity = p;
+    const q = $('s-intro'); q.querySelector('.intro-name').style.transform = `translateY(${(1 - ease(prog(t, s.start + .4, .8))) * 60}px)`;
+    q.querySelector('.intro-sub').style.opacity = ease(prog(t, s.start + .9, .6)); }
+  // Marca pequena no topo some na apresentação (já está grande no centro)
+  $('brand').style.opacity = 1 - sceneAlpha(t, S.intro.start, S.intro.end);
+
+  // 3. Site do Gabriel: celular sobe, tela rola até os planos
+  { const s = S.site, p = ease(prog(t, s.start, .9));
+    $('phone1').style.transform = `translateY(${(1 - p) * 300}px) rotate(${(1 - p) * 4}deg)`;
+    const img = $('scrollimg'); const scale = 584 / 624; const maxY = 12400 * scale - 1144;
+    const sp = easeIO(prog(t, s.start + 1.8, s.end - s.start - 2.6));
+    img.style.transform = `translateY(${-sp * maxY}px)`;
+    ['c1', 'c2', 'c3', 'c4'].forEach((id, i) => { const k = ease(prog(t, s.start + .9 + i * 1.25, .6)); const el = $(id); el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * 30}px) scale(${.9 + .1 * k})`; }); }
+
+  // 4. Fernando
+  { const s = S.fernando, p = ease(prog(t, s.start, .9)); $('phone2').style.transform = `translateY(${(1 - p) * 300}px)`; }
+
+  // 5. Planos: cards entram e o valor conta
+  { const s = S.plans;
+    [['p1', 'n1', 250, s.start + .3], ['p2', 'n2', 320, s.start + 4.2]].forEach(([c, n, v, a]) => {
+      const k = ease(prog(t, a, .8)); $(c).style.opacity = k; $(c).style.transform = `translateY(${(1 - k) * 80}px) scale(${.96 + .04 * k})`;
+      $(n).textContent = Math.round(v * ease(prog(t, a + .1, 1.1)));
+    });
+    $('s-plans').querySelector('.plans-title').style.transform = `translateY(${(1 - ease(prog(t, s.start, .7))) * 40}px)`; }
+
+  // 6. Entrega: anel se desenha
+  { const s = S.delivery; $('arc').setAttribute('stroke-dashoffset', 100 - 100 * easeIO(prog(t, s.start + .2, 2.4)));
+    $('s-delivery').querySelector('.deliv-2').style.opacity = ease(prog(t, s.start + 1.6, .6)); }
+
+  // 7. CTA: botão pulsa
+  { const s = S.cta, k = ease(prog(t, s.start + .5, .7)); $('wabtn').style.transform = `scale(${(.9 + .1 * k) * (1 + .025 * Math.sin((t - s.start) * 5))})`; $('wabtn').style.opacity = k;
+    const ph = ((t - s.start) % 1.4) / 1.4; $('pulse').style.opacity = t > s.start + 1 ? (1 - ph) * .8 : 0; $('pulse').style.transform = `scale(${1 + ph * .18}, ${1 + ph * .5})`;
+    $('s-cta').querySelector('.cta-info').style.opacity = ease(prog(t, s.start + 1.2, .6)); }
+
+  // Legendas
+  const cur = SUBS.find(c => t >= c.a && t < c.b + .08);
+  const html = cur ? '<span>' + cur.text.replace(HL, '<b class="hl">$1</b>') + '</span>' : '';
+  if ($('subs').innerHTML !== html) $('subs').innerHTML = html;
+  $('subs').style.opacity = cur ? Math.min(1, (t - cur.a) / .12) : 0;
+}
+window.render = render;
+render(0);
+</script>
+</body>
+</html>
