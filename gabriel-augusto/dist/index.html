@@ -975,7 +975,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>Entrega em 2 a 7 dias</span></li>
         </ul>
         <p class="plan__save">Sai <strong>R$ 32 a mais</strong> que o Essencial com vídeo — e você ganha 3 rodadas extras.</p>
-        <a class="btn btn--gold btn--block magnetic" href="#contato" data-wa="Olá, Gabriel! Tenho interesse no Premium Page (R$ 320, com edição de vídeo e 5 rodadas de ajuste). Como funciona?">
+        <a class="btn btn--gold btn--block magnetic" href="#contato" data-wa data-wa-plan="premium">
           <svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Quero o Premium Page
         </a>
       </article>
@@ -1107,6 +1107,40 @@ window.SITE = {
   instagramHandle: "@august0_oliv", // ex.: "@seuperfil"
   email: "augustooliv940@gmail.com", // ex.: "contato@seudominio.com.br"             (vazio = oculto)
 
+  /* Mensagens automáticas de cada plano (chegam prontas no seu WhatsApp).
+     *texto* fica em negrito no WhatsApp. {total} é trocado pelo valor. */
+  messages: {
+    premium:
+      "Olá, Gabriel! Quero contratar o plano *Premium Page* (R$ 320).\n\n" +
+      "O que está incluso:\n" +
+      "• Site profissional personalizado\n" +
+      "• Adaptado para celular e computador\n" +
+      "• Botão direto para o meu WhatsApp\n" +
+      "• Edição de vídeo para a página\n" +
+      "• 5 rodadas de ajuste\n" +
+      "• Entrega em 2 a 7 dias\n\n" +
+      "Como fazemos para começar?",
+    essential:
+      "Olá, Gabriel! Quero contratar o plano *Essencial* (R$ 250).\n\n" +
+      "O que está incluso:\n" +
+      "• Site profissional personalizado\n" +
+      "• Adaptado para celular e computador\n" +
+      "• Botão direto para o meu WhatsApp\n" +
+      "• 2 rodadas de ajuste\n" +
+      "• Entrega em 2 a 7 dias\n\n" +
+      "Como fazemos para começar?",
+    essentialVideo:
+      "Olá, Gabriel! Quero contratar o plano *Essencial com edição de vídeo* (R$ 250 + R$ 38 = *R$ {total}*).\n\n" +
+      "O que está incluso:\n" +
+      "• Site profissional personalizado\n" +
+      "• Adaptado para celular e computador\n" +
+      "• Botão direto para o meu WhatsApp\n" +
+      "• Edição de vídeo para a página\n" +
+      "• 2 rodadas de ajuste\n" +
+      "• Entrega em 2 a 7 dias\n\n" +
+      "Como fazemos para começar?"
+  },
+
   prices: {
     essential: 250,      // Site Essencial — 2 rodadas de ajuste
     video: 38,           // Edição de vídeo avulsa
@@ -1151,8 +1185,11 @@ window.SITE = {
     el.href = waUrl(message);
     if (waBase()) { el.target = '_blank'; el.rel = 'noopener'; }
   }
+  // Botões de plano usam as mensagens de config.js (data-wa-plan="premium" etc.)
+  var MSG = SITE.messages || {};
   $$('[data-wa]').forEach(function (el) {
-    setWa(el, el.getAttribute('data-wa'));
+    var plan = el.getAttribute('data-wa-plan');
+    setWa(el, (plan && MSG[plan]) || el.getAttribute('data-wa'));
     el.addEventListener('click', function () { track(el); });
   });
 
@@ -1378,9 +1415,8 @@ window.SITE = {
     animateNumber(priceEl, total);
     if (hint) hint.hidden = !withVideo;
     if (essentialCta) {
-      setWa(essentialCta, withVideo
-        ? 'Olá, Gabriel! Tenho interesse no plano Essencial com edição de vídeo (R$ ' + total + '). Como funciona?'
-        : 'Olá, Gabriel! Tenho interesse no plano Essencial (R$ ' + total + ', com 2 rodadas de ajuste). Como funciona?');
+      var msg = (withVideo ? MSG.essentialVideo : MSG.essential) || '';
+      setWa(essentialCta, msg.replace('{total}', total));
     }
   }
   if (addon) { addon.addEventListener('change', syncEssential); syncEssential(); }

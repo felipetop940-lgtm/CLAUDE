@@ -13,6 +13,40 @@ window.SITE = {
   instagramHandle: "@august0_oliv", // ex.: "@seuperfil"
   email: "augustooliv940@gmail.com", // ex.: "contato@seudominio.com.br"             (vazio = oculto)
 
+  /* Mensagens automáticas de cada plano (chegam prontas no seu WhatsApp).
+     *texto* fica em negrito no WhatsApp. {total} é trocado pelo valor. */
+  messages: {
+    premium:
+      "Olá, Gabriel! Quero contratar o plano *Premium Page* (R$ 320).\n\n" +
+      "O que está incluso:\n" +
+      "• Site profissional personalizado\n" +
+      "• Adaptado para celular e computador\n" +
+      "• Botão direto para o meu WhatsApp\n" +
+      "• Edição de vídeo para a página\n" +
+      "• 5 rodadas de ajuste\n" +
+      "• Entrega em 2 a 7 dias\n\n" +
+      "Como fazemos para começar?",
+    essential:
+      "Olá, Gabriel! Quero contratar o plano *Essencial* (R$ 250).\n\n" +
+      "O que está incluso:\n" +
+      "• Site profissional personalizado\n" +
+      "• Adaptado para celular e computador\n" +
+      "• Botão direto para o meu WhatsApp\n" +
+      "• 2 rodadas de ajuste\n" +
+      "• Entrega em 2 a 7 dias\n\n" +
+      "Como fazemos para começar?",
+    essentialVideo:
+      "Olá, Gabriel! Quero contratar o plano *Essencial com edição de vídeo* (R$ 250 + R$ 38 = *R$ {total}*).\n\n" +
+      "O que está incluso:\n" +
+      "• Site profissional personalizado\n" +
+      "• Adaptado para celular e computador\n" +
+      "• Botão direto para o meu WhatsApp\n" +
+      "• Edição de vídeo para a página\n" +
+      "• 2 rodadas de ajuste\n" +
+      "• Entrega em 2 a 7 dias\n\n" +
+      "Como fazemos para começar?"
+  },
+
   prices: {
     essential: 250,      // Site Essencial — 2 rodadas de ajuste
     video: 38,           // Edição de vídeo avulsa

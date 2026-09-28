@@ -33,8 +33,11 @@
     el.href = waUrl(message);
     if (waBase()) { el.target = '_blank'; el.rel = 'noopener'; }
   }
+  // Botões de plano usam as mensagens de config.js (data-wa-plan="premium" etc.)
+  var MSG = SITE.messages || {};
   $$('[data-wa]').forEach(function (el) {
-    setWa(el, el.getAttribute('data-wa'));
+    var plan = el.getAttribute('data-wa-plan');
+    setWa(el, (plan && MSG[plan]) || el.getAttribute('data-wa'));
     el.addEventListener('click', function () { track(el); });
   });
 
@@ -260,9 +263,8 @@
     animateNumber(priceEl, total);
     if (hint) hint.hidden = !withVideo;
     if (essentialCta) {
-      setWa(essentialCta, withVideo
-        ? 'Olá, Gabriel! Tenho interesse no plano Essencial com edição de vídeo (R$ ' + total + '). Como funciona?'
-        : 'Olá, Gabriel! Tenho interesse no plano Essencial (R$ ' + total + ', com 2 rodadas de ajuste). Como funciona?');
+      var msg = (withVideo ? MSG.essentialVideo : MSG.essential) || '';
+      setWa(essentialCta, msg.replace('{total}', total));
     }
   }
   if (addon) { addon.addEventListener('change', syncEssential); syncEssential(); }
