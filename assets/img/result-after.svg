@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="IMAGEM · DEPOIS">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C221E"/><stop offset="1" stop-color="#0B0D0C"/></linearGradient>
+<radialGradient id="l" cx=".7" cy=".2" r=".8"><stop offset="0" stop-color="#62C27C" stop-opacity=".22"/><stop offset="1" stop-color="#62C27C" stop-opacity="0"/></radialGradient></defs>
+<rect width="1200" height="1200" fill="url(#g)"/><rect width="1200" height="1200" fill="url(#l)"/>
+<text x="50%" y="46%" text-anchor="middle" font-family="Georgia,serif" font-size="200" fill="#FFFFFF" fill-opacity=".08" letter-spacing="4">ICL</text>
+<text x="50%" y="58%" text-anchor="middle" font-family="Arial,sans-serif" font-size="35" fill="#FFFFFF" fill-opacity=".7" letter-spacing="2">IMAGEM · DEPOIS</text>
+<text x="50%" y="63%" text-anchor="middle" font-family="Arial,sans-serif" font-size="27" fill="#FFFFFF" fill-opacity=".42">só com autorização do paciente</text>
+</svg>

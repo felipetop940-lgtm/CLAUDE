@@ -1,0 +1,7 @@
+Fontes incluídas neste diretório (subset latino, formato WOFF2):
+
+- Inter — Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
+- Instrument Serif — Copyright 2022 The Instrument Serif Project Authors (https://github.com/Instrument/instrument-serif)
+
+Ambas são distribuídas sob a SIL Open Font License, versão 1.1.
+Texto completo da licença: https://openfontlicense.org/open-font-license-official-text/
