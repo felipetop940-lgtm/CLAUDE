@@ -9,9 +9,9 @@ window.SITE = {
   /* Mensagem que já chega escrita no seu WhatsApp (cada botão pode ter a sua no HTML) */
   whatsappDefaultMessage: "Olá, Gabriel! Vi seu site e quero um site profissional. Pode me passar mais informações?",
 
-  instagramUrl: "",      // ex.: "https://www.instagram.com/seuperfil/"  (vazio = oculto)
-  instagramHandle: "",   // ex.: "@seuperfil"
-  email: "",             // ex.: "contato@seudominio.com.br"             (vazio = oculto)
+  instagramUrl: "https://www.instagram.com/august0_oliv/", // ex.: "https://www.instagram.com/seuperfil/"  (vazio = oculto)
+  instagramHandle: "@august0_oliv", // ex.: "@seuperfil"
+  email: "augustooliv940@gmail.com", // ex.: "contato@seudominio.com.br"             (vazio = oculto)
 
   prices: {
     essential: 250,      // Site Essencial — 2 rodadas de ajuste

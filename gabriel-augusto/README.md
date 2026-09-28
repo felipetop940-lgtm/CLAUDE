@@ -13,7 +13,7 @@ Landing page para vender criação de sites. HTML, CSS e JavaScript puro, sem bi
 | **Link do WhatsApp**, mensagem padrão, e-mail, Instagram, preços | `assets/js/config.js` |
 | Textos | `index.html` |
 | Cores e fontes | topo de `assets/css/styles.css` (`:root`) |
-| Sua foto | troque `assets/img/gabriel.svg` por `gabriel.webp` (800×1000) no `index.html` e ajuste o `alt` |
+| Fotos | `assets/img/gabriel-sobre.webp` (seção Sobre, 560×700) e `gabriel-avatar.webp` (avatar no topo e no fechamento, 160×160) |
 | Domínio | `<link rel="canonical">` e `og:image` no `<head>` (use a URL completa depois de publicar) |
 
 Enquanto o WhatsApp estiver vazio, os botões levam para a seção final. E-mail e Instagram só aparecem quando preenchidos.
