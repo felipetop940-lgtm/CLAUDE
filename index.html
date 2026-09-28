@@ -14,8 +14,9 @@
   <meta property="og:title" content="ICL Saúde | Medicina avançada, cuidado integral">
   <meta property="og:description" content="Emagrecimento, saúde metabólica, lipedema e saúde hormonal com acompanhamento médico próximo. Presencial e online.">
   <meta property="og:url" content="https://iclsaude.com.br/">
-  <!-- [PLACEHOLDER] Imagem de compartilhamento 1200×630 (foto do Dr. Ítalo + logo) -->
   <meta property="og:image" content="https://iclsaude.com.br/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -99,7 +100,7 @@
 <header class="header" id="topo">
   <div class="container header__inner">
     <a class="brand" href="#topo" aria-label="ICL Saúde — voltar ao início">
-      <!-- [PLACEHOLDER] Logo oficial: troque este bloco por
+      <!-- Logo oficial: troque este bloco por
            <img src="assets/img/logo.svg" alt="ICL Saúde" width="120" height="48"> -->
       <span class="brand__leaf" aria-hidden="true"></span>
       <span class="brand__text"><span class="brand__mark">ICL</span><span class="brand__name">Saúde</span></span>
@@ -156,7 +157,7 @@
     <div class="hero__visual">
       <figure class="hero__frame">
         <!-- [FOTO] Troque pelo retrato oficial (ex.: hero-portrait.webp, 800×1000) -->
-        <img src="assets/img/hero-portrait.svg" alt="Dr. Ítalo Cardoso de Lima, diretor técnico da ICL Saúde" width="800" height="1000" fetchpriority="high" decoding="async">
+        <img src="assets/img/hero-portrait.svg" alt="Identidade visual da ICL Saúde" width="800" height="1000" fetchpriority="high" decoding="async">
       </figure>
       <div class="hero__badge">
         <strong>Dr. Ítalo Cardoso de Lima</strong>
@@ -189,7 +190,7 @@
   <div class="container about__grid">
     <div class="about__media reveal reveal--image">
       <!-- [FOTO] Dr. Ítalo de jaleco (ex.: about-photo.webp, 800×1000) -->
-      <img src="assets/img/about-photo.svg" alt="Dr. Ítalo Cardoso de Lima de jaleco em seu consultório" width="800" height="1000" loading="lazy" decoding="async">
+      <img src="assets/img/about-photo.svg" alt="Identidade visual da ICL Saúde" width="800" height="1000" loading="lazy" decoding="async">
       <div class="about__tag">
         <span>Responsável técnico</span>
         <strong>CRM-GO 35190</strong>
@@ -223,15 +224,6 @@
         </li>
       </ul>
 
-      <!-- Equipe multidisciplinar: complete com os demais profissionais reais -->
-      <div class="team reveal">
-        <h3 class="team__title">Um time alinhado em torno de um objetivo: você.</h3>
-        <ul class="team__list" role="list">
-          <li><strong>Médico — Dr. Ítalo</strong><span>Diagnóstico preciso e condução do seu plano de tratamento.</span></li>
-          <li class="is-placeholder"><strong>[Profissional 2 — área]</strong><span>[Papel no acompanhamento]</span></li>
-          <li class="is-placeholder"><strong>[Profissional 3 — área]</strong><span>[Papel no acompanhamento]</span></li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -255,44 +247,48 @@
       <p class="section__intro reveal">Cada plano é único e os resultados variam de pessoa para pessoa. O que se repete é a experiência de ser ouvido, acompanhado e cuidado de perto.</p>
     </header>
 
-    <div class="results__grid">
-      <div class="rating reveal">
+    <div class="rating rating--wide reveal">
+      <div class="rating__main">
         <p class="rating__source">Doctoralia</p>
         <p class="rating__score">5,0</p>
         <div class="rating__stars" aria-hidden="true">
           <svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg>
         </div>
-        <p class="rating__count">Nota média em <strong>61 opiniões</strong> de pacientes</p>
-        <a class="rating__link" href="#" data-link="doctoraliaUrl" target="_blank" rel="noopener">Ler as avaliações <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
       </div>
-
-      <!-- [PLACEHOLDER] Cole aqui trechos reais de avaliações do Doctoralia/Google (com nome abreviado). Nunca invente. -->
-      <figure class="quote reveal is-placeholder">
-        <blockquote>“[Trecho real de avaliação de paciente — até 3 linhas.]”</blockquote>
-        <figcaption><strong>[Nome abreviado]</strong><span>Avaliação no Doctoralia</span></figcaption>
-      </figure>
-      <figure class="quote reveal is-placeholder">
-        <blockquote>“[Trecho real de avaliação de paciente — até 3 linhas.]”</blockquote>
-        <figcaption><strong>[Nome abreviado]</strong><span>Avaliação no Doctoralia</span></figcaption>
-      </figure>
-
-      <!-- Comparador antes/depois — opcional. Resolução CFM 2.336/2023: só com autorização
-           expressa do paciente, finalidade educativa, sem promessa de resultado.
-           Para ocultar, adicione o atributo hidden. -->
-      <div class="compare reveal" data-compare>
-        <div class="compare__stage">
-          <img src="assets/img/result-after.svg" alt="[PLACEHOLDER] Depois do tratamento" width="1200" height="1200" loading="lazy" decoding="async">
-          <div class="compare__before">
-            <img src="assets/img/result-before.svg" alt="[PLACEHOLDER] Antes do tratamento" width="1200" height="1200" loading="lazy" decoding="async">
-          </div>
-          <span class="compare__tag compare__tag--before">Antes</span>
-          <span class="compare__tag compare__tag--after">Depois</span>
-          <div class="compare__handle" aria-hidden="true"><span><svg class="icon"><use href="#i-arrow"/></svg></span></div>
-          <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Arraste para comparar antes e depois">
-        </div>
-        <p class="compare__caption">[PLACEHOLDER] Tempo de acompanhamento · Resultados individuais podem variar.</p>
+      <div class="rating__body">
+        <p class="rating__headline">Nota máxima na média de <strong>61 opiniões</strong> publicadas por pacientes.</p>
+        <p class="rating__count">Avaliações abertas e verificadas pela plataforma. Leia o que os pacientes contam sobre o atendimento.</p>
+        <a class="rating__link" href="https://www.doctoralia.com.br/italo-cardoso-lima/nutrologo-medico-clinico-geral/goiania" data-link="doctoraliaUrl" target="_blank" rel="noopener">Ler as avaliações no Doctoralia <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
       </div>
     </div>
+
+    <!-- BLOCOS PRONTOS PARA ATIVAR: mova o conteúdo do <template> para cá quando tiver
+         depoimentos reais (com autorização) e/ou antes/depois autorizado (Res. CFM 2.336/2023). -->
+    <template id="modelo-resultados">
+      <div class="results__grid">
+        <figure class="quote reveal">
+          <blockquote>“Trecho real de avaliação de paciente.”</blockquote>
+          <figcaption><strong>Nome abreviado</strong><span>Avaliação no Doctoralia</span></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <blockquote>“Trecho real de avaliação de paciente.”</blockquote>
+          <figcaption><strong>Nome abreviado</strong><span>Avaliação no Doctoralia</span></figcaption>
+        </figure>
+        <div class="compare reveal" data-compare>
+          <div class="compare__stage">
+            <img src="assets/img/result-after.webp" alt="Depois do tratamento" width="1200" height="1200" loading="lazy" decoding="async">
+            <div class="compare__before">
+              <img src="assets/img/result-before.webp" alt="Antes do tratamento" width="1200" height="1200" loading="lazy" decoding="async">
+            </div>
+            <span class="compare__tag compare__tag--before">Antes</span>
+            <span class="compare__tag compare__tag--after">Depois</span>
+            <div class="compare__handle" aria-hidden="true"><span><svg class="icon"><use href="#i-arrow"/></svg></span></div>
+            <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Arraste para comparar antes e depois">
+          </div>
+          <p class="compare__caption">Tempo de acompanhamento · Resultados individuais podem variar.</p>
+        </div>
+      </div>
+    </template>
 
     <div class="cta-band reveal">
       <div>
@@ -450,7 +446,7 @@
 </section>
 
 <!-- ============================== REDES SOCIAIS ============================== -->
-<section class="section social" aria-labelledby="social-title">
+<section class="section social" aria-labelledby="social-title" data-row="instagramUrl" hidden>
   <div class="container social__grid">
     <div class="social__content">
       <p class="eyebrow reveal">Conteúdo</p>
@@ -458,10 +454,10 @@
       <p class="reveal">Acompanhe a ICL Saúde no Instagram e entenda melhor o seu corpo antes mesmo da consulta.</p>
       <a class="btn btn--ghost reveal" href="#" data-link="instagramUrl" target="_blank" rel="noopener">
         <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
-        <span data-field="instagramHandle">[@PERFIL]</span>
+        <span data-field="instagramHandle"></span>
       </a>
     </div>
-    <!-- [PLACEHOLDER] Troque por prints de posts reais (quadrados, WebP) -->
+    <!-- Troque por prints de posts reais (quadrados, WebP) -->
     <div class="social__preview reveal" aria-hidden="true">
       <img src="assets/img/social-1.svg" alt="" width="600" height="600" loading="lazy" decoding="async">
       <img src="assets/img/social-2.svg" alt="" width="600" height="600" loading="lazy" decoding="async">
@@ -497,21 +493,21 @@
           <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
           <div><span>WhatsApp</span><a href="#contato" data-wa data-field="whatsappDisplay">(62) 99288-7382</a></div>
         </li>
-        <li data-row="phone">
+        <li data-row="phone" hidden>
           <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
-          <div><span>Telefone</span><a href="#contato" data-link="tel" data-field="phone">[TELEFONE]</a></div>
+          <div><span>Telefone</span><a href="#contato" data-link="tel" data-field="phone"></a></div>
         </li>
-        <li data-row="email">
+        <li data-row="email" hidden>
           <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
-          <div><span>E-mail</span><a href="#contato" data-link="mailto" data-field="email">[E-MAIL]</a></div>
+          <div><span>E-mail</span><a href="#contato" data-link="mailto" data-field="email"></a></div>
         </li>
-        <li data-row="address">
+        <li data-row="address" hidden>
           <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
-          <div><span>Endereço</span><p data-field="address">[ENDEREÇO]</p><a class="contact-list__map" href="#" data-link="mapsLink" target="_blank" rel="noopener" data-row="mapsLink">Abrir no Google Maps</a></div>
+          <div><span>Endereço</span><p data-field="address"></p><a class="contact-list__map" href="#" data-link="mapsLink" target="_blank" rel="noopener" data-row="mapsLink" hidden>Abrir no Google Maps</a></div>
         </li>
-        <li data-row="hours">
+        <li data-row="hours" hidden>
           <svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>
-          <div><span>Horário</span><p data-field="hours">[HORÁRIO]</p></div>
+          <div><span>Horário</span><p data-field="hours"></p></div>
         </li>
         <li>
           <svg class="icon" aria-hidden="true"><use href="#i-video"/></svg>
@@ -564,20 +560,20 @@
         <h3 class="footer__title">Contato</h3>
         <ul>
           <li data-row="whatsapp"><a href="#contato" data-wa data-field="whatsappDisplay">(62) 99288-7382</a></li>
-          <li data-row="phone"><a href="#contato" data-link="tel" data-field="phone">[TELEFONE]</a></li>
-          <li data-row="email"><a href="#contato" data-link="mailto" data-field="email">[E-MAIL]</a></li>
-          <li data-row="instagramHandle"><a href="#" data-link="instagramUrl" target="_blank" rel="noopener" data-field="instagramHandle">[@PERFIL]</a></li>
+          <li data-row="phone" hidden><a href="#contato" data-link="tel" data-field="phone"></a></li>
+          <li data-row="email" hidden><a href="#contato" data-link="mailto" data-field="email"></a></li>
+          <li data-row="instagramHandle" hidden><a href="#" data-link="instagramUrl" target="_blank" rel="noopener" data-field="instagramHandle"></a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer__legal">
-      <p><strong>Responsável técnico:</strong> Dr. Ítalo Cardoso de Lima · CRM-GO 35190 <span class="is-placeholder-inline">· [RQE, se houver]</span></p>
-      <p>ICL Saúde Ltda. <span class="is-placeholder-inline">· CNPJ [00.000.000/0000-00]</span></p>
+      <p><strong>Responsável técnico:</strong> Dr. Ítalo Cardoso de Lima · CRM-GO 35190</p>
+      <p>ICL Saúde Ltda. <!-- Adicione o CNPJ aqui: · CNPJ 00.000.000/0000-00 --></p>
       <p class="footer__disclaimer">Conteúdo informativo, que não substitui a consulta médica. Todo tratamento depende de avaliação individual, e os resultados variam de pessoa para pessoa.</p>
       <div class="footer__bottom">
         <p>© <span data-year>2026</span> ICL Saúde. Todos os direitos reservados.</p>
-        <a href="#" class="is-placeholder-inline">[Política de privacidade]</a>
+        <a href="politica-de-privacidade.html">Política de privacidade</a>
       </div>
     </div>
   </div>

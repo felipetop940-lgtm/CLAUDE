@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iclsaude.com.br/sitemap.xml

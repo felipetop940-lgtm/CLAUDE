@@ -12,6 +12,17 @@ assets/img/             → imagens (hoje são placeholders .svg)
 assets/fonts/           → Inter + Instrument Serif auto-hospedadas (licença OFL)
 ```
 
+## Versão de publicação (pronta pra subir)
+
+- `dist/index.html` é o site inteiro num único arquivo HTML, com CSS, JS, fontes e imagens embutidos. Abre com dois cliques, sem servidor.
+- `icl-saude-site.zip` traz o pacote completo: `index.html`, política de privacidade, `robots.txt`, `sitemap.xml`, favicon e imagem de compartilhamento.
+
+**Pra publicar:** extraia o zip na raiz do domínio (`public_html` na Hostinger) ou arraste a pasta `dist/` na Netlify ou na Vercel.
+
+**Depois de editar qualquer arquivo:** rode `python3 build.py` pra gerar `dist/` e o zip de novo.
+
+Itens sem dado no `config.js` (e-mail, endereço, horário, Instagram) ficam ocultos automaticamente. O visitante nunca vê placeholder.
+
 ## Testar localmente
 
 ```bash
@@ -28,23 +39,19 @@ python3 -m http.server 8000
 | Cores e fontes | `:root` no topo de `assets/css/styles.css` |
 | Mensagem de WhatsApp por botão | atributo `data-wa="..."` no próprio botão |
 
-Regras do `config.js`:
-- `"[TEXTO]"` entre colchetes aparece no site com contorno tracejado, pra você ver o que ainda falta preencher.
-- `""` vazio esconde o item.
-- Qualquer valor real aparece normalmente.
+No `config.js`, campo preenchido aparece no site e campo vazio (`""`) fica oculto.
 
 ## Imagens pra trocar
 
 Exporte em **WebP** (qualidade 75–80), troque o `src` no `index.html` e mantenha `width`/`height`.
 No retrato do hero, atualize também o `<link rel="preload" as="image">` no `<head>`.
 
-| Arquivo atual | Usar | Tamanho |
+| Arquivo atual | Trocar por | Tamanho |
 |---|---|---|
-| `hero-portrait.svg` | Dr. Ítalo de terno, fundo escuro | 800×1000 |
-| `about-photo.svg` | Dr. Ítalo de jaleco | 800×1000 |
-| `result-before.svg` / `result-after.svg` | antes/depois autorizado (opcional) | 1200×1200 |
+| `hero-portrait.svg` (arte provisória) | Dr. Ítalo de terno, fundo escuro, e ajustar o `alt` | 800×1000 |
+| `about-photo.svg` (arte provisória) | Dr. Ítalo de jaleco, e ajustar o `alt` | 800×1000 |
 | `social-1..3.svg` | prints de posts do Instagram | 600×600 |
-| `og-image.jpg` (criar) | imagem de compartilhamento | 1200×630 |
+| `og-image.jpg` | já gerada; pode trocar por uma com a foto | 1200×630 |
 | Logo | trocar o bloco `.brand` no header e no footer por `<img src="assets/img/logo.svg">` | SVG |
 
 ## Placeholders pendentes
@@ -53,10 +60,8 @@ No retrato do hero, atualize também o `<link rel="preload" as="image">` no `<he
 - [ ] E-mail, endereço, horário (`config.js`)
 - [ ] Instagram: `instagramHandle` e `instagramUrl` (`config.js`)
 - [ ] Mapa: `mapsEmbedUrl` e `mapsLink` (`config.js`)
-- [ ] 2 depoimentos reais, copiados do Doctoralia/Google (seção Resultados)
-- [ ] Antes/depois: usar só com autorização, ou esconder com `hidden` no `.compare`
-- [ ] Equipe multidisciplinar: profissionais 2 e 3 (seção Sobre)
-- [ ] Rodapé: RQE (se houver), CNPJ, link da política de privacidade
+- [ ] Depoimentos reais e antes/depois autorizado: os blocos prontos estão no `<template id="modelo-resultados">` (seção Resultados)
+- [ ] Rodapé: RQE (se houver) e CNPJ (há um comentário marcando o lugar)
 - [ ] Validar com o cliente as 5 etapas de "Como funciona"
 - [ ] Atualizar nota e número de avaliações do Doctoralia (hoje 5,0 e 61, set/2026)
 

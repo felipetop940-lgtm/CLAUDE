@@ -48,9 +48,10 @@
     el.classList.toggle('is-placeholder-inline', isPlaceholder(v));
   });
 
+  // Linhas/seções com data-row só aparecem quando o dado estiver preenchido de verdade
   doc.querySelectorAll('[data-row]').forEach(function (row) {
     var v = get(row.getAttribute('data-row'));
-    if (v !== undefined && isEmpty(v)) row.hidden = true;
+    row.hidden = isEmpty(v) || isPlaceholder(v);
   });
 
   /* ---------- Links configuráveis ---------- */
