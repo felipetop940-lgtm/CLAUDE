@@ -11,7 +11,7 @@ Grave em ordem, com **3 segundos de silêncio** entre cada parte. Tom de convers
 6. Olha esse site que eu criei pra um médico aqui de Goiânia. Apresentação, especialidades e agendamento direto pelo WhatsApp.
 7. E não custa uma fortuna: sai a partir de duzentos e cinquenta reais, pronto em dois a sete dias.
 8. E aí, Instagram substitui um site? Comenta sim ou não, que eu quero ver.
-9. Entra no meu perfil e clica no link. Lá você vê meus sites, os planos, e fala comigo direto no WhatsApp.
+9. Entra no meu perfil e clique no link. Lá você vê meus sites, os planos, e fala direto comigo no WhatsApp.
 
 ## Legenda do post (TikTok / Reels)
 Se o seu Instagram sumir amanhã… seus clientes somem junto? 👀

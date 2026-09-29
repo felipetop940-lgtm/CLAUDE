@@ -4,6 +4,7 @@
 Uso:
   python3 gerar.py ../roteiros/v02-instagram.json            # voz-guia sintética
   python3 gerar.py ../roteiros/v02-instagram.json voz.wav    # voz gravada (falas separadas por silêncio)
+  python3 gerar.py ../roteiros/v02-instagram.json voz.wav ../roteiros/v02-instagram-cortes.json  # cortes manuais [[ini, fim], ...] em segundos
 
 Cada cena do roteiro tem "fala": a cena dura o tempo da fala (+ respiro), e a legenda acende palavra por palavra.
 Saída: ../saida/<roteiro>.mp4
@@ -39,11 +40,50 @@ def voz_guia(texto: str) -> np.ndarray:
     return np.concatenate(out[:-1])
 
 
-def falas_gravadas(wav: Path, n: int) -> list:
-    """Separa uma gravação em n falas pelos maiores silêncios."""
-    a, sr = sf.read(wav)
+def ler_audio(arq: Path) -> np.ndarray:
+    """Lê wav/mp3/mp4/ogg (áudio do WhatsApp etc.) em mono 44,1 kHz."""
+    if arq.suffix.lower() != ".wav":
+        tmp = Path(tempfile.mkdtemp()) / "a.wav"
+        subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-y", "-loglevel", "error", "-i", str(arq), "-vn", "-ac", "1", "-ar", str(SR), str(tmp)], check=True)
+        arq = tmp
+    a, sr = sf.read(arq)
     if a.ndim > 1: a = a.mean(1)
-    if sr != SR: a = resample_poly(a, SR, sr)
+    return resample_poly(a, SR, sr) if sr != SR else a
+
+
+def limpar_gravacao(a: np.ndarray) -> np.ndarray:
+    """Tratamento da voz gravada: redução de ruído (perfil dos silêncios), EQ e compressor."""
+    import noisereduce as nr
+    from scipy.signal import lfilter
+    fr = int(.02 * SR); e = np.array([np.sqrt(np.mean(a[i:i + fr] ** 2)) for i in range(0, len(a) - fr, fr)])
+    quietos = np.argsort(e)[: max(10, len(e) // 10)]  # 10% mais silenciosos = ruído de fundo
+    ruido = np.concatenate([a[i * fr:(i + 1) * fr] for i in sorted(quietos)])
+    a = nr.reduce_noise(y=a, sr=SR, y_noise=ruido, prop_decrease=.85, stationary=True)
+    def sino(x, f, g, q):  # EQ em sino (RBJ)
+        A = 10 ** (g / 40); w = 2 * np.pi * f / SR; al = np.sin(w) / (2 * q)
+        b = np.array([1 + al * A, -2 * np.cos(w), 1 - al * A]); c = np.array([1 + al / A, -2 * np.cos(w), 1 - al / A])
+        return lfilter(b / c[0], c / c[0], x)
+    a = hp(a, 80)
+    a = sino(a, 300, -2, .8)     # tira o abafado
+    a = sino(a, 3200, 2.5, .9)   # presença/clareza
+    a = sino(a, 7000, -2, 2.)    # suaviza o chiado do "s"
+    # compressor (-20 dB, 3:1, ataque 5 ms, release 80 ms)
+    ca, cr = np.exp(-1 / (.005 * SR)), np.exp(-1 / (.08 * SR)); env = 0.; lv = np.abs(a); g = np.empty_like(a)
+    for i, v in enumerate(lv):
+        env = ca * env + (1 - ca) * v if v > env else cr * env + (1 - cr) * v; g[i] = env
+    d = 20 * np.log10(g + 1e-9); gd = np.where(d > -20, (-20 + (d + 20) / 3) - d, 0)
+    return a * 10 ** (gd / 20)
+
+
+def falas_gravadas(wav: Path, n: int, cortes: list = None) -> list:
+    """Separa uma gravação em n falas pelos maiores silêncios (ou pelos cortes manuais [[ini, fim], ...])."""
+    a = limpar_gravacao(ler_audio(wav))
+    if cortes:
+        out = []
+        for x, y in cortes:
+            seg = a[int((x - .06) * SR): int((y + .15) * SR)].copy(); f = int(.02 * SR)
+            seg[:f] *= np.linspace(0, 1, f); seg[-f:] *= np.linspace(1, 0, f); out.append(seg)
+        return out
     fr = int(.01 * SR); e = np.array([np.sqrt(np.mean(a[i:i + fr] ** 2)) for i in range(0, len(a) - fr, fr)])
     db = 20 * np.log10(e + 1e-9); voiced = db > np.percentile(db, 10) + 14
     segs, s, last, sil = [], None, 0, 0
@@ -201,7 +241,8 @@ const W = +process.argv[2], K = +process.argv[3];
 def main():
     src = Path(sys.argv[1]).resolve(); gravacao = Path(sys.argv[2]).resolve() if len(sys.argv) > 2 else None
     rot = json.loads(src.read_text()); cenas = rot["cenas"]
-    vozes = falas_gravadas(gravacao, len(cenas)) if gravacao else [voz_guia(c["fala"]) for c in cenas]
+    cortes = json.loads(Path(sys.argv[3]).read_text()) if len(sys.argv) > 3 else None
+    vozes = falas_gravadas(gravacao, len(cenas), cortes) if gravacao else [voz_guia(c["fala"]) for c in cenas]
     t = .5; cortes = []
     for c, v in zip(cenas, vozes):
         d = len(v) / SR
