@@ -171,23 +171,27 @@ def tratar_voz(v: np.ndarray) -> np.ndarray:
 
 
 # ---------------------------------------------------------------- vídeo
-def render_frames(rot: dict, frames: Path, html: Path, total: float):
+def render_frames(rot: dict, frames: Path, html: Path, total: float, workers: int = os.cpu_count() or 4):
+    """Renderiza os quadros em paralelo: cada processo abre um navegador e faz uma fatia intercalada."""
     html.write_text((HERE / "motor.html").read_text().replace("__ROTEIRO__", json.dumps(rot, ensure_ascii=False)))
     js = html.with_suffix(".js")
     js.write_text(f"""
 const {{ chromium }} = require(process.env.PWPATH);
+const W = +process.argv[2], K = +process.argv[3];
 (async () => {{
   const b = await chromium.launch(); const p = await b.newPage({{ viewport: {{ width: 1080, height: 1920 }} }});
   const errs = []; p.on('pageerror', e => errs.push(String(e)));
   await p.goto('file://{html}'); await p.evaluate(() => document.fonts.ready);
   const N = Math.ceil({total} * {FPS});
-  for (let i = 0; i < N; i++) {{ await p.evaluate(t => render(t), i / {FPS});
-    await p.screenshot({{ path: '{frames}/f' + String(i).padStart(5, '0') + '.jpg', type: 'jpeg', quality: 92 }}); }}
+  for (let i = W; i < N; i += K) {{ await p.evaluate(t => render(t), i / {FPS});
+    await p.screenshot({{ path: '{frames}/f' + String(i).padStart(5, '0') + '.jpg', type: 'jpeg', quality: 90 }}); }}
   if (errs.length) {{ console.error(errs.join('\\n')); process.exit(1); }}
   await b.close();
 }})();""")
     root = subprocess.check_output(["npm", "root", "-g"], text=True).strip()
-    subprocess.run(["node", str(js)], check=True, env={**os.environ, "PWPATH": root + "/playwright"})
+    env = {**os.environ, "PWPATH": root + "/playwright"}
+    procs = [subprocess.Popen(["node", str(js), str(w), str(workers)], env=env) for w in range(workers)]
+    if any(p.wait() for p in procs): raise RuntimeError("falha ao renderizar quadros")
 
 
 def main():
