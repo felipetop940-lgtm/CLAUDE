@@ -159,6 +159,10 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
             put(buzz(), t0 + 1.5, .5); put(buzz(), t0 + 1.9, .5); put(chime(), t0 + 2.3, .45)
         elif pr == "enquete": put(pop(500), t0 + .3, .6); put(pop(620), t0 + .5, .6); put(pop(900), t0 + .9, .4)
         elif pr == "cta": put(riser(), t0 - .9, .5); put(chime(), t0 + .6, .5)
+        elif pr == "site_celular": put(whoosh(.7, 5000), t0 + .05, .5); put(chime(), t0 + .6, .3)
+        elif pr == "preco":
+            for j in range(12): put(key(), t0 + .2 + j * .1, .35)
+            put(ding(1760), t0 + 1.4, .5); put(pop(800), t0 + 1.2, .4); put(pop(950), t0 + 1.45, .4)
     mix /= np.max(np.abs(mix)) + 1e-9
     return mix
 
