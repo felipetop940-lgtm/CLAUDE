@@ -1,2 +1,6 @@
 # Amostras de voz descartadas (não fazem parte do projeto)
 gabriel-augusto/video/amostras/
+
+# Arquivos temporários do gerador de vídeos curtos
+__pycache__/
+gabriel-augusto/shorts/ferramentas/_render_*
