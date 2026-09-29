@@ -55,7 +55,7 @@ def build_page(name: str, css: str) -> None:
     # main.js deixa de ser defer: move para o fim do body já garante o DOM pronto
     # Imagens locais (src e preload)
     html = re.sub(r'<link rel="preload" as="image" href="assets/img/[^"]+\.svg">\s*', "", html)
-    html = re.sub(r'(src|href)="(assets/img/[^"]+)"',
+    html = re.sub(r'(src|href|poster)="(assets/(?:img|video)/[^"]+)"',
                   lambda m: f'{m.group(1)}="{asset(m.group(2), ROOT)}"' if (ROOT / m.group(2)).exists() else m.group(0),
                   html)
     (DIST / name).write_text(html)

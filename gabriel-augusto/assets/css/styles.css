@@ -363,7 +363,9 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
 .tag { padding: 3px 9px; border: 1px solid rgba(214, 179, 108, .4); border-radius: 999px; font-size: .68rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); }
 
 /* Prova ao vivo */
-.proof__grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(48px, 7vw, 110px); align-items: center; }
+.proof__grid { display: grid; grid-template-columns: 1.1fr .9fr; grid-template-areas: "head player" "live player"; gap: 40px clamp(48px, 7vw, 110px); align-items: start; }
+.proof__head { grid-area: head; align-self: end; }
+.proof .live { grid-area: live; }
 .proof__text { margin-top: 24px; color: var(--gray); max-width: 440px; font-size: 1.06rem; }
 .live { display: grid; gap: 14px; }
 .live__item { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "label value" "note value"; align-items: center; gap: 2px 24px; padding: 24px 28px; border: 1px solid var(--line); border-radius: var(--r); background: var(--ink); transition: border-color .4s var(--ease), transform .5s var(--ease); }
@@ -642,4 +644,34 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
 @media (max-width: 767px) {
   .about__photo { max-width: 260px; }
   .hero__trust { align-items: flex-start; }
+}
+
+/* Player do vídeo */
+.player { grid-area: player; position: relative; justify-self: center; width: 100%; max-width: 380px; aspect-ratio: 360 / 583; border-radius: 34px; overflow: hidden; background: var(--panel); border: 1px solid var(--line-2); box-shadow: 0 50px 120px -40px rgba(0, 0, 0, .9), 0 0 0 8px #101318, 0 0 80px -20px rgba(79, 123, 255, .35); }
+.player video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }
+.player__play { position: absolute; left: 50%; top: 58%; width: 92px; height: 92px; margin: -46px 0 0 -46px; border: 0; border-radius: 50%; background: var(--gold); color: var(--black); cursor: pointer; display: grid; place-items: center; box-shadow: 0 20px 50px -10px rgba(214, 179, 108, .7); transition: transform .4s var(--ease), background-color .3s; }
+.player__play svg { width: 36px; height: 36px; fill: currentColor; margin-left: 5px; }
+.player__play:hover { transform: scale(1.08); background: var(--gold-2); }
+.player__ring { position: absolute; inset: -1px; border-radius: 50%; border: 2px solid var(--gold); animation: ring 2s var(--ease) infinite; pointer-events: none; }
+@keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.7); opacity: 0; } }
+.player__hint { position: absolute; left: 50%; top: calc(58% + 62px); transform: translateX(-50%); padding: 7px 14px; border-radius: 999px; background: rgba(7, 8, 10, .75); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: .85rem; font-weight: 500; white-space: nowrap; pointer-events: none; }
+.player.is-playing .player__play, .player.is-playing .player__hint { opacity: 0; pointer-events: none; transform: scale(.8); }
+.player__end { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 16px; padding: 24px; text-align: center; background: rgba(7, 8, 10, .82); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); animation: hint-in .5s var(--ease); }
+.player__end p { font-size: 1.5rem; font-weight: 500; letter-spacing: -.02em; }
+.player__replay { border: 0; background: none; color: var(--gray); font-size: .9rem; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.player__replay:hover { color: var(--white); }
+
+.hero__watch { display: inline-flex; align-items: center; gap: 12px; margin-top: 22px; font-size: .95rem; font-weight: 500; color: var(--white); }
+.hero__watch small { color: var(--gray); font-size: .9rem; font-weight: 400; }
+.hero__watch-i { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(214, 179, 108, .6); color: var(--gold); transition: background-color .3s, color .3s; }
+.hero__watch-i svg { width: 14px; height: 14px; fill: currentColor; margin-left: 2px; }
+.hero__watch:hover .hero__watch-i { background: var(--gold); color: var(--black); }
+
+@media (max-width: 1023px) {
+  .proof__grid { grid-template-columns: 1fr; grid-template-areas: "head" "player" "live"; }
+  .player { max-width: 360px; }
+}
+@media (max-width: 767px) {
+  .player { max-width: 320px; border-radius: 28px; }
+  .player__play { width: 80px; height: 80px; margin: -40px 0 0 -40px; }
 }

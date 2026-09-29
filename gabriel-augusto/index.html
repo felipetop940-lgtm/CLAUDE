@@ -109,6 +109,7 @@
         </a>
         <a class="btn btn--line btn--lg" href="#planos">Ver planos e preços</a>
       </div>
+      <a class="hero__watch reveal" href="#video"><span class="hero__watch-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg></span>Assista ao vídeo <small>· 1 min</small></a>
       <div class="hero__trust reveal">
         <img class="avatar" src="assets/img/gabriel-avatar.webp" alt="" width="80" height="80" decoding="async">
         <ul class="hero__facts" role="list">
@@ -160,6 +161,49 @@
       <ul role="list"><li>Médicos</li><li>Dentistas</li><li>Advogados</li><li>Psicólogos</li><li>Nutricionistas</li><li>Fisioterapeutas</li><li>Arquitetos</li><li>Personal trainers</li><li>Esteticistas</li><li>Consultores</li><li>Fotógrafos</li></ul>
       <ul role="list" aria-hidden="true"><li>Médicos</li><li>Dentistas</li><li>Advogados</li><li>Psicólogos</li><li>Nutricionistas</li><li>Fisioterapeutas</li><li>Arquitetos</li><li>Personal trainers</li><li>Esteticistas</li><li>Consultores</li><li>Fotógrafos</li></ul>
     </div>
+  </div>
+</section>
+
+<!-- ================= VÍDEO + PROVA AO VIVO ================= -->
+<section class="section proof" id="video" aria-labelledby="proof-title">
+  <div class="wrap proof__grid">
+    <div class="proof__head">
+      <p class="kicker reveal">Veja meu trabalho</p>
+      <h2 class="title reveal" id="proof-title">Você está vendo <em>meu trabalho</em> agora.</h2>
+      <p class="proof__text reveal">No vídeo, eu mostro este site e o site do Dr. Fernando Augusto, um projeto real que criei. Os dados abaixo são medidos em tempo real, no seu aparelho.</p>
+    </div>
+
+    <div class="player reveal" data-player>
+      <video src="assets/video/apresentacao.mp4" poster="assets/video/capa.jpg" preload="none" playsinline width="720" height="1166" aria-label="Vídeo de apresentação: meu site e o site do Dr. Fernando Augusto"></video>
+      <button class="player__play" type="button" aria-label="Assistir ao vídeo de apresentação, 1 minuto e 5 segundos">
+        <span class="player__ring" aria-hidden="true"></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+      </button>
+      <span class="player__hint" aria-hidden="true">Assistir · 1:05</span>
+      <div class="player__end" hidden>
+        <p>Gostou do que viu?</p>
+        <a class="btn btn--gold" href="#contato" data-wa="Olá, Gabriel! Assisti ao seu vídeo e quero um site profissional. Pode me passar mais informações?"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Quero meu site</a>
+        <button class="player__replay" type="button">Assistir de novo</button>
+      </div>
+    </div>
+
+    <ul class="live" role="list" aria-live="polite">
+      <li class="live__item spot reveal">
+        <span class="live__label">Tempo de carregamento</span>
+        <strong class="live__value" data-live="load">—</strong>
+        <span class="live__note">medido agora, no seu dispositivo</span>
+      </li>
+      <li class="live__item spot reveal">
+        <span class="live__label">Você está usando</span>
+        <strong class="live__value" data-live="device">—</strong>
+        <span class="live__note" data-live="device-note">o layout se adaptou à sua tela</span>
+      </li>
+      <li class="live__item spot reveal">
+        <span class="live__label">Distância até o contato</span>
+        <strong class="live__value">1 clique</strong>
+        <span class="live__note">todo botão dourado leva ao WhatsApp</span>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -231,34 +275,6 @@
         <svg class="i feature__i" aria-hidden="true"><use href="#i-play"/></svg>
         <h3>Vídeo na página <span class="tag">opcional</span></h3>
         <p>Edito o seu vídeo de apresentação para deixar a página mais humana e próxima de quem visita.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================= PROVA AO VIVO ================= -->
-<section class="section proof" aria-labelledby="proof-title">
-  <div class="wrap proof__grid">
-    <div>
-      <p class="kicker reveal">A prova está na sua tela</p>
-      <h2 class="title reveal" id="proof-title">Você está vendo <em>meu trabalho</em> agora.</h2>
-      <p class="proof__text reveal">Este site foi feito por mim, com o mesmo cuidado que vou colocar no seu. Os dados ao lado são medidos em tempo real, no seu aparelho.</p>
-    </div>
-    <ul class="live" role="list" aria-live="polite">
-      <li class="live__item spot reveal">
-        <span class="live__label">Tempo de carregamento</span>
-        <strong class="live__value" data-live="load">—</strong>
-        <span class="live__note">medido agora, no seu dispositivo</span>
-      </li>
-      <li class="live__item spot reveal">
-        <span class="live__label">Você está usando</span>
-        <strong class="live__value" data-live="device">—</strong>
-        <span class="live__note" data-live="device-note">o layout se adaptou à sua tela</span>
-      </li>
-      <li class="live__item spot reveal">
-        <span class="live__label">Distância até o contato</span>
-        <strong class="live__value">1 clique</strong>
-        <span class="live__note">todo botão dourado leva ao WhatsApp</span>
       </li>
     </ul>
   </div>

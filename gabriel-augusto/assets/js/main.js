@@ -304,5 +304,20 @@
     });
   });
 
+  /* ---------- Vídeo: capa + botão de play, CTA no final ---------- */
+  $$('[data-player]').forEach(function (box) {
+    var video = $('video', box), end = $('.player__end', box);
+    function play() {
+      box.classList.add('is-playing'); end.hidden = true;
+      video.controls = true;
+      var pr = video.play();
+      if (pr && pr.catch) pr.catch(function () { box.classList.remove('is-playing'); video.controls = false; });
+      try { (window.dataLayer = window.dataLayer || []).push({ event: 'video_play', video: 'apresentacao' }); } catch (e) {}
+    }
+    $('.player__play', box).addEventListener('click', play);
+    $('.player__replay', box).addEventListener('click', function () { video.currentTime = 0; play(); });
+    video.addEventListener('ended', function () { video.controls = false; end.hidden = false; });
+  });
+
   onScroll();
 })();

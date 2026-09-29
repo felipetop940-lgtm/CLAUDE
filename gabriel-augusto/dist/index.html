@@ -386,7 +386,9 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
 .tag { padding: 3px 9px; border: 1px solid rgba(214, 179, 108, .4); border-radius: 999px; font-size: .68rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); }
 
 /* Prova ao vivo */
-.proof__grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(48px, 7vw, 110px); align-items: center; }
+.proof__grid { display: grid; grid-template-columns: 1.1fr .9fr; grid-template-areas: "head player" "live player"; gap: 40px clamp(48px, 7vw, 110px); align-items: start; }
+.proof__head { grid-area: head; align-self: end; }
+.proof .live { grid-area: live; }
 .proof__text { margin-top: 24px; color: var(--gray); max-width: 440px; font-size: 1.06rem; }
 .live { display: grid; gap: 14px; }
 .live__item { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "label value" "note value"; align-items: center; gap: 2px 24px; padding: 24px 28px; border: 1px solid var(--line); border-radius: var(--r); background: var(--ink); transition: border-color .4s var(--ease), transform .5s var(--ease); }
@@ -667,6 +669,36 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
   .hero__trust { align-items: flex-start; }
 }
 
+/* Player do vídeo */
+.player { grid-area: player; position: relative; justify-self: center; width: 100%; max-width: 380px; aspect-ratio: 360 / 583; border-radius: 34px; overflow: hidden; background: var(--panel); border: 1px solid var(--line-2); box-shadow: 0 50px 120px -40px rgba(0, 0, 0, .9), 0 0 0 8px #101318, 0 0 80px -20px rgba(79, 123, 255, .35); }
+.player video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }
+.player__play { position: absolute; left: 50%; top: 58%; width: 92px; height: 92px; margin: -46px 0 0 -46px; border: 0; border-radius: 50%; background: var(--gold); color: var(--black); cursor: pointer; display: grid; place-items: center; box-shadow: 0 20px 50px -10px rgba(214, 179, 108, .7); transition: transform .4s var(--ease), background-color .3s; }
+.player__play svg { width: 36px; height: 36px; fill: currentColor; margin-left: 5px; }
+.player__play:hover { transform: scale(1.08); background: var(--gold-2); }
+.player__ring { position: absolute; inset: -1px; border-radius: 50%; border: 2px solid var(--gold); animation: ring 2s var(--ease) infinite; pointer-events: none; }
+@keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.7); opacity: 0; } }
+.player__hint { position: absolute; left: 50%; top: calc(58% + 62px); transform: translateX(-50%); padding: 7px 14px; border-radius: 999px; background: rgba(7, 8, 10, .75); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: .85rem; font-weight: 500; white-space: nowrap; pointer-events: none; }
+.player.is-playing .player__play, .player.is-playing .player__hint { opacity: 0; pointer-events: none; transform: scale(.8); }
+.player__end { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 16px; padding: 24px; text-align: center; background: rgba(7, 8, 10, .82); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); animation: hint-in .5s var(--ease); }
+.player__end p { font-size: 1.5rem; font-weight: 500; letter-spacing: -.02em; }
+.player__replay { border: 0; background: none; color: var(--gray); font-size: .9rem; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.player__replay:hover { color: var(--white); }
+
+.hero__watch { display: inline-flex; align-items: center; gap: 12px; margin-top: 22px; font-size: .95rem; font-weight: 500; color: var(--white); }
+.hero__watch small { color: var(--gray); font-size: .9rem; font-weight: 400; }
+.hero__watch-i { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(214, 179, 108, .6); color: var(--gold); transition: background-color .3s, color .3s; }
+.hero__watch-i svg { width: 14px; height: 14px; fill: currentColor; margin-left: 2px; }
+.hero__watch:hover .hero__watch-i { background: var(--gold); color: var(--black); }
+
+@media (max-width: 1023px) {
+  .proof__grid { grid-template-columns: 1fr; grid-template-areas: "head" "player" "live"; }
+  .player { max-width: 360px; }
+}
+@media (max-width: 767px) {
+  .player { max-width: 320px; border-radius: 28px; }
+  .player__play { width: 80px; height: 80px; margin: -40px 0 0 -40px; }
+}
+
 </style>
 
   <script type="application/ld+json">
@@ -755,6 +787,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
         </a>
         <a class="btn btn--line btn--lg" href="#planos">Ver planos e preços</a>
       </div>
+      <a class="hero__watch reveal" href="#video"><span class="hero__watch-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg></span>Assista ao vídeo <small>· 1 min</small></a>
       <div class="hero__trust reveal">
         <img class="avatar" src="data:image/webp;base64,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" alt="" width="80" height="80" decoding="async">
         <ul class="hero__facts" role="list">
@@ -806,6 +839,49 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
       <ul role="list"><li>Médicos</li><li>Dentistas</li><li>Advogados</li><li>Psicólogos</li><li>Nutricionistas</li><li>Fisioterapeutas</li><li>Arquitetos</li><li>Personal trainers</li><li>Esteticistas</li><li>Consultores</li><li>Fotógrafos</li></ul>
       <ul role="list" aria-hidden="true"><li>Médicos</li><li>Dentistas</li><li>Advogados</li><li>Psicólogos</li><li>Nutricionistas</li><li>Fisioterapeutas</li><li>Arquitetos</li><li>Personal trainers</li><li>Esteticistas</li><li>Consultores</li><li>Fotógrafos</li></ul>
     </div>
+  </div>
+</section>
+
+<!-- ================= VÍDEO + PROVA AO VIVO ================= -->
+<section class="section proof" id="video" aria-labelledby="proof-title">
+  <div class="wrap proof__grid">
+    <div class="proof__head">
+      <p class="kicker reveal">Veja meu trabalho</p>
+      <h2 class="title reveal" id="proof-title">Você está vendo <em>meu trabalho</em> agora.</h2>
+      <p class="proof__text reveal">No vídeo, eu mostro este site e o site do Dr. Fernando Augusto, um projeto real que criei. Os dados abaixo são medidos em tempo real, no seu aparelho.</p>
+    </div>
+
+    <div class="player reveal" data-player>
+      <video src="assets/video/apresentacao.mp4" poster="assets/video/capa.jpg" preload="none" playsinline width="720" height="1166" aria-label="Vídeo de apresentação: meu site e o site do Dr. Fernando Augusto"></video>
+      <button class="player__play" type="button" aria-label="Assistir ao vídeo de apresentação, 1 minuto e 5 segundos">
+        <span class="player__ring" aria-hidden="true"></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+      </button>
+      <span class="player__hint" aria-hidden="true">Assistir · 1:05</span>
+      <div class="player__end" hidden>
+        <p>Gostou do que viu?</p>
+        <a class="btn btn--gold" href="#contato" data-wa="Olá, Gabriel! Assisti ao seu vídeo e quero um site profissional. Pode me passar mais informações?"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Quero meu site</a>
+        <button class="player__replay" type="button">Assistir de novo</button>
+      </div>
+    </div>
+
+    <ul class="live" role="list" aria-live="polite">
+      <li class="live__item spot reveal">
+        <span class="live__label">Tempo de carregamento</span>
+        <strong class="live__value" data-live="load">—</strong>
+        <span class="live__note">medido agora, no seu dispositivo</span>
+      </li>
+      <li class="live__item spot reveal">
+        <span class="live__label">Você está usando</span>
+        <strong class="live__value" data-live="device">—</strong>
+        <span class="live__note" data-live="device-note">o layout se adaptou à sua tela</span>
+      </li>
+      <li class="live__item spot reveal">
+        <span class="live__label">Distância até o contato</span>
+        <strong class="live__value">1 clique</strong>
+        <span class="live__note">todo botão dourado leva ao WhatsApp</span>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -877,34 +953,6 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
         <svg class="i feature__i" aria-hidden="true"><use href="#i-play"/></svg>
         <h3>Vídeo na página <span class="tag">opcional</span></h3>
         <p>Edito o seu vídeo de apresentação para deixar a página mais humana e próxima de quem visita.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================= PROVA AO VIVO ================= -->
-<section class="section proof" aria-labelledby="proof-title">
-  <div class="wrap proof__grid">
-    <div>
-      <p class="kicker reveal">A prova está na sua tela</p>
-      <h2 class="title reveal" id="proof-title">Você está vendo <em>meu trabalho</em> agora.</h2>
-      <p class="proof__text reveal">Este site foi feito por mim, com o mesmo cuidado que vou colocar no seu. Os dados ao lado são medidos em tempo real, no seu aparelho.</p>
-    </div>
-    <ul class="live" role="list" aria-live="polite">
-      <li class="live__item spot reveal">
-        <span class="live__label">Tempo de carregamento</span>
-        <strong class="live__value" data-live="load">—</strong>
-        <span class="live__note">medido agora, no seu dispositivo</span>
-      </li>
-      <li class="live__item spot reveal">
-        <span class="live__label">Você está usando</span>
-        <strong class="live__value" data-live="device">—</strong>
-        <span class="live__note" data-live="device-note">o layout se adaptou à sua tela</span>
-      </li>
-      <li class="live__item spot reveal">
-        <span class="live__label">Distância até o contato</span>
-        <strong class="live__value">1 clique</strong>
-        <span class="live__note">todo botão dourado leva ao WhatsApp</span>
       </li>
     </ul>
   </div>
@@ -1454,6 +1502,21 @@ window.SITE = {
         body.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], { duration: 480, easing: 'cubic-bezier(.22,.8,.2,1)' });
       }
     });
+  });
+
+  /* ---------- Vídeo: capa + botão de play, CTA no final ---------- */
+  $$('[data-player]').forEach(function (box) {
+    var video = $('video', box), end = $('.player__end', box);
+    function play() {
+      box.classList.add('is-playing'); end.hidden = true;
+      video.controls = true;
+      var pr = video.play();
+      if (pr && pr.catch) pr.catch(function () { box.classList.remove('is-playing'); video.controls = false; });
+      try { (window.dataLayer = window.dataLayer || []).push({ event: 'video_play', video: 'apresentacao' }); } catch (e) {}
+    }
+    $('.player__play', box).addEventListener('click', play);
+    $('.player__replay', box).addEventListener('click', function () { video.currentTime = 0; play(); });
+    video.addEventListener('ended', function () { video.controls = false; end.hidden = false; });
   });
 
   onScroll();
