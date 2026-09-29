@@ -1,0 +1,46 @@
+{
+  "titulo": "Se o seu Instagram sumir amanhã?",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    { "fala": "Se o seu Instagram sumir amanhã, quantos clientes você perde?",
+      "acento": "red", "fx": "tremer",
+      "texto": ["Se o seu Instagram", "~sumir~ amanhã…"],
+      "boneco": { "pose": "chocado", "emocao": "exclamacao", "x": 330, "y": 1380, "escala": 0.8 },
+      "prop": { "tipo": "conta_off" } },
+
+    { "fala": "A maioria dos profissionais constrói o negócio inteiro num terreno que não é deles.",
+      "acento": "gold", "fx": "zoom",
+      "texto": ["Seu negócio está", "num terreno *alugado*"],
+      "prop": { "tipo": "alugado" } },
+
+    { "fala": "O algoritmo muda, o alcance cai, e o cliente simplesmente não te acha.",
+      "acento": "red", "fx": "flash",
+      "texto": ["O alcance ~cai~"],
+      "boneco": { "pose": "triste", "emocao": "chuva", "x": 300, "y": 1380, "escala": 0.8 },
+      "prop": { "tipo": "grafico" } },
+
+    { "fala": "Agora pensa: antes de contratar alguém, o que você faz? Pesquisa no Google.",
+      "acento": "blue", "fx": "zoom",
+      "texto": ["Antes de contratar,", "você _pesquisa._"],
+      "prop": { "tipo": "busca", "consulta": "melhor dentista em goiânia" } },
+
+    { "fala": "Quem tem site aparece, passa confiança e recebe a mensagem. Quem não tem, fica pra trás.",
+      "acento": "gold", "fx": "flash",
+      "texto": ["Quem tem site", "*recebe a mensagem.*"],
+      "boneco": [ { "pose": "triste", "x": 290, "y": 1380, "escala": 0.72, "rotulo": "Sem site", "corRotulo": "white" },
+                  { "pose": "comemorando", "emocao": "brilho", "x": 790, "y": 1380, "escala": 0.72, "rotulo": "Com site", "corRotulo": "gold" } ] },
+
+    { "fala": "E aí, Instagram substitui um site? Comenta sim ou não, que eu quero ver.",
+      "acento": "blue", "fx": "tremer",
+      "texto": ["Instagram", "#substitui# um site?"],
+      "boneco": { "pose": "apontando", "x": 200, "y": 1380, "escala": 0.72 },
+      "prop": { "tipo": "enquete" } },
+
+    { "fala": "Se você quer um site profissional a partir de duzentos e cinquenta reais, o link tá na bio.",
+      "acento": "gold", "fx": "flash",
+      "texto": ["Seu site a partir de", "*R$ 250*"],
+      "prop": { "tipo": "cta", "botao": "Link na bio ↑", "sub": "Entrega em 2 a 7 dias" },
+      "fim": 1.6 }
+  ]
+}
