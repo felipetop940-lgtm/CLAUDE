@@ -364,14 +364,15 @@ function render(t) {
   $('grain').style.backgroundPosition = `${(t * 997) % 256}px ${(t * 613) % 256}px`;
   [...$('dust').children].forEach((el, j) => { const d = DUST[j]; const y = (d.y - t * d.v + 1920) % 1920;
     el.style.transform = `translate(${d.x + Math.sin(t * .5 + j) * 20}px, ${y}px) scale(${d.s})`; el.style.opacity = d.o; });
-  c._words.forEach((w, j) => { const k = back((lt - .05 - j * .08) / .3);
-    w.style.opacity = clamp(k * 1.4); w.style.transform = `translateY(${(1 - k) * 60}px) scale(${.55 + .45 * k}) rotate(${(1 - k) * (j % 2 ? 7 : -7)}deg)`;
+  c._words.forEach((w, j) => { const k = ease((lt - .05 - j * .07) / .45);   // entrada suave: sobe e aparece, sem girar
+    w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 40}px) scale(${.94 + .06 * k})`;
     w.style.setProperty('--u', ease((lt - .45 - j * .08) / .3)); });
   // transição: saída com zoom + desfoque, entrada com zoom de volta
   const out = ease((lt - (c.dur - .18)) / .18), inn = 1 - ease(lt / .22);
   $('txt').style.opacity = 1 - out;
+  $('txt').style.transform = `translateY(${Math.sin(t * 1.5) * 5}px) rotate(${Math.sin(t * 1.1) * .8}deg)`;  // balanço leve
   let sx = 0, sy = 0, sc = 1 + .02 * lt / c.dur + out * .05 + inn * .05;
-  if (c.fx === 'tremer' && lt < .5) { const a = (1 - lt / .5) * 16; sx = Math.sin(t * 90) * a; sy = Math.cos(t * 70) * a; }
+  if (c.fx === 'tremer') sc += .045 * (1 - ease(lt / .7));  // impacto com zoom suave (sem tremer)
   $('world').style.transform = `translate(${sx}px, ${sy}px) scale(${sc})`;
   $('world').style.filter = 'none';
   $('flash').style.opacity = c.fx === 'flash' && lt > .3 ? Math.max(0, .22 - (lt - .3) * 3) : 0;  // depois da transição
