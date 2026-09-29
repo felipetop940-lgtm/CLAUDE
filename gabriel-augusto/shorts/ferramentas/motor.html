@@ -21,10 +21,14 @@
 html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
 body { font-family: "IT", sans-serif; color: var(--white); -webkit-font-smoothing: antialiased; }
 #world { position: absolute; inset: 0; transform-origin: 50% 50%; background: #040405; }
-.tex { position: absolute; inset: -60px; background: url("papel-escuro.jpg") center / cover; opacity: .6; }
+.bg { position: absolute; inset: 0; pointer-events: none; }
+.beam { position: absolute; top: -300px; width: 900px; height: 2400px; filter: blur(40px); mix-blend-mode: screen; transform-origin: 50% 0; }
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); mix-blend-mode: screen; }
+.floor { position: absolute; left: -10%; right: -10%; bottom: -200px; height: 900px; background: radial-gradient(ellipse at 50% 30%, rgba(214,179,108,.10), transparent 60%); }
+.lines { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px); background-size: 100% 6px; opacity: .5; }
 .grain { position: absolute; inset: 0; opacity: .08; mix-blend-mode: screen; background-size: 256px 256px; }
 .vig { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 48%, transparent 40%, rgba(0,0,0,.8)); }
-.glow { position: absolute; width: 1300px; height: 1300px; left: -110px; top: -250px; border-radius: 50%; opacity: .3; mix-blend-mode: screen; }
+.glow { position: absolute; width: 1300px; height: 1300px; left: -110px; top: -250px; border-radius: 50%; opacity: .16; mix-blend-mode: screen; }
 .spot { position: absolute; left: 50%; top: 1400px; width: 900px; height: 260px; margin-left: -450px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.10), transparent); }
 .layer { position: absolute; inset: 0; }
 #dust i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff; }
@@ -54,7 +58,7 @@ svg { overflow: visible; }
 </head>
 <body>
 <div id="world">
-  <div class="tex" id="tex"></div>
+  <div class="bg" id="bg"></div>
   <div class="grain" id="grain"></div>
   <div class="glow" id="glow"></div>
   <div class="spot"></div>
@@ -214,13 +218,39 @@ function drawFigures(c, lt, t) {
 function prop(c, lt, t) {
   const p = c.prop; if (!p) return '';
   const k = back(lt / .45), f = ease(lt / .3), at = (x, y, h) => `<div style="position:absolute;left:${x}px;top:${y}px">${h}</div>`;
-  const card = 'background:rgba(14,17,22,.92);border:3px solid rgba(255,255,255,.1);border-radius:30px;';
-  if (p.tipo === 'conta_off') { const crack = ease((lt - 1) / .35);
-    return at(590, 820, `<div style="width:330px;height:560px;border-radius:52px;border:6px solid rgba(255,255,255,.2);background:#0B0D11;transform:rotate(${7 + Math.sin(t * 40) * 3 * clamp(1 - (lt - 1) / .4)}deg) scale(${k});position:relative;overflow:hidden;box-shadow:0 40px 90px -20px #000">
-      <div style="position:absolute;top:66px;left:0;right:0;text-align:center;font-size:28px;color:${C.gray};font-weight:600">@seu.perfil</div>
-      <div style="position:absolute;top:160px;left:50%;width:140px;height:140px;margin-left:-70px;border-radius:50%;background:${C.red};display:grid;place-items:center;font-family:Anton;font-size:90px;transform:scale(${back((lt - .6) / .35)})">!</div>
-      <div style="position:absolute;top:340px;left:16px;right:16px;text-align:center;font-family:Anton;font-size:48px;line-height:1.1;text-transform:uppercase;color:${C.red};opacity:${ease((lt - .7) / .3)}">Conta<br>desativada</div>
-      <svg style="position:absolute;inset:0" viewBox="0 0 330 560"><path d="M40 0 L120 150 L90 230 L170 330 L140 420 L220 560" stroke="#fff" stroke-width="4" fill="none" stroke-dasharray="900" stroke-dashoffset="${900 - 900 * crack}" opacity=".85"/></svg></div>`); }
+  const card = 'background:linear-gradient(160deg, rgba(30,34,44,.78), rgba(10,12,16,.9));border:2px solid rgba(255,255,255,.12);border-radius:32px;box-shadow:0 30px 80px -30px #000, inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(10px);';
+  const sweep = (w, x) => `<div style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none"><div style="position:absolute;top:-20%;bottom:-20%;width:${w}px;left:${x}%;background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);transform:skewX(-18deg)"></div></div>`;
+  if (p.tipo === 'conta_off') {
+    // 1) aparelho entra girando em 3D · 2) perfil normal · 3) notificação desce · 4) falha digital · 5) conta desativada + rachadura com brilho
+    const inn = ease(lt / .7), glitch = lt > .9 && lt < 1.25, gk = glitch ? Math.sin(lt * 90) : 0;
+    const off = ease((lt - 1.2) / .35), crack = ease((lt - 1.35) / .45), notif = ease((lt - .45) / .35) * (1 - ease((lt - 1.15) / .2));
+    const ry = lerp(-38, -14, inn) + Math.sin(t * .9) * 4, rx = 6 + Math.sin(t * .7) * 3, fy = Math.sin(t * 1.4) * 10;
+    const posts = Array.from({ length: 9 }, (_, i) => `<div style="aspect-ratio:1;border-radius:6px;background:linear-gradient(${40 * i}deg, ${['#2B3A67', '#5A4A2E', '#23324F', '#3D2F4F', '#2E4A45', '#4A3A28', '#27365A', '#3A2A3A', '#2F3F55'][i]}, #11141a)"></div>`).join('');
+    return at(560, 790, `<div style="perspective:1400px;transform:translateY(${fy + (1 - inn) * 120}px);opacity:${inn}">
+      <div style="position:relative;width:360px;height:720px;border-radius:66px;padding:14px;background:linear-gradient(145deg,#3a404c,#0c0e12 45%,#262b34);box-shadow:0 60px 120px -30px #000, 0 0 0 2px rgba(255,255,255,.08), 0 0 90px -20px ${off > .1 ? 'rgba(255,77,94,.45)' : 'rgba(79,123,255,.35)'};transform:rotateY(${ry}deg) rotateX(${rx}deg) translateX(${gk * 8}px)">
+        <div style="position:absolute;right:-5px;top:170px;width:6px;height:90px;border-radius:4px;background:#2a2f38"></div>
+        <div style="position:absolute;left:-5px;top:150px;width:6px;height:60px;border-radius:4px;background:#2a2f38"></div>
+        <div style="position:relative;width:100%;height:100%;border-radius:54px;overflow:hidden;background:#0A0B0E">
+          <div style="position:absolute;left:50%;top:14px;width:110px;height:32px;margin-left:-55px;border-radius:20px;background:#000;z-index:5"></div>
+          <div style="position:absolute;inset:0;padding:70px 22px 0;filter:${glitch ? `hue-rotate(${gk * 90}deg) saturate(2)` : 'none'};transform:translateX(${gk * 6}px)">
+            <div style="display:flex;align-items:center;gap:16px"><div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,${C.gold},${C.blue});padding:4px"><div style="width:100%;height:100%;border-radius:50%;background:#1b1f27"></div></div>
+              <div style="flex:1"><div style="height:14px;width:70%;border-radius:8px;background:rgba(255,255,255,.55)"></div><div style="height:10px;width:45%;margin-top:10px;border-radius:8px;background:rgba(255,255,255,.2)"></div></div></div>
+            <div style="display:flex;justify-content:space-around;margin:24px 0;font-size:20px;color:${C.gray};text-align:center"><div><b style="display:block;color:#fff;font-size:24px">248</b>posts</div><div><b style="display:block;color:#fff;font-size:24px">3,1k</b>seguid.</div><div><b style="display:block;color:#fff;font-size:24px">512</b>seguindo</div></div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px">${posts}</div>
+          </div>
+          ${glitch ? `<div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg, rgba(255,77,94,.18) 0 3px, transparent 3px 9px);mix-blend-mode:screen;transform:translateY(${gk * 20}px)"></div>` : ''}
+          <div style="position:absolute;left:12px;right:12px;top:${-110 + notif * 170}px;padding:16px 18px;border-radius:24px;background:rgba(40,44,54,.92);backdrop-filter:blur(8px);display:flex;gap:12px;align-items:center;font-size:18px;line-height:1.3;color:#fff;box-shadow:0 20px 40px -10px #000">
+            <div style="width:44px;height:44px;border-radius:12px;background:${C.red};display:grid;place-items:center;font-family:Anton;font-size:28px;flex-shrink:0">!</div><div><b>Aviso da plataforma</b><br><span style="color:${C.gray}">Sua conta foi suspensa</span></div></div>
+          <div style="position:absolute;inset:0;background:rgba(5,5,7,${.9 * off});display:grid;place-content:center;justify-items:center;gap:18px;text-align:center">
+            <div style="width:120px;height:120px;border-radius:50%;border:4px solid ${C.red};display:grid;place-items:center;font-family:Anton;font-size:74px;color:${C.red};opacity:${off};transform:scale(${back((lt - 1.25) / .4)});box-shadow:0 0 60px rgba(255,77,94,.5)">!</div>
+            <div style="font-family:Anton;font-size:44px;line-height:1.05;text-transform:uppercase;color:#fff;opacity:${off};transform:translateY(${(1 - off) * 20}px)">Conta<br><span style="color:${C.red}">desativada</span></div>
+            <div style="font-size:18px;color:${C.gray};opacity:${ease((lt - 1.6) / .3)}">0 seguidores · 0 clientes</div></div>
+          <svg style="position:absolute;inset:0" viewBox="0 0 332 692"><g stroke-linecap="round" fill="none" stroke-dasharray="1200" stroke-dashoffset="${1200 - 1200 * crack}">
+            <path d="M250 0 L200 140 L232 210 L160 330 L190 400 L120 540 L150 692" stroke="rgba(255,255,255,.9)" stroke-width="3"/>
+            <path d="M200 140 L120 170 M160 330 L60 360 M190 400 L270 470 M120 540 L40 600" stroke="rgba(255,255,255,.55)" stroke-width="2"/></g>
+            <path d="M250 0 L200 140 L232 210 L160 330 L190 400 L120 540 L150 692" stroke="rgba(255,77,94,.6)" stroke-width="10" fill="none" opacity="${crack * .5}" filter="blur(4px)"/></svg>
+          <div style="position:absolute;inset:0;background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.10) 45%, transparent 55%);transform:translateX(${Math.sin(t * .8) * 40}px)"></div>
+        </div></div></div>`); }
   if (p.tipo === 'alugado') { const sign = back((lt - .8) / .4);
     return at(170, 800, `<div style="position:relative;width:740px;height:600px;opacity:${f}">
       <div style="position:absolute;left:110px;right:110px;bottom:40px;height:92px;border-radius:24px;background:#12151B;border:3px solid rgba(255,255,255,.14);display:grid;place-items:center;font-family:Anton;font-size:46px;letter-spacing:.08em;color:${C.gray}">INSTAGRAM</div>
@@ -229,16 +259,21 @@ function prop(c, lt, t) {
         <div style="padding:14px 34px;background:${C.gold};color:#07080A;font-family:Anton;font-size:66px;text-transform:uppercase;box-shadow:0 20px 40px -10px #000">Alugado</div>
         <div style="width:12px;height:190px;margin:0 auto;background:#8A6B3A"></div></div></div>`); }
   if (p.tipo === 'grafico') { const d = ease((lt - .2) / 1.8);
-    const pts = [[0, 60], [80, 36], [160, 70], [240, 48], [300, 120], [360, 200], [430, 260], [500, 330]];
-    const n = Math.max(2, Math.ceil(d * pts.length)), path = pts.slice(0, n).map((q, i) => (i ? 'L' : 'M') + q[0] + ' ' + q[1]).join(' '), last = pts[n - 1];
-    return at(470, 850, `<div style="${card}width:560px;height:470px;padding:40px;opacity:${f};transform:scale(${.9 + .1 * k})">
-      <div style="font-size:30px;color:${C.gray};font-weight:600">Alcance</div>
-      <svg width="500" height="360" viewBox="-10 0 520 360" style="margin-top:10px"><path d="${path}" stroke="${C.red}" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${last[0]}" cy="${last[1]}" r="14" fill="${C.red}"/></svg></div>`); }
+    const pts = [[0, 70], [70, 50], [140, 78], [210, 58], [270, 110], [330, 190], [400, 250], [470, 320], [500, 330]];
+    const n = Math.max(2, Math.ceil(d * pts.length)), sub = pts.slice(0, n), last = sub[sub.length - 1];
+    const line = sub.map((q, i) => (i ? 'L' : 'M') + q[0] + ' ' + q[1]).join(' '), area = line + ` L${last[0]} 360 L0 360 Z`;
+    return at(450, 840, `<div style="position:relative;${card}width:580px;height:500px;padding:36px 40px;opacity:${f};transform:scale(${.9 + .1 * k})">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:28px;color:${C.gray};font-weight:600;letter-spacing:.04em">ALCANCE</span><span style="padding:8px 16px;border-radius:20px;background:rgba(255,77,94,.15);color:${C.red};font-weight:700;font-size:24px">▼ caindo</span></div>
+      <svg width="500" height="370" viewBox="-10 0 520 370" style="margin-top:14px"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.red}" stop-opacity=".45"/><stop offset="1" stop-color="${C.red}" stop-opacity="0"/></linearGradient></defs>
+        ${[90, 180, 270].map(y => `<line x1="0" x2="500" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.07)" stroke-dasharray="6 8"/>`).join('')}
+        <path d="${area}" fill="url(#ga)"/><path d="${line}" stroke="${C.red}" stroke-width="16" fill="none" opacity=".25" stroke-linecap="round" stroke-linejoin="round" filter="blur(6px)"/>
+        <path d="${line}" stroke="${C.red}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="${last[0]}" cy="${last[1]}" r="${12 + 4 * Math.sin(t * 8)}" fill="${C.red}"/><circle cx="${last[0]}" cy="${last[1]}" r="${26 + 10 * ((t * 1.5) % 1)}" fill="none" stroke="${C.red}" stroke-width="3" opacity="${1 - (t * 1.5) % 1}"/></svg></div>`); }
   if (p.tipo === 'busca') { const q = p.consulta, n = Math.floor(clamp((lt - .1) / 1.2) * q.length);
     const res = [['Perfil sem site', C.red, '✕'], ['Sem avaliações', C.red, '✕'], ['Site profissional', C.gold, '✓']];
     return at(100, 840, `<div style="width:880px;opacity:${f}">
-      <div style="height:116px;border-radius:60px;border:4px solid rgba(255,255,255,.16);background:#111419;display:flex;align-items:center;padding:0 42px;font-size:42px;gap:20px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="${C.gold}" stroke-width="2.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>${q.slice(0, n)}<span style="width:4px;height:46px;background:${C.gold};opacity:${Math.floor(t * 3) % 2}"></span></div>
-      ${res.map((x, i) => { const kk = ease((lt - 1.5 - i * .4) / .35); return `<div style="margin-top:22px;padding:28px 36px;${card}display:flex;justify-content:space-between;font-size:40px;font-weight:600;opacity:${kk};transform:translateX(${(1 - kk) * -60}px);${i === 2 ? `border-color:${C.gold};box-shadow:0 0 50px -10px ${C.gold}` : ''}"><span style="color:${i === 2 ? C.white : C.gray}">${x[0]}</span><b style="color:${x[1]}">${x[2]}</b></div>`; }).join('')}</div>`); }
+      <div style="height:116px;border-radius:60px;border:2px solid rgba(255,255,255,.18);background:linear-gradient(160deg, rgba(34,38,48,.85), rgba(12,14,18,.92));box-shadow:0 30px 70px -30px #000, 0 0 0 6px rgba(79,123,255,.08);display:flex;align-items:center;padding:0 42px;font-size:42px;gap:20px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="${C.gold}" stroke-width="2.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>${q.slice(0, n)}<span style="width:4px;height:46px;background:${C.gold};opacity:${Math.floor(t * 3) % 2}"></span></div>
+      ${res.map((x, i) => { const kk = ease((lt - 1.5 - i * .4) / .35); return `<div style="position:relative;margin-top:22px;padding:28px 36px;${card}display:flex;justify-content:space-between;font-size:40px;font-weight:600;opacity:${kk};transform:translateX(${(1 - kk) * -60}px) scale(${i === 2 ? 1 + .03 * Math.sin(t * 5) : 1});${i === 2 ? `border-color:${C.gold};box-shadow:0 0 70px -10px rgba(214,179,108,.6)` : ''}">${i === 2 ? sweep(160, ((lt - 2.3) * 90) % 200 - 40) : ''}<span style="color:${i === 2 ? C.white : C.gray}">${x[0]}</span><b style="color:${x[1]}">${x[2]}</b></div>`; }).join('')}</div>`); }
   if (p.tipo === 'enquete') {
     const btn = (txt, col, x, i) => { const kk = back((lt - .3 - i * .2) / .4), pulse = 1 + .05 * Math.sin(t * 8 + i * 3);
       return `<div style="position:absolute;left:${x}px;top:0;width:290px;height:170px;border-radius:40px;background:${col};color:#07080A;display:grid;place-items:center;font-family:Anton;font-size:96px;transform:scale(${kk * pulse});box-shadow:0 20px 60px -10px ${col}">${txt}</div>`; };
@@ -248,9 +283,34 @@ function prop(c, lt, t) {
         <span>Comenta <b style="color:${C.gold}">SIM</b> ou <b style="color:${C.red}">NÃO</b></span></div></div>`); }
   if (p.tipo === 'cta') { const pulse = 1 + .035 * Math.sin(t * 7);
     return at(90, p.y || 860, `<div style="width:900px;text-align:center;opacity:${f}">
-      <div style="display:inline-block;padding:24px 64px;background:${C.gold};color:#07080A;font-family:Anton;text-transform:uppercase;font-size:104px;transform:scale(${k * pulse}) rotate(-2deg);box-shadow:0 0 110px rgba(214,179,108,.5)">${p.botao}</div>
+      <div style="position:relative;display:inline-block;padding:24px 64px;border-radius:18px;background:linear-gradient(135deg,#E8CC8E,${C.gold} 45%,#B8924A);color:#07080A;font-family:Anton;text-transform:uppercase;font-size:104px;transform:scale(${k * pulse}) rotate(-2deg);box-shadow:0 0 120px rgba(214,179,108,.55), inset 0 2px 0 rgba(255,255,255,.4)">${sweep(180, ((lt - .6) * 70) % 220 - 60)}${p.botao}</div>
       <div style="margin-top:60px;font-family:Anton;text-transform:uppercase;font-size:54px;color:${C.white};opacity:${ease((lt - .5) / .4)}">${p.sub || ''}</div></div>`); }
   return '';
+}
+
+/* ---------------- Fundo iluminado ---------------- */
+// R.fundo: "feixes" (luz azul e dourada em diagonal) · "auras" (esferas de luz) · "palco" (holofote dourado + borda azul)
+function drawBg(t) {
+  const f = R.fundo || 'feixes', B = 'rgba(79,123,255,', G = 'rgba(214,179,108,';
+  let h = '';
+  if (f === 'feixes') {
+    const a = Math.sin(t * .35) * 6, b = Math.cos(t * .3) * 6;
+    h = `<div class="beam" style="left:-420px;transform:rotate(${-24 + a}deg);background:linear-gradient(90deg, transparent, ${B}.22) 45%, ${B}.06) 60%, transparent)"></div>
+         <div class="beam" style="right:-420px;transform:rotate(${24 + b}deg);background:linear-gradient(90deg, transparent, ${G}.06) 40%, ${G}.20) 55%, transparent)"></div>
+         <div class="orb" style="width:700px;height:700px;left:-260px;top:-200px;background:${B}.35)"></div>
+         <div class="orb" style="width:600px;height:600px;right:-220px;top:-120px;background:${G}.28)"></div>
+         <div class="floor"></div>`;
+  } else if (f === 'auras') {
+    const x1 = 540 + Math.sin(t * .4) * 320, y1 = 600 + Math.cos(t * .33) * 260, x2 = 540 + Math.cos(t * .37) * 320, y2 = 1300 + Math.sin(t * .29) * 260;
+    h = `<div class="orb" style="width:900px;height:900px;left:${x1 - 450}px;top:${y1 - 450}px;background:${B}.38)"></div>
+         <div class="orb" style="width:820px;height:820px;left:${x2 - 410}px;top:${y2 - 410}px;background:${G}.30)"></div><div class="floor"></div>`;
+  } else {
+    const sw = Math.sin(t * .5) * 3;
+    h = `<div class="beam" style="left:90px;width:900px;top:-200px;transform:rotate(${sw}deg);background:radial-gradient(ellipse at 50% 0%, ${G}.42), ${G}.10) 45%, transparent 70%)"></div>
+         <div class="orb" style="width:900px;height:500px;left:-420px;bottom:-160px;background:${B}.40)"></div>
+         <div class="orb" style="width:900px;height:500px;right:-420px;bottom:-160px;background:${B}.40)"></div><div class="floor"></div>`;
+  }
+  $('bg').innerHTML = h + '<div class="lines"></div>';
 }
 
 /* ---------------- Quadro ---------------- */
@@ -263,7 +323,7 @@ function render(t) {
   const acc = C[c.acento] || C.blue;
   $('glow').style.background = `radial-gradient(closest-side, ${acc}70, transparent 70%)`;
   $('glow').style.transform = `translate(${Math.sin(t * .7) * 70}px, ${Math.cos(t * .5) * 50}px)`;
-  $('tex').style.transform = `translate(${Math.sin(t * .2) * 24}px, ${Math.cos(t * .17) * 24}px)`;
+  drawBg(t);
   $('grain').style.backgroundPosition = `${(t * 997) % 256}px ${(t * 613) % 256}px`;
   [...$('dust').children].forEach((el, j) => { const d = DUST[j]; const y = (d.y - t * d.v + 1920) % 1920;
     el.style.transform = `translate(${d.x + Math.sin(t * .5 + j) * 20}px, ${y}px) scale(${d.s})`; el.style.opacity = d.o; });
