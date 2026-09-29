@@ -102,7 +102,10 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
         L = int(.9 * SR); k = np.arange(L) / SR
         return (np.sin(2 * np.pi * f * k) + .5 * np.sin(2 * np.pi * f * 2.01 * k) + .25 * np.sin(2 * np.pi * f * 3 * k)) * env(L, .003, 5) * .5
     def chime():
-        return sum(np.pad(ding(f), (int(i * .06 * SR), 0))[: int(1.2 * SR)] * .6 for i, f in enumerate((1568, 1976, 2349, 3136)))
+        out = np.zeros(int(1.3 * SR))
+        for i, f in enumerate((1568, 1976, 2349, 3136)):
+            d = ding(f); j = int(i * .06 * SR); out[j:j + len(d)] += d * .6
+        return out
     def glitch(dur=.35):
         L = int(dur * SR); k = np.arange(L) / SR
         sq = np.sign(np.sin(2 * np.pi * (180 + 900 * (np.floor(k * 40) % 3)) * k)) * .4
