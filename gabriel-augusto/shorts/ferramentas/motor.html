@@ -112,7 +112,7 @@ function buildText(c) {
     box.appendChild(ln);
   });
   let fs = parseFloat(box.style.fontSize);
-  for (let k = 0; k < 25 && [...box.children].some(l => l.getBoundingClientRect().width > 970); k++) { fs *= .94; box.style.fontSize = fs + 'px'; }
+  for (let k = 0; k < 25 && [...box.children].some(l => l.offsetWidth > 970); k++) { fs *= .94; box.style.fontSize = fs + 'px'; }
 }
 
 /* ---------------- Legenda (karaokê) ---------------- */
