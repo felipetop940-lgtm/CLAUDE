@@ -81,41 +81,82 @@ def lp(x, f): return sosfilt(butter(2, f, "low", fs=SR, output="sos"), x)
 def hp(x, f): return sosfilt(butter(2, f, "high", fs=SR, output="sos"), x)
 
 
-def trilha(total: float, cortes: list, bpm=100) -> np.ndarray:
-    rng = np.random.default_rng(5); beat = 60 / bpm; N = int((total + .5) * SR); mix = np.zeros(N)
+def efeitos(rot: dict, total: float) -> np.ndarray:
+    """Efeitos sonoros sincronizados com o que aparece na tela (sem música de fundo).
+    Todos sintetizados aqui: whoosh, estalos, notificação, falha digital, vidro, digitação, brilho, passos."""
+    rng = np.random.default_rng(9); N = int((total + .5) * SR); mix = np.zeros(N)
     def put(sig, at, g=1.):
         i = int(at * SR)
         if 0 <= i < N: j = min(N, i + len(sig)); mix[i:j] += sig[: j - i] * g
-    def kick():
-        k = np.arange(int(.4 * SR)) / SR; f = 42 + 100 * np.exp(-k * 26)
-        return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-k * 8)
-    def snap():
-        k = np.arange(int(.15 * SR)) / SR; return hp(rng.standard_normal(len(k)), 1500) * np.exp(-k * 35) * .5
-    def hat():
-        k = np.arange(int(.05 * SR)) / SR; return hp(rng.standard_normal(len(k)), 8000) * np.exp(-k * 80) * .3
-    def pad(fs, dur):
-        k = np.arange(int(dur * SR)) / SR; s = sum(np.sin(2 * np.pi * f * k) + .3 * np.sin(2 * np.pi * f * 1.003 * k) for f in fs)
-        env = np.minimum(1, k / .6) * np.minimum(1, (dur - k) / .6); return lp(s * env, 1400)
-    prog = [[220, 261.6, 329.6], [174.6, 220, 261.6], [196, 246.9, 293.7], [164.8, 196, 246.9]]
-    bars = int(total / (4 * beat)) + 2
-    for b in range(bars):
-        t0 = b * 4 * beat
-        put(pad(prog[b % 4], 4 * beat + .6), t0, .05)
-        put(lp(np.tanh(2 * np.sin(2 * np.pi * prog[b % 4][0] / 4 * np.arange(int(3.8 * beat * SR)) / SR)), 300) * .9, t0, .16)
-        for q in range(4):
-            put(kick(), t0 + q * beat, .55 if q % 2 == 0 else .35)
-            if q in (1, 3): put(snap(), t0 + q * beat, .45)
-        for e in range(8): put(hat(), t0 + e * beat / 2, .5 if e % 2 else .3)
-    def whoosh():
-        L = int(.5 * SR); k = np.arange(L) / SR; n = rng.standard_normal(L); sw = k / .5
-        return hp(lp(n, 1500) * (1 - sw) + lp(n, 7000) * sw, 300) * np.sin(np.pi * sw) ** 2 * .5
-    def hit():
-        k = np.arange(int(.5 * SR)) / SR; return (np.sin(2 * np.pi * 55 * k) * np.exp(-k * 6) + hp(rng.standard_normal(len(k)), 3000) * np.exp(-k * 30) * .3)
-    for i, c in enumerate(cortes):
-        if i: put(whoosh(), c - .25, .5)
-        put(hit(), c, .45)
+    def env(L, a=.005, d=6.):
+        k = np.arange(L) / SR; return np.minimum(1, k / a) * np.exp(-k * d)
+    def whoosh(dur=.6, hi=7000):
+        L = int(dur * SR); k = np.arange(L) / SR; n = rng.standard_normal(L); sw = k / dur
+        return hp(lp(n, 900) * (1 - sw) + lp(n, hi) * sw, 200) * np.sin(np.pi * sw) ** 1.5 * .7
+    def thump():
+        L = int(.5 * SR); k = np.arange(L) / SR; f = 40 + 90 * np.exp(-k * 20)
+        return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-k * 7)
+    def pop(f=900):
+        L = int(.07 * SR); k = np.arange(L) / SR; return np.sin(2 * np.pi * (f + 900 * np.exp(-k * 60)) * k) * env(L, .002, 55)
+    def ding(f=1320):
+        L = int(.9 * SR); k = np.arange(L) / SR
+        return (np.sin(2 * np.pi * f * k) + .5 * np.sin(2 * np.pi * f * 2.01 * k) + .25 * np.sin(2 * np.pi * f * 3 * k)) * env(L, .003, 5) * .5
+    def chime():
+        return sum(np.pad(ding(f), (int(i * .06 * SR), 0))[: int(1.2 * SR)] * .6 for i, f in enumerate((1568, 1976, 2349, 3136)))
+    def glitch(dur=.35):
+        L = int(dur * SR); k = np.arange(L) / SR
+        sq = np.sign(np.sin(2 * np.pi * (180 + 900 * (np.floor(k * 40) % 3)) * k)) * .4
+        return (sq + hp(rng.standard_normal(L), 2000) * .5) * (np.floor(k * 25) % 2) * .6
+    def crack():
+        L = int(.6 * SR); k = np.arange(L) / SR; out = hp(rng.standard_normal(L), 2500) * np.exp(-k * 14) * .8
+        for i in range(8):
+            j = int(rng.uniform(0, .25) * SR); m = int(.01 * SR); out[j:j + m] += rng.standard_normal(m) * 1.2
+        return out
+    def boom():
+        L = int(1.2 * SR); k = np.arange(L) / SR
+        return (np.sin(2 * np.pi * 45 * k) * np.exp(-k * 3.5) + lp(rng.standard_normal(L), 300) * np.exp(-k * 5) * .6)
+    def key():
+        L = int(.035 * SR); return hp(rng.standard_normal(L), 3000) * env(L, .001, 120) * .6
+    def buzz():
+        L = int(.22 * SR); k = np.arange(L) / SR; return np.sign(np.sin(2 * np.pi * 150 * k)) * env(L, .003, 10) * .35
+    def step():
+        L = int(.12 * SR); k = np.arange(L) / SR; return lp(rng.standard_normal(L), 600) * env(L, .002, 35)
+    def queda(dur=1.6):
+        L = int(dur * SR); k = np.arange(L) / SR; f = 620 * (180 / 620) ** (k / dur)
+        return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.minimum(1, k / .05) * np.minimum(1, (dur - k) / .2) * .35
+    def riser(dur=.9):
+        L = int(dur * SR); k = np.arange(L) / SR; sw = k / dur
+        return (hp(lp(rng.standard_normal(L), 1500 + 6000 * 0) * (1 - sw) + lp(rng.standard_normal(L), 9000) * sw, 400) * sw ** 2 * .6)
+
+    tipos = ["varredura", "iris", "barras"]
+    for i, c in enumerate(rot["cenas"]):
+        t0 = c["t0"]
+        if i:  # transição entre cenas
+            tp = c.get("transicao") or tipos[(i - 1) % 3]
+            if tp == "varredura": put(whoosh(.64), t0 - .32, .9)
+            elif tp == "iris": put(whoosh(.5, 5000), t0 - .3, .7); put(thump(), t0, .7); put(ding(988), t0 - .02, .25)
+            else:
+                for j in range(7): put(whoosh(.18, 9000), t0 - .3 + j * .045, .35)
+        nw = sum(len(l.split()) for l in c.get("texto", []))
+        for j in range(min(nw, 6)): put(pop(700 + 80 * j), t0 + .05 + j * .08, .22)
+        if c.get("fx") == "tremer": put(boom(), t0 + .02, .7)
+        bs = c.get("boneco") or []; bs = bs if isinstance(bs, list) else [bs]
+        for b in bs:
+            if b.get("entrada") == "andando":
+                for j in range(6): put(step(), t0 + .08 + j * .14, .35)
+            if b.get("pose") == "comemorando": put(chime(), t0 + .3, .35)
+        pr = (c.get("prop") or {}).get("tipo")
+        if pr == "conta_off":
+            put(ding(1175), t0 + .45, .45); put(glitch(), t0 + .9, .6); put(boom(), t0 + 1.22, .6); put(crack(), t0 + 1.35, .6)
+        elif pr == "alugado": put(thump(), t0 + 1.0, .6)
+        elif pr == "grafico": put(queda(), t0 + .2, .6)
+        elif pr == "busca":
+            q = (c.get("prop") or {}).get("consulta", "")
+            for j in range(len(q)): put(key(), t0 + .1 + 1.2 * j / max(1, len(q)), .5)
+            put(buzz(), t0 + 1.5, .5); put(buzz(), t0 + 1.9, .5); put(chime(), t0 + 2.3, .45)
+        elif pr == "enquete": put(pop(500), t0 + .3, .6); put(pop(620), t0 + .5, .6); put(pop(900), t0 + .9, .4)
+        elif pr == "cta": put(riser(), t0 - .9, .5); put(chime(), t0 + .6, .5)
     mix /= np.max(np.abs(mix)) + 1e-9
-    fo = int(.8 * SR); mix[-fo:] *= np.linspace(1, 0, fo)
     return mix
 
 
@@ -169,10 +210,8 @@ def main():
         for c, v in zip(cenas, vozes):
             i = int(c["fala_t0"] * SR); voz[i:i + len(v)] += v[: N - i]
         voz = tratar_voz(voz)
-        mus = trilha(total, cortes, rot.get("bpm", 100))[:N]; mus = np.pad(mus, (0, N - len(mus)))
-        env = np.convolve(np.abs(voz), np.ones(int(.25 * SR)) / int(.25 * SR), "same")
-        duck = np.convolve(np.where(env > .008, .5, 1.), np.ones(int(.3 * SR)) / int(.3 * SR), "same")
-        mix = voz + mus * .13 * duck; mix /= max(1, np.abs(mix).max() / .95)
+        fx = efeitos(rot, total)[:N]; fx = np.pad(fx, (0, N - len(fx)))  # só efeitos, sem música de fundo
+        mix = voz + fx * .32; mix /= max(1, np.abs(mix).max() / .95)
         wav = tmp / "a.wav"; sf.write(wav, np.stack([mix, mix], 1), SR)
         ff = imageio_ffmpeg.get_ffmpeg_exe()
         subprocess.run([ff, "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", str(frames / "f%05d.jpg"), "-i", str(wav),
