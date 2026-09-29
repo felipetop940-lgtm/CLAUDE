@@ -240,12 +240,9 @@
     photo.style.setProperty('--py', (p * -30).toFixed(1) + 'px');
   }
 
-  /* ---------- Plano Essencial: adicional de vídeo ---------- */
-  var prices = SITE.prices || { essential: 250, video: 38, premium: 320 };
-  var addon = $('[data-addon-video]');
-  var priceEl = $('[data-price-essential]');
+  /* ---------- Planos: adicionais (vídeo no Essencial, domínio nos dois) ---------- */
+  var prices = SITE.prices || { essential: 250, video: 38, premium: 320, domain: 40 };
   var hint = $('[data-hint]');
-  var essentialCta = $('[data-plan-cta="essential"]');
 
   function animateNumber(el, to) {
     var from = parseInt(el.textContent, 10) || 0;
@@ -257,17 +254,28 @@
       if (k < 1) requestAnimationFrame(step);
     })(t0);
   }
-  function syncEssential() {
-    var withVideo = addon && addon.checked;
-    var total = prices.essential + (withVideo ? prices.video : 0);
-    animateNumber(priceEl, total);
-    if (hint) hint.hidden = !withVideo;
-    if (essentialCta) {
-      var msg = (withVideo ? MSG.essentialVideo : MSG.essential) || '';
-      setWa(essentialCta, msg.replace('{total}', total));
+  function syncPlan(plan) {
+    var card = $('[data-plan="' + plan + '"]'); if (!card) return;
+    var video = card.querySelector('[data-addon-video]');
+    var domain = card.querySelector('[data-addon-domain]');
+    var withVideo = !!(video && video.checked), withDomain = !!(domain && domain.checked);
+    var total = prices[plan] + (withVideo ? prices.video : 0) + (withDomain ? prices.domain : 0);
+    var priceEl = card.querySelector('[data-price-' + plan + ']');
+    if (priceEl) animateNumber(priceEl, total);
+    if (plan === 'essential' && hint) hint.hidden = !withVideo;
+    var cta = card.querySelector('[data-plan-cta]');
+    if (cta) {
+      var name = plan === 'premium' ? 'Premium Page' : withVideo ? 'Essencial com edição de vídeo' : 'Essencial';
+      var extra = (withVideo && plan === 'essential' ? '• Edição de vídeo para a página\n' : '') + (withDomain ? MSG.domainLine || '' : '');
+      var msg = (MSG[plan] || '').replace('{plano}', name + (withDomain ? ' + domínio próprio' : '')).replace('{total}', total).replace('{extras}', extra);
+      setWa(cta, msg);
     }
   }
-  if (addon) { addon.addEventListener('change', syncEssential); syncEssential(); }
+  ['essential', 'premium'].forEach(function (plan) {
+    var card = $('[data-plan="' + plan + '"]'); if (!card) return;
+    card.querySelectorAll('input[type=checkbox]').forEach(function (i) { i.addEventListener('change', function () { syncPlan(plan); }); });
+    syncPlan(plan);
+  });
 
   /* ---------- Métricas reais deste site, medidas no aparelho do visitante ---------- */
   function fillLive() {

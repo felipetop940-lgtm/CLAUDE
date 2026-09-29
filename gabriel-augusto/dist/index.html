@@ -439,8 +439,9 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
 .addon input:checked ~ .addon__text { color: var(--white); }
 .addon:has(input:checked) { border-style: solid; border-color: rgba(214, 179, 108, .5); background: var(--gold-soft); }
 .addon input:focus-visible ~ .addon__box { outline: 2px solid var(--gold); outline-offset: 3px; }
-.addon__text { display: flex; justify-content: space-between; flex: 1; gap: 12px; font-size: .95rem; color: var(--gray); }
-.addon__text small { font-size: .95rem; color: var(--gold); white-space: nowrap; }
+.addon__text { display: flex; flex-wrap: wrap; align-items: baseline; flex: 1; gap: 12px; font-size: .95rem; color: var(--gray); }
+.addon__text small { font-size: .95rem; color: var(--gold); white-space: nowrap; margin-left: auto; }
+.addon__eg { font-family: inherit; font-style: normal; font-size: .82rem; color: var(--gray); opacity: .8; }
 .plan__hint { margin-bottom: 18px; padding: 14px 16px; border-radius: 12px; background: rgba(79, 123, 255, .08); border: 1px solid rgba(79, 123, 255, .25); font-size: .9rem; color: var(--gray); animation: hint-in .5s var(--ease); }
 .plan__hint strong { color: var(--white); font-weight: 600; }
 @keyframes hint-in { from { opacity: 0; transform: translateY(-6px); } }
@@ -712,14 +713,15 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
     "sameAs": ["https://www.instagram.com/august0_oliv/"],
     "areaServed": { "@type": "City", "name": "Goiânia" },
     "address": { "@type": "PostalAddress", "addressLocality": "Goiânia", "addressRegion": "GO", "addressCountry": "BR" },
-    "priceRange": "R$ 250 – R$ 320",
+    "priceRange": "R$ 250 – R$ 360",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Planos",
       "itemListElement": [
         { "@type": "Offer", "name": "Site Essencial", "description": "Site profissional com 2 rodadas de ajuste", "price": "250", "priceCurrency": "BRL" },
         { "@type": "Offer", "name": "Premium Page", "description": "Site profissional com edição de vídeo e 5 rodadas de ajuste", "price": "320", "priceCurrency": "BRL" },
-        { "@type": "Offer", "name": "Edição de vídeo avulsa", "price": "38", "priceCurrency": "BRL" }
+        { "@type": "Offer", "name": "Edição de vídeo avulsa", "price": "38", "priceCurrency": "BRL" },
+        { "@type": "Offer", "name": "Domínio próprio .com.br", "price": "40", "priceCurrency": "BRL" }
       ]
     }
   }
@@ -1004,7 +1006,12 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
           <span class="addon__box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span>
           <span class="addon__text">Adicionar edição de vídeo <small>+ R$ 38</small></span>
         </label>
-        <p class="plan__hint" data-hint hidden>Dica: por apenas <strong>R$ 32 a mais</strong>, o Premium Page já inclui o vídeo e <strong>3 rodadas extras</strong> de ajuste.</p>
+        <label class="addon">
+          <input type="checkbox" data-addon-domain>
+          <span class="addon__box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span>
+          <span class="addon__text">Domínio próprio <em class="addon__eg">seunome.com.br</em> <small>+ R$ 40</small></span>
+        </label>
+        <p class="plan__hint" data-hint hidden>Dica: o Premium Page já vem <strong>com edição de vídeo</strong> e <strong>5 rodadas de ajuste</strong>.</p>
         <a class="btn btn--line btn--block" href="#contato" data-wa data-plan-cta="essential">Quero o Essencial</a>
       </article>
 
@@ -1014,7 +1021,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
           <h3 class="plan__name">Premium Page</h3>
           <p class="plan__desc">Para quem quer a página impecável, com vídeo e margem para cada detalhe.</p>
         </header>
-        <p class="plan__price"><span class="plan__cur">R$</span><span>320</span></p>
+        <p class="plan__price"><span class="plan__cur">R$</span><span data-price-premium>320</span></p>
         <ul class="plan__list" role="list">
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>Tudo do plano Essencial</span></li>
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Edição de vídeo</strong> para a página</span></li>
@@ -1022,8 +1029,13 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>Liberdade para deixar tudo perfeito</span></li>
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>Entrega em 2 a 7 dias</span></li>
         </ul>
-        <p class="plan__save">Sai <strong>R$ 32 a mais</strong> que o Essencial com vídeo — e você ganha 3 rodadas extras.</p>
-        <a class="btn btn--gold btn--block magnetic" href="#contato" data-wa data-wa-plan="premium">
+        <label class="addon">
+          <input type="checkbox" data-addon-domain>
+          <span class="addon__box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span>
+          <span class="addon__text">Domínio próprio <em class="addon__eg">seunome.com.br</em> <small>+ R$ 40</small></span>
+        </label>
+        <p class="plan__save">Só <strong>R$ 70 a mais</strong> que o Essencial, já com edição de vídeo e 3 rodadas extras de ajuste.</p>
+        <a class="btn btn--gold btn--block magnetic" href="#contato" data-wa data-plan-cta="premium">
           <svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Quero o Premium Page
         </a>
       </article>
@@ -1073,11 +1085,15 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
       </details>
       <details class="acc__item reveal">
         <summary>Qual a diferença entre os planos?<span class="acc__icon" aria-hidden="true"></span></summary>
-        <div class="acc__body"><p>O Premium Page inclui a edição de um vídeo para a página e 5 rodadas de ajuste, em vez de 2. Se você pensa em ter vídeo, ele é mais vantajoso: custa só R$ 32 a mais que o Essencial com a edição de vídeo avulsa.</p></div>
+        <div class="acc__body"><p>O Premium Page inclui a edição de um vídeo para a página e 5 rodadas de ajuste, em vez de 2. Se você pensa em ter vídeo, ele é o mais indicado: custa só R$ 70 a mais que o Essencial, já com a edição de vídeo inclusa.</p></div>
       </details>
       <details class="acc__item reveal">
         <summary>Posso colocar vídeo no plano Essencial?<span class="acc__icon" aria-hidden="true"></span></summary>
         <div class="acc__body"><p>Pode. A edição de vídeo avulsa custa R$ 38 e é somada ao valor do plano, totalizando R$ 288.</p></div>
+      </details>
+      <details class="acc__item reveal">
+        <summary>Posso ter um domínio com o meu nome?<span class="acc__icon" aria-hidden="true"></span></summary>
+        <div class="acc__body"><p>Pode, nos dois planos. Por R$ 40 a mais, o seu site fica num endereço próprio com o seu nome e final .com.br (ex.: seunome.com.br).</p></div>
       </details>
       <details class="acc__item reveal">
         <summary>Preciso entender de tecnologia?<span class="acc__icon" aria-hidden="true"></span></summary>
@@ -1159,40 +1175,34 @@ window.SITE = {
      *texto* fica em negrito no WhatsApp. {total} é trocado pelo valor. */
   messages: {
     premium:
-      "Olá, Gabriel! Quero contratar o plano *Premium Page* (R$ 320).\n\n" +
+      "Olá, Gabriel! Quero contratar o plano *{plano}* (*R$ {total}*).\n\n" +
       "O que está incluso:\n" +
       "• Site profissional personalizado\n" +
       "• Adaptado para celular e computador\n" +
       "• Botão direto para o meu WhatsApp\n" +
       "• Edição de vídeo para a página\n" +
+      "{extras}" +
       "• 5 rodadas de ajuste\n" +
       "• Entrega em 2 a 7 dias\n\n" +
       "Como fazemos para começar?",
     essential:
-      "Olá, Gabriel! Quero contratar o plano *Essencial* (R$ 250).\n\n" +
+      "Olá, Gabriel! Quero contratar o plano *{plano}* (*R$ {total}*).\n\n" +
       "O que está incluso:\n" +
       "• Site profissional personalizado\n" +
       "• Adaptado para celular e computador\n" +
       "• Botão direto para o meu WhatsApp\n" +
+      "{extras}" +
       "• 2 rodadas de ajuste\n" +
       "• Entrega em 2 a 7 dias\n\n" +
       "Como fazemos para começar?",
-    essentialVideo:
-      "Olá, Gabriel! Quero contratar o plano *Essencial com edição de vídeo* (R$ 250 + R$ 38 = *R$ {total}*).\n\n" +
-      "O que está incluso:\n" +
-      "• Site profissional personalizado\n" +
-      "• Adaptado para celular e computador\n" +
-      "• Botão direto para o meu WhatsApp\n" +
-      "• Edição de vídeo para a página\n" +
-      "• 2 rodadas de ajuste\n" +
-      "• Entrega em 2 a 7 dias\n\n" +
-      "Como fazemos para começar?"
+    domainLine: "• Domínio próprio com o meu nome (.com.br)\n"
   },
 
   prices: {
     essential: 250,      // Site Essencial — 2 rodadas de ajuste
     video: 38,           // Edição de vídeo avulsa
-    premium: 320         // Premium Page — vídeo incluso + 5 rodadas
+    premium: 320,        // Premium Page — vídeo incluso + 5 rodadas (R$ 70 a mais que o Essencial)
+    domain: 40           // Domínio próprio .com.br (opcional nos dois planos)
   }
 };
 
@@ -1440,12 +1450,9 @@ window.SITE = {
     photo.style.setProperty('--py', (p * -30).toFixed(1) + 'px');
   }
 
-  /* ---------- Plano Essencial: adicional de vídeo ---------- */
-  var prices = SITE.prices || { essential: 250, video: 38, premium: 320 };
-  var addon = $('[data-addon-video]');
-  var priceEl = $('[data-price-essential]');
+  /* ---------- Planos: adicionais (vídeo no Essencial, domínio nos dois) ---------- */
+  var prices = SITE.prices || { essential: 250, video: 38, premium: 320, domain: 40 };
   var hint = $('[data-hint]');
-  var essentialCta = $('[data-plan-cta="essential"]');
 
   function animateNumber(el, to) {
     var from = parseInt(el.textContent, 10) || 0;
@@ -1457,17 +1464,28 @@ window.SITE = {
       if (k < 1) requestAnimationFrame(step);
     })(t0);
   }
-  function syncEssential() {
-    var withVideo = addon && addon.checked;
-    var total = prices.essential + (withVideo ? prices.video : 0);
-    animateNumber(priceEl, total);
-    if (hint) hint.hidden = !withVideo;
-    if (essentialCta) {
-      var msg = (withVideo ? MSG.essentialVideo : MSG.essential) || '';
-      setWa(essentialCta, msg.replace('{total}', total));
+  function syncPlan(plan) {
+    var card = $('[data-plan="' + plan + '"]'); if (!card) return;
+    var video = card.querySelector('[data-addon-video]');
+    var domain = card.querySelector('[data-addon-domain]');
+    var withVideo = !!(video && video.checked), withDomain = !!(domain && domain.checked);
+    var total = prices[plan] + (withVideo ? prices.video : 0) + (withDomain ? prices.domain : 0);
+    var priceEl = card.querySelector('[data-price-' + plan + ']');
+    if (priceEl) animateNumber(priceEl, total);
+    if (plan === 'essential' && hint) hint.hidden = !withVideo;
+    var cta = card.querySelector('[data-plan-cta]');
+    if (cta) {
+      var name = plan === 'premium' ? 'Premium Page' : withVideo ? 'Essencial com edição de vídeo' : 'Essencial';
+      var extra = (withVideo && plan === 'essential' ? '• Edição de vídeo para a página\n' : '') + (withDomain ? MSG.domainLine || '' : '');
+      var msg = (MSG[plan] || '').replace('{plano}', name + (withDomain ? ' + domínio próprio' : '')).replace('{total}', total).replace('{extras}', extra);
+      setWa(cta, msg);
     }
   }
-  if (addon) { addon.addEventListener('change', syncEssential); syncEssential(); }
+  ['essential', 'premium'].forEach(function (plan) {
+    var card = $('[data-plan="' + plan + '"]'); if (!card) return;
+    card.querySelectorAll('input[type=checkbox]').forEach(function (i) { i.addEventListener('change', function () { syncPlan(plan); }); });
+    syncPlan(plan);
+  });
 
   /* ---------- Métricas reais deste site, medidas no aparelho do visitante ---------- */
   function fillLive() {

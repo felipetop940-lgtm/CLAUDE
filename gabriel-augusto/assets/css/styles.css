@@ -416,8 +416,9 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var
 .addon input:checked ~ .addon__text { color: var(--white); }
 .addon:has(input:checked) { border-style: solid; border-color: rgba(214, 179, 108, .5); background: var(--gold-soft); }
 .addon input:focus-visible ~ .addon__box { outline: 2px solid var(--gold); outline-offset: 3px; }
-.addon__text { display: flex; justify-content: space-between; flex: 1; gap: 12px; font-size: .95rem; color: var(--gray); }
-.addon__text small { font-size: .95rem; color: var(--gold); white-space: nowrap; }
+.addon__text { display: flex; flex-wrap: wrap; align-items: baseline; flex: 1; gap: 12px; font-size: .95rem; color: var(--gray); }
+.addon__text small { font-size: .95rem; color: var(--gold); white-space: nowrap; margin-left: auto; }
+.addon__eg { font-family: inherit; font-style: normal; font-size: .82rem; color: var(--gray); opacity: .8; }
 .plan__hint { margin-bottom: 18px; padding: 14px 16px; border-radius: 12px; background: rgba(79, 123, 255, .08); border: 1px solid rgba(79, 123, 255, .25); font-size: .9rem; color: var(--gray); animation: hint-in .5s var(--ease); }
 .plan__hint strong { color: var(--white); font-weight: 600; }
 @keyframes hint-in { from { opacity: 0; transform: translateY(-6px); } }

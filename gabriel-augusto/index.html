@@ -34,14 +34,15 @@
     "sameAs": ["https://www.instagram.com/august0_oliv/"],
     "areaServed": { "@type": "City", "name": "Goiânia" },
     "address": { "@type": "PostalAddress", "addressLocality": "Goiânia", "addressRegion": "GO", "addressCountry": "BR" },
-    "priceRange": "R$ 250 – R$ 320",
+    "priceRange": "R$ 250 – R$ 360",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Planos",
       "itemListElement": [
         { "@type": "Offer", "name": "Site Essencial", "description": "Site profissional com 2 rodadas de ajuste", "price": "250", "priceCurrency": "BRL" },
         { "@type": "Offer", "name": "Premium Page", "description": "Site profissional com edição de vídeo e 5 rodadas de ajuste", "price": "320", "priceCurrency": "BRL" },
-        { "@type": "Offer", "name": "Edição de vídeo avulsa", "price": "38", "priceCurrency": "BRL" }
+        { "@type": "Offer", "name": "Edição de vídeo avulsa", "price": "38", "priceCurrency": "BRL" },
+        { "@type": "Offer", "name": "Domínio próprio .com.br", "price": "40", "priceCurrency": "BRL" }
       ]
     }
   }
@@ -326,7 +327,12 @@
           <span class="addon__box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span>
           <span class="addon__text">Adicionar edição de vídeo <small>+ R$ 38</small></span>
         </label>
-        <p class="plan__hint" data-hint hidden>Dica: por apenas <strong>R$ 32 a mais</strong>, o Premium Page já inclui o vídeo e <strong>3 rodadas extras</strong> de ajuste.</p>
+        <label class="addon">
+          <input type="checkbox" data-addon-domain>
+          <span class="addon__box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span>
+          <span class="addon__text">Domínio próprio <em class="addon__eg">seunome.com.br</em> <small>+ R$ 40</small></span>
+        </label>
+        <p class="plan__hint" data-hint hidden>Dica: o Premium Page já vem <strong>com edição de vídeo</strong> e <strong>5 rodadas de ajuste</strong>.</p>
         <a class="btn btn--line btn--block" href="#contato" data-wa data-plan-cta="essential">Quero o Essencial</a>
       </article>
 
@@ -336,7 +342,7 @@
           <h3 class="plan__name">Premium Page</h3>
           <p class="plan__desc">Para quem quer a página impecável, com vídeo e margem para cada detalhe.</p>
         </header>
-        <p class="plan__price"><span class="plan__cur">R$</span><span>320</span></p>
+        <p class="plan__price"><span class="plan__cur">R$</span><span data-price-premium>320</span></p>
         <ul class="plan__list" role="list">
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>Tudo do plano Essencial</span></li>
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Edição de vídeo</strong> para a página</span></li>
@@ -344,8 +350,13 @@
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>Liberdade para deixar tudo perfeito</span></li>
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span>Entrega em 2 a 7 dias</span></li>
         </ul>
-        <p class="plan__save">Sai <strong>R$ 32 a mais</strong> que o Essencial com vídeo — e você ganha 3 rodadas extras.</p>
-        <a class="btn btn--gold btn--block magnetic" href="#contato" data-wa data-wa-plan="premium">
+        <label class="addon">
+          <input type="checkbox" data-addon-domain>
+          <span class="addon__box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span>
+          <span class="addon__text">Domínio próprio <em class="addon__eg">seunome.com.br</em> <small>+ R$ 40</small></span>
+        </label>
+        <p class="plan__save">Só <strong>R$ 70 a mais</strong> que o Essencial, já com edição de vídeo e 3 rodadas extras de ajuste.</p>
+        <a class="btn btn--gold btn--block magnetic" href="#contato" data-wa data-plan-cta="premium">
           <svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Quero o Premium Page
         </a>
       </article>
@@ -395,11 +406,15 @@
       </details>
       <details class="acc__item reveal">
         <summary>Qual a diferença entre os planos?<span class="acc__icon" aria-hidden="true"></span></summary>
-        <div class="acc__body"><p>O Premium Page inclui a edição de um vídeo para a página e 5 rodadas de ajuste, em vez de 2. Se você pensa em ter vídeo, ele é mais vantajoso: custa só R$ 32 a mais que o Essencial com a edição de vídeo avulsa.</p></div>
+        <div class="acc__body"><p>O Premium Page inclui a edição de um vídeo para a página e 5 rodadas de ajuste, em vez de 2. Se você pensa em ter vídeo, ele é o mais indicado: custa só R$ 70 a mais que o Essencial, já com a edição de vídeo inclusa.</p></div>
       </details>
       <details class="acc__item reveal">
         <summary>Posso colocar vídeo no plano Essencial?<span class="acc__icon" aria-hidden="true"></span></summary>
         <div class="acc__body"><p>Pode. A edição de vídeo avulsa custa R$ 38 e é somada ao valor do plano, totalizando R$ 288.</p></div>
+      </details>
+      <details class="acc__item reveal">
+        <summary>Posso ter um domínio com o meu nome?<span class="acc__icon" aria-hidden="true"></span></summary>
+        <div class="acc__body"><p>Pode, nos dois planos. Por R$ 40 a mais, o seu site fica num endereço próprio com o seu nome e final .com.br (ex.: seunome.com.br).</p></div>
       </details>
       <details class="acc__item reveal">
         <summary>Preciso entender de tecnologia?<span class="acc__icon" aria-hidden="true"></span></summary>

@@ -2,7 +2,7 @@
 
 Quem pede: Gabriel Augusto de Oliveira, Goiânia/GO. Vende sites para profissionais.
 Contato: WhatsApp 5562982595333 · Instagram @august0_oliv · augustooliv940@gmail.com.
-Planos: Essencial R$ 250 (2 revisões) · Premium Page R$ 320 (edição de vídeo, 5 revisões) · vídeo avulso +R$ 38 · entrega em 2 a 7 dias.
+Planos: Essencial R$ 250 (2 revisões) · Premium Page R$ 320 (R$ 70 a mais, com edição de vídeo, 5 revisões) · vídeo avulso no Essencial +R$ 38 · domínio próprio .com.br +R$ 40 (opcional nos dois) · entrega em 2 a 7 dias.
 Responder em português brasileiro informal, direto. Branch de trabalho: `claude/professional-premium-website-q2yp97`.
 
 ## Vídeos curtos diários (`gabriel-augusto/shorts/`)
