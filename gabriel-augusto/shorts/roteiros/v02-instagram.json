@@ -175,5 +175,14 @@
       }
     }
   ],
-  "fundo": "auras"
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "Se o seu Instagram",
+      "~sumir~ amanhã…"
+    ],
+    "tamanho": 170,
+    "selo": "Quantos clientes você perde?",
+    "selo_y": 560
+  }
 }
