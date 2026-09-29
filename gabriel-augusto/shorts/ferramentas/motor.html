@@ -125,25 +125,25 @@ function renderSubs(c, t) {
 }
 
 /* ---------------- Bonecos pictograma (originais) ---------------- */
-// Ângulos em graus: 0 = para baixo, positivo gira para a direita da tela.
-// a = braço da esquerda da tela, b = braço da direita; [ombro, cotovelo]. p/q = pernas [quadril, joelho].
+// Ângulos em graus, sempre "para fora do corpo": 0 = para baixo, 90 = horizontal para fora, 180 = para cima.
+// Valores negativos apontam para dentro (cruzando o corpo). O lado esquerdo é espelhado automaticamente.
+// a = braço esquerdo, b = braço direito: [ombro, cotovelo]. p = perna esquerda, q = perna direita: [quadril, joelho].
 const POSES = {
-  parado:      { h: 0,  t: 0,  a: [10, 4],    b: [-10, -4],   p: [6, 0],   q: [-6, 0] },
-  socando:     { h: -4, t: 6,  a: [-30, 130], b: [92, 0],     p: [24, 0],  q: [-26, 14] },
-  andando:     { h: -2, t: 5,  a: [22, 12],   b: [-26, -8],   p: [22, -4], q: [-20, 24] },
-  pensando:    { h: 8,  t: 2,  a: [4, 4],     b: [26, -172],  p: [5, 0],   q: [-7, 0] },
-  acenando:    { h: -4, t: -2, a: [8, 4],     b: [138, 26],   p: [6, 0],   q: [-6, 0] },
-  dancando:    { h: -8, t: -6, a: [-100, 40], b: [150, 14],   p: [14, 0],  q: [-40, 70] },
-  comemorando: { h: -10, t: 0, a: [-148, -6], b: [148, 6],    p: [16, 0],  q: [-16, 0] },
-  triste:      { h: 36, t: 12, a: [2, 8],     b: [-6, 10],    p: [4, 10],  q: [-8, 12] },
-  chocado:     { h: -6, t: -6, a: [-146, -82], b: [146, 82],  p: [14, 0],  q: [-14, 0] },
-  celular:     { h: 28, t: 6,  a: [18, 104],  b: [-22, -100], p: [5, 0],   q: [-7, 0] },
-  confiante:   { h: -6, t: 0,  a: [34, 112],  b: [-34, -112], p: [12, 0],  q: [-12, 0] },
-  apontando:   { h: -6, t: -3, a: [10, 4],    b: [96, -4],    p: [10, 0],  q: [-10, 0] },
-  ideia:       { h: -10, t: -2, a: [10, 4],   b: [168, 6],    p: [6, 0],   q: [-6, 0] },      // dedo para cima
-  cintura:     { h: -6, t: 0,  a: [-40, 100], b: [40, -100],  p: [14, 0],  q: [-14, 0] },    // mãos na cintura
-  sentado:     { h: 30, t: -20, a: [-20, 10], b: [30, -40],   p: [-80, 10], q: [-70, 20] },   // sentado no chão, derrotado
-  empurrando:  { h: 10, t: 24, a: [70, 40],   b: [96, 20],    p: [-10, -8], q: [-40, 30] },
+  parado:      { h: 0,   t: 0,  a: [13, 0],     b: [13, 0],      p: [5, 0],   q: [5, 0] },
+  socando:     { h: -4,  t: 4,  a: [22, -172],  b: [90, 0],     p: [16, 0],  q: [18, -8] },     // guarda no queixo + soco para a direita
+  andando:     { h: -2,  t: 3,  a: [18, -10],   b: [-14, 6],    p: [22, -4], q: [-18, 26] },
+  pensando:    { h: 8,   t: 2,  a: [6, 0],      b: [60, 150],   p: [5, 0],   q: [5, 0] },       // mão no queixo
+  acenando:    { h: -4,  t: -2, a: [6, 0],      b: [140, 25],   p: [5, 0],   q: [5, 0] },
+  dancando:    { h: -8,  t: -5, a: [95, -40],   b: [150, 12],   p: [10, 0],  q: [36, 55] },
+  comemorando: { h: -10, t: 0,  a: [150, 10],   b: [150, 10],   p: [15, 0],  q: [15, 0] },      // braços em V
+  triste:      { h: 34,  t: 6,  a: [3, -4],     b: [3, -4],     p: [4, -5],  q: [4, -5] },      // cabisbaixo
+  chocado:     { h: -6,  t: 0,  a: [100, 105],  b: [100, 105],  p: [13, 0],  q: [13, 0] },      // mãos na cabeça
+  celular:     { h: 26,  t: 4,  a: [10, -138],  b: [10, -138],  p: [5, 0],   q: [5, 0] },
+  confiante:   { h: -6,  t: 0,  a: [26, -122],  b: [26, -116],  p: [11, 0],  q: [11, 0] },      // braços cruzados
+  apontando:   { h: -6,  t: -3, a: [8, 0],      b: [90, -4],    p: [9, 0],   q: [9, 0] },
+  ideia:       { h: -10, t: -2, a: [12, 0],     b: [158, 16],    p: [5, 0],   q: [5, 0] },       // dedo para cima
+  empurrando:  { h: 10,  t: 18, a: [-80, -5],   b: [80, 5],     p: [-8, -6], q: [34, 30] },
+  cintura:     { h: -6,  t: 0,  a: [40, -68],   b: [40, -68],   p: [13, 0],  q: [13, 0] },      // mãos na cintura
 };
 function mixPose(A, B, k) { const o = {}; for (const key in A) o[key] = Array.isArray(A[key]) ? A[key].map((v, i) => lerp(v, B[key][i], k)) : lerp(A[key], B[key], k); return o; }
 function limb(x, y, a1, a2, l1, l2) {
@@ -158,10 +158,10 @@ function figure(s, lt, t) {
   if (s.entrada === 'andando') { const k = ease(lt / .9); cx = lerp(s.x < 540 ? -200 : 1280, s.x ?? 540, k); walkK = 1 - clamp((lt - .75) / .25); }
   const inK = s.entrada === 'andando' ? 1 : back(lt / .38);
   let P = mixPose(POSES.parado, POSES[s.pose] || POSES.parado, ease((lt - (s.entrada === 'andando' ? .8 : 0)) / .3));
-  if (walkK > 0) { const ph = Math.sin(lt * 14); P = mixPose(P, { ...POSES.andando, a: [22 * ph, 10], b: [-22 * ph, -10], p: [22 * ph, -4 + Math.max(0, -ph) * 30], q: [-22 * ph, -4 + Math.max(0, ph) * 30] }, walkK); }
+  if (walkK > 0) { const ph = Math.sin(lt * 14); P = mixPose(P, { ...POSES.andando, a: [16 * ph, -6], b: [-16 * ph, 6], p: [20 * ph, -Math.max(0, -ph) * 30], q: [-20 * ph, -Math.max(0, ph) * 30] }, walkK); }
   const osc = Math.sin(t * 6);
   if (s.pose === 'acenando') P.b = [P.b[0], P.b[1] + osc * 22];
-  if (s.pose === 'comemorando' || s.pose === 'dancando') { P.a[0] += osc * 8; P.b[0] -= osc * 8; }
+  if (s.pose === 'comemorando' || s.pose === 'dancando') { P.a[0] += osc * 8; P.b[0] += osc * 8; }
   if (s.pose === 'socando') { const hit = Math.max(0, Math.sin(t * 7)); P.b = [P.b[0], P.b[1]]; cx += hit * 10 * S; }
   if (s.pose === 'triste') P.h += Math.sin(t * 2.5) * 2;
   const hop = (s.pose === 'comemorando' || s.pose === 'dancando') ? Math.abs(Math.sin(t * 5)) * 30 * S : 0;
@@ -172,9 +172,10 @@ function figure(s, lt, t) {
   const hr = (P.t + P.h) * Math.PI / 180;
   const hx = nx + Math.sin(hr) * (HR + gap + W * .2), hy = ny - Math.cos(hr) * (HR + gap + W * .2);
   const sh = ny + W * .35;
-  const A = limb(nx - W * .25, sh, P.a[0], P.a[1], .9 * L, .82 * L);
+  // lado esquerdo espelhado: ângulo positivo sempre abre para fora do corpo
+  const A = limb(nx - W * .25, sh, -P.a[0], -P.a[1], .9 * L, .82 * L);
   const B = limb(nx + W * .25, sh, P.b[0], P.b[1], .9 * L, .82 * L);
-  const Lp = limb(cx - W * .28, hipY, P.p[0], P.p[1], L, L);
+  const Lp = limb(cx - W * .28, hipY, -P.p[0], -P.p[1], L, L);
   const Lq = limb(cx + W * .28, hipY, P.q[0], P.q[1], L, L);
   const col = C[s.cor] || C.white;
   let extra = '';
