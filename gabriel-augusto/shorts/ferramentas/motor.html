@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Motor de vídeos curtos — Gabriel Augusto</title>
+<!--
+  MODELO DE VÍDEO CURTO (1080x1920)
+  O roteiro (JSON) é injetado em __ROTEIRO__. Cada cena escolhe:
+    texto  : linhas; *palavra* = dourado, ~palavra~ = vermelho, _palavra_ = azul
+    boneco : { pose: triste|pensando|apontando|comemorando|celular|chocado, emocao: chuva|interrogacao|brilho|suor|exclamacao }
+    prop   : { tipo: zero|curtidas|busca|checklist|notificacoes|cta, ... }
+    fx     : tremer | zoom | flash
+  Tudo é desenhado aqui (bonecos originais em SVG), sem bibliotecas.
+-->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 700; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "CG"; font-style: italic; src: url("../../assets/fonts/cormorant-garamond-italic.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "Marker"; src: url("fontes/permanent-marker.woff2") format("woff2"); }
+:root { --gold: #D6B36C; --blue: #4F7BFF; --red: #FF4D5E; --white: #F5F6F8; --gray: #9BA2AE; --bg: #07080A; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+body { font-family: "IT", sans-serif; color: var(--white); -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; inset: 0; overflow: hidden; }
+#world { position: absolute; inset: 0; transform-origin: 50% 45%; background: #000; }
+.glow { position: absolute; width: 1400px; height: 1400px; left: -160px; top: -300px; border-radius: 50%; opacity: .22; filter: blur(10px); mix-blend-mode: screen; }
+.label { position: absolute; transform: translateX(-50%); font-family: "CG", serif; font-style: italic; font-size: 64px; white-space: nowrap; }
+.grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 90px 90px; -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000, transparent 72%); }
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+.progress { position: absolute; left: 70px; right: 70px; top: 90px; height: 6px; border-radius: 6px; background: rgba(255,255,255,.12); overflow: hidden; }
+.progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--blue), var(--gold)); transform-origin: 0 50%; }
+.handle { position: absolute; top: 130px; left: 0; right: 0; text-align: center; font-size: 30px; font-weight: 600; color: rgba(245,246,248,.75); letter-spacing: .01em; }
+.handle b { color: var(--gold); font-weight: 600; }
+
+/* Texto (legenda grande) — área segura: 300px a 1000px de altura */
+.txt { position: absolute; left: 50px; right: 50px; top: 300px; text-align: center; font-family: "Anton", "IT", sans-serif; font-weight: 400; text-transform: uppercase; line-height: 1.08; letter-spacing: .01em; text-shadow: 0 6px 30px rgba(0,0,0,.6); }
+.txt .ln { display: table; margin: 0 auto; }
+.w { display: inline-block; margin: 0 .1em; transform-origin: 50% 80%; }
+.w.gold, .w.red, .w.blue { font-family: "Marker", "Anton", sans-serif; font-size: 1.18em; letter-spacing: 0; text-transform: uppercase; }
+.w.box { background: #F5F6F8; color: #07080A; padding: 0 .22em; margin: .06em .06em; text-shadow: none; }
+.w.gold { color: var(--gold); }
+.w.red { color: var(--red); }
+.w.blue { color: var(--blue); }
+.w.serif { }
+.hl { position: relative; }
+.hl::after { content: ""; position: absolute; left: -2px; right: -2px; bottom: .04em; height: .07em; border-radius: 4px; background: currentColor; opacity: .9; transform-origin: 0 50%; transform: scaleX(var(--u, 0)); }
+.w.box::after, .w.red::after { display: none; }
+
+svg { overflow: visible; }
+.layer { position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div class="glow" id="glow"></div>
+    
+    <div class="layer" id="props"></div>
+    <svg class="layer" id="stick" viewBox="0 0 1080 1920" width="1080" height="1920"></svg>
+    <div class="layer" id="labels"></div>
+    <div class="txt" id="txt"></div>
+  </div>
+  <div class="progress"><i id="prog"></i></div>
+  <div class="handle" id="handle"></div>
+  <div class="flash" id="flash"></div>
+</div>
+
+<script>
+const R = __ROTEIRO__;
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+const back = x => { x = clamp(x); const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const easeIO = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const lerp = (a, b, k) => a + (b - a) * k;
+const COLORS = { gold: '#D6B36C', blue: '#4F7BFF', red: '#FF4D5E', white: '#F5F6F8' };
+
+// Tempo de início de cada cena
+let acc = 0; R.cenas.forEach(c => { c.t0 = acc; acc += c.dur; c.t1 = acc; });
+R.total = acc;
+$('handle').innerHTML = R.perfil ? `<b>${R.perfil}</b>` : '';
+
+/* ---------- Texto: palavra por palavra, com cores e sublinhado ---------- */
+function buildText(c) {
+  const box = $('txt'); box.innerHTML = ''; box.style.fontSize = Math.round((c.tamanho || 104) * 1.3) + 'px';
+  let i = 0; c._words = [];
+  (c.texto || []).forEach(line => {
+    const ln = document.createElement('span'); ln.className = 'ln';
+    let open = null; // marcador aberto que pode abranger várias palavras: /chama você./
+    const CLS = { '*': 'gold', '~': 'red', '_': 'blue', '/': 'gold', '#': 'box' };
+    line.split(' ').forEach(tok => {
+      const w = document.createElement('span'); w.className = 'w';
+      let t = tok, mk = open;
+      if (!open && CLS[t[0]]) { mk = t[0]; t = t.slice(1); open = mk; }
+      const end = mk && t.match(new RegExp('\\' + mk + '([.,!?…:]*)$'));
+      if (end) { t = t.slice(0, end.index) + end[1]; open = null; }
+      if (mk) { w.classList.add(CLS[mk]); if (mk !== '#') w.classList.add('hl'); }
+      w.textContent = t; w.dataset.i = i++; ln.appendChild(w); c._words.push(w);
+    });
+    box.appendChild(ln);
+  });
+  // encaixe automático: nenhuma linha passa da largura segura
+  let fs = parseFloat(box.style.fontSize);
+  for (let k = 0; k < 20 && [...box.children].some(l => l.scrollWidth > 960 || l.getBoundingClientRect().width > 960); k++) { fs *= .94; box.style.fontSize = fs + 'px'; }
+}
+
+/* ---------- Boneco (original): esqueleto com ângulos por pose ---------- */
+// ângulos em graus: 0 = para baixo. Braços: [ombro, cotovelo]; pernas: [quadril, joelho]
+const POSES = {
+  parado:      { head: 0,   torso: 0,  la: [15, 5],    ra: [-15, -5],  ll: [10, 0],  rl: [-10, 0] },
+  triste:      { head: 22,  torso: 10, la: [-150, -40], ra: [150, 40],  ll: [8, 0],   rl: [-8, 0] },   // mãos na cabeça
+  pensando:    { head: -10, torso: -4, la: [20, 10],   ra: [-60, -130], ll: [10, 0],  rl: [-12, 0] },  // mão no queixo
+  apontando:   { head: -12, torso: -3, la: [20, 5],    ra: [-150, -10], ll: [14, 0],  rl: [-10, 0] },  // aponta pro alto
+  comemorando: { head: -8,  torso: 0,  la: [150, 20],  ra: [-150, -20], ll: [25, -20], rl: [-25, 20] },
+  celular:     { head: 20,  torso: 4,  la: [14, 92],   ra: [-14, -92], ll: [8, 0],   rl: [-8, 0] },    // segurando celular
+  chocado:     { head: -6,  torso: -8, la: [110, 30],  ra: [-110, -30], ll: [18, 0],  rl: [-18, 0] },
+};
+const FACES = { triste: 'frown', pensando: 'flat', apontando: 'smile', comemorando: 'big', celular: 'flat', chocado: 'o', parado: 'smile' };
+function mixPose(a, b, k) {
+  const o = {}; for (const key in a) o[key] = Array.isArray(a[key]) ? a[key].map((v, i) => lerp(v, b[key][i], k)) : lerp(a[key], b[key], k); return o;
+}
+function limb(x, y, a1, a2, l1, l2) {
+  const r1 = a1 * Math.PI / 180, r2 = (a1 + a2) * Math.PI / 180;
+  const x1 = x + Math.sin(r1) * l1, y1 = y + Math.cos(r1) * l1;
+  const x2 = x1 + Math.sin(r2) * l2, y2 = y1 + Math.cos(r2) * l2;
+  return { d: `M${x} ${y} L${x1} ${y1} L${x2} ${y2}`, hx: x2, hy: y2 };
+}
+function drawStick(c, lt, t) {
+  const svg = $('stick');
+  const list = !c.boneco ? [] : Array.isArray(c.boneco) ? c.boneco : [c.boneco];
+  svg.innerHTML = `<defs><filter id="luz" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>` +
+    list.map((s, n) => oneStick(s, Math.max(0, lt - n * .12), t + n * .7)).join('');
+  // rótulos (ex.: "Sem site" / "Com site")
+  $('labels').innerHTML = list.filter(s => s.rotulo).map(s => { const k = ease((lt - .15) / .35);
+    return `<div class="label" style="left:${s.x ?? 540}px;top:${(s.y ?? 1560) - 860 * (s.escala || 1)}px;color:${COLORS[s.corRotulo] || COLORS.white};opacity:${k};transform:translateX(-50%) translateY(${(1 - k) * 20}px)">${s.rotulo}</div>`; }).join('');
+}
+function oneStick(s, lt, t) {
+  const S = s.escala || 1, cx = s.x ?? 540, base = s.y ?? 1560;
+  const inK = back(lt / .45), bob = Math.sin(t * 6) * 6;
+  let pose = mixPose(POSES.parado, POSES[s.pose] || POSES.parado, ease(lt / .35));
+  // gestos vivos
+  if (s.pose === 'comemorando') { pose = mixPose(pose, { ...pose, la: [170, 30], ra: [-170, -30] }, (Math.sin(t * 14) + 1) / 2); }
+  if (s.pose === 'triste') pose.head += Math.sin(t * 3) * 3;
+  if (s.pose === 'pensando') pose.ra = [pose.ra[0], pose.ra[1] + Math.sin(t * 5) * 6];
+  const jump = s.pose === 'comemorando' ? Math.abs(Math.sin(t * 7)) * 40 : 0;
+  const L = 120 * S, hipY = base - 2 * L - jump + bob * (s.pose === 'comemorando' ? 0 : 1);
+  const tr = pose.torso * Math.PI / 180;
+  const neckX = cx + Math.sin(tr) * 1.5 * L, neckY = hipY - Math.cos(tr) * 1.5 * L;
+  const hr = (pose.torso + pose.head) * Math.PI / 180, headR = 58 * S;
+  const hx = neckX + Math.sin(hr) * (headR + 22), hy = neckY - Math.cos(hr) * (headR + 22);  // cabeça levemente solta, como na referência
+  const la = limb(neckX, neckY + 10, pose.la[0], pose.la[1], .95 * L, .9 * L);
+  const ra = limb(neckX, neckY + 10, pose.ra[0], pose.ra[1], .95 * L, .9 * L);
+  const ll = limb(cx, hipY, pose.ll[0], pose.ll[1], L, L);
+  const rl = limb(cx, hipY, pose.rl[0], pose.rl[1], L, L);
+  const col = COLORS[s.cor] || COLORS.white, sw = 34 * S;
+  // rosto
+  const face = FACES[s.pose] || 'smile'; const ex = headR * .34, ey = hy - headR * .1 + (pose.head > 10 ? 10 : 0);
+  let mouth = '';
+  const my = hy + headR * .38 + (pose.head > 10 ? 8 : 0);
+  if (face === 'smile') mouth = `M${hx - 20} ${my - 6} Q${hx} ${my + 14} ${hx + 20} ${my - 6}`;
+  if (face === 'big') mouth = `M${hx - 26} ${my - 10} Q${hx} ${my + 26} ${hx + 26} ${my - 10} Z`;
+  if (face === 'frown') mouth = `M${hx - 20} ${my + 8} Q${hx} ${my - 12} ${hx + 20} ${my + 8}`;
+  if (face === 'flat') mouth = `M${hx - 16} ${my} L${hx + 16} ${my}`;
+  if (face === 'o') mouth = `M${hx} ${my - 12} a10 13 0 1 0 0.1 0 Z`;
+  let phone = '';
+  if (s.pose === 'celular') { const px = (la.hx + ra.hx) / 2, py = (la.hy + ra.hy) / 2 - 20;
+    phone = `<rect x="${px - 34}" y="${py - 58}" width="68" height="116" rx="12" fill="#101318" stroke="${COLORS.blue}" stroke-width="8"/><rect x="${px - 24}" y="${py - 46}" width="48" height="84" rx="5" fill="${COLORS.blue}" opacity=".35"/>`; }
+  // emoções (símbolos animados)
+  let emo = ''; const e = s.emocao, ek = back((lt - .25) / .4);
+  if (e === 'chuva') { let drops = ''; for (let i = 0; i < 6; i++) { const dy = ((t * 380 + i * 53) % 150); drops += `<line x1="${hx - 70 + i * 28}" y1="${hy - 150 + dy}" x2="${hx - 76 + i * 28}" y2="${hy - 128 + dy}" stroke="${COLORS.blue}" stroke-width="7" stroke-linecap="round" opacity="${1 - dy / 150}"/>`; }
+    emo = `<g opacity="${ek}"><path d="M${hx - 110} ${hy - 170} a45 45 0 0 1 60 -55 a60 60 0 0 1 110 10 a40 40 0 0 1 20 75 Z" fill="#2A2F3A" stroke="${COLORS.gray || '#9BA2AE'}" stroke-width="5"/>${drops}</g>`; }
+  if (e === 'interrogacao') emo = `<text x="${hx + 70}" y="${hy - 70}" font-size="${130 * ek}" font-weight="700" fill="${COLORS.gold}" transform="rotate(${Math.sin(t * 6) * 10} ${hx + 90} ${hy - 110})">?</text>`;
+  if (e === 'exclamacao') emo = `<text x="${hx + 70}" y="${hy - 60}" font-size="${130 * ek}" font-weight="700" fill="${COLORS.red}">!</text>`;
+  if (e === 'suor') emo = `<path d="M${hx + 62} ${hy - 30 + (t * 60 % 40)} q14 26 0 34 q-14 -8 0 -34Z" fill="${COLORS.blue}" opacity="${ek}"/>`;
+  if (e === 'brilho') { let st = ''; [[-120, -120], [120, -140], [150, 0], [-150, -10]].forEach(([dx, dy], i) => { const k = (Math.sin(t * 8 + i * 1.7) + 1) / 2; const r = (18 + k * 16) * ek;
+      st += `<path d="M${hx + dx} ${hy + dy - r} L${hx + dx + r * .25} ${hy + dy - r * .25} L${hx + dx + r} ${hy + dy} L${hx + dx + r * .25} ${hy + dy + r * .25} L${hx + dx} ${hy + dy + r} L${hx + dx - r * .25} ${hy + dy + r * .25} L${hx + dx - r} ${hy + dy} L${hx + dx - r * .25} ${hy + dy - r * .25}Z" fill="${COLORS.gold}"/>`; }); emo = st; }
+  return `<g filter="url(#luz)" transform="translate(${cx} ${base}) scale(${inK}) translate(${-cx} ${-base})" stroke="${col}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M${cx} ${hipY} L${neckX} ${neckY}"/>
+    <path d="${ll.d}"/><path d="${rl.d}"/><path d="${la.d}"/><path d="${ra.d}"/>
+    <path d="M${cx} ${hipY + 6} L${neckX} ${neckY + 6}" stroke-width="${sw * 1.55}"/>
+    <circle cx="${hx}" cy="${hy}" r="${headR}" fill="${col}" stroke="none"/>
+    ${phone}
+  </g><g stroke="none">${emo}</g>`;
+}
+
+/* ---------- Props (elementos de cena) ---------- */
+function propHTML(c, lt, t) {
+  const p = c.prop; if (!p) return '';
+  const k = back(lt / .45), fade = ease(lt / .3);
+  const at = (x, y, inner, extra = '') => `<div style="position:absolute;left:${x}px;top:${y}px;${extra}">${inner}</div>`;
+  if (p.tipo === 'zero') { // celular com 0 mensagens
+    return at(560, 1060, `<div style="width:360px;height:520px;border-radius:52px;border:5px solid rgba(255,255,255,.18);background:#101318;transform:rotate(8deg) scale(${k});padding:60px 34px;box-shadow:0 40px 90px -20px #000">
+      <div style="font-size:30px;color:#9BA2AE;font-weight:600">WhatsApp</div>
+      <div style="margin-top:36px;height:22px;border-radius:12px;background:rgba(255,255,255,.07)"></div>
+      <div style="margin-top:18px;height:22px;width:70%;border-radius:12px;background:rgba(255,255,255,.07)"></div>
+      <div style="margin-top:70px;text-align:center;font-size:150px;font-weight:700;color:${COLORS.red};line-height:1">0</div>
+      <div style="text-align:center;font-size:28px;color:#9BA2AE;margin-top:6px">mensagens novas</div></div>`);
+  }
+  if (p.tipo === 'curtidas') { const n = Math.round(lerp(p.de || 3, p.ate || 12, ease(lt / (c.dur * .8))));
+    return at(600, 1120, `<div style="transform:scale(${k});display:grid;gap:22px">
+      ${['<span style="color:'+COLORS.red+'">♥</span> ' + n + ' curtidas', '● 0 pedidos de orçamento'].map((s, i) => `<div style="padding:24px 34px;border-radius:26px;background:#111419;border:3px solid ${i ? COLORS.red : 'rgba(255,255,255,.14)'};font-size:40px;font-weight:600;color:${i ? COLORS.red : '#F5F6F8'};opacity:${ease((lt - .2 - i * .35) / .3)}">${s}</div>`).join('')}</div>`);
+  }
+  if (p.tipo === 'busca') { const q = p.consulta || 'seu nome + profissão'; const n = Math.floor(clamp((lt - .1) / .8) * q.length);
+    const r = [['Perfil sem informações', COLORS.red, '✕'], ['Nenhum site encontrado', COLORS.red, '✕']];
+    return at(110, 1000, `<div style="width:860px;opacity:${fade}">
+      <div style="height:110px;border-radius:60px;border:4px solid rgba(255,255,255,.16);background:#111419;display:flex;align-items:center;padding:0 40px;font-size:40px;gap:20px"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="${COLORS.gold}" stroke-width="2.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>${q.slice(0, n)}<span style="width:4px;height:44px;background:${COLORS.gold};opacity:${Math.floor(t * 3) % 2}"></span></div>
+      ${r.map((x, i) => `<div style="margin-top:26px;padding:30px 36px;border-radius:28px;background:#0E1116;border:3px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;font-size:38px;font-weight:600;opacity:${ease((lt - 1 - i * .3) / .3)};transform:translateX(${(1 - ease((lt - 1 - i * .3) / .35)) * -60}px)"><span style="color:#9BA2AE">${x[0]}</span><b style="color:${x[1]}">${x[2]}</b></div>`).join('')}</div>`);
+  }
+  if (p.tipo === 'checklist') {
+    return at(120, 980, `<div style="display:grid;gap:26px;width:840px">${p.itens.map((s, i) => { const kk = back((lt - .15 - i * .38) / .4);
+      return `<div style="display:flex;align-items:center;gap:30px;padding:30px 38px;border-radius:30px;background:#0F1218;border:3px solid ${i === p.itens.length - 1 ? COLORS.gold : 'rgba(79,123,255,.55)'};font-size:46px;font-weight:600;opacity:${clamp(kk)};transform:scale(${.85 + .15 * kk})">
+        <span style="display:grid;place-items:center;width:70px;height:70px;border-radius:50%;background:${i === p.itens.length - 1 ? COLORS.gold : COLORS.blue};color:#07080A;font-size:42px">✓</span>${s}</div>`; }).join('')}</div>`);
+  }
+  if (p.tipo === 'notificacoes') { const total = p.total || 7; const n = Math.min(total, Math.floor(lt / .22) + 1);
+    let h = ''; for (let i = 0; i < Math.min(n, 4); i++) { const idx = n - 1 - i;
+      h += `<div style="position:absolute;left:0;top:${i * 150}px;width:560px;padding:26px 30px;border-radius:30px;background:rgba(17,20,25,.96);border:3px solid rgba(255,255,255,.12);display:flex;gap:24px;align-items:center;opacity:${1 - i * .22};transform:scale(${1 - i * .05})">
+        <span style="width:74px;height:74px;border-radius:20px;background:#1FAF5A;display:grid;place-items:center;"><svg width="44" height="44" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg></span>
+        <span style="font-size:32px;line-height:1.3"><b>Novo cliente</b><br><span style="color:#9BA2AE">${p.msgs[idx % p.msgs.length]}</span></span></div>`; }
+    return at(430, 1060, `<div style="position:relative;transform:scale(${k})">${h}</div>`) +
+      at(820, 960, `<div style="width:120px;height:120px;border-radius:50%;background:${COLORS.red};display:grid;place-items:center;font-size:64px;font-weight:700;transform:scale(${1 + .12 * Math.sin(t * 12)})">${n}</div>`);
+  }
+  if (p.tipo === 'cta') { const pulse = 1 + .04 * Math.sin(t * 8);
+    return at(90, 1060, `<div style="width:900px;text-align:center;opacity:${fade}">
+      <div style="display:inline-flex;align-items:center;gap:22px;padding:22px 60px;background:${COLORS.gold};color:#07080A;font-family:Anton,sans-serif;text-transform:uppercase;font-size:96px;letter-spacing:.02em;transform:scale(${k * pulse}) rotate(-2deg);box-shadow:0 0 90px rgba(214,179,108,.45)">${p.botao}</div>
+      <div style="margin-top:54px;font-size:42px;color:#F5F6F8;font-weight:600;line-height:1.4;opacity:${ease((lt - .5) / .4)}">${p.sub || ''}</div></div>`);
+  }
+  return '';
+}
+
+/* ---------- Render de um quadro ---------- */
+let current = -1;
+function render(t) {
+  const i = Math.max(0, R.cenas.findIndex(c => t >= c.t0 && t < c.t1)); const c = R.cenas[i === -1 ? R.cenas.length - 1 : i];
+  const lt = t - c.t0;
+  if (i !== current) { buildText(c); current = i; }
+  $('prog').style.transform = `scaleX(${clamp(t / R.total)})`;
+  // fundo com cor de acento da cena
+  const acc = COLORS[c.acento] || COLORS.blue;
+  $('glow').style.background = `radial-gradient(closest-side, ${acc}55, transparent 70%)`;
+  $('glow').style.transform = `translate(${Math.sin(t * .8) * 60}px, ${Math.cos(t * .6) * 40}px)`;
+  // palavras entram em sequência (com impulso)
+  c._words.forEach((w, j) => { const k = back((lt - .04 - j * (c.ritmo || .07)) / .28);
+    w.style.opacity = clamp(k * 1.4); w.style.transform = `translateY(${(1 - k) * 50}px) scale(${.6 + .4 * k}) rotate(${(1 - k) * (j % 2 ? 6 : -6)}deg)`;
+    w.style.setProperty('--u', ease((lt - .35 - j * (c.ritmo || .07)) / .3)); });
+  // saída rápida
+  const out = ease((lt - (c.dur - .14)) / .14);
+  $('txt').style.transform = `translateY(${-out * 40}px)`; $('txt').style.opacity = 1 - out;
+  // efeitos de câmera
+  let sx = 0, sy = 0, sc = 1;
+  if (c.fx === 'tremer' && lt < .5) { const a = (1 - lt / .5) * 14; sx = Math.sin(t * 90) * a; sy = Math.cos(t * 70) * a; }
+  if (c.fx === 'zoom') sc = 1 + .06 * (1 - ease(lt / .5));
+  sc *= 1 + .012 * Math.max(0, Math.sin((t % (60 / (R.bpm || 120))) / (60 / (R.bpm || 120)) * Math.PI)) * 0; // (reservado)
+  $('world').style.transform = `translate(${sx}px, ${sy}px) scale(${sc + .015 * lt / c.dur})`;
+  $('flash').style.opacity = c.fx === 'flash' ? Math.max(0, .55 - lt * 4) : Math.max(0, .18 - lt * 2.5);
+  $('props').innerHTML = propHTML(c, lt, t);
+  drawStick(c, lt, t);
+}
+window.render = render; window.R = R;
+render(0);
+</script>
+</body>
+</html>

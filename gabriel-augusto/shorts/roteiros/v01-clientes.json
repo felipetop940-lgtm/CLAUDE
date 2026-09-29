@@ -1,0 +1,182 @@
+{
+  "titulo": "Tá difícil arrumar cliente?",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 120,
+  "cenas": [
+    {
+      "dur": 2.0,
+      "acento": "red",
+      "fx": "tremer",
+      "tamanho": 130,
+      "texto": [
+        "Tá ~difícil~",
+        "arrumar",
+        "cliente?"
+      ],
+      "boneco": {
+        "pose": "triste",
+        "emocao": "chuva",
+        "y": 1640
+      }
+    },
+    {
+      "dur": 2.0,
+      "acento": "blue",
+      "fx": "flash",
+      "tamanho": 104,
+      "texto": [
+        "Você posta",
+        "*todo* *dia*…"
+      ],
+      "boneco": {
+        "pose": "celular",
+        "x": 330,
+        "y": 1640,
+        "escala": 0.9
+      },
+      "prop": {
+        "tipo": "curtidas",
+        "de": 4,
+        "ate": 13
+      }
+    },
+    {
+      "dur": 2.0,
+      "acento": "red",
+      "fx": "zoom",
+      "tamanho": 96,
+      "texto": [
+        "…mas ~ninguém~ te",
+        "chama no WhatsApp."
+      ],
+      "boneco": {
+        "pose": "chocado",
+        "emocao": "suor",
+        "x": 300,
+        "y": 1640,
+        "escala": 0.9
+      },
+      "prop": {
+        "tipo": "zero"
+      }
+    },
+    {
+      "dur": 2.0,
+      "acento": "gold",
+      "fx": "flash",
+      "tamanho": 104,
+      "texto": [
+        "O problema",
+        "não é o seu /trabalho./"
+      ],
+      "boneco": {
+        "pose": "pensando",
+        "emocao": "interrogacao",
+        "y": 1640
+      }
+    },
+    {
+      "dur": 2.5,
+      "acento": "blue",
+      "fx": "zoom",
+      "tamanho": 92,
+      "texto": [
+        "É o que o cliente vê",
+        "quando te _pesquisa._"
+      ],
+      "prop": {
+        "tipo": "busca",
+        "consulta": "dentista em goiânia"
+      }
+    },
+    {
+      "dur": 2.5,
+      "acento": "gold",
+      "fx": "flash",
+      "tamanho": 104,
+      "texto": [
+        "A diferença?"
+      ],
+      "boneco": [
+        {
+          "pose": "triste",
+          "emocao": "chuva",
+          "x": 300,
+          "y": 1600,
+          "escala": 0.85,
+          "rotulo": "Sem site",
+          "corRotulo": "white"
+        },
+        {
+          "pose": "comemorando",
+          "emocao": "brilho",
+          "x": 780,
+          "y": 1600,
+          "escala": 0.85,
+          "rotulo": "Com site",
+          "corRotulo": "gold"
+        }
+      ]
+    },
+    {
+      "dur": 2.5,
+      "acento": "gold",
+      "fx": "flash",
+      "tamanho": 100,
+      "texto": [
+        "Com um *site*",
+        "*profissional:*"
+      ],
+      "prop": {
+        "tipo": "checklist",
+        "itens": [
+          "Mais confiança",
+          "Mais contatos",
+          "1 clique até o WhatsApp"
+        ]
+      }
+    },
+    {
+      "dur": 2.0,
+      "acento": "gold",
+      "fx": "zoom",
+      "tamanho": 104,
+      "texto": [
+        "E o cliente",
+        "/chama você./"
+      ],
+      "boneco": {
+        "pose": "comemorando",
+        "emocao": "brilho",
+        "x": 250,
+        "y": 1640,
+        "escala": 0.85
+      },
+      "prop": {
+        "tipo": "notificacoes",
+        "total": 9,
+        "msgs": [
+          "Vi seu site, tem horário?",
+          "Quanto custa a consulta?",
+          "Quero agendar!",
+          "Pode me atender sábado?"
+        ]
+      }
+    },
+    {
+      "dur": 3.0,
+      "acento": "gold",
+      "fx": "flash",
+      "tamanho": 100,
+      "texto": [
+        "Quer um site",
+        "*assim?*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Link na bio ↑",
+        "sub": "Sites a partir de R$ 250<br>Entrega em 2 a 7 dias"
+      }
+    }
+  ]
+}
