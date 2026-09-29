@@ -155,13 +155,13 @@ em { font-family: "CG", serif; font-style: italic; font-weight: 500; color: var(
     <div class="plan" id="p1" style="top:470px">
       <div class="name">Essencial</div>
       <div class="price"><small>R$</small><span id="n1">250</span></div>
-      <div class="feat">Site profissional<br><b>2 rodadas</b> de ajuste<br>Vídeo: <b>+ R$ 38</b></div>
+      <div class="feat">Site profissional<br><b>2 revisões</b> do site<br>Vídeo: <b>+ R$ 38</b></div>
     </div>
     <div class="plan premium" id="p2" style="top:930px">
       <span class="flag">Mais completo</span>
       <div class="name">Premium Page</div>
       <div class="price"><small>R$</small><span id="n2">320</span></div>
-      <div class="feat"><b>Vídeo editado</b> incluso<br><b>5 rodadas</b> de ajuste<br>Tudo do Essencial</div>
+      <div class="feat"><b>Vídeo editado</b> incluso<br><b>5 revisões</b> do site<br>Tudo do Essencial</div>
     </div>
   </section>
 
@@ -201,7 +201,7 @@ function sceneAlpha(t, a, b) { const fi = .45, fo = .4; return Math.min(prog(t, 
 
 // Legendas: frase dividida em blocos curtos, tempo proporcional ao número de letras
 const SUBS = [];
-const DISPLAY = [[/duzentos e cinquenta reais/g, 'R$ 250'], [/trezentos e vinte/g, 'R$ 320'], [/dois a sete dias/g, '2 a 7 dias'], [/duas rodadas/g, '2 rodadas'], [/cinco rodadas/g, '5 rodadas'], [/doutor/g, 'Dr.']];
+const DISPLAY = [[/duzentos e cinquenta reais/g, 'R$ 250'], [/trezentos e vinte/g, 'R$ 320'], [/dois a sete dias/g, '2 a 7 dias'], [/duas revisões/g, '2 revisões'], [/cinco revisões/g, '5 revisões'], [/duas chances/g, '2 chances'], [/doutor/g, 'Dr.']];
 TL.scenes.forEach(s => {
   let txt = s.text; DISPLAY.forEach(([r, v]) => { txt = txt.replace(r, v); });
   const words = txt.split(' '); const chunks = []; let cur = [];
@@ -210,7 +210,7 @@ TL.scenes.forEach(s => {
   const total = chunks.reduce((n, c) => n + c.length, 0); let acc = s.start;
   chunks.forEach(c => { const d = s.vo * c.length / total; SUBS.push({ a: acc, b: acc + d, text: c }); acc += d; });
 });
-const HL = /(Gabriel|WhatsApp|Essencial|Premium Page|R\$ 250|R\$ 320|2 a 7 dias|Fernando Augusto|concorrente)/g;
+const HL = /(Gabriel|WhatsApp|Essencial|Premium Page|R\$ 250|R\$ 320|2 a 7 dias|2 revisões|5 revisões|Fernando Augusto|concorrente)/g;
 
 function lineIn(scope, t, start, gap = .12) {
   scope.querySelectorAll('.line > span').forEach((el, i) => {
@@ -251,7 +251,7 @@ function render(t) {
   { const s = S.fernando, p = ease(prog(t, s.start, .9)); $('phone2').style.transform = `translateY(${(1 - p) * 300}px)`;
     // Rolagem com pausas: topo → foto → metodologia → especialidades → agendamento
     const K = [[0, 0], [1.4, 0], [2.6, 1150], [6.0, 1150], [7.2, 2750], [7.9, 2750], [8.9, 4400], [9.3, 4400], [10.6, 8000]];
-    const lt = t - s.start; let y = K[K.length - 1][1];
+    const lt = (t - s.start) * 11.737 / s.vo;  // escala as pausas para a duração da narração let y = K[K.length - 1][1];
     for (let i = 0; i < K.length - 1; i++) { const [t0, y0] = K[i], [t1, y1] = K[i + 1]; if (lt < t1) { y = y0 + (y1 - y0) * easeIO((lt - t0) / (t1 - t0)); break; } }
     if (lt < 0) y = 0;
     $('fimg').style.transform = `translateY(${-y}px)`;
@@ -259,7 +259,7 @@ function render(t) {
 
   // 5. Planos: cards entram e o valor conta
   { const s = S.plans;
-    [['p1', 'n1', 250, s.start + .3], ['p2', 'n2', 320, s.start + 4.2]].forEach(([c, n, v, a]) => {
+    [['p1', 'n1', 250, s.start + .3], ['p2', 'n2', 320, s.start + s.vo * .64]].forEach(([c, n, v, a]) => {
       const k = ease(prog(t, a, .8)); $(c).style.opacity = k; $(c).style.transform = `translateY(${(1 - k) * 80}px) scale(${.96 + .04 * k})`;
       $(n).textContent = Math.round(v * ease(prog(t, a + .1, 1.1)));
     });
