@@ -259,7 +259,7 @@ function render(t) {
 
   // 5. Planos: cards entram e o valor conta
   { const s = S.plans;
-    [['p1', 'n1', 250, s.start + .3], ['p2', 'n2', 320, s.start + s.vo * .64]].forEach(([c, n, v, a]) => {
+    [['p1', 'n1', 250, s.start + .3], ['p2', 'n2', 320, s.start + s.vo * .60]].forEach(([c, n, v, a]) => {
       const k = ease(prog(t, a, .8)); $(c).style.opacity = k; $(c).style.transform = `translateY(${(1 - k) * 80}px) scale(${.96 + .04 * k})`;
       $(n).textContent = Math.round(v * ease(prog(t, a + .1, 1.1)));
     });

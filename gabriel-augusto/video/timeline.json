@@ -3,59 +3,59 @@
   {
    "key": "hook",
    "start": 0.7,
-   "vo": 3.358,
-   "end": 4.408,
+   "vo": 3.41,
+   "end": 4.46,
    "text": "Antes de te chamar, o seu cliente te pesquisa na internet."
   },
   {
    "key": "hook2",
-   "start": 4.408,
-   "vo": 4.471,
-   "end": 9.379,
+   "start": 4.46,
+   "vo": 5.17,
+   "end": 10.13,
    "text": "E o que ele encontra ali decide se ele fala com você, ou com o seu concorrente."
   },
   {
    "key": "intro",
-   "start": 9.379,
-   "vo": 4.654,
-   "end": 14.533,
+   "start": 10.13,
+   "vo": 4.37,
+   "end": 15.0,
    "text": "Eu sou o Gabriel, e crio sites profissionais para quem vive da própria reputação."
   },
   {
    "key": "site",
-   "start": 14.533,
-   "vo": 6.358,
-   "end": 21.891,
+   "start": 15.0,
+   "vo": 8.04,
+   "end": 24.04,
    "text": "Esse é o meu site. Elegante, rápido, perfeito no celular, e com cada botão levando direto para o WhatsApp."
   },
   {
    "key": "fernando",
-   "start": 21.891,
-   "vo": 11.775,
-   "end": 34.866,
+   "start": 24.04,
+   "vo": 12.02,
+   "end": 37.26,
    "text": "E esse é o site do doutor Fernando Augusto, médico em Goiânia. Eu criei a página inteira. Apresentação, como funciona o tratamento, especialidades, e o agendamento direto pelo WhatsApp."
   },
   {
    "key": "plans",
-   "start": 34.866,
-   "vo": 14.012,
-   "end": 49.678,
+   "start": 37.26,
+   "vo": 15.35,
+   "end": 53.41,
    "text": "O plano Essencial sai por duzentos e cinquenta reais, com duas revisões. São duas chances de pedir ajustes, até o site ficar do seu jeito. O Premium Page, por trezentos e vinte, já inclui edição de vídeo e cinco revisões."
   },
   {
    "key": "delivery",
-   "start": 49.678,
-   "vo": 3.615,
-   "end": 53.793,
+   "start": 53.41,
+   "vo": 4.65,
+   "end": 58.56,
    "text": "Entrega em dois a sete dias, e você fala direto comigo."
   },
   {
    "key": "cta",
-   "start": 53.793,
-   "vo": 4.74,
-   "end": 61.133,
+   "start": 58.56,
+   "vo": 4.89,
+   "end": 66.05,
    "text": "Clica no botão e me chama no WhatsApp. Seu próximo cliente está te procurando."
   }
  ],
- "total": 61.13
+ "total": 66.05
 }
