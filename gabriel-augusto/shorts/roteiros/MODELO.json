@@ -1,0 +1,179 @@
+{
+  "titulo": "Se o seu Instagram sumir amanhã?",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Se o seu Instagram sumir amanhã, quantos clientes você perde?",
+      "acento": "red",
+      "fx": "tremer",
+      "texto": [
+        "Se o seu Instagram",
+        "~sumir~ amanhã…"
+      ],
+      "boneco": {
+        "pose": "chocado",
+        "emocao": "exclamacao",
+        "x": 300,
+        "y": 1400,
+        "escala": 1.05
+      },
+      "prop": {
+        "tipo": "conta_off"
+      }
+    },
+    {
+      "fala": "A maioria dos profissionais constrói o negócio inteiro num terreno que não é deles.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Seu negócio está",
+        "num terreno *alugado*"
+      ],
+      "prop": {
+        "tipo": "alugado"
+      },
+      "boneco": {
+        "pose": "pensando",
+        "emocao": "interrogacao",
+        "x": 150,
+        "y": 1400,
+        "escala": 0.85,
+        "entrada": "andando"
+      }
+    },
+    {
+      "fala": "O algoritmo muda, o alcance cai, e o cliente simplesmente não te acha.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "O alcance ~cai~"
+      ],
+      "boneco": {
+        "pose": "triste",
+        "emocao": "chuva",
+        "x": 260,
+        "y": 1400,
+        "escala": 1.0
+      },
+      "prop": {
+        "tipo": "grafico"
+      }
+    },
+    {
+      "fala": "Agora pensa: antes de contratar alguém, o que você faz? Pesquisa no Google.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": [
+        "Antes de contratar,",
+        "você _pesquisa._"
+      ],
+      "prop": {
+        "tipo": "busca",
+        "consulta": "melhor dentista em goiânia"
+      }
+    },
+    {
+      "fala": "Quem tem site aparece, passa confiança e recebe a mensagem. Quem não tem, fica pra trás.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Quem tem site",
+        "*recebe a mensagem.*"
+      ],
+      "boneco": [
+        {
+          "pose": "triste",
+          "x": 290,
+          "y": 1400,
+          "escala": 0.95,
+          "rotulo": "Sem site",
+          "corRotulo": "white"
+        },
+        {
+          "pose": "comemorando",
+          "emocao": "brilho",
+          "x": 790,
+          "y": 1400,
+          "escala": 0.95,
+          "rotulo": "Com site",
+          "corRotulo": "gold"
+        }
+      ]
+    },
+    {
+      "fala": "Olha esse site que eu criei pra um médico aqui de Goiânia. Apresentação, especialidades e agendamento direto pelo WhatsApp.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Isso é um site",
+        "*de verdade*"
+      ],
+      "prop": {
+        "tipo": "site_celular",
+        "img": "../../video/src/fernando-scroll.jpg",
+        "selo": "Projeto real · criado por mim",
+        "x": 350
+      }
+    },
+    {
+      "fala": "E não custa uma fortuna: sai a partir de duzentos e cinquenta reais, pronto em dois a sete dias.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "E cabe no",
+        "*seu bolso*"
+      ],
+      "prop": {
+        "tipo": "preco",
+        "valor": 250,
+        "chips": [
+          "2 a 7 dias",
+          "Direto comigo"
+        ]
+      }
+    },
+    {
+      "fala": "E aí, Instagram substitui um site? Comenta sim ou não, que eu quero ver.",
+      "acento": "blue",
+      "fx": "tremer",
+      "texto": [
+        "Instagram",
+        "#substitui# um site?"
+      ],
+      "boneco": {
+        "pose": "apontando",
+        "x": 190,
+        "y": 1400,
+        "escala": 0.95
+      },
+      "prop": {
+        "tipo": "enquete"
+      }
+    },
+    {
+      "fala": "Entra no meu perfil e clica no link. Lá você vê meus sites, os planos, e fala comigo direto no WhatsApp.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Veja meus sites",
+        "no *link da bio*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Link na bio ↑",
+        "sub": "Sites · planos · WhatsApp",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.9,
+        "entrada": "andando"
+      }
+    }
+  ],
+  "fundo": "auras"
+}
