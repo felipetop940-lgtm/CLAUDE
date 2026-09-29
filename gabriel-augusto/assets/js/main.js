@@ -309,6 +309,15 @@
     var video = $('video', box), end = $('.player__end', box);
     function play() {
       box.classList.add('is-playing'); end.hidden = true;
+      // Na versão publicada o vídeo vem embutido no HTML: monta o arquivo na primeira reprodução
+      if (!video.getAttribute('src') && video.dataset.embed) {
+        var holder = doc.getElementById(video.dataset.embed);
+        if (holder) {
+          var bin = atob(holder.textContent.trim()), bytes = new Uint8Array(bin.length);
+          for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          video.src = URL.createObjectURL(new Blob([bytes], { type: holder.getAttribute('data-mime') || 'video/mp4' }));
+        }
+      }
       video.controls = true;
       var pr = video.play();
       if (pr && pr.catch) pr.catch(function () { box.classList.remove('is-playing'); video.controls = false; });

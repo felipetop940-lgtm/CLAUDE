@@ -53,6 +53,19 @@ def build_page(name: str, css: str) -> None:
         return "<script>\n" + (ROOT / m.group(1)).read_text() + "\n</script>"
     html = re.sub(r'<script src="(assets/js/[^"]+)"(?: defer)?></script>', inline_js, html)
     # main.js deixa de ser defer: move para o fim do body já garante o DOM pronto
+    # Vídeos: embutidos no próprio HTML (tocam sem arquivo externo). O conteúdo vai no fim da
+    # página, para não atrasar a exibição; o JS cria o vídeo a partir dele no clique do play.
+    embeds = []
+    def embed_video(m):
+        src = ROOT / m.group(1)
+        vid = "vid-" + src.stem
+        embeds.append(f'<script type="application/octet-stream" id="{vid}" data-mime="video/mp4">'
+                      + base64.b64encode(src.read_bytes()).decode() + "</script>")
+        return f'<video data-embed="{vid}"'
+    html = re.sub(r'<video src="(assets/video/[^"]+)"', embed_video, html)
+    html = re.sub(r'poster="(assets/video/[^"]+)"', lambda m: f'poster="{data_uri(ROOT / m.group(1))}"', html)
+    if embeds:
+        html = html.replace("</body>", "\n".join(embeds) + "\n</body>")
     # Imagens locais (src e preload)
     html = re.sub(r'<link rel="preload" as="image" href="assets/img/[^"]+\.svg">\s*', "", html)
     html = re.sub(r'(src|href|poster)="(assets/(?:img|video)/[^"]+)"',
