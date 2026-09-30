@@ -9,7 +9,9 @@ Responder em português brasileiro informal, direto. Branch de trabalho: `claude
 
 **Modelo aprovado: `roteiros/v02-instagram.json` (cópia em `roteiros/MODELO.json`). Não mudar o estilo sem ele pedir.**
 
-Fluxo: ele manda tema + roteiro/falas → eu monto `roteiros/vNN-tema.json` no formato do modelo → renderizo → envio o mp4 + `roteiros/vNN-tema-texto.md` (texto numerado pra ele narrar + legenda do post). Quando ele mandar o áudio (wav/mp4 do WhatsApp): `cd ferramentas && python3 gerar.py ../roteiros/vNN.json voz.mp4 [cortes.json]`. O gerador já trata a voz (redução de ruído, EQ, compressor). Se ele não pausar 3 s entre as partes ou repetir takes, transcrever com whisper-base (npm `sts-whisper-base` + `@huggingface/transformers --ignore-scripts`) e montar `roteiros/vNN-cortes.json` com [ini, fim] de cada parte (usar o último take).
+Fluxo: ele manda tema + roteiro/falas → eu monto `roteiros/vNN-tema.json` no formato do modelo → renderizo → envio o mp4 + `roteiros/vNN-tema-texto.md` (texto numerado pra ele narrar + legenda do post). Quando ele mandar o áudio (wav/mp4 do WhatsApp): `cd ferramentas && python3 gerar.py ../roteiros/vNN.json voz.mp4 [cortes.json]`. O gerador já trata a voz (redução de ruído, EQ, compressor). Se ele não pausar 3 s entre as partes ou repetir takes, transcrever com `node transcrever.mjs voz.mp4` (whisper-base local; mostra cada frase com [ini, fim]) e montar `roteiros/vNN-cortes.json` com [ini, fim] de cada parte (usar o último take).
+
+Ambiente na nuvem: `.claude/hooks/session-start.sh` instala tudo sozinho a cada sessão (libs Python, ffmpeg, Kokoro em `~/.cache/kokoro`, Whisper, Playwright).
 
 Regras fixas:
 - Nunca mostrar o rosto dele. Bonecos stickman originais (poses do motor), nada do Canva.

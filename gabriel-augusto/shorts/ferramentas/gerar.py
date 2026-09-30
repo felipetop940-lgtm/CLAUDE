@@ -17,7 +17,7 @@ import imageio_ffmpeg
 
 HERE = Path(__file__).resolve().parent
 FPS, SR = 30, 44100
-TTS_DIR = Path(os.environ.get("KOKORO_DIR", "/tmp/claude-0/-home-user-CLAUDE/fd70068f-eb26-52d1-93fb-30c6fb85ccd2/scratchpad/tts"))
+TTS_DIR = Path(os.environ.get("KOKORO_DIR", Path.home() / ".cache/kokoro"))  # baixado pelo .claude/hooks/session-start.sh
 RESPIRO = 0.45  # silêncio entre falas
 
 
