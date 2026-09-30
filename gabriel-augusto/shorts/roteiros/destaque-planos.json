@@ -1,0 +1,100 @@
+{
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "fundo": "auras",
+  "titulo": "Destaque: Planos",
+  "cenas": [
+    {
+      "fala": "Quanto custa um site profissional? Te mostro, sem enrolação.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Quanto custa um",
+        "*site profissional?*"
+      ],
+      "boneco": {
+        "pose": "pensando",
+        "emocao": "interrogacao",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.0
+      }
+    },
+    {
+      "fala": "O Essencial sai trezentos reais. Site personalizado, botão do WhatsApp e duas rodadas de ajuste.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": [
+        "Plano _Essencial_"
+      ],
+      "prop": {
+        "tipo": "plano",
+        "nome": "Essencial",
+        "valor": 300,
+        "itens": [
+          "✓ Site personalizado",
+          "✓ Botão do WhatsApp",
+          "✓ 2 rodadas de ajuste",
+          "✓ Entrega em 2 a 7 dias",
+          "✕ Sem domínio próprio",
+          "✕ Sem vídeo na página"
+        ]
+      }
+    },
+    {
+      "fala": "O Premium Page sai quinhentos reais, e já vem com domínio com o seu nome, vídeo na página, até cinco rodadas de ajuste e entrega em dois a cinco dias.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Plano *Premium Page*"
+      ],
+      "prop": {
+        "tipo": "plano",
+        "nome": "Premium Page",
+        "valor": 500,
+        "destaque": true,
+        "selo": "Recomendado",
+        "itens": [
+          "✓ Tudo do Essencial",
+          "✓ Domínio seunome.com.br",
+          "✓ Vídeo na página",
+          "✓ Até 5 rodadas de ajuste",
+          "✓ Entrega em 2 a 5 dias"
+        ]
+      }
+    },
+    {
+      "fala": "Só o Essencial com vídeo já sai trezentos e trinta e oito reais. Por cento e sessenta e dois reais a mais, o Premium te entrega tudo.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Faz a *conta*"
+      ],
+      "prop": {
+        "tipo": "comparar",
+        "a": "Essencial + vídeo",
+        "va": 338,
+        "b": "Premium Page · tudo incluso",
+        "vb": 500,
+        "sub": "Domínio · vídeo · 5 ajustes · 2 a 5 dias",
+        "dif": "Só R$ 162 a mais"
+      }
+    },
+    {
+      "fala": "Toca no link e escolhe o seu plano. Eu te respondo pessoalmente.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Escolha o",
+        "*seu plano*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Toque no link",
+        "sub": "Fala direto comigo",
+        "y": 640
+      },
+      "fim": 1.6
+    }
+  ]
+}

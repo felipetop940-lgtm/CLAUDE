@@ -111,7 +111,10 @@ def tempos_palavras(texto: str, t0: float, dur: float) -> list:
 
 def exibir(texto: str) -> str:
     """Valores por extenso viram algarismos na legenda."""
-    for a, b in [("duzentos e cinquenta reais", "R$ 250"), ("trezentos e vinte reais", "R$ 320"), ("dois a sete dias", "2 a 7 dias")]:
+    for a, b in [("duzentos e cinquenta reais", "R$ 250"), ("trezentos e vinte reais", "R$ 320"), ("trezentos e trinta e oito reais", "R$ 338"),
+                 ("cento e sessenta e dois reais", "R$ 162"), ("trezentos reais", "R$ 300"), ("quinhentos reais", "R$ 500"), ("duzentos reais", "R$ 200"),
+                 ("dois a sete dias", "2 a 7 dias"), ("dois a cinco dias", "2 a 5 dias"), ("cinco rodadas", "5 rodadas"), ("duas rodadas", "2 rodadas"),
+                 ("quatro passos", "4 passos"), ("dois dias", "2 dias")]:
         texto = texto.replace(a, b)
     return texto
 
@@ -200,6 +203,15 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
         elif pr == "enquete": put(pop(500), t0 + .3, .6); put(pop(620), t0 + .5, .6); put(pop(900), t0 + .9, .4)
         elif pr == "cta": put(riser(), t0 - .9, .5); put(chime(), t0 + .6, .5)
         elif pr == "site_celular": put(whoosh(.7, 5000), t0 + .05, .5); put(chime(), t0 + .6, .3)
+        elif pr == "plano":
+            for j in range(10): put(key(), t0 + .3 + j * .1, .3)
+            put(ding(1568), t0 + 1.3, .45)
+            for j, _ in enumerate((c.get("prop") or {}).get("itens", [])): put(pop(700 + 60 * j), t0 + .9 + j * .28, .3)
+        elif pr == "comparar":
+            put(whoosh(.5), t0 + .2, .5); put(thump(), t0 + 1.1, .6); put(chime(), t0 + 1.2, .4); put(whoosh(.3, 9000), t0 + 2.0, .5); put(ding(1760), t0 + 2.5, .5)
+        elif pr == "passo": put(thump(), t0 + .15, .6); put(ding(1320), t0 + .2, .35); put(pop(900), t0 + .5, .3)
+        elif pr == "whatsapp":
+            for j, m in enumerate((c.get("prop") or {}).get("msgs", [])): put(pop(1200 if m[0] == "eu" else 800), t0 + .5 + j * 1.1, .5)
         elif pr == "preco":
             for j in range(12): put(key(), t0 + .2 + j * .1, .35)
             put(ding(1760), t0 + 1.4, .5); put(pop(800), t0 + 1.2, .4); put(pop(950), t0 + 1.45, .4)

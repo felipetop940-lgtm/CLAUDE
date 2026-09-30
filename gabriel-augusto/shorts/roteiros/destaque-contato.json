@@ -1,0 +1,50 @@
+{
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "fundo": "auras",
+  "titulo": "Destaque: Contato",
+  "cenas": [
+    {
+      "fala": "Quer um site profissional pro seu negócio? É só me chamar no WhatsApp. Você fala direto comigo, do começo ao fim.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Bora criar",
+        "o *seu site?*"
+      ],
+      "prop": {
+        "tipo": "whatsapp",
+        "msgs": [
+          [
+            "cli",
+            "Oi, Gabriel! Quero um site pro meu negócio 🙂"
+          ],
+          [
+            "eu",
+            "Bora! Me conta do seu trabalho que eu te mostro os planos."
+          ],
+          [
+            "cli",
+            "Fechado! 🚀"
+          ]
+        ]
+      }
+    },
+    {
+      "fala": "Toca no link aqui embaixo e me manda um oi.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Me chama no",
+        "*WhatsApp*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Toque no link",
+        "sub": "Resposta direto comigo",
+        "y": 640
+      },
+      "fim": 2.0
+    }
+  ]
+}

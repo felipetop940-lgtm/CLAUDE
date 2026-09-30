@@ -1,0 +1,94 @@
+{
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "fundo": "auras",
+  "titulo": "Destaque: Como funciona",
+  "cenas": [
+    {
+      "fala": "Como funciona pra ter o seu site? São só quatro passos.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Como _funciona?_"
+      ],
+      "boneco": {
+        "pose": "ideia",
+        "emocao": "lampada",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.0
+      }
+    },
+    {
+      "fala": "Primeiro: você me chama no WhatsApp e escolhe o seu plano.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": [
+        "Passo *1*"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 1,
+        "total": 4,
+        "texto": "Você me chama no WhatsApp e escolhe o plano"
+      }
+    },
+    {
+      "fala": "Depois, me manda suas fotos, textos e as informações do seu trabalho.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Passo *2*"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 2,
+        "total": 4,
+        "texto": "Me manda fotos, textos e informações do seu trabalho"
+      }
+    },
+    {
+      "fala": "Eu crio o site e te mostro. Aí você pede os ajustes que quiser.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": [
+        "Passo *3*"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 3,
+        "total": 4,
+        "texto": "Eu crio e te mostro. Você pede os ajustes"
+      }
+    },
+    {
+      "fala": "E pronto: seu site no ar a partir de dois dias.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Passo *4*"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 4,
+        "total": 4,
+        "texto": "Seu site no ar a partir de 2 dias"
+      }
+    },
+    {
+      "fala": "Bora começar? Toca no link e me chama.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Bora *começar?*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Toque no link",
+        "sub": "Seu site começa aqui",
+        "y": 640
+      },
+      "fim": 1.6
+    }
+  ]
+}
