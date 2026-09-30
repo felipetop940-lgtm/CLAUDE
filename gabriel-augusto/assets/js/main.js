@@ -240,8 +240,8 @@
     photo.style.setProperty('--py', (p * -30).toFixed(1) + 'px');
   }
 
-  /* ---------- Planos: adicionais (vídeo no Essencial, domínio nos dois) ---------- */
-  var prices = SITE.prices || { essential: 250, video: 38, premium: 320, domain: 40 };
+  /* ---------- Planos: adicional de vídeo no Essencial ---------- */
+  var prices = SITE.prices || { essential: 300, video: 38, premium: 500 };
   var hint = $('[data-hint]');
 
   function animateNumber(el, to) {
@@ -257,17 +257,16 @@
   function syncPlan(plan) {
     var card = $('[data-plan="' + plan + '"]'); if (!card) return;
     var video = card.querySelector('[data-addon-video]');
-    var domain = card.querySelector('[data-addon-domain]');
-    var withVideo = !!(video && video.checked), withDomain = !!(domain && domain.checked);
-    var total = prices[plan] + (withVideo ? prices.video : 0) + (withDomain ? prices.domain : 0);
+    var withVideo = !!(video && video.checked);
+    var total = prices[plan] + (withVideo ? prices.video : 0);
     var priceEl = card.querySelector('[data-price-' + plan + ']');
     if (priceEl) animateNumber(priceEl, total);
     if (plan === 'essential' && hint) hint.hidden = !withVideo;
     var cta = card.querySelector('[data-plan-cta]');
     if (cta) {
       var name = plan === 'premium' ? 'Premium Page' : withVideo ? 'Essencial com edição de vídeo' : 'Essencial';
-      var extra = (withVideo && plan === 'essential' ? '• Edição de vídeo para a página\n' : '') + (withDomain ? MSG.domainLine || '' : '');
-      var msg = (MSG[plan] || '').replace('{plano}', name + (withDomain ? ' + domínio próprio' : '')).replace('{total}', total).replace('{extras}', extra);
+      var extra = withVideo && plan === 'essential' ? '• Edição de vídeo para a página\n' : '';
+      var msg = (MSG[plan] || '').replace('{plano}', name).replace('{total}', total).replace('{extras}', extra);
       setWa(cta, msg);
     }
   }

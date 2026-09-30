@@ -2,7 +2,7 @@
 
 Quem pede: Gabriel Augusto de Oliveira, Goiânia/GO. Vende sites para profissionais.
 Contato: WhatsApp 5562982595333 · Instagram @august0_oliv · augustooliv940@gmail.com.
-Planos: Essencial R$ 250 (2 revisões) · Premium Page R$ 320 (R$ 70 a mais, com edição de vídeo, 5 revisões) · vídeo avulso no Essencial +R$ 38 · domínio próprio .com.br +R$ 40 (opcional nos dois) · entrega em 2 a 7 dias.
+Planos: Essencial R$ 300 (2 revisões, 2 a 7 dias, edição de vídeo opcional +R$ 38) · Premium Page R$ 500 (domínio seunome.com.br + vídeo na página inclusos, até 5 revisões, 2 a 5 dias). O site é feito pra convencer a comprar o Premium.
 Responder em português brasileiro informal, direto. Branch de trabalho: `claude/professional-premium-website-q2yp97`.
 
 ## Vídeos curtos diários (`gabriel-augusto/shorts/`)
@@ -18,7 +18,7 @@ Regras fixas:
 - Títulos só com balanço lento e suave. Nada tremendo rápido (poluição visual). Usar `"fx": "zoom"` ou `"flash"`; `"tremer"` hoje é só um zoom suave.
 - Transições entre cenas; só efeitos sonoros, sem música de fundo.
 - Voz: a dele gravada (Kokoro é só voz guia enquanto ele não manda).
-- Toda vez: gancho polêmico no início, pergunta pra gerar comentário (prop `enquete`), prova (`site_celular` com site real), preço (`preco`, a partir de R$ 250) e CTA final pro perfil/link da bio (`cta`).
+- Toda vez: gancho polêmico no início, pergunta pra gerar comentário (prop `enquete`), prova (`site_celular` com site real), preço (`preco`, a partir de R$ 300) e CTA final pro perfil/link da bio (`cta`).
 - Não inventar dados, depoimentos ou números.
 - Capa: `python3 capa.py ../roteiros/vNN.json` → `saida/vNN-capa.jpg` (1ª cena + chave "capa" no roteiro: texto, tamanho, selo com a pergunta do gancho, selo_y). Tudo dentro do recorte 3:4 da grade.
 - Renderização: ~7 min, 4 processos em paralelo. Manter o mp4 abaixo de 30 MB. Não apagar /tmp/short_* durante render.

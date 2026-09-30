@@ -30,10 +30,10 @@ A cada site novo que você entregar, adicione 2 ou 3 stories aqui.
 | Story | Texto na tela |
 |---|---|
 | 1 | "Preço fechado. Sem surpresa." |
-| 2 | **Essencial: R$ 250**. Site personalizado, celular e computador, botão de WhatsApp, 2 rodadas de ajuste |
-| 3 | **Premium Page: R$ 320**. Tudo do Essencial + edição de vídeo + 5 rodadas de ajuste |
-| 4 | **Opcionais:** edição de vídeo no Essencial +R$ 38 · domínio próprio seunome.com.br +R$ 40 |
-| 5 | "Pronto em 2 a 7 dias. Escolhe o seu plano no link 👇" + sticker de link |
+| 2 | **Essencial: R$ 300**. Site personalizado, celular e computador, botão de WhatsApp, 2 rodadas de ajuste, 2 a 7 dias |
+| 3 | **Premium Page: R$ 500** ⭐. Tudo do Essencial + domínio seunome.com.br + vídeo na página + até 5 rodadas + entrega em 2 a 5 dias |
+| 4 | "Essencial + vídeo já dá R$ 338. Por R$ 162 a mais, o Premium traz tudo." |
+| 5 | "Escolhe o seu plano no link 👇" + sticker de link |
 
 ## 3. COMO FUNCIONA
 | Story | Texto na tela |
@@ -42,7 +42,7 @@ A cada site novo que você entregar, adicione 2 ou 3 stories aqui.
 | 2 | "1. Você me chama no WhatsApp e escolhe o plano" |
 | 3 | "2. Me manda fotos, textos e informações do seu trabalho" |
 | 4 | "3. Eu crio e te mostro. Você pede os ajustes" |
-| 5 | "4. Site no ar em 2 a 7 dias. Bora começar? 👇" |
+| 5 | "4. Site no ar a partir de 2 dias. Bora começar? 👇" |
 
 ## 4. SOBRE
 | Story | Texto na tela / fala |
@@ -57,9 +57,9 @@ Você pode gravar suas mãos no notebook ou a tela do computador enquanto cria u
 ## 5. DÚVIDAS
 Use a **caixinha de perguntas** nos stories e responda com print. Enquanto não tiver perguntas reais, use estas:
 - "Preciso entender de tecnologia?" → "Não. Você me passa as informações e eu faço tudo."
-- "Posso ter um domínio com o meu nome?" → "Pode, por +R$ 40. Ex.: seunome.com.br"
-- "E se eu não gostar de algo?" → "Tem rodadas de ajuste: 2 no Essencial e 5 no Premium."
-- "Quanto tempo demora?" → "De 2 a 7 dias."
+- "Posso ter um domínio com o meu nome?" → "Sim, já vem incluso no Premium Page. Ex.: seunome.com.br"
+- "E se eu não gostar de algo?" → "Tem rodadas de ajuste: 2 no Essencial e até 5 no Premium."
+- "Quanto tempo demora?" → "2 a 5 dias no Premium, 2 a 7 no Essencial."
 
 ## 6. CONTATO
 1 story só: "Quer seu site? Me chama 👇", com o sticker de link pro WhatsApp ou pro site e o @ do perfil.

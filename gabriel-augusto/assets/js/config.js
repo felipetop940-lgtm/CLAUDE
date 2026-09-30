@@ -22,10 +22,10 @@ window.SITE = {
       "• Site profissional personalizado\n" +
       "• Adaptado para celular e computador\n" +
       "• Botão direto para o meu WhatsApp\n" +
-      "• Edição de vídeo para a página\n" +
-      "{extras}" +
-      "• 5 rodadas de ajuste\n" +
-      "• Entrega em 2 a 7 dias\n\n" +
+      "• Domínio próprio com o meu nome (.com.br)\n" +
+      "• Vídeo na página com edição inclusa\n" +
+      "• Até 5 rodadas de ajuste\n" +
+      "• Entrega em 2 a 5 dias\n\n" +
       "Como fazemos para começar?",
     essential:
       "Olá, Gabriel! Quero contratar o plano *{plano}* (*R$ {total}*).\n\n" +
@@ -36,14 +36,12 @@ window.SITE = {
       "{extras}" +
       "• 2 rodadas de ajuste\n" +
       "• Entrega em 2 a 7 dias\n\n" +
-      "Como fazemos para começar?",
-    domainLine: "• Domínio próprio com o meu nome (.com.br)\n"
+      "Como fazemos para começar?"
   },
 
   prices: {
-    essential: 250,      // Site Essencial — 2 rodadas de ajuste
-    video: 38,           // Edição de vídeo avulsa
-    premium: 320,        // Premium Page — vídeo incluso + 5 rodadas (R$ 70 a mais que o Essencial)
-    domain: 40           // Domínio próprio .com.br (opcional nos dois planos)
+    essential: 300,      // Site Essencial — 2 rodadas de ajuste, entrega em 2 a 7 dias
+    video: 38,           // Edição de vídeo avulsa (opcional só no Essencial)
+    premium: 500         // Premium Page — domínio .com.br + vídeo inclusos, até 5 rodadas, 2 a 5 dias
   }
 };
