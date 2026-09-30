@@ -1,0 +1,118 @@
+{
+  "titulo": "Portfólio: Dr. Renato Sericaku",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "fundo": "auras",
+  "cenas": [
+    {
+      "fala": "Olha o site que eu acabei de entregar pro doutor Renato, cirurgião bucomaxilo e médico aqui de Goiânia.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Novo site",
+        "*entregue*"
+      ],
+      "prop": {
+        "tipo": "site_desktop",
+        "img": "../../../clientes/renato-sericaku/midia/site-desktop-topo.jpg",
+        "url": "Dr. Renato Sericaku · Cirurgia Bucomaxilofacial",
+        "selo": "Projeto real · criado por mim",
+        "y": 720
+      }
+    },
+    {
+      "fala": "Logo de cara, a mensagem que vende: extração de dente é cirurgia, então faça com quem é cirurgião.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": [
+        "Mensagem",
+        "_que vende_"
+      ],
+      "prop": {
+        "tipo": "site_celular",
+        "img": "../../../clientes/renato-sericaku/midia/site-celular-completo.jpg",
+        "altura": 16034,
+        "paradas": [
+          0,
+          0,
+          700
+        ],
+        "x": 350,
+        "continua": false,
+        "y": 600,
+        "escala": 1.0
+      }
+    },
+    {
+      "fala": "Depois, a autoridade: formação completa e o certificado de especialista, tudo real.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Autoridade",
+        "*de verdade*"
+      ],
+      "prop": {
+        "tipo": "site_celular",
+        "img": "../../../clientes/renato-sericaku/midia/site-celular-completo.jpg",
+        "altura": 16034,
+        "paradas": [
+          2208,
+          4866,
+          5600
+        ],
+        "x": 350,
+        "continua": true,
+        "y": 600,
+        "escala": 1.0
+      }
+    },
+    {
+      "fala": "E cada tratamento tem um botão que leva direto pro WhatsApp dele, com a mensagem pronta.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": [
+        "Direto pro",
+        "_WhatsApp_"
+      ],
+      "prop": {
+        "tipo": "site_celular",
+        "img": "../../../clientes/renato-sericaku/midia/site-celular-completo.jpg",
+        "altura": 16034,
+        "paradas": [
+          8907,
+          9500,
+          10400
+        ],
+        "x": 350,
+        "continua": true,
+        "y": 600,
+        "escala": 1.0
+      }
+    },
+    {
+      "fala": "Quer um site assim pro seu negócio? Entra no meu perfil e clica no link.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Quer um",
+        "*assim?*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Link na bio ↑",
+        "sub": "Sites · planos · WhatsApp",
+        "y": 620
+      },
+      "fim": 1.6
+    }
+  ],
+  "capa": {
+    "texto": [
+      "Novo site",
+      "*entregue*"
+    ],
+    "tamanho": 150,
+    "selo": "Dr. Renato · Bucomaxilo e médico",
+    "selo_y": 1480
+  }
+}

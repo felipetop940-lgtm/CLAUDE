@@ -286,11 +286,11 @@ function prop(c, lt, t) {
         <span>Comenta <b style="color:${C.gold}">SIM</b> ou <b style="color:${C.red}">NÃO</b></span></div></div>`); }
   if (p.tipo === 'site_celular') {
     // celular premium mostrando um site real rolando (prova do trabalho)
-    const inn = ease(lt / .7), fy = Math.sin(t * 1.3) * 10, ry = lerp(-30, -10, inn) + Math.sin(t * .8) * 3;
+    const inn = p.continua ? 1 : ease(lt / .7), fy = Math.sin(t * 1.3) * 10, ry = lerp(-30, -10, inn) + Math.sin(t * .8) * 3;  // continua: sem nova entrada
     const H = p.altura || 10588, stops = p.paradas || [0, 1150, 2750, 4400, 8000];
     const seg = (c.dur - 1.2) / (stops.length - 1); const q = Math.max(0, lt - .6) / seg; const i0 = Math.min(stops.length - 2, Math.floor(q));
     const y = lerp(stops[i0], stops[i0 + 1], easeIO(Math.min(1, (q - i0) * 1.6)));
-    return at(p.x ?? 540, 800, `<div style="perspective:1400px;transform:translateY(${fy + (1 - inn) * 140}px) scale(1.15);transform-origin:50% 0;opacity:${inn}">
+    return at(p.x ?? 540, p.y ?? 800, `<div style="perspective:1400px;transform:translateY(${fy + (1 - inn) * 140}px) scale(${p.escala ?? 1.15});transform-origin:50% 0;opacity:${inn}">
       <div style="position:relative;width:380px;height:760px;border-radius:66px;padding:14px;background:linear-gradient(145deg,#3a404c,#0c0e12 45%,#262b34);box-shadow:0 60px 120px -30px #000, 0 0 0 2px rgba(255,255,255,.08), 0 0 110px -20px rgba(214,179,108,.45);transform:rotateY(${ry}deg) rotateX(6deg)">
         <div style="position:relative;width:100%;height:100%;border-radius:54px;overflow:hidden;background:#07080A">
           <div style="position:absolute;left:50%;top:14px;width:110px;height:32px;margin-left:-55px;border-radius:20px;background:#000;z-index:5"></div>
@@ -305,6 +305,17 @@ function prop(c, lt, t) {
       <div style="font-family:Anton;font-size:250px;line-height:1;color:${C.white};text-shadow:0 0 ${40 + 40 * glow}px rgba(214,179,108,${.35 + .3 * glow});transform:scale(${.9 + .1 * k})"><span style="font-size:.4em;color:${C.gold};vertical-align:.9em;margin-right:14px">R$</span>${v}</div>
       <div style="display:flex;justify-content:center;gap:22px;margin-top:40px">${(p.chips || []).map((x, i) => { const kk = back((lt - 1.2 - i * .25) / .4);
         return `<div style="padding:20px 34px;${card}font-size:38px;font-weight:600;transform:scale(${kk});opacity:${clamp(kk)}"><span style="color:${C.gold}">✓</span> ${x}</div>`; }).join('')}</div></div>`);
+  }
+  if (p.tipo === 'site_desktop') {
+    // janela de navegador com o site no computador (zoom lento)
+    const inn = ease(lt / .7), z = 1 + .06 * ease(lt / c.dur), fy = Math.sin(t * 1.2) * 6;
+    return at(60, p.y || 700, `<div style="width:960px;transform:translateY(${(1 - inn) * 80 + fy}px) scale(${.96 + .04 * inn});opacity:${inn}">
+      <div style="border-radius:22px;overflow:hidden;background:#12151b;box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.08),0 0 110px -30px rgba(79,123,255,.5)">
+        <div style="display:flex;align-items:center;gap:12px;height:54px;padding:0 22px;background:#1b1f27">
+          <i style="width:14px;height:14px;border-radius:50%;background:#ff5f57"></i><i style="width:14px;height:14px;border-radius:50%;background:#febc2e"></i><i style="width:14px;height:14px;border-radius:50%;background:#28c840"></i>
+          <div style="flex:1;margin-left:20px;height:32px;border-radius:9px;background:#0e1116;color:${C.gray};font-size:20px;display:flex;align-items:center;padding-left:18px">🔒 ${p.url || ''}</div></div>
+        <div style="height:${p.altura || 600}px;overflow:hidden"><img src="${p.img}" style="width:960px;transform:scale(${z});transform-origin:30% 20%"></div></div>
+      ${p.selo ? `<div style="position:absolute;left:30px;top:-34px;padding:14px 26px;border-radius:40px;background:rgba(16,19,24,.92);border:2px solid rgba(214,179,108,.6);font-size:30px;font-weight:600;white-space:nowrap;opacity:${ease((lt - .5) / .4)}"><span style="color:${C.gold}">●</span> ${p.selo}</div>` : ''}</div>`);
   }
   if (p.tipo === 'plano') {
     // card de plano: preço sobe contando, itens entram um a um (✓ incluso / ✕ não incluso)

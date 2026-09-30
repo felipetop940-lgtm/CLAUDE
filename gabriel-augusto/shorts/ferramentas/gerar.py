@@ -202,6 +202,7 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
             put(buzz(), t0 + 1.5, .5); put(buzz(), t0 + 1.9, .5); put(chime(), t0 + 2.3, .45)
         elif pr == "enquete": put(pop(500), t0 + .3, .6); put(pop(620), t0 + .5, .6); put(pop(900), t0 + .9, .4)
         elif pr == "cta": put(riser(), t0 - .9, .5); put(chime(), t0 + .6, .5)
+        elif pr == "site_desktop": put(whoosh(.7, 5000), t0 + .05, .5); put(chime(), t0 + .6, .3)
         elif pr == "site_celular": put(whoosh(.7, 5000), t0 + .05, .5); put(chime(), t0 + .6, .3)
         elif pr == "plano":
             for j in range(10): put(key(), t0 + .3 + j * .1, .3)
