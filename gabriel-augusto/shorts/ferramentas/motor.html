@@ -325,15 +325,15 @@ function prop(c, lt, t) {
   if (p.tipo === 'comparar') {
     // Essencial + vídeo (riscado) × Premium com tudo
     const a = ease((lt - .2) / .5), b = back((lt - 1.1) / .5), risco = ease((lt - 2.0) / .5), dif = back((lt - 2.5) / .5);
-    return at(90, 660, `<div style="width:900px;display:grid;gap:34px;text-align:center">
-      <div style="position:relative;padding:40px;${card}opacity:${a};transform:translateY(${(1 - a) * 40}px)">
+    return at(90, 560, `<div style="width:900px;display:grid;gap:28px;text-align:center">
+      <div style="position:relative;padding:30px;${card}opacity:${a};transform:translateY(${(1 - a) * 40}px)">
         <div style="font-size:40px;color:${C.gray};font-weight:600">${p.a || ''}</div>
-        <div style="position:relative;display:inline-block;font-family:Anton;font-size:120px;color:rgba(245,246,248,${1 - .5 * risco})">R$ ${p.va}
+        <div style="position:relative;display:inline-block;font-family:Anton;font-size:104px;color:rgba(245,246,248,${1 - .5 * risco})">R$ ${p.va}
           <div style="position:absolute;left:-10px;right:-10px;top:52%;height:10px;border-radius:6px;background:${C.red};transform:scaleX(${risco}) rotate(-6deg);transform-origin:0 50%"></div></div></div>
-      <div style="position:relative;padding:44px;${card}border:3px solid rgba(214,179,108,.8);box-shadow:0 0 90px rgba(214,179,108,.3);transform:scale(${b});opacity:${clamp(b)}">
+      <div style="position:relative;padding:34px;${card}border:3px solid rgba(214,179,108,.8);box-shadow:0 0 90px rgba(214,179,108,.3);transform:scale(${b});opacity:${clamp(b)}">
         ${sweep(160, ((lt - 1.2) * 60) % 240 - 80)}
         <div style="font-size:40px;color:${C.gold};font-weight:700">${p.b || ''}</div>
-        <div style="font-family:Anton;font-size:150px;line-height:1.05;color:${C.white};text-shadow:0 0 50px rgba(214,179,108,.4)">R$ ${p.vb}</div>
+        <div style="font-family:Anton;font-size:136px;line-height:1.05;color:${C.white};text-shadow:0 0 50px rgba(214,179,108,.4)">R$ ${p.vb}</div>
         <div style="font-size:36px;color:${C.white};opacity:.85">${p.sub || ''}</div></div>
       <div style="font-family:Anton;text-transform:uppercase;font-size:58px;color:${C.gold};transform:scale(${dif});opacity:${clamp(dif)}">${p.dif || ''}</div></div>`);
   }

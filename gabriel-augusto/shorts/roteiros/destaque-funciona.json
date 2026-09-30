@@ -24,7 +24,7 @@
       "acento": "blue",
       "fx": "zoom",
       "texto": [
-        "Passo *1*"
+        "Passo 1 _de 4_"
       ],
       "prop": {
         "tipo": "passo",
@@ -38,7 +38,7 @@
       "acento": "gold",
       "fx": "zoom",
       "texto": [
-        "Passo *2*"
+        "Passo 2 _de 4_"
       ],
       "prop": {
         "tipo": "passo",
@@ -52,7 +52,7 @@
       "acento": "blue",
       "fx": "zoom",
       "texto": [
-        "Passo *3*"
+        "Passo 3 _de 4_"
       ],
       "prop": {
         "tipo": "passo",
@@ -66,7 +66,7 @@
       "acento": "gold",
       "fx": "zoom",
       "texto": [
-        "Passo *4*"
+        "Passo 4 _de 4_"
       ],
       "prop": {
         "tipo": "passo",
