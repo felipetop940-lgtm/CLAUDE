@@ -23,6 +23,10 @@ Regras fixas:
 - Capa: `python3 capa.py ../roteiros/vNN.json` → `saida/vNN-capa.jpg` (1ª cena + chave "capa" no roteiro: texto, tamanho, selo com a pergunta do gancho, selo_y). Tudo dentro do recorte 3:4 da grade.
 - Renderização: ~7 min, 4 processos em paralelo. Manter o mp4 abaixo de 30 MB. Não apagar /tmp/short_* durante render.
 
+## Artes estáticas (stories/destaques)
+
+`gabriel-augusto/destaques/stories/stories.html` + `render.js` → `saida/*.jpg` (1080x1920). Ele prefere artes estilo Canva a vídeos nos destaques. **Variar fundos e composição entre artes** (bg-aura, bg-light, bg-blue, bg-grid, bg-gold, bg-beam, marca d'água) e usar **detalhes em vermelho** (etiquetas, sublinhados, pontos) junto com preto/dourado/azul/branco.
+
 ## Sites para clientes
 
 Clientes ficam em `clientes/<nome>/` (ex.: `clientes/renato-sericaku/`). Material de portfólio de cada um: `midia/` (capturas + artes feed/story via `artes.html`) e vídeo `shorts/roteiros/portfolio-<nome>.json` (props `site_desktop` + `site_celular` com `continua`, `y`, `escala`).

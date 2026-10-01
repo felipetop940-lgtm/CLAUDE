@@ -86,105 +86,145 @@ h2{font-size:84px;font-weight:800;line-height:1.02;letter-spacing:-.03em}
 .info div{display:flex;align-items:center;gap:30px;padding:30px 0;border-bottom:1.5px solid var(--line);font-size:38px;font-weight:700}
 .info div small{display:block;font-size:26px;font-weight:600;color:var(--gray);letter-spacing:.1em;text-transform:uppercase}
 .info i{flex-shrink:0;width:84px;height:84px;border-radius:24px;display:grid;place-items:center;background:rgba(214,179,108,.12);border:1.5px solid rgba(214,179,108,.4);font-style:normal;font-size:40px}
+
+/* ===== Variações de fundo (cada story usa uma) ===== */
+:root{--red:#FF4D5E}
+.s{--fg:var(--white);--mut:var(--gray);color:var(--fg)}
+.bg-aura::before{}
+.bg-light{background:#F2EEE6;--fg:#0B0C10;--mut:#5D6270;--card:rgba(11,12,16,.045);--line:rgba(11,12,16,.12)}
+.bg-light::before{background:radial-gradient(700px 600px at 100% 0%,rgba(214,179,108,.35),transparent 70%),radial-gradient(600px 600px at 0% 100%,rgba(255,77,94,.10),transparent 70%)}
+.bg-light::after{opacity:.05}
+.bg-light h1 em,.bg-light h2 em{color:#A57E33}
+.bg-light .sub,.bg-light .lab,.bg-light .note,.bg-light .step p,.bg-light .qa p,.bg-light .vbox p,.bg-light .tap,.bg-light .top{color:var(--mut)}
+.bg-light .sub b,.bg-light .qa p b,.bg-light .top b{color:var(--fg)}
+.bg-light .card{background:#fff;border-color:rgba(11,12,16,.08);box-shadow:0 40px 80px -40px rgba(11,12,16,.35)}
+.bg-light .li.off{color:rgba(11,12,16,.35)}
+.bg-light .dots span{background:rgba(11,12,16,.15)}
+.bg-light .kick{color:#A57E33;border-color:rgba(165,126,51,.5)}
+.bg-light .link{border-color:rgba(165,126,51,.55);color:#A57E33}
+.bg-light .chips span,.bg-light .qa,.bg-light .step,.bg-light .vbox{background:#fff;border-color:rgba(11,12,16,.08);box-shadow:0 20px 50px -30px rgba(11,12,16,.3)}
+.bg-blue{background:linear-gradient(165deg,#0E2160 0%,#071033 55%,#04070F 100%)}
+.bg-blue::before{background:radial-gradient(800px 700px at 85% 15%,rgba(79,123,255,.45),transparent 70%),radial-gradient(500px 500px at 0% 95%,rgba(255,77,94,.16),transparent 70%)}
+.bg-grid{background:#060709}
+.bg-grid::before{background:linear-gradient(rgba(255,255,255,.045) 1.5px,transparent 1.5px) 0 0/90px 90px,linear-gradient(90deg,rgba(255,255,255,.045) 1.5px,transparent 1.5px) 0 0/90px 90px,radial-gradient(700px 600px at 0% 100%,rgba(255,77,94,.28),transparent 70%),radial-gradient(600px 500px at 100% 0%,rgba(79,123,255,.2),transparent 70%)}
+.bg-gold{background:#0A0806}
+.bg-gold::before{background:radial-gradient(circle at 50% 46%,rgba(214,179,108,.32),transparent 42%),repeating-radial-gradient(circle at 50% 46%,rgba(214,179,108,.09) 0 2px,transparent 2px 120px)}
+.bg-beam{background:#07080A}
+.bg-beam::before{background:linear-gradient(118deg,transparent 18%,rgba(79,123,255,.22) 30%,transparent 42%),linear-gradient(118deg,transparent 52%,rgba(255,77,94,.16) 60%,transparent 68%),linear-gradient(118deg,transparent 72%,rgba(214,179,108,.18) 80%,transparent 90%)}
+/* marca d'água em contorno */
+.wm{position:absolute;z-index:0;font-family:Anton;line-height:.8;color:transparent;-webkit-text-stroke:3px rgba(255,255,255,.07);pointer-events:none}
+.bg-light .wm{-webkit-text-stroke-color:rgba(11,12,16,.07)}
+.wm.r{-webkit-text-stroke-color:rgba(255,77,94,.22)}
+/* detalhes em vermelho */
+.kick.red{color:var(--red);border-color:rgba(255,77,94,.55)}.kick.red::before{background:var(--red);box-shadow:0 0 14px var(--red)}
+.ul{position:relative;display:inline-block}
+.ul::after{content:"";position:absolute;left:4%;right:2%;bottom:-.02em;height:.09em;border-radius:20px;background:var(--red);transform:rotate(-2deg)}
+.tap::before{content:"● ";color:var(--red);font-size:.8em}
+.li.off i{border-color:rgba(255,77,94,.55)!important;color:var(--red)!important}
+.redtag{display:inline-block;padding:10px 22px;border-radius:10px;background:var(--red);color:#fff;font-size:24px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transform:rotate(-3deg)}
+.pill.red{background:rgba(255,77,94,.12);border-color:rgba(255,77,94,.7);color:#FF6B78}
+.num.red{background:radial-gradient(circle at 35% 30%,#FF9AA3,var(--red) 55%,#B3202F);color:#fff;box-shadow:0 0 60px rgba(255,77,94,.4)}
+.left{align-items:flex-start;text-align:left}
+.left .chips{justify-content:flex-start}
 </style></head><body>
 
 <!-- ======================= PLANOS ======================= -->
-<section class="s" data-n="planos-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="1"></span></div>
- <div class="mid"><span class="kick">Planos</span><h1>Preço fechado.<br><em>Sem surpresa.</em></h1>
+<section class="s bg-blue" data-n="planos-01"><span class="wm " style="right:-60px;top:560px;font-size:620px" aria-hidden="true">R$</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="1"></span></div>
+ <div class="mid"><span class="kick red">Planos</span><h1>Preço <span class="ul">fechado.</span><br><em>Sem surpresa.</em></h1>
  <p class="sub">Você sabe exatamente o que está contratando <b>antes de começar.</b></p></div><p class="tap">Toque para ver os planos</p></section>
 
-<section class="s" data-n="planos-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="2"></span></div>
+<section class="s bg-light" data-n="planos-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="2"></span></div>
  <div class="mid"><div class="card"><div class="ph"><span class="pn">Essencial</span><span class="pv"><small>R$</small>300</span></div><div class="hr"></div>
   <div class="li"><i>✓</i>Site profissional personalizado</div><div class="li"><i>✓</i>Celular e computador</div><div class="li"><i>✓</i>Botão direto pro WhatsApp</div>
   <div class="li"><i>✓</i>2 rodadas de ajuste</div><div class="li"><i>✓</i>Entrega em 2 a 7 dias</div>
   <div class="li off"><i>✕</i>Sem domínio próprio</div><div class="li off"><i>✕</i>Sem vídeo na página</div>
   <p class="note">Vídeo opcional: <b>+ R$ 38</b></p></div></div><p class="tap">Agora veja o Premium</p></section>
 
-<section class="s" data-n="planos-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="3"></span></div>
+<section class="s bg-gold" data-n="planos-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="3"></span></div>
  <div class="mid"><div class="card gold"><span class="flag">★ Recomendado</span><div class="ph"><span class="pn" style="color:var(--gold)">Premium Page</span><span class="pv"><small>R$</small>500</span></div><div class="hr"></div>
   <div class="li"><i>✓</i>Tudo do Essencial</div><div class="li"><i>✓</i>Domínio seunome.com.br</div><div class="li"><i>✓</i>Vídeo na página incluso</div>
   <div class="li"><i>✓</i>Até 5 rodadas de ajuste</div><div class="li"><i>✓</i>Entrega em 2 a 5 dias</div>
   <p class="note">Tudo incluso, <b>sem nenhum adicional.</b></p></div></div><p class="tap">Faz a conta comigo</p></section>
 
-<section class="s" data-n="planos-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="4"></span></div>
- <div class="mid"><h2>Faz a <em>conta.</em></h2>
+<section class="s bg-grid" data-n="planos-04"><span class="wm r" style="left:-40px;bottom:180px;font-size:700px" aria-hidden="true">$</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="4"></span></div>
+ <div class="mid"><span class="redtag">Atenção</span><h2 style="margin-top:30px">Faz a <em>conta.</em></h2>
   <div class="card cmp" style="margin-top:70px"><p class="lab">Essencial + vídeo</p><span class="strike">R$ 338</span></div>
   <p class="vs">ou</p>
   <div class="card gold cmp"><p class="lab" style="color:var(--gold)">Premium Page · tudo incluso</p><p class="big">R$ 500</p><p class="lab" style="font-weight:600">Domínio · vídeo · 5 ajustes · 2 a 5 dias</p></div>
-  <span class="pill">Só R$ 162 a mais</span></div></section>
+  <span class="pill red">Só R$ 162 a mais</span></div></section>
 
-<section class="s" data-n="planos-05"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="5"></span></div>
+<section class="s bg-beam" data-n="planos-05"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="5"></span></div>
  <div class="mid"><h1>Escolha o<br><em>seu plano.</em></h1><p class="sub">Eu te respondo <b>pessoalmente.</b></p>
  <div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
 <!-- ======================= COMO FUNCIONA ======================= -->
-<section class="s" data-n="funciona-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
- <div class="mid"><span class="kick">Como funciona</span><h1>Seu site em<br><em>4 passos.</em></h1><p class="sub">Simples, rápido e <b>direto comigo.</b></p></div><p class="tap">Toque para ver</p></section>
+<section class="s bg-light" data-n="funciona-01"><span class="wm " style="right:-30px;top:420px;font-size:900px" aria-hidden="true">4</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
+ <div class="mid"><span class="kick red">Como funciona</span><h1>Seu site em<br><em class="ul">4 passos.</em></h1><p class="sub">Simples, rápido e <b>direto comigo.</b></p></div><p class="tap">Toque para ver</p></section>
 
-<section class="s" data-n="funciona-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="2"></span></div>
+<section class="s bg-grid" data-n="funciona-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="2"></span></div>
  <div class="mid"><div class="step"><span class="num">1</span><div><h3>Me chama</h3><p>No WhatsApp, e escolhe o seu plano.</p></div></div>
- <div class="step"><span class="num">2</span><div><h3>Me manda tudo</h3><p>Fotos, textos e informações do seu trabalho.</p></div></div></div><p class="tap">Continua</p></section>
+ <div class="step"><span class="num red">2</span><div><h3>Me manda tudo</h3><p>Fotos, textos e informações do seu trabalho.</p></div></div></div><p class="tap">Continua</p></section>
 
-<section class="s" data-n="funciona-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="3"></span></div>
+<section class="s bg-blue" data-n="funciona-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="3"></span></div>
  <div class="mid"><div class="step"><span class="num">3</span><div><h3>Eu crio e mostro</h3><p>Você pede os ajustes que quiser.</p></div></div>
- <div class="step"><span class="num">4</span><div><h3>Site no ar</h3><p>A partir de 2 dias, pronto pra receber clientes.</p></div></div></div><p class="tap">Bora começar?</p></section>
+ <div class="step"><span class="num red">4</span><div><h3>Site no ar</h3><p>A partir de 2 dias, pronto pra receber clientes.</p></div></div></div><p class="tap">Bora começar?</p></section>
 
-<section class="s" data-n="funciona-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
+<section class="s bg-gold" data-n="funciona-04"><span class="wm " style="left:-30px;bottom:260px;font-size:520px" aria-hidden="true">GO</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
  <div class="mid"><h1>Bora<br><em>começar?</em></h1><p class="sub">Toque no link e <b>me chama.</b></p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
 <!-- ======================= SOBRE ======================= -->
-<section class="s" data-n="sobre-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
- <div class="mid"><span class="kick">Sobre</span><h1>Prazer,<br><em>Gabriel.</em></h1><p class="sub">Crio sites profissionais pra quem quer ser <b>encontrado e escolhido.</b></p>
+<section class="s bg-beam" data-n="sobre-01"><span class="wm " style="right:-80px;top:380px;font-size:1000px" aria-hidden="true">G</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
+ <div class="mid left"><span class="kick red">Sobre</span><h1>Prazer,<br><em>Gabriel.</em></h1><p class="sub">Crio sites profissionais pra quem quer ser <b>encontrado e escolhido.</b></p>
  <p class="tag">📍 <b>Goiânia · GO</b></p></div><p class="tap">Toque para conhecer</p></section>
 
-<section class="s" data-n="sobre-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="2"></span></div>
+<section class="s bg-light" data-n="sobre-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="2"></span></div>
  <div class="mid"><h2>Por que ter<br><em>um site?</em></h2>
  <div class="versus" style="margin-top:70px"><div class="vbox"><h3 class="r">Instagram</h3><p>Terreno alugado. O algoritmo muda e o cliente não te acha.</p></div>
  <div class="vbox g"><h3 class="y">Site</h3><p>Endereço próprio. Aparece no Google e leva pro seu WhatsApp.</p></div></div></div><p class="tap">Continua</p></section>
 
-<section class="s" data-n="sobre-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="3"></span></div>
- <div class="mid"><h2>Como eu<br><em>trabalho.</em></h2>
+<section class="s bg-blue" data-n="sobre-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="3"></span></div>
+ <div class="mid"><h2>Como eu<br><em class="ul">trabalho.</em></h2>
  <div class="chips"><span>Direto comigo</span><span>Preço fechado</span><span>Entrega rápida</span><span>Celular e computador</span><span>WhatsApp com mensagem pronta</span></div></div><p class="tap">Continua</p></section>
 
-<section class="s" data-n="sobre-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
- <div class="mid"><h1>Vamos criar<br><em>o seu?</em></h1><p class="sub">Toque no link e <b>me chama.</b></p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
+<section class="s bg-grid" data-n="sobre-04"><span class="wm r" style="left:-40px;bottom:250px;font-size:400px" aria-hidden="true">SITE</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
+ <div class="mid"><h1><span class="ul">Vamos</span> criar<br><em>o seu?</em></h1><p class="sub">Toque no link e <b>me chama.</b></p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
 <!-- ======================= SITES (portfólio) ======================= -->
-<section class="s" data-n="sites-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
- <div class="mid"><span class="kick">Portfólio</span><h1>Sites que<br><em>eu criei.</em></h1><p class="sub">Projetos reais, <b>feitos por mim.</b></p></div><p class="tap">Toque para ver</p></section>
+<section class="s bg-gold" data-n="sites-01"><span class="wm " style="left:-30px;top:330px;font-size:440px" aria-hidden="true">WEB</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
+ <div class="mid"><span class="redtag">Projetos reais</span><span class="kick" style="margin-top:40px">Portfólio</span><h1>Sites que<br><em>eu criei.</em></h1><p class="sub">Projetos reais, <b>feitos por mim.</b></p></div><p class="tap">Toque para ver</p></section>
 
-<section class="s" data-n="sites-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="2"></span></div>
+<section class="s bg-light" data-n="sites-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="2"></span></div>
  <div class="mid"><h2 style="font-size:70px">Dr. Renato Sericaku</h2><p class="sub" style="margin-top:16px">Cirurgião Bucomaxilofacial e Médico</p>
  <div class="mock"><div class="win"><div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><img src="img/renato-site-desktop-topo.jpg"></div>
  <div class="phone"><div><img src="img/renato-site-celular-topo.jpg"></div></div></div></div><p class="tap">Próximo projeto</p></section>
 
-<section class="s" data-n="sites-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="3"></span></div>
+<section class="s bg-blue" data-n="sites-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="3"></span></div>
  <div class="mid"><h2 style="font-size:70px">Site para médico</h2><p class="sub" style="margin-top:16px">Apresentação, especialidades e WhatsApp</p>
  <div class="phone solo"><div><img src="img/fernando-topo.jpg"></div></div></div></section>
 
-<section class="s" data-n="sites-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
- <div class="mid"><h1>Quer um<br><em>assim?</em></h1><p class="sub">Toque no link e veja os planos.</p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
+<section class="s bg-beam" data-n="sites-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
+ <div class="mid"><h1>Quer um<br><em class="ul">assim?</em></h1><p class="sub">Toque no link e veja os planos.</p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
 <!-- ======================= DÚVIDAS ======================= -->
-<section class="s" data-n="duvidas-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="1"></span></div>
- <div class="mid"><span class="kick">Dúvidas</span>
+<section class="s bg-blue" data-n="duvidas-01"><span class="wm " style="right:-40px;top:300px;font-size:1100px" aria-hidden="true">?</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="1"></span></div>
+ <div class="mid"><span class="kick red">Dúvidas</span>
  <div class="qa" style="margin-top:70px"><h3>Preciso entender de tecnologia?</h3><p><b>Não.</b> Você me passa as informações e eu faço tudo.</p></div>
  <div class="qa"><h3>Posso ter um domínio com meu nome?</h3><p><b>Sim,</b> já vem incluso no Premium Page. Ex.: seunome.com.br</p></div></div><p class="tap">Mais dúvidas</p></section>
 
-<section class="s" data-n="duvidas-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="2"></span></div>
+<section class="s bg-light" data-n="duvidas-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="2"></span></div>
  <div class="mid"><div class="qa"><h3>E se eu não gostar de algo?</h3><p>Tem rodadas de ajuste: <b>2 no Essencial</b> e <b>até 5 no Premium.</b></p></div>
  <div class="qa"><h3>Quanto tempo demora?</h3><p><b>2 a 5 dias</b> no Premium e <b>2 a 7 dias</b> no Essencial.</p></div></div><p class="tap">Ficou alguma dúvida?</p></section>
 
-<section class="s" data-n="duvidas-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="3"></span></div>
+<section class="s bg-grid" data-n="duvidas-03"><span class="wm r" style="left:-60px;bottom:200px;font-size:900px" aria-hidden="true">?</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="3"></span></div>
  <div class="mid"><h1>Ficou alguma<br><em>dúvida?</em></h1><p class="sub">Me chama que eu te <b>respondo pessoalmente.</b></p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
 <!-- ======================= CONTATO ======================= -->
-<section class="s" data-n="contato-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="2" data-i="1"></span></div>
- <div class="mid"><span class="kick">Contato</span><h1>Bora criar<br><em>o seu site?</em></h1>
+<section class="s bg-beam" data-n="contato-01"><span class="wm " style="right:-40px;top:300px;font-size:700px" aria-hidden="true">OI</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="2" data-i="1"></span></div>
+ <div class="mid"><span class="kick red">Contato</span><h1>Bora criar<br><em>o seu site?</em></h1>
  <div class="chat" style="margin-top:70px"><div class="hd"><span class="av">GA</span><div><b>Gabriel Augusto</b><small>online</small></div></div>
  <p class="msg c">Oi, Gabriel! Quero um site pro meu negócio 🙂</p><p class="msg e">Bora! Me conta do seu trabalho que eu te mostro os planos.</p></div></div><p class="tap">Me chama</p></section>
 
-<section class="s" data-n="contato-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="2" data-i="2"></span></div>
+<section class="s bg-light" data-n="contato-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="2" data-i="2"></span></div>
  <div class="mid"><h2>Fale direto<br><em>comigo.</em></h2>
  <div class="info"><div><i>💬</i><span><small>WhatsApp</small>(62) 98259-5333</span></div><div><i>✉️</i><span><small>E-mail</small>augustooliv940@gmail.com</span></div><div><i>📍</i><span><small>Localização</small>Goiânia · GO</span></div></div>
  <div class="link" style="height:160px">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
