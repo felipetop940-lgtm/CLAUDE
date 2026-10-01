@@ -25,7 +25,7 @@ Regras fixas:
 
 ## Artes estáticas (stories/destaques)
 
-`gabriel-augusto/destaques/stories/stories.html` + `render.js` → `saida/*.jpg` (1080x1920). Ele prefere artes estilo Canva a vídeos nos destaques. **Variar fundos e composição entre artes** (bg-aura, bg-light, bg-blue, bg-grid, bg-gold, bg-beam, marca d'água) e usar **detalhes em vermelho** (etiquetas, sublinhados, pontos) junto com preto/dourado/azul/branco.
+`gabriel-augusto/destaques/stories/stories.html` + `render.js` → `saida/*.jpg` (1080x1920). Ele prefere artes estilo Canva a vídeos nos destaques. **Tema sempre escuro, com variações sutis entre artes** (bg-aura, bg-ink, bg-blue, bg-grid, bg-gold, bg-beam, marca d'água discreta). Nada de fundo claro/creme; não variar totalmente e usar **detalhes em vermelho** (etiquetas, sublinhados, pontos) junto com preto/dourado/azul/branco.
 
 ## Sites para clientes
 
