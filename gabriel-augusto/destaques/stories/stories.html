@@ -1,222 +1,326 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <!-- Artes de story (1080x1920) para os destaques do Instagram.
-     Gerar as imagens: node render.js (salva em ./saida/<destaque>-NN.jpg) -->
+     Gerar as imagens: PWPATH=$(npm root -g)/playwright node render.js  → ./saida/<destaque>-NN.jpg
+     Padrão: tema escuro com variações sutis (bg-*), detalhes em vermelho, títulos fortes e informação útil. -->
 <style>
 @font-face{font-family:Inter;src:url(../../assets/fonts/inter-tight-var.woff2);font-weight:100 900}
 @font-face{font-family:Corm;src:url(../../assets/fonts/cormorant-garamond-italic.woff2);font-style:italic}
 @font-face{font-family:Anton;src:url(../../shorts/ferramentas/fontes/anton.woff2)}
-:root{--bg:#07080A;--gold:#D6B36C;--gold2:#F1DDA8;--blue:#4F7BFF;--white:#F5F6F8;--gray:#9AA1AD;--card:rgba(255,255,255,.045);--line:rgba(255,255,255,.1)}
+:root{--gold:#D6B36C;--gold2:#F1DDA8;--blue:#4F7BFF;--red:#FF4D5E;--white:#F5F6F8;--gray:#9AA1AD;--line:rgba(255,255,255,.1);--card:rgba(255,255,255,.045)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#222;font-family:Inter;color:var(--white)}
-.s{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:250px 90px 300px;text-align:center}
-.s::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 620px at 8% 12%,rgba(79,123,255,.26),transparent 70%),radial-gradient(760px 680px at 96% 92%,rgba(214,179,108,.22),transparent 70%)}
-.s::after{content:"";position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.s{position:relative;width:1080px;height:1920px;overflow:hidden;background:#07080A;display:flex;flex-direction:column;padding:250px 80px 290px}
+.s::before,.s::after{content:"";position:absolute;inset:0;pointer-events:none}
+.s::after{opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .s>*{position:relative;z-index:1}
-/* topo fixo: marca + paginação */
-.top{position:absolute;left:90px;right:90px;top:150px;display:flex;justify-content:space-between;align-items:center;font-size:26px;font-weight:600;color:var(--gray)}
+/* fundos: sempre escuros, variação sutil */
+.bg-aura::before{background:radial-gradient(700px 620px at 8% 10%,rgba(79,123,255,.24),transparent 70%),radial-gradient(760px 680px at 96% 92%,rgba(214,179,108,.2),transparent 70%)}
+.bg-ink{background:#08090B}.bg-ink::before{background:radial-gradient(760px 640px at 100% 0%,rgba(214,179,108,.16),transparent 70%),radial-gradient(620px 560px at 0% 100%,rgba(255,77,94,.08),transparent 70%)}
+.bg-blue{background:linear-gradient(165deg,#0B1430,#080B16 55%,#06070A)}.bg-blue::before{background:radial-gradient(800px 700px at 85% 15%,rgba(79,123,255,.24),transparent 70%),radial-gradient(500px 500px at 0% 95%,rgba(255,77,94,.08),transparent 70%)}
+.bg-grid{background:#060709}.bg-grid::before{background:linear-gradient(rgba(255,255,255,.025) 1.5px,transparent 1.5px) 0 0/90px 90px,linear-gradient(90deg,rgba(255,255,255,.025) 1.5px,transparent 1.5px) 0 0/90px 90px,radial-gradient(700px 600px at 0% 100%,rgba(255,77,94,.13),transparent 70%),radial-gradient(600px 500px at 100% 0%,rgba(79,123,255,.18),transparent 70%)}
+.bg-gold{background:#0A0806}.bg-gold::before{background:radial-gradient(circle at 50% 52%,rgba(214,179,108,.22),transparent 42%),repeating-radial-gradient(circle at 50% 52%,rgba(214,179,108,.045) 0 2px,transparent 2px 120px)}
+.bg-beam::before{background:linear-gradient(118deg,transparent 18%,rgba(79,123,255,.12) 30%,transparent 42%),linear-gradient(118deg,transparent 52%,rgba(255,77,94,.07) 60%,transparent 68%),linear-gradient(118deg,transparent 72%,rgba(214,179,108,.1) 80%,transparent 90%)}
+/* topo */
+.top{position:absolute;left:80px;right:80px;top:150px;display:flex;justify-content:space-between;align-items:center;font-size:26px;font-weight:600;color:var(--gray)}
 .top b{display:flex;align-items:center;gap:14px;color:var(--white);font-weight:700}
-.top b i{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;border:1.5px solid rgba(214,179,108,.6);font-family:Corm;font-size:28px;color:var(--gold);font-style:italic}
+.top b i{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;border:1.5px solid rgba(214,179,108,.6);font-family:Corm;font-size:28px;color:var(--gold)}
 .dots{display:flex;gap:8px}.dots span{width:12px;height:12px;border-radius:6px;background:rgba(255,255,255,.18)}.dots span.on{width:40px;background:var(--gold)}
-.kick{display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;border:1.5px solid rgba(214,179,108,.5);font-size:26px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
-.kick::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
-h1{font-size:104px;font-weight:800;line-height:1;letter-spacing:-.035em;margin-top:40px}
-h1 em,h2 em{font-family:Corm;font-style:italic;font-weight:500;color:var(--gold);letter-spacing:-.01em;font-size:1.12em}
-h2{font-size:84px;font-weight:800;line-height:1.02;letter-spacing:-.03em}
-.sub{margin-top:36px;font-size:38px;line-height:1.4;color:var(--gray);font-weight:500}
-.sub b{color:var(--white)}
-.mid{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%}
-.card{width:100%;padding:56px 60px;border-radius:44px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1.5px solid var(--line);text-align:left;box-shadow:0 40px 90px -40px #000}
-.card.gold{border:2px solid rgba(214,179,108,.75);box-shadow:0 0 120px -20px rgba(214,179,108,.4),0 40px 90px -40px #000;background:linear-gradient(160deg,rgba(214,179,108,.14),rgba(255,255,255,.02))}
-.flag{display:inline-block;padding:10px 24px;border-radius:30px;background:linear-gradient(135deg,#E8CC8E,var(--gold) 45%,#B8924A);color:#07080A;font-size:24px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:26px}
-.ph{display:flex;justify-content:space-between;align-items:flex-end}
-.pn{font-size:54px;font-weight:800;letter-spacing:-.02em}
-.pv{font-family:Anton;font-size:150px;line-height:.85}.pv small{font-family:Inter;font-size:42px;font-weight:700;color:var(--gold);vertical-align:2.2em;margin-right:8px}
-.hr{height:1.5px;background:var(--line);margin:40px 0 34px}
-.li{display:flex;align-items:center;gap:24px;font-size:38px;font-weight:600;padding:13px 0}
-.li i{flex-shrink:0;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:28px;font-weight:800;background:var(--gold);color:#07080A}
-.li.off{color:rgba(245,246,248,.35);font-weight:500}.li.off i{background:none;border:2px solid rgba(255,255,255,.2);color:rgba(255,255,255,.35)}
-.note{margin-top:34px;font-size:30px;color:var(--gray)}.note b{color:var(--gold)}
-.btn{display:inline-flex;align-items:center;gap:18px;padding:30px 60px;border-radius:999px;background:linear-gradient(135deg,#E8CC8E,var(--gold) 45%,#B8924A);color:#07080A;font-size:42px;font-weight:800;box-shadow:0 0 90px rgba(214,179,108,.45)}
-.link{margin-top:60px;width:100%;height:190px;border:3px dashed rgba(214,179,108,.45);border-radius:36px;display:grid;place-items:center;font-size:28px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(214,179,108,.6)}
-.tap{position:absolute;left:0;right:0;bottom:200px;font-size:26px;font-weight:600;color:var(--gray);letter-spacing:.06em}
-.tap::after{content:" →";color:var(--gold)}
-.step{display:flex;gap:40px;align-items:center;text-align:left;width:100%;padding:44px 50px;border-radius:40px;background:var(--card);border:1.5px solid var(--line)}
-.step+.step{margin-top:32px}
-.num{flex-shrink:0;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;font-family:Anton;font-size:84px;color:#07080A;background:radial-gradient(circle at 35% 30%,#F1DDA8,var(--gold) 55%,#9C7A3A);box-shadow:0 0 60px rgba(214,179,108,.35)}
-.step h3{font-size:50px;font-weight:800;letter-spacing:-.02em}.step p{margin-top:8px;font-size:34px;color:var(--gray);line-height:1.35}
-.cmp{width:100%;text-align:center;padding:44px}
-.strike{position:relative;display:inline-block;font-family:Anton;font-size:130px;color:rgba(245,246,248,.45)}
-.strike::after{content:"";position:absolute;left:-14px;right:-14px;top:52%;height:12px;border-radius:6px;background:#FF4D5E;transform:rotate(-7deg)}
-.lab{font-size:34px;font-weight:700;color:var(--gray)}
-.big{font-family:Anton;font-size:190px;line-height:1;margin-top:6px}
-.pill{display:inline-block;margin-top:46px;padding:22px 44px;border-radius:999px;background:rgba(214,179,108,.14);border:2px solid rgba(214,179,108,.6);font-family:Anton;font-size:56px;color:var(--gold);text-transform:uppercase}
-.vs{margin:30px 0;font-family:Corm;font-style:italic;font-size:64px;color:var(--gold)}
-.qa{width:100%;text-align:left;padding:46px 54px;border-radius:40px;background:var(--card);border:1.5px solid var(--line)}
-.qa+.qa{margin-top:32px}
-.qa h3{display:flex;gap:20px;font-size:44px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
-.qa h3::before{content:"?";flex-shrink:0;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#07080A;font-size:36px}
-.qa p{margin:20px 0 0 80px;font-size:36px;line-height:1.4;color:var(--gray)}
-.qa p b{color:var(--white)}
-.versus{display:grid;grid-template-columns:1fr 1fr;gap:28px;width:100%;text-align:left}
-.vbox{padding:44px 40px;border-radius:36px;background:var(--card);border:1.5px solid var(--line)}
-.vbox.g{border-color:rgba(214,179,108,.7);background:rgba(214,179,108,.1)}
-.vbox h3{font-size:42px;font-weight:800}.vbox h3.r{color:#FF6B78}.vbox h3.y{color:var(--gold)}
-.vbox p{margin-top:18px;font-size:32px;line-height:1.45;color:var(--gray)}
-.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:60px}
-.chips span{padding:22px 36px;border-radius:999px;background:var(--card);border:1.5px solid var(--line);font-size:34px;font-weight:700}
-.chips span::before{content:"✓ ";color:var(--gold)}
-.mock{position:relative;width:900px;margin-top:70px}
+/* tipografia */
+.tag{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;padding:12px 26px;border-radius:12px;background:var(--red);color:#fff;font-size:26px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;transform:rotate(-2deg);box-shadow:0 14px 40px -12px rgba(255,77,94,.6)}
+.tag.gold{background:linear-gradient(135deg,#E8CC8E,var(--gold) 45%,#B8924A);color:#07080A;box-shadow:0 14px 40px -12px rgba(214,179,108,.6)}
+.tag.line{background:none;border:2px solid rgba(214,179,108,.6);color:var(--gold);box-shadow:none;transform:none}
+.H{font-family:Anton;text-transform:uppercase;font-weight:400;font-size:150px;line-height:.92;letter-spacing:.005em;margin-top:38px}
+.H.m{font-size:118px}.H.sm{font-size:96px}
+.H .g{color:var(--gold)}.H .r{color:var(--red)}
+.H .box{display:inline-block;padding:0 .12em;background:var(--red);color:#fff;transform:rotate(-1.5deg)}
+.H .it{font-family:Corm;font-style:italic;text-transform:none;color:var(--gold);font-size:.92em;letter-spacing:0}
+.lead{margin-top:34px;font-size:42px;line-height:1.35;color:#C9CED6;font-weight:500;max-width:880px}
+.lead b{color:#fff}.lead .g{color:var(--gold);font-weight:700}
+.fill{flex:1;display:flex;flex-direction:column;justify-content:center}
+.center{align-items:center;text-align:center}.center .tag{align-self:center}
+.tap{position:absolute;left:80px;right:80px;bottom:190px;display:flex;justify-content:space-between;align-items:center;font-size:26px;font-weight:700;color:var(--gray);letter-spacing:.06em;text-transform:uppercase}
+.tap span:last-child{display:flex;align-items:center;gap:12px;color:var(--white)}
+.tap span:last-child::after{content:"→";display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--gold);color:#07080A;font-size:28px}
+.tap span:first-child::before{content:"● ";color:var(--red)}
+/* blocos */
+.card{padding:50px 56px;border-radius:44px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1.5px solid var(--line);box-shadow:0 40px 90px -40px #000}
+.card.gold{border:2.5px solid rgba(214,179,108,.8);background:linear-gradient(160deg,rgba(214,179,108,.16),rgba(255,255,255,.02));box-shadow:0 0 140px -30px rgba(214,179,108,.45),0 40px 90px -40px #000}
+.price{display:flex;align-items:flex-start;font-family:Anton;line-height:.82;font-size:230px}
+.price small{font-family:Inter;font-weight:800;font-size:54px;color:var(--gold);margin:22px 12px 0 0}
+.li{display:flex;align-items:center;gap:24px;font-size:38px;font-weight:600;padding:12px 0}
+.li i{flex-shrink:0;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:28px;font-weight:900;background:var(--gold);color:#07080A}
+.li.no{color:rgba(245,246,248,.4);font-weight:500}.li.no i{background:rgba(255,77,94,.14);border:2px solid rgba(255,77,94,.7);color:var(--red)}
+.ideal{margin-top:34px;padding:26px 32px;border-radius:24px;background:rgba(255,255,255,.05);font-size:32px;color:var(--gray);line-height:1.35}
+.ideal b{color:var(--white)}
+.hr{height:1.5px;background:var(--line);margin:34px 0 26px}
+.row{display:flex;justify-content:space-between;align-items:center}
+/* tabela */
+.tbl{width:100%;border-radius:40px;overflow:hidden;border:1.5px solid var(--line);background:rgba(255,255,255,.03)}
+.tbl .tr{display:grid;grid-template-columns:1.25fr 1fr 1fr;align-items:center;min-height:104px;border-top:1.5px solid var(--line);font-size:32px;font-weight:600}
+.tbl .tr:first-child{border-top:0;min-height:130px;font-family:Anton;font-size:40px;text-transform:uppercase;letter-spacing:.02em}
+.tbl .tr>*{padding:0 26px;text-align:center}.tbl .tr>*:first-child{text-align:left;color:#C9CED6}
+.tbl .tr>*:last-child{background:rgba(214,179,108,.1);align-self:stretch;display:grid;place-items:center}
+.tbl .tr:first-child>*:last-child{color:var(--gold);background:rgba(214,179,108,.18)}
+.y{color:var(--gold);font-size:44px;font-weight:900}.n{color:var(--red);font-size:44px;font-weight:900}
+.tbl .tr.tot{font-family:Anton;font-size:56px;min-height:130px}
+/* conta */
+.eq{display:flex;align-items:center;justify-content:center;gap:26px;font-family:Anton;font-size:120px}
+.eq .op{color:var(--gray);font-size:90px}.eq .tot{color:rgba(245,246,248,.5);position:relative}
+.eq .tot::after{content:"";position:absolute;left:-12px;right:-12px;top:50%;height:12px;border-radius:6px;background:var(--red);transform:rotate(-8deg)}
+.eqlab{display:flex;justify-content:center;gap:120px;margin-top:8px;font-size:28px;font-weight:700;color:var(--gray);letter-spacing:.08em;text-transform:uppercase}
+.bonus{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+.bonus div{padding:28px 30px;border-radius:26px;background:rgba(214,179,108,.08);border:1.5px solid rgba(214,179,108,.35);font-size:32px;font-weight:700;display:flex;align-items:center;gap:18px}
+.bonus div::before{content:"+";flex-shrink:0;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#07080A;font-weight:900}
+/* ícones */
+.ico{flex-shrink:0;display:grid;place-items:center;width:120px;height:120px;border-radius:34px;background:linear-gradient(145deg,rgba(214,179,108,.22),rgba(214,179,108,.06));border:1.5px solid rgba(214,179,108,.45)}
+.ico svg{width:60px;height:60px;fill:none;stroke:var(--gold);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ico.r{background:linear-gradient(145deg,rgba(255,77,94,.22),rgba(255,77,94,.05));border-color:rgba(255,77,94,.5)}.ico.r svg{stroke:#FF7380}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+.tile{padding:40px 36px;border-radius:36px;background:var(--card);border:1.5px solid var(--line)}
+.tile h3{margin-top:28px;font-size:42px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.tile p{margin-top:12px;font-size:30px;color:var(--gray);line-height:1.35}
+.steps{display:flex;flex-direction:column;gap:26px;margin-top:56px}
+.st{display:flex;gap:34px;align-items:center;padding:36px 40px;border-radius:38px;background:var(--card);border:1.5px solid var(--line)}
+.st .n0{flex-shrink:0;font-family:Anton;font-size:120px;line-height:.8;color:transparent;-webkit-text-stroke:2.5px var(--gold);width:110px;text-align:center}
+.st.hot{border-color:rgba(214,179,108,.6);background:rgba(214,179,108,.08)}
+.st h3{font-size:46px;font-weight:800;letter-spacing:-.02em}.st p{margin-top:8px;font-size:31px;color:var(--gray);line-height:1.35}
+.list{margin-top:30px;display:flex;flex-wrap:wrap;gap:16px}
+.list span{padding:18px 28px;border-radius:999px;background:var(--card);border:1.5px solid var(--line);font-size:30px;font-weight:700}
+.list span::before{content:"✓ ";color:var(--gold)}
+/* mockups */
+.phone{position:relative;width:420px;height:880px;border-radius:66px;padding:15px;background:linear-gradient(145deg,#3a404c,#0c0e12 45%,#262b34);box-shadow:0 60px 120px -30px #000,0 0 0 2px rgba(255,255,255,.1),0 0 140px -30px rgba(214,179,108,.5)}
+.phone>div{width:100%;height:100%;border-radius:52px;overflow:hidden;position:relative;background:#000}.phone img{width:100%;display:block}
+.phone>div::before{content:"";position:absolute;left:50%;top:15px;width:116px;height:34px;margin-left:-58px;border-radius:18px;background:#000;z-index:2}
+.phone.sm{width:300px;height:628px;border-radius:50px;padding:11px}.phone.sm>div{border-radius:40px}.phone.sm>div::before{top:11px;width:84px;height:24px;margin-left:-42px}
 .win{border-radius:24px;overflow:hidden;background:#12151b;box-shadow:0 50px 100px -30px #000,0 0 0 2px rgba(255,255,255,.08),0 0 140px -30px rgba(79,123,255,.55)}
 .bar{display:flex;gap:10px;height:50px;align-items:center;padding:0 22px;background:#1b1f27}.bar i{width:14px;height:14px;border-radius:50%}
 .win img{display:block;width:100%}
-.phone{position:absolute;right:-24px;bottom:-110px;width:270px;height:560px;border-radius:48px;padding:11px;background:linear-gradient(145deg,#3a404c,#0c0e12 45%,#262b34);box-shadow:0 40px 80px -20px #000,0 0 0 2px rgba(255,255,255,.1),0 0 90px -20px rgba(214,179,108,.5)}
-.phone div{width:100%;height:100%;border-radius:38px;overflow:hidden;position:relative}.phone img{width:100%;display:block}
-.phone div::before{content:"";position:absolute;left:50%;top:10px;width:76px;height:22px;margin-left:-38px;border-radius:12px;background:#000;z-index:2}
-.phone.solo{position:relative;right:auto;bottom:auto;width:440px;height:900px;border-radius:70px;padding:16px;margin-top:60px}
-.phone.solo div{border-radius:56px}.phone.solo div::before{top:16px;width:120px;height:34px;margin-left:-60px;border-radius:18px}
-.tag{margin-top:150px;font-size:32px;color:var(--gray)}.tag b{color:var(--white)}
-.chat{width:100%;padding:40px;border-radius:44px;background:#0B141A;border:1.5px solid var(--line);text-align:left}
-.chat .hd{display:flex;align-items:center;gap:22px;padding-bottom:30px;border-bottom:1.5px solid var(--line)}
-.chat .av{width:80px;height:80px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#E8CC8E,var(--gold));color:#07080A;font-family:Anton;font-size:36px}
+.glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(closest-side,rgba(214,179,108,.28),transparent 70%);z-index:0}
+.chip{position:absolute;z-index:3;display:flex;align-items:center;gap:14px;padding:20px 28px;border-radius:24px;background:rgba(14,16,20,.92);border:1.5px solid rgba(214,179,108,.45);font-size:30px;font-weight:700;box-shadow:0 30px 60px -20px #000}
+.chip em{font-style:normal;color:var(--gold)}
+.chip.r{border-color:rgba(255,77,94,.6)}.chip.r em{color:#FF7380}
+.link{margin-top:56px;height:200px;border:3px dashed rgba(214,179,108,.5);border-radius:40px;display:grid;place-items:center;font-size:30px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(214,179,108,.75)}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:56px}
+.mini div{padding:34px;border-radius:32px;background:var(--card);border:1.5px solid var(--line);text-align:left}
+.mini div.g{border-color:rgba(214,179,108,.75);background:rgba(214,179,108,.1)}
+.mini b{display:block;font-size:30px;color:var(--gray);font-weight:700}.mini strong{display:block;margin-top:8px;font-family:Anton;font-size:96px;line-height:1}.mini div.g strong{color:var(--gold)}
+.mini small{display:block;margin-top:10px;font-size:26px;color:var(--gray)}
+.qa{padding:40px 46px;border-radius:38px;background:var(--card);border:1.5px solid var(--line)}
+.qa+.qa{margin-top:26px}
+.qa h3{display:flex;gap:22px;align-items:flex-start;font-size:44px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.qa h3::before{content:"?";flex-shrink:0;width:62px;height:62px;border-radius:18px;display:grid;place-items:center;background:var(--red);color:#fff;font-size:38px}
+.qa p{margin:18px 0 0 84px;font-size:34px;line-height:1.4;color:var(--gray)}.qa p b{color:var(--gold)}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+.vs>div{padding:44px 38px;border-radius:38px;border:1.5px solid var(--line);background:var(--card)}
+.vs>div.ok{border-color:rgba(214,179,108,.7);background:rgba(214,179,108,.08)}
+.vs h3{font-family:Anton;font-size:68px;text-transform:uppercase;line-height:1}.vs .bad h3{color:#FF6B78}.vs .ok h3{color:var(--gold)}
+.vs small{display:block;margin-top:8px;font-size:28px;font-weight:700;color:var(--gray);letter-spacing:.08em;text-transform:uppercase}
+.vs ul{list-style:none;margin-top:30px}.vs li{font-size:31px;line-height:1.35;padding:12px 0;border-top:1.5px solid var(--line);color:#C9CED6}
+.vs .bad li::before{content:"✕  ";color:var(--red);font-weight:900}.vs .ok li::before{content:"✓  ";color:var(--gold);font-weight:900}
+.chat{padding:36px;border-radius:44px;background:#0B141A;border:1.5px solid var(--line);margin-top:56px}
+.chat .hd{display:flex;align-items:center;gap:22px;padding-bottom:28px;border-bottom:1.5px solid var(--line)}
+.chat .av{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#E8CC8E,var(--gold));color:#07080A;font-family:Anton;font-size:36px}
 .chat .hd b{display:block;font-size:38px}.chat .hd small{font-size:28px;color:#25D366}
-.msg{max-width:78%;margin-top:26px;padding:24px 32px;border-radius:30px;font-size:34px;line-height:1.35}
+.msg{max-width:80%;margin-top:24px;padding:24px 32px;border-radius:30px;font-size:34px;line-height:1.35}
 .msg.c{background:#1F2C34;border-bottom-left-radius:8px}.msg.e{margin-left:auto;background:#005C4B;border-bottom-right-radius:8px}
-.info{width:100%;margin-top:50px;text-align:left}
-.info div{display:flex;align-items:center;gap:30px;padding:30px 0;border-bottom:1.5px solid var(--line);font-size:38px;font-weight:700}
-.info div small{display:block;font-size:26px;font-weight:600;color:var(--gray);letter-spacing:.1em;text-transform:uppercase}
-.info i{flex-shrink:0;width:84px;height:84px;border-radius:24px;display:grid;place-items:center;background:rgba(214,179,108,.12);border:1.5px solid rgba(214,179,108,.4);font-style:normal;font-size:40px}
-
-/* ===== Variações de fundo (cada story usa uma) ===== */
-:root{--red:#FF4D5E}
-.s{--fg:var(--white);--mut:var(--gray);color:var(--fg)}
-.bg-aura::before{}
-.bg-ink{background:#08090B}
-.bg-ink::before{background:radial-gradient(760px 640px at 100% 0%,rgba(214,179,108,.16),transparent 70%),radial-gradient(620px 560px at 0% 100%,rgba(255,77,94,.08),transparent 70%)}
-.bg-blue{background:linear-gradient(165deg,#0B1430 0%,#080B16 55%,#06070A 100%)}
-.bg-blue::before{background:radial-gradient(800px 700px at 85% 15%,rgba(79,123,255,.24),transparent 70%),radial-gradient(500px 500px at 0% 95%,rgba(255,77,94,.08),transparent 70%)}
-.bg-grid{background:#060709}
-.bg-grid::before{background:linear-gradient(rgba(255,255,255,.025) 1.5px,transparent 1.5px) 0 0/90px 90px,linear-gradient(90deg,rgba(255,255,255,.025) 1.5px,transparent 1.5px) 0 0/90px 90px,radial-gradient(700px 600px at 0% 100%,rgba(255,77,94,.13),transparent 70%),radial-gradient(600px 500px at 100% 0%,rgba(79,123,255,.18),transparent 70%)}
-.bg-gold{background:#0A0806}
-.bg-gold::before{background:radial-gradient(circle at 50% 46%,rgba(214,179,108,.2),transparent 42%),repeating-radial-gradient(circle at 50% 46%,rgba(214,179,108,.045) 0 2px,transparent 2px 120px)}
-.bg-beam{background:#07080A}
-.bg-beam::before{background:linear-gradient(118deg,transparent 18%,rgba(79,123,255,.12) 30%,transparent 42%),linear-gradient(118deg,transparent 52%,rgba(255,77,94,.07) 60%,transparent 68%),linear-gradient(118deg,transparent 72%,rgba(214,179,108,.1) 80%,transparent 90%)}
-/* marca d'água em contorno */
-.wm{position:absolute;z-index:0;font-family:Anton;line-height:.8;color:transparent;-webkit-text-stroke:3px rgba(255,255,255,.05);pointer-events:none}
-.wm.r{-webkit-text-stroke-color:rgba(255,77,94,.14)}
-/* detalhes em vermelho */
-.kick.red{color:var(--red);border-color:rgba(255,77,94,.55)}.kick.red::before{background:var(--red);box-shadow:0 0 14px var(--red)}
-.ul{position:relative;display:inline-block}
-.ul::after{content:"";position:absolute;left:4%;right:2%;bottom:-.02em;height:.09em;border-radius:20px;background:var(--red);transform:rotate(-2deg)}
-.tap::before{content:"● ";color:var(--red);font-size:.8em}
-.li.off i{border-color:rgba(255,77,94,.55)!important;color:var(--red)!important}
-.redtag{display:inline-block;padding:10px 22px;border-radius:10px;background:var(--red);color:#fff;font-size:24px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transform:rotate(-3deg)}
-.pill.red{background:rgba(255,77,94,.12);border-color:rgba(255,77,94,.7);color:#FF6B78}
-.num.red{background:radial-gradient(circle at 35% 30%,#FF9AA3,var(--red) 55%,#B3202F);color:#fff;box-shadow:0 0 60px rgba(255,77,94,.4)}
-.left{align-items:flex-start;text-align:left}
-.left .chips{justify-content:flex-start}
+.info{margin-top:50px}
+.info div{display:flex;align-items:center;gap:30px;padding:34px 0;border-bottom:1.5px solid var(--line);font-size:44px;font-weight:800}
+.info div small{display:block;font-size:26px;font-weight:700;color:var(--gray);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
 </style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+ <symbol id="wa" viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.8 8.6c.2-.5.6-.6 1-.6l.6 1.5-.6.9c.5 1.1 1.4 2 2.5 2.5l.9-.6 1.5.6c0 .4-.1.8-.6 1-1.9.9-6.2-3.3-5.3-5.3Z"/></symbol>
+ <symbol id="google" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+ <symbol id="shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+ <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+ <symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
+ <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+ <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4 4.3-6 8-6s6.8 2 8 6"/></symbol>
+ <symbol id="tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+ <symbol id="device" viewBox="0 0 24 24"><rect x="2" y="4" width="15" height="11" rx="1.5"/><rect x="15" y="9" width="7" height="11" rx="1.5"/><path d="M6 19h6"/></symbol>
+</defs></svg>
 
-<!-- ======================= PLANOS ======================= -->
-<section class="s bg-blue" data-n="planos-01"><span class="wm " style="right:-60px;top:560px;font-size:620px" aria-hidden="true">R$</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="1"></span></div>
- <div class="mid"><span class="kick red">Planos</span><h1>Preço <span class="ul">fechado.</span><br><em>Sem surpresa.</em></h1>
- <p class="sub">Você sabe exatamente o que está contratando <b>antes de começar.</b></p></div><p class="tap">Toque para ver os planos</p></section>
+<!-- ======================= PLANOS (6) ======================= -->
+<section class="s bg-blue" data-n="planos-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="6" data-i="1"></span></div>
+ <div class="fill"><span class="tag">Planos e preços</span>
+  <h2 class="H">Quanto custa<br>um site <span class="g">pro-<br>fissional?</span></h2>
+  <p class="lead">Preço fechado, combinado antes e <b>sem surpresa no final.</b></p>
+  <div class="mini"><div><b>Essencial</b><strong>R$ 300</strong><small>O essencial bem feito</small></div><div class="g"><b style="color:var(--gold)">Premium Page ★</b><strong>R$ 500</strong><small>Tudo incluso</small></div></div></div>
+ <div class="tap"><span>Planos</span><span>Toque para ver</span></div></section>
 
-<section class="s bg-ink" data-n="planos-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="2"></span></div>
- <div class="mid"><div class="card"><div class="ph"><span class="pn">Essencial</span><span class="pv"><small>R$</small>300</span></div><div class="hr"></div>
-  <div class="li"><i>✓</i>Site profissional personalizado</div><div class="li"><i>✓</i>Celular e computador</div><div class="li"><i>✓</i>Botão direto pro WhatsApp</div>
-  <div class="li"><i>✓</i>2 rodadas de ajuste</div><div class="li"><i>✓</i>Entrega em 2 a 7 dias</div>
-  <div class="li off"><i>✕</i>Sem domínio próprio</div><div class="li off"><i>✕</i>Sem vídeo na página</div>
-  <p class="note">Vídeo opcional: <b>+ R$ 38</b></p></div></div><p class="tap">Agora veja o Premium</p></section>
+<section class="s bg-ink" data-n="planos-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="6" data-i="2"></span></div>
+ <div class="fill"><span class="tag line">Plano 01</span>
+  <div class="card" style="margin-top:40px"><div class="row"><h2 class="H sm" style="margin:0">Essencial</h2><div class="price"><small>R$</small>300</div></div><div class="hr"></div>
+   <div class="li"><i>✓</i>Site profissional personalizado</div><div class="li"><i>✓</i>Celular e computador</div><div class="li"><i>✓</i>Botão direto pro WhatsApp</div>
+   <div class="li"><i>✓</i>2 rodadas de ajuste</div><div class="li"><i>✓</i>Entrega em 2 a 7 dias</div>
+   <div class="li no"><i>✕</i>Sem domínio próprio</div><div class="li no"><i>✕</i>Vídeo na página: + R$ 38</div>
+   <p class="ideal"><b>Ideal pra:</b> quem quer começar com uma presença profissional.</p></div></div>
+ <div class="tap"><span>Essencial</span><span>Ver o Premium</span></div></section>
 
-<section class="s bg-gold" data-n="planos-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="3"></span></div>
- <div class="mid"><div class="card gold"><span class="flag">★ Recomendado</span><div class="ph"><span class="pn" style="color:var(--gold)">Premium Page</span><span class="pv"><small>R$</small>500</span></div><div class="hr"></div>
-  <div class="li"><i>✓</i>Tudo do Essencial</div><div class="li"><i>✓</i>Domínio seunome.com.br</div><div class="li"><i>✓</i>Vídeo na página incluso</div>
-  <div class="li"><i>✓</i>Até 5 rodadas de ajuste</div><div class="li"><i>✓</i>Entrega em 2 a 5 dias</div>
-  <p class="note">Tudo incluso, <b>sem nenhum adicional.</b></p></div></div><p class="tap">Faz a conta comigo</p></section>
+<section class="s bg-gold" data-n="planos-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="6" data-i="3"></span></div>
+ <div class="fill"><span class="tag gold">★ Mais completo</span>
+  <div class="card gold" style="margin-top:40px"><div class="row"><h2 class="H sm" style="margin:0;color:var(--gold)">Premium<br>Page</h2><div class="price"><small>R$</small>500</div></div><div class="hr"></div>
+   <div class="li"><i>✓</i>Tudo do Essencial</div><div class="li"><i>✓</i><span>Domínio <b style="color:var(--gold)">seunome.com.br</b></span></div><div class="li"><i>✓</i>Vídeo na página incluso</div>
+   <div class="li"><i>✓</i>Até 5 rodadas de ajuste</div><div class="li"><i>✓</i>Entrega mais rápida: 2 a 5 dias</div>
+   <p class="ideal"><b>Ideal pra:</b> quem quer passar autoridade e ter um endereço com o próprio nome.</p></div></div>
+ <div class="tap"><span>Premium Page</span><span>Comparar</span></div></section>
 
-<section class="s bg-grid" data-n="planos-04"><span class="wm r" style="left:-40px;bottom:180px;font-size:700px" aria-hidden="true">$</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="4"></span></div>
- <div class="mid"><span class="redtag">Atenção</span><h2 style="margin-top:30px">Faz a <em>conta.</em></h2>
-  <div class="card cmp" style="margin-top:70px"><p class="lab">Essencial + vídeo</p><span class="strike">R$ 338</span></div>
-  <p class="vs">ou</p>
-  <div class="card gold cmp"><p class="lab" style="color:var(--gold)">Premium Page · tudo incluso</p><p class="big">R$ 500</p><p class="lab" style="font-weight:600">Domínio · vídeo · 5 ajustes · 2 a 5 dias</p></div>
-  <span class="pill red">Só R$ 162 a mais</span></div></section>
+<section class="s bg-grid" data-n="planos-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="6" data-i="4"></span></div>
+ <div class="fill"><span class="tag">Lado a lado</span><h2 class="H m" style="margin-bottom:46px">Compare <span class="g">os planos</span></h2>
+  <div class="tbl">
+   <div class="tr"><span></span><span>Essencial</span><span>Premium</span></div>
+   <div class="tr"><span>Site personalizado</span><span class="y">✓</span><span class="y">✓</span></div>
+   <div class="tr"><span>Celular e computador</span><span class="y">✓</span><span class="y">✓</span></div>
+   <div class="tr"><span>Botão do WhatsApp</span><span class="y">✓</span><span class="y">✓</span></div>
+   <div class="tr"><span>Domínio .com.br</span><span class="n">✕</span><span class="y">✓</span></div>
+   <div class="tr"><span>Vídeo na página</span><span>+ R$ 38</span><span class="y">✓</span></div>
+   <div class="tr"><span>Rodadas de ajuste</span><span>2</span><span><b>até 5</b></span></div>
+   <div class="tr"><span>Prazo</span><span>2 a 7 dias</span><span><b>2 a 5 dias</b></span></div>
+   <div class="tr tot"><span style="font-family:Inter;font-size:32px;font-weight:700">Investimento</span><span>R$ 300</span><span style="color:var(--gold)">R$ 500</span></div>
+  </div></div>
+ <div class="tap"><span>Comparativo</span><span>Faz a conta</span></div></section>
 
-<section class="s bg-beam" data-n="planos-05"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="5"></span></div>
- <div class="mid"><h1>Escolha o<br><em>seu plano.</em></h1><p class="sub">Eu te respondo <b>pessoalmente.</b></p>
- <div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
+<section class="s bg-beam" data-n="planos-05"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="6" data-i="5"></span></div>
+ <div class="fill center"><span class="tag">Faz a conta</span>
+  <h2 class="H m">Vale a pena<br><span class="g">o Premium?</span></h2>
+  <div class="eq" style="margin-top:60px"><span>300</span><span class="op">+</span><span>38</span><span class="op">=</span><span class="tot">338</span></div>
+  <div class="eqlab"><span>Essencial</span><span>Vídeo</span><span>Sem domínio</span></div>
+  <p class="lead" style="margin-top:60px">Por <b class="g">só R$ 162 a mais</b>, o Premium já vem com:</p>
+  <div class="bonus" style="text-align:left;width:100%"><div>Domínio .com.br</div><div>Vídeo na página</div><div>3 ajustes extras</div><div>Entrega mais rápida</div></div></div>
+ <div class="tap"><span>A conta</span><span>Escolher</span></div></section>
 
-<!-- ======================= COMO FUNCIONA ======================= -->
-<section class="s bg-ink" data-n="funciona-01"><span class="wm " style="right:-30px;top:420px;font-size:900px" aria-hidden="true">4</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
- <div class="mid"><span class="kick red">Como funciona</span><h1>Seu site em<br><em class="ul">4 passos.</em></h1><p class="sub">Simples, rápido e <b>direto comigo.</b></p></div><p class="tap">Toque para ver</p></section>
+<section class="s bg-aura" data-n="planos-06"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="6" data-i="6"></span></div>
+ <div class="fill center"><span class="tag">Próximo passo</span><h2 class="H">Escolha<br><span class="g">o seu.</span></h2>
+  <p class="lead">Me chama no WhatsApp: eu tiro suas dúvidas e <b>te respondo pessoalmente.</b></p>
+  <div class="link" style="width:100%">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
-<section class="s bg-grid" data-n="funciona-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="2"></span></div>
- <div class="mid"><div class="step"><span class="num">1</span><div><h3>Me chama</h3><p>No WhatsApp, e escolhe o seu plano.</p></div></div>
- <div class="step"><span class="num red">2</span><div><h3>Me manda tudo</h3><p>Fotos, textos e informações do seu trabalho.</p></div></div></div><p class="tap">Continua</p></section>
+<!-- ======================= COMO FUNCIONA (5) ======================= -->
+<section class="s bg-ink" data-n="funciona-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="1"></span></div>
+ <div class="fill"><span class="tag">Como funciona</span>
+  <h2 class="H">Do zero ao<br><span class="g">site no ar</span><br>em <span class="box">4 passos</span></h2>
+  <p class="lead">Você não precisa entender nada de tecnologia. <b>Eu cuido de tudo.</b></p>
+  <div class="list"><span>A partir de 2 dias</span><span>Direto comigo</span><span>Preço fechado</span></div></div>
+ <div class="tap"><span>Passo a passo</span><span>Começar</span></div></section>
 
-<section class="s bg-blue" data-n="funciona-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="3"></span></div>
- <div class="mid"><div class="step"><span class="num">3</span><div><h3>Eu crio e mostro</h3><p>Você pede os ajustes que quiser.</p></div></div>
- <div class="step"><span class="num red">4</span><div><h3>Site no ar</h3><p>A partir de 2 dias, pronto pra receber clientes.</p></div></div></div><p class="tap">Bora começar?</p></section>
+<section class="s bg-blue" data-n="funciona-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="2"></span></div>
+ <div class="fill"><h2 class="H m">Você me<br><span class="g">chama</span> e <span class="g">manda</span></h2>
+  <div class="steps">
+   <div class="st hot"><span class="n0">1</span><div><h3>Me chama no WhatsApp</h3><p>Conversa rápida pra entender o seu negócio e escolher o plano.</p></div></div>
+   <div class="st"><span class="n0">2</span><div><h3>Me manda o material</h3><p>O que você tiver, eu organizo:</p></div></div></div>
+  <div class="list"><span>Fotos</span><span>Logo</span><span>Serviços</span><span>Textos</span><span>Contatos</span></div></div>
+ <div class="tap"><span>Passos 1 e 2</span><span>Continua</span></div></section>
 
-<section class="s bg-gold" data-n="funciona-04"><span class="wm " style="left:-30px;bottom:260px;font-size:520px" aria-hidden="true">GO</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
- <div class="mid"><h1>Bora<br><em>começar?</em></h1><p class="sub">Toque no link e <b>me chama.</b></p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
+<section class="s bg-grid" data-n="funciona-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="3"></span></div>
+ <div class="fill"><div class="st hot"><span class="n0">3</span><div><h3>Eu crio e te mostro</h3><p>Você vê o site pronto e pede os ajustes.</p></div></div>
+  <div style="position:relative;display:flex;justify-content:center;margin-top:60px">
+   <span class="glow" style="left:50%;top:50%;margin:-350px 0 0 -350px"></span>
+   <div class="phone sm" style="transform:rotate(-6deg) translateX(-150px)"><div><img src="img/ga-topo.jpg"></div></div>
+   <div class="chip" style="right:0;top:80px"><em>2</em> ajustes · Essencial</div>
+   <div class="chip" style="right:0;top:210px"><em>até 5</em> · Premium</div>
+   <div class="chip r" style="right:40px;bottom:120px"><em>●</em> Você aprova tudo</div></div></div>
+ <div class="tap"><span>Passo 3</span><span>Continua</span></div></section>
 
-<!-- ======================= SOBRE ======================= -->
-<section class="s bg-beam" data-n="sobre-01"><span class="wm " style="right:-80px;top:380px;font-size:1000px" aria-hidden="true">G</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
- <div class="mid left"><span class="kick red">Sobre</span><h1>Prazer,<br><em>Gabriel.</em></h1><p class="sub">Crio sites profissionais pra quem quer ser <b>encontrado e escolhido.</b></p>
- <p class="tag">📍 <b>Goiânia · GO</b></p></div><p class="tap">Toque para conhecer</p></section>
+<section class="s bg-gold" data-n="funciona-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="4"></span></div>
+ <div class="fill"><div class="st hot"><span class="n0">4</span><div><h3>Seu site no ar</h3><p>Pronto pra receber clientes no WhatsApp.</p></div></div>
+  <div class="tiles">
+   <div class="tile"><span class="ico"><svg><use href="#clock"/></svg></span><h3>2 a 5 dias</h3><p>no Premium Page</p></div>
+   <div class="tile"><span class="ico"><svg><use href="#clock"/></svg></span><h3>2 a 7 dias</h3><p>no Essencial</p></div>
+   <div class="tile"><span class="ico"><svg><use href="#google"/></svg></span><h3>seunome<br>.com.br</h3><p>domínio no Premium</p></div>
+   <div class="tile"><span class="ico r"><svg><use href="#wa"/></svg></span><h3>Mensagem pronta</h3><p>o cliente chega no seu WhatsApp</p></div></div></div>
+ <div class="tap"><span>Passo 4</span><span>Bora?</span></div></section>
+
+<section class="s bg-aura" data-n="funciona-05"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="5" data-i="5"></span></div>
+ <div class="fill center"><span class="tag">É agora</span><h2 class="H">Bora<br><span class="g">começar?</span></h2>
+  <p class="lead">O primeiro passo é uma mensagem. <b>Eu te respondo pessoalmente.</b></p><div class="link" style="width:100%">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
+
+<!-- ======================= SOBRE (4) ======================= -->
+<section class="s bg-beam" data-n="sobre-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
+ <div class="fill"><span class="tag">Sobre mim</span><h2 class="H">Prazer,<br><span class="it">Gabriel.</span></h2>
+  <p class="lead">Crio sites que fazem profissionais <b>parecerem tão bons quanto realmente são.</b></p>
+  <div class="tiles">
+   <div class="tile"><span class="ico"><svg><use href="#user"/></svg></span><h3>Direto comigo</h3><p>do começo ao fim</p></div>
+   <div class="tile"><span class="ico"><svg><use href="#tag"/></svg></span><h3>Preço fechado</h3><p>sem surpresa</p></div></div></div>
+ <div class="tap"><span>Goiânia · GO</span><span>Conhecer</span></div></section>
 
 <section class="s bg-ink" data-n="sobre-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="2"></span></div>
- <div class="mid"><h2>Por que ter<br><em>um site?</em></h2>
- <div class="versus" style="margin-top:70px"><div class="vbox"><h3 class="r">Instagram</h3><p>Terreno alugado. O algoritmo muda e o cliente não te acha.</p></div>
- <div class="vbox g"><h3 class="y">Site</h3><p>Endereço próprio. Aparece no Google e leva pro seu WhatsApp.</p></div></div></div><p class="tap">Continua</p></section>
+ <div class="fill"><span class="tag">A verdade</span><h2 class="H m">Seu Instagram<br><span class="r">não é seu.</span></h2>
+  <div class="vs"><div class="bad"><h3>Instagram</h3><small>terreno alugado</small><ul><li>O algoritmo decide quem te vê</li><li>A conta pode cair</li><li>Você depende da plataforma</li></ul></div>
+  <div class="ok"><h3>Site</h3><small>endereço próprio</small><ul><li>Você no controle</li><li>Aparece no Google</li><li>Leva direto pro WhatsApp</li></ul></div></div></div>
+ <div class="tap"><span>Por que site</span><span>Continua</span></div></section>
 
 <section class="s bg-blue" data-n="sobre-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="3"></span></div>
- <div class="mid"><h2>Como eu<br><em class="ul">trabalho.</em></h2>
- <div class="chips"><span>Direto comigo</span><span>Preço fechado</span><span>Entrega rápida</span><span>Celular e computador</span><span>WhatsApp com mensagem pronta</span></div></div><p class="tap">Continua</p></section>
+ <div class="fill"><h2 class="H m">O que um site<br><span class="g">faz por você</span></h2>
+  <div class="tiles">
+   <div class="tile"><span class="ico"><svg><use href="#google"/></svg></span><h3>Te encontram</h3><p>quando pesquisam no Google</p></div>
+   <div class="tile"><span class="ico"><svg><use href="#shield"/></svg></span><h3>Passa confiança</h3><p>antes do primeiro contato</p></div>
+   <div class="tile"><span class="ico r"><svg><use href="#wa"/></svg></span><h3>Gera contato</h3><p>direto no seu WhatsApp</p></div>
+   <div class="tile"><span class="ico"><svg><use href="#device"/></svg></span><h3>Em todo lugar</h3><p>celular e computador</p></div></div></div>
+ <div class="tap"><span>Benefícios</span><span>Continua</span></div></section>
 
-<section class="s bg-grid" data-n="sobre-04"><span class="wm r" style="left:-40px;bottom:250px;font-size:400px" aria-hidden="true">SITE</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
- <div class="mid"><h1><span class="ul">Vamos</span> criar<br><em>o seu?</em></h1><p class="sub">Toque no link e <b>me chama.</b></p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
+<section class="s bg-grid" data-n="sobre-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
+ <div class="fill center"><span class="tag">Vamos?</span><h2 class="H">Bora criar<br><span class="g">o seu?</span></h2>
+  <p class="lead">Me chama e me conta do seu trabalho.</p><div class="link" style="width:100%">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
-<!-- ======================= SITES (portfólio) ======================= -->
-<section class="s bg-gold" data-n="sites-01"><span class="wm " style="left:-30px;top:330px;font-size:440px" aria-hidden="true">WEB</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
- <div class="mid"><span class="redtag">Projetos reais</span><span class="kick" style="margin-top:40px">Portfólio</span><h1>Sites que<br><em>eu criei.</em></h1><p class="sub">Projetos reais, <b>feitos por mim.</b></p></div><p class="tap">Toque para ver</p></section>
+<!-- ======================= SITES (4) ======================= -->
+<section class="s bg-gold" data-n="sites-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="1"></span></div>
+ <div class="fill"><span class="tag">Portfólio</span><h2 class="H">Sites que<br><span class="g">eu criei</span></h2>
+  <div style="position:relative;height:720px;margin-top:40px">
+   <div class="phone sm" style="position:absolute;left:40px;top:40px;transform:rotate(-8deg)"><div><img src="img/fernando-topo.jpg"></div></div>
+   <div class="phone sm" style="position:absolute;right:40px;top:0;transform:rotate(7deg)"><div><img src="img/renato-site-celular-topo.jpg"></div></div>
+   <div class="chip r" style="left:50%;bottom:10px;transform:translateX(-50%);white-space:nowrap"><em>●</em> Projetos reais</div></div></div>
+ <div class="tap"><span>Portfólio</span><span>Ver projetos</span></div></section>
 
 <section class="s bg-ink" data-n="sites-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="2"></span></div>
- <div class="mid"><h2 style="font-size:70px">Dr. Renato Sericaku</h2><p class="sub" style="margin-top:16px">Cirurgião Bucomaxilofacial e Médico</p>
- <div class="mock"><div class="win"><div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><img src="img/renato-site-desktop-topo.jpg"></div>
- <div class="phone"><div><img src="img/renato-site-celular-topo.jpg"></div></div></div></div><p class="tap">Próximo projeto</p></section>
+ <div class="fill"><span class="tag line">Projeto 01</span><h2 class="H sm">Dr. Renato<br><span class="g">Sericaku</span></h2><p class="lead" style="font-size:34px;margin-top:20px">Cirurgião Bucomaxilofacial e Médico · Goiânia</p>
+  <div style="position:relative;margin-top:50px"><div class="win"><div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><img src="img/renato-site-desktop-topo.jpg"></div>
+   <div class="phone sm" style="position:absolute;right:-30px;bottom:-230px;width:250px;height:524px;border-radius:44px;padding:10px"><div style="border-radius:35px"><img src="img/renato-site-celular-topo.jpg"></div></div></div>
+  <div class="list" style="margin-top:56px;max-width:660px"><span>Identidade visual</span><span>WhatsApp por tratamento</span><span>Animações</span></div></div>
+ <div class="tap"><span>Dr. Renato</span><span>Próximo</span></div></section>
 
 <section class="s bg-blue" data-n="sites-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="3"></span></div>
- <div class="mid"><h2 style="font-size:70px">Site para médico</h2><p class="sub" style="margin-top:16px">Apresentação, especialidades e WhatsApp</p>
- <div class="phone solo"><div><img src="img/fernando-topo.jpg"></div></div></div></section>
+ <div class="fill"><span class="tag line">Projeto 02</span><h2 class="H sm">Site para<br><span class="g">médico</span></h2>
+  <div style="display:flex;gap:40px;align-items:center;margin-top:50px">
+   <div class="phone"><div><img src="img/fernando-topo.jpg"></div></div>
+   <div style="display:flex;flex-direction:column;gap:22px">
+    <div class="chip" style="position:static"><em>✓</em> Apresentação</div><div class="chip" style="position:static"><em>✓</em> Especialidades</div><div class="chip" style="position:static"><em>✓</em> Agendamento</div><div class="chip r" style="position:static"><em>●</em> WhatsApp</div></div></div></div>
+ <div class="tap"><span>Site médico</span><span>Próximo</span></div></section>
 
-<section class="s bg-beam" data-n="sites-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
- <div class="mid"><h1>Quer um<br><em class="ul">assim?</em></h1><p class="sub">Toque no link e veja os planos.</p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
+<section class="s bg-aura" data-n="sites-04"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="4" data-i="4"></span></div>
+ <div class="fill center"><span class="tag">Sua vez</span><h2 class="H">Quer um<br><span class="g">assim?</span></h2>
+  <p class="lead">Profissional, rápido e pensado pra <b>trazer cliente.</b></p><div class="link" style="width:100%">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
-<!-- ======================= DÚVIDAS ======================= -->
-<section class="s bg-blue" data-n="duvidas-01"><span class="wm " style="right:-40px;top:300px;font-size:1100px" aria-hidden="true">?</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="1"></span></div>
- <div class="mid"><span class="kick red">Dúvidas</span>
- <div class="qa" style="margin-top:70px"><h3>Preciso entender de tecnologia?</h3><p><b>Não.</b> Você me passa as informações e eu faço tudo.</p></div>
- <div class="qa"><h3>Posso ter um domínio com meu nome?</h3><p><b>Sim,</b> já vem incluso no Premium Page. Ex.: seunome.com.br</p></div></div><p class="tap">Mais dúvidas</p></section>
+<!-- ======================= DÚVIDAS (3) ======================= -->
+<section class="s bg-blue" data-n="duvidas-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="1"></span></div>
+ <div class="fill"><span class="tag">Dúvidas</span><h2 class="H m" style="margin-bottom:50px">Perguntas<br><span class="g">frequentes</span></h2>
+  <div class="qa"><h3>Preciso entender de tecnologia?</h3><p><b>Não.</b> Você me passa as informações e eu faço tudo.</p></div>
+  <div class="qa"><h3>Funciona no celular?</h3><p><b>Sim.</b> Fica perfeito no celular e no computador.</p></div></div>
+ <div class="tap"><span>Dúvidas</span><span>Mais</span></div></section>
 
 <section class="s bg-ink" data-n="duvidas-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="2"></span></div>
- <div class="mid"><div class="qa"><h3>E se eu não gostar de algo?</h3><p>Tem rodadas de ajuste: <b>2 no Essencial</b> e <b>até 5 no Premium.</b></p></div>
- <div class="qa"><h3>Quanto tempo demora?</h3><p><b>2 a 5 dias</b> no Premium e <b>2 a 7 dias</b> no Essencial.</p></div></div><p class="tap">Ficou alguma dúvida?</p></section>
+ <div class="fill">
+  <div class="qa"><h3>Posso ter um domínio com meu nome?</h3><p><b>Sim,</b> já vem incluso no Premium Page.</p></div>
+  <div class="qa"><h3>E se eu não gostar de algo?</h3><p>Tem ajustes: <b>2 no Essencial</b> e <b>até 5 no Premium.</b></p></div>
+  <div class="qa"><h3>Quanto tempo demora?</h3><p><b>2 a 5 dias</b> no Premium e <b>2 a 7</b> no Essencial.</p></div></div>
+ <div class="tap"><span>Dúvidas</span><span>Mais</span></div></section>
 
-<section class="s bg-grid" data-n="duvidas-03"><span class="wm r" style="left:-60px;bottom:200px;font-size:900px" aria-hidden="true">?</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="3"></span></div>
- <div class="mid"><h1>Ficou alguma<br><em>dúvida?</em></h1><p class="sub">Me chama que eu te <b>respondo pessoalmente.</b></p><div class="link">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
+<section class="s bg-grid" data-n="duvidas-03"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="3" data-i="3"></span></div>
+ <div class="fill center"><span class="tag">Ainda tem dúvida?</span><h2 class="H">Me <span class="g">pergunta.</span></h2>
+  <p class="lead">Eu respondo <b>pessoalmente</b>, sem robô.</p><div class="link" style="width:100%">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
-<!-- ======================= CONTATO ======================= -->
-<section class="s bg-beam" data-n="contato-01"><span class="wm " style="right:-40px;top:300px;font-size:700px" aria-hidden="true">OI</span><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="2" data-i="1"></span></div>
- <div class="mid"><span class="kick red">Contato</span><h1>Bora criar<br><em>o seu site?</em></h1>
- <div class="chat" style="margin-top:70px"><div class="hd"><span class="av">GA</span><div><b>Gabriel Augusto</b><small>online</small></div></div>
- <p class="msg c">Oi, Gabriel! Quero um site pro meu negócio 🙂</p><p class="msg e">Bora! Me conta do seu trabalho que eu te mostro os planos.</p></div></div><p class="tap">Me chama</p></section>
+<!-- ======================= CONTATO (2) ======================= -->
+<section class="s bg-beam" data-n="contato-01"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="2" data-i="1"></span></div>
+ <div class="fill"><span class="tag">Contato</span><h2 class="H">Bora criar<br><span class="g">o seu site?</span></h2>
+  <div class="chat"><div class="hd"><span class="av">GA</span><div><b>Gabriel Augusto</b><small>online</small></div></div>
+   <p class="msg c">Oi, Gabriel! Quero um site pro meu negócio 🙂</p><p class="msg e">Bora! Me conta do seu trabalho que eu te mostro os planos.</p></div></div>
+ <div class="tap"><span>Contato</span><span>Me chama</span></div></section>
 
-<section class="s bg-ink" data-n="contato-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="2" data-i="2"></span></div>
- <div class="mid"><h2>Fale direto<br><em>comigo.</em></h2>
- <div class="info"><div><i>💬</i><span><small>WhatsApp</small>(62) 98259-5333</span></div><div><i>✉️</i><span><small>E-mail</small>augustooliv940@gmail.com</span></div><div><i>📍</i><span><small>Localização</small>Goiânia · GO</span></div></div>
- <div class="link" style="height:160px">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
+<section class="s bg-gold" data-n="contato-02"><div class="top"><b><i>G</i>Gabriel Augusto</b><span class="dots" data-of="2" data-i="2"></span></div>
+ <div class="fill"><h2 class="H m">Fale direto<br><span class="g">comigo</span></h2>
+  <div class="info">
+   <div><span class="ico r"><svg><use href="#wa"/></svg></span><span><small>WhatsApp</small>(62) 98259-5333</span></div>
+   <div><span class="ico"><svg><use href="#mail"/></svg></span><span><small>E-mail</small><span style="font-size:38px">augustooliv940@gmail.com</span></span></div>
+   <div><span class="ico"><svg><use href="#pin"/></svg></span><span><small>Localização</small>Goiânia · GO</span></div></div>
+  <div class="link" style="width:100%;height:170px">↓ &nbsp;Toque no link&nbsp; ↓</div></div></section>
 
 <script>
 document.querySelectorAll('.dots').forEach(d=>{for(let i=1;i<=+d.dataset.of;i++){const s=document.createElement('span');if(i==+d.dataset.i)s.className='on';d.appendChild(s)}});
