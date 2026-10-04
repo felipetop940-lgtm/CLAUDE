@@ -1,4 +1,4 @@
-# Portfólio: site do Dr. Renato Sericaku
+# Portfólio: site do Dr. Renato Nishigaki
 
 ## Texto pra narrar (3 segundos de pausa entre as partes)
 1. Olha o site que eu acabei de entregar pro doutor Renato, cirurgião bucomaxilo e médico aqui de Goiânia.
@@ -7,16 +7,16 @@
 4. E cada tratamento tem um botão que leva direto pro WhatsApp dele, com a mensagem pronta.
 5. Quer um site assim pro seu negócio? Entra no meu perfil e clica no link.
 
-## Legenda do post (feed / Reels)
-Novo projeto entregue: site do Dr. Renato Sericaku 🦷
+## Legenda do post (carrossel do feed)
+Novo projeto entregue: site do Dr. Renato Nishigaki 🦷
 
 Cirurgião bucomaxilofacial e médico aqui de Goiânia, com foco em extração de dentes.
 
-O que eu fiz pensando em transformar visita em paciente:
-✅ Mensagem direta logo no topo: "Extração de dente é cirurgia. Faça com quem é cirurgião."
+O que eu fiz pensando em transformar visita em paciente agendado:
+✅ Identidade visual própria, com monograma e paleta em azul
+✅ Botões de WhatsApp desde o topo, pra quem quer agendar sem enrolação
 ✅ Formação e certificado de especialista pra passar autoridade real
-✅ Cada tratamento com botão direto pro WhatsApp, com a mensagem pronta
-✅ Perfeito no celular e no computador
+✅ Animações elegantes e perfeito no celular
 
 Quer um site assim pro seu negócio? 🔗 Link na bio.
 
@@ -24,6 +24,6 @@ Quer um site assim pro seu negócio? 🔗 Link na bio.
 
 ## Onde usar cada arquivo
 - `portfolio-renato.mp4` → Reels/feed e destaque **Sites** (use a capa `portfolio-renato-capa.jpg`)
-- `arte-feed-renato.jpg` (1080x1350) → post no feed (pode ser carrossel: arte + prints)
-- `arte-story-renato.jpg` (1080x1920) → story, com o sticker de link embaixo do botão "Quer um assim?"
+- `clientes/renato-sericaku/midia/portfolio-renato-feed-01..04.jpg` (1080x1350) → carrossel do feed, nessa ordem
+- `clientes/renato-sericaku/midia/portfolio-renato-story-01.jpg` (1080x1920) → story, com o sticker de link sobre a área tracejada
 - Marque o @ do Dr. Renato no post e no story (ele reposta e o seu perfil aparece pro público dele).

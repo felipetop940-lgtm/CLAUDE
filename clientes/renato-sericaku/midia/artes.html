@@ -1,47 +1,106 @@
-<!doctype html><html><head><meta charset="utf-8"><style>
-@font-face{font-family:Anton;src:url(../../../gabriel-augusto/shorts/ferramentas/fontes/anton.woff2)}
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Artes de portfólio do site do Dr. Renato Nishigaki para o Instagram do Gabriel.
+     Gerar: PWPATH=$(npm root -g)/playwright node render.js -->
+<style>
 @font-face{font-family:Inter;src:url(../../../gabriel-augusto/assets/fonts/inter-tight-var.woff2);font-weight:100 900}
 @font-face{font-family:Corm;src:url(../../../gabriel-augusto/assets/fonts/cormorant-garamond-italic.woff2);font-style:italic}
-body{margin:0;background:#000}
-.a{position:relative;width:1080px;overflow:hidden;background:#07080A;font-family:Inter;color:#F5F6F8}
-.a::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 520px at 18% 30%,rgba(79,123,255,.30),transparent 70%),radial-gradient(640px 560px at 85% 78%,rgba(214,179,108,.24),transparent 70%)}
-.a::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,transparent 55%,rgba(0,0,0,.65))}
-.in{box-sizing:border-box;position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;text-align:center}
-.kick{display:inline-flex;align-items:center;gap:14px;padding:14px 28px;border:1.5px solid rgba(214,179,108,.55);border-radius:40px;font-size:24px;font-weight:700;letter-spacing:.2em;color:#D6B36C;text-transform:uppercase}
-.kick i{width:10px;height:10px;border-radius:50%;background:#D6B36C;box-shadow:0 0 14px #D6B36C}
-h1{margin:34px 0 0;font-family:Anton;font-weight:400;text-transform:uppercase;font-size:84px;line-height:1.02;letter-spacing:.01em}
-h1 em{display:block;font-family:Corm;font-style:italic;text-transform:none;font-size:104px;line-height:1;color:#D6B36C;letter-spacing:0;margin-top:6px}
-.sub{margin-top:18px;font-size:30px;color:#A9B0BC;font-weight:500}
-.mock{position:relative;width:860px;margin-top:44px}
-#feed h1{font-size:74px} #feed h1 em{font-size:94px} #feed .ph{height:470px;width:226px;bottom:-40px}
-.win{border-radius:18px;overflow:hidden;background:#12151b;box-shadow:0 50px 100px -30px #000,0 0 0 2px rgba(255,255,255,.08),0 0 120px -30px rgba(79,123,255,.55)}
-.bar{display:flex;align-items:center;gap:10px;height:44px;padding:0 18px;background:#1b1f27}.bar i{width:12px;height:12px;border-radius:50%}
+@font-face{font-family:Anton;src:url(../../../gabriel-augusto/shorts/ferramentas/fontes/anton.woff2)}
+:root{--gold:#D6B36C;--red:#FF4D5E;--white:#F5F6F8;--gray:#9AA1AD;--line:rgba(255,255,255,.1);--card:rgba(255,255,255,.045)}
+*{box-sizing:border-box;margin:0;padding:0}body{background:#222;font-family:Inter;color:var(--white)}
+.a{position:relative;width:1080px;overflow:hidden;background:#07080A;display:flex;flex-direction:column;padding:80px}
+.a::before,.a::after{content:"";position:absolute;inset:0;pointer-events:none}
+.a::after{opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.a>*{position:relative;z-index:1}
+.f{height:1350px}.st{height:1920px;padding:250px 80px 290px}
+.bg-blue{background:linear-gradient(165deg,#0B1430,#080B16 55%,#06070A)}.bg-blue::before{background:radial-gradient(800px 700px at 85% 15%,rgba(79,123,255,.26),transparent 70%),radial-gradient(500px 500px at 0% 95%,rgba(255,77,94,.08),transparent 70%)}
+.bg-ink::before{background:radial-gradient(760px 640px at 100% 0%,rgba(214,179,108,.16),transparent 70%),radial-gradient(620px 560px at 0% 100%,rgba(255,77,94,.08),transparent 70%)}
+.bg-grid::before{background:linear-gradient(rgba(255,255,255,.025) 1.5px,transparent 1.5px) 0 0/90px 90px,linear-gradient(90deg,rgba(255,255,255,.025) 1.5px,transparent 1.5px) 0 0/90px 90px,radial-gradient(700px 600px at 0% 100%,rgba(255,77,94,.13),transparent 70%),radial-gradient(600px 500px at 100% 0%,rgba(79,123,255,.2),transparent 70%)}
+.bg-gold{background:#0A0806}.bg-gold::before{background:radial-gradient(circle at 50% 55%,rgba(214,179,108,.22),transparent 42%),repeating-radial-gradient(circle at 50% 55%,rgba(214,179,108,.045) 0 2px,transparent 2px 120px)}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:600;color:var(--gray)}
+.top b{display:flex;align-items:center;gap:14px;color:var(--white);font-weight:700}
+.top b i{display:grid;place-items:center;width:50px;height:50px;border-radius:14px;border:1.5px solid rgba(214,179,108,.6);font-family:Corm;font-size:28px;color:var(--gold)}
+.st .top{position:absolute;left:80px;right:80px;top:150px}
+.tag{align-self:flex-start;display:inline-flex;padding:12px 26px;border-radius:12px;background:var(--red);color:#fff;font-size:26px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;transform:rotate(-2deg);box-shadow:0 14px 40px -12px rgba(255,77,94,.6)}
+.tag.line{background:none;border:2px solid rgba(214,179,108,.6);color:var(--gold);box-shadow:none;transform:none}
+.H{font-family:Anton;text-transform:uppercase;font-weight:400;font-size:110px;line-height:.93;margin-top:30px}
+.H .g{color:var(--gold)}.H .r{color:var(--red)}
+.sub{margin-top:22px;font-size:34px;color:#C9CED6;font-weight:500}.sub b{color:#fff}
+.win{border-radius:22px;overflow:hidden;background:#12151b;box-shadow:0 50px 100px -30px #000,0 0 0 2px rgba(255,255,255,.08),0 0 140px -30px rgba(79,123,255,.55)}
+.bar{display:flex;gap:10px;height:46px;align-items:center;padding:0 20px;background:#1b1f27}.bar i{width:13px;height:13px;border-radius:50%}
+.bar span{margin-left:16px;flex:1;height:28px;border-radius:8px;background:#0e1116;font-size:16px;color:var(--gray);display:flex;align-items:center;padding-left:14px}
 .win img{display:block;width:100%}
-.ph{position:absolute;right:-30px;bottom:-60px;width:250px;height:520px;border-radius:44px;padding:10px;background:linear-gradient(145deg,#3a404c,#0c0e12 45%,#262b34);box-shadow:0 40px 80px -20px #000,0 0 0 2px rgba(255,255,255,.1),0 0 90px -20px rgba(214,179,108,.5)}
-.ph div{width:100%;height:100%;border-radius:36px;overflow:hidden;position:relative}.ph img{width:100%;display:block}
-.ph div::before{content:"";position:absolute;left:50%;top:9px;width:70px;height:20px;margin-left:-35px;border-radius:12px;background:#000}
-.foot{margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:16px}
-.by{font-size:26px;color:#A9B0BC}.by b{color:#F5F6F8}
-.btn{display:inline-block;padding:20px 46px;border-radius:14px;background:linear-gradient(135deg,#E8CC8E,#D6B36C 45%,#B8924A);color:#07080A;font-family:Anton;font-size:44px;text-transform:uppercase;letter-spacing:.02em;box-shadow:0 0 70px rgba(214,179,108,.4)}
-.tags{display:flex;gap:14px;margin-top:100px}.tags span{padding:12px 22px;border-radius:30px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);font-size:24px;font-weight:600}
-.tags span b{color:#D6B36C}
+.phone{position:relative;width:300px;height:628px;border-radius:50px;padding:11px;background:linear-gradient(145deg,#3a404c,#0c0e12 45%,#262b34);box-shadow:0 50px 100px -30px #000,0 0 0 2px rgba(255,255,255,.1),0 0 120px -30px rgba(214,179,108,.5)}
+.phone>div{width:100%;height:100%;border-radius:40px;overflow:hidden;position:relative;background:#000}.phone img{width:100%;display:block}
+.phone>div::before{content:"";position:absolute;left:50%;top:11px;width:84px;height:24px;margin-left:-42px;border-radius:12px;background:#000;z-index:2}
+.chip{position:absolute;z-index:3;display:flex;align-items:center;gap:12px;padding:18px 26px;border-radius:22px;background:rgba(14,16,20,.94);border:1.5px solid rgba(214,179,108,.45);font-size:28px;font-weight:700;box-shadow:0 30px 60px -20px #000;white-space:nowrap}
+.chip em{font-style:normal;color:var(--gold)}.chip.r{border-color:rgba(255,77,94,.6)}.chip.r em{color:#FF7380}.chip.w{border-color:rgba(37,211,102,.6)}.chip.w em{color:#25D366}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:700;color:var(--gray);letter-spacing:.06em;text-transform:uppercase}
+.foot span:first-child::before{content:"● ";color:var(--red)}
+.foot span:last-child{display:flex;align-items:center;gap:12px;color:#fff}
+.foot span:last-child::after{content:"→";display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--gold);color:#07080A;font-size:26px}
+.feat{display:grid;grid-template-columns:1fr;gap:18px}
+.feat div{display:flex;gap:24px;align-items:center;padding:26px 30px;border-radius:28px;background:var(--card);border:1.5px solid var(--line)}
+.feat b{display:block;font-size:34px;font-weight:800;letter-spacing:-.01em}.feat small{display:block;margin-top:4px;font-size:26px;color:var(--gray)}
+.feat i{flex-shrink:0;width:74px;height:74px;border-radius:22px;display:grid;place-items:center;font-style:normal;font-size:34px;background:rgba(214,179,108,.14);border:1.5px solid rgba(214,179,108,.45);color:var(--gold);font-weight:900}
+.feat i.r{background:rgba(255,77,94,.14);border-color:rgba(255,77,94,.5);color:#FF7380}.feat i.w{background:rgba(37,211,102,.14);border-color:rgba(37,211,102,.5);color:#25D366}
+.btn{display:inline-flex;align-items:center;gap:16px;padding:28px 54px;border-radius:999px;background:linear-gradient(135deg,#E8CC8E,var(--gold) 45%,#B8924A);color:#07080A;font-family:Anton;font-size:50px;text-transform:uppercase;box-shadow:0 0 90px rgba(214,179,108,.45)}
+.link{height:190px;border:3px dashed rgba(214,179,108,.5);border-radius:40px;display:grid;place-items:center;font-size:30px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(214,179,108,.75)}
 </style></head><body>
-<div class="a" id="feed" style="height:1350px"><div class="in" style="padding:60px 0 56px">
- <span class="kick"><i></i>Novo projeto entregue</span>
- <h1>Site profissional para o<em>Dr. Renato Sericaku</em></h1>
+
+<!-- ===== FEED · carrossel 1: capa ===== -->
+<section class="a f bg-blue" data-n="feed-01">
+ <div class="top"><b><i>G</i>Gabriel Augusto</b><span>01 / 04</span></div>
+ <span class="tag" style="margin-top:44px">Novo projeto entregue</span>
+ <h2 class="H">Site para o<br><span class="g">Dr. Renato Nishigaki</span></h2>
  <p class="sub">Cirurgião Bucomaxilofacial e Médico · Goiânia</p>
- <div class="mock"><div class="win"><div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><img src="site-desktop-topo.jpg"></div>
-  <div class="ph"><div><img src="site-celular-topo.jpg"></div></div></div>
- <div class="foot"><p class="by">Criado por <b>Gabriel Augusto</b> · @euaugusto_oliv</p><span class="btn">Quer o seu? Link na bio</span></div>
-</div></div>
-<div class="a" id="story" style="height:1920px"><div class="in" style="padding:300px 0 0">
- <span class="kick"><i></i>Novo projeto entregue</span>
- <h1>Site profissional para o<em>Dr. Renato Sericaku</em></h1>
- <p class="sub">Cirurgião Bucomaxilofacial e Médico · Goiânia</p>
- <div class="mock"><div class="win"><div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><img src="site-desktop-topo.jpg"></div>
-  <div class="ph"><div><img src="site-celular-topo.jpg"></div></div></div>
- <div class="tags"><span><b>✓</b> Celular e computador</span><span><b>✓</b> WhatsApp direto</span></div>
- <div style="margin-top:70px"><span class="btn">Quer um assim? 👇</span></div>
- <p class="by" style="margin-top:22px">Toque no link · @euaugusto_oliv</p>
-</div></div>
+ <div style="position:relative;margin-top:50px;width:820px">
+  <div class="win"><div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>🔒 Dr. Renato Nishigaki</span></div><img src="novo-desktop-topo.jpg"></div>
+  <div class="phone" style="position:absolute;right:-110px;top:120px;width:250px;height:524px;border-radius:44px;padding:10px"><div style="border-radius:35px"><img src="novo-cel-topo.jpg"></div></div></div>
+ <div class="foot"><span>Projeto real</span><span>Arraste</span></div></section>
+
+<!-- ===== FEED 2: o que foi feito ===== -->
+<section class="a f bg-ink" data-n="feed-02">
+ <div class="top"><b><i>G</i>Gabriel Augusto</b><span>02 / 04</span></div>
+ <h2 class="H" style="font-size:96px;margin-top:50px">O que eu<br><span class="g">criei pra ele</span></h2>
+ <div style="display:flex;gap:40px;align-items:center;margin-top:46px">
+  <div class="feat" style="flex:1">
+   <div><i>RN</i><span><b>Identidade visual</b><small>monograma e paleta em azul</small></span></div>
+   <div><i class="w">✓</i><span><b>WhatsApp em todo lugar</b><small>agendar sem enrolação</small></span></div>
+   <div><i class="r">★</i><span><b>Autoridade real</b><small>formação e certificado</small></span></div>
+   <div><i>✦</i><span><b>Animações</b><small>elegantes e interativas</small></span></div></div>
+  <div class="phone" style="flex-shrink:0"><div><img src="novo-cel-sobre.jpg"></div></div></div>
+ <div class="foot"><span>Detalhes</span><span>Arraste</span></div></section>
+
+<!-- ===== FEED 3: telas no celular ===== -->
+<section class="a f bg-grid" data-n="feed-03">
+ <div class="top"><b><i>G</i>Gabriel Augusto</b><span>03 / 04</span></div>
+ <h2 class="H" style="font-size:96px;margin-top:50px">Perfeito<br><span class="g">no celular</span></h2>
+ <div style="position:relative;height:720px;margin-top:40px">
+  <div class="phone" style="position:absolute;left:0;top:70px;transform:rotate(-6deg)"><div><img src="novo-cel-topo.jpg"></div></div>
+  <div class="phone" style="position:absolute;left:310px;top:0;z-index:2"><div><img src="novo-cel-formacao.jpg"></div></div>
+  <div class="phone" style="position:absolute;right:0;top:70px;transform:rotate(6deg)"><div><img src="novo-cel-tratamentos.jpg"></div></div>
+  <div class="chip w" style="left:50%;bottom:-6px;transform:translateX(-50%)"><em>●</em> Botão fixo de WhatsApp</div></div>
+ <div class="foot"><span>Mobile</span><span>Arraste</span></div></section>
+
+<!-- ===== FEED 4: CTA ===== -->
+<section class="a f bg-gold" data-n="feed-04">
+ <div class="top"><b><i>G</i>Gabriel Augusto</b><span>04 / 04</span></div>
+ <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+  <span class="tag" style="align-self:center">Sua vez</span>
+  <h2 class="H" style="font-size:150px">Quer um<br><span class="g">assim?</span></h2>
+  <p class="sub" style="max-width:800px">Site profissional, rápido e pensado pra <b>trazer cliente pro seu WhatsApp.</b></p>
+  <div style="margin-top:56px"><span class="btn">Link na bio ↑</span></div>
+  <p class="sub" style="font-size:28px;margin-top:30px">A partir de <b>R$ 300</b> · entrega a partir de 2 dias</p></div>
+ <div class="foot"><span>@euaugusto_oliv</span><span>Me chama</span></div></section>
+
+<!-- ===== STORY ===== -->
+<section class="a st bg-blue" data-n="story-01">
+ <div class="top"><b><i>G</i>Gabriel Augusto</b><span style="color:#fff">Novo projeto</span></div>
+ <span class="tag">Acabei de entregar</span>
+ <h2 class="H" style="font-size:120px">Site do<br><span class="g">Dr. Renato<br>Nishigaki</span></h2>
+ <p class="sub">Cirurgião Bucomaxilofacial e Médico</p>
+ <div style="position:relative;margin-top:50px;width:780px">
+  <div class="win"><div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>🔒 Dr. Renato Nishigaki</span></div><img src="novo-desktop-topo.jpg"></div>
+  <div class="phone" style="position:absolute;right:-120px;top:90px;width:250px;height:524px;border-radius:44px;padding:10px"><div style="border-radius:35px"><img src="novo-cel-topo.jpg"></div></div></div>
+ <div class="link" style="margin-top:150px">↓ &nbsp;Quer um assim? Toque no link&nbsp; ↓</div></section>
 </body></html>
