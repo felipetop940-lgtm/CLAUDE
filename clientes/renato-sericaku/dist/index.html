@@ -96,6 +96,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hero__note { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: .9rem; font-weight: 600; color: var(--muted); }
 .hero__note .dot { width: 8px; height: 8px; border-radius: 50%; background: #25D366; box-shadow: 0 0 0 4px rgba(37, 211, 102, .18); }
 .about__cta { margin-top: 34px; }
+.hero__reg { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.hero__reg span { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: rgba(255, 255, 255, .7); font-size: .78rem; font-weight: 700; letter-spacing: .08em; color: var(--navy); }
 .steps__cta { display: flex; justify-content: center; margin-top: 64px; }
 /* barra fixa no celular */
 .wa-bar { display: none; }
@@ -233,7 +235,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* Tratamentos */
 .services { background: var(--ice); }
-.cards { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(210px, auto); gap: 18px; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(230px, auto); gap: 18px; }
 .card { position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; border-radius: 22px; background: var(--white); border: 1px solid var(--line); overflow: hidden; isolation: isolate; transition: transform .6s var(--ease), box-shadow .6s var(--ease), border-color .5s; }
 .card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(90, 142, 235, .16), transparent 60%); opacity: 0; transition: opacity .4s; }
 .card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -34px rgba(10, 28, 51, .45); border-color: rgba(29, 95, 209, .3); }
@@ -247,7 +249,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .card__go .i { width: 18px; height: 18px; transform: rotate(-45deg); transition: transform .6s var(--ease); }
 .card:hover .card__go { background: var(--navy); border-color: var(--navy); color: #fff; }
 .card:hover .card__go .i { transform: rotate(0); }
-.card--main { grid-row: span 2; background: var(--navy); border-color: var(--navy); color: #fff; padding: 36px; }
+.card--main { grid-row: span 2; grid-column: span 2; background: var(--navy); border-color: var(--navy); color: #fff; padding: 36px; }
 .card--main::before { background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(90, 142, 235, .3), transparent 60%); }
 .card--main .card__ic { top: 36px; left: 36px; width: 64px; height: 64px; background: rgba(90, 142, 235, .18); color: var(--blue-3); }
 .card--main:hover .card__ic { background: var(--blue); color: #fff; }
@@ -453,9 +455,6 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
     <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M7.5 3.5c-2.4 0-4 1.9-4 4.4 0 2.3 1 3.6 1.5 5.6.6 2.4.7 7 2.6 7 1.7 0 1.6-4.8 3.1-4.8h2.6c1.5 0 1.4 4.8 3.1 4.8 1.9 0 2-4.6 2.6-7 .5-2 1.5-3.3 1.5-5.6 0-2.5-1.6-4.4-4-4.4-1.8 0-2.7 1-4.5 1s-2.7-1-4.5-1Z"/></symbol>
     <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></symbol>
     <symbol id="i-scalpel" viewBox="0 0 24 24"><path d="M14.5 4.5 20 10l-9.5 9.5H6V15l8.5-10.5Z"/><path d="M4 20h4"/></symbol>
-    <symbol id="i-implant" viewBox="0 0 24 24"><path d="M8 3h8l-1 4H9L8 3Z"/><path d="M9.5 9h5M9 11.5h6M9.5 14h5M10 16.5h4M11 19h2l-1 2-1-2Z"/></symbol>
-    <symbol id="i-bone" viewBox="0 0 24 24"><path d="M7 8.5 15.5 17a2.2 2.2 0 1 0 3 3 2.2 2.2 0 1 0 3-3 2.2 2.2 0 0 0-3 0L10 8.5a2.2 2.2 0 0 0 0-3 2.2 2.2 0 1 0-3-3 2.2 2.2 0 1 0-3 3 2.2 2.2 0 0 0 3 0Z"/></symbol>
-    <symbol id="i-face" viewBox="0 0 24 24"><path d="M12 3c-4 0-7 3-7 7.5 0 4.5 3 10.5 7 10.5s7-6 7-10.5C19 6 16 3 12 3Z"/><path d="M9.5 15.5c1.4 1 3.6 1 5 0"/></symbol>
     <symbol id="i-steth" viewBox="0 0 24 24"><path d="M6 3v5a4 4 0 0 0 8 0V3"/><path d="M10 12v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></symbol>
     <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4 4.3-6 8-6s6.8 2 8 6"/></symbol>
@@ -508,6 +507,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
         <a class="btn btn--ghost btn--lg" href="#sobre">Conhecer o Dr. Renato<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <p class="hero__note reveal"><span class="dot" aria-hidden="true"></span>Agende direto pelo WhatsApp, sem formulário.</p>
+      <p class="hero__reg reveal"><span>CRO-GO 12.061</span><span>CRM-GO 29.413</span></p>
     </div>
     <figure class="hero__visual reveal reveal--clip" data-tilt-area>
       <div class="hero__frame" data-depth="10">
@@ -575,7 +575,6 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
         <li class="reveal"><span class="timeline__y">2012</span><div><h3>Odontologia</h3><p>Universidade Paulista</p></div></li>
         <li class="reveal"><span class="timeline__y">2013</span><div><h3>Aperfeiçoamento em Cirurgia Buco-Maxilo-Facial</h3><p>EAP-GO</p></div></li>
         <li class="reveal"><span class="timeline__y">2016</span><div><h3>Especialização em Cirurgia e Traumatologia Bucomaxilofacial</h3><p>FUNORTE</p></div></li>
-        <li class="reveal"><span class="timeline__y">400 h</span><div><h3>Estágio em Cirurgia Bucomaxilofacial</h3><p>Hospital Cidade Jardim</p></div></li>
         <li class="reveal"><span class="timeline__y">2022</span><div><h3>Medicina</h3><p>Faculdades Alfredo Nasser</p></div></li>
         <li class="reveal"><span class="timeline__y">ATLS · ACLS</span><div><h3>Suporte avançado de vida</h3><p>Trauma e cardiovascular</p></div></li>
       </ol>
@@ -614,7 +613,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
     <div class="head head--split">
       <div>
         <p class="eyebrow reveal">Tratamentos</p>
-        <h2 class="title reveal" id="services-title">Foco em extrações. <em>Preparo para o que for preciso.</em></h2>
+        <h2 class="title reveal" id="services-title">Foco total em <em>extrações.</em></h2>
       </div>
     </div>
     <div class="cards">
@@ -633,21 +632,6 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
       <a class="card reveal" href="#contato" data-wa="complexa">
         <span class="card__ic"><svg class="i" aria-hidden="true"><use href="#i-scalpel"/></svg></span>
         <h3>Extrações complexas</h3><p>Raízes e dentes fraturados.</p>
-        <span class="card__go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span>
-      </a>
-      <a class="card reveal" href="#contato" data-wa="implante">
-        <span class="card__ic"><svg class="i" aria-hidden="true"><use href="#i-implant"/></svg></span>
-        <h3>Implantes dentários</h3><p>Reposição do dente perdido.</p>
-        <span class="card__go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span>
-      </a>
-      <a class="card reveal" href="#contato" data-wa="enxerto">
-        <span class="card__ic"><svg class="i" aria-hidden="true"><use href="#i-bone"/></svg></span>
-        <h3>Enxerto ósseo</h3><p>Reconstrução do volume ósseo.</p>
-        <span class="card__go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span>
-      </a>
-      <a class="card reveal" href="#contato" data-wa="face">
-        <span class="card__ic"><svg class="i" aria-hidden="true"><use href="#i-face"/></svg></span>
-        <h3>Cirurgia da face</h3><p>Estética e funcional.</p>
         <span class="card__go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span>
       </a>
     </div>
@@ -708,7 +692,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
       <p>Médico e cirurgião-dentista, especialista em Cirurgia e Traumatologia Bucomaxilofacial.</p>
     </div>
     <nav aria-label="Rodapé"><h3>Navegação</h3><a href="#sobre">Sobre</a><a href="#formacao">Formação</a><a href="#como-funciona">Como funciona</a><a href="#tratamentos">Tratamentos</a><a href="#contato">Contato</a></nav>
-    <div><h3>Tratamentos</h3><p>Extração de sisos</p><p>Dentes inclusos</p><p>Extrações complexas</p><p>Implantes e enxertos</p></div>
+    <div><h3>Tratamentos</h3><p>Extração de sisos</p><p>Dentes inclusos</p><p>Extrações complexas</p></div>
     <div><h3>Contato</h3><p data-f="endereco.local"></p><p><span data-f="endereco.rua"></span>, <span data-f="endereco.cidade"></span></p><a href="#contato" data-wa="padrao">WhatsApp</a></div>
   </div>
   <div class="wrap footer__legal">
@@ -748,17 +732,14 @@ window.SITE = {
   horario: "", // Ex.: "Segunda a sexta, 8h às 18h"  [HORÁRIO DE ATENDIMENTO]
 
   // Registros profissionais (obrigatórios na divulgação em saúde)
-  registros: "CRO-GO [NÚMERO] · CRM-GO [NÚMERO]",
+  registros: "CRO-GO 12.061 · CRM-GO 29.413",
 
   // Mensagens automáticas do WhatsApp
   mensagens: {
     padrao: "Olá, Dr. Renato! Vim pelo site e gostaria de agendar uma avaliação.",
     siso: "Olá, Dr. Renato! Vim pelo site e gostaria de uma avaliação para extração de siso.",
     inclusos: "Olá, Dr. Renato! Vim pelo site e gostaria de uma avaliação sobre dente incluso.",
-    complexa: "Olá, Dr. Renato! Vim pelo site e gostaria de uma avaliação para uma extração.",
-    implante: "Olá, Dr. Renato! Vim pelo site e gostaria de saber sobre implantes dentários.",
-    enxerto: "Olá, Dr. Renato! Vim pelo site e gostaria de saber sobre enxerto e reconstrução óssea.",
-    face: "Olá, Dr. Renato! Vim pelo site e gostaria de saber sobre cirurgia bucomaxilofacial."
+    complexa: "Olá, Dr. Renato! Vim pelo site e gostaria de uma avaliação para uma extração."
   },
 
   // Depoimentos reais de pacientes (com autorização). Vazio = seção oculta.

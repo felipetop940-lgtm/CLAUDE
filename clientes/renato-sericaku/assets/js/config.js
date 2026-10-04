@@ -25,17 +25,14 @@ window.SITE = {
   horario: "", // Ex.: "Segunda a sexta, 8h às 18h"  [HORÁRIO DE ATENDIMENTO]
 
   // Registros profissionais (obrigatórios na divulgação em saúde)
-  registros: "CRO-GO [NÚMERO] · CRM-GO [NÚMERO]",
+  registros: "CRO-GO 12.061 · CRM-GO 29.413",
 
   // Mensagens automáticas do WhatsApp
   mensagens: {
     padrao: "Olá, Dr. Renato! Vim pelo site e gostaria de agendar uma avaliação.",
     siso: "Olá, Dr. Renato! Vim pelo site e gostaria de uma avaliação para extração de siso.",
     inclusos: "Olá, Dr. Renato! Vim pelo site e gostaria de uma avaliação sobre dente incluso.",
-    complexa: "Olá, Dr. Renato! Vim pelo site e gostaria de uma avaliação para uma extração.",
-    implante: "Olá, Dr. Renato! Vim pelo site e gostaria de saber sobre implantes dentários.",
-    enxerto: "Olá, Dr. Renato! Vim pelo site e gostaria de saber sobre enxerto e reconstrução óssea.",
-    face: "Olá, Dr. Renato! Vim pelo site e gostaria de saber sobre cirurgia bucomaxilofacial."
+    complexa: "Olá, Dr. Renato! Vim pelo site e gostaria de uma avaliação para uma extração."
   },
 
   // Depoimentos reais de pacientes (com autorização). Vazio = seção oculta.
