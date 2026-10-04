@@ -20,6 +20,16 @@ Pelo terminal dá para instalar já configurado:
 
 Enquanto o plugin estiver só na branch de trabalho, adicione o marketplace com a branch: `/plugin marketplace add felipetop940-lgtm/claude#claude/sleepy-cannon-anakfv`.
 
+## Usar na nuvem e pelo celular (cofre no GitHub)
+
+Nas sessões do Claude Code na nuvem, plugins não carregam, mas o `.mcp.json` e o `.claude/skills/` do repositório sim. Com o cofre num repositório Git (plugin **Git** do Obsidian), copie o plugin para dentro dele:
+
+```
+node plugins/obsidian/scripts/instalar-no-cofre.mjs /caminho/do/cofre
+```
+
+Depois, faça commit no cofre. Nas sessões abertas nesse repositório, os comandos ficam sem o prefixo (`/reuniao`, `/capturar`…). Rode de novo sempre que mudar o servidor ou as skills.
+
 ## Comandos
 
 | Comando | O que faz |
