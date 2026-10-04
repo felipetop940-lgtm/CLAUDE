@@ -1169,8 +1169,7 @@ async function atender(msg) {
 
 const enviar = (obj) => process.stdout.write(`${JSON.stringify(obj)}\n`);
 
-const entrada = readline.createInterface({ input: process.stdin, crlfDelay: Infinity });
-entrada.on('line', async (linha) => {
+async function processar(linha) {
   if (!linha.trim()) return;
   let msg;
   try {
@@ -1187,6 +1186,24 @@ entrada.on('line', async (linha) => {
   } catch (erro) {
     if (!notificacao) enviar({ jsonrpc: '2.0', id: msg.id, error: { code: erro?.code ?? -32603, message: erro?.message ?? String(erro) } });
   }
+}
+
+// Ao fechar a entrada, termina o que já foi pedido antes de sair.
+let emAndamento = 0;
+let entradaFechada = false;
+const talvezSair = () => {
+  if (entradaFechada && emAndamento === 0) process.exit(0);
+};
+const entrada = readline.createInterface({ input: process.stdin, crlfDelay: Infinity });
+entrada.on('line', (linha) => {
+  emAndamento++;
+  processar(linha).finally(() => {
+    emAndamento--;
+    talvezSair();
+  });
 });
-entrada.on('close', () => process.exit(0));
+entrada.on('close', () => {
+  entradaFechada = true;
+  talvezSair();
+});
 process.stdout.on('error', () => process.exit(0));
