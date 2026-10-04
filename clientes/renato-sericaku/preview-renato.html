@@ -90,6 +90,23 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .btn--white { background: #fff; color: var(--navy); }
 .btn--white::before { background: var(--blue-3); }
 
+.btn--wa { background: #25D366; color: #fff; box-shadow: 0 14px 30px -12px rgba(18, 140, 70, .7); }
+.btn--wa::before { background: #128C4A; }
+.btn--wa:hover::before { transform: none; }
+.hero__note { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: .9rem; font-weight: 600; color: var(--muted); }
+.hero__note .dot { width: 8px; height: 8px; border-radius: 50%; background: #25D366; box-shadow: 0 0 0 4px rgba(37, 211, 102, .18); }
+.about__cta { margin-top: 34px; }
+.steps__cta { display: flex; justify-content: center; margin-top: 64px; }
+/* barra fixa no celular */
+.wa-bar { display: none; }
+@media (max-width: 900px) {
+  .wa-bar { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 45; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 999px; background: #25D366; color: #fff; font-weight: 800; font-size: 1rem; box-shadow: 0 16px 34px -12px rgba(18, 140, 70, .8); transform: translateY(100px); transition: transform .7s var(--ease) 1.8s; }
+  .wa-bar .i { width: 24px; height: 24px; }
+  .is-ready .wa-bar { transform: none; }
+  .wa-float { display: none !important; }
+  .footer { padding-bottom: 100px; }
+}
+
 /* ---------- Header ---------- */
 .header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .72); backdrop-filter: saturate(1.5) blur(16px); -webkit-backdrop-filter: saturate(1.5) blur(16px); transition: box-shadow .4s, background-color .4s; }
 .header.is-scrolled { background: rgba(255, 255, 255, .9); box-shadow: 0 10px 30px -22px rgba(10, 28, 51, .5); }
@@ -469,7 +486,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
       <a href="#como-funciona">Como funciona</a>
       <a href="#tratamentos">Tratamentos</a>
       <a href="#contato">Contato</a>
-      <a class="btn btn--primary nav__cta" href="#contato" data-wa="padrao">Agendar avaliação</a>
+      <a class="btn btn--wa nav__cta" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar consulta</a>
     </nav>
     <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
   </div>
@@ -487,9 +504,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
       <h1 class="hero__title" id="hero-title" data-split>Extração de dente é cirurgia. <em>Faça com quem é cirurgião.</em></h1>
       <p class="hero__lead reveal">Sisos, dentes inclusos e casos complexos em Goiânia.</p>
       <div class="hero__ctas reveal">
-        <a class="btn btn--primary btn--lg magnetic" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar avaliação</a>
+        <a class="btn btn--wa btn--lg magnetic" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo WhatsApp</a>
         <a class="btn btn--ghost btn--lg" href="#sobre">Conhecer o Dr. Renato<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
+      <p class="hero__note reveal"><span class="dot" aria-hidden="true"></span>Agende direto pelo WhatsApp, sem formulário.</p>
     </div>
     <figure class="hero__visual reveal reveal--clip" data-tilt-area>
       <div class="hero__frame" data-depth="10">
@@ -533,6 +551,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
         <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-pulse"/></svg>Preparo em emergência</li>
         <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-user"/></svg>Do início ao pós-operatório</li>
       </ul>
+      <a class="btn btn--wa about__cta reveal" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar minha avaliação</a>
     </div>
   </div>
 </section>
@@ -585,6 +604,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
       <li class="step reveal"><span class="step__n">03</span><h3>Cirurgia</h3><p>Feita pelo próprio Dr. Renato.</p></li>
       <li class="step reveal"><span class="step__n">04</span><h3>Pós-operatório</h3><p>Orientação e retorno.</p></li>
     </ol>
+    <div class="steps__cta reveal"><a class="btn btn--wa btn--lg magnetic" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Começar pelo passo 01</a></div>
   </div>
 </section>
 
@@ -668,7 +688,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   <div class="wrap contact__in">
     <p class="eyebrow eyebrow--light reveal">Agende sua avaliação</p>
     <h2 class="contact__title reveal" id="contact-title">O primeiro passo é <em>entender o seu caso.</em></h2>
-    <a class="btn btn--white btn--xl magnetic reveal" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo WhatsApp</a>
+    <a class="btn btn--wa btn--xl magnetic reveal" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo WhatsApp</a>
     <ul class="contact__list" role="list">
       <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg><div><strong data-f="endereco.local"></strong><span><span data-f="endereco.rua"></span> · <span data-f="endereco.cidade"></span></span><a class="contact__map" href="#" data-map target="_blank" rel="noopener">Ver no mapa →</a></div></li>
       <li class="reveal" data-need="horario"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><div><strong>Horário</strong><span data-f="horario"></span></div></li>
@@ -697,6 +717,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   </div>
 </footer>
 
+<a class="wa-bar" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo WhatsApp</a>
 <a class="wa-float" href="#contato" data-wa="padrao" aria-label="Agendar pelo WhatsApp"><span class="wa-float__ic"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg></span><span class="wa-float__txt">Agendar pelo <b>WhatsApp</b></span></a>
 
 <script>
