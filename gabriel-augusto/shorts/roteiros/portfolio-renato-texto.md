@@ -7,7 +7,7 @@
 4. E cada tratamento tem um botão que leva direto pro WhatsApp dele, com a mensagem pronta.
 5. Quer um site assim pro seu negócio? Entra no meu perfil e clica no link.
 
-## Legenda do post (carrossel do feed)
+## Legenda (se quiser postar também no feed)
 Novo projeto entregue: site do Dr. Renato Nishigaki 🦷
 
 Cirurgião bucomaxilofacial e médico aqui de Goiânia, com foco em extração de dentes.
@@ -24,6 +24,5 @@ Quer um site assim pro seu negócio? 🔗 Link na bio.
 
 ## Onde usar cada arquivo
 - `portfolio-renato.mp4` → Reels/feed e destaque **Sites** (use a capa `portfolio-renato-capa.jpg`)
-- `clientes/renato-sericaku/midia/portfolio-renato-feed-01..04.jpg` (1080x1350) → carrossel do feed, nessa ordem
-- `clientes/renato-sericaku/midia/portfolio-renato-story-01.jpg` (1080x1920) → story, com o sticker de link sobre a área tracejada
+- `clientes/renato-sericaku/midia/portfolio-renato-story-01..04.jpg` (1080x1920) → sequência de stories, nessa ordem; no 04, cole o sticker de link sobre a área tracejada. Depois adicione ao destaque **Sites**.
 - Marque o @ do Dr. Renato no post e no story (ele reposta e o seu perfil aparece pro público dele).

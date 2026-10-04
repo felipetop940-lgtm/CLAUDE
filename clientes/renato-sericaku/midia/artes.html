@@ -20,6 +20,8 @@
 .top b{display:flex;align-items:center;gap:14px;color:var(--white);font-weight:700}
 .top b i{display:grid;place-items:center;width:50px;height:50px;border-radius:14px;border:1.5px solid rgba(214,179,108,.6);font-family:Corm;font-size:28px;color:var(--gold)}
 .st .top{position:absolute;left:80px;right:80px;top:150px}
+.st{justify-content:center}
+.st .foot{position:absolute;left:80px;right:80px;bottom:190px;margin:0}
 .tag{align-self:flex-start;display:inline-flex;padding:12px 26px;border-radius:12px;background:var(--red);color:#fff;font-size:26px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;transform:rotate(-2deg);box-shadow:0 14px 40px -12px rgba(255,77,94,.6)}
 .tag.line{background:none;border:2px solid rgba(214,179,108,.6);color:var(--gold);box-shadow:none;transform:none}
 .H{font-family:Anton;text-transform:uppercase;font-weight:400;font-size:110px;line-height:.93;margin-top:30px}
@@ -47,21 +49,22 @@
 .link{height:190px;border:3px dashed rgba(214,179,108,.5);border-radius:40px;display:grid;place-items:center;font-size:30px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(214,179,108,.75)}
 </style></head><body>
 
-<!-- ===== FEED · carrossel 1: capa ===== -->
-<section class="a f bg-blue" data-n="feed-01">
+<!-- ===== STORY 01: capa ===== -->
+
+<section class="a st bg-blue" data-n="01">
  <div class="top"><b><i>G</i>Gabriel Augusto</b><span>01 / 04</span></div>
- <span class="tag" style="margin-top:44px">Novo projeto entregue</span>
- <h2 class="H">Site para o<br><span class="g">Dr. Renato Nishigaki</span></h2>
- <p class="sub">Cirurgião Bucomaxilofacial e Médico · Goiânia</p>
- <div style="position:relative;margin-top:50px;width:820px">
+ <span class="tag">Acabei de entregar</span>
+ <h2 class="H" style="font-size:120px">Site do<br><span class="g">Dr. Renato<br>Nishigaki</span></h2>
+ <p class="sub">Cirurgião Bucomaxilofacial e Médico</p>
+ <div style="position:relative;margin-top:50px;width:780px">
   <div class="win"><div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>🔒 Dr. Renato Nishigaki</span></div><img src="novo-desktop-topo.jpg"></div>
-  <div class="phone" style="position:absolute;right:-110px;top:120px;width:250px;height:524px;border-radius:44px;padding:10px"><div style="border-radius:35px"><img src="novo-cel-topo.jpg"></div></div></div>
- <div class="foot"><span>Projeto real</span><span>Arraste</span></div></section>
+  <div class="phone" style="position:absolute;right:-120px;top:90px;width:250px;height:524px;border-radius:44px;padding:10px"><div style="border-radius:35px"><img src="novo-cel-topo.jpg"></div></div></div>
+ <div class="foot"><span>Projeto real</span><span>Toque para ver</span></div></section>
 
 <!-- ===== FEED 2: o que foi feito ===== -->
-<section class="a f bg-ink" data-n="feed-02">
+<section class="a st bg-ink" data-n="02">
  <div class="top"><b><i>G</i>Gabriel Augusto</b><span>02 / 04</span></div>
- <h2 class="H" style="font-size:96px;margin-top:50px">O que eu<br><span class="g">criei pra ele</span></h2>
+ <span class="tag">Por dentro do projeto</span><h2 class="H" style="font-size:120px">O que eu<br><span class="g">criei pra ele</span></h2>
  <div style="display:flex;gap:40px;align-items:center;margin-top:46px">
   <div class="feat" style="flex:1">
    <div><i>RN</i><span><b>Identidade visual</b><small>monograma e paleta em azul</small></span></div>
@@ -69,38 +72,29 @@
    <div><i class="r">★</i><span><b>Autoridade real</b><small>formação e certificado</small></span></div>
    <div><i>✦</i><span><b>Animações</b><small>elegantes e interativas</small></span></div></div>
   <div class="phone" style="flex-shrink:0"><div><img src="novo-cel-sobre.jpg"></div></div></div>
- <div class="foot"><span>Detalhes</span><span>Arraste</span></div></section>
+ <div class="foot"><span>Detalhes</span><span>Continua</span></div></section>
 
 <!-- ===== FEED 3: telas no celular ===== -->
-<section class="a f bg-grid" data-n="feed-03">
+<section class="a st bg-grid" data-n="03">
  <div class="top"><b><i>G</i>Gabriel Augusto</b><span>03 / 04</span></div>
- <h2 class="H" style="font-size:96px;margin-top:50px">Perfeito<br><span class="g">no celular</span></h2>
- <div style="position:relative;height:720px;margin-top:40px">
+ <span class="tag">Mobile</span><h2 class="H" style="font-size:120px">Perfeito<br><span class="g">no celular</span></h2>
+ <div style="position:relative;height:780px;margin-top:70px">
   <div class="phone" style="position:absolute;left:0;top:70px;transform:rotate(-6deg)"><div><img src="novo-cel-topo.jpg"></div></div>
   <div class="phone" style="position:absolute;left:310px;top:0;z-index:2"><div><img src="novo-cel-formacao.jpg"></div></div>
   <div class="phone" style="position:absolute;right:0;top:70px;transform:rotate(6deg)"><div><img src="novo-cel-tratamentos.jpg"></div></div>
   <div class="chip w" style="left:50%;bottom:-6px;transform:translateX(-50%)"><em>●</em> Botão fixo de WhatsApp</div></div>
- <div class="foot"><span>Mobile</span><span>Arraste</span></div></section>
+ <div class="foot"><span>Mobile</span><span>Continua</span></div></section>
 
 <!-- ===== FEED 4: CTA ===== -->
-<section class="a f bg-gold" data-n="feed-04">
+<section class="a st bg-gold" data-n="04">
  <div class="top"><b><i>G</i>Gabriel Augusto</b><span>04 / 04</span></div>
  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
   <span class="tag" style="align-self:center">Sua vez</span>
   <h2 class="H" style="font-size:150px">Quer um<br><span class="g">assim?</span></h2>
   <p class="sub" style="max-width:800px">Site profissional, rápido e pensado pra <b>trazer cliente pro seu WhatsApp.</b></p>
-  <div style="margin-top:56px"><span class="btn">Link na bio ↑</span></div>
-  <p class="sub" style="font-size:28px;margin-top:30px">A partir de <b>R$ 300</b> · entrega a partir de 2 dias</p></div>
- <div class="foot"><span>@euaugusto_oliv</span><span>Me chama</span></div></section>
+  
+  <p class="sub" style="font-size:30px;margin-top:30px">A partir de <b>R$ 300</b> · entrega a partir de 2 dias</p>
+  <div class="link" style="width:100%;margin-top:70px">↓ &nbsp;Toque no link&nbsp; ↓</div></div>
+ <div class="foot"><span>Sua vez</span><span>Me chama</span></div></section>
 
-<!-- ===== STORY ===== -->
-<section class="a st bg-blue" data-n="story-01">
- <div class="top"><b><i>G</i>Gabriel Augusto</b><span style="color:#fff">Novo projeto</span></div>
- <span class="tag">Acabei de entregar</span>
- <h2 class="H" style="font-size:120px">Site do<br><span class="g">Dr. Renato<br>Nishigaki</span></h2>
- <p class="sub">Cirurgião Bucomaxilofacial e Médico</p>
- <div style="position:relative;margin-top:50px;width:780px">
-  <div class="win"><div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>🔒 Dr. Renato Nishigaki</span></div><img src="novo-desktop-topo.jpg"></div>
-  <div class="phone" style="position:absolute;right:-120px;top:90px;width:250px;height:524px;border-radius:44px;padding:10px"><div style="border-radius:35px"><img src="novo-cel-topo.jpg"></div></div></div>
- <div class="link" style="margin-top:150px">↓ &nbsp;Quer um assim? Toque no link&nbsp; ↓</div></section>
 </body></html>
