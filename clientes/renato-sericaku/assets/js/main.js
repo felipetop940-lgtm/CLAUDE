@@ -22,8 +22,13 @@
   /* ---------- WhatsApp: cada botão leva a mensagem do seu assunto ---------- */
   var MSG = SITE.mensagens || {};
   $$('[data-wa]').forEach(function (el) {
-    if (!SITE.whatsapp) return; // sem número: o botão continua levando à seção de contato
-    el.href = 'https://wa.me/' + SITE.whatsapp + '?text=' + encodeURIComponent(MSG[el.getAttribute('data-wa')] || MSG.padrao || '');
+    var msg = encodeURIComponent(MSG[el.getAttribute('data-wa')] || MSG.padrao || '');
+    if (SITE.whatsappLink) { // link pronto: usa como veio (só acrescenta a mensagem em links wa.me sem texto)
+      var l = SITE.whatsappLink;
+      el.href = /wa\.me\/\d+\/?$/.test(l) ? l.replace(/\/$/, '') + '?text=' + msg : l;
+    } else if (SITE.whatsapp) {
+      el.href = 'https://wa.me/' + SITE.whatsapp + '?text=' + msg;
+    } else return; // sem número: o botão continua levando à seção de contato
     el.target = '_blank'; el.rel = 'noopener';
   });
 
@@ -115,7 +120,7 @@
     var sy = window.scrollY, vh = window.innerHeight, max = root.scrollHeight - vh;
     header.style.setProperty('--p', max > 0 ? sy / max : 0);
     header.classList.toggle('is-scrolled', sy > 24);
-    if (wa) wa.classList.toggle('is-on', sy > vh * .6);
+    if (wa) wa.classList.add('is-on');
 
     $$('[data-scrub]').forEach(function (el) {
       var p = progressOf(el, .9, .45), on = Math.round(p * el._scrub.length);

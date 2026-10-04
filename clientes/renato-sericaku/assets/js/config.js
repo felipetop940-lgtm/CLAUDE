@@ -3,10 +3,12 @@
    Campos vazios ("") ficam ocultos.
    ========================================================= */
 window.SITE = {
-  nome: "Dr. Renato Sericaku",
+  nome: "Dr. Renato Nishigaki",
 
   // WhatsApp com DDI + DDD, só números. Ex.: "5562999999999"
   whatsapp: "", // [WHATSAPP DO DR. RENATO]
+  // Ou cole aqui o link pronto do WhatsApp (wa.me, api.whatsapp, link de agenda…). Se preenchido, tem prioridade.
+  whatsappLink: "", // [LINK DO WHATSAPP]
 
   instagram: "", // Ex.: "drrenatosericaku" (sem @)  [INSTAGRAM]
   email: "",     // [E-MAIL]
