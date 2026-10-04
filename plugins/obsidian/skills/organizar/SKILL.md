@@ -7,7 +7,7 @@ disable-model-invocation: true
 
 # Organizar a entrada
 
-Pasta: $ARGUMENTS (vazio = `${user_config.inbox_folder}`).
+Pasta: $ARGUMENTS (vazio = a pasta de entrada que aparece em `vault_info`).
 
 1. `vault_info` (estrutura e regras), `list_tags` e `list_notes` da pasta. Pegue no máximo 15 notas por rodada, das mais antigas para as mais novas.
 2. Para cada nota (`read_note`), decida:

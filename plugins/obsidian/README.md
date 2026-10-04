@@ -13,7 +13,7 @@ No Claude Code:
 /plugin install obsidian@felipe-plugins
 ```
 
-Ele pede a **pasta do cofre** (no Obsidian: clique com o direito no nome do cofre → Mostrar no Finder/Explorer). Reinicie a sessão e rode `/obsidian:configurar`.
+Se você abre o Claude Code dentro da pasta do cofre (ou o cofre é o repositório da sessão na nuvem), ele é reconhecido sozinho. Senão, preencha a **pasta do cofre** em `/plugin` → obsidian → configurar (no Obsidian: clique com o direito no nome do cofre → Mostrar no Explorer/Finder). Reinicie a sessão e rode `/obsidian:configurar`.
 
 Pelo terminal dá para instalar já configurado:
 `claude plugin install obsidian@felipe-plugins --config vault_path="/caminho/do/cofre"`.
@@ -24,7 +24,7 @@ Enquanto o plugin estiver só na branch de trabalho, adicione o marketplace com 
 
 | Comando | O que faz |
 |---|---|
-| `/obsidian:configurar` | Confere o cofre, cria o `Claude.md` com as regras e a estrutura de pastas (só em cofre vazio) |
+| `/obsidian:configurar` | Confere o cofre, cria o `CLAUDE.md` com as regras e a estrutura de pastas (só em cofre vazio) |
 | `/obsidian:capturar <texto>` | Anota ideia, tarefa ou insight — frase curta vai para a nota do dia, ideia com corpo vira nota na Entrada com links |
 | `/obsidian:diario [texto \| abrir \| fechar]` | Registra no dia, abre o dia puxando pendências de ontem ou fecha o dia |
 | `/obsidian:reuniao <cliente> <anotações>` | Reunião de resultado: nota com números, decisões, próximos passos, pendências da anterior, sinais de risco/upsell e mensagem de follow-up para o WhatsApp |
@@ -36,13 +36,13 @@ Não precisa decorar: "anota aí que…", "registra a reunião com a Dra. X", "o
 
 ## Opções (`/plugin` → obsidian → configurar)
 
-- **Pasta do cofre** (obrigatória)
+- **Pasta do cofre** — vazio = a pasta aberta no Claude Code, se tiver `.obsidian`
 - **Pasta de entrada** — padrão `00 Entrada`
 - **Pasta das notas diárias** — vazio segue a configuração de Notas diárias do Obsidian (pasta, formato e modelo); sem configuração lá, usa `10 Diário`
 
 ## Regras próprias do cofre
 
-Crie `Claude.md` na raiz do cofre (o `/obsidian:configurar` cria um modelo). O Claude lê esse arquivo antes de escrever e ele vale mais que as regras do plugin: pastas, tipos de nota, pessoas, estilo.
+Crie `CLAUDE.md` na raiz do cofre (o `/obsidian:configurar` cria um modelo). O Claude lê esse arquivo antes de escrever e ele vale mais que as regras do plugin: pastas, tipos de nota, pessoas, estilo.
 
 ## Como funciona
 

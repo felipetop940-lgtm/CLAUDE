@@ -1,14 +1,14 @@
 ---
 name: configurar
-description: Primeira configuração do cofre do Obsidian para o Claude — confere o caminho, cria o Claude.md com as regras do cofre e, se o cofre estiver vazio, monta a estrutura de pastas.
+description: Primeira configuração do cofre do Obsidian para o Claude — confere o caminho, cria o CLAUDE.md com as regras do cofre e, se o cofre estiver vazio, monta a estrutura de pastas.
 disable-model-invocation: true
 ---
 
 # Configurar o cofre
 
 1. `vault_info`. Se der erro de cofre não configurado: explique que ele deve abrir `/plugin`, escolher **obsidian** → configurar, colar o caminho da pasta do cofre e reiniciar a sessão. Pare aí.
-2. **Cofre com notas**: não crie pastas. Mostre a estrutura encontrada e proponha um `Claude.md` adaptado a ela (pastas reais, tipos e tags que já existem — use `list_tags`). Crie só com o ok.
-3. **Cofre vazio** (ou ele pediu estrutura nova): crie o `Claude.md` abaixo e uma nota-índice por área para as pastas existirem e virarem alvo de link:
+2. **Cofre com notas**: não crie pastas. Mostre a estrutura encontrada e proponha um `CLAUDE.md` adaptado a ela (pastas reais, tipos e tags que já existem — use `list_tags`). Crie só com o ok.
+3. **Cofre vazio** (ou ele pediu estrutura nova): crie o `CLAUDE.md` abaixo e uma nota-índice por área para as pastas existirem e virarem alvo de link:
    - `20 Consultório de Sucesso/Consultório de Sucesso.md`
    - `30 ConnextMED/ConnextMED.md`
    - `40 Internato/Internato.md`
@@ -17,7 +17,7 @@ disable-model-invocation: true
 4. Oriente em 3 linhas: no Obsidian, Configurações → Plugins principais → **Notas diárias**: pasta `10 Diário`, formato `YYYY-MM-DD` — assim o botão de nota do dia do app abre a mesma nota que o Claude usa.
 5. Responda com o que foi criado e os comandos do plugin: `/obsidian:capturar`, `/obsidian:diario`, `/obsidian:reuniao`, `/obsidian:perguntar`, `/obsidian:semana`, `/obsidian:organizar`.
 
-## Claude.md (raiz do cofre)
+## CLAUDE.md (raiz do cofre)
 
 ```markdown
 # Regras do cofre para o Claude

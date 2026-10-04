@@ -5,7 +5,7 @@ description: Regras para ler e escrever no cofre do Obsidian do usuário (notas 
 
 # Obsidian: regras do cofre
 
-Cofre: `${user_config.vault_path}` · pasta de entrada: `${user_config.inbox_folder}`.
+O caminho do cofre, a pasta de entrada e a pasta das notas diárias aparecem em `vault_info`.
 
 ## Ferramentas (servidor MCP `obsidian` deste plugin)
 
@@ -24,11 +24,11 @@ Cofre: `${user_config.vault_path}` · pasta de entrada: `${user_config.inbox_fol
 | Mover/renomear sem quebrar links | `move_note` |
 | Tags que já existem | `list_tags` |
 
-Se as ferramentas não aparecerem (Node ausente ou servidor fora do ar): trabalhe direto nos arquivos de `${user_config.vault_path}` com Read/Write/Edit/Glob/Grep, mesmas regras, e avise que o servidor não subiu. Não existe ferramenta de apagar: para remover, peça que ele apague no Obsidian.
+Se as ferramentas não aparecerem (Node ausente ou servidor fora do ar): trabalhe direto nos arquivos do cofre (a pasta do projeto, se tiver `.obsidian`) com Read/Write/Edit/Glob/Grep, mesmas regras, e avise que o servidor não subiu. Não existe ferramenta de apagar: para remover, peça que ele apague no Obsidian.
 
 ## Antes de escrever
 
-1. `vault_info`. Se houver `Claude.md` na raiz do cofre, ele manda mais que esta skill.
+1. `vault_info`. Se houver `CLAUDE.md` na raiz do cofre, ele manda mais que esta skill — inclusive sobre commit e push quando o cofre for um repositório Git sincronizado com o Obsidian.
 2. Siga a estrutura que já existe (pastas, nomes, propriedades). Só proponha estrutura nova com cofre vazio ou se ele pedir (`/obsidian:configurar`).
 3. Procure antes de criar: `search_notes` pelo nome da pessoa, cliente ou projeto. Existe → acrescente ou linke. Nunca duplique.
 

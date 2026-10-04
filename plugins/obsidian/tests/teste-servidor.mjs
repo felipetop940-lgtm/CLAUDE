@@ -8,8 +8,8 @@ import { fileURLToPath } from 'node:url';
 
 const SERVIDOR = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'server', 'obsidian-mcp.mjs');
 
-function iniciar(env) {
-  const processo = spawn(process.execPath, [SERVIDOR], { env: { ...process.env, ...env }, stdio: ['pipe', 'pipe', 'inherit'] });
+function iniciar(env, cwd = process.cwd()) {
+  const processo = spawn(process.execPath, [SERVIDOR], { cwd, env: { ...process.env, ...env }, stdio: ['pipe', 'pipe', 'inherit'] });
   const pendentes = new Map();
   let resto = '';
   let proximoId = 1;
@@ -49,7 +49,7 @@ await escrever(
   'Reuniões/2026-09-01 - Reunião - Dra Ana.md',
   '---\ntipo: reuniao\ncliente: "[[Dra Ana]]"\ndata: 2026-09-01\n---\nCom [[Dra Ana#Contexto|a doutora]] e ![[Dra Ana]].\n\n```\n#naotag\n```\n\n## Próximos passos\n- [ ] Trocar criativo\n\n## Fim\nok\n',
 );
-await escrever('Claude.md', '# Regras\nEscreva em português.\n');
+await escrever('CLAUDE.md', '# Regras\nEscreva em português.\n');
 await escrever('.obsidian/app.json', '{}');
 
 const s = iniciar({ OBSIDIAN_VAULT: cofre, OBSIDIAN_INBOX_FOLDER: '${user_config.inbox_folder}', OBSIDIAN_DAILY_FOLDER: '' });
@@ -155,11 +155,17 @@ assert.match(r.texto, /99 Arquivo\/Dra\. Ana Souza\.md/);
 s.fechar();
 
 // Sem cofre configurado: erro claro, sem derrubar o servidor
-const semCofre = iniciar({ OBSIDIAN_VAULT: '${user_config.vault_path}', OBSIDIAN_VAULT_PATH: '' });
+const semCofre = iniciar({ OBSIDIAN_VAULT: '${user_config.vault_path}', OBSIDIAN_VAULT_PATH: '', CLAUDE_PROJECT_DIR: '' }, os.tmpdir());
 await semCofre.pedir('initialize', { protocolVersion: '2099-01-01' });
 r = await semCofre.chamar('vault_info');
-assert.ok(r.erro && /não está configurado/.test(r.texto), r.texto);
+assert.ok(r.erro && /Não achei o cofre/.test(r.texto), r.texto);
 semCofre.fechar();
+
+// Sem caminho configurado, mas o Claude Code foi aberto dentro do cofre (tem .obsidian): reconhece sozinho
+const pelaPasta = iniciar({ OBSIDIAN_VAULT: '', OBSIDIAN_VAULT_PATH: '', CLAUDE_PROJECT_DIR: '' }, cofre);
+r = await pelaPasta.chamar('vault_info');
+assert.ok(!r.erro && r.texto.includes(cofre), r.texto);
+pelaPasta.fechar();
 
 // Configuração de Notas diárias do Obsidian com modelo e formato próprios
 await escrever('.obsidian/daily-notes.json', JSON.stringify({ folder: 'Diário/', format: 'YYYY/MM-MMMM/DD [de] MMMM', template: 'Modelos/Dia' }));

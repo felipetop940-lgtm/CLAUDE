@@ -9,7 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import readline from 'node:readline';
 
-const VERSAO = '0.1.0';
+const VERSAO = '0.2.0';
 const PROTOCOLOS = ['2025-11-25', '2025-06-18', '2025-03-26', '2024-11-05'];
 const LIMITE_LEITURA = 150_000;
 
@@ -28,9 +28,15 @@ const pastaLimpa = (p) => String(p ?? '').replace(/\\/g, '/').replace(/^\/+|\/+$
 
 function caminhoDoCofre() {
   let p = opcao('OBSIDIAN_VAULT', 'OBSIDIAN_VAULT_PATH');
-  if (!p) return '';
-  if (p === '~' || p.startsWith('~/') || p.startsWith('~\\')) p = path.join(os.homedir(), p.slice(1));
-  return path.resolve(p);
+  if (p) {
+    if (p === '~' || p.startsWith('~/') || p.startsWith('~\\')) p = path.join(os.homedir(), p.slice(1));
+    return path.resolve(p);
+  }
+  // Sem caminho configurado: usa a pasta aberta no Claude Code, se ela for um cofre (tem .obsidian).
+  for (const pasta of [process.env.CLAUDE_PROJECT_DIR, process.cwd()]) {
+    if (pasta && existsSync(path.join(pasta, '.obsidian'))) return path.resolve(pasta);
+  }
+  return '';
 }
 
 const COFRE = caminhoDoCofre();
@@ -46,7 +52,7 @@ const falha = (mensagem) => {
 
 function checarCofre() {
   if (!COFRE) {
-    falha('O cofre do Obsidian não está configurado. No Claude Code: /plugin → obsidian → configurar, preencha "Pasta do cofre" e reinicie a sessão.');
+    falha('Não achei o cofre do Obsidian. Abra o Claude Code dentro da pasta do cofre, ou em /plugin → obsidian → configurar preencha "Pasta do cofre" e reinicie a sessão.');
   }
   let st;
   try {
@@ -616,7 +622,7 @@ async function vaultInfo() {
   const recentes = [...notas].sort((a, b) => b.st.mtimeMs - a.st.mtimeMs).slice(0, 10);
 
   let regras = '';
-  for (const nome of ['Claude.md', 'CLAUDE.md', '_Claude.md']) {
+  for (const nome of ['CLAUDE.md', 'Claude.md', '_Claude.md']) {
     const abs = path.join(COFRE, nome);
     if (existsSync(abs)) {
       const conteudo = await lerArquivo(abs);
@@ -634,7 +640,7 @@ async function vaultInfo() {
     notas.length ? `Pastas (notas):\n${pastas.join('\n')}` : 'O cofre está vazio.',
     '',
     recentes.length ? `Últimas modificadas:\n${recentes.map((n) => `  ${dataHora(n.st.mtimeMs)}  ${n.rel}`).join('\n')}` : '',
-    regras || '\nSem Claude.md na raiz do cofre (é onde o dono pode deixar regras próprias para o Claude).',
+    regras || '\nSem CLAUDE.md na raiz do cofre (é onde o dono pode deixar regras próprias para o Claude).',
   ].join('\n');
 }
 
@@ -946,7 +952,7 @@ const ferramentas = [
   {
     name: 'vault_info',
     description:
-      'Visão geral do cofre: caminho, data de hoje e semana ISO, pastas com quantidade de notas, onde fica a nota do dia, últimas notas modificadas e as regras do dono (Claude.md na raiz, se existir). Chame antes da primeira escrita da sessão.',
+      'Visão geral do cofre: caminho, data de hoje e semana ISO, pastas com quantidade de notas, onde fica a nota do dia, últimas notas modificadas e as regras do dono (CLAUDE.md na raiz, se existir). Chame antes da primeira escrita da sessão.',
     inputSchema: { type: 'object', properties: {} },
     annotations: { title: 'Visão geral do cofre', ...SO_LEITURA },
     executar: vaultInfo,
@@ -1124,7 +1130,7 @@ const ferramentas = [
 const porNome = new Map(ferramentas.map((f) => [f.name, f]));
 
 const INSTRUCOES =
-  'Acesso ao cofre do Obsidian do usuário (arquivos Markdown no computador dele). Chame vault_info antes da primeira escrita da sessão e siga o Claude.md do cofre se houver. ' +
+  'Acesso ao cofre do Obsidian do usuário (arquivos Markdown no computador dele). Chame vault_info antes da primeira escrita da sessão e siga o CLAUDE.md do cofre se houver. ' +
   'Procure (search_notes) antes de criar para não duplicar; prefira append_to_note, edit_note e set_properties a sobrescrever; ' +
   'ligue pessoas, clientes e projetos com [[links]]; propriedades vão no frontmatter YAML. Não existe ferramenta de apagar.';
 
