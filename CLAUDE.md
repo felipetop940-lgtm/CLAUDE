@@ -32,3 +32,7 @@ Regras fixas:
 Clientes ficam em `clientes/<nome>/` (ex.: `clientes/renato-sericaku/`). Material de portfólio de cada um: `midia/` (capturas + artes feed/story via `artes.html`) e vídeo `shorts/roteiros/portfolio-<nome>.json` (props `site_desktop` + `site_celular` com `continua`, `y`, `escala`).
 
 Base de referência: `gabriel-augusto/` (site dele) e a raiz (site ICL Saúde): HTML/CSS/JS estático, `config.js` com os dados, `build.py` gera `dist/index.html` único + zip. Estética premium, minimalista, conversiva, fotos leves, botões de WhatsApp com mensagem automática. Usar só dados reais do cliente; o que faltar vira marcador para ele preencher.
+
+## Plugins do Claude Code (`plugins/`)
+
+Marketplace `felipe-plugins` em `.claude-plugin/marketplace.json`. Plugin `plugins/obsidian/`: servidor MCP sem dependências (`server/obsidian-mcp.mjs`, 12 ferramentas sobre os .md do cofre) + skills em `skills/` (`/obsidian:capturar`, `diario`, `reuniao`, `perguntar`, `semana`, `organizar`, `configurar`). Depois de mexer: `node plugins/obsidian/tests/teste-servidor.mjs` e `claude plugin validate plugins/obsidian --strict`. Subir `version` no `plugin.json` a cada mudança publicada.

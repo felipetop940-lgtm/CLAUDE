@@ -1,0 +1,34 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "obsidian",
+  "displayName": "Obsidian",
+  "version": "0.1.0",
+  "description": "Liga o Claude ao seu cofre do Obsidian: capturar ideias, nota do dia, reuniões de resultado com clientes, perguntas sobre suas notas, revisão semanal e organização da entrada — tudo em Markdown no seu computador.",
+  "author": {
+    "name": "Felipe",
+    "email": "felipetop.940@gmail.com"
+  },
+  "repository": "https://github.com/felipetop940-lgtm/claude",
+  "license": "MIT",
+  "keywords": ["obsidian", "notas", "segundo-cerebro", "produtividade", "mcp"],
+  "userConfig": {
+    "vault_path": {
+      "type": "directory",
+      "title": "Pasta do cofre do Obsidian",
+      "description": "A pasta do seu cofre (vault). No Obsidian: clique com o direito no nome do cofre → Mostrar no Finder/Explorer e copie o caminho.",
+      "required": true
+    },
+    "inbox_folder": {
+      "type": "string",
+      "title": "Pasta de entrada",
+      "description": "Onde caem as capturas rápidas antes de organizar. Criada sozinha se não existir.",
+      "default": "00 Entrada"
+    },
+    "daily_folder": {
+      "type": "string",
+      "title": "Pasta das notas diárias",
+      "description": "Deixe vazio para seguir a configuração de Notas diárias do próprio Obsidian (sem configuração lá, usa \"10 Diário\").",
+      "default": ""
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "obsidian": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/server/obsidian-mcp.mjs"],
+      "env": {
+        "OBSIDIAN_VAULT": "${user_config.vault_path}",
+        "OBSIDIAN_INBOX_FOLDER": "${user_config.inbox_folder}",
+        "OBSIDIAN_DAILY_FOLDER": "${user_config.daily_folder}"
+      }
+    }
+  }
+}

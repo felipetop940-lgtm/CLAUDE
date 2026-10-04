@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "felipe-plugins",
+  "description": "Plugins do Claude Code feitos para o dia a dia do Felipe.",
+  "owner": {
+    "name": "Felipe",
+    "email": "felipetop.940@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "obsidian",
+      "source": "./plugins/obsidian",
+      "description": "Cofre do Obsidian no Claude: capturas, nota do dia, reuniões de resultado, perguntas às notas, revisão semanal e organização.",
+      "category": "produtividade",
+      "tags": ["obsidian", "notas", "mcp"]
+    }
+  ]
+}
