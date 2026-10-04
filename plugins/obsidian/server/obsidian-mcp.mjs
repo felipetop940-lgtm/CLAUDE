@@ -9,7 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import readline from 'node:readline';
 
-const VERSAO = '0.2.0';
+const VERSAO = '0.2.1';
 const PROTOCOLOS = ['2025-11-25', '2025-06-18', '2025-03-26', '2024-11-05'];
 const LIMITE_LEITURA = 150_000;
 
@@ -1129,6 +1129,14 @@ const ferramentas = [
 
 const porNome = new Map(ferramentas.map((f) => [f.name, f]));
 
+// Uma ferramenta por vez: duas escritas em paralelo na mesma nota fariam a segunda apagar a primeira.
+let fila = Promise.resolve();
+function emFila(tarefa) {
+  const resultado = fila.then(tarefa, tarefa);
+  fila = resultado.catch(() => {});
+  return resultado;
+}
+
 const INSTRUCOES =
   'Acesso ao cofre do Obsidian do usuário (arquivos Markdown no computador dele). Chame vault_info antes da primeira escrita da sessão e siga o CLAUDE.md do cofre se houver. ' +
   'Procure (search_notes) antes de criar para não duplicar; prefira append_to_note, edit_note e set_properties a sobrescrever; ' +
@@ -1154,7 +1162,7 @@ async function atender(msg) {
       if (!ferramenta) throw { code: -32602, message: `Ferramenta desconhecida: ${msg.params?.name}` };
       try {
         checarCofre();
-        const resposta = await ferramenta.executar(msg.params.arguments ?? {});
+        const resposta = await emFila(() => ferramenta.executar(msg.params.arguments ?? {}));
         return { content: [{ type: 'text', text: resposta }] };
       } catch (erro) {
         if (!(erro instanceof ErroDeUso)) console.error(erro);

@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "obsidian",
   "displayName": "Obsidian",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Liga o Claude ao seu cofre do Obsidian: capturar ideias, nota do dia, reuniões de resultado com clientes, perguntas sobre suas notas, revisão semanal e organização da entrada — tudo em Markdown no seu computador.",
   "author": {
     "name": "Felipe",

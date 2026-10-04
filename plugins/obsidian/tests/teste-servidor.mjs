@@ -116,6 +116,13 @@ r = await s.chamar('append_to_note', { note: '2026-09-01 - Reunião - Dra Ana', 
 reuniao = await ler('Reuniões/2026-09-01 - Reunião - Dra Ana.md');
 assert.ok(reuniao.endsWith('## Fim\nok\n\n## Decisões\nManter verba.\n'), reuniao);
 
+// Duas escritas ao mesmo tempo na mesma nota: nenhuma pode sumir
+await Promise.all([
+  s.chamar('append_to_note', { note: 'Ideia de oferta', heading: 'Notas', content: '- primeira' }),
+  s.chamar('append_to_note', { note: 'Ideia de oferta', heading: 'Notas', content: '- segunda' }),
+]);
+assert.ok((await ler('00 Entrada/Ideia de oferta.md')).includes('## Notas\n- primeira\n- segunda\n'));
+
 // Editar e propriedades
 r = await s.chamar('edit_note', { note: 'Dra Ana', old_text: 'Dermatologista em Goiânia.', new_text: 'Dermatologista em Goiânia e Anápolis.' });
 assert.ok(!r.erro, r.texto);

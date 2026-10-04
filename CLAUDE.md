@@ -36,3 +36,7 @@ Base de referência: `gabriel-augusto/` (site dele) e a raiz (site ICL Saúde): 
 ## Plugins do Claude Code (`plugins/`)
 
 Marketplace `felipe-plugins` em `.claude-plugin/marketplace.json`. Plugin `plugins/obsidian/`: servidor MCP sem dependências (`server/obsidian-mcp.mjs`, 12 ferramentas sobre os .md do cofre) + skills em `skills/` (`/obsidian:capturar`, `diario`, `reuniao`, `perguntar`, `semana`, `organizar`, `configurar`). Depois de mexer: `node plugins/obsidian/tests/teste-servidor.mjs` e `claude plugin validate plugins/obsidian --strict`. O cofre dele é o repositório `felipetop940-lgtm/obsidian-vault` (branch `master`, sincronizado pelo plugin Git do Obsidian): depois de mudar servidor ou skills, rodar `node plugins/obsidian/scripts/instalar-no-cofre.mjs <clone do cofre>` e enviar o cofre para a `master`. Subir `version` no `plugin.json` a cada mudança publicada.
+
+## Obsidian: registro automático
+
+Tudo de importante que ele falar nas sessões deste repositório também vai para o cofre do Obsidian (decisões, tarefas, dados de cliente, ideias, números, conclusões). Quando aparecer algo assim: adicionar `felipetop940-lgtm/obsidian-vault` à sessão (add_repo), clonar, seguir o `CLAUDE.md` do cofre (seção "Registro automático") e, como os hooks do cofre não rodam aqui, fazer `git pull --no-rebase origin master`, commit e `git push origin HEAD:master` no cofre. Fechar a resposta com `→ Obsidian: <onde salvou>`.
