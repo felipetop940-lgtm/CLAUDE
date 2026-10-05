@@ -78,6 +78,15 @@ Modelo: `c01-botao-300-milhoes`. Fundo preto, cabeçalho de perfil em todo slide
   **"Segue @euaugusto_oliv: todo dia uma história real de negócios que quase ninguém conta."**, fonte, 5 hashtags.
 - Primeiro comentário: teaser do post de amanhã ("amanhã: ... segue pra não perder").
 
+## TikTok (mesmo carrossel, todo dia junto com a legenda do Instagram)
+
+Ele posta o mesmo carrossel no TikTok (modo foto), que pede **título** e **descrição longa**:
+- **Título:** 3 opções curtas (até ~90 caracteres), a 1ª pensando em busca (palavra-chave), uma com humor/sátira quando couber.
+- **Descrição:** a história contada em parágrafos curtos (mais longa que a do Instagram), com as palavras-chave do tema,
+  os números do carrossel, a lição, pergunta pra comentar, "manda pra alguém", **"Segue o perfil"** (sem @, porque o @ do
+  TikTok pode ser outro), teaser do próximo post, fonte e 5 hashtags.
+- Música: no TikTok, colocar pela biblioteca do app. Conta comercial só tem a Biblioteca de Músicas Comerciais.
+
 ## Horário de postagem
 
 **19h, todo dia** (dentro do pico de 18h às 21h no Brasil). Mesmo horário todo dia cria hábito no público.
@@ -106,3 +115,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
   agora o marca-texto usa a serifada dos títulos em itálico.
 - 05/10: mandou prints de fontes do Instagram pra usar nas próximas como eu preferir (e nos sites). Viraram as combinações acima.
 - 04/10 (noite): vai postar o c01 na segunda 05/10. Segunda é só pesquisa de retenção (sem mandar nada). A partir de 06/10, artes prontas todo dia às 13h.
+- 05/10: mandar todo dia também o título e a descrição do TikTok (ele posta o mesmo carrossel lá). Posts programados pras 19h.
