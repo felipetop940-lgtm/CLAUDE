@@ -1,7 +1,7 @@
 # Carrossel 01 · O botão de US$ 300 milhões
 
 **Pilar:** curiosidade de negócios · **Slides:** 8 · **Imagens:** `saida/c01-botao-300-milhoes/01.jpg` a `08.jpg`
-**Postar:** segunda 05/10, 12h (janela de segunda: 11h às 14h)
+**Postar:** segunda 05/10, 19h · **Fontes:** padrão (Instrument Serif + Inter)
 
 ## Legenda (copiar e colar)
 

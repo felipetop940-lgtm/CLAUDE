@@ -2,8 +2,9 @@
 
 **Objetivo dele:** ganhar o máximo de seguidores de todas as áreas pra chegar no público que compra
 (empresas, médicos, advogados, lojas). O conteúdo é **viral primeiro**, venda depois.
-A rotina agendada dispara nesta conversa às 6h59 (Goiânia); ele não precisa rodar nada.
-**Cada entrega da manhã é o post do DIA SEGUINTE** (ex.: entregue segunda, posta terça), pra sobrar um dia pra ele pedir ajuste.
+A rotina agendada dispara nesta conversa às 12h20 (Goiânia) e **as artes têm que estar com ele até as 13h**, todo dia
+a partir de 06/10. É o post do **mesmo dia** (postar às 19h). Ele não precisa rodar nada.
+Antes de montar, ler `RETENCAO.md` (ideias de retenção pesquisadas) e aplicar pelo menos uma por carrossel.
 
 ## Passo a passo de cada dia
 
@@ -77,18 +78,10 @@ Modelo: `c01-botao-300-milhoes`. Fundo preto, cabeçalho de perfil em todo slide
   **"Segue @euaugusto_oliv: todo dia uma história real de negócios que quase ninguém conta."**, fonte, 5 hashtags.
 - Primeiro comentário: teaser do post de amanhã ("amanhã: ... segue pra não perder").
 
-## Horário de postagem (Brasil, até ter dados do perfil)
+## Horário de postagem
 
-| Dia | Postar | Janela boa |
-|---|---|---|
-| Segunda | 12h | 11h às 14h |
-| Terça | 12h | 10h às 13h |
-| Quarta | 12h | 10h às 14h |
-| Quinta | 12h | 11h às 14h ou 19h |
-| Sexta | 12h | 11h às 13h |
-| Sábado e domingo | 19h | 18h às 21h |
-
-Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horários mais ativos** e ajustar esta tabela.
+**19h, todo dia** (dentro do pico de 18h às 21h no Brasil). Mesmo horário todo dia cria hábito no público.
+Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horários mais ativos** e ajustar.
 
 ## Regras que continuam valendo
 
@@ -112,3 +105,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 05/10: aumentar fonte/grossura pra ler no celular (feito no base.css). A Inter maiúscula no marca-texto também não agradou:
   agora o marca-texto usa a serifada dos títulos em itálico.
 - 05/10: mandou prints de fontes do Instagram pra usar nas próximas como eu preferir (e nos sites). Viraram as combinações acima.
+- 04/10 (noite): vai postar o c01 na segunda 05/10. Segunda é só pesquisa de retenção (sem mandar nada). A partir de 06/10, artes prontas todo dia às 13h.
