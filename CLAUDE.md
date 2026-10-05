@@ -29,7 +29,7 @@ Regras fixas:
 
 ## Carrossel diário do feed (`gabriel-augusto/carrosseis/`)
 
-Uma rotina agendada dispara todo dia às 6h59 (Goiânia) e eu entrego um carrossel pronto (1080x1350 + legenda). Seguir `carrosseis/GUIA.md` (passo a passo, regras e ajustes que ele pediu) e `carrosseis/PAUTA.md` (ordem dos temas). Modelo aprovado de partida: `c01-link-na-bio`.
+Uma rotina agendada dispara todo dia às 6h59 (Goiânia) e eu entrego um carrossel viral pronto (1080x1350 + legenda + horário de postagem). Objetivo: seguidores de todas as áreas. Seguir `carrosseis/GUIA.md` (pesquisa do dia, fórmula viral, visual caderno, ajustes que ele pediu) e `carrosseis/PAUTA.md`. Modelo atual: `c01-botao-300-milhoes`.
 
 ## Sites para clientes
 

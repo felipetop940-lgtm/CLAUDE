@@ -1,39 +1,46 @@
-# Pauta dos carrosséis diários
+# Pauta dos carrosséis diários (formato viral)
 
-Um carrossel por dia, na ordem. Se ele pedir um tema no chat, esse tema passa na frente.
-Quando acabar, escrever mais 30 seguindo o rodízio de pilares (sem repetir gancho).
+**Objetivo:** seguidor de todas as áreas. Histórias e curiosidades reais de negócios, internet e consumo
+que qualquer pessoa quer ler e mandar pra alguém, sempre fechando com uma lição que puxa pra site,
+WhatsApp e presença digital (o que ele vende).
 
-**Pilares (rodízio):** Provocação · Educação · Objeção · Prova · Oferta · Bastidores
+**Ordem de prioridade do tema do dia:**
+1. Tema que ele pediu no chat.
+2. Assunto em alta no dia (pesquisar toda manhã) que renda história real + lição de negócio.
+3. Próximo `pendente` desta lista.
 
-| Nº | Pilar | Tema / gancho da capa | Status |
+**Todo fato precisa de fonte checada no dia.** Se não confirmar, troca de tema. Sem fonte, não posta.
+Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
+
+| Nº | Tipo | Gancho / fato central | Status |
 |---|---|---|---|
-| 01 | Provocação | Link na bio não é site | feito 05/10 (teste) |
-| 02 | Educação | 7 coisas que todo site de profissional precisa ter | pendente |
-| 03 | Objeção | "Eu já tenho Instagram, não preciso de site" | pendente |
-| 04 | Prova | Por dentro de um site que eu entreguei (site para médico, Dr. Fernando) | pendente |
-| 05 | Oferta | Essencial ou Premium: qual é o seu? | pendente |
-| 06 | Provocação | Seu cliente te pesquisa no Google antes de te chamar. O que ele encontra? | pendente |
-| 07 | Educação | 5 erros que fazem o cliente fechar o seu site | pendente |
-| 08 | Objeção | "Site é caro" (o que você ganha por R$ 300) | pendente |
-| 09 | Bastidores | Como eu crio um site em 4 passos | pendente |
-| 10 | Provocação | Profissional bom sem site parece amador | pendente |
-| 11 | Educação | seunome.com.br: por que domínio próprio passa confiança | pendente |
-| 12 | Educação | O botão mais importante do seu site (WhatsApp com mensagem pronta) | pendente |
-| 13 | Prova | Site para médico: o que não pode faltar | pendente |
-| 14 | Objeção | "Não tenho tempo pra cuidar de site" | pendente |
-| 15 | Provocação | Pare de responder "qual o valor?" o dia inteiro | pendente |
-| 16 | Educação | Site, landing page ou link na bio: qual a diferença | pendente |
-| 17 | Oferta | Tudo que vem no Premium Page de R$ 500 | pendente |
-| 18 | Educação | Vídeo na página: por que mostrar sua voz vende mais que texto | pendente |
-| 19 | Provocação | Seu concorrente pode estar parecendo melhor que você (e nem é) | pendente |
-| 20 | Educação | Checklist: seu site passa nesse teste? | pendente |
-| 21 | Objeção | "Vou fazer sozinho no Wix" | pendente |
-| 22 | Bastidores | O que eu preciso de você pra fazer o seu site | pendente |
-| 23 | Provocação | Instagram é vitrine. Site é o seu consultório. | pendente |
-| 24 | Educação | 8 profissões que mais perdem cliente sem site | pendente |
-| 25 | Prova | Meu próprio site: por que eu fiz assim | pendente |
-| 26 | Bastidores | Seu site no ar a partir de 2 dias: o que acontece em cada etapa | pendente |
-| 27 | Objeção | "Depois eu vejo isso" | pendente |
-| 28 | Oferta | Essencial + vídeo = R$ 338. Premium = R$ 500. Faz a conta. | pendente |
-| 29 | Provocação | Foto de banco de imagem está matando a sua credibilidade | pendente |
-| 30 | Educação | As dúvidas que todo mundo tem antes de fazer um site | pendente |
+| 01 | Negócios | O botão de US$ 300 milhões (Jared Spool, UIE) | feito 05/10 |
+| 02 | Negócios | O Google ganhou US$ 200 milhões trocando um tom de azul (teste dos 41 tons) | pendente |
+| 03 | Psicologia | Você tem 0,05 segundo: o cérebro julga um site em 50 milissegundos (Lindgaard, 2006) | pendente |
+| 04 | História | O estudante que ficou milionário vendendo pixels a US$ 1 (Million Dollar Homepage, 2005) | pendente |
+| 05 | Consumo | Por que quase tudo custa R$ 9,90 (preço terminado em 9) | pendente |
+| 06 | Consumo | O truque do plano do meio: a revista The Economist e o efeito isca (Dan Ariely) | pendente |
+| 07 | Consumo | Por que o leite fica sempre no fundo do supermercado | pendente |
+| 08 | História | A Blockbuster podia ter comprado a Netflix por US$ 50 milhões e riu da proposta (2000) | pendente |
+| 09 | Internet | O primeiro site do mundo ainda está no ar (info.cern.ch, 1991) | pendente |
+| 10 | Internet | O domínio mais caro da história: voice.com por US$ 30 milhões (2019) | pendente |
+| 11 | Curiosidade | O botão de fechar a porta do elevador quase nunca faz nada | pendente |
+| 12 | Consumo | Por que a IKEA é um labirinto de propósito | pendente |
+| 13 | História | A Kodak inventou a câmera digital e faliu por causa dela | pendente |
+| 14 | Consumo | O cardápio é desenhado pra você gastar mais (preço sem "R$") | pendente |
+| 15 | Internet | A Netflix mostra uma capa diferente do mesmo filme pra cada pessoa | pendente |
+| 16 | Polêmica | O site da empresa do Warren Buffett parece de 1995 (e por que você não pode fazer igual) | pendente |
+| 17 | Dado | Metade das pessoas abandona um site que demora mais de 3 segundos no celular (Google) | pendente |
+| 18 | História | Como o Airbnb se salvou vendendo caixas de cereal (2008) | pendente |
+| 19 | Negócios | O McDonald's não vive de hambúrguer: vive de imóvel | pendente |
+| 20 | Psicologia | Efeito Zeigarnik: por que você não consegue largar uma série (e chegou até o fim deste post) | pendente |
+| 21 | Internet | 22 mil pessoas aceitaram limpar banheiro sem ler os termos de uso (Purple, 2017) | pendente |
+| 22 | Dado | 1 segundo de lentidão custaria US$ 1,6 bilhão por ano à Amazon (estimativa) | pendente |
+| 23 | Curiosidade | Os botões de pedestre de Nova York que não fazem nada | pendente |
+| 24 | Polêmica | Todas as marcas estão ficando iguais (e isso é uma oportunidade pra você) | pendente |
+| 25 | Consumo | Ancoragem: por que a loja te mostra primeiro o produto mais caro | pendente |
+| 26 | História | O nome Google veio de um erro de digitação | pendente |
+| 27 | Internet | Os sites mais visitados do Brasil este mês (dados do mês) | pendente |
+| 28 | Mercado | Por que um site pode custar R$ 300 ou R$ 30 mil (o que muda de verdade) | pendente |
+| 29 | Psicologia | Prova social: por que você escolhe o restaurante cheio | pendente |
+| 30 | Negócios | A empresa que perdeu milhões por um erro no site (caso real a pesquisar) | pendente |

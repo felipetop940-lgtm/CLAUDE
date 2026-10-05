@@ -6,7 +6,7 @@
 :root{--gold:#D6B36C;--gold2:#F1DDA8;--blue:#4F7BFF;--red:#FF4D5E;--green:#25D366;--white:#F5F6F8;--gray:#9AA1AD;--line:rgba(255,255,255,.1);--card:rgba(255,255,255,.045)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#222;font-family:Inter;color:var(--white)}
-.s{position:relative;width:1080px;height:1350px;overflow:hidden;background:#07080A;display:flex;flex-direction:column;padding:190px 80px 170px}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;background:#07080A;display:flex;flex-direction:column;padding:180px 80px 210px}
 .s::before,.s::after{content:"";position:absolute;inset:0;pointer-events:none}
 .s::after{opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .s>*{position:relative;z-index:1}
@@ -25,6 +25,7 @@ body{background:#222;font-family:Inter;color:var(--white)}
 .top{position:absolute;left:80px;right:80px;top:72px;display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:600;color:var(--gray)}
 .top b{display:flex;align-items:center;gap:14px;color:var(--white);font-weight:700;font-size:25px}
 .top b i{display:grid;place-items:center;width:50px;height:50px;border-radius:14px;border:1.5px solid rgba(214,179,108,.6);font-family:Corm;font-size:27px;color:var(--gold)}
+.top b span{display:flex;flex-direction:column;line-height:1.15}.top b small{font-size:20px;font-weight:600;color:var(--gray)}
 .dots{display:flex;gap:8px}.dots span{width:11px;height:11px;border-radius:6px;background:rgba(255,255,255,.18)}.dots span.on{width:36px;background:var(--gold)}
 .tap{position:absolute;left:80px;right:80px;bottom:66px;display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:700;color:var(--gray);letter-spacing:.06em;text-transform:uppercase}
 .tap span:first-child::before{content:"● ";color:var(--red)}
@@ -119,3 +120,102 @@ body{background:#222;font-family:Inter;color:var(--white)}
 .meta{margin-top:26px;font-size:28px;color:var(--gray);font-weight:600}.meta b{color:#fff}
 .acts{display:flex;gap:18px;margin-top:34px}
 .acts span{display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:16px;background:var(--card);border:1.5px solid var(--line);font-size:24px;font-weight:700;color:#DADDE3}
+
+/* ===== formato viral ===== */
+/* gancho do rodapé: frase que puxa pro próximo slide. <div class="next"><p>Mas o pior <em>vem agora</em></p><i>→</i></div> */
+.next{position:absolute;left:80px;right:80px;bottom:58px;display:flex;justify-content:space-between;align-items:center;gap:30px;padding-top:24px;border-top:1.5px solid var(--line)}
+.next p{font-size:31px;font-weight:700;line-height:1.25;color:#fff}
+.next p em{font-style:normal;color:var(--gold)}
+.next i{flex-shrink:0;display:grid;place-items:center;width:66px;height:66px;border-radius:50%;background:var(--gold);color:#07080A;font-style:normal;font-size:32px;font-weight:900;box-shadow:0 0 50px rgba(214,179,108,.45)}
+.next.end{border-top:0;justify-content:center}
+/* tela de site/app simulada */
+.form{padding:38px 40px;border-radius:30px;background:#12151b;border:1.5px solid rgba(255,255,255,.12);box-shadow:0 50px 100px -30px #000,0 0 140px -40px rgba(79,123,255,.45)}
+.form label{display:block;font-size:21px;font-weight:800;color:var(--gray);letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
+.form .inp{height:68px;border-radius:16px;background:#0b0d11;border:1.5px solid rgba(255,255,255,.12);margin-bottom:22px;display:flex;align-items:center;padding:0 22px;font-size:24px;color:#5d6470}
+.ui{display:flex;align-items:center;justify-content:center;height:84px;padding:0 40px;border-radius:18px;font-size:32px;font-weight:800;white-space:nowrap}
+.ui.gold{background:linear-gradient(135deg,#E8CC8E,var(--gold) 45%,#B8924A);color:#07080A;box-shadow:0 0 80px -10px rgba(214,179,108,.55)}
+.ui.ghost{border:2px solid rgba(255,255,255,.25);color:#fff}
+.ui.red{border:2.5px solid var(--red);color:#FF7380;background:rgba(255,77,94,.08)}
+.ui.x{position:relative;opacity:.75}.ui.x::after{content:"";position:absolute;left:12%;right:12%;top:50%;height:8px;border-radius:4px;background:var(--red);transform:rotate(-7deg)}
+.blur{filter:blur(10px)}
+/* números grandes */
+.stat{display:flex;align-items:center;gap:34px;padding:26px 0;border-top:1.5px solid var(--line)}
+.stat:first-child{border-top:0}
+.stat b{flex-shrink:0;width:330px;font-family:Anton;font-weight:400;font-size:104px;line-height:1;color:var(--gold)}
+.stat b.r{color:var(--red)}
+.stat span{font-size:31px;line-height:1.3;color:#C9CED6;font-weight:600}.stat span strong{color:#fff}
+.quote{font-family:Corm;font-style:italic;font-size:66px;line-height:1.15;color:#fff}
+.quote em{color:var(--gold)}
+.src{font-size:22px;color:var(--gray);font-weight:600;letter-spacing:.04em}
+.follow{display:inline-flex;align-items:center;gap:18px;padding:24px 48px;border-radius:999px;background:linear-gradient(135deg,#E8CC8E,var(--gold) 45%,#B8924A);color:#07080A;font-size:40px;font-weight:900;box-shadow:0 0 90px rgba(214,179,108,.45)}
+.follow::before{content:"+";display:grid;place-items:center;width:50px;height:50px;border-radius:50%;background:#07080A;color:var(--gold);font-size:36px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.duo>div{padding:30px 32px;border-radius:30px;background:var(--card);border:1.5px solid var(--line)}
+.duo b{display:block;font-family:Anton;font-weight:400;font-size:84px;line-height:1.05;color:var(--gold)}
+.duo span{display:block;margin-top:6px;font-size:27px;line-height:1.3;color:#C9CED6;font-weight:600}
+
+/* ===== tema caderno: <body class="caderno">; slide claro: <section class="s claro"> =====
+   Referência: post "escrito à mão" em folha de caderno. Mistura de fontes:
+   serifada elegante nos títulos (.H, .it itálico) · marcador nas palavras-chave (.mk + .hl marca-texto)
+   · caligrafia nas anotações (.nota) · Inter no texto corrido. Pouca coisa por slide. */
+@font-face{font-family:Marker;src:url(../shorts/ferramentas/fontes/permanent-marker.woff2)}
+@font-face{font-family:Serif;src:url(fontes/instrument-serif.woff2)}
+@font-face{font-family:Serif;font-style:italic;src:url(fontes/instrument-serif-italic.woff2)}
+@font-face{font-family:Hand;src:url(fontes/caveat-bold.woff2)}
+.caderno{--paper:#141519;--ink:#F3F1EC;--ink2:#B9BEC7;--rule:rgba(140,170,255,.075);--margin:rgba(255,77,94,.42);--hl:#2F7DFF;--doodle:#6FB0FF}
+.caderno.claro,.caderno .s.claro{--paper:#F4F1EA;--ink:#141414;--ink2:#4a4d55;--rule:rgba(60,120,220,.2);--margin:rgba(230,60,70,.5);--hl:#5BC8FF;--doodle:#2F7DFF}
+.caderno .s{background:var(--paper);padding-left:126px;color:var(--ink)}
+.caderno .s::before{background:linear-gradient(90deg,transparent 100px,var(--margin) 100px,var(--margin) 102.5px,transparent 102.5px),repeating-linear-gradient(transparent 0 62px,var(--rule) 62px 64px)!important}
+.caderno .s::after{opacity:.05}
+.espiral{position:absolute!important;z-index:5!important;left:0;top:0;bottom:0;width:58px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='58' height='64'%3E%3Cdefs%3E%3ClinearGradient id='m' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f2f3f5'/%3E%3Cstop offset='.5' stop-color='%23a7acb5'/%3E%3Cstop offset='1' stop-color='%23575c65'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='42' cy='32' r='7' fill='%23050506'/%3E%3Cpath d='M-2 25 H38 a7 7 0 0 1 0 14 H-2' fill='none' stroke='url(%23m)' stroke-width='5.5' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/58px 64px repeat-y}
+.caderno .top,.caderno .next{left:126px}
+.caderno .H{font-family:Serif;text-transform:none;font-size:124px;line-height:1.02;letter-spacing:-.015em;color:var(--ink);margin-top:0}
+.caderno .H.xl{font-size:150px}.caderno .H.m{font-size:104px}.caderno .H.sm{font-size:86px}
+.caderno .H .ln.ac{padding-top:0}
+.caderno .H .it{font-family:Serif;font-style:italic;font-size:1em;color:var(--gold)}
+.caderno .s.claro .H .it{color:#B8862E}
+.caderno .H .ink2{color:var(--ink2)}
+.mk{white-space:nowrap;font-family:Marker;text-transform:uppercase;font-size:.66em;letter-spacing:.01em;line-height:1.3;vertical-align:.08em}
+.caderno .lead{color:var(--ink2)}.caderno .lead b{color:var(--ink)}
+.caderno .kick{font-size:24px;color:var(--doodle)}
+.nota{font-family:Hand;font-size:48px;line-height:1.1;color:var(--doodle);transform:rotate(-2.5deg);transform-origin:left center}
+.nota.gold{color:var(--gold)}.nota.red{color:#FF6B78}
+.caderno .next p{font-family:Hand;font-weight:400;font-size:44px;line-height:1.1;color:var(--ink)}
+.caderno .next p em{color:var(--gold)}
+.caderno .next{border-top-color:transparent}
+.caderno .stat b,.caderno .duo b{font-family:Serif;font-size:118px;letter-spacing:-.02em}
+.caderno .stat b{width:400px}
+.caderno .quote{font-family:Serif;font-size:84px;line-height:1.08;letter-spacing:-.01em}
+.caderno .follow{font-size:38px}
+/* marca-texto e sublinhado à mão */
+.hl{position:relative;display:inline-block;padding:0 .14em;z-index:0;color:#fff}
+.hl::before{content:"";position:absolute;z-index:-1;left:-.02em;right:-.04em;top:.12em;bottom:.04em;background:var(--hl);border-radius:.08em .35em .12em .3em;transform:rotate(-1.4deg) skewX(-8deg)}
+.claro .hl{color:#141414}
+.hl.gold,.claro .hl.gold{color:#121212}.hl.gold::before{background:linear-gradient(100deg,#EBD198,var(--gold) 60%,#C9A35A)}
+.hl.red::before{background:var(--red)}.claro .hl.red{color:#fff}
+.risco{position:relative;display:inline-block}
+.risco::after{content:"";position:absolute;left:-3%;right:-3%;bottom:-.08em;height:.18em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 20' preserveAspectRatio='none'%3E%3Cpath d='M3 13 C70 5 160 4 297 9' fill='none' stroke='%23FF4D5E' stroke-width='7' stroke-linecap='round'/%3E%3Cpath d='M20 18 C110 11 200 11 280 15' fill='none' stroke='%23FF4D5E' stroke-width='4' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+/* rabisco de destaque (3 tracinhos). <i class="dd" style="left:..;top:..;transform:rotate(..)"></i> */
+.dd{position:absolute!important;z-index:2;width:58px;height:58px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg stroke='%236FB0FF' stroke-width='3.6' stroke-linecap='round'%3E%3Cpath d='M20 3 L22 13'/%3E%3Cpath d='M4 12 L13 18'/%3E%3Cpath d='M36 10 L29 18'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+/* topo do caderno: @ dentro de um oval feito à mão + contador sublinhado */
+.oval{position:relative;font-family:Hand;font-size:34px;color:var(--ink);padding:6px 26px;border:3px solid var(--doodle);border-radius:50%;transform:rotate(-3deg)}
+.cnt{font-family:Hand;font-size:38px;color:var(--ink);padding-bottom:2px;border-bottom:3px double var(--doodle)}
+
+/* ===== formato "post do X" (texto puro): <section class="s tw"> escuro · <section class="s tw claro"> claro =====
+   Referência: tweet com foto/nome/@ e texto centralizado em serifada, negrito nas palavras-chave. */
+@font-face{font-family:Txt;src:url(fontes/source-serif.woff2)}
+@font-face{font-family:Txt;font-weight:700;src:url(fontes/source-serif-bold.woff2)}
+body .s.tw{--tw-bg:#000;--tw-ink:#E7E9EA;--tw-strong:#fff;--tw-mut:#71767B;background:var(--tw-bg);padding:120px 100px 200px;color:var(--tw-ink)}
+body .s.tw.claro{--tw-bg:#fff;--tw-ink:#0F1419;--tw-strong:#0F1419;--tw-mut:#536471}
+body .s.tw::before{background:none!important}
+.tw-head{display:flex;align-items:center;gap:22px}
+.tw-head .av{flex-shrink:0;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#2a2d35,#0b0c0f);border:2px solid rgba(214,179,108,.65);font-family:Corm;font-size:46px;color:var(--gold)}
+.tw-head b{display:block;font-size:34px;font-weight:800;color:var(--tw-strong)}
+.tw-head small{display:block;margin-top:2px;font-size:28px;font-weight:500;color:var(--tw-mut)}
+.tw .txt{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;font-family:Txt;font-size:74px;line-height:1.24;color:var(--tw-ink);letter-spacing:-.005em}
+.tw .txt b{font-weight:700;color:var(--tw-strong)}
+.tw .txt .g{color:var(--gold)}.tw.claro .txt .g{color:#A87A22}
+.tw .txt small{display:block;margin-top:34px;font-size:46px;color:var(--tw-mut)}
+body .s.tw .next{left:100px;right:100px;justify-content:center;gap:16px;border-top:0}
+body .s.tw .next p{font-family:Inter;font-size:26px;font-weight:600;letter-spacing:.04em;color:var(--tw-mut)}
+body .s.tw .next i{width:auto;height:auto;background:none;box-shadow:none;color:var(--tw-mut);font-size:30px}
