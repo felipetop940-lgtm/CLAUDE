@@ -7,7 +7,6 @@
    Cores: preto, branco, dourado, azul; vermelho só pra alerta. Nada espalhado pela tela. */
 @font-face{font-family:Inter;src:url(../assets/fonts/inter-tight-var.woff2);font-weight:100 900}
 @font-face{font-family:Corm;font-style:italic;src:url(../assets/fonts/cormorant-garamond-italic.woff2)}
-@font-face{font-family:Marker;src:url(../shorts/ferramentas/fontes/permanent-marker.woff2)}
 @font-face{font-family:Serif;src:url(fontes/instrument-serif.woff2)}
 @font-face{font-family:Serif;font-style:italic;src:url(fontes/instrument-serif-italic.woff2)}
 @font-face{font-family:Hand;src:url(fontes/caveat-bold.woff2)}
@@ -56,11 +55,11 @@ body{background:#222;font-family:Inter;color:var(--ink)}
 .lista{list-style:none}
 .lista li{font-size:40px;line-height:1.38;color:var(--soft)}
 .lista li::before{content:"✕  ";color:var(--red);font-weight:800}
-/* marca-texto com letra de marcador: <span class="hl gold mk">palavra</span> (gold, red ou azul padrão) */
-.mk{white-space:nowrap;font-family:Marker;text-transform:uppercase;font-size:.68em;letter-spacing:.01em;line-height:1.3;vertical-align:.08em}
+/* marca-texto na palavra-chave, letra Inter bem forte (fácil de ler): <span class="hl gold mk">palavra</span> (gold, red ou azul padrão) */
+.mk{white-space:nowrap;font-family:Inter;font-weight:900;text-transform:uppercase;font-size:.56em;letter-spacing:.02em;line-height:1.35;vertical-align:.12em}
 .bloco p .mk{font-size:.92em;vertical-align:0}
 .hl{position:relative;display:inline-block;padding:0 .14em;z-index:0;color:#fff}
-.hl::before{content:"";position:absolute;z-index:-1;left:-.02em;right:-.04em;top:.12em;bottom:.04em;background:#2F7DFF;border-radius:.08em .35em .12em .3em;transform:rotate(-1.4deg) skewX(-8deg)}
+.hl{padding:0 .3em}.hl::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:.06em;bottom:.02em;background:#2F7DFF;border-radius:.22em;transform:rotate(-1.2deg)}
 .hl.gold{color:#121212}.hl.gold::before{background:linear-gradient(100deg,#EBD198,var(--gold) 60%,#C9A35A)}
 .hl.red::before{background:var(--red)}
 /* frase-gancho no fim do bloco (puxa pro próximo slide): letra normal, fácil de ler. <p class="nota">O resultado foi absurdo →</p> */

@@ -43,7 +43,8 @@ Modelo: `c01-botao-300-milhoes`. Fundo preto, cabeçalho de perfil em todo slide
 - **Do slide 2 em diante = letras do caderno, SEM a folha de caderno**, num **bloco só** (`<div class="bloco">`),
   compacto, alinhado à esquerda e centralizado na altura (referência: posts de texto do Matheus Tilli):
   - título `h2` em serifada elegante (`h2.m` menor), com `<span class="it">` itálico dourado;
-  - 1 palavra-chave com marca-texto em letra de marcador: `<span class="hl gold mk">`, `hl red mk` (alerta) ou `hl mk` (azul);
+  - 1 palavra-chave com marca-texto em Inter bem forte, maiúscula: `<span class="hl gold mk">`, `hl red mk` (alerta) ou `hl mk` (azul).
+    **Nunca fonte de marcador/pincel** (ele achou que não combina e é difícil de ler);
   - texto corrido `p` em Inter, `<b>` em branco; números grandes `<span class="num">` / `<p class="grande">`; citação `p.citacao`;
   - fechar o slide com a frase-gancho `p.nota` (Inter negrito dourado + "→", fácil de ler; `.red` pra alerta).
     **Nada de anotação azul em letra à mão** (ele achou difícil de ler);
@@ -92,3 +93,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
   (bloco compacto). Escolheu capa "post do X" ESCURO e, depois da capa, as letras do caderno. Ver "Visual".
 - 05/10: manter os botões (Seguir, antes/depois Cadastrar → Continuar, tela de login). Trocar os textos azuis à mão
   por algo mais fácil de ler (virou a frase-gancho em Inter negrito dourado).
+- 05/10: tirar a fonte de marcador do marca-texto ("TODO DIA"): não combinava e era difícil de ler. Agora é Inter forte.
