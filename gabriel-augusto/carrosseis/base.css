@@ -1,10 +1,8 @@
-/* Base dos carrosséis do feed (1080x1350, 4:5) — formato aprovado em 05/10:
-   · Capa (<section class="s capa">): "post do X" escuro. Cabeçalho de perfil + texto centralizado em serifada,
-     negrito nas palavras-chave, número principal em dourado.
-   · Slides seguintes: fundo preto, UM bloco de texto compacto (referência: posts de texto tipo Matheus Tilli),
-     com as letras do caderno: títulos em serifada elegante (.it itálico dourado), palavra-chave em letra de
-     marcador com marca-texto (.hl .mk), anotação em caligrafia (.nota), texto corrido em Inter.
-   Cores: preto, branco, dourado, azul; vermelho só pra alerta. Nada espalhado pela tela. */
+/* Base dos carrosséis do feed (1080x1350, 4:5) — modelo aprovado em 05/10:
+   · Capa (<section class="s capa">): "post do X" escuro (Source Serif), sempre igual em todos os carrosséis.
+   · Slides seguintes: fundo preto, UM bloco de texto compacto, botões aprovados, frase-gancho em dourado.
+   · FONTES: a combinação varia por carrossel com uma classe no <body> (ver "combinações" no fim). Sem classe = padrão
+     aprovado (Instrument Serif + Inter). Cores: preto, branco, dourado, azul; vermelho só pra alerta. */
 @font-face{font-family:Inter;src:url(../assets/fonts/inter-tight-var.woff2);font-weight:100 900}
 @font-face{font-family:Corm;font-style:italic;src:url(../assets/fonts/cormorant-garamond-italic.woff2)}
 @font-face{font-family:Serif;src:url(fontes/instrument-serif.woff2)}
@@ -12,9 +10,40 @@
 @font-face{font-family:Hand;src:url(fontes/caveat-bold.woff2)}
 @font-face{font-family:Txt;src:url(fontes/source-serif.woff2)}
 @font-face{font-family:Txt;font-weight:700;src:url(fontes/source-serif-bold.woff2)}
-:root{--bg:#050506;--ink:#F2F3F5;--soft:#C3C8D0;--mut:#7D838E;--gold:#D6B36C;--blue:#6FA8FF;--red:#FF4D5E}
+@font-face{font-family:Playfair;font-weight:600;src:url(fontes/playfair-600.woff2)}
+@font-face{font-family:Playfair;font-weight:600;font-style:italic;src:url(fontes/playfair-600-italic.woff2)}
+@font-face{font-family:Playfair;font-weight:800;font-style:italic;src:url(fontes/playfair-800-italic.woff2)}
+@font-face{font-family:Mont;font-weight:500;src:url(fontes/montserrat-500.woff2)}
+@font-face{font-family:Mont;font-weight:700;src:url(fontes/montserrat-700.woff2)}
+@font-face{font-family:Mont;font-weight:800;src:url(fontes/montserrat-800.woff2)}
+@font-face{font-family:RobotoC;font-weight:400;src:url(fontes/roboto-condensed-400.woff2)}
+@font-face{font-family:RobotoC;font-weight:700;src:url(fontes/roboto-condensed-700.woff2)}
+@font-face{font-family:RobotoC;font-weight:800;src:url(fontes/roboto-condensed-800.woff2)}
+@font-face{font-family:Spartan;font-weight:800;src:url(fontes/league-spartan-800.woff2)}
+@font-face{font-family:OpenS;font-weight:500;src:url(fontes/open-sans-500.woff2)}
+@font-face{font-family:OpenS;font-weight:700;src:url(fontes/open-sans-700.woff2)}
+@font-face{font-family:OpenS;font-weight:800;src:url(fontes/open-sans-800.woff2)}
+@font-face{font-family:Poppins;font-weight:800;src:url(fontes/poppins-800.woff2)}
+@font-face{font-family:Peace;src:url(fontes/peace-sans.woff2)}
+@font-face{font-family:Bebas;src:url(fontes/bebas-neue.woff2)}
+@font-face{font-family:Gloock;src:url(fontes/gloock.woff2)}
+@font-face{font-family:Corm2;font-weight:500;src:url(fontes/cormorant-500-normal.woff2)}
+@font-face{font-family:Corm2;font-weight:600;src:url(fontes/cormorant-600-normal.woff2)}
+@font-face{font-family:Corm2;font-weight:500;font-style:italic;src:url(fontes/cormorant-500-italic.woff2)}
+@font-face{font-family:Bodoni;font-weight:500;src:url(fontes/bodoni-500-normal.woff2)}
+@font-face{font-family:Bodoni;font-weight:600;src:url(fontes/bodoni-600-normal.woff2)}
+@font-face{font-family:Bodoni;font-weight:500;font-style:italic;src:url(fontes/bodoni-500-italic.woff2)}
+:root{
+ /* fontes do padrão (Instrument Serif + Inter); as combinações trocam só estas variáveis */
+ --tit:Serif;--tit-w:400;--tit-ls:-.01em;--tit-tt:none;--tit-st:1.3px;--tit-lh:1.02;--tit-sz:104px;--tit-sz-m:92px;
+ --it:Serif;--it-st:italic;--it-w:400;
+ --mk:Serif;--mk-st:italic;--mk-w:400;--mk-tt:none;--mk-sz:1em;--mk-st-w:1.3px;
+ --cit:Serif;--cit-st:italic;--cit-w:400;--cit-sz:82px;--cit-tt:none;--cit-stw:1.2px;
+ --txt:Inter;--txt-w:500;--txt-b:800;--txt-ls:0;--txt-sz:46px;
+ --num-sz:108px;--grande-sz:160px;
+ --bg:#050506;--ink:#F2F3F5;--soft:#C3C8D0;--mut:#7D838E;--gold:#D6B36C;--blue:#6FA8FF;--red:#FF4D5E}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#222;font-family:Inter;color:var(--ink)}
+body{background:#222;font-family:Inter;color:var(--ink);font-variant-numeric:lining-nums}
 
 /* slide */
 .s{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;padding:110px 100px 150px}
@@ -41,29 +70,29 @@ body{background:#222;font-family:Inter;color:var(--ink)}
 /* slides de dentro: um bloco só, centralizado na altura */
 .bloco{margin:auto 0}
 .bloco>*+*{margin-top:38px}
-.bloco h2{text-wrap:balance;font-family:Serif;font-weight:400;font-size:104px;line-height:1.02;letter-spacing:-.01em;color:var(--ink);-webkit-text-stroke:1.3px currentColor}
-.bloco h2.m{font-size:92px}
-.bloco p{text-wrap:pretty;font-size:46px;line-height:1.34;font-weight:500;color:#D9DDE3}
-.bloco p b{color:#fff;font-weight:800}
-.it{font-family:Serif;font-style:italic;font-weight:400;color:var(--gold)}
-.citacao{font-family:Serif!important;font-style:italic;font-size:82px!important;line-height:1.08!important;color:var(--ink)!important;letter-spacing:-.005em;-webkit-text-stroke:1.2px currentColor}
-.num{display:block;font-family:Serif;font-size:108px;line-height:.92;letter-spacing:-.015em;color:var(--gold);-webkit-text-stroke:1.5px currentColor}
+.bloco h2{text-wrap:balance;font-family:var(--tit);font-weight:var(--tit-w);font-size:var(--tit-sz);line-height:var(--tit-lh);letter-spacing:var(--tit-ls);text-transform:var(--tit-tt);color:var(--ink);-webkit-text-stroke:var(--tit-st) currentColor}
+.bloco h2.m{font-size:var(--tit-sz-m)}
+.bloco p{text-wrap:pretty;font-family:var(--txt);font-size:var(--txt-sz);line-height:1.34;font-weight:var(--txt-w);letter-spacing:var(--txt-ls);color:#D9DDE3}
+.bloco p b{color:#fff;font-weight:var(--txt-b)}
+.it{font-family:var(--it);font-style:var(--it-st);font-weight:var(--it-w);color:var(--gold)}
+.bloco .citacao{font-family:var(--cit);font-style:var(--cit-st);font-weight:var(--cit-w);font-size:var(--cit-sz);line-height:1.08;text-transform:var(--cit-tt);color:var(--ink);letter-spacing:-.005em;-webkit-text-stroke:var(--cit-stw) currentColor}
+.num{display:block;font-family:var(--tit);font-weight:var(--tit-w);font-size:var(--num-sz);line-height:.92;letter-spacing:var(--tit-ls);color:var(--gold);-webkit-text-stroke:calc(var(--tit-st)*1.15) currentColor}
 .num.r{color:var(--red)}
-.bloco .grande{font-family:Serif;font-size:160px;line-height:.95;letter-spacing:-.015em;color:var(--gold);-webkit-text-stroke:1.8px currentColor}
+.bloco .grande{font-family:var(--tit);font-weight:var(--tit-w);font-size:var(--grande-sz);line-height:.95;letter-spacing:var(--tit-ls);color:var(--gold);-webkit-text-stroke:calc(var(--tit-st)*1.4) currentColor}
 .g{color:var(--gold)}.az{color:var(--blue)}.r{color:var(--red)}
 .x{color:var(--red);text-decoration:line-through;text-decoration-thickness:4px}
 .lista{list-style:none}
-.lista li{font-size:46px;line-height:1.38;font-weight:500;color:#D9DDE3}
+.lista li{font-family:var(--txt);font-size:var(--txt-sz);line-height:1.38;font-weight:var(--txt-w);letter-spacing:var(--txt-ls);color:#D9DDE3}
 .lista li::before{content:"✕  ";color:var(--red);font-weight:800}
-/* marca-texto na palavra-chave, na serifada dos títulos em itálico: <span class="hl gold mk">palavra</span> (gold, red ou azul padrão) */
-.mk{white-space:nowrap;font-family:Serif;font-style:italic;font-weight:400;font-size:1em;letter-spacing:0;line-height:1.05;-webkit-text-stroke:1.3px currentColor}
-.bloco p .mk{font-size:1.2em}
-.hl{position:relative;display:inline-block;padding:0 .14em;z-index:0;color:#fff}
-.hl{padding:0 .2em}.hl::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:.1em;bottom:.02em;background:#2F7DFF;border-radius:.16em;transform:rotate(-1.2deg)}
+/* marca-texto na palavra-chave: <span class="hl gold mk">palavra</span> (gold, red ou azul padrão) */
+.mk{white-space:nowrap;font-family:var(--mk);font-style:var(--mk-st);font-weight:var(--mk-w);text-transform:var(--mk-tt);font-size:var(--mk-sz);letter-spacing:0;line-height:1.05;-webkit-text-stroke:var(--mk-st-w) currentColor}
+.bloco p .mk{font-size:calc(var(--mk-sz)*1.2)}
+.hl{position:relative;display:inline-block;z-index:0;color:#fff;padding:0 .2em}
+.hl::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:.1em;bottom:.02em;background:#2F7DFF;border-radius:.16em;transform:rotate(-1.2deg)}
 .hl.gold{color:#121212}.hl.gold::before{background:linear-gradient(100deg,#EBD198,var(--gold) 60%,#C9A35A)}
 .hl.red::before{background:var(--red)}
 /* frase-gancho no fim do bloco (puxa pro próximo slide): letra normal, fácil de ler. <p class="nota">O resultado foi absurdo →</p> */
-.bloco .nota,.nota{text-wrap:balance;font-family:Inter;font-size:47px;line-height:1.3;font-weight:800;color:var(--gold)}
+.bloco .nota,.nota{text-wrap:balance;font-family:var(--txt);font-size:47px;line-height:1.3;font-weight:800;letter-spacing:var(--txt-ls);color:var(--gold)}
 .bloco .nota.red{color:#FF6B78}.bloco .nota.branca{color:#fff}
 
 /* telas e botões (aprovados por ele) */
@@ -89,3 +118,50 @@ body{background:#222;font-family:Inter;color:var(--ink)}
 /* rodapé (o base.js coloca sozinho; no último slide use <section class="s fim">) */
 .arrasta{position:absolute;bottom:58px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:16px;font-size:27px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
 .arrasta i{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--gold);color:#0A0A0B;font-style:normal;font-size:20px;font-weight:800}
+
+/* ===== combinações de fontes (referências que ele mandou em 05/10). Usar UMA por carrossel: <body class="f-...">
+   Alternar entre os dias, sem repetir a do dia anterior. A capa (post do X) não muda. ===== */
+/* Playfair Display + Montserrat (itálico e negrito, espaçamento apertado) */
+.f-playfair{--tit:Playfair;--tit-w:600;--tit-ls:-.025em;--tit-st:0px;--tit-lh:1.04;--tit-sz:94px;--tit-sz-m:82px;
+ --it:Playfair;--it-st:italic;--it-w:800;--mk:Playfair;--mk-st:italic;--mk-w:800;--mk-st-w:0px;
+ --cit:Playfair;--cit-st:italic;--cit-w:600;--cit-sz:70px;--cit-stw:0px;
+ --txt:Mont;--txt-w:500;--txt-b:800;--txt-ls:-.015em;--txt-sz:44px;--num-sz:100px;--grande-sz:140px}
+/* Playfair Display + Roboto Condensed */
+.f-playfair-cond{--tit:Playfair;--tit-w:600;--tit-ls:-.03em;--tit-st:0px;--tit-lh:1.02;--tit-sz:98px;--tit-sz-m:86px;
+ --it:Playfair;--it-st:italic;--it-w:600;--mk:Playfair;--mk-st:italic;--mk-w:800;--mk-st-w:0px;
+ --cit:Playfair;--cit-st:italic;--cit-w:600;--cit-sz:72px;--cit-stw:0px;
+ --txt:RobotoC;--txt-w:400;--txt-b:700;--txt-ls:0;--txt-sz:50px;--num-sz:104px;--grande-sz:146px}
+/* League Spartan + Open Sans */
+.f-spartan{--tit:Spartan;--tit-w:800;--tit-ls:-.035em;--tit-st:0px;--tit-lh:.98;--tit-sz:92px;--tit-sz-m:80px;
+ --it:Spartan;--it-st:normal;--it-w:800;--mk:Spartan;--mk-st:normal;--mk-w:800;--mk-st-w:0px;
+ --cit:Spartan;--cit-st:normal;--cit-w:800;--cit-sz:64px;--cit-stw:0px;
+ --txt:OpenS;--txt-w:500;--txt-b:800;--txt-ls:-.005em;--txt-sz:44px;--num-sz:110px;--grande-sz:150px}
+/* Poppins (bem pesada, espaçamento apertado) + Inter; marca-texto dourado como o "for designs" */
+.f-poppins{--tit:Poppins;--tit-w:800;--tit-ls:-.045em;--tit-st:0px;--tit-lh:1.0;--tit-sz:86px;--tit-sz-m:76px;
+ --it:Poppins;--it-st:normal;--it-w:800;--mk:Poppins;--mk-st:normal;--mk-w:800;--mk-st-w:0px;
+ --cit:Poppins;--cit-st:normal;--cit-w:800;--cit-sz:58px;--cit-stw:0px;--num-sz:104px;--grande-sz:140px}
+/* Peace Sans (títulos em caixa alta) + Montserrat */
+.f-peace{--tit:Peace;--tit-w:400;--tit-ls:-.005em;--tit-tt:uppercase;--tit-st:0px;--tit-lh:1.02;--tit-sz:76px;--tit-sz-m:66px;
+ --it:Peace;--it-st:normal;--it-w:400;--mk:Peace;--mk-st:normal;--mk-w:400;--mk-tt:uppercase;--mk-st-w:0px;
+ --cit:Mont;--cit-st:normal;--cit-w:800;--cit-sz:54px;--cit-stw:0px;
+ --txt:Mont;--txt-w:500;--txt-b:800;--txt-ls:-.01em;--txt-sz:44px;--num-sz:96px;--grande-sz:124px}
+/* Bebas Neue (no lugar da Extenda, que é paga) + Montserrat */
+.f-bebas{--tit:Bebas;--tit-w:400;--tit-ls:.005em;--tit-tt:uppercase;--tit-st:0px;--tit-lh:.96;--tit-sz:128px;--tit-sz-m:112px;
+ --it:Bebas;--it-st:normal;--it-w:400;--mk:Bebas;--mk-st:normal;--mk-w:400;--mk-tt:uppercase;--mk-st-w:0px;
+ --cit:Bebas;--cit-st:normal;--cit-w:400;--cit-sz:92px;--cit-tt:uppercase;--cit-stw:0px;
+ --txt:Mont;--txt-w:500;--txt-b:800;--txt-ls:-.01em;--txt-sz:44px;--num-sz:136px;--grande-sz:190px}
+/* Gloock (no lugar da Chloe, que é paga) + Playfair itálico + Inter */
+.f-gloock{--tit:Gloock;--tit-w:400;--tit-ls:-.02em;--tit-st:0px;--tit-lh:1.04;--tit-sz:94px;--tit-sz-m:82px;
+ --it:Playfair;--it-st:italic;--it-w:600;--mk:Playfair;--mk-st:italic;--mk-w:800;--mk-st-w:0px;
+ --cit:Playfair;--cit-st:italic;--cit-w:600;--cit-sz:70px;--cit-stw:0px;--num-sz:104px;--grande-sz:144px}
+/* Luxo: Cormorant Garamond em caixa alta espaçada (no lugar de La Luxes / New Icon, que são pagas) + Montserrat.
+   Letra fina: só em título grande, com traço reforçado pra não sumir no celular */
+.f-luxo{--tit:Corm2;--tit-w:600;--tit-ls:.02em;--tit-tt:uppercase;--tit-st:1.2px;--tit-lh:1.0;--tit-sz:86px;--tit-sz-m:76px;
+ --it:Corm2;--it-st:italic;--it-w:500;--mk:Corm2;--mk-st:italic;--mk-w:500;--mk-tt:none;--mk-sz:1.15em;--mk-st-w:1.2px;
+ --cit:Corm2;--cit-st:italic;--cit-w:500;--cit-sz:84px;--cit-stw:1.2px;
+ --txt:Mont;--txt-w:500;--txt-b:800;--txt-ls:-.01em;--txt-sz:44px;--num-sz:120px;--grande-sz:160px}
+/* Bodoni Moda: didone de alto contraste, itálico grande e minúsculo como "fontes elegantes" (no lugar de Dream Avenue) + Montserrat */
+.f-bodoni{--tit:Bodoni;--tit-w:500;--tit-ls:-.02em;--tit-st:.8px;--tit-lh:1.04;--tit-sz:94px;--tit-sz-m:82px;
+ --it:Bodoni;--it-st:italic;--it-w:500;--mk:Bodoni;--mk-st:italic;--mk-w:500;--mk-st-w:.8px;
+ --cit:Bodoni;--cit-st:italic;--cit-w:500;--cit-sz:70px;--cit-stw:.8px;
+ --txt:Mont;--txt-w:500;--txt-b:800;--txt-ls:-.01em;--txt-sz:44px;--num-sz:104px;--grande-sz:144px}

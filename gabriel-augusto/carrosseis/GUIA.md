@@ -57,6 +57,19 @@ Modelo: `c01-botao-300-milhoes`. Fundo preto, cabeçalho de perfil em todo slide
 - Luz sutil atrás do bloco variando: padrão (dourada), `luz-azul`, `luz-vermelha` (só no slide de problema/alerta).
 - Cores: preto, branco, dourado, azul; vermelho só em alerta. Sem rosto dele, sem emoji nas artes.
 
+## Fontes (combinações que ele mandou em 05/10)
+
+- **Uma combinação por carrossel**, com a classe no `<body>` do `carrossel.html`. Alternar entre os dias e não repetir a
+  do dia anterior. Anotar na `legenda.md` qual foi usada. A capa "post do X" não muda.
+- Classes: sem classe = padrão aprovado (Instrument Serif + Inter) · `f-playfair` (Playfair + Montserrat) ·
+  `f-playfair-cond` (Playfair + Roboto Condensed) · `f-spartan` (League Spartan + Open Sans) · `f-poppins` (Poppins + Inter) ·
+  `f-peace` (Peace Sans + Montserrat) · `f-bebas` (Bebas Neue, no lugar da Extenda) · `f-gloock` (Gloock, no lugar da Chloe) ·
+  `f-luxo` (Cormorant Garamond em caixa alta) · `f-bodoni` (Bodoni Moda).
+- Combine o tema com a fonte: luxo/premium → `f-luxo`, `f-bodoni`, `f-playfair`; choque/números → `f-bebas`, `f-peace`,
+  `f-spartan`; leve/moderno → `f-poppins`, `f-gloock`.
+- Fonte fina só em título grande. Nunca fonte de pincel. Depois de trocar a fonte, conferir se nada estourou (render.js avisa).
+- Catálogo com amostras: nota **Fontes** no Obsidian dele (`obsidian-vault`, pasta `50 Ideias e conteúdo`).
+
 ## Legenda
 
 - 1ª linha = o gancho com a palavra-chave principal (o Instagram busca pelo texto da legenda).
@@ -98,3 +111,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 05/10: tirar a fonte de marcador do marca-texto ("TODO DIA"): não combinava e era difícil de ler. Agora é Inter forte.
 - 05/10: aumentar fonte/grossura pra ler no celular (feito no base.css). A Inter maiúscula no marca-texto também não agradou:
   agora o marca-texto usa a serifada dos títulos em itálico.
+- 05/10: mandou prints de fontes do Instagram pra usar nas próximas como eu preferir (e nos sites). Viraram as combinações acima.

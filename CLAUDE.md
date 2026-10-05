@@ -35,4 +35,6 @@ Uma rotina agendada dispara todo dia às 6h59 (Goiânia) e eu entrego um carross
 
 Clientes ficam em `clientes/<nome>/` (ex.: `clientes/renato-sericaku/`). Material de portfólio de cada um: `midia/` (capturas + artes feed/story via `artes.html`) e vídeo `shorts/roteiros/portfolio-<nome>.json` (props `site_desktop` + `site_celular` com `continua`, `y`, `escala`).
 
+**Fontes (pedido dele em 05/10):** usar nos próximos sites a biblioteca de `gabriel-augusto/carrosseis/fontes/` (todas OFL). As combinações estão no fim de `carrosseis/base.css` e na nota **Fontes** do Obsidian (`obsidian-vault/50 Ideias e conteúdo/Fontes.md`). Escolher a que combina com o cliente, copiar os `.woff2` para `assets/fonts/` do site; texto corrido sempre em fonte firme (Inter, Montserrat, Open Sans ou Roboto Condensed), fonte fina só em título grande.
+
 Base de referência: `gabriel-augusto/` (site dele) e a raiz (site ICL Saúde): HTML/CSS/JS estático, `config.js` com os dados, `build.py` gera `dist/index.html` único + zip. Estética premium, minimalista, conversiva, fotos leves, botões de WhatsApp com mensagem automática. Usar só dados reais do cliente; o que faltar vira marcador para ele preencher.
