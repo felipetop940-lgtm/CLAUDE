@@ -2,7 +2,6 @@
 
 **Pilar:** curiosidade de negócios · **Slides:** 8 · **Imagens:** `saida/c01-botao-300-milhoes/01.jpg` a `08.jpg`
 **Postar:** segunda 05/10, 12h (janela de segunda: 11h às 14h)
-**Capas alternativas:** `capa-clara.jpg` (caderno claro), `capa-tweet.jpg` e `capa-tweet-clara.jpg` (post do X). Usar no lugar do `01.jpg`.
 
 ## Legenda (copiar e colar)
 

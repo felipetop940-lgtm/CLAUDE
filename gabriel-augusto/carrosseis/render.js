@@ -11,9 +11,9 @@ if (!id || !fs.existsSync(path.join(__dirname, id, 'carrossel.html'))) { console
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1350 } });
   await p.goto('file://' + path.join(__dirname, id, 'carrossel.html')); await p.evaluate(() => document.fonts.ready);
   const avisos = await p.evaluate(() => [...document.querySelectorAll('section.s')].flatMap((s, i) => {
-    const r = s.getBoundingClientRect(), lim = r.bottom - 190, a = [];
+    const r = s.getBoundingClientRect(), lim = r.bottom - 140, a = [];
     for (const el of s.querySelectorAll('*')) {
-      const st = getComputedStyle(el); if (el.closest('.top,.tap,.next,.wm') || st.position === 'absolute' && el.parentElement === s) continue;
+      const st = getComputedStyle(el); if (el.closest('.perfil,.arrasta') || st.position === 'absolute' && el.parentElement === s) continue;
       const e = el.getBoundingClientRect(); if (!e.width || !e.height) continue;
       if (e.right > r.right - 40 || e.left < r.left + 40 || e.bottom > lim) { a.push(`slide ${i + 1}: <${el.tagName.toLowerCase()} class="${el.className}"> passa do limite`); break; }
     }

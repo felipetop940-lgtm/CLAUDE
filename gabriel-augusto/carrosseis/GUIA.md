@@ -12,7 +12,7 @@ A rotina agendada dispara nesta conversa às 6h59 (Goiânia); ele não precisa r
    notícia que está bombando e palavras que as pessoas estão buscando. Se tiver história real que renda lição
    de negócio, ela passa na frente da pauta. Senão, próximo `pendente` da `PAUTA.md`. Pedido dele no chat vem antes de tudo.
 3. **Checar os fatos** (mínimo 2 fontes na busca). Número, nome ou frase sem confirmação não entra. Se não fechar, troca o tema.
-4. Criar `cNN-slug/carrossel.html` copiando `c01-botao-300-milhoes` (tema `caderno`, usa `../base.css` e `../base.js`).
+4. Criar `cNN-slug/carrossel.html` copiando `c01-botao-300-milhoes` (usa `../base.css` e `../base.js`).
 5. Gerar: `PWPATH=$(npm root -g)/playwright node render.js cNN-slug`. Se aparecer **AVISOS**, corrigir.
 6. Abrir **todas** as imagens e revisar: texto vazando, quebra feia de linha, slide poluído, slide vazio demais.
 7. `cNN-slug/legenda.md` (modelo do c01) com legenda, primeiro comentário, horário e fontes. Marcar a pauta como `feito DD/MM`.
@@ -26,31 +26,30 @@ A rotina agendada dispara nesta conversa às 6h59 (Goiânia); ele não precisa r
   vai me odiar por mostrar isso..."), contraste ("100 mil pessoas com 0 seguidores"), "e pode estar acontecendo com você".
   Sensacionalista no enquadramento, **verdadeiro no conteúdo**.
 - **Slide 2 também é capa:** o Instagram reexibe o carrossel começando no 2º slide pra quem não arrastou. Ele precisa prender sozinho.
-- **Todo slide termina puxando o próximo** (`.next`): "mas o pior vem agora", "aí veio a solução mais simples do mundo",
+- **Todo slide termina puxando o próximo** (última linha do bloco, normalmente a `.nota`): "mas o pior vem agora", "aí veio a solução mais simples do mundo",
   "o resultado foi absurdo". Uma ideia por slide.
 - **Penúltimo:** a lição aplicada ao negócio de quem lê (site, WhatsApp, Instagram, atendimento). Venda só sutil.
 - **Último: pedir pra seguir** (botão "Seguir @euaugusto_oliv" + promessa do perfil) + mandar pra alguém + salvar
   + pergunta pra comentar. Mandar por DM é o sinal que mais pesa pra alcançar quem não te segue.
 - 7 a 9 slides.
 
-## Formatos aprovados (até ele escolher um fixo, alternar por dia)
+## Visual (aprovado em 05/10, não mudar sem ele pedir)
 
-1. **Caderno** (`<body class="caderno">`): folha escrita à mão, marca-texto, fontes misturadas. Detalhes abaixo.
-2. **Post do X** (`<section class="s tw">` escuro ou `s tw claro` branco): cabeçalho com G + nome + @ (sem selo
-   de verificado, ele não é verificado) e texto centralizado em serifada (`.txt`), negrito `<b>` nas palavras-chave,
-   `<b class="g">` dourado no número principal, `<small>` cinza pra anotação. Dá pra fazer o carrossel inteiro nesse
-   formato ou só a capa.
-Sempre gerar as capas alternativas com `data-nome` (`capa-clara`, `capa-tweet`, `capa-tweet-clara`) pra ele escolher.
+Modelo: `c01-botao-300-milhoes`. Fundo preto, cabeçalho de perfil em todo slide (G + "Gabriel Augusto" + @,
+**sem selo de verificado**, ele não é verificado), "ARRASTA PRO LADO" no rodapé (menos no último, `class="s fim"`).
 
-## Visual (tema caderno)
-
-- Folha de caderno escura (espiral, pauta, margem vermelha). Variante clara: `<section class="s claro">`.
-- **Mistura de fontes:** títulos em serifada elegante (`.H`, ênfase em itálico `.it` dourado) · palavra-chave em
-  letra de marcador com marca-texto (`<span class="hl gold mk">`, `hl red`, `hl` azul) · anotações à mão em caligrafia
-  (`.nota`, `.nota gold`, `.nota red`) · texto corrido em Inter (`.lead`) · rótulo pequeno azul (`.kick`).
-- Chamativo sem encher: no máximo **1 marca-texto + 1 anotação + 1 bloco** por slide. Muito respiro.
-- Cores: preto, branco, dourado, azul; vermelho só no "problema". Topo automático: @ no oval + contador 01/08.
-- Sem rosto dele, sem emoji nas artes.
+- **Capa = "post do X" escuro** (`<section class="s capa">` + `<div class="txt">`): frase em serifada, centralizada,
+  `<b>` nas palavras-chave, `<b class="g">` dourado no número/choque principal, `<small>` cinza com a provocação.
+- **Do slide 2 em diante = letras do caderno, SEM a folha de caderno**, num **bloco só** (`<div class="bloco">`),
+  compacto, alinhado à esquerda e centralizado na altura (referência: posts de texto do Matheus Tilli):
+  - título `h2` em serifada elegante (`h2.m` menor), com `<span class="it">` itálico dourado;
+  - 1 palavra-chave com marca-texto em letra de marcador: `<span class="hl gold mk">`, `hl red mk` (alerta) ou `hl mk` (azul);
+  - texto corrido `p` em Inter, `<b>` em branco; números grandes `<span class="num">` / `<p class="grande">`; citação `p.citacao`;
+  - 1 anotação à mão `p.nota` (azul, `.gold`, `.red`), de preferência fechando o slide com o gancho pro próximo;
+  - lista de erros `ul.lista`; riscado `.x`; botão final `.seguir`.
+- Máximo por slide: título + 2 ou 3 parágrafos curtos + 1 anotação. **Nada espalhado pela tela.**
+- Luz sutil atrás do bloco variando: padrão (dourada), `luz-azul`, `luz-vermelha` (só no slide de problema/alerta).
+- Cores: preto, branco, dourado, azul; vermelho só em alerta. Sem rosto dele, sem emoji nas artes.
 
 ## Legenda
 
@@ -86,3 +85,5 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 05/10: referências: capa só texto (serifada) e caderno escrito à mão com marca-texto (@maestroprompts). Fontes variadas,
   chamativo e aesthetic sem encher a tela. Pode variar levemente as cores.
 - 05/10: 3ª referência: post estilo X/Twitter (@erikammello): fundo branco, serifada, negrito nas palavras-chave.
+- 05/10: NÃO gostou da folha de caderno nem de informação espalhada. Referência: posts de texto do Matheus Tilli
+  (bloco compacto). Escolheu capa "post do X" ESCURO e, depois da capa, as letras do caderno. Ver "Visual".
