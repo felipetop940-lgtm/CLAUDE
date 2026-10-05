@@ -45,9 +45,12 @@ Modelo: `c01-botao-300-milhoes`. Fundo preto, cabeçalho de perfil em todo slide
   - título `h2` em serifada elegante (`h2.m` menor), com `<span class="it">` itálico dourado;
   - 1 palavra-chave com marca-texto em letra de marcador: `<span class="hl gold mk">`, `hl red mk` (alerta) ou `hl mk` (azul);
   - texto corrido `p` em Inter, `<b>` em branco; números grandes `<span class="num">` / `<p class="grande">`; citação `p.citacao`;
-  - 1 anotação à mão `p.nota` (azul, `.gold`, `.red`), de preferência fechando o slide com o gancho pro próximo;
-  - lista de erros `ul.lista`; riscado `.x`; botão final `.seguir`.
-- Máximo por slide: título + 2 ou 3 parágrafos curtos + 1 anotação. **Nada espalhado pela tela.**
+  - fechar o slide com a frase-gancho `p.nota` (Inter negrito dourado + "→", fácil de ler; `.red` pra alerta).
+    **Nada de anotação azul em letra à mão** (ele achou difícil de ler);
+  - **botões aprovados, usar sempre que couber:** tela simulada `.form` (E-mail + `.ui ghost` Entrar + `.ui gold`),
+    antes → depois `.antes-depois` (`.ui red x` riscado → `.ui gold`, rótulos `.rot` à mão), botão final `.seguir`;
+  - lista de erros `ul.lista`; riscado `.x`.
+- Máximo por slide: título + 2 ou 3 parágrafos curtos (ou 1 tela/botão) + a frase-gancho. **Nada espalhado pela tela.**
 - Luz sutil atrás do bloco variando: padrão (dourada), `luz-azul`, `luz-vermelha` (só no slide de problema/alerta).
 - Cores: preto, branco, dourado, azul; vermelho só em alerta. Sem rosto dele, sem emoji nas artes.
 
@@ -87,3 +90,5 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 05/10: 3ª referência: post estilo X/Twitter (@erikammello): fundo branco, serifada, negrito nas palavras-chave.
 - 05/10: NÃO gostou da folha de caderno nem de informação espalhada. Referência: posts de texto do Matheus Tilli
   (bloco compacto). Escolheu capa "post do X" ESCURO e, depois da capa, as letras do caderno. Ver "Visual".
+- 05/10: manter os botões (Seguir, antes/depois Cadastrar → Continuar, tela de login). Trocar os textos azuis à mão
+  por algo mais fácil de ler (virou a frase-gancho em Inter negrito dourado).

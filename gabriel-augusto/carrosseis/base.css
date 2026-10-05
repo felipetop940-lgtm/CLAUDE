@@ -63,10 +63,25 @@ body{background:#222;font-family:Inter;color:var(--ink)}
 .hl::before{content:"";position:absolute;z-index:-1;left:-.02em;right:-.04em;top:.12em;bottom:.04em;background:#2F7DFF;border-radius:.08em .35em .12em .3em;transform:rotate(-1.4deg) skewX(-8deg)}
 .hl.gold{color:#121212}.hl.gold::before{background:linear-gradient(100deg,#EBD198,var(--gold) 60%,#C9A35A)}
 .hl.red::before{background:var(--red)}
-/* anotação à mão */
-.nw{white-space:nowrap}
-.bloco .nota,.nota{font-family:Hand;font-size:52px;line-height:1.1;color:var(--blue);transform:rotate(-2deg);transform-origin:left center}
-.bloco .nota.gold{color:var(--gold)}.bloco .nota.red{color:#FF6B78}
+/* frase-gancho no fim do bloco (puxa pro próximo slide): letra normal, fácil de ler. <p class="nota">O resultado foi absurdo →</p> */
+.bloco .nota,.nota{font-family:Inter;font-size:40px;line-height:1.3;font-weight:800;color:var(--gold)}
+.bloco .nota.red{color:#FF6B78}.bloco .nota.branca{color:#fff}
+
+/* telas e botões (aprovados por ele) */
+.form{width:740px;padding:36px 38px;border-radius:28px;background:#12151b;border:1.5px solid rgba(255,255,255,.12);box-shadow:0 40px 90px -30px #000,0 0 140px -40px rgba(79,123,255,.4)}
+.form label{display:block;font-size:20px;font-weight:800;color:var(--mut);letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
+.form .inp{height:66px;border-radius:16px;background:#0b0d11;border:1.5px solid rgba(255,255,255,.12);margin-bottom:22px;display:flex;align-items:center;padding:0 22px;font-size:24px;color:#5d6470}
+.form .dois{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ui{display:flex;align-items:center;justify-content:center;height:84px;padding:0 36px;border-radius:18px;font-size:32px;font-weight:800;white-space:nowrap}
+.ui.gold{background:linear-gradient(135deg,#E8CC8E,var(--gold) 45%,#B8924A);color:#07080A;box-shadow:0 0 80px -10px rgba(214,179,108,.55)}
+.ui.ghost{border:2px solid rgba(255,255,255,.25);color:#fff}
+.ui.red{border:2.5px solid var(--red);color:#FF7380;background:rgba(255,77,94,.08)}
+.ui.x{position:relative;opacity:.8}.ui.x::after{content:"";position:absolute;left:12%;right:12%;top:50%;height:8px;border-radius:4px;background:var(--red);transform:rotate(-7deg)}
+/* antes → depois: <div class="antes-depois"><div><p class="rot red">antes</p><div class="ui red x">A</div></div><span>→</span><div><p class="rot">depois</p><div class="ui gold">B</div></div></div> */
+.antes-depois{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:26px}
+.antes-depois>span{font-family:Hand;font-size:84px;line-height:116px;color:var(--gold)}
+.antes-depois .ui{height:116px;font-size:40px}
+.bloco .rot{font-family:Hand;font-size:44px;line-height:1;margin-bottom:12px;color:var(--gold)}.bloco .rot.red{color:#FF6B78}
 
 /* último slide */
 .seguir{display:inline-flex;align-items:center;gap:16px;padding:22px 44px;border-radius:999px;background:linear-gradient(135deg,#E8CC8E,var(--gold) 45%,#B8924A);color:#0A0A0B;font-size:36px;font-weight:800;box-shadow:0 0 70px -10px rgba(214,179,108,.5)}
