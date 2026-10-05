@@ -6,4 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     s.insertAdjacentHTML('afterbegin', '<div class="perfil"><span class="av">G</span><span><b>' + PERFIL.nome + '</b><small>' + PERFIL.arroba + '</small></span></div>');
     if (!s.classList.contains('fim')) s.insertAdjacentHTML('beforeend', '<div class="arrasta">Arrasta pro lado <i>→</i></div>');
   });
+  // a seta nunca fica sozinha na linha de baixo
+  document.querySelectorAll('.nota, .capa .txt').forEach(n => n.innerHTML = n.innerHTML.replace(/\s+→/g, '\u00a0→'));
 });
