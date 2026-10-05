@@ -3,6 +3,7 @@
 **Objetivo dele:** ganhar o máximo de seguidores de todas as áreas pra chegar no público que compra
 (empresas, médicos, advogados, lojas). O conteúdo é **viral primeiro**, venda depois.
 A rotina agendada dispara nesta conversa às 6h59 (Goiânia); ele não precisa rodar nada.
+**Cada entrega da manhã é o post do DIA SEGUINTE** (ex.: entregue segunda, posta terça), pra sobrar um dia pra ele pedir ajuste.
 
 ## Passo a passo de cada dia
 
