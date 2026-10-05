@@ -27,6 +27,10 @@ Regras fixas:
 
 `gabriel-augusto/destaques/stories/stories.html` + `render.js` → `saida/*.jpg` (1080x1920). Ele prefere artes estilo Canva a vídeos nos destaques. **Tema sempre escuro, com variações sutis entre artes** (bg-aura, bg-ink, bg-blue, bg-grid, bg-gold, bg-beam, marca d'água discreta). Nada de fundo claro/creme; não variar totalmente e usar **detalhes em vermelho** (etiquetas, sublinhados, pontos) junto com preto/dourado/azul/branco.
 
+## Carrossel diário do feed (`gabriel-augusto/carrosseis/`)
+
+Uma rotina agendada dispara todo dia às 6h59 (Goiânia) e eu entrego um carrossel pronto (1080x1350 + legenda). Seguir `carrosseis/GUIA.md` (passo a passo, regras e ajustes que ele pediu) e `carrosseis/PAUTA.md` (ordem dos temas). Modelo aprovado de partida: `c01-link-na-bio`.
+
 ## Sites para clientes
 
 Clientes ficam em `clientes/<nome>/` (ex.: `clientes/renato-sericaku/`). Material de portfólio de cada um: `midia/` (capturas + artes feed/story via `artes.html`) e vídeo `shorts/roteiros/portfolio-<nome>.json` (props `site_desktop` + `site_celular` com `continua`, `y`, `escala`).
