@@ -1,0 +1,6 @@
+Fontes incluídas (subset latino, WOFF2), ambas sob a SIL Open Font License 1.1:
+
+- Inter Tight — Copyright 2022 The Inter Project Authors (https://github.com/rsms/inter)
+- Cormorant Garamond — Copyright 2015 The Cormorant Project Authors (https://github.com/CatharsisFonts/Cormorant)
+
+Texto completo da licença: https://openfontlicense.org/open-font-license-official-text/
