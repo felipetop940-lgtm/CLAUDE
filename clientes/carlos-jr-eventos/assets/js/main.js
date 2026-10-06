@@ -94,6 +94,18 @@
     btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
   });
 
+  /* ================= prévia da foto nos serviços ================= */
+  var peek = $("#peek");
+  if (peek && fine && !reduce) {
+    var pimg = $("img", peek), pt = { x: 0, y: 0 }, pp = { x: 0, y: 0 }, pon = false;
+    $$(".cue[data-img]").forEach(function (cue) {
+      cue.addEventListener("pointerenter", function (e) { pimg.src = cue.dataset.img; pt.x = pp.x = e.clientX + 36; pt.y = pp.y = e.clientY - 170; pon = true; peek.classList.add("on"); });
+      cue.addEventListener("pointermove", function (e) { pt.x = clamp(e.clientX + 36, 10, innerWidth - 290); pt.y = clamp(e.clientY - 170, 90, innerHeight - 340); });
+      cue.addEventListener("pointerleave", function () { pon = false; peek.classList.remove("on"); });
+    });
+    (function pl() { pp.x += (pt.x - pp.x) * .14; pp.y += (pt.y - pp.y) * .14; if (pon || peek.classList.contains("on")) peek.style.transform = "translate(" + pp.x.toFixed(1) + "px," + pp.y.toFixed(1) + "px)"; requestAnimationFrame(pl); })();
+  }
+
   /* ================= hero: fundo é um painel de LED que reage ao cursor ================= */
   var hero = $("#heroLed");
   if (hero) {
@@ -289,7 +301,7 @@
   /* ================= monte seu palco ================= */
   var plan = $("#plan");
   if (plan) (function () {
-    var st = { tipo: "Show", publico: 2, ambiente: "Interno", itens: { led: true, truss: true, palco: true, roof: false } };
+    var st = { tipo: "Show", publico: 2, ambiente: "Interno", itens: { led: true, truss: true, palco: true, roof: false, sound: true, luz: true } };
     var NS = "http://www.w3.org/2000/svg", COUNT = [16, 44, 90], SCALE = [.85, 1.15, 1.5], PUB = ["Até 200 pessoas", "200 a 1.000 pessoas", "Mais de 1.000 pessoas"];
     var el = function (tag, at) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); return e; };
     var lights = $("#lights", plan), crowdG = $("#crowd", plan), heads = [];
@@ -312,6 +324,9 @@
       led.classList.toggle("off", !st.itens.led);
       $("#g-stage", plan).classList.toggle("off", !st.itens.palco);
       $("#g-truss", plan).classList.toggle("off", !st.itens.truss);
+      $("#g-lights", plan).classList.toggle("off", !(st.itens.truss && st.itens.luz));
+      $("#g-sound", plan).classList.toggle("off", !st.itens.sound);
+      $("#sound-in", plan).style.transform = "translateY(" + (st.itens.palco ? 0 : 30) + "px)";
       $("#g-roof", plan).classList.toggle("off", !st.itens.roof);
       var n = COUNT[st.publico - 1];
       heads.forEach(function (h) { h.setAttribute("opacity", Number(h.dataset.rank) < n ? ".3" : "0"); });
@@ -337,7 +352,7 @@
       e.preventDefault();
       var f = form.elements;
       if (!f.nome.value.trim()) { f.nome.focus(); return; }
-      var nomes = { led: "Painel de LED", truss: "Estrutura (truss)", palco: "Palco", roof: "Cobertura" };
+      var nomes = { led: "Painel de LED", truss: "Estrutura (truss)", palco: "Palco", roof: "Cobertura", sound: "Som", luz: "Iluminação" };
       var itens = Object.keys(st.itens).filter(function (k) { return st.itens[k]; }).map(function (k) { return nomes[k]; });
       var dt = f.data.value ? f.data.value.split("-").reverse().join("/") : "a combinar";
       var t = "Olá! Meu nome é " + f.nome.value.trim() + ".\nQuero orçamento para: " + st.tipo +
