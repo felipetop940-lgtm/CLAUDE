@@ -1,6 +1,6 @@
 /* =========================================================
    Dados editáveis da loja. Troque aqui e o site inteiro atualiza.
-   Campos vazios ("") ou null ficam ocultos.
+   Campos vazios ("") ficam ocultos. Os produtos ficam em produtos.js.
    ========================================================= */
 window.SITE = {
   nome: "Ella Beachwear",
@@ -16,7 +16,7 @@ window.SITE = {
     mapa: "https://www.google.com/maps/search/?api=1&query=Av.+Aurora+Forti+Neves%2C+632+Ol%C3%ADmpia+SP"
   },
 
-  // Funcionamento: dias da semana abertos (0 = domingo … 6 = sábado). Quarta (3) fechada.
+  // Funcionamento: dias abertos (0 = domingo … 6 = sábado). Quarta (3) fechada.
   horario: {
     dias: [0, 1, 2, 4, 5, 6],
     abre: 9,
@@ -44,80 +44,20 @@ window.SITE = {
   // Biquíni vendido também por peça (só o top / só a calcinha), como na Vix. false = só conjunto. [CONFIRMAR]
   pecasSeparadas: true,
 
-  /* ---------------------------------------------------------
-     PRODUTOS
-     - nome e descrição abaixo foram escritos a partir das fotos: trocar pelo nome oficial da peça.
-     - preços: deixe null para mostrar "Consulte o valor". Para biquíni dá para usar
-       precoTop + precoCalcinha (vendidos separados, como na Vix) ou só "preco" (conjunto).
-     - foto2: foto com modelo (opcional). Se algum produto tiver, aparece o botão
-       "Peça | Modelo" na vitrine e a foto troca ao passar o mouse.
-     - tag: etiqueta no canto da foto ("Novidade", "Últimas peças"…). "" = sem etiqueta.
-     --------------------------------------------------------- */
-  produtos: [
-    {
-      id: "meia-taca-pedra-preto",
-      nome: "Biquíni Meia-Taça Pedra Preto",
-      categoria: "Biquínis",
-      modelo: "Meia-taça",
-      cor: "Preto",
-      tipo: "biquini",
-      tag: "Novidade",
-      preco: null, precoTop: null, precoCalcinha: null,
-      descricao: "Top meia-taça com bojo, alças largas e pedra perolada no centro. Calcinha cavada.",
-      foto: "assets/img/produtos/meia-taca-pedra-preto.webp",
-      foto2: ""
-    },
-    {
-      id: "tomara-que-caia-perolas-chocolate",
-      nome: "Biquíni Tomara que Caia Pérolas Chocolate",
-      categoria: "Biquínis",
-      modelo: "Tomara que caia",
-      cor: "Chocolate",
-      tipo: "biquini",
-      tag: "Novidade",
-      preco: null, precoTop: null, precoCalcinha: null,
-      descricao: "Top tomara que caia com amarração e pérolas aplicadas. Calcinha com pérolas nas laterais. Tecido com leve brilho.",
-      foto: "assets/img/produtos/tomara-que-caia-perolas-chocolate.webp",
-      foto2: ""
-    },
-    {
-      id: "poa-meia-taca",
-      nome: "Biquíni Poá Meia-Taça",
-      categoria: "Biquínis",
-      modelo: "Meia-taça",
-      cor: "Poá",
-      tipo: "biquini",
-      tag: "Novidade",
-      preco: null, precoTop: null, precoCalcinha: null,
-      descricao: "Top meia-taça com bojo e amarração no pescoço, estampa poá preto e branco. Calcinha cavada.",
-      foto: "assets/img/produtos/poa-meia-taca.webp",
-      foto2: ""
-    },
-    {
-      id: "triangulo-texturizado-off-white",
-      nome: "Biquíni Triângulo Texturizado Off-White",
-      categoria: "Biquínis",
-      modelo: "Triângulo",
-      cor: "Off-white",
-      tipo: "biquini",
-      tag: "Novidade",
-      preco: null, precoTop: null, precoCalcinha: null,
-      descricao: "Top triângulo de amarrar, com textura em relevo e detalhes dourados. Calcinha cavada na mesma textura.",
-      foto: "assets/img/produtos/triangulo-texturizado-off-white.webp",
-      foto2: ""
-    },
-    {
-      id: "meia-taca-drapeado-off-white",
-      nome: "Biquíni Meia-Taça Drapeado Off-White",
-      categoria: "Biquínis",
-      modelo: "Meia-taça",
-      cor: "Off-white",
-      tipo: "biquini",
-      tag: "Novidade",
-      preco: null, precoTop: null, precoCalcinha: null,
-      descricao: "Top meia-taça com bojo, drapeado na frente e detalhe dourado no centro. Calcinha cavada.",
-      foto: "assets/img/produtos/meia-taca-drapeado-off-white.webp",
-      foto2: ""
-    }
-  ]
+  // Cor das bolinhas do filtro "Por cor" (nome igual ao campo "cor" do produto). Cor sem código aqui aparece em bege.
+  coresHex: {
+    "Preto": "#1F1D1C", "Chocolate": "#4B3026", "Marrom": "#7A5236", "Off-white": "#F1EBDD", "Branco": "#FFFFFF",
+    "Branco e preto": "linear-gradient(135deg, #FFFFFF 50%, #1F1D1C 50%)", "Bege": "#D9C3A5", "Nude": "#D8B49A",
+    "Azul": "#6E9CB1", "Azul-marinho": "#25344A", "Verde": "#6F7A4E", "Verde-oliva": "#6B6B3E", "Vermelho": "#A23B32",
+    "Rosa": "#E3A7A6", "Terracota": "#B8623F", "Amarelo": "#E2C25B", "Laranja": "#D9813F", "Lilás": "#B7A3C9",
+    "Estampado": "linear-gradient(135deg, #6E9CB1, #E3A7A6 50%, #E2C25B)"
+  },
+
+  // Faixas do filtro de preço (só aparece quando houver preço cadastrado)
+  faixasPreco: [150, 250, 350],
+
+  // Quantas peças aparecem em destaque na página principal (as de "destaque" menor primeiro)
+  destaquesNaHome: 5,
+  // Peças por "página" no catálogo (depois aparece o botão "Ver mais")
+  porPagina: 24
 };
