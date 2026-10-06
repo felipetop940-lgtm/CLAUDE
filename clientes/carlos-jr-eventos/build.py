@@ -3,7 +3,7 @@
 
 - dist/index.html → CSS, JS e fontes embutidos (arquivo único)
 - dist/assets/video e dist/assets/img → copiados (vídeo grande não é embutido)
-- cargos-jr-eventos-site.zip → pacote pronto para subir na hospedagem
+- carlos-jr-eventos-site.zip → pacote pronto para subir na hospedagem
 Uso: python3 build.py
 """
 import base64
@@ -41,7 +41,7 @@ def main() -> None:
         src = ROOT / "assets" / d
         if src.exists():
             shutil.copytree(src, DIST / "assets" / d)
-    zip_path = ROOT / "cargos-jr-eventos-site.zip"
+    zip_path = ROOT / "carlos-jr-eventos-site.zip"
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
         for f in sorted(DIST.rglob("*")):
             if f.is_file() and f.name != ".gitkeep":
