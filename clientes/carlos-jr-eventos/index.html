@@ -86,36 +86,36 @@
     <h2 class="h2 rv" style="--d:.06s">Tudo para o seu<br>evento <em>acontecer</em></h2>
 
     <ol class="cues">
-      <li class="cue rv" data-img="assets/img/trabalhos/led-coracao.webp">
+      <li class="cue rv" data-img="assets/img/trabalhos/led-coracao.webp"><div class="cue-in">
         <span class="cue-n mono">Cue 01</span>
         <h3>Painel de LED</h3>
         <p>Imagem nítida e brilhante para telões, fundos de palco e transmissão ao vivo. Seu público enxerga tudo, do primeiro ao último lugar.</p>
         <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </li>
-      <li class="cue rv" data-img="assets/img/trabalhos/truss.webp">
+      </div><div class="cue-photo" style="--pos:38% 40%" aria-hidden="true"><img src="assets/img/trabalhos/led-coracao.webp" alt="" width="800" height="960" loading="lazy"></div></li>
+      <li class="cue rv" data-img="assets/img/trabalhos/truss.webp"><div class="cue-in">
         <span class="cue-n mono">Cue 02</span>
         <h3>Estrutura e palco</h3>
         <p>Palco, truss e coberturas seguros e bem acabados, para sustentar o painel, a iluminação e tudo que compõe o seu show.</p>
         <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </li>
-      <li class="cue rv" data-img="assets/img/trabalhos/som-linha.webp">
+      </div><div class="cue-photo" style="--pos:50% 48%" aria-hidden="true"><img src="assets/img/trabalhos/truss.webp" alt="" width="800" height="960" loading="lazy"></div></li>
+      <li class="cue rv" data-img="assets/img/trabalhos/som-linha.webp"><div class="cue-in">
         <span class="cue-n mono">Cue 03</span>
         <h3>Som</h3>
         <p>Sonorização para o seu público ouvir tão bem quanto enxerga, do cerimonial ao show.</p>
         <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </li>
-      <li class="cue rv" data-img="assets/img/trabalhos/led-estrela.webp">
+      </div><div class="cue-photo" style="--pos:50% 42%" aria-hidden="true"><img src="assets/img/trabalhos/som-linha.webp" alt="" width="800" height="960" loading="lazy"></div></li>
+      <li class="cue rv" data-img="assets/img/trabalhos/led-estrela.webp"><div class="cue-in">
         <span class="cue-n mono">Cue 04</span>
         <h3>Iluminação</h3>
         <p>Luz cênica que transforma o ambiente e destaca o palco, a pista e o painel.</p>
         <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </li>
-      <li class="cue rv" data-img="assets/img/trabalhos/palco-festa.webp">
+      </div><div class="cue-photo" style="--pos:30% 38%" aria-hidden="true"><img src="assets/img/trabalhos/led-estrela.webp" alt="" width="800" height="960" loading="lazy"></div></li>
+      <li class="cue rv" data-img="assets/img/trabalhos/palco-festa.webp"><div class="cue-in">
         <span class="cue-n mono">Cue 05</span>
         <h3>Montagem e operação</h3>
         <p>Equipe no local para montar, testar, operar durante o evento e desmontar. Sem dor de cabeça pra você.</p>
         <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </li>
+      </div><div class="cue-photo" style="--pos:55% 55%" aria-hidden="true"><img src="assets/img/trabalhos/palco-festa.webp" alt="" width="800" height="960" loading="lazy"></div></li>
     </ol>
   </div>
 </section>
@@ -163,19 +163,25 @@
 
 <!-- ============ EM AÇÃO / VÍDEO ============ -->
 <section class="sec reel" id="trabalho" hidden>
-  <div class="wrap">
-    <p class="mark mono rv">[ Em ação ]</p>
-    <h2 class="h2 rv" style="--d:.06s">A gente prefere <em>mostrar</em></h2>
-  </div>
-  <div class="vwrap" id="vwrap">
-    <div class="vframe" id="vframe">
-      <video id="vid" preload="none" playsinline controlslist="nodownload"></video>
-      <button class="vcover" id="vcover" aria-label="Reproduzir vídeo">
-        <img class="vposter" id="vposter" src="assets/img/capa-video.jpg" alt="">
-        <span class="vplay"><svg class="ico"><use href="#i-play"/></svg></span>
-        <span class="vempty mono">[ vídeo do Carlos entra aqui ]</span>
-        <span class="vcap mono">Carlos JR Eventos · Em ação</span>
-      </button>
+  <div class="wrap work-grid">
+    <div class="work-txt">
+      <p class="mark mono rv">[ Em ação ]</p>
+      <h2 class="h2 rv" style="--d:.06s">A gente prefere <em>mostrar</em></h2>
+      <p class="lead rv" style="--d:.12s">Dê o play e veja como é um evento montado pela equipe do Carlos, do primeiro teste ao último aplauso.</p>
+      <div class="cta-row rv" style="--d:.18s">
+        <a href="#" class="btn btn-gold btn-lg" data-wa data-msg="Olá, Carlos! Vi o vídeo no site da Carlos JR Eventos e quero um orçamento para o meu evento.">Quero um evento assim <svg class="ico"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="vwrap rv" id="vwrap" style="--d:.1s">
+      <div class="vframe crop" id="vframe">
+        <video id="vid" preload="none" playsinline controlslist="nodownload"></video>
+        <button class="vcover" id="vcover" aria-label="Reproduzir vídeo">
+          <img class="vposter" id="vposter" src="assets/img/capa-video.jpg" alt="">
+          <span class="vplay"><svg class="ico"><use href="#i-play"/></svg></span>
+          <span class="vempty mono">[ vídeo do Carlos entra aqui ]</span>
+          <span class="vcap mono">Carlos JR Eventos · Em ação</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -301,8 +307,6 @@
 </footer>
 
 <a href="#" class="wa-float" data-wa aria-label="Chamar no WhatsApp"><svg class="ico"><use href="#i-wa"/></svg></a>
-
-<div class="peek" id="peek" aria-hidden="true"><img alt="" width="800" height="960"></div>
 
 <script src="assets/js/config.js"></script>
 <script src="assets/js/main.js"></script>

@@ -94,18 +94,6 @@
     btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
   });
 
-  /* ================= prévia da foto nos serviços ================= */
-  var peek = $("#peek");
-  if (peek && fine && !reduce) {
-    var pimg = $("img", peek), pt = { x: 0, y: 0 }, pp = { x: 0, y: 0 }, pon = false;
-    $$(".cue[data-img]").forEach(function (cue) {
-      cue.addEventListener("pointerenter", function (e) { pimg.src = cue.dataset.img; pt.x = pp.x = e.clientX + 36; pt.y = pp.y = e.clientY - 170; pon = true; peek.classList.add("on"); });
-      cue.addEventListener("pointermove", function (e) { pt.x = clamp(e.clientX + 36, 10, innerWidth - 290); pt.y = clamp(e.clientY - 170, 90, innerHeight - 340); });
-      cue.addEventListener("pointerleave", function () { pon = false; peek.classList.remove("on"); });
-    });
-    (function pl() { pp.x += (pt.x - pp.x) * .14; pp.y += (pt.y - pp.y) * .14; if (pon || peek.classList.contains("on")) peek.style.transform = "translate(" + pp.x.toFixed(1) + "px," + pp.y.toFixed(1) + "px)"; requestAnimationFrame(pl); })();
-  }
-
   /* ================= hero: fundo é um painel de LED que reage ao cursor ================= */
   var hero = $("#heroLed");
   if (hero) {
@@ -206,7 +194,7 @@
     var STEP = 2;
     function layout() {
       var s = fit(demo, 2); cw = s.w; ch = s.h;
-      var cols = innerWidth < 760 ? 380 : 700;
+      var cols = innerWidth < 760 ? 480 : 900;
       cell = cw / cols; W = cols; H = Math.max(40, Math.round(ch / cell)); S1 = Math.max(1, Math.round(H / 90));
       A = mk(W, H); B = mk(W, H); R = mk(W, H); SN = mk(W, H);
       a = A.getContext("2d"); b = B.getContext("2d"); r = R.getContext("2d"); sn = SN.getContext("2d");
@@ -249,7 +237,7 @@
         drawScene(b, scenes[cur], t);
         if (p >= 1) { trans = null; a.drawImage(B, 0, 0); blit(A); return; }
         r.drawImage(SN, 0, 0);
-        var bs = 16;
+        var bs = 6;
         for (var y = 0; y < H; y += bs) for (var x = 0; x < W; x += bs) {
           var nz = (((x * 73856093) ^ (y * 19349663)) >>> 0) % 1000 / 1000;
           if (nz < p) r.drawImage(B, x, y, bs, bs, x, y, bs, bs);

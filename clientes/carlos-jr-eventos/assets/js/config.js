@@ -18,7 +18,7 @@ window.SITE = {
   // Vídeo do trabalho do Carlos (seção "Em ação", só aparece quando preenchido)
   // Vídeo da seção "Em ação" (arquivo em assets/video/). Deixe vazio enquanto não tiver.
   // Exemplo: "assets/video/trabalho.mp4"
-  video: "",
+  video: "assets/video/carlos-jr-eventos.mp4",
   // Capa do vídeo (aparece antes do play)
   capa: "assets/img/capa-video.jpg"
 };
