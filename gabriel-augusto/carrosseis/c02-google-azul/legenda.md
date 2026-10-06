@@ -31,6 +31,8 @@ Amanhã: por que você julga um site em 0,05 segundo (e o que isso faz com o seu
 
 ## TikTok
 
+**Imagens:** `saida/c02-google-azul-tiktok/01.jpg` a `08.jpg` (9:16, capa própria: "O Google ganhou US$ 200 milhões trocando UMA cor")
+
 **Título:** O Google ganhou US$ 200 milhões trocando um tom de azul 🔵
 (opções: "Esse designer pediu demissão por causa de 41 tons de azul" · "Você nunca reparou nesse detalhe do Google (e ele vale milhões)")
 

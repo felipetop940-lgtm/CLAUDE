@@ -165,3 +165,23 @@ body{background:#222;font-family:Inter;color:var(--ink);font-variant-numeric:lin
  --it:Bodoni;--it-st:italic;--it-w:500;--mk:Bodoni;--mk-st:italic;--mk-w:500;--mk-st-w:.8px;
  --cit:Bodoni;--cit-st:italic;--cit-w:500;--cit-sz:70px;--cit-stw:.8px;
  --txt:Mont;--txt-w:500;--txt-b:800;--txt-ls:-.01em;--txt-sz:44px;--num-sz:104px;--grande-sz:144px}
+
+/* ===== versão TikTok (1080x1920, 9:16): render.js <pasta> --tiktok coloca a classe "tt" no <html> =====
+   Área segura do TikTok: topo ~230px (abas), base ~520px (legenda, @, música), direita ~150px (botões).
+   Seções com .so-ig só saem no Instagram; .so-tt só no TikTok (ex.: capa mais curta). */
+.so-tt{display:none!important}
+.tt .so-tt{display:flex!important}.tt .so-ig{display:none!important}
+.tt .s{height:1920px;padding:230px 150px 560px 90px}
+.tt .perfil{margin-bottom:40px}
+.tt .arrasta{bottom:470px;left:90px;right:150px}
+.tt .capa .txt{font-size:96px;line-height:1.16}
+.tt .capa .txt small{font-size:54px}
+.tt .capa.so-tt .txt{font-family:var(--tit);font-weight:800;font-size:118px;line-height:1.02;letter-spacing:-.03em;text-wrap:balance}
+.tt .capa.so-tt .txt b{font-weight:800}
+.tt .capa.so-tt .txt small{font-family:Inter;font-weight:700;font-size:50px;letter-spacing:0;margin-top:44px;color:#9AA0A8}
+/* TikTok tem mais altura útil: letra um pouco maior no corpo */
+.tt .bloco>*+*{margin-top:44px}
+.tt .bloco p,.tt .lista li{font-size:calc(var(--txt-sz) + 5px)}
+.tt .bloco .nota{font-size:52px}
+.tt .bloco h2{font-size:calc(var(--tit-sz) + 6px)}.tt .bloco h2.m{font-size:calc(var(--tit-sz-m) + 6px)}
+.tt .capa.so-tt .txt{font-size:104px}
