@@ -16,7 +16,7 @@ if (!id || !fs.existsSync(path.join(__dirname, id, 'carrossel.html'))) { console
   const avisos = await p.evaluate(([SEL, TT]) => [...document.querySelectorAll(SEL)].flatMap((s, i) => {
     const r = s.getBoundingClientRect(), lim = r.bottom - (TT ? 520 : 140), dir = TT ? 150 : 40, a = [];
     for (const el of s.querySelectorAll('*')) {
-      const st = getComputedStyle(el); if (el.closest('.perfil,.arrasta') || st.position === 'absolute' && el.parentElement === s) continue;
+      const st = getComputedStyle(el); if (el.closest('.perfil,.arrasta,.arroba') || st.position === 'absolute' && el.parentElement === s) continue;
       const e = el.getBoundingClientRect(); if (!e.width || !e.height) continue;
       if (e.right > r.right - dir || e.left < r.left + 40 || e.bottom > lim) { a.push(`slide ${i + 1}: <${el.tagName.toLowerCase()} class="${el.className}"> passa do limite`); break; }
     }

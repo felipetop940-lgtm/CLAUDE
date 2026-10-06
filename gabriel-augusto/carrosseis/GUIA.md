@@ -34,7 +34,20 @@ Antes de montar, ler `RETENCAO.md` (ideias de retenção pesquisadas) e aplicar 
   + pergunta pra comentar. Mandar por DM é o sinal que mais pesa pra alcançar quem não te segue.
 - 7 a 9 slides.
 
-## Visual (aprovado em 05/10, não mudar sem ele pedir)
+## MODELO VIRAL (decidido em 06/10, vale pra Instagram e TikTok) · em teste: `v00-teste-modelo`
+
+Ele mostrou que os posts dele que passaram de **150 mil e 229 mil views** no TikTok tinham: título curtíssimo e
+GIGANTE na capa, frases curtas e simples nos slides, boneco stickman, papel amassado. O modelo "post do X" teve 2 a 177 views.
+**A partir de agora todo carrossel (cNN e tNN) usa o modelo viral**: `../viral.css` + `../viral.js` (sem base.css).
+- Fundo preto de papel amassado (`img/papel-escuro.jpg`), boneco stickman **branco** (`<div class="boneco" data-pose=".." data-emo="..">`).
+- Capa `<section class="s capa">`: título Anton em 3 linhas no máximo, palavra-chave em vermelho e maior (`span.r.xl`),
+  boneco reagindo e uma frasezinha cinza (`p.mini`). Até ~7 palavras no título.
+- Slides: número vermelho (`p.n`), título de 2 linhas (`h2.t` com `span.r`), boneco, 1 frase curta (`p.sub`, até ~12 palavras).
+- Último slide `class="s fim"`: pergunta pra comentar + botão vermelho (`.seguir`).
+- Formato preferido: lista/top N ("5 erros que...", "3 sinais de...") ou história curta com virada. Linguagem simples.
+- Render: `render.js <pasta>` (4:5) e `render.js <pasta> --tiktok` (9:16). Sem avisos de vazamento.
+
+## Visual antigo (05/10, "post do X" + bloco de texto). Não usar mais nos posts novos.
 
 Modelo: `c01-botao-300-milhoes`. Fundo preto, cabeçalho de perfil em todo slide (G + "Gabriel Augusto" + @,
 **sem selo de verificado**, ele não é verificado), "ARRASTA PRO LADO" no rodapé (menos no último, `class="s fim"`).
@@ -132,3 +145,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 05/10: mandar todo dia também o título e a descrição do TikTok (ele posta o mesmo carrossel lá). Posts programados pras 19h.
 - 06/10: TikTok com poucas views. Agora vai uma versão 9:16 própria, com capa curta e letra enorme. Pedir os números do TikTok (tempo médio, % que viu tudo, origem) pra ajustar.
 - 06/10: 2 posts por dia no TikTok. Extra (tNN, 5 a 6 slides) às 13h30 + principal às 19h.
+- 06/10: mudou pro MODELO VIRAL (os posts antigos dele nesse estilo tiveram 150 mil e 229 mil views). Fundo preto amassado, boneco branco, título gigante. Teste: v00-teste-modelo.

@@ -1,0 +1,50 @@
+/* Modelo VIRAL (aprovado pra teste em 06/10) — baseado nos posts dele que passaram de 150 mil views no TikTok:
+   título curtíssimo e GIGANTE na capa, frases curtas nos slides, boneco stickman, papel amassado.
+   Versão da marca: fundo preto amassado, boneco BRANCO, palavra-chave em vermelho (ou dourado).
+   Serve pros dois: render.js <pasta> (Instagram 4:5) e render.js <pasta> --tiktok (TikTok 9:16). */
+@font-face{font-family:Anton;src:url(../shorts/ferramentas/fontes/anton.woff2)}
+@font-face{font-family:Marker;src:url(../shorts/ferramentas/fontes/permanent-marker.woff2)}
+@font-face{font-family:Inter;src:url(../assets/fonts/inter-tight-var.woff2);font-weight:100 900}
+:root{--w:#F5F6F8;--r:#FF3B3B;--g:#E8C474;--mut:#9BA2AE}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;font-family:Inter;color:var(--w)}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;text-align:center;
+  padding:90px 70px 150px;background:#0C0C0E url(img/papel-escuro.jpg) center 30%/1080px auto}
+.s::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 55% at 50% 42%,transparent 40%,rgba(0,0,0,.55))}
+.s>*{position:relative;z-index:1}
+.tt .s{height:1920px;padding:250px 130px 560px 90px;background-size:cover;background-position:center}
+
+/* títulos: Anton gigante, caixa alta */
+.t{font-family:Anton;font-weight:400;text-transform:uppercase;line-height:.94;letter-spacing:.005em;font-size:128px;color:var(--w);text-shadow:0 6px 24px rgba(0,0,0,.6)}
+.t span{display:block}
+.t .r{color:var(--r)}.t .g{color:var(--g)}
+.t .xl{font-size:1.55em;line-height:.9}
+.t .m{font-size:.78em}
+/* palavra no pincel (opção B, igual aos virais dele) */
+.t .pincel{font-family:Marker;letter-spacing:0;line-height:1.05;transform:rotate(-3deg)}
+/* número do item */
+.n{font-family:Anton;font-size:190px;line-height:.8;color:var(--r);text-shadow:0 8px 30px rgba(255,59,59,.35)}
+/* frase de apoio: curta, branca, bem grossa */
+.sub{font-size:48px;line-height:1.22;font-weight:800;color:#ECEEF1;max-width:900px;letter-spacing:-.01em;text-wrap:balance}
+.sub b{color:var(--g);font-weight:900}
+.mini{font-size:38px;font-weight:700;color:var(--mut);text-wrap:balance}
+.boneco{display:block}
+.boneco svg{display:block;overflow:visible}
+.seguir{display:inline-flex;align-items:center;gap:16px;padding:24px 50px;border-radius:999px;background:var(--r);color:#fff;font-family:Anton;font-size:56px;text-transform:uppercase;letter-spacing:.01em;box-shadow:0 0 70px -10px rgba(255,59,59,.6)}
+/* rodapé (o viral.js coloca sozinho; no último slide use class="s fim") */
+.arrasta{position:absolute;bottom:62px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:14px;font-family:Anton;font-size:40px;letter-spacing:.06em;color:var(--w);text-transform:uppercase}
+.arrasta i{font-style:normal;color:var(--r)}
+.arroba{position:absolute;top:44px;left:0;right:0;font-size:28px;font-weight:800;color:rgba(245,246,248,.55);letter-spacing:.02em}
+.tt .arrasta{bottom:480px;left:90px;right:130px}
+.tt .arroba{top:200px;left:90px;right:130px}
+/* capa: título ainda maior */
+.capa .t{font-size:150px}.capa .t .xl{font-size:1.4em}
+.t .pincel.xl{font-size:1.18em}
+/* TikTok: altura útil menor (área segura), boneco e espaços menores */
+.tt .s{gap:26px}
+.tt .boneco svg{max-height:340px;width:auto!important}
+.tt .capa .boneco svg{max-height:420px}
+.tt .s{padding-right:150px}.tt .arrasta,.tt .arroba{right:150px}
+.tt .t .pincel.xl{font-size:1.06em}
+.tt .capa .t{font-size:140px}
+.arrasta i{font-family:Inter;font-weight:900;font-size:50px;line-height:1}
