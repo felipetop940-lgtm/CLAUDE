@@ -18,26 +18,27 @@
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+    <symbol id="i-logo" viewBox="0 0 30 42"><g fill="#fff" opacity=".06"><circle cx="3" cy="3" r="2.2"/><circle cx="27" cy="3" r="2.2"/><circle cx="9" cy="9" r="2.2"/><circle cx="15" cy="9" r="2.2"/><circle cx="21" cy="9" r="2.2"/><circle cx="9" cy="15" r="2.2"/><circle cx="15" cy="15" r="2.2"/><circle cx="21" cy="15" r="2.2"/><circle cx="27" cy="15" r="2.2"/><circle cx="9" cy="21" r="2.2"/><circle cx="15" cy="21" r="2.2"/><circle cx="21" cy="21" r="2.2"/><circle cx="27" cy="21" r="2.2"/><circle cx="9" cy="27" r="2.2"/><circle cx="15" cy="27" r="2.2"/><circle cx="21" cy="27" r="2.2"/><circle cx="27" cy="27" r="2.2"/><circle cx="9" cy="33" r="2.2"/><circle cx="15" cy="33" r="2.2"/><circle cx="21" cy="33" r="2.2"/><circle cx="3" cy="39" r="2.2"/><circle cx="27" cy="39" r="2.2"/></g><g fill="currentColor"><circle cx="9" cy="3" r="2.2"/><circle cx="15" cy="3" r="2.2"/><circle cx="21" cy="3" r="2.2"/><circle cx="3" cy="9" r="2.2"/><circle cx="27" cy="9" r="2.2"/><circle cx="3" cy="15" r="2.2"/><circle cx="3" cy="21" r="2.2"/><circle cx="3" cy="27" r="2.2"/><circle cx="3" cy="33" r="2.2"/><circle cx="27" cy="33" r="2.2"/><circle cx="9" cy="39" r="2.2"/><circle cx="15" cy="39" r="2.2"/><circle cx="21" cy="39" r="2.2"/></g></symbol>
     <symbol id="i-wa" viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.8 8.6c.2-.5.6-.6 1-.6l.6 1.5-.6.9c.5 1.1 1.4 2 2.5 2.5l.9-.6 1.5.6c0 .4-.1.8-.6 1-1.9.9-6.2-3.3-5.3-5.3Z"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.4-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></symbol>
-    <symbol id="i-led" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 9h.01M11 9h.01M15 9h.01M9 12h.01M13 12h.01M17 12h.01"/></symbol>
+    <symbol id="i-led" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
     <symbol id="i-truss" viewBox="0 0 24 24"><path d="M3 6h18M3 18h18M3 6v12M21 6v12M3 6l6 12 6-12 6 12M9 6l6 12"/></symbol>
     <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5 5L3.5 17.5a1.8 1.8 0 0 0 2.5 2.5l6.2-6.2a4 4 0 0 0 5-5l-2.4 2.4-2.1-.6-.6-2.1 2.6-2.2Z"/></symbol>
     <symbol id="i-ruler" viewBox="0 0 24 24"><path d="m4 16 12-12 4 4L8 20l-4-4Z"/><path d="m7.5 12.5 2 2M10.5 9.5l2 2M13.5 6.5l2 2"/></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
-    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></symbol>
   </defs>
 </svg>
 
+<div class="aura" id="aura" aria-hidden="true"></div>
 <a class="skip" href="#main">Ir para o conteúdo</a>
 
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a href="#topo" class="logo" aria-label="Carlos JR Eventos, início">
-      <span class="logo-mark">CJR</span>
+      <svg class="logo-mark" aria-hidden="true"><use href="#i-logo"/></svg>
       <span class="logo-txt"><b>Carlos JR</b><small>Eventos</small></span>
     </a>
     <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span></button>
@@ -46,7 +47,7 @@
       <a href="#painel">Painel de LED</a>
       <a href="#trabalho">Nosso trabalho</a>
       <a href="#contato">Contato</a>
-      <a href="#" class="btn btn-gold" data-wa>Orçamento <svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a href="#" class="btn btn-gold" data-wa>Orçamento</a>
     </nav>
   </div>
 </header>
@@ -55,90 +56,77 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="topo">
-  <canvas class="hero-led" id="heroLed" aria-hidden="true"></canvas>
-  <div class="beams" aria-hidden="true"><i class="beam b1"></i><i class="beam b2"></i><i class="beam b3"></i></div>
+  <div class="hero-bg" aria-hidden="true"></div>
   <div class="wrap hero-in">
-    <span class="badge rv"><i class="live"></i> Painel de LED · Estrutura · Montagem completa</span>
-    <h1 class="h1 rv" style="--d:.08s">Seu evento <em>visto</em> de qualquer lugar.</h1>
-    <p class="lead rv" style="--d:.16s">Painéis de LED e estrutura para shows, festas, formaturas e eventos corporativos. A gente leva, monta e opera. Você cuida só de aproveitar.</p>
+    <span class="eyebrow rv">Painel de LED · Estrutura para eventos</span>
+    <h1 class="h1 rv" style="--d:.08s">Seu evento <em>visto</em><br>de qualquer lugar.</h1>
+    <p class="lead rv" style="--d:.16s">Painéis de LED e estrutura completa para shows, festas, formaturas e eventos corporativos. A gente leva, monta e opera.</p>
     <div class="cta-row rv" style="--d:.24s">
-      <a href="#" class="btn btn-gold" data-wa>Pedir orçamento no WhatsApp <svg class="ico"><use href="#i-arrow"/></svg></a>
-      <a href="#trabalho" class="btn btn-ghost"><svg class="ico"><use href="#i-play"/></svg> Ver nosso trabalho</a>
+      <a href="#" class="btn btn-gold btn-lg magnetic" data-wa>Pedir orçamento <svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a href="#trabalho" class="btn btn-line btn-lg"><svg class="ico"><use href="#i-play"/></svg> Ver nosso trabalho</a>
     </div>
   </div>
-  <span class="scroll-hint" aria-hidden="true"></span>
 </section>
-
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track" id="ticker">
-    <span>Painel de LED</span><span>Estrutura para eventos</span><span>Palcos</span><span>Montagem</span><span>Operação técnica</span><span>Shows</span><span>Festas</span><span>Formaturas</span><span>Corporativo</span>
-  </div>
-</div>
 
 <!-- ============ SERVIÇOS ============ -->
 <section class="sec" id="servicos">
   <div class="wrap">
-    <span class="eyebrow rv">O que a gente faz</span>
-    <h2 class="h2 rv" style="--d:.06s">Tudo que seu evento precisa<br>para <em>brilhar</em>.</h2>
-    <p class="lead rv" style="--d:.12s">Do painel ao palco, a estrutura completa com equipe própria. Um único contato resolve tudo.</p>
+    <div class="head">
+      <div>
+        <span class="eyebrow rv">O que fazemos</span>
+        <h2 class="h2 rv" style="--d:.06s">Tudo para o seu evento<br><em>acontecer</em>.</h2>
+      </div>
+      <p class="lead rv" style="--d:.12s">Do painel ao palco, estrutura completa com equipe própria. Um único contato resolve tudo.</p>
+    </div>
 
     <div class="grid">
-      <article class="card big c-red rv">
-        <span class="num">01</span>
+      <article class="card spot big rv">
         <div class="ic"><svg class="ico"><use href="#i-led"/></svg></div>
         <h3>Painel de LED</h3>
         <p>Imagem nítida e brilhante para telões, fundos de palco e transmissão ao vivo. Seu público enxerga tudo, do primeiro ao último lugar.</p>
-        <ul><li>Shows</li><li>Palcos</li><li>Eventos corporativos</li><li>Ambientes internos e externos</li></ul>
       </article>
-      <article class="card big c-gold rv" style="--d:.08s">
-        <span class="num">02</span>
+      <article class="card spot big rv" style="--d:.08s">
         <div class="ic"><svg class="ico"><use href="#i-truss"/></svg></div>
         <h3>Estrutura para eventos</h3>
         <p>Estruturas seguras e bem acabadas para sustentar o painel, a iluminação e tudo que compõe o seu palco.</p>
-        <ul><li>Palcos</li><li>Box truss</li><li>Coberturas</li><li>Torres de apoio</li></ul>
       </article>
-      <article class="card c-blue rv">
-        <span class="num">03</span>
+      <article class="card spot rv">
         <div class="ic"><svg class="ico"><use href="#i-tool"/></svg></div>
         <h3>Montagem e operação</h3>
-        <p>Equipe no local para montar, operar durante o evento e desmontar, sem dor de cabeça pra você.</p>
+        <p>Equipe no local para montar, operar durante o evento e desmontar.</p>
       </article>
-      <article class="card c-amber rv" style="--d:.08s">
-        <span class="num">04</span>
+      <article class="card spot rv" style="--d:.08s">
         <div class="ic"><svg class="ico"><use href="#i-ruler"/></svg></div>
         <h3>Projeto sob medida</h3>
-        <p>Cada evento é diferente. A gente dimensiona o painel e a estrutura de acordo com o espaço e o público.</p>
+        <p>Painel e estrutura dimensionados para o seu espaço e o seu público.</p>
       </article>
-      <article class="card c-red rv" style="--d:.16s">
-        <span class="num">05</span>
+      <article class="card spot rv" style="--d:.16s">
         <div class="ic"><svg class="ico"><use href="#i-pin"/></svg></div>
         <h3>Atendemos a região</h3>
-        <p>Levamos tudo até o seu local. Fale sua cidade e a data que a gente confirma a disponibilidade.</p>
+        <p>Levamos tudo até o seu local. Informe cidade e data e confirmamos.</p>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ============ PAINEL INTERATIVO ============ -->
-<section class="sec led-sec" id="painel">
+<section class="sec" id="painel">
   <div class="wrap">
-    <div class="led-head">
+    <div class="head">
       <div>
         <span class="eyebrow rv">Veja como fica</span>
-        <h2 class="h2 rv" style="--d:.06s">Escolha a cor.<br>Sinta o <em>clima</em>.</h2>
+        <h2 class="h2 rv" style="--d:.06s">Um painel que muda<br>o <em>clima</em> do evento.</h2>
       </div>
-      <p class="lead rv" style="--d:.12s; margin-top:0">Uma prévia de como um painel de LED muda a atmosfera do seu evento. No dia, o conteúdo é o que você quiser.</p>
+      <p class="lead rv" style="--d:.12s">Uma prévia da imagem de um painel de LED. No dia, o conteúdo é o que você quiser.</p>
     </div>
 
     <div class="led-frame rv" id="ledFrame">
       <div class="led-screen"><canvas id="ledDemo" aria-label="Demonstração de painel de LED com texto em movimento" role="img"></canvas></div>
     </div>
     <div class="led-ctrl rv" role="group" aria-label="Cor do painel">
-      <span>Cor</span>
-      <button class="chip" data-mode="show" aria-pressed="true" style="--c:var(--gold)"><i></i>Show</button>
-      <button class="chip" data-mode="red" aria-pressed="false" style="--c:var(--red)"><i></i>Vermelho</button>
-      <button class="chip" data-mode="blue" aria-pressed="false" style="--c:var(--blue)"><i></i>Azul</button>
-      <button class="chip" data-mode="gold" aria-pressed="false" style="--c:var(--amber)"><i></i>Dourado</button>
+      <button class="chip" data-mode="gold" aria-pressed="true"><i style="--c:#d6b06b"></i>Dourado</button>
+      <button class="chip" data-mode="white" aria-pressed="false"><i style="--c:#f3f0e9"></i>Branco</button>
+      <button class="chip" data-mode="blue" aria-pressed="false"><i style="--c:#4f7bff"></i>Azul</button>
     </div>
   </div>
 </section>
@@ -149,12 +137,7 @@
     <div>
       <span class="eyebrow rv">Nosso trabalho</span>
       <h2 class="h2 rv" style="--d:.06s">A gente prefere <em>mostrar</em>.</h2>
-      <p class="lead rv" style="--d:.12s">Dá o play e veja a estrutura e o painel funcionando em evento de verdade.</p>
-      <ul class="work-list rv" style="--d:.18s">
-        <li><svg class="ico"><use href="#i-check"/></svg> Montagem com equipe própria</li>
-        <li><svg class="ico"><use href="#i-check"/></svg> Painel de LED de alto impacto</li>
-        <li><svg class="ico"><use href="#i-check"/></svg> Estrutura segura e bem acabada</li>
-      </ul>
+      <p class="lead rv" style="--d:.12s">Dê o play e veja a estrutura e o painel funcionando em evento de verdade.</p>
     </div>
     <div class="vframe rv" id="vframe" style="--d:.1s">
       <video id="vid" preload="metadata" playsinline controlslist="nodownload">
@@ -163,7 +146,7 @@
       <button class="vcover" id="vcover" aria-label="Reproduzir vídeo">
         <span class="vplay"><svg class="ico"><use href="#i-play"/></svg></span>
         <span class="vempty">[ Vídeo do Carlos entra aqui ]</span>
-        <span class="vcap">Carlos JR Eventos · Em ação</span>
+        <span class="vcap">Carlos JR Eventos</span>
       </button>
     </div>
   </div>
@@ -173,10 +156,9 @@
 <section class="sec" id="eventos">
   <div class="wrap">
     <span class="eyebrow rv">Para todo tipo de evento</span>
-    <h2 class="h2 rv" style="--d:.06s">Onde a gente <em>entra</em>.</h2>
-    <div class="types rv" style="--d:.12s">
-      <span class="type">Shows</span><span class="type">Festas</span><span class="type">Formaturas</span><span class="type">Casamentos</span><span class="type">Corporativo</span><span class="type">Congressos</span><span class="type">Eventos religiosos</span><span class="type">Esportivos</span><span class="type">Feiras</span>
-    </div>
+    <ul class="types rv" style="--d:.08s">
+      <li>Shows</li><li>Festas</li><li>Formaturas</li><li>Casamentos</li><li>Corporativo</li><li>Congressos</li><li>Feiras</li>
+    </ul>
   </div>
 </section>
 
@@ -184,28 +166,31 @@
 <section class="sec" style="padding-top:0">
   <div class="wrap">
     <span class="eyebrow rv">Como funciona</span>
-    <h2 class="h2 rv" style="--d:.06s">Do primeiro contato<br>ao <em>último aplauso</em>.</h2>
     <div class="steps">
-      <div class="step rv"><b>1</b><h3>Conversa</h3><p>Você conta data, local e tipo de evento. A gente entende o que precisa.</p></div>
-      <div class="step rv" style="--d:.08s"><b>2</b><h3>Proposta</h3><p>Montamos o projeto e o orçamento sob medida pro seu espaço.</p></div>
-      <div class="step rv" style="--d:.16s"><b>3</b><h3>Montagem</h3><p>Equipe chega com antecedência, instala e testa tudo.</p></div>
-      <div class="step rv" style="--d:.24s"><b>4</b><h3>Evento</h3><p>Operação no local durante todo o evento e desmontagem no final.</p></div>
+      <div class="step rv"><b>01</b><h3>Conversa</h3><p>Você conta data, local e tipo de evento.</p></div>
+      <div class="step rv" style="--d:.08s"><b>02</b><h3>Proposta</h3><p>Projeto e orçamento sob medida para o seu espaço.</p></div>
+      <div class="step rv" style="--d:.16s"><b>03</b><h3>Montagem</h3><p>Equipe chega com antecedência, instala e testa tudo.</p></div>
+      <div class="step rv" style="--d:.24s"><b>04</b><h3>Evento</h3><p>Operação no local e desmontagem no final.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ============ GALERIA ============ -->
-<section class="sec gal-sec" id="galeria">
+<section class="sec" id="galeria" style="padding-top:0">
   <div class="wrap">
-    <span class="eyebrow rv">Galeria</span>
-    <h2 class="h2 rv" style="--d:.06s">Eventos que já <em>iluminamos</em>.</h2>
+    <div class="head">
+      <div>
+        <span class="eyebrow rv">Galeria</span>
+        <h2 class="h2 rv" style="--d:.06s">Eventos que já <em>iluminamos</em>.</h2>
+      </div>
+    </div>
     <div class="gal">
-      <figure class="shot w2 tall rv" style="margin:0">[ foto do evento ]</figure>
-      <figure class="shot rv" style="margin:0;--d:.06s">[ foto ]</figure>
-      <figure class="shot rv" style="margin:0;--d:.1s">[ foto ]</figure>
-      <figure class="shot w2 rv" style="margin:0;--d:.14s">[ foto ]</figure>
-      <figure class="shot rv" style="margin:0">[ foto ]</figure>
-      <figure class="shot rv" style="margin:0;--d:.06s">[ foto ]</figure>
+      <figure class="shot spot w2 tall rv">[ foto do evento ]</figure>
+      <figure class="shot spot rv" style="--d:.06s">[ foto ]</figure>
+      <figure class="shot spot rv" style="--d:.1s">[ foto ]</figure>
+      <figure class="shot spot w2 rv" style="--d:.14s">[ foto ]</figure>
+      <figure class="shot spot rv">[ foto ]</figure>
+      <figure class="shot spot rv" style="--d:.06s">[ foto ]</figure>
     </div>
   </div>
 </section>
@@ -214,9 +199,9 @@
 <section class="sec contact" id="contato">
   <div class="wrap ct-grid">
     <div>
-      <span class="eyebrow rv">Vamos conversar</span>
+      <span class="eyebrow rv">Contato</span>
       <h2 class="h2 rv" style="--d:.06s">Qual é o seu<br><em>próximo evento</em>?</h2>
-      <p class="lead rv" style="--d:.12s">Preencha ao lado ou chame direto no WhatsApp. A resposta é rápida.</p>
+      <p class="lead rv" style="--d:.12s">Preencha ao lado ou chame direto no WhatsApp.</p>
       <div class="ct-links rv" style="--d:.18s">
         <a class="ct-link" href="#" data-wa><svg class="ico"><use href="#i-wa"/></svg><span><small>WhatsApp</small><b data-fill="wa-label">Chamar agora</b></span></a>
         <a class="ct-link" href="#" data-ig><svg class="ico"><use href="#i-ig"/></svg><span><small>Instagram</small><b data-fill="ig-label">@carlosjreventos</b></span></a>
@@ -233,7 +218,7 @@
         <div class="field"><label for="f-data">Data</label><input id="f-data" name="data" type="date"></div>
       </div>
       <div class="field"><label for="f-local">Cidade / local</label><input id="f-local" name="local" placeholder="Ex.: Goiânia, salão tal"></div>
-      <div class="field"><label for="f-msg">Conte um pouco mais</label><textarea id="f-msg" name="msg" placeholder="Nº de pessoas, tamanho do painel que imagina, se precisa de palco..."></textarea></div>
+      <div class="field"><label for="f-msg">Conte um pouco mais</label><textarea id="f-msg" name="msg" placeholder="Nº de pessoas, tamanho do painel, se precisa de palco..."></textarea></div>
       <button type="submit" class="btn btn-gold">Enviar pelo WhatsApp <svg class="ico"><use href="#i-arrow"/></svg></button>
       <small>Ao enviar, o WhatsApp abre com sua mensagem pronta.</small>
     </form>
@@ -243,7 +228,7 @@
 
 <footer class="foot">
   <div class="wrap foot-in">
-    <a href="#topo" class="logo"><span class="logo-mark">CJR</span><span class="logo-txt"><b>Carlos JR</b><small>Eventos</small></span></a>
+    <a href="#topo" class="logo"><svg class="logo-mark" aria-hidden="true"><use href="#i-logo"/></svg><span class="logo-txt"><b>Carlos JR</b><small>Eventos</small></span></a>
     <span>© <span id="ano">2026</span> Carlos JR Eventos. Todos os direitos reservados.</span>
   </div>
 </footer>

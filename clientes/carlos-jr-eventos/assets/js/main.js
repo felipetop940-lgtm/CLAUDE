@@ -64,25 +64,41 @@
     rv.forEach(function (el) { io.observe(el); });
   } else rv.forEach(function (el) { el.classList.add("in"); });
 
-  /* ---------- faixa: duplica para loop contínuo ---------- */
-  var tk = $("#ticker");
-  if (tk) tk.innerHTML += tk.innerHTML;
-
-  /* ---------- brilho que segue o mouse nos cards ---------- */
-  $$(".card").forEach(function (c) {
-    c.addEventListener("pointermove", function (e) {
-      var r = c.getBoundingClientRect();
-      c.style.setProperty("--mx", (e.clientX - r.left) + "px");
-      c.style.setProperty("--my", (e.clientY - r.top) + "px");
-    });
-  });
-
-  /* ---------- cores ---------- */
-  var PAL = [[229, 51, 47], [255, 178, 31], [214, 176, 107], [47, 107, 255], [229, 51, 47]];
-  function grad(t) {
-    t = ((t % 1) + 1) % 1;
-    var p = t * (PAL.length - 1), i = Math.floor(p), f = p - i, a = PAL[i], b = PAL[i + 1];
-    return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
+  /* ---------- aura que segue o mouse + grade no hero + botões magnéticos ---------- */
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var aura = $("#aura"), heroBg = $(".hero-bg"), heroEl = $("#topo");
+  if (aura) {
+    if (fine && !reduce) {
+      var tx = innerWidth * .7, ty = innerHeight * .35, ax = tx, ay = ty, moved = false;
+      window.addEventListener("pointermove", function (e) { tx = e.clientX; ty = e.clientY; moved = true; }, { passive: true });
+      (function loop() {
+        ax += (tx - ax) * .08; ay += (ty - ay) * .08;
+        aura.style.transform = "translate(" + ax.toFixed(1) + "px," + ay.toFixed(1) + "px)";
+        if (heroBg) {
+          var r = heroEl.getBoundingClientRect();
+          heroBg.style.setProperty("--gx", (ax - r.left).toFixed(1) + "px");
+          heroBg.style.setProperty("--gy", (ay - r.top).toFixed(1) + "px");
+        }
+        requestAnimationFrame(loop);
+      })();
+      $$(".spot").forEach(function (el) {
+        el.addEventListener("pointermove", function (e) {
+          var r = el.getBoundingClientRect();
+          el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+          el.style.setProperty("--my", (e.clientY - r.top) + "px");
+        });
+      });
+      $$(".magnetic").forEach(function (btn) {
+        btn.addEventListener("pointermove", function (e) {
+          var r = btn.getBoundingClientRect();
+          btn.style.transform = "translate(" + ((e.clientX - r.left - r.width / 2) * .16).toFixed(1) + "px," + ((e.clientY - r.top - r.height / 2) * .26).toFixed(1) + "px)";
+        });
+        btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
+      });
+    } else {
+      aura.classList.add("idle");
+      if (heroBg) { heroBg.style.setProperty("--gx", "70%"); heroBg.style.setProperty("--gy", "40%"); }
+    }
   }
 
   /* ---------- helper: roda só enquanto está na tela ---------- */
@@ -107,35 +123,11 @@
     return { w: cv.width, h: cv.height, dpr: dpr };
   }
 
-  /* ---------- LED do hero: ondas de luz numa matriz de pontos ---------- */
-  var hero = $("#heroLed");
-  if (hero) {
-    var hc = hero.getContext("2d"), hs;
-    var size = function () { hs = fit(hero); }; size();
-    window.addEventListener("resize", size);
-    runWhileVisible(hero, function (t) {
-      var cell = (window.innerWidth < 760 ? 16 : 22) * hs.dpr, r = cell * .2;
-      var cols = Math.ceil(hs.w / cell), rows = Math.ceil(hs.h / cell);
-      hc.clearRect(0, 0, hs.w, hs.h);
-      var sweep = ((t * .09) % 1.4 - .2) * cols;
-      for (var y = 0; y < rows; y++) {
-        for (var x = 0; x < cols; x++) {
-          var v = .5 + .5 * Math.sin(x * .22 + t * 1.05) * Math.sin(y * .27 - t * .8);
-          var s = Math.exp(-Math.pow((x - sweep) / 5, 2));
-          var a = .05 + .5 * v * v * v + .55 * s;
-          var c = grad(x / cols * .8 + t * .02 + y / rows * .1);
-          hc.fillStyle = "rgba(" + (c[0] | 0) + "," + (c[1] | 0) + "," + (c[2] | 0) + "," + Math.min(a, .95).toFixed(3) + ")";
-          hc.beginPath(); hc.arc(x * cell + cell / 2, y * cell + cell / 2, r, 0, 6.2832); hc.fill();
-        }
-      }
-    });
-  }
-
   /* ---------- painel de LED interativo ---------- */
   var demo = $("#ledDemo");
   if (demo) {
     var dc = demo.getContext("2d"), ds, cols, rows, mask, off = document.createElement("canvas"), oc = off.getContext("2d");
-    var mode = "show", text = "SEU EVENTO EM GRANDE ESCALA   •   SHOWS   •   FESTAS   •   CORPORATIVO   •   ";
+    var mode = "gold", text = "SEU EVENTO EM GRANDE ESCALA   •   CARLOS JR EVENTOS   •   ";
     var textW = 0;
     function build() {
       ds = fit(demo);
@@ -156,7 +148,7 @@
     (document.fonts && document.fonts.load ? document.fonts.load('800 20px "Inter Tight"') : Promise.resolve()).then(start, start);
     window.addEventListener("resize", function () { if (mask) build(); });
 
-    var glow = { show: "rgba(214,176,107,.35)", red: "rgba(229,51,47,.45)", blue: "rgba(47,107,255,.45)", gold: "rgba(255,178,31,.4)" };
+    var glow = { gold: "rgba(214,176,107,.32)", white: "rgba(243,240,233,.22)", blue: "rgba(79,123,255,.4)" };
     var frame = $("#ledFrame");
     $$(".chip").forEach(function (b) {
       b.addEventListener("click", function () {
@@ -165,9 +157,9 @@
         frame.style.setProperty("--glow", glow[mode]);
       });
     });
-    frame.style.setProperty("--glow", glow.show);
+    frame.style.setProperty("--glow", glow.gold);
 
-    var solid = { red: [229, 51, 47], blue: [47, 107, 255], gold: [255, 190, 60] };
+    var solid = { gold: [214, 176, 107], white: [243, 240, 233], blue: [79, 123, 255] };
     runWhileVisible(demo, function (t) {
       if (!mask) return;
       var cell = demo._cell, sz = cell * .74, pad = (cell - sz) / 2, shift = reduce ? 6 : Math.floor(t * 26);
@@ -176,7 +168,7 @@
         for (var x = 0; x < cols; x++) {
           var sx = (x + shift) % textW;
           var on = mask[(y * textW + sx) * 4 + 3] > 120;
-          var c = mode === "show" ? grad(x / cols * .9 + t * .05) : solid[mode];
+          var c = solid[mode];
           var bright = .75 + .25 * (1 - y / rows);
           if (on) {
             dc.fillStyle = "rgba(" + (c[0] | 0) + "," + (c[1] | 0) + "," + (c[2] | 0) + ",.16)";
