@@ -5,8 +5,13 @@ window.SITE = {
   whatsapp: "",
   // Instagram sem @. Ex.: "carlosjreventos"
   instagram: "",
-  // Cidade/região de atendimento (aparece no formulário)
+  // Cidade/região de atendimento
   cidade: "Goiânia e região",
   // Mensagem padrão dos botões de WhatsApp
-  mensagem: "Olá! Vim pelo site da Carlos JR Eventos e quero um orçamento."
+  mensagem: "Olá! Vim pelo site da Carlos JR Eventos e quero um orçamento.",
+  // Vídeo da seção "Em ação" (arquivo em assets/video/). Deixe vazio enquanto não tiver.
+  // Exemplo: "assets/video/trabalho.mp4"
+  video: "",
+  // Capa do vídeo (aparece antes do play)
+  capa: "assets/img/capa-video.jpg"
 };
