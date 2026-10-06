@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Carlos JR Eventos · Painel de LED e Estrutura para Eventos</title>
   <meta name="description" content="Painel de LED e estrutura para eventos: shows, festas, formaturas, casamentos e corporativos. Monte seu briefing e peça orçamento pelo WhatsApp com a Carlos JR Eventos.">
-  <meta name="theme-color" content="#060606">
+  <meta name="theme-color" content="#050505">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="Carlos JR Eventos · Painel de LED e Estrutura para Eventos">
   <meta property="og:description" content="Seu evento visto de qualquer lugar. Painel de LED, estrutura e montagem completa.">
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
   <link rel="preload" href="assets/fonts/bigshoulders.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/logo-carlos-jr.png" as="image">
   <link rel="preload" href="assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.classList.remove("no-js")</script>
@@ -19,7 +20,6 @@
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="i-logo" viewBox="0 0 30 42"><g fill="#fff" opacity=".06"><circle cx="3" cy="3" r="2.2"/><circle cx="27" cy="3" r="2.2"/><circle cx="9" cy="9" r="2.2"/><circle cx="15" cy="9" r="2.2"/><circle cx="21" cy="9" r="2.2"/><circle cx="9" cy="15" r="2.2"/><circle cx="15" cy="15" r="2.2"/><circle cx="21" cy="15" r="2.2"/><circle cx="27" cy="15" r="2.2"/><circle cx="9" cy="21" r="2.2"/><circle cx="15" cy="21" r="2.2"/><circle cx="21" cy="21" r="2.2"/><circle cx="27" cy="21" r="2.2"/><circle cx="9" cy="27" r="2.2"/><circle cx="15" cy="27" r="2.2"/><circle cx="21" cy="27" r="2.2"/><circle cx="27" cy="27" r="2.2"/><circle cx="9" cy="33" r="2.2"/><circle cx="15" cy="33" r="2.2"/><circle cx="21" cy="33" r="2.2"/><circle cx="3" cy="39" r="2.2"/><circle cx="27" cy="39" r="2.2"/></g><g fill="currentColor"><circle cx="9" cy="3" r="2.2"/><circle cx="15" cy="3" r="2.2"/><circle cx="21" cy="3" r="2.2"/><circle cx="3" cy="9" r="2.2"/><circle cx="27" cy="9" r="2.2"/><circle cx="3" cy="15" r="2.2"/><circle cx="3" cy="21" r="2.2"/><circle cx="3" cy="27" r="2.2"/><circle cx="3" cy="33" r="2.2"/><circle cx="27" cy="33" r="2.2"/><circle cx="9" cy="39" r="2.2"/><circle cx="15" cy="39" r="2.2"/><circle cx="21" cy="39" r="2.2"/></g></symbol>
     <symbol id="i-wa" viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.8 8.6c.2-.5.6-.6 1-.6l.6 1.5-.6.9c.5 1.1 1.4 2 2.5 2.5l.9-.6 1.5.6c0 .4-.1.8-.6 1-1.9.9-6.2-3.3-5.3-5.3Z"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.4-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></symbol>
@@ -35,15 +35,12 @@
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a href="#topo" class="logo" aria-label="Carlos JR Eventos, início">
-      <svg class="logo-mark" aria-hidden="true"><use href="#i-logo"/></svg>
-      <span class="logo-txt"><b>Carlos JR</b><small>Eventos</small></span>
-    </a>
+    <a href="#topo" class="logo" aria-label="Carlos JR Eventos, início"><img src="assets/img/logo-carlos-jr.png" alt="Carlos JR Eventos" width="1066" height="210"></a>
     <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span></button>
     <nav class="menu" id="menu" aria-label="Principal">
       <a href="#servicos">Serviços</a>
       <a href="#painel">Painel de LED</a>
-      <a href="#trabalho">Em ação</a>
+      <a href="#trabalho" data-needs="video" hidden>Em ação</a>
       <a href="#roteiro">Roteiro</a>
       <a href="#orcamento" class="btn btn-gold">Monte seu palco</a>
     </nav>
@@ -67,7 +64,7 @@
         <p class="lead">A gente leva o painel, monta a estrutura e opera o evento inteiro. Você cuida só de aproveitar.</p>
         <div class="cta-row">
           <a href="#orcamento" class="btn btn-gold btn-lg magnetic">Monte seu palco <svg class="ico"><use href="#i-arrow"/></svg></a>
-          <a href="#trabalho" class="btn btn-line btn-lg"><svg class="ico"><use href="#i-play"/></svg> Ver em ação</a>
+          <a href="#" class="btn btn-line btn-lg" data-wa data-msg="Olá, Carlos! Vi o site da Carlos JR Eventos e quero conversar sobre o meu evento."><svg class="ico"><use href="#i-wa"/></svg> Chamar no WhatsApp</a>
         </div>
       </div>
       <dl class="spec mono rv" style="--d:.65s">
@@ -121,20 +118,16 @@
     <p class="mark mono rv">[ 02 / Prévia do painel ]</p>
     <div class="head">
       <h2 class="h2 rv" style="--d:.06s">Seu evento em<br><em>alta definição</em></h2>
-      <p class="lead rv" style="--d:.12s">Uma prévia ilustrativa de como o painel de LED fica no ar. No evento, o conteúdo é o que você quiser: logo, vídeo, patrocinadores, transmissão ao vivo.</p>
+      <p class="lead rv" style="--d:.12s">Uma prévia ilustrativa, com imagens de exemplo, de como o painel de LED fica no ar. No evento, o conteúdo é o que você quiser: vídeo, logo, patrocinadores, transmissão ao vivo.</p>
     </div>
 
     <div class="led-frame crop rv" id="ledFrame">
-      <div class="led-screen"><canvas id="ledDemo" aria-label="Prévia de painel de LED exibindo animações em pixel art de eventos" role="img"></canvas><canvas id="ledGlow" aria-hidden="true"></canvas></div>
+      <div class="led-screen"><canvas id="ledDemo" aria-label="Prévia de painel de LED exibindo vídeos de eventos" role="img"></canvas><canvas id="ledGlow" aria-hidden="true"></canvas></div>
     </div>
-    <div class="led-cap mono rv"><span><i class="rec"></i> <b id="sceneName">Show</b></span><span>Prévia ilustrativa</span></div>
+    <div class="led-cap mono rv"><span><i class="rec"></i> <b id="sceneName">Casamento</b></span><span>Prévia ilustrativa · imagens de exemplo</span></div>
     <div class="led-ctrl rv">
       <div class="chips" role="group" aria-label="Cena do painel" id="scenes">
         <button class="chip" data-scene="auto" aria-pressed="true">Automático</button>
-        <button class="chip" data-scene="0" aria-pressed="false">Show</button>
-        <button class="chip" data-scene="1" aria-pressed="false">Fogos</button>
-        <button class="chip" data-scene="2" aria-pressed="false">Pista</button>
-        <button class="chip" data-scene="3" aria-pressed="false">Seu texto</button>
       </div>
       <label class="led-in mono"><span>Seu texto</span><input id="ledText" maxlength="24" value="SEU EVENTO AQUI" autocomplete="off" spellcheck="false"></label>
     </div>
@@ -142,7 +135,7 @@
 </section>
 
 <!-- ============ EM AÇÃO / VÍDEOS ============ -->
-<section class="sec reel" id="trabalho">
+<section class="sec reel" id="trabalho" hidden>
   <div class="wrap">
     <p class="mark mono rv">[ 03 / Em ação ]</p>
     <h2 class="h2 rv" style="--d:.06s">A gente prefere <em>mostrar</em></h2>
@@ -190,25 +183,25 @@
         <span class="plan-tag mono">Planta ilustrativa · vista frontal</span>
         <svg id="plan" viewBox="0 0 640 372" role="img" aria-label="Desenho do palco montado conforme as opções escolhidas">
           <defs>
-            <pattern id="pix" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.5" fill="#d8b46a"/></pattern>
-            <pattern id="lat" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 0L12 12M12 0L0 12" stroke="#d8b46a" stroke-width=".9" opacity=".7"/></pattern>
-            <linearGradient id="bm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0d9a4" stop-opacity=".26"/><stop offset="1" stop-color="#f0d9a4" stop-opacity="0"/></linearGradient>
-            <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d8b46a" stop-opacity=".35"/><stop offset="1" stop-color="#d8b46a" stop-opacity="0"/></radialGradient>
+            <pattern id="pix" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.5" fill="#e0802e"/></pattern>
+            <pattern id="lat" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 0L12 12M12 0L0 12" stroke="#e0802e" stroke-width=".9" opacity=".7"/></pattern>
+            <linearGradient id="bm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6b57a" stop-opacity=".26"/><stop offset="1" stop-color="#f6b57a" stop-opacity="0"/></linearGradient>
+            <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e0802e" stop-opacity=".35"/><stop offset="1" stop-color="#e0802e" stop-opacity="0"/></radialGradient>
           </defs>
           <line x1="20" y1="316" x2="620" y2="316" stroke="#fff" stroke-opacity=".18"/>
-          <g id="g-roof" class="part"><polygon points="70,78 320,26 570,78" fill="#d8b46a" fill-opacity=".05" stroke="#d8b46a" stroke-width="1.4"/><line x1="70" y1="78" x2="570" y2="78" stroke="#d8b46a" stroke-width="1.4"/></g>
+          <g id="g-roof" class="part"><polygon points="70,78 320,26 570,78" fill="#e0802e" fill-opacity=".05" stroke="#e0802e" stroke-width="1.4"/><line x1="70" y1="78" x2="570" y2="78" stroke="#e0802e" stroke-width="1.4"/></g>
           <g id="g-truss" class="part">
-            <rect x="82" y="82" width="16" height="234" fill="url(#lat)" stroke="#d8b46a" stroke-width="1.4"/>
-            <rect x="542" y="82" width="16" height="234" fill="url(#lat)" stroke="#d8b46a" stroke-width="1.4"/>
-            <rect x="82" y="82" width="476" height="18" fill="url(#lat)" stroke="#d8b46a" stroke-width="1.4"/>
+            <rect x="82" y="82" width="16" height="234" fill="url(#lat)" stroke="#e0802e" stroke-width="1.4"/>
+            <rect x="542" y="82" width="16" height="234" fill="url(#lat)" stroke="#e0802e" stroke-width="1.4"/>
+            <rect x="82" y="82" width="476" height="18" fill="url(#lat)" stroke="#e0802e" stroke-width="1.4"/>
             <g id="lights"></g>
           </g>
-          <g id="g-stage" class="part"><rect x="110" y="286" width="420" height="30" fill="#0e0e0e" stroke="#d8b46a" stroke-width="1.4"/><line x1="110" y1="292" x2="530" y2="292" stroke="#d8b46a" stroke-opacity=".5"/></g>
+          <g id="g-stage" class="part"><rect x="110" y="286" width="420" height="30" fill="#0e0e0e" stroke="#e0802e" stroke-width="1.4"/><line x1="110" y1="292" x2="530" y2="292" stroke="#e0802e" stroke-opacity=".5"/></g>
           <g id="g-led" class="part led-g">
             <ellipse cx="0" cy="-60" rx="220" ry="150" fill="url(#glow)"/>
-            <rect x="-110" y="-124" width="220" height="124" fill="#14100a" stroke="#d8b46a" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+            <rect x="-110" y="-124" width="220" height="124" fill="#14100a" stroke="#e0802e" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
             <rect x="-110" y="-124" width="220" height="124" fill="url(#pix)" opacity=".85"/>
-            <text x="0" y="-54" text-anchor="middle" font-family="Big Shoulders, sans-serif" font-weight="800" font-size="30" fill="#f0d9a4" textLength="150" lengthAdjust="spacingAndGlyphs">SEU EVENTO</text>
+            <text x="0" y="-54" text-anchor="middle" font-family="Big Shoulders, sans-serif" font-weight="800" font-size="30" fill="#f6b57a" textLength="150" lengthAdjust="spacingAndGlyphs">SEU EVENTO</text>
           </g>
           <g id="crowd"></g>
         </svg>
@@ -267,7 +260,7 @@
     <div class="foot-in">
       <div class="foot-links">
         <a href="#" data-wa><svg class="ico"><use href="#i-wa"/></svg><span data-fill="wa-label">WhatsApp</span></a>
-        <a href="#" data-ig><svg class="ico"><use href="#i-ig"/></svg><span data-fill="ig-label">@carlosjreventos</span></a>
+        <a href="#" data-ig hidden><svg class="ico"><use href="#i-ig"/></svg><span data-fill="ig-label">@carlosjreventos</span></a>
         <span><svg class="ico"><use href="#i-pin"/></svg><span data-fill="cidade">Goiânia e região</span></span>
       </div>
       <span class="mono">© <span id="ano">2026</span> Carlos JR Eventos</span>
