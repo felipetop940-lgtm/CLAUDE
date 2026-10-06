@@ -57,7 +57,7 @@ window.SITE = {
   faixasPreco: [150, 250, 350],
 
   // Quantas peças aparecem em destaque na página principal (as de "destaque" menor primeiro)
-  destaquesNaHome: 5,
+  destaquesNaHome: 8,
   // Peças por "página" no catálogo (depois aparece o botão "Ver mais")
   porPagina: 24
 };

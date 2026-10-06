@@ -183,20 +183,22 @@
   /* ---------- Página principal ---------- */
   var destaques = PRODUTOS.filter(function (p) { return p.destaque && !p.esgotado; }).sort(function (a, b) { return a.destaque - b.destaque; });
   if (!destaques.length) destaques = PRODUTOS.filter(function (p) { return !p.esgotado; });
-  destaques = destaques.slice(0, SITE.destaquesNaHome || 5);
+  destaques = destaques.slice(0, SITE.destaquesNaHome || 8);
+  // vitrine de 4 em 4: não deixa peça sobrando sozinha na última linha
+  if (destaques.length > 4) destaques = destaques.slice(0, Math.floor(destaques.length / 4) * 4);
   function renderHome() {
     var feat = $('[data-feat]');
-    feat.innerHTML = destaques.map(function (p, i) { return cardHTML(p, i, i === 0 && destaques.length >= 3); }).join('');
+    feat.innerHTML = destaques.map(function (p, i) { return cardHTML(p, i); }).join('');
     $$('[data-total-pecas]').forEach(function (el) { el.textContent = plural(PRODUTOS.length, 'peça', 'peças'); });
-    var hp = destaques[1] || destaques[0];
-    var heroProd = $('[data-hero-prod]');
-    if (hp && heroProd) { heroProd.innerHTML = '<img src="' + esc(hp.foto) + '" alt="" width="739" height="985">'; heroProd.setAttribute('data-pdp', hp.id); }
+    $$('[data-hero-side]').forEach(function (fig) {
+      var p = destaques[+fig.getAttribute('data-hero-side')]; if (p) $('img', fig).src = p.foto;
+    });
     // Por modelo
     var modelos = uniq(PRODUTOS.map(function (p) { return p.modelo; }));
     $('[data-models]').innerHTML = modelos.map(function (m) {
       var l = PRODUTOS.filter(function (p) { return p.modelo === m; });
       var capa = l.filter(function (p) { return p.destaque; }).sort(function (a, b) { return a.destaque - b.destaque; })[0] || l[0];
-      return '<a class="model" href="#catalogo?modelo=' + encodeURIComponent(m) + '"><figure class="arch"><img src="' + esc(capa.foto) + '" alt="" loading="lazy" decoding="async"></figure><strong>' + esc(m) + '</strong><small>' + plural(l.length, 'peça', 'peças') + '</small></a>';
+      return '<a class="tile" href="#catalogo?modelo=' + encodeURIComponent(m) + '"><img src="' + esc(capa.foto) + '" alt="" loading="lazy" decoding="async"><span class="tile__txt"><strong>' + esc(m) + '</strong><small>' + plural(l.length, 'peça', 'peças') + ' · Ver</small></span></a>';
     }).join('');
     // Por cor
     var cores = uniq(PRODUTOS.map(function (p) { return p.cor; }));
@@ -213,10 +215,6 @@
       }).join('');
     }
   }
-  $('[data-find-form]').addEventListener('submit', function (e) {
-    e.preventDefault(); var q = e.target.q.value.trim();
-    location.hash = 'catalogo' + (q ? '?q=' + encodeURIComponent(q) : '');
-  });
 
   /* ---------- Catálogo: filtros ---------- */
   var FAIXAS = SITE.faixasPreco || [];

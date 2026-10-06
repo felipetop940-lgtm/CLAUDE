@@ -92,7 +92,7 @@
       <nav class="nav" aria-label="Principal">
         <a href="#catalogo" data-nav="catalogo">Catálogo</a>
         <a href="#destaques">Destaques</a>
-        <a href="#loja">A experiência</a>
+        <a href="#loja">A loja</a>
         <a href="#como-comprar">Como comprar</a>
       </nav>
     </div>
@@ -112,90 +112,74 @@
      ===================================================== -->
 <div class="view" data-view="home">
 
-  <!-- Abertura: a loja de chão de areia -->
+  <!-- Campanha: Made for you -->
   <section class="hero" id="inicio" aria-labelledby="hero-title">
-    <div class="hero__text">
-      <p class="eyebrow">Olímpia · SP</p>
-      <h1 class="hero__title" id="hero-title">Biquíni se escolhe com os pés <em>na areia.</em></h1>
-      <p class="hero__lead">A Ella é a loja de biquínis com o chão todo de areia. Venha sentir o clima de praia ou monte sua sacola aqui e receba <strong>grátis em Olímpia</strong>.</p>
-      <div class="hero__ctas">
-        <a class="btn btn--blue" href="#catalogo">Ver catálogo</a>
-        <a class="btn btn--line" href="#loja">Conhecer a loja</a>
-      </div>
-      <p class="status" data-status><span class="status__dot"></span><span data-status-txt>Horário da loja</span></p>
+    <div class="hero__panels" aria-hidden="true">
+      <figure class="hero__panel" data-hero-side="0"><img src="assets/img/produtos/poa-meia-taca.webp" alt="" width="739" height="985"></figure>
+      <figure class="hero__panel hero__panel--main"><img src="assets/img/loja.webp" alt="" width="739" height="1187" fetchpriority="high"></figure>
+      <figure class="hero__panel" data-hero-side="1"><img src="assets/img/produtos/tomara-que-caia-perolas-chocolate.webp" alt="" width="739" height="985"></figure>
     </div>
-    <div class="hero__art" aria-hidden="true">
-      <figure class="arch arch--big"><img src="assets/img/loja.webp" alt="" width="739" height="1187" fetchpriority="high"></figure>
-      <figure class="arch arch--small" data-hero-prod></figure>
-      <div class="seal">
-        <svg viewBox="0 0 120 120"><defs><path id="seal-c" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text><textPath href="#seal-c" textLength="286" lengthAdjust="spacing">MADE FOR YOU ✦ CHÃO DE AREIA ✦ OLÍMPIA ✦</textPath></text></svg>
-        <span class="seal__mark">E</span>
+    <div class="hero__text">
+      <p class="hero__eyebrow">Biquínis · Olímpia SP</p>
+      <h1 class="hero__title" id="hero-title">Made for you</h1>
+      <p class="hero__lead">A loja de biquínis com chão de areia. Peça pelo site e receba <strong>grátis em Olímpia</strong>.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--sand" href="#catalogo">Ver catálogo</a>
+        <a class="btn btn--line-light" href="#" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Falar no WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- Faixa que corre devagar -->
-  <div class="ribbon" aria-hidden="true">
-    <div class="ribbon__track">
-      <span>Made for you</span><i>✦</i><span>Chão de areia</span><i>✦</i><span>Entrega grátis em Olímpia</span><i>✦</i><span>Quinta a terça, das 9h às 22h</span><i>✦</i>
-      <span>Made for you</span><i>✦</i><span>Chão de areia</span><i>✦</i><span>Entrega grátis em Olímpia</span><i>✦</i><span>Quinta a terça, das 9h às 22h</span><i>✦</i>
-    </div>
-  </div>
+  <!-- Vantagens -->
+  <section class="perks" aria-label="Vantagens">
+    <ul class="perks__list" role="list">
+      <li><svg class="i" aria-hidden="true"><use href="#i-truck"/></svg><div><strong>Entrega grátis</strong><span>para toda Olímpia</span></div></li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg><div><strong>Pedido no WhatsApp</strong><span>atendimento direto com a loja</span></div></li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-feet"/></svg><div><strong>Loja com chão de areia</strong><span>Av. Aurora Forti Neves, 632</span></div></li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><div><strong>Quinta a terça</strong><span>das 9h às 22h</span></div></li>
+    </ul>
+  </section>
 
-  <!-- Destaques -->
+  <!-- Destaques (vitrine) -->
   <section class="sec feat" id="destaques" aria-labelledby="feat-title">
     <div class="wrap">
-      <div class="head head--split">
-        <div>
-          <p class="eyebrow reveal">Destaques</p>
-          <h2 class="title reveal" id="feat-title">Os mais desejados <em>da Ella.</em></h2>
-        </div>
-        <a class="link reveal" href="#catalogo">Ver catálogo completo<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <div class="shead">
+        <h2 class="shead__title" id="feat-title">Destaques</h2>
+        <a class="link" href="#catalogo">Ver catálogo completo<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
-      <div class="feat__grid" data-feat></div>
-      <div class="feat__more reveal"><a class="btn btn--blue" href="#catalogo">Ver todas as <span data-total-pecas></span></a></div>
     </div>
+    <div class="grid grid--4 wrap" data-feat></div>
+    <div class="feat__more"><a class="btn btn--blue" href="#catalogo">Ver todas as <span data-total-pecas></span></a></div>
   </section>
 
-  <!-- Encontre o seu -->
-  <section class="sec find" id="encontre" aria-labelledby="find-title">
-    <svg class="dune dune--top" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V28c160-26 330-30 520-8s350 30 520 8 290-30 400-18v50Z"/></svg>
+  <!-- Compre por modelo / cor -->
+  <section class="sec cats" id="encontre" aria-labelledby="cats-title">
     <div class="wrap">
-      <div class="head head--center">
-        <p class="eyebrow eyebrow--center reveal">Encontre o seu</p>
-        <h2 class="title reveal" id="find-title">Procurando um biquíni <em>específico?</em></h2>
+      <div class="shead">
+        <h2 class="shead__title" id="cats-title">Compre por modelo</h2>
+        <a class="link" href="#catalogo">Filtrar no catálogo<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
-      <form class="find__search reveal" data-find-form role="search">
-        <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
-        <input type="search" name="q" placeholder="Nome, cor, modelo ou código" aria-label="Buscar no catálogo" autocomplete="off">
-        <button class="btn btn--blue" type="submit">Buscar</button>
-      </form>
-      <p class="find__label reveal">Por modelo</p>
-      <div class="models" data-models></div>
-      <p class="find__label reveal">Por cor</p>
-      <div class="swatches reveal" data-swatches></div>
+      <div class="tiles" data-models></div>
+      <div class="colors">
+        <p class="colors__t">Compre por cor</p>
+        <div class="swatches" data-swatches></div>
+      </div>
     </div>
   </section>
 
-  <!-- A experiência: chão de areia -->
+  <!-- A loja: chão de areia -->
   <section class="sec exp" id="loja" aria-labelledby="exp-title">
     <div class="wrap exp__grid">
       <div class="exp__photos">
-        <figure class="arch exp__main reveal"><img src="assets/img/loja-manequim.webp" alt="Manequim com biquíni e saia na loja Ella Beachwear, com o chão de areia" width="409" height="927" loading="lazy" decoding="async"></figure>
-        <figure class="exp__sand reveal"><img src="assets/img/loja-areia.webp" alt="Detalhe do chão de areia da loja" width="739" height="427" loading="lazy" decoding="async"><figcaption>Chão de areia de verdade</figcaption></figure>
+        <figure class="exp__ph reveal"><img src="assets/img/loja.webp" alt="Interior da loja Ella Beachwear com o chão todo de areia, poltrona e peças expostas" width="739" height="1187" loading="lazy" decoding="async"></figure>
       </div>
       <div class="exp__text">
-        <p class="eyebrow reveal">A experiência</p>
+        <p class="eyebrow reveal">A loja</p>
         <h2 class="title reveal" id="exp-title">Um chão inteiro <em>de areia.</em></h2>
         <p class="lead reveal">Entrou na Ella, já está na praia. Você escolhe seu biquíni pisando na areia, no clima certo, antes mesmo de chegar ao mar.</p>
-        <ul class="exp__points" role="list">
-          <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-feet"/></svg><div><strong>Pés na areia</strong><span>A loja inteira tem chão de areia.</span></div></li>
-          <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg><div><strong>Atendimento de perto</strong><span>Ajuda para escolher modelo e tamanho.</span></div></li>
-          <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-truck"/></svg><div><strong>Entrega grátis</strong><span>Para toda Olímpia. Outras cidades, consulte.</span></div></li>
-        </ul>
         <div class="visit reveal">
           <div class="visit__row"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg><div><strong data-f="endereco.rua"></strong><span data-f="endereco.cidade"></span></div></div>
-          <div class="visit__row"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><div><strong>Horário</strong><ol class="week" data-week role="list"></ol></div></div>
+          <div class="visit__row"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><div><strong>Horário <span class="status" data-status><span class="status__dot"></span><span data-status-txt></span></span></strong><ol class="week" data-week role="list"></ol></div></div>
           <div class="visit__row" data-need="pagamento"><svg class="i" aria-hidden="true"><use href="#i-bag"/></svg><div><strong>Pagamento</strong><span data-f="pagamento"></span></div></div>
         </div>
         <div class="exp__ctas reveal">
@@ -207,19 +191,14 @@
   </section>
 
   <!-- Como comprar -->
-  <section class="sec how" id="como-comprar" aria-labelledby="how-title">
-    <div class="wrap">
-      <p class="eyebrow eyebrow--center reveal">Como comprar pelo site</p>
-      <h2 class="title title--center reveal" id="how-title">Da tela para a <em>sua praia.</em></h2>
+  <section class="how" id="como-comprar" aria-labelledby="how-title">
+    <div class="wrap how__in">
+      <h2 class="how__title" id="how-title">Como comprar pelo site</h2>
       <ol class="how__steps" role="list">
-        <li class="reveal"><span class="how__n">01</span><h3>Escolha</h3><p>Monte a sacola com o tamanho do top e da calcinha.</p></li>
-        <li class="reveal"><span class="how__n">02</span><h3>Envie no WhatsApp</h3><p>O pedido chega pronto. A loja confirma estoque e pagamento.</p></li>
-        <li class="reveal"><span class="how__n">03</span><h3>Receba</h3><p>Entrega grátis em Olímpia ou retire na loja.</p></li>
+        <li><span class="how__n">01</span><div><h3>Escolha</h3><p>Tamanho do top e da calcinha.</p></div></li>
+        <li><span class="how__n">02</span><div><h3>Envie no WhatsApp</h3><p>A loja confirma estoque e pagamento.</p></div></li>
+        <li><span class="how__n">03</span><div><h3>Receba</h3><p>Grátis em Olímpia ou retire na loja.</p></div></li>
       </ol>
-      <div class="how__cta reveal">
-        <a class="btn btn--blue" href="#catalogo">Começar a escolher</a>
-        <a class="link" href="#" data-wa="tamanho"><svg class="i" aria-hidden="true"><use href="#i-ruler"/></svg>Dúvida no tamanho? Fale com a gente</a>
-      </div>
     </div>
   </section>
 
@@ -237,23 +216,25 @@
      CATÁLOGO
      ===================================================== -->
 <div class="view" data-view="catalogo" hidden>
-  <section class="cbanner" aria-labelledby="cat-title">
-    <div class="wrap cbanner__in">
-      <div>
-        <p class="eyebrow">Ella Beachwear</p>
-        <h1 class="cbanner__title" id="cat-title">Catálogo</h1>
-        <p class="cbanner__sub" data-cat-sub></p>
-      </div>
-      <form class="cbanner__search" data-cat-search role="search">
-        <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
-        <input type="search" name="q" placeholder="Nome, cor, modelo ou código" aria-label="Buscar no catálogo" autocomplete="off" data-q>
-        <button type="button" class="icon-btn" data-q-clear aria-label="Limpar busca" hidden><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button>
-      </form>
+  <section class="hero hero--short" aria-labelledby="cat-title">
+    <div class="hero__panels" aria-hidden="true">
+      <figure class="hero__panel" data-hero-side="2"><img src="assets/img/produtos/meia-taca-pedra-preto.webp" alt="" width="739" height="985"></figure>
+      <figure class="hero__panel hero__panel--main"><img src="assets/img/loja-areia.webp" alt="" width="739" height="427"></figure>
+      <figure class="hero__panel" data-hero-side="3"><img src="assets/img/produtos/triangulo-texturizado-off-white.webp" alt="" width="739" height="985"></figure>
     </div>
-    <svg class="dune dune--bottom" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V30c180-24 360-28 560-6s360 26 520 6 260-26 360-14v44Z"/></svg>
+    <div class="hero__text">
+      <h1 class="hero__title" id="cat-title">Catálogo</h1>
+      <p class="hero__eyebrow hero__eyebrow--below" data-cat-sub></p>
+    </div>
   </section>
 
-  <div class="crumbs wrap"><a href="#inicio">Home</a><span aria-hidden="true">|</span><a href="#catalogo" data-crumb-cat>Catálogo</a><span aria-hidden="true" data-crumb-sep hidden>|</span><strong data-crumb hidden></strong></div>
+  <div class="crumbs-row wrap"><div class="crumbs"><a href="#inicio">Home</a><span aria-hidden="true">|</span><a href="#catalogo" data-crumb-cat>Catálogo</a><span aria-hidden="true" data-crumb-sep hidden>|</span><strong data-crumb hidden></strong></div>
+    <form class="csearch" data-cat-search role="search">
+      <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+      <input type="search" name="q" placeholder="Buscar por nome, cor, modelo ou código" aria-label="Buscar no catálogo" autocomplete="off" data-q>
+      <button type="button" class="icon-btn" data-q-clear aria-label="Limpar busca" hidden><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </form>
+  </div>
 
   <div class="wrap shop">
     <aside class="shop__side" aria-label="Filtros">
@@ -294,7 +275,6 @@
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
-  <svg class="dune dune--top" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V26c200-22 380-26 580-4s340 28 500 8 260-28 360-16v46Z"/></svg>
   <div class="wrap footer__brand">
     <a class="logo logo--foot" href="#inicio" aria-label="Ella Beachwear, início"><svg aria-hidden="true"><use href="#logo"/></svg></a>
     <p class="footer__slogan">Made for you</p>
@@ -321,8 +301,8 @@
   <nav class="menu" aria-label="Menu">
     <a href="#catalogo" data-close>Catálogo</a>
     <a href="#destaques" data-close>Destaques</a>
-    <a href="#encontre" data-close>Encontre o seu</a>
-    <a href="#loja" data-close>A experiência</a>
+    <a href="#encontre" data-close>Compre por modelo</a>
+    <a href="#loja" data-close>A loja</a>
     <a href="#como-comprar" data-close>Como comprar</a>
     <button type="button" data-open="bag" data-tab="fav">Favoritos <span data-count="fav" class="badge badge--inline" hidden>0</span></button>
   </nav>
