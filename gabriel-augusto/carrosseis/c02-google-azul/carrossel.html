@@ -1,0 +1,103 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 02 · "O azul de US$ 200 milhões do Google" · fontes: f-poppins · retenção: mini-quiz (chuta antes de arrastar) + série
+     Fontes: The Guardian (Dan Cobley, 2014); Doug Bowman, "Goodbye, Google" (2009) via Fast Company/Daring Fireball.
+     Gerar: cd .. && PWPATH=$(npm root -g)/playwright node render.js c02-google-azul -->
+<link rel="stylesheet" href="../base.css"><script src="../base.js"></script>
+<style>
+.tons{display:grid;grid-template-columns:repeat(41,1fr);gap:4px;height:150px;border-radius:18px;overflow:hidden}
+.tons i{display:block}
+.tons-leg{display:flex;justify-content:space-between;font-size:26px;font-weight:700;color:var(--mut);margin-top:12px!important}
+.quiz{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.quiz>div{padding:30px 30px 34px;border-radius:26px;background:#12151b;border:1.5px solid rgba(255,255,255,.12)}
+.quiz b{display:block;font-family:var(--tit);font-weight:800;font-size:64px;line-height:1;color:#fff}
+.quiz .link{display:block;margin-top:22px;font-size:34px;font-weight:700;text-decoration:underline;text-underline-offset:6px}
+.quiz .cor{height:70px;border-radius:14px;margin-top:22px}
+.quiz small{display:block;margin-top:16px;font-size:24px;color:var(--mut);font-weight:600}
+.ilustra{font-size:22px!important;color:var(--mut)!important}
+</style>
+</head><body class="f-poppins">
+
+<!-- 1 · capa (post do X escuro): só curiosidade -->
+<section class="s capa">
+ <div class="txt"><p>O Google ganhou <b class="g">US$&nbsp;200&nbsp;milhões</b> a mais por ano mudando <b>um detalhe</b> que você vê todo&nbsp;dia</p><small>(e quase ninguém repara)</small></div>
+</section>
+
+<!-- 2 · o problema (também é capa: o Instagram reexibe a partir do 2º slide) -->
+<section class="s luz-azul">
+ <div class="bloco">
+  <h2>O Google tinha <span class="it">dois</span> azuis e <span class="hl red mk">não sabia</span> qual vendia mais</h2>
+  <p>Os links dos anúncios na busca usavam um azul. No Gmail, os mesmos links tinham <b>um azul um pouquinho diferente.</b></p>
+  <p class="nota">Então resolveram testar. Todos os azuis →</p>
+ </div>
+</section>
+
+<!-- 3 · os 41 tons -->
+<section class="s">
+ <div class="bloco">
+  <h2 class="m">Testaram <span class="it">41</span> tons de azul</h2>
+  <div class="tons" id="tons"></div>
+  <p class="tons-leg"><span>mais esverdeado</span><span>mais arroxeado</span></p>
+  <p>Cada fatia de <b>1% dos usuários</b> via um tom diferente. O Google contava os cliques de cada um.</p>
+  <p class="nota">E um designer pediu demissão por causa disso →</p>
+ </div>
+</section>
+
+<!-- 4 · o designer que saiu -->
+<section class="s luz-vermelha">
+ <div class="bloco">
+  <p>Doug Bowman, chefe de design visual do Google, saiu em 2009 e escreveu:</p>
+  <p class="citacao">“Tive um debate sobre se uma borda devia ter 3, 4 ou 5 pixels. <span class="g">Me pediram pra provar.</span>”</p>
+  <p>“Não consigo trabalhar num ambiente assim.”</p>
+  <p class="nota">Só que o teste valeu cada centavo →</p>
+ </div>
+</section>
+
+<!-- 5 · quiz: chuta antes de arrastar -->
+<section class="s luz-azul">
+ <div class="bloco">
+  <h2 class="m">Chuta antes de arrastar: <span class="it">qual</span> vendeu mais?</h2>
+  <div class="quiz">
+   <div><b>A</b><span class="link" style="color:#1E8FD8">Anúncio de exemplo</span><div class="cor" style="background:#1E8FD8"></div><small>azul mais esverdeado</small></div>
+   <div><b>B</b><span class="link" style="color:#4A57E8">Anúncio de exemplo</span><div class="cor" style="background:#4A57E8"></div><small>azul mais arroxeado</small></div>
+  </div>
+  <p class="ilustra">cores ilustrativas</p>
+  <p class="nota">Guarda sua resposta e arrasta →</p>
+ </div>
+</section>
+
+<!-- 6 · resposta e resultado -->
+<section class="s">
+ <div class="bloco">
+  <p>Ganhou o <b>B: o azul um pouco mais arroxeado.</b> Ele recebia mais cliques.</p>
+  <p class="grande">+US$ 200 mi</p>
+  <p>por ano a mais em anúncios, segundo <b>Dan Cobley</b>, diretor do Google no Reino Unido, em 2014.</p>
+  <p class="nota">E isso tem tudo a ver com o seu negócio →</p>
+ </div>
+</section>
+
+<!-- 7 · a lição -->
+<section class="s luz-vermelha">
+ <div class="bloco">
+  <h2 class="m">Detalhe pequeno, <span class="hl red mk">dinheiro grande</span></h2>
+  <ul class="lista"><li>Botão de WhatsApp escondido no rodapé</li><li>“Saiba mais” no lugar de “Agendar agora”</li><li>Foto escura e sem rosto na capa do site</li></ul>
+  <p>Você não precisa testar 41 tons. Mas <b>detalhe não é frescura.</b></p>
+  <p class="nota">Detalhe também vende.</p>
+ </div>
+</section>
+
+<!-- 8 · seguir -->
+<section class="s fim">
+ <div class="bloco">
+  <h2 class="m">Todo dia uma <span class="it">história real</span> de negócios que quase ninguém conta.</h2>
+  <p><span class="seguir">Seguir @euaugusto_oliv</span></p>
+  <p>Manda pra alguém que tem negócio.<br>E comenta: <b>você chutou A ou B?</b></p>
+  <p class="nota">Amanhã: por que você julga um site em 0,05 segundo.</p>
+ </div>
+</section>
+
+<script>
+// 41 tons entre o azul esverdeado e o arroxeado (ilustrativo)
+const t = document.getElementById('tons');
+for (let i = 0; i < 41; i++) { const h = 200 + i * 35 / 40; const e = document.createElement('i'); e.style.background = `hsl(${h} 75% 52%)`; t.appendChild(e); }
+</script>
+</body></html>

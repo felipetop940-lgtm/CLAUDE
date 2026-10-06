@@ -15,8 +15,8 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | Nº | Tipo | Gancho / fato central | Status |
 |---|---|---|---|
 | 01 | Negócios | O botão de US$ 300 milhões (Jared Spool, UIE) | feito 05/10 |
-| 02 | Negócios | O Google ganhou US$ 200 milhões trocando um tom de azul (teste dos 41 tons) | pendente |
-| 03 | Psicologia | Você tem 0,05 segundo: o cérebro julga um site em 50 milissegundos (Lindgaard, 2006) | pendente |
+| 02 | Negócios | O Google ganhou US$ 200 milhões trocando um tom de azul (teste dos 41 tons) | feito 06/10 (f-poppins, quiz) |
+| 03 | Psicologia | Você tem 0,05 segundo: o cérebro julga um site em 50 milissegundos (Lindgaard, 2006) | pendente · prometido no c02 pra 07/10 |
 | 04 | História | O estudante que ficou milionário vendendo pixels a US$ 1 (Million Dollar Homepage, 2005) | pendente |
 | 05 | Consumo | Por que quase tudo custa R$ 9,90 (preço terminado em 9) | pendente |
 | 06 | Consumo | O truque do plano do meio: a revista The Economist e o efeito isca (Dan Ariely) | pendente |
