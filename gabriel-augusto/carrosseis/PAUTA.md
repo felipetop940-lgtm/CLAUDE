@@ -9,6 +9,9 @@ WhatsApp e presença digital (o que ele vende).
 2. Assunto em alta no dia (pesquisar toda manhã) que renda história real + lição de negócio.
 3. Próximo `pendente` desta lista.
 
+**Dois posts por dia no TikTok (desde 06/10):** o principal (`cNN`, Instagram + TikTok, 19h) e um extra só do TikTok
+(`tNN`, 5 a 6 slides, 9:16, postar às 13h30). O extra também sai desta lista (ou de assunto em alta) e não repete o tema do principal.
+
 **Todo fato precisa de fonte checada no dia.** Se não confirmar, troca de tema. Sem fonte, não posta.
 Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 
@@ -21,7 +24,7 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 05 | Consumo | Por que quase tudo custa R$ 9,90 (preço terminado em 9) | pendente |
 | 06 | Consumo | O truque do plano do meio: a revista The Economist e o efeito isca (Dan Ariely) | pendente |
 | 07 | Consumo | Por que o leite fica sempre no fundo do supermercado | pendente |
-| 08 | História | A Blockbuster podia ter comprado a Netflix por US$ 50 milhões e riu da proposta (2000) | pendente |
+| 08 | História | A Blockbuster podia ter comprado a Netflix por US$ 50 milhões e riu da proposta (2000) | feito 06/10 como extra do TikTok (t01) |
 | 09 | Internet | O primeiro site do mundo ainda está no ar (info.cern.ch, 1991) | pendente |
 | 10 | Internet | O domínio mais caro da história: voice.com por US$ 30 milhões (2019) | pendente |
 | 11 | Curiosidade | O botão de fechar a porta do elevador quase nunca faz nada | pendente |

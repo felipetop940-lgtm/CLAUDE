@@ -185,3 +185,8 @@ body{background:#222;font-family:Inter;color:var(--ink);font-variant-numeric:lin
 .tt .bloco .nota{font-size:52px}
 .tt .bloco h2{font-size:calc(var(--tit-sz) + 6px)}.tt .bloco h2.m{font-size:calc(var(--tit-sz-m) + 6px)}
 .tt .capa.so-tt .txt{font-size:104px}
+/* capa do TikTok com Bebas (só tem um peso: sem negrito falso, caixa alta, maior) */
+.tt .f-bebas .capa.so-tt .txt{font-weight:400;font-size:150px;line-height:.98;letter-spacing:.005em;text-transform:uppercase}
+.tt .f-bebas .capa.so-tt .txt b{font-weight:400}
+.tt .bloco .citacao{font-size:calc(var(--cit-sz) + 6px)}
+.tt .bloco .grande{font-size:calc(var(--grande-sz) + 10px)}

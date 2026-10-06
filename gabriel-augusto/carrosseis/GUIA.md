@@ -88,6 +88,12 @@ Modelo: `c01-botao-300-milhoes`. Fundo preto, cabeçalho de perfil em todo slide
 - Se um slide estiver cheio demais pro TikTok, marcar o parágrafo extra com `so-ig` (some só no TikTok).
 - Enviar as duas pastas: Instagram (4:5) e TikTok (9:16).
 
+**Extra do TikTok (2º post do dia, desde 06/10):** ele pediu 2 posts por dia no TikTok (conta nova cresce com volume).
+- Pasta `tNN-slug/` (modelo: `t01-blockbuster-netflix`), **5 a 6 slides**, só TikTok: `render.js tNN-slug --tiktok`.
+- Capa `s capa so-tt` com até 10 palavras, história curta e direta, último slide com seguir + pergunta pra comentar.
+- Tema diferente do principal do dia e combinação de fontes diferente também.
+- Horários: **extra às 13h30** (assim que chega) e **principal às 19h**. Mandar título (3 opções) + descrição do extra.
+
 Ele posta o mesmo carrossel no TikTok (modo foto), que pede **título** e **descrição longa**:
 - **Título:** 3 opções curtas (até ~90 caracteres), a 1ª pensando em busca (palavra-chave), uma com humor/sátira quando couber.
 - **Descrição:** a história contada em parágrafos curtos (mais longa que a do Instagram), com as palavras-chave do tema,
@@ -125,3 +131,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 04/10 (noite): vai postar o c01 na segunda 05/10. Segunda é só pesquisa de retenção (sem mandar nada). A partir de 06/10, artes prontas todo dia às 13h.
 - 05/10: mandar todo dia também o título e a descrição do TikTok (ele posta o mesmo carrossel lá). Posts programados pras 19h.
 - 06/10: TikTok com poucas views. Agora vai uma versão 9:16 própria, com capa curta e letra enorme. Pedir os números do TikTok (tempo médio, % que viu tudo, origem) pra ajustar.
+- 06/10: 2 posts por dia no TikTok. Extra (tNN, 5 a 6 slides) às 13h30 + principal às 19h.
