@@ -48,3 +48,8 @@ body{background:#222;font-family:Inter;color:var(--w)}
 .tt .t .pincel.xl{font-size:1.06em}
 .tt .capa .t{font-size:140px}
 .arrasta i{font-family:Inter;font-weight:900;font-size:50px;line-height:1}
+/* lista curta (checklist) */
+.vl{list-style:none;display:grid;gap:18px;text-align:left}
+.vl li{font-family:Anton;text-transform:uppercase;font-size:66px;line-height:1;color:var(--w);display:flex;gap:22px;align-items:center}
+.vl li i{font-style:normal;color:var(--r);font-size:76px;width:60px;text-align:center}
+.tt .vl li{font-size:60px}

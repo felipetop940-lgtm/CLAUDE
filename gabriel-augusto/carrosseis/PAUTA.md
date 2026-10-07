@@ -19,9 +19,9 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 |---|---|---|---|
 | 01 | Negócios | O botão de US$ 300 milhões (Jared Spool, UIE) | feito 05/10 |
 | 02 | Negócios | O Google ganhou US$ 200 milhões trocando um tom de azul (teste dos 41 tons) | feito 06/10 (f-poppins, quiz) |
-| 03 | Psicologia | Você tem 0,05 segundo: o cérebro julga um site em 50 milissegundos (Lindgaard, 2006) | pendente · prometido no c02 pra 07/10 |
+| 03 | Psicologia | Você tem 0,05 segundo: o cérebro julga um site em 50 milissegundos (Lindgaard, 2006) | feito 07/10 (c03, modelo viral) |
 | 04 | História | O estudante que ficou milionário vendendo pixels a US$ 1 (Million Dollar Homepage, 2005) | pendente |
-| 05 | Consumo | Por que quase tudo custa R$ 9,90 (preço terminado em 9) | pendente |
+| 05 | Consumo | Por que quase tudo custa R$ 9,90 (preço terminado em 9) | feito 07/10 (t02, extra do TikTok) |
 | 06 | Consumo | O truque do plano do meio: a revista The Economist e o efeito isca (Dan Ariely) | pendente |
 | 07 | Consumo | Por que o leite fica sempre no fundo do supermercado | pendente |
 | 08 | História | A Blockbuster podia ter comprado a Netflix por US$ 50 milhões e riu da proposta (2000) | feito 06/10 como extra do TikTok (t01) |
