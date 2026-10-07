@@ -4,16 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Carlos JR Eventos · Painel de LED, Som, Iluminação e Estrutura</title>
-  <meta name="description" content="Painel de LED, som, iluminação e estrutura para eventos: shows, festas, formaturas, casamentos e corporativos. Monte seu briefing e peça orçamento pelo WhatsApp com a Carlos JR Eventos.">
-  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Painel de LED, som, iluminação e estrutura para shows, festas, formaturas e casamentos. Monte seu evento e peça orçamento pelo WhatsApp com a Carlos JR Eventos.">
+  <meta name="theme-color" content="#fbf7ef">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Carlos JR Eventos · Painel de LED, som e luz para o seu evento">
+  <meta property="og:description" content="Painel de LED, som, iluminação e estrutura. Monte seu evento e peça orçamento.">
   <meta property="og:image" content="assets/img/trabalhos/led-coracao.webp">
-  <meta property="og:title" content="Carlos JR Eventos · Painel de LED e Estrutura para Eventos">
-  <meta property="og:description" content="Seu evento visto de qualquer lugar. Painel de LED, som, iluminação, estrutura e montagem completa.">
   <link rel="icon" href="assets/img/favicon.png" type="image/png">
   <link rel="preload" href="assets/fonts/bigshoulders.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/logo-carlos-jr.png" as="image">
   <link rel="preload" href="assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.classList.remove("no-js")</script>
@@ -29,52 +28,46 @@
   </defs>
 </svg>
 
-<!-- refletor de palco que segue o mouse -->
-<div class="fx" aria-hidden="true"><i class="fx-beam" id="fxBeam"></i><i class="fx-pool" id="fxPool"></i></div>
+<div class="fx" aria-hidden="true"><i class="fx-pool" id="fxPool"></i></div>
 <a class="skip" href="#main">Ir para o conteúdo</a>
 
-<!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a href="#topo" class="logo" aria-label="Carlos JR Eventos, início"><img src="assets/img/logo-carlos-jr.png" alt="Carlos JR Eventos" width="1066" height="210"></a>
+    <a href="#topo" class="logo" aria-label="Carlos JR Eventos, início"><img src="assets/img/logo-escuro.png" alt="Carlos JR Eventos" width="1066" height="210"></a>
     <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span></button>
     <nav class="menu" id="menu" aria-label="Principal">
       <a href="#servicos">Serviços</a>
-      <a href="#painel">Painel de LED</a>
       <a href="#trabalhos">Trabalhos</a>
-      <a href="#trabalho" data-needs="video" hidden>Em ação</a>
-      <a href="#roteiro">Roteiro</a>
-      <a href="#orcamento" class="btn btn-gold">Monte seu palco</a>
+      <a href="#" data-ig hidden>Instagram</a>
+      <a href="#orcamento" class="btn btn-gold">Monte seu evento</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
-<!-- ============ HERO ============ -->
+<!-- ============ VÍDEO + BOTÃO ============ -->
 <section class="hero" id="topo">
-  <canvas class="hero-led" id="heroLed" aria-hidden="true"></canvas>
+  <i class="glow g1" aria-hidden="true"></i><i class="glow g2" aria-hidden="true"></i>
   <div class="wrap hero-in">
-    <p class="tag mono rv"><i class="rec"></i> Painel de LED · Som · Iluminação · Estrutura</p>
-    <h1 class="h1" aria-label="Seu evento visto de qualquer lugar.">
-      <span class="ln"><span>Seu evento</span></span>
-      <span class="ln gold"><span>visto de</span></span>
-      <span class="ln"><span>qualquer lugar.</span></span>
-    </h1>
-    <div class="hero-bot">
-      <div class="rv" style="--d:.5s">
-        <p class="lead">A gente leva o painel, o som, a iluminação e a estrutura, monta tudo e opera o evento inteiro. Você cuida só de aproveitar.</p>
-        <div class="cta-row">
-          <a href="#orcamento" class="btn btn-gold btn-lg magnetic">Monte seu palco <svg class="ico"><use href="#i-arrow"/></svg></a>
-          <a href="#" class="btn btn-line btn-lg" data-wa data-msg="Olá, Carlos! Vi o site da Carlos JR Eventos e quero conversar sobre o meu evento."><svg class="ico"><use href="#i-wa"/></svg> Chamar no WhatsApp</a>
+    <h1 class="h1"><span class="ln"><span>Painel de LED,</span></span><span class="ln"><span>som e luz para <em>o seu evento</em></span></span></h1>
+    <div class="stage">
+      <img class="side sl" src="assets/img/trabalhos/led-estrela.webp" alt="" width="800" height="1000" loading="eager">
+      <div class="vwrap">
+        <div class="vframe" id="vframe">
+          <video id="vid" preload="none" playsinline controlslist="nodownload"></video>
+          <button class="vcover" id="vcover" aria-label="Reproduzir vídeo">
+            <img class="vposter" id="vposter" src="assets/img/capa-video.jpg" alt="">
+            <span class="vplay"><svg class="ico"><use href="#i-play"/></svg></span>
+            <span class="vempty mono">[ vídeo do Carlos entra aqui ]</span>
+          </button>
         </div>
       </div>
-      <dl class="spec mono rv" style="--d:.65s">
-        <div><dt>Painel</dt><dd>LED</dd></div>
-        <div><dt>Estrutura</dt><dd>Palco · Truss · Cobertura</dd></div>
-        <div><dt>Som e luz</dt><dd>Som · Iluminação</dd></div>
-        <div><dt>Equipe</dt><dd>Montagem e operação</dd></div>
-      </dl>
+      <img class="side sr" src="assets/img/trabalhos/led-coracao.webp" alt="" width="800" height="1000" loading="eager">
+    </div>
+    <div class="cta-row">
+      <a href="#orcamento" class="btn btn-gold btn-lg magnetic">Monte seu evento <svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a href="#" class="btn btn-line btn-lg" data-wa data-msg="Olá, Carlos! Vi o site da Carlos JR Eventos e quero conversar sobre o meu evento."><svg class="ico"><use href="#i-wa"/></svg> WhatsApp</a>
     </div>
   </div>
 </section>
@@ -82,135 +75,22 @@
 <!-- ============ SERVIÇOS ============ -->
 <section class="sec" id="servicos">
   <div class="wrap">
-    <p class="mark mono rv">[ 01 / Serviços ]</p>
-    <h2 class="h2 rv" style="--d:.06s">Tudo para o seu<br>evento <em>acontecer</em></h2>
-
-    <ol class="cues">
-      <li class="cue rv" data-img="assets/img/trabalhos/led-coracao.webp"><div class="cue-in">
-        <span class="cue-n mono">Cue 01</span>
-        <h3>Painel de LED</h3>
-        <p>Imagem nítida e brilhante para telões, fundos de palco e transmissão ao vivo. Seu público enxerga tudo, do primeiro ao último lugar.</p>
-        <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </div><div class="cue-photo" style="--pos:38% 40%" aria-hidden="true"><img src="assets/img/trabalhos/led-coracao.webp" alt="" width="800" height="960" loading="lazy"></div></li>
-      <li class="cue rv" data-img="assets/img/trabalhos/truss.webp"><div class="cue-in">
-        <span class="cue-n mono">Cue 02</span>
-        <h3>Estrutura e palco</h3>
-        <p>Palco, truss e coberturas seguros e bem acabados, para sustentar o painel, a iluminação e tudo que compõe o seu show.</p>
-        <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </div><div class="cue-photo" style="--pos:50% 48%" aria-hidden="true"><img src="assets/img/trabalhos/truss.webp" alt="" width="800" height="960" loading="lazy"></div></li>
-      <li class="cue rv" data-img="assets/img/trabalhos/som-linha.webp"><div class="cue-in">
-        <span class="cue-n mono">Cue 03</span>
-        <h3>Som</h3>
-        <p>Sonorização para o seu público ouvir tão bem quanto enxerga, do cerimonial ao show.</p>
-        <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </div><div class="cue-photo" style="--pos:50% 42%" aria-hidden="true"><img src="assets/img/trabalhos/som-linha.webp" alt="" width="800" height="960" loading="lazy"></div></li>
-      <li class="cue rv" data-img="assets/img/trabalhos/led-estrela.webp"><div class="cue-in">
-        <span class="cue-n mono">Cue 04</span>
-        <h3>Iluminação</h3>
-        <p>Luz cênica que transforma o ambiente e destaca o palco, a pista e o painel.</p>
-        <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </div><div class="cue-photo" style="--pos:30% 38%" aria-hidden="true"><img src="assets/img/trabalhos/led-estrela.webp" alt="" width="800" height="960" loading="lazy"></div></li>
-      <li class="cue rv" data-img="assets/img/trabalhos/palco-festa.webp"><div class="cue-in">
-        <span class="cue-n mono">Cue 05</span>
-        <h3>Montagem e operação</h3>
-        <p>Equipe no local para montar, testar, operar durante o evento e desmontar. Sem dor de cabeça pra você.</p>
-        <svg class="ico cue-go"><use href="#i-arrow"/></svg>
-      </div><div class="cue-photo" style="--pos:55% 55%" aria-hidden="true"><img src="assets/img/trabalhos/palco-festa.webp" alt="" width="800" height="960" loading="lazy"></div></li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ SEU EVENTO NO PAINEL ============ -->
-<section class="sec" id="painel">
-  <div class="wrap">
-    <p class="mark mono rv">[ 02 / Prévia do painel ]</p>
-    <div class="head">
-      <h2 class="h2 rv" style="--d:.06s">Seu evento em<br><em>alta definição</em></h2>
-      <p class="lead rv" style="--d:.12s">Uma prévia ilustrativa, com imagens de exemplo, de como o painel de LED fica no ar. No evento, o conteúdo é o que você quiser: vídeo, logo, patrocinadores, transmissão ao vivo.</p>
-    </div>
-
-    <div class="led-frame crop rv" id="ledFrame">
-      <div class="led-screen"><canvas id="ledDemo" aria-label="Prévia de painel de LED exibindo vídeos de eventos" role="img"></canvas><canvas id="ledGlow" aria-hidden="true"></canvas></div>
-    </div>
-    <div class="led-cap mono rv"><span><i class="rec"></i> <b id="sceneName">Casamento</b></span><span>Prévia ilustrativa · imagens de exemplo</span></div>
-    <div class="led-ctrl rv">
-      <div class="chips" role="group" aria-label="Cena do painel" id="scenes">
-        <button class="chip" data-scene="auto" aria-pressed="true">Automático</button>
-      </div>
-      <label class="led-in mono"><span>Seu texto</span><input id="ledText" maxlength="24" value="SEU EVENTO AQUI" autocomplete="off" spellcheck="false"></label>
-    </div>
+    <p class="mark mono rv">Serviços</p>
+    <div class="svs"><article class="sv sv1 rv" style="--d:0.00s"><img src="assets/img/trabalhos/led-coracao.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:38% 40%"><span class="sv-n mono">01</span><h3>Painel de LED</h3></article><article class="sv sv2 rv" style="--d:0.07s"><img src="assets/img/trabalhos/truss.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:50% 48%"><span class="sv-n mono">02</span><h3>Estrutura e palco</h3></article><article class="sv sv3 rv" style="--d:0.14s"><img src="assets/img/trabalhos/som-linha.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:50% 42%"><span class="sv-n mono">03</span><h3>Som</h3></article><article class="sv sv4 rv" style="--d:0.21s"><img src="assets/img/trabalhos/led-estrela.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:30% 38%"><span class="sv-n mono">04</span><h3>Iluminação</h3></article><article class="sv sv5 rv" style="--d:0.28s"><img src="assets/img/trabalhos/palco-festa.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:55% 55%"><span class="sv-n mono">05</span><h3>Montagem e operação</h3></article></div>
   </div>
 </section>
 
 <!-- ============ TRABALHOS ============ -->
-<section class="sec" id="trabalhos">
-  <div class="wrap">
-    <p class="mark mono rv">[ 03 / Trabalhos ]</p>
-    <div class="head">
-      <h2 class="h2 rv" style="--d:.06s">Palco, painel e luz.<br><em>Do jeito que a gente entrega</em></h2>
-      <p class="lead rv" style="--d:.12s">Alguns dos eventos montados pela equipe do Carlos: painel de LED, estrutura, som e iluminação trabalhando juntos.</p>
-    </div>
-    <div class="tiles">
-      <figure class="tile rv"><img src="assets/img/trabalhos/led-coracao.webp" alt="Salão com painéis de LED exibindo um coração e iluminação cênica em rosa" width="800" height="960" loading="lazy"><figcaption class="mono">Painel de LED · Iluminação</figcaption></figure>
-      <figure class="tile rv" style="--d:.08s"><img src="assets/img/trabalhos/palco-festa.webp" alt="Palco ao ar livre com estrutura de truss, iluminação e caixas de som, à noite" width="800" height="960" loading="lazy"><figcaption class="mono">Palco · Estrutura · Som</figcaption></figure>
-      <figure class="tile rv" style="--d:.16s"><img src="assets/img/trabalhos/led-estrela.webp" alt="Painel de LED com uma estrela vermelha e refletores móveis projetando luz laranja no piso" width="800" height="960" loading="lazy"><figcaption class="mono">Painel de LED · Iluminação cênica</figcaption></figure>
-      <figure class="tile rv"><img src="assets/img/trabalhos/truss.webp" alt="Estrutura em truss de alumínio montada ao ar livre" width="800" height="960" loading="lazy"><figcaption class="mono">Estrutura em truss</figcaption></figure>
-      <figure class="tile rv" style="--d:.08s"><img src="assets/img/trabalhos/som-linha.webp" alt="Caixas de som suspensas e painel de LED vermelho ao lado do palco" width="800" height="960" loading="lazy"><figcaption class="mono">Som · Painel de LED</figcaption></figure>
-      <figure class="tile rv" style="--d:.16s"><img src="assets/img/trabalhos/xv-anos.webp" alt="Pista de festa de 15 anos com teto de painéis de LED rosa e refletores móveis" width="800" height="960" loading="lazy"><figcaption class="mono">Painel de LED · Festa de 15 anos</figcaption></figure>
-    </div>
-  </div>
+<section class="sec strip-sec" id="trabalhos">
+  <div class="wrap"><p class="mark mono rv">Trabalhos</p></div>
+  <div class="strip" id="strip"><div class="strip-track"><img src="assets/img/trabalhos/led-coracao.webp" alt="Salão com painel de LED e iluminação cênica" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/palco-festa.webp" alt="Palco com truss, luz e som" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-estrela.webp" alt="Painel de LED com estrela e refletores" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/truss.webp" alt="Estrutura em truss" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/som-linha.webp" alt="Som e painel de LED" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/xv-anos.webp" alt="Festa com teto de painéis de LED" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/rosa-pista.webp" alt="Pista com iluminação rosa" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-coracao.webp" alt="Salão com painel de LED e iluminação cênica" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/palco-festa.webp" alt="Palco com truss, luz e som" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-estrela.webp" alt="Painel de LED com estrela e refletores" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/truss.webp" alt="Estrutura em truss" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/som-linha.webp" alt="Som e painel de LED" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/xv-anos.webp" alt="Festa com teto de painéis de LED" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/rosa-pista.webp" alt="Pista com iluminação rosa" width="800" height="1000" loading="lazy"></div></div>
 </section>
 
-<!-- ============ EM AÇÃO / VÍDEO ============ -->
-<section class="sec reel" id="trabalho" hidden>
-  <div class="wrap work-grid">
-    <div class="work-txt">
-      <p class="mark mono rv">[ Em ação ]</p>
-      <h2 class="h2 rv" style="--d:.06s">A gente prefere <em>mostrar</em></h2>
-      <p class="lead rv" style="--d:.12s">Dê o play e veja como é um evento montado pela equipe do Carlos, do primeiro teste ao último aplauso.</p>
-      <div class="cta-row rv" style="--d:.18s">
-        <a href="#" class="btn btn-gold btn-lg" data-wa data-msg="Olá, Carlos! Vi o vídeo no site da Carlos JR Eventos e quero um orçamento para o meu evento.">Quero um evento assim <svg class="ico"><use href="#i-arrow"/></svg></a>
-      </div>
-    </div>
-    <div class="vwrap rv" id="vwrap" style="--d:.1s">
-      <div class="vframe crop" id="vframe">
-        <video id="vid" preload="none" playsinline controlslist="nodownload"></video>
-        <button class="vcover" id="vcover" aria-label="Reproduzir vídeo">
-          <img class="vposter" id="vposter" src="assets/img/capa-video.jpg" alt="">
-          <span class="vplay"><svg class="ico"><use href="#i-play"/></svg></span>
-          <span class="vempty mono">[ vídeo do Carlos entra aqui ]</span>
-          <span class="vcap mono">Carlos JR Eventos · Em ação</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ROTEIRO ============ -->
-<section class="sec" id="roteiro">
-  <div class="wrap">
-    <p class="mark mono rv">[ 04 / Roteiro ]</p>
-    <h2 class="h2 rv" style="--d:.06s">Do primeiro contato<br>ao <em>último aplauso</em></h2>
-    <ol class="run" id="run">
-      <li class="rv"><span class="mono">01</span><h3>Briefing</h3><p>Você conta data, local e formato do evento.</p></li>
-      <li class="rv" style="--d:.06s"><span class="mono">02</span><h3>Projeto</h3><p>Dimensionamos painel e estrutura e enviamos a proposta.</p></li>
-      <li class="rv" style="--d:.12s"><span class="mono">03</span><h3>Montagem</h3><p>Equipe chega com antecedência e instala tudo.</p></li>
-      <li class="rv" style="--d:.18s"><span class="mono">04</span><h3>Testes</h3><p>Ajustes finais antes de abrir as portas.</p></li>
-      <li class="rv" style="--d:.24s"><span class="mono">05</span><h3>Evento</h3><p>Operação no local durante todo o evento.</p></li>
-      <li class="rv" style="--d:.3s"><span class="mono">06</span><h3>Desmontagem</h3><p>A gente leva tudo embora. Local limpo.</p></li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ MONTE SEU PALCO ============ -->
+<!-- ============ MONTE SEU EVENTO ============ -->
 <section class="sec" id="orcamento">
   <div class="wrap">
-    <p class="mark mono rv">[ 05 / Orçamento ]</p>
-    <div class="head">
-      <h2 class="h2 rv" style="--d:.06s">Monte seu palco.<br><em>A gente cuida do resto.</em></h2>
-      <p class="lead rv" style="--d:.12s">Escolha como é o seu evento e veja a planta se montar. Depois é só enviar o briefing pelo WhatsApp.</p>
-    </div>
-
+    <p class="mark mono rv">Orçamento</p>
+    <h2 class="h2 rv" style="--d:.06s">Monte seu evento.<br><em>A gente cuida do resto.</em></h2>
     <div class="plan">
       <div class="plan-view crop rv">
         <span class="plan-tag mono">Planta ilustrativa · vista frontal</span>
@@ -294,11 +174,11 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p class="foot-big" aria-hidden="true">Carlos JR Eventos</p>
+    <img class="foot-logo" src="assets/img/logo-carlos-jr.png" alt="Carlos JR Eventos" width="1066" height="210">
     <div class="foot-in">
       <div class="foot-links">
         <a href="#" data-wa><svg class="ico"><use href="#i-wa"/></svg><span data-fill="wa-label">WhatsApp</span></a>
-        <a href="#" data-ig hidden><svg class="ico"><use href="#i-ig"/></svg><span data-fill="ig-label">@carlosjreventos</span></a>
+        <a href="#" data-ig hidden><svg class="ico"><use href="#i-ig"/></svg><span data-fill="ig-label">Instagram</span></a>
         <span><svg class="ico"><use href="#i-pin"/></svg><span data-fill="cidade">Goiânia e região</span></span>
       </div>
       <span class="mono">© <span id="ano">2026</span> Carlos JR Eventos</span>
