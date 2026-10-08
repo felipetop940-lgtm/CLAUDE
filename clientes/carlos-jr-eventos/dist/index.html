@@ -131,7 +131,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 /* serviços: fotos */
 .svs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
 .sv { position: relative; overflow: hidden; border-radius: 18px; aspect-ratio: 4 / 5; background: #1a1209; grid-column: span 2; box-shadow: 0 30px 60px -35px rgba(100, 60, 10, .55); }
-.sv1, .sv2 { grid-column: span 3; aspect-ratio: 5 / 4; }
 .sv img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .sv:hover img { transform: scale(1.07); }
 .sv::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(20, 10, 0, .78)); transition: background .5s; }
@@ -141,6 +140,26 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .sv h3::before { content: ""; display: block; width: 36px; height: 3px; margin-bottom: 14px; background: var(--sun); border-radius: 2px; transition: width .5s var(--ease); }
 .sv:hover h3::before { width: 64px; }
 .sv-n { position: absolute; z-index: 1; left: 24px; top: 20px; color: #fff; opacity: .85; }
+
+.sv-gen { background: radial-gradient(80% 70% at 50% 35%, #ffb42e, #e0802e 55%, #b4560c); box-shadow: 0 30px 60px -30px rgba(224, 128, 46, .8); }
+.sv-gen::after { display: none; }
+.gen-ico { position: absolute; left: 50%; top: 42%; width: 46%; height: auto; aspect-ratio: 1; translate: -50% -50%; fill: #fff7dc; stroke: none; filter: drop-shadow(0 10px 30px rgba(120, 50, 0, .45)); transition: transform .8s var(--ease); }
+.sv-gen:hover .gen-ico { transform: scale(1.1) rotate(-6deg); }
+.gen-tag { position: absolute; z-index: 1; right: 24px; top: 20px; color: #fff; opacity: .9; }
+.sv-gen h3 { color: #fff; }
+.sv-gen h3::before { background: #fff; }
+
+/* confiança */
+.trust { background: linear-gradient(180deg, transparent, rgba(255, 200, 61, .18) 60%, transparent); }
+.tr-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 56px; border-top: 1px solid var(--line-2); }
+.tr-list li { padding: 30px 26px 8px 0; }
+.tr-list li + li { padding-left: 26px; border-left: 1px solid var(--line); }
+.tr-list .ico { width: 34px; height: 34px; color: var(--gold); stroke-width: 1.4; }
+.tr-list h3 { font-family: var(--display); text-transform: uppercase; font-weight: 800; font-size: 32px; line-height: 1; margin-top: 18px; }
+.tr-list p { color: var(--muted); font-size: 15px; margin-top: 8px; max-width: 26ch; }
+.tr-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 52px; }
+.tr-phone { font-family: var(--display); font-weight: 800; font-size: clamp(34px, 4vw, 52px); letter-spacing: .01em; color: var(--ink); transition: color .3s; }
+.tr-phone:hover { color: var(--gold); }
 
 /* trabalhos: fita de fotos */
 .strip-sec { background: var(--bg-2); overflow: hidden; padding-bottom: clamp(60px, 8vw, 100px); }
@@ -196,6 +215,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 /* responsivo */
 @media (max-width: 1100px) { .side { display: none; } }
 @media (max-width: 1020px) {
+  .tr-list { grid-template-columns: 1fr 1fr; }
+  .tr-list li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .tr-list li:nth-child(n+3) { border-top: 1px solid var(--line); margin-top: 24px; }
   .plan { grid-template-columns: 1fr; }
   .plan-view { position: relative; top: 0; }
 }
@@ -211,11 +233,16 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   .hero { padding-top: 98px; }
   .cta-row .btn { width: 100%; }
   .svs { gap: 10px; }
-  .sv, .sv1, .sv2 { grid-column: span 3; aspect-ratio: 4 / 5; }
-  .sv5 { grid-column: span 6; aspect-ratio: 16 / 11; }
+  .sv { grid-column: span 3; }
   .sv h3 { left: 14px; right: 14px; bottom: 14px; font-size: 30px; }
   .sv-n { left: 14px; top: 14px; }
   .f-row { grid-template-columns: 1fr; }
+  .tr-list { grid-template-columns: 1fr; }
+  .tr-list li, .tr-list li + li { padding: 24px 0 6px; border-left: 0; }
+  .tr-list li + li { border-top: 1px solid var(--line); margin-top: 18px; }
+  .tr-list p { max-width: none; }
+  .tr-cta .btn { width: 100%; }
+  .gen-tag { right: 14px; top: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
@@ -236,6 +263,10 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.4-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></symbol>
     <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.5 3.1 8.3 7.5 9.5 4.4-1.2 7.5-5 7.5-9.5V6L12 3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-team" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.5-3.6 3-5.5 6-5.5s5.500 1.900 6 5.500"/><circle cx="17" cy="9" r="2.5"/><path d="M16.500 14.600c2.400.2 4.100 1.800 4.500 4.900"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.300 2.800 2.800L16 9.500"/></symbol>
   </defs>
 </svg>
 
@@ -263,7 +294,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <div class="wrap hero-in">
     <h1 class="h1"><span class="ln"><span>Painel de LED,</span></span><span class="ln"><span>som e luz para <em>o seu evento</em></span></span></h1>
     <div class="stage">
-      <img class="side sl" src="assets/img/trabalhos/led-estrela.webp" alt="" width="800" height="1000" loading="eager">
+      <img class="side sl" src="assets/img/trabalhos/palco-por-do-sol.webp" alt="" width="900" height="889" loading="eager">
       <div class="vwrap">
         <div class="vframe" id="vframe">
           <video id="vid" preload="none" playsinline controlslist="nodownload"></video>
@@ -274,7 +305,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
           </button>
         </div>
       </div>
-      <img class="side sr" src="assets/img/trabalhos/led-coracao.webp" alt="" width="800" height="1000" loading="eager">
+      <img class="side sr" src="assets/img/trabalhos/jardim-por-do-sol.webp" alt="" width="1000" height="949" loading="eager">
     </div>
     <div class="cta-row">
       <a href="#orcamento" class="btn btn-gold btn-lg magnetic">Monte seu evento <svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -287,14 +318,32 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 <section class="sec" id="servicos">
   <div class="wrap">
     <p class="mark mono rv">Serviços</p>
-    <div class="svs"><article class="sv sv1 rv" style="--d:0.00s"><img src="assets/img/trabalhos/led-coracao.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:38% 40%"><span class="sv-n mono">01</span><h3>Painel de LED</h3></article><article class="sv sv2 rv" style="--d:0.07s"><img src="assets/img/trabalhos/truss.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:50% 48%"><span class="sv-n mono">02</span><h3>Estrutura e palco</h3></article><article class="sv sv3 rv" style="--d:0.14s"><img src="assets/img/trabalhos/som-linha.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:50% 42%"><span class="sv-n mono">03</span><h3>Som</h3></article><article class="sv sv4 rv" style="--d:0.21s"><img src="assets/img/trabalhos/led-estrela.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:30% 38%"><span class="sv-n mono">04</span><h3>Iluminação</h3></article><article class="sv sv5 rv" style="--d:0.28s"><img src="assets/img/trabalhos/palco-festa.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:55% 55%"><span class="sv-n mono">05</span><h3>Montagem e operação</h3></article></div>
+    <div class="svs"><article class="sv rv" style="--d:0.00s"><img src="assets/img/trabalhos/led-coracao.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:38% 40%"><span class="sv-n mono">01</span><h3>Painel de LED</h3></article><article class="sv rv" style="--d:0.07s"><img src="assets/img/trabalhos/palco-por-do-sol.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:50% 50%"><span class="sv-n mono">02</span><h3>Estrutura e palco</h3></article><article class="sv rv" style="--d:0.14s"><img src="assets/img/trabalhos/palco-festa.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:92% 38%"><span class="sv-n mono">03</span><h3>Som</h3></article><article class="sv rv" style="--d:0.21s"><img src="assets/img/trabalhos/led-estrela.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:30% 38%"><span class="sv-n mono">04</span><h3>Iluminação</h3></article><article class="sv rv" style="--d:0.28s"><img src="assets/img/trabalhos/truss.webp" alt="" width="800" height="1000" loading="lazy" style="object-position:50% 48%"><span class="sv-n mono">05</span><h3>Montagem e operação</h3></article><article class="sv sv-gen rv" style="--d:.35s"><svg class="gen-ico" aria-hidden="true"><use href="#i-bolt"/></svg><span class="sv-n mono">06</span><span class="gen-tag mono">Locação</span><h3>Gerador de energia</h3></article></div>
+  </div>
+</section>
+
+<!-- ============ CONFIANÇA ============ -->
+<section class="sec trust" id="confianca">
+  <div class="wrap">
+    <p class="mark mono rv">Por que a Carlos JR</p>
+    <h2 class="h2 rv" style="--d:.06s">Seu evento em <em>boas mãos</em></h2>
+    <ul class="tr-list">
+      <li class="rv"><svg class="ico"><use href="#i-team"/></svg><h3>Equipe no local</h3><p>Montagem e operação do começo ao fim.</p></li>
+      <li class="rv" style="--d:.07s"><svg class="ico"><use href="#i-check"/></svg><h3>Tudo testado</h3><p>Conferimos painel, som e luz antes de abrir as portas.</p></li>
+      <li class="rv" style="--d:.14s"><svg class="ico"><use href="#i-shield"/></svg><h3>Estrutura segura</h3><p>Truss e palco bem montados e bem acabados.</p></li>
+      <li class="rv" style="--d:.21s"><svg class="ico"><use href="#i-bolt"/></svg><h3>Energia garantida</h3><p>Também locamos gerador de energia.</p></li>
+    </ul>
+    <div class="tr-cta rv" style="--d:.1s">
+      <a href="#" class="btn btn-gold btn-lg" data-wa data-msg="Olá, Carlos! Vi o site da Carlos JR Eventos e quero falar sobre o meu evento."><svg class="ico"><use href="#i-wa"/></svg> Falar com o Carlos</a>
+      <a href="#" class="tr-phone" data-wa data-fill="wa-label" data-msg="Olá, Carlos! Vi o site da Carlos JR Eventos e quero falar sobre o meu evento.">(62) 99350-9592</a>
+    </div>
   </div>
 </section>
 
 <!-- ============ TRABALHOS ============ -->
 <section class="sec strip-sec" id="trabalhos">
   <div class="wrap"><p class="mark mono rv">Trabalhos</p></div>
-  <div class="strip" id="strip"><div class="strip-track"><img src="assets/img/trabalhos/led-coracao.webp" alt="Salão com painel de LED e iluminação cênica" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/palco-festa.webp" alt="Palco com truss, luz e som" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-estrela.webp" alt="Painel de LED com estrela e refletores" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/truss.webp" alt="Estrutura em truss" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/som-linha.webp" alt="Som e painel de LED" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/xv-anos.webp" alt="Festa com teto de painéis de LED" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/rosa-pista.webp" alt="Pista com iluminação rosa" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-coracao.webp" alt="Salão com painel de LED e iluminação cênica" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/palco-festa.webp" alt="Palco com truss, luz e som" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-estrela.webp" alt="Painel de LED com estrela e refletores" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/truss.webp" alt="Estrutura em truss" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/som-linha.webp" alt="Som e painel de LED" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/xv-anos.webp" alt="Festa com teto de painéis de LED" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/rosa-pista.webp" alt="Pista com iluminação rosa" width="800" height="1000" loading="lazy"></div></div>
+  <div class="strip" id="strip"><div class="strip-track"><img src="assets/img/trabalhos/palco-por-do-sol.webp" alt="Palco com cobertura e painel de LED ao entardecer" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/jardim-por-do-sol.webp" alt="Palco ao ar livre com painel de LED e pista iluminada" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-coracao.webp" alt="Salão com painel de LED e iluminação cênica" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/palco-festa.webp" alt="Palco com truss, luz e som" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-estrela.webp" alt="Painel de LED com estrela e refletores" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/truss.webp" alt="Estrutura em truss" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/xv-anos.webp" alt="Festa com teto de painéis de LED" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/palco-por-do-sol.webp" alt="Palco com cobertura e painel de LED ao entardecer" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/jardim-por-do-sol.webp" alt="Palco ao ar livre com painel de LED e pista iluminada" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-coracao.webp" alt="Salão com painel de LED e iluminação cênica" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/palco-festa.webp" alt="Palco com truss, luz e som" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/led-estrela.webp" alt="Painel de LED com estrela e refletores" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/truss.webp" alt="Estrutura em truss" width="800" height="1000" loading="lazy"><img src="assets/img/trabalhos/xv-anos.webp" alt="Festa com teto de painéis de LED" width="800" height="1000" loading="lazy"></div></div>
 </section>
 
 <!-- ============ MONTE SEU EVENTO ============ -->

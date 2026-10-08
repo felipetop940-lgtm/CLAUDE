@@ -116,7 +116,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 /* serviços: fotos */
 .svs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
 .sv { position: relative; overflow: hidden; border-radius: 18px; aspect-ratio: 4 / 5; background: #1a1209; grid-column: span 2; box-shadow: 0 30px 60px -35px rgba(100, 60, 10, .55); }
-.sv1, .sv2 { grid-column: span 3; aspect-ratio: 5 / 4; }
 .sv img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .sv:hover img { transform: scale(1.07); }
 .sv::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(20, 10, 0, .78)); transition: background .5s; }
@@ -126,6 +125,26 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .sv h3::before { content: ""; display: block; width: 36px; height: 3px; margin-bottom: 14px; background: var(--sun); border-radius: 2px; transition: width .5s var(--ease); }
 .sv:hover h3::before { width: 64px; }
 .sv-n { position: absolute; z-index: 1; left: 24px; top: 20px; color: #fff; opacity: .85; }
+
+.sv-gen { background: radial-gradient(80% 70% at 50% 35%, #ffb42e, #e0802e 55%, #b4560c); box-shadow: 0 30px 60px -30px rgba(224, 128, 46, .8); }
+.sv-gen::after { display: none; }
+.gen-ico { position: absolute; left: 50%; top: 42%; width: 46%; height: auto; aspect-ratio: 1; translate: -50% -50%; fill: #fff7dc; stroke: none; filter: drop-shadow(0 10px 30px rgba(120, 50, 0, .45)); transition: transform .8s var(--ease); }
+.sv-gen:hover .gen-ico { transform: scale(1.1) rotate(-6deg); }
+.gen-tag { position: absolute; z-index: 1; right: 24px; top: 20px; color: #fff; opacity: .9; }
+.sv-gen h3 { color: #fff; }
+.sv-gen h3::before { background: #fff; }
+
+/* confiança */
+.trust { background: linear-gradient(180deg, transparent, rgba(255, 200, 61, .18) 60%, transparent); }
+.tr-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 56px; border-top: 1px solid var(--line-2); }
+.tr-list li { padding: 30px 26px 8px 0; }
+.tr-list li + li { padding-left: 26px; border-left: 1px solid var(--line); }
+.tr-list .ico { width: 34px; height: 34px; color: var(--gold); stroke-width: 1.4; }
+.tr-list h3 { font-family: var(--display); text-transform: uppercase; font-weight: 800; font-size: 32px; line-height: 1; margin-top: 18px; }
+.tr-list p { color: var(--muted); font-size: 15px; margin-top: 8px; max-width: 26ch; }
+.tr-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 52px; }
+.tr-phone { font-family: var(--display); font-weight: 800; font-size: clamp(34px, 4vw, 52px); letter-spacing: .01em; color: var(--ink); transition: color .3s; }
+.tr-phone:hover { color: var(--gold); }
 
 /* trabalhos: fita de fotos */
 .strip-sec { background: var(--bg-2); overflow: hidden; padding-bottom: clamp(60px, 8vw, 100px); }
@@ -181,6 +200,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 /* responsivo */
 @media (max-width: 1100px) { .side { display: none; } }
 @media (max-width: 1020px) {
+  .tr-list { grid-template-columns: 1fr 1fr; }
+  .tr-list li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .tr-list li:nth-child(n+3) { border-top: 1px solid var(--line); margin-top: 24px; }
   .plan { grid-template-columns: 1fr; }
   .plan-view { position: relative; top: 0; }
 }
@@ -196,11 +218,16 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   .hero { padding-top: 98px; }
   .cta-row .btn { width: 100%; }
   .svs { gap: 10px; }
-  .sv, .sv1, .sv2 { grid-column: span 3; aspect-ratio: 4 / 5; }
-  .sv5 { grid-column: span 6; aspect-ratio: 16 / 11; }
+  .sv { grid-column: span 3; }
   .sv h3 { left: 14px; right: 14px; bottom: 14px; font-size: 30px; }
   .sv-n { left: 14px; top: 14px; }
   .f-row { grid-template-columns: 1fr; }
+  .tr-list { grid-template-columns: 1fr; }
+  .tr-list li, .tr-list li + li { padding: 24px 0 6px; border-left: 0; }
+  .tr-list li + li { border-top: 1px solid var(--line); margin-top: 18px; }
+  .tr-list p { max-width: none; }
+  .tr-cta .btn { width: 100%; }
+  .gen-tag { right: 14px; top: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
