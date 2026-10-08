@@ -60,19 +60,20 @@
     btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
   });
 
-  /* ================= vídeo com capa ================= */
-  var vf = $("#vframe"), vid = $("#vid"), cover = $("#vcover"), vposter = $("#vposter");
-  if (vf && vid) {
-    if (S.capa && vposter) vposter.src = S.capa;
-    if (S.video) { vid.src = S.video; vid.addEventListener("error", function () { vf.classList.add("empty"); }); }
-    else vf.classList.add("empty");
+  /* ================= vídeos com capa ================= */
+  var frames = $$(".vframe[data-src]");
+  frames.forEach(function (vf) {
+    var vid = $("video", vf), cover = $(".vcover", vf);
+    vid.addEventListener("error", function () { vf.classList.add("empty"); });
     cover.addEventListener("click", function () {
+      if (!vid.src) vid.src = vf.dataset.src;
       if (vf.classList.contains("empty")) return;
+      frames.forEach(function (o) { if (o !== vf) { var ov = $("video", o); ov.pause(); o.classList.remove("playing"); ov.controls = false; } });
       vid.controls = true; vf.classList.add("playing");
       var p = vid.play(); if (p && p.catch) p.catch(function () { vf.classList.remove("playing"); vid.controls = false; });
     });
     vid.addEventListener("ended", function () { vf.classList.remove("playing"); vid.controls = false; });
-  }
+  });
 
   /* ================= monte seu palco ================= */
   var plan = $("#plan");

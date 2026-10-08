@@ -9,8 +9,5 @@ window.SITE = {
   cidade: "Goiânia e região",
   // Mensagem padrão dos botões de WhatsApp
   mensagem: "Olá, Carlos! Vim pelo site da Carlos JR Eventos e gostaria de um orçamento para o meu evento. Pode me ajudar?",
-  // Vídeo principal (topo do site). Arquivo em assets/video/
-  video: "assets/video/carlos-jr-eventos.mp4",
-  // Capa do vídeo (aparece antes do play)
-  capa: "assets/img/capa-video.jpg"
+  // Vídeos do topo: arquivos em assets/video/ e capas em assets/img/ (ver data-src no index.html)
 };
