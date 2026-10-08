@@ -20,7 +20,7 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 01 | Negócios | O botão de US$ 300 milhões (Jared Spool, UIE) | feito 05/10 |
 | 02 | Negócios | O Google ganhou US$ 200 milhões trocando um tom de azul (teste dos 41 tons) | feito 06/10 (f-poppins, quiz) |
 | 03 | Psicologia | Você tem 0,05 segundo: o cérebro julga um site em 50 milissegundos (Lindgaard, 2006) | feito 07/10 (c03, modelo viral) |
-| 04 | História | O estudante que ficou milionário vendendo pixels a US$ 1 (Million Dollar Homepage, 2005) | pendente |
+| 04 | História | O estudante que ficou milionário vendendo pixels a US$ 1 (Million Dollar Homepage, 2005) | feito 08/10 (t03, extra do TikTok) |
 | 05 | Consumo | Por que quase tudo custa R$ 9,90 (preço terminado em 9) | feito 07/10 (t02, extra do TikTok) |
 | 06 | Consumo | O truque do plano do meio: a revista The Economist e o efeito isca (Dan Ariely) | pendente |
 | 07 | Consumo | Por que o leite fica sempre no fundo do supermercado | pendente |
@@ -29,7 +29,7 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 10 | Internet | O domínio mais caro da história: voice.com por US$ 30 milhões (2019) | pendente |
 | 11 | Curiosidade | O botão de fechar a porta do elevador quase nunca faz nada | pendente |
 | 12 | Consumo | Por que a IKEA é um labirinto de propósito | pendente |
-| 13 | História | A Kodak inventou a câmera digital e faliu por causa dela | pendente |
+| 13 | História | A Kodak inventou a câmera digital e faliu por causa dela | feito 08/10 (c04, modelo viral) |
 | 14 | Consumo | O cardápio é desenhado pra você gastar mais (preço sem "R$") | pendente |
 | 15 | Internet | A Netflix mostra uma capa diferente do mesmo filme pra cada pessoa | pendente |
 | 16 | Polêmica | O site da empresa do Warren Buffett parece de 1995 (e por que você não pode fazer igual) | pendente |

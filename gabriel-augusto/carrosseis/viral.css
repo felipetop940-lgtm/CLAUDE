@@ -53,3 +53,4 @@ body{background:#222;font-family:Inter;color:var(--w)}
 .vl li{font-family:Anton;text-transform:uppercase;font-size:66px;line-height:1;color:var(--w);display:flex;gap:22px;align-items:center}
 .vl li i{font-style:normal;color:var(--r);font-size:76px;width:60px;text-align:center}
 .tt .vl li{font-size:60px}
+.t span+span{margin-top:.05em}

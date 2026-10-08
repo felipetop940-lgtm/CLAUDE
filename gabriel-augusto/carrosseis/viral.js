@@ -16,6 +16,7 @@ const POSES = {
   apontando: { h: -6, t: -3, a: [8, 0], b: [90, -4], p: [9, 0], q: [9, 0] },
   ideia: { h: -10, t: -2, a: [12, 0], b: [158, 16], p: [5, 0], q: [5, 0] },
   cintura: { h: -6, t: 0, a: [40, -68], b: [40, -68], p: [13, 0], q: [13, 0] },
+  empurrando: { h: 10, t: 18, a: [-80, -5], b: [80, 5], p: [-8, -6], q: [34, 30] },
 };
 function limb(x, y, a1, a2, l1, l2) {
   const r1 = a1 * Math.PI / 180, r2 = (a1 + a2) * Math.PI / 180;
