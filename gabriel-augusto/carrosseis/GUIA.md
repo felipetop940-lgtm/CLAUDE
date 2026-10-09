@@ -146,3 +146,7 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 06/10: TikTok com poucas views. Agora vai uma versão 9:16 própria, com capa curta e letra enorme. Pedir os números do TikTok (tempo médio, % que viu tudo, origem) pra ajustar.
 - 06/10: 2 posts por dia no TikTok. Extra (tNN, 5 a 6 slides) às 13h30 + principal às 19h.
 - 06/10: mudou pro MODELO VIRAL (os posts antigos dele nesse estilo tiveram 150 mil e 229 mil views). Fundo preto amassado, boneco branco, título gigante. Teste: v00-teste-modelo.
+- 09/10: os assuntos (Kodak, pixels, preço com 9, 50 ms) não interessaram: TikTok segue abaixo de 200 views. Trocar
+  "história de empresa" por assunto do dia a dia com identificação (o "você" na capa, situação que todo mundo vive,
+  opinião polêmica, humor). Perguntado a ele: sobre o que eram os 2 posts de 150 mil e 229 mil views (usar como molde).
+- 09/10: Instagram = publicação de carrossel no feed (com música), não Reels.
