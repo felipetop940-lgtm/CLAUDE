@@ -39,8 +39,8 @@ Antes de montar, ler `RETENCAO.md` (ideias de retenção pesquisadas) e aplicar 
 A partir de 09/10 as artes do **Instagram** (cNN, 4:5) usam `../x.css` + `../x.js`. O **TikTok** continua no modelo viral
 (`viral.css`, 9:16). Então o principal sai em dois HTML: `cNN-tema/carrossel.html` (X, Instagram) e
 `cNN-tema-tt/carrossel.html` (viral, `render.js ... --tiktok`).
-- Todo slide é um post do X: o x.js coloca avatar "G" + Gabriel Augusto + @ e o rodapé (01/08, pontinhos, ARRASTA →).
-  Sem selo de verificado (a conta não é verificada).
+- Todo slide é um post do X: o x.js coloca a foto do perfil (`assets/img/gabriel-avatar.webp`) + Gabriel Augusto + selo azul
+  de verificado (pedido dele) + @ e o rodapé (01/08, pontinhos, ARRASTA →). Título 98px (capa 112px).
 - `<section class="s capa">` / `<section class="s">` / `<section class="s fim">` com `<h2>` (título curto, até ~12 palavras)
   e `<p>` (apoio cinza, 1 frase). Destaque em **vermelho vivo** (`#FF1F2E`): `<b class="r">` (texto) ou `<b class="mk">`
   (bloco vermelho, 1 por carrossel, na capa ou no fim). `.x` = riscado. `.midia` = imagem/print com borda. `.seguir` = botão branco.
@@ -163,3 +163,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
   opinião polêmica, humor). Perguntado a ele: sobre o que eram os 2 posts de 150 mil e 229 mil views (usar como molde).
 - 09/10: Instagram = publicação de carrossel no feed (com música), não Reels.
 - 09/10: Instagram passa pro modelo post do X escuro (referência: print do CarrosseIA, mas fundo escuro) e vermelho mais vivo (#FF1F2E, também no viral.css). TikTok segue no viral.
+- 09/10: título maior (98/112px), selo de verificado depois do nome e foto do perfil no avatar.
