@@ -27,7 +27,7 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 08 | História | A Blockbuster podia ter comprado a Netflix por US$ 50 milhões e riu da proposta (2000) | feito 06/10 como extra do TikTok (t01) |
 | 09 | Internet | O primeiro site do mundo ainda está no ar (info.cern.ch, 1991) | pendente |
 | 10 | Internet | O domínio mais caro da história: voice.com por US$ 30 milhões (2019) | pendente |
-| 11 | Curiosidade | O botão de fechar a porta do elevador quase nunca faz nada | pendente |
+| 11 | Curiosidade | O botão de fechar a porta do elevador quase nunca faz nada | feito 09/10 (t04, com o nº 23) |
 | 12 | Consumo | Por que a IKEA é um labirinto de propósito | pendente |
 | 13 | História | A Kodak inventou a câmera digital e faliu por causa dela | feito 08/10 (c04, modelo viral) |
 | 14 | Consumo | O cardápio é desenhado pra você gastar mais (preço sem "R$") | pendente |
@@ -39,7 +39,7 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 20 | Psicologia | Efeito Zeigarnik: por que você não consegue largar uma série (e chegou até o fim deste post) | pendente |
 | 21 | Internet | 22 mil pessoas aceitaram limpar banheiro sem ler os termos de uso (Purple, 2017) | pendente |
 | 22 | Dado | 1 segundo de lentidão custaria US$ 1,6 bilhão por ano à Amazon (estimativa) | pendente |
-| 23 | Curiosidade | Os botões de pedestre de Nova York que não fazem nada | pendente |
+| 23 | Curiosidade | Os botões de pedestre de Nova York que não fazem nada | feito 09/10 (t04) |
 | 24 | Polêmica | Todas as marcas estão ficando iguais (e isso é uma oportunidade pra você) | pendente |
 | 25 | Consumo | Ancoragem: por que a loja te mostra primeiro o produto mais caro | pendente |
 | 26 | História | O nome Google veio de um erro de digitação | pendente |
@@ -47,3 +47,5 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 28 | Mercado | Por que um site pode custar R$ 300 ou R$ 30 mil (o que muda de verdade) | pendente |
 | 29 | Psicologia | Prova social: por que você escolhe o restaurante cheio | pendente |
 | 30 | Negócios | A empresa que perdeu milhões por um erro no site (caso real a pesquisar) | pendente |
+| 31 | Dia a dia | Esse site é golpe se tiver isso (5 sinais, Procon) | feito 09/10 (c05, Instagram) |
+| 32 | Vídeo | Seu cliente te procurou às 23h e ninguém respondeu | feito 09/10 (v03) |

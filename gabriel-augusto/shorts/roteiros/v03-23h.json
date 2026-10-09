@@ -1,0 +1,71 @@
+{
+  "titulo": "Seu cliente te procurou às 23h",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Seu cliente te procurou às onze da noite. E você perdeu ele.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": ["Seu cliente te procurou", "às ~23h~…"],
+      "boneco": {"pose": "chocado", "emocao": "exclamacao", "x": 300, "y": 1400, "escala": 1.05}
+    },
+    {
+      "fala": "Ele mandou mensagem perguntando o preço e o horário. E ficou no vácuo.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": ["Ficou no", "~vácuo~"],
+      "prop": {"tipo": "whatsapp", "nome": "Sua empresa", "msgs": [["eu", "Oi! Quanto custa?"], ["eu", "Vocês atendem amanhã?"], ["eu", "Alguém aí? 😕"]]}
+    },
+    {
+      "fala": "Aí ele voltou pro Google e chamou o próximo da lista.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": ["Ele chamou o", "_próximo da lista._"],
+      "prop": {"tipo": "busca", "consulta": "dentista perto de mim"}
+    },
+    {
+      "fala": "Você não consegue responder vinte e quatro horas por dia. Mas o seu site consegue.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Seu site trabalha", "*enquanto você dorme*"],
+      "boneco": [
+        {"pose": "triste", "emocao": "chuva", "x": 290, "y": 1400, "escala": 0.95, "rotulo": "Sem site", "corRotulo": "white"},
+        {"pose": "comemorando", "emocao": "brilho", "x": 790, "y": 1400, "escala": 0.95, "rotulo": "Com site", "corRotulo": "gold"}
+      ]
+    },
+    {
+      "fala": "Olha esse site que eu criei pra um médico aqui de Goiânia. Especialidades, endereço e o botão do WhatsApp, a qualquer hora.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["Isso é um site", "*de verdade*"],
+      "prop": {"tipo": "site_celular", "img": "../../video/src/fernando-scroll.jpg", "selo": "Projeto real · criado por mim", "x": 350}
+    },
+    {
+      "fala": "E sai a partir de trezentos reais, pronto em dois a sete dias.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["E cabe no", "*seu bolso*"],
+      "prop": {"tipo": "preco", "valor": 300, "chips": ["2 a 7 dias", "Direto comigo"]}
+    },
+    {
+      "fala": "E você, já desistiu de comprar porque ninguém te respondeu? Comenta sim ou não.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": ["Já desistiu por", "#falta de resposta?#"],
+      "boneco": {"pose": "apontando", "x": 190, "y": 1400, "escala": 0.95},
+      "prop": {"tipo": "enquete"}
+    },
+    {
+      "fala": "Entra no meu perfil e clica no link. Lá você vê meus sites, os planos, e fala comigo direto no WhatsApp.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Veja meus sites", "no *link da bio*"],
+      "prop": {"tipo": "cta", "botao": "Link na bio ↑", "sub": "Sites · planos · WhatsApp", "y": 600},
+      "fim": 1.6,
+      "boneco": {"pose": "confiante", "x": 540, "y": 1400, "escala": 0.9, "entrada": "andando"}
+    }
+  ],
+  "fundo": "auras",
+  "capa": {"texto": ["Seu cliente te procurou", "às ~23h~…"], "tamanho": 150, "selo": "E ninguém respondeu", "selo_y": 560}
+}
