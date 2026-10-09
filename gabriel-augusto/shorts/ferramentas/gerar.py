@@ -17,7 +17,16 @@ import imageio_ffmpeg
 
 HERE = Path(__file__).resolve().parent
 FPS, SR = 30, 44100
-TTS_DIR = Path(os.environ.get("KOKORO_DIR", "/tmp/claude-0/-home-user-CLAUDE/fd70068f-eb26-52d1-93fb-30c6fb85ccd2/scratchpad/tts"))
+TTS_DIR = Path(os.environ.get("KOKORO_DIR", Path.home() / ".cache/kokoro"))
+KOKORO_URL = "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/"
+
+
+def baixar_voz():
+    """Container novo não tem o modelo da voz-guia: baixa uma vez (~200 MB) para TTS_DIR."""
+    TTS_DIR.mkdir(parents=True, exist_ok=True)
+    for local, remoto in (("kokoro-fp16.onnx", "kokoro-v1.0.fp16.onnx"), ("voices2.bin", "voices-v1.0.bin")):
+        if not (TTS_DIR / local).exists():
+            subprocess.run(["curl", "-sSfL", "-o", str(TTS_DIR / local), KOKORO_URL + remoto], check=True)
 RESPIRO = 0.45  # silêncio entre falas
 
 
@@ -27,6 +36,7 @@ def voz_guia(texto: str) -> np.ndarray:
     from kokoro_onnx import Kokoro
     global _K, _V
     if "_K" not in globals():
+        baixar_voz()
         _K = Kokoro(str(TTS_DIR / "kokoro-fp16.onnx"), str(TTS_DIR / "voices2.bin")); _V = np.load(TTS_DIR / "voices2.bin")["pm_alex"]
     partes = [p for p in re.split(r"(?<=[.?!])\s+", texto) if p]
     out = []

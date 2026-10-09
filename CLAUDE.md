@@ -29,7 +29,7 @@ Regras fixas:
 
 ## Carrossel diário do feed (`gabriel-augusto/carrosseis/`)
 
-Uma rotina agendada dispara todo dia às 12h20 (Goiânia) e eu entrego até as 13h um carrossel viral pronto (1080x1350 + legenda + horário de postagem, 19h). Objetivo: seguidores de todas as áreas. Seguir `carrosseis/GUIA.md` (pesquisa do dia, fórmula viral, visual aprovado: capa post do X escuro + bloco de texto com letras do caderno, ajustes que ele pediu) e `carrosseis/PAUTA.md`. Modelo atual: `c01-botao-300-milhoes`.
+Uma rotina agendada dispara todo dia às 11h50 (Goiânia) e eu entrego até as 13h o **pacote diário**: 1 vídeo curto (modelo dos shorts, 18h), 1 carrossel do Instagram (modelo post do X escuro, `x.css`, 19h) e 1 arte do TikTok (modelo viral, 13h30), com legendas. Objetivo: seguidores de todas as áreas. Seguir `carrosseis/GUIA.md` (seção PACOTE DIÁRIO, modelos, ajustes que ele pediu) e `carrosseis/PAUTA.md`. Modelos atuais: `x00-teste` (Instagram) e `v00-teste-modelo` (TikTok).
 
 ## Sites para clientes
 

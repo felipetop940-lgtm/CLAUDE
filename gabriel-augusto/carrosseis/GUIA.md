@@ -34,6 +34,17 @@ Antes de montar, ler `RETENCAO.md` (ideias de retenção pesquisadas) e aplicar 
   + pergunta pra comentar. Mandar por DM é o sinal que mais pesa pra alcançar quem não te segue.
 - 7 a 9 slides.
 
+## PACOTE DIÁRIO (desde 09/10) · rotina às 11h50, entrega até 13h
+
+Todo dia, 3 itens com **temas diferentes**:
+1. **Vídeo curto (vNN)** no modelo aprovado dos shorts (`../shorts/roteiros/MODELO.json`, regras no CLAUDE.md). Sai com a
+   voz-guia; ele grava as falas do `vNN-tema-texto.md` e eu troco pela voz dele. Postar 18h no TikTok e no Reels.
+2. **Carrossel do Instagram (cNN)** no modelo post do X escuro (x.css). Postar 19h. (09/10 ainda no viral; X a partir de 10/10.)
+3. **Arte do TikTok (tNN)** no modelo viral, 9:16. Postar 13h30.
+Substitui o esquema antigo (principal Instagram+TikTok 19h + extra do TikTok 13h30).
+Temas: dia a dia com identificação, polêmica leve, humor, curiosidade de vida. O post antigo dele com 10,5 mil curtidas
+foi "5 maneiras para ficar alto". Nada de "história de empresa" (Kodak, pixels...): não engajou.
+
 ## INSTAGRAM: MODELO POST DO X ESCURO (decidido em 09/10) · teste: `x00-teste`
 
 A partir de 09/10 as artes do **Instagram** (cNN, 4:5) usam `../x.css` + `../x.js`. O **TikTok** continua no modelo viral
@@ -164,3 +175,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 09/10: Instagram = publicação de carrossel no feed (com música), não Reels.
 - 09/10: Instagram passa pro modelo post do X escuro (referência: print do CarrosseIA, mas fundo escuro) e vermelho mais vivo (#FF1F2E, também no viral.css). TikTok segue no viral.
 - 09/10: título maior (98/112px), selo de verificado depois do nome e foto do perfil no avatar.
+- 09/10: pacote diário = vídeo + carrossel do Instagram (modelo X, teste a partir de 10/10) + arte do TikTok (viral). Rotina passou pra 11h50.
