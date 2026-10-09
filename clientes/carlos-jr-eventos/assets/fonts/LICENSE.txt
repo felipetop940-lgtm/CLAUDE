@@ -2,3 +2,5 @@ Fontes usadas neste site, todas sob SIL Open Font License 1.1 (https://openfontl
 - Inter Tight (Rodrigo Fuenzalida, Jordan Vasquez e colaboradores)
 - Big Shoulders Display (Patric King / Chicago Print Studio)
 - JetBrains Mono (JetBrains)
+- Playfair Display (Claus Eggers Sørensen)
+- Caveat (Impallari Type)
