@@ -1,0 +1,33 @@
+/* Modelo POST DO X ESCURO (pedido dele em 09/10, só pro Instagram 4:5; o TikTok segue no viral.css).
+   Todo slide é um "tweet": avatar + nome + @, título forte e uma frase de apoio cinza.
+   Destaque: <b class="r"> (texto vermelho vivo) ou <b class="mk"> (bloco vermelho atrás). */
+@font-face{font-family:Inter;src:url(../assets/fonts/inter-tight-var.woff2);font-weight:100 900}
+:root{--bg:#000;--w:#E7E9EA;--sub:#A3A9B0;--mut:#71767B;--linha:#2F3336;--r:#FF1F2E;--g:#E8C474}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;font-family:Inter;color:var(--w);font-variant-numeric:lining-nums}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:90px 96px 170px}
+
+/* cabeçalho (o x.js coloca sozinho). Sem selo de verificado: a conta não é verificada */
+.perfil{display:flex;align-items:center;gap:26px;margin-bottom:44px}
+.perfil .av{flex-shrink:0;width:112px;height:112px;border-radius:50%;display:grid;place-items:center;background:#16181C;border:2px solid var(--linha);font-size:52px;font-weight:700;color:var(--w)}
+.perfil b{display:block;font-size:42px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.perfil small{display:block;margin-top:4px;font-size:34px;font-weight:500;color:var(--mut)}
+
+/* texto do post */
+.s h2{font-size:80px;line-height:1.12;font-weight:800;letter-spacing:-.012em;word-spacing:.06em;color:#fff;text-wrap:balance}
+.capa h2{font-size:92px}
+.s p{margin-top:30px;font-size:48px;line-height:1.3;font-weight:500;color:var(--sub);text-wrap:pretty}
+.s p b{color:var(--w);font-weight:700}
+.r{color:var(--r)}.g{color:var(--g)}
+.mk{color:#fff;background:var(--r);padding:0 .16em;border-radius:.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.x{color:var(--mut);text-decoration:line-through;text-decoration-color:var(--r);text-decoration-thickness:6px}
+/* imagem/print dentro do post, com borda igual ao X */
+.midia{margin-top:40px;border:2px solid var(--linha);border-radius:32px;overflow:hidden}
+.midia img{display:block;width:100%}
+.seguir{display:inline-block;margin-top:44px;padding:24px 52px;border-radius:999px;background:#fff;color:#000;font-size:44px;font-weight:800}
+
+/* rodapé: 01/08 · pontinhos · ARRASTA → */
+.rodape{position:absolute;left:96px;right:96px;bottom:64px;display:flex;align-items:center;justify-content:space-between;font-size:28px;font-weight:700;letter-spacing:.14em;color:var(--mut)}
+.rodape .pts{display:flex;gap:12px}.rodape .pts i{width:14px;height:14px;border-radius:50%;background:#3A3E43}
+.rodape .pts i.on{background:var(--r);transform:scale(1.35)}
+.rodape .vai{min-width:200px;text-align:right}.rodape .vai em{font-style:normal;color:var(--r)}

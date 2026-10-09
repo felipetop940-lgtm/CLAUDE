@@ -34,6 +34,18 @@ Antes de montar, ler `RETENCAO.md` (ideias de retenção pesquisadas) e aplicar 
   + pergunta pra comentar. Mandar por DM é o sinal que mais pesa pra alcançar quem não te segue.
 - 7 a 9 slides.
 
+## INSTAGRAM: MODELO POST DO X ESCURO (decidido em 09/10) · teste: `x00-teste`
+
+A partir de 09/10 as artes do **Instagram** (cNN, 4:5) usam `../x.css` + `../x.js`. O **TikTok** continua no modelo viral
+(`viral.css`, 9:16). Então o principal sai em dois HTML: `cNN-tema/carrossel.html` (X, Instagram) e
+`cNN-tema-tt/carrossel.html` (viral, `render.js ... --tiktok`).
+- Todo slide é um post do X: o x.js coloca avatar "G" + Gabriel Augusto + @ e o rodapé (01/08, pontinhos, ARRASTA →).
+  Sem selo de verificado (a conta não é verificada).
+- `<section class="s capa">` / `<section class="s">` / `<section class="s fim">` com `<h2>` (título curto, até ~12 palavras)
+  e `<p>` (apoio cinza, 1 frase). Destaque em **vermelho vivo** (`#FF1F2E`): `<b class="r">` (texto) ou `<b class="mk">`
+  (bloco vermelho, 1 por carrossel, na capa ou no fim). `.x` = riscado. `.midia` = imagem/print com borda. `.seguir` = botão branco.
+- Fundo preto puro (#000), Inter forte. Nada de caderno, papel amassado ou boneco nesse modelo.
+
 ## MODELO VIRAL (decidido em 06/10, vale pra Instagram e TikTok) · em teste: `v00-teste-modelo`
 
 Ele mostrou que os posts dele que passaram de **150 mil e 229 mil views** no TikTok tinham: título curtíssimo e
@@ -150,3 +162,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
   "história de empresa" por assunto do dia a dia com identificação (o "você" na capa, situação que todo mundo vive,
   opinião polêmica, humor). Perguntado a ele: sobre o que eram os 2 posts de 150 mil e 229 mil views (usar como molde).
 - 09/10: Instagram = publicação de carrossel no feed (com música), não Reels.
+- 09/10: Instagram passa pro modelo post do X escuro (referência: print do CarrosseIA, mas fundo escuro) e vermelho mais vivo (#FF1F2E, também no viral.css). TikTok segue no viral.
