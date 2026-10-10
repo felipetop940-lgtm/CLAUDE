@@ -24,12 +24,15 @@ def main() -> None:
     html = html.replace('<script src="assets/js/qrcode.js"></script>', "<script>\n" + js + "\n</script>")
     # fotos referenciadas direto no HTML (src="assets/....webp")
     html = re.sub(r'assets/fotos/[\w-]+\.webp', lambda m: data_uri(ROOT / m.group(0)), html)
-    # fotos da lista: o JS monta P + nome + ".webp"; troca por um mapa embutido
-    imgs = sorted((ROOT / "assets/presentes").glob("*.webp"))
-    mapa = ",".join(f'"{p.stem}":"{data_uri(p)}"' for p in imgs)
-    html = html.replace('const P = "assets/presentes/";',
-                        f'const IMG = {{{mapa}}};\nconst P = "";')
-    html = html.replace('${P + g.img}.webp', '${IMG[g.img]}')
+    # fotos da lista e das cotas: o JS monta o caminho; troca por um mapa embutido
+    imgs = [("p/", p) for p in sorted((ROOT / "assets/presentes").glob("*.webp"))]
+    imgs += [("c/", p) for p in sorted((ROOT / "assets/cotas").glob("*.webp"))]
+    mapa = ",".join(f'"{k}{p.stem}":"{data_uri(p)}"' for k, p in imgs)
+    for a, b in [('const P = "assets/presentes/", C = "assets/cotas/";', f"const IMG = {{{mapa}}};"),
+                 ('const src = g => (g.cat === "fun" ? C : P) + g.img + ".webp";',
+                  'const src = g => IMG[(g.cat === "fun" ? "c/" : "p/") + g.img];')]:
+        assert a in html, a
+        html = html.replace(a, b)
     assert "assets/" not in html, "sobrou caminho de arquivo sem embutir"
     DIST.mkdir(exist_ok=True)
     out = DIST / "index.html"
