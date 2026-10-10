@@ -49,3 +49,6 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 30 | Negócios | A empresa que perdeu milhões por um erro no site (caso real a pesquisar) | pendente |
 | 31 | Dia a dia | Esse site é golpe se tiver isso (5 sinais, Procon) | feito 09/10 (c05, Instagram) |
 | 32 | Vídeo | Seu cliente te procurou às 23h e ninguém respondeu | feito 09/10 (v03) |
+| 33 | Curiosidade | Você é mais alto de manhã (discos da coluna; astronautas até 3%) | feito 10/10 (t05) |
+| 34 | Dia a dia | Você já desistiu de comprar por isso? | feito 10/10 (c06, 1º no modelo X) |
+| 35 | Vídeo | Tem gente pior que você vendendo mais | feito 10/10 (v04) |

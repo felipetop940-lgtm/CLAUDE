@@ -1,0 +1,71 @@
+{
+  "titulo": "Tem gente pior que você vendendo mais",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Tem gente pior que você vendendo mais que você. Sabe por quê?",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": ["Tem gente ~pior~ que você", "vendendo *mais*"],
+      "boneco": {"pose": "chocado", "emocao": "exclamacao", "x": 300, "y": 1400, "escala": 1.05}
+    },
+    {
+      "fala": "Não é porque ele é melhor. É porque o cliente acha ele primeiro.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["O cliente acha", "*ele primeiro*"],
+      "boneco": {"pose": "pensando", "emocao": "interrogacao", "x": 260, "y": 1400, "escala": 0.95, "entrada": "andando"}
+    },
+    {
+      "fala": "Antes de contratar, a pessoa pesquisa. E quem aparece com site sai na frente.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": ["Antes de contratar,", "ela _pesquisa._"],
+      "prop": {"tipo": "busca", "consulta": "advogado em goiânia"}
+    },
+    {
+      "fala": "Foto, endereço, avaliação e o botão do WhatsApp. Pronto: ele passa confiança e você não.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Ele passa *confiança.*", "Você ~não.~"],
+      "boneco": [
+        {"pose": "triste", "emocao": "chuva", "x": 290, "y": 1400, "escala": 0.95, "rotulo": "Você", "corRotulo": "white"},
+        {"pose": "comemorando", "emocao": "brilho", "x": 790, "y": 1400, "escala": 0.95, "rotulo": "Ele", "corRotulo": "gold"}
+      ]
+    },
+    {
+      "fala": "Olha esse site que eu criei pra um médico aqui de Goiânia. Quem pesquisa já encontra tudo e chama no WhatsApp.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["Isso é um site", "*de verdade*"],
+      "prop": {"tipo": "site_celular", "img": "../../video/src/fernando-scroll.jpg", "selo": "Projeto real · criado por mim", "x": 350}
+    },
+    {
+      "fala": "E sai a partir de trezentos reais, pronto em dois a sete dias.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["E cabe no", "*seu bolso*"],
+      "prop": {"tipo": "preco", "valor": 300, "chips": ["2 a 7 dias", "Direto comigo"]}
+    },
+    {
+      "fala": "E você, já escolheu um profissional só porque achou ele primeiro? Comenta sim ou não.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": ["Já escolheu alguém", "#porque achou primeiro?#"],
+      "boneco": {"pose": "apontando", "x": 190, "y": 1400, "escala": 0.95},
+      "prop": {"tipo": "enquete"}
+    },
+    {
+      "fala": "Entra no meu perfil e clica no link. Lá você vê meus sites, os planos, e fala comigo direto no WhatsApp.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Veja meus sites", "no *link da bio*"],
+      "prop": {"tipo": "cta", "botao": "Link na bio ↑", "sub": "Sites · planos · WhatsApp", "y": 600},
+      "fim": 1.6,
+      "boneco": {"pose": "confiante", "x": 540, "y": 1400, "escala": 0.9, "entrada": "andando"}
+    }
+  ],
+  "fundo": "auras",
+  "capa": {"texto": ["Tem gente ~pior~ que você", "vendendo *mais*"], "tamanho": 140, "selo": "Sabe por quê?", "selo_y": 560}
+}
