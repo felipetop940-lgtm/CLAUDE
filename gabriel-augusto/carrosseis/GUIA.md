@@ -180,3 +180,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 10/10: vídeo reprovado ("tem gente pior que você vendendo mais": gancho fraco e nichado). Refeito como "você escolhe dentista igual melancia" com virada. Regra no CLAUDE.md.
 - 10/10: melancia também reprovada. Ele quer o VISUAL fixo e o CONTEÚDO/estrutura diferente todo dia (sem site+preço+link em todo vídeo). v04 = grupo da família.
 - 10/10: arte "você é mais alto de manhã" e vídeo "grupo da família" reprovados: fora do nicho. Assunto sempre dentro de internet/design/vendas/redes. Feitos t06 (logos escondidos) e v04 (5 tipos de cliente).
+- 10/10: arte de logos SEM mostrar o logo foi reprovada. Quando o assunto é visual (logo, site, tela), MOSTRAR a coisa (ícones do Simple Icons via npm pack simple-icons, img/logos/) com o detalhe destacado (.anel vermelho). Formato "achou? arrasta" → revelação.

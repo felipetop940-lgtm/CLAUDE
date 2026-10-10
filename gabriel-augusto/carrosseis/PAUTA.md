@@ -52,4 +52,4 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 33 | Curiosidade | Você é mais alto de manhã | feito 10/10 (t05) · REPROVADO: fora do nicho |
 | 34 | Dia a dia | Você já desistiu de comprar por isso? | feito 10/10 (c06, 1º no modelo X) |
 | 35 | Vídeo | Todo mundo que vende já teve esses 5 clientes (virada: o pior é o que nunca te chamou) | feito 10/10 (v04, 4ª versão) |
-| 36 | Design | Você nunca viu isso nesses logos (Amazon, FedEx, Carrefour, BMW) | feito 10/10 (t06, substitui t05) |
+| 36 | Design | Esse U esconde 25 desenhos (Unilever, Carrefour, Apple, BMW, mostrando os logos) | feito 10/10 (t06 v2) |
