@@ -202,7 +202,7 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
   <div class="abs" style="left:0;right:0;top:0;height:1060px;background:linear-gradient(180deg,#130b06 0%,rgba(19,11,6,.7) 22%,rgba(19,11,6,0) 45%,rgba(19,11,6,0) 80%,#130b06 100%)"></div>
   <div class="abs" style="left:0;right:0;top:110px;text-align:center">
     <div class="mask"><span class="mono" id="mpk" style="font-size:26px;color:var(--mut)">Atendemos</span></div>
-    <div class="mask"><span class="bs" id="mpt" style="font-size:180px;margin-top:8px">Goiânia</span></div>
+    <div class="mask"><span class="bs" id="mpt" style="font-size:180px;margin-top:8px">Goiás</span></div>
     <div class="mask" style="padding-top:44px;margin-top:-34px"><span class="bs o" id="mpr" style="font-size:96px;letter-spacing:.12em">e região</span></div>
   </div>
 </div>
@@ -248,7 +248,7 @@ const CAP = [
   [4.02, 5.00, "*Sonorização*"], [5.00, 6.05, "profissional,"], [6.08, 7.10, "*iluminação,*"], [7.13, 8.55, "*painel de LED,*"], [8.58, 9.40, "*estrutura*"], [9.42, 10.45, "e *palco.*"],
   [10.58, 11.20, "Tudo para"], [11.20, 12.10, "atender seu evento"], [12.10, 12.82, "com maior"], [12.82, 13.65, "*qualidade*"], [13.68, 14.86, "e *segurança.*"],
   [14.98, 15.56, "Conte com"], [15.56, 16.48, "nossa *equipe,*"], [16.52, 17.34, "*Carlos JR.*"], [17.38, 17.91, "Tudo para"], [17.91, 18.74, "seu evento."],
-  [18.80, 19.46, "Atendemos"], [19.48, 20.18, "*Goiânia*"], [20.21, 21.18, "e *região.*"],
+  [18.80, 19.46, "Atendemos"], [19.48, 20.18, "*Goiás*"], [20.21, 21.18, "e *região.*"],
 ];
 const capEl = $("#cap");
 let capCur = -1;
@@ -399,7 +399,7 @@ tl.to("#it5", { x: -90, autoAlpha: 0, duration: .3, ease: "power2.in" }, 10.5)
   .fromTo("#bs", { boxShadow: "0 0 0 rgba(224,128,46,0)" }, { boxShadow: "0 0 70px rgba(224,128,46,.45)", borderColor: "rgba(224,128,46,.7)", duration: .4 }, 14.15);
 
 // equipe
-tl.set("#at", { autoAlpha: 0 }, 14.86)
+tl.set("#sv", { autoAlpha: 0 }, 14.86)
   .set("#eq4", { autoAlpha: 1 }, 14.86)
   .fromTo("#vflash", { opacity: .3 }, { opacity: 0, duration: .25, immediateRender: false }, 14.86)
   .set("#icons", { autoAlpha: 0 }, 14.86)
