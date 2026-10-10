@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@font-face { font-family: "BS"; font-weight: 100 900; src: url("../assets/fonts/bigshoulders.woff2"); }
+@font-face { font-family: "IT"; font-weight: 100 900; src: url("../assets/fonts/inter-tight-var.woff2"); }
+@font-face { font-family: "JB"; font-weight: 500; src: url("../assets/fonts/jbmono-500.woff2"); }
+:root { --o: #e0802e; --sun: #ffc83d; --ink: #120b06; --line: rgba(255,255,255,.09); --mut: rgba(255,255,255,.55); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "IT", sans-serif; color: #fff;
+  background: radial-gradient(120% 50% at 50% 0%, #2b170a 0%, #140c06 52%, #0b0704 100%); }
+.abs { position: absolute; }
+.bs { font-family: "BS", sans-serif; font-weight: 800; text-transform: uppercase; line-height: .88; letter-spacing: .005em; }
+.mono { font-family: "JB", monospace; font-weight: 500; text-transform: uppercase; letter-spacing: .22em; }
+.o { color: var(--o); } .sun { color: var(--sun); }
+.mask { display: block; overflow: hidden; padding: .3em 0 .05em; margin-top: -.3em; }
+.mask > span { display: inline-block; }
+
+/* vídeo do Carlos */
+#vid { position: absolute; overflow: hidden; background: #000; z-index: 5; }
+#vid img { filter: contrast(1.16) saturate(1.14) brightness(.97); position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+#vshade { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,0) 24%, rgba(0,0,0,0) 62%, rgba(0,0,0,.35) 100%); }
+#vflash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+
+/* legenda */
+#cap { position: absolute; left: 0; width: 1080px; text-align: center; z-index: 9; font-weight: 800; font-size: 78px; letter-spacing: -.01em; line-height: 1;
+  text-shadow: 0 4px 22px rgba(0,0,0,.6), 0 2px 4px rgba(0,0,0,.5); }
+#cap b { font-weight: 800; color: var(--sun); }
+#cap span { display: inline-block; }
+
+/* intro */
+#intro { position: absolute; left: 0; right: 0; top: 46px; text-align: center; z-index: 8; }
+#intro .k { font-size: 26px; color: rgba(255,255,255,.8); }
+#intro .t1 { font-size: 172px; margin-top: 10px; }
+#intro .t2 { font-size: 54px; color: var(--o); letter-spacing: .32em; margin-top: 4px; padding-left: .32em; }
+
+/* painel */
+.scene { position: absolute; left: 0; top: 0; width: 1080px; height: 700px; }
+.pill { display: inline-flex; align-items: center; gap: 14px; padding: 12px 22px; border: 1px solid rgba(255,255,255,.14); border-radius: 99px; font-size: 22px; background: rgba(255,255,255,.04); }
+.pill i { width: 12px; height: 12px; border-radius: 50%; background: var(--o); box-shadow: 0 0 12px var(--o); }
+.cardx { position: absolute; left: 70px; top: 170px; width: 940px; height: 330px; border-radius: 30px; border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); overflow: hidden; }
+.cardx .ill { position: absolute; left: 22px; top: 22px; width: 330px; height: 286px; border-radius: 20px; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.06); overflow: hidden; }
+.cardx .idx { position: absolute; left: 392px; top: 54px; font-size: 22px; color: var(--o); }
+.cardx .tt { position: absolute; left: 388px; top: 102px; font-size: 104px; }
+.cardx .sb { position: absolute; left: 392px; top: 222px; font-size: 34px; color: var(--mut); font-weight: 500; }
+#chips { position: absolute; left: 70px; top: 548px; width: 940px; display: flex; gap: 12px; }
+.chip { flex: 1; height: 66px; border-radius: 18px; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-size: 19px; color: rgba(255,255,255,.4); background: rgba(255,255,255,.025); }
+.chip svg { width: 22px; height: 22px; opacity: 0; }
+.chip.on { color: #fff; border-color: rgba(224,128,46,.65); background: rgba(224,128,46,.14); }
+.chip.on svg { opacity: 1; }
+.badge { position: absolute; top: 150px; width: 452px; height: 400px; border-radius: 30px; border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015)); text-align: center; }
+.badge .k { position: absolute; left: 0; right: 0; top: 262px; font-size: 22px; color: var(--mut); }
+.badge .tt { position: absolute; left: 0; right: 0; top: 298px; font-size: 84px; }
+.badge svg { position: absolute; left: 50%; top: 48px; width: 190px; height: 190px; margin-left: -95px; }
+.person { position: absolute; width: 150px; height: 170px; }
+#mapwrap { position: absolute; left: -200px; top: -60px; width: 1480px; height: 1180px; transform: perspective(1500px) rotateX(46deg); transform-origin: 50% 60%; }
+#endbg { position: absolute; inset: 0; z-index: 20; background: radial-gradient(90% 55% at 50% 40%, #2d180a 0%, #120b06 60%, #090604 100%); }
+.endc { z-index: 21; }
+#wa { left: 110px; width: 860px; top: 1190px; height: 128px; border-radius: 99px; background: #fff; color: var(--ink); display: flex; align-items: center; justify-content: center; gap: 22px; font-weight: 800; font-size: 50px; }
+#ig { left: 110px; width: 860px; top: 1360px; height: 150px; border-radius: 30px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); }
+#ig .av { position: absolute; left: 26px; top: 25px; width: 100px; height: 100px; border-radius: 50%; background: #000; border: 3px solid var(--o); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+#ig .av img { width: 82px; }
+#ig .h { position: absolute; left: 150px; top: 40px; font-size: 34px; font-weight: 700; }
+#ig .s { position: absolute; left: 150px; top: 86px; font-size: 22px; color: var(--mut); }
+#btn { position: absolute; right: 26px; top: 43px; width: 190px; height: 64px; border-radius: 16px; background: var(--o); color: #fff; font-weight: 800; font-size: 28px; display: flex; align-items: center; justify-content: center; }
+#btn .b2 { position: absolute; inset: 0; border-radius: 16px; background: #2b2420; color: #fff; display: flex; align-items: center; justify-content: center; opacity: 0; }
+#cursor { width: 64px; height: 64px; z-index: 30; }
+</style></head>
+<body><div id="stage">
+
+<!-- ===== painel: cenas ===== -->
+<!-- S2 serviços -->
+<div class="scene" id="sv">
+  <div class="abs" style="left:70px;top:76px"><span class="pill mono" id="svpill"><i></i>O que a gente leva</span></div>
+  <div class="abs mono" id="svcount" style="right:70px;top:92px;font-size:22px;color:var(--mut)"><span id="cnum">01</span> / 05</div>
+
+  <div class="cardx" id="it1">
+    <div class="ill"><div id="eq" class="abs" style="left:28px;right:28px;bottom:40px;height:200px"></div></div>
+    <div class="idx mono">01 · Som</div><div class="tt bs">Sonorização</div><div class="sb">profissional</div>
+  </div>
+  <div class="cardx" id="it2">
+    <div class="ill">
+      <svg id="beams" class="abs" style="left:0;top:0" width="330" height="286" viewBox="0 0 330 286">
+        <defs><linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" stop-opacity=".85"/><stop offset="1" stop-color="#e0802e" stop-opacity="0"/></linearGradient></defs>
+        <g id="bm1" transform="translate(95,26)"><path d="M0 0 L-46 250 L46 250 Z" fill="url(#bg1)"/></g>
+        <g id="bm2" transform="translate(235,26)"><path d="M0 0 L-46 250 L46 250 Z" fill="url(#bg1)"/></g>
+        <rect x="70" y="10" width="50" height="22" rx="6" fill="#2a2018" stroke="#e0802e" stroke-width="2"/>
+        <rect x="210" y="10" width="50" height="22" rx="6" fill="#2a2018" stroke="#e0802e" stroke-width="2"/>
+        <rect x="20" y="4" width="290" height="6" rx="3" fill="#3a2d22"/>
+      </svg>
+    </div>
+    <div class="idx mono">02 · Luz</div><div class="tt bs">Iluminação</div><div class="sb">cênica, do jeito do seu evento</div>
+  </div>
+  <div class="cardx" id="it3">
+    <div class="ill"><div id="led" class="abs" style="left:25px;top:40px;width:280px;height:170px;display:grid;grid-template-columns:repeat(14,1fr);gap:4px"></div>
+      <div class="abs" style="left:150px;top:214px;width:30px;height:50px;background:#2a2018"></div></div>
+    <div class="idx mono">03 · Vídeo</div><div class="tt bs">Painel de LED</div><div class="sb">imagem grande e nítida</div>
+  </div>
+  <div class="cardx" id="it4">
+    <div class="ill">
+      <svg class="abs" style="left:0;top:0" width="330" height="286" viewBox="0 0 330 286" fill="none" stroke="#e0802e" stroke-width="3" stroke-linecap="round">
+        <g class="draw4">
+          <path d="M40 250 V40 M70 250 V40 M260 250 V40 M290 250 V40"/>
+          <path d="M40 40 H290 M40 70 H290"/>
+          <path d="M40 60 L70 90 M40 120 L70 150 M40 180 L70 210 M70 90 L40 120 M70 150 L40 180 M70 210 L40 240"/>
+          <path d="M260 60 L290 90 M260 120 L290 150 M260 180 L290 210 M290 90 L260 120 M290 150 L260 180 M290 210 L260 240"/>
+          <path d="M70 40 L100 70 L130 40 L160 70 L190 40 L220 70 L250 40 L260 52"/>
+        </g>
+      </svg>
+    </div>
+    <div class="idx mono">04 · Estrutura</div><div class="tt bs">Estrutura</div><div class="sb">treliça montada e segura</div>
+  </div>
+  <div class="cardx" id="it5">
+    <div class="ill">
+      <svg class="abs" style="left:0;top:0" width="330" height="286" viewBox="0 0 330 286" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <g class="draw5" stroke="#e0802e" stroke-width="3">
+          <path d="M30 190 L165 150 L300 190 L165 236 Z"/>
+          <path d="M30 190 V214 L165 262 L300 214 V190 M165 236 V262"/>
+        </g>
+        <g id="spots5">
+          <circle cx="70" cy="196" r="6" fill="#ffc83d"/><circle cx="120" cy="214" r="6" fill="#ffc83d"/><circle cx="210" cy="214" r="6" fill="#ffc83d"/><circle cx="260" cy="196" r="6" fill="#ffc83d"/>
+        </g>
+        <path id="glow5" d="M165 40 L100 190 L230 190 Z" fill="url(#bg1)" opacity=".7"/>
+      </svg>
+    </div>
+    <div class="idx mono">05 · Palco</div><div class="tt bs">Palco</div><div class="sb">pra quem vai se apresentar</div>
+  </div>
+
+  <div id="chips">
+    <div class="chip mono" data-i="1"><svg viewBox="0 0 24 24" fill="none" stroke="#ffc83d" stroke-width="3"><path d="M4 12.5 L10 18 L20 6"/></svg>Som</div>
+    <div class="chip mono" data-i="2"><svg viewBox="0 0 24 24" fill="none" stroke="#ffc83d" stroke-width="3"><path d="M4 12.5 L10 18 L20 6"/></svg>Luz</div>
+    <div class="chip mono" data-i="3"><svg viewBox="0 0 24 24" fill="none" stroke="#ffc83d" stroke-width="3"><path d="M4 12.5 L10 18 L20 6"/></svg>LED</div>
+    <div class="chip mono" data-i="4"><svg viewBox="0 0 24 24" fill="none" stroke="#ffc83d" stroke-width="3"><path d="M4 12.5 L10 18 L20 6"/></svg>Estrutura</div>
+    <div class="chip mono" data-i="5"><svg viewBox="0 0 24 24" fill="none" stroke="#ffc83d" stroke-width="3"><path d="M4 12.5 L10 18 L20 6"/></svg>Palco</div>
+  </div>
+
+  <!-- tudo -> seu evento -->
+  <svg id="conv" class="abs" style="left:0;top:0" width="1080" height="700" viewBox="0 0 1080 700" fill="none" stroke="#e0802e" stroke-width="3" stroke-linecap="round">
+    <path class="cv" d="M164 270 C164 360, 540 330, 540 420"/>
+    <path class="cv" d="M352 270 C352 360, 540 330, 540 420"/>
+    <path class="cv" d="M540 270 L540 420"/>
+    <path class="cv" d="M728 270 C728 360, 540 330, 540 420"/>
+    <path class="cv" d="M916 270 C916 360, 540 330, 540 420"/>
+  </svg>
+  <div class="abs" id="evbox" style="left:290px;top:430px;width:500px;height:150px;border-radius:30px;background:var(--o);display:flex;align-items:center;justify-content:center;gap:24px;color:var(--ink)">
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#120b06" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path id="evck" d="M7 12.5 L10.5 16 L17 8.5"/></svg>
+    <div class="bs" style="font-size:76px">Seu evento</div>
+  </div>
+
+  <!-- qualidade + segurança -->
+  <div class="badge" id="bq" style="left:70px">
+    <svg viewBox="0 0 100 100" fill="none" stroke="#e0802e" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="50" cy="40" r="26"/><circle cx="50" cy="40" r="17" stroke="#ffc83d"/>
+      <path d="M36 62 L28 92 L42 86 L50 96 L56 66 M64 62 L72 92 L58 86"/>
+    </svg>
+    <div class="k mono">Maior</div><div class="tt bs">Qualidade</div>
+  </div>
+  <div class="badge" id="bs" style="left:558px">
+    <svg viewBox="0 0 100 100" fill="none" stroke="#e0802e" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M50 6 L86 20 V48 C86 72, 68 86, 50 94 C32 86, 14 72, 14 48 V20 Z"/>
+      <path id="shck" d="M34 50 L46 62 L68 38" stroke="#ffc83d" stroke-width="5"/>
+    </svg>
+    <div class="k mono">Mais</div><div class="tt bs">Segurança</div>
+  </div>
+</div>
+
+<!-- S3 atendimento -->
+<div class="scene" id="at">
+  <div class="abs" style="left:100px;top:150px;width:360px;height:360px">
+    <div id="ring1" class="abs" style="inset:0;border-radius:50%;border:2px solid var(--o)"></div>
+    <div id="ring2" class="abs" style="inset:0;border-radius:50%;border:2px solid var(--o)"></div>
+    <div class="abs" style="inset:40px;border-radius:50%;background:rgba(224,128,46,.12);border:2px solid var(--o)"></div>
+    <svg class="abs" style="left:110px;top:105px" width="140" height="150" viewBox="0 0 48 52" fill="none" stroke="#ffc83d" stroke-width="3" stroke-linecap="round">
+      <path d="M8 28 V22 C8 12, 15 5, 24 5 C33 5, 40 12, 40 22 V28"/>
+      <rect x="4" y="26" width="9" height="15" rx="4"/><rect x="35" y="26" width="9" height="15" rx="4"/>
+      <path d="M40 41 C40 46, 34 48, 28 48"/><circle cx="26" cy="48" r="2.5" fill="#ffc83d"/>
+    </svg>
+  </div>
+  <div class="abs" style="left:520px;top:190px">
+    <div class="mask"><span class="mono" id="atk" style="font-size:24px;color:var(--o)">A gente tá aqui</span></div>
+    <div class="mask"><span class="bs" id="att" style="font-size:118px;margin-top:14px">Pra te</span></div>
+    <div class="mask"><span class="bs o" id="att2" style="font-size:118px">atender</span></div>
+    <div class="mask"><span id="ats" style="font-size:34px;color:var(--mut);font-weight:500;margin-top:16px">da melhor forma possível</span></div>
+  </div>
+</div>
+
+<!-- S4 equipe -->
+<div class="scene" id="eq4">
+  <div class="abs mono" style="left:0;right:0;top:96px;text-align:center"><span class="pill" id="eqpill"><i></i>Nossa equipe</span></div>
+  <div id="people" class="abs" style="left:0;right:0;top:190px;height:200px"></div>
+  <img id="eqlogo" class="abs" src="../assets/img/logo-carlos-jr.png" style="left:300px;top:400px;width:480px">
+  <div id="icons" class="abs" style="left:70px;top:230px;width:940px;height:260px;display:flex;gap:16px"></div>
+</div>
+
+<!-- S5 mapa -->
+<div class="scene" id="mp" style="height:1060px;overflow:hidden">
+  <div id="mapwrap"><svg id="map" width="1480" height="1180" viewBox="0 0 1480 1180"></svg></div>
+  <div class="abs" style="left:0;right:0;top:0;height:1060px;background:linear-gradient(180deg,#130b06 0%,rgba(19,11,6,.7) 22%,rgba(19,11,6,0) 45%,rgba(19,11,6,0) 80%,#130b06 100%)"></div>
+  <div class="abs" style="left:0;right:0;top:110px;text-align:center">
+    <div class="mask"><span class="mono" id="mpk" style="font-size:26px;color:var(--mut)">Atendemos</span></div>
+    <div class="mask"><span class="bs" id="mpt" style="font-size:180px;margin-top:8px">Goiânia</span></div>
+    <div class="mask" style="padding-top:44px;margin-top:-34px"><span class="bs o" id="mpr" style="font-size:96px;letter-spacing:.12em">e região</span></div>
+  </div>
+</div>
+
+<!-- ===== Carlos ===== -->
+<div id="vid"><img id="fr" data-seq="seq" src="seq/00001.jpg" width="1080" height="1920"><div id="vshade"></div><div id="vflash"></div></div>
+
+<div id="intro">
+    <div class="mask"><span class="bs t1" id="it1t">Carlos JR</span></div>
+  <div class="mask"><span class="bs t2" id="it2t">Eventos</span></div>
+</div>
+
+<div id="cap"></div>
+
+<!-- ===== final ===== -->
+<div id="endbg"></div>
+<div class="abs endc" id="e1" style="left:0;right:0;top:380px;text-align:center"><img id="elogo" src="../assets/img/logo-carlos-jr.png" style="width:620px"></div>
+<div class="abs endc" style="left:0;right:0;top:760px;text-align:center">
+  <div class="mask"><span class="bs" id="et1" style="font-size:150px">Monte o seu</span></div>
+  <div class="mask"><span class="bs o" id="et2" style="font-size:150px">evento</span></div>
+</div>
+<div class="abs endc" id="wa">
+  <svg width="58" height="58" viewBox="0 0 24 24" fill="#120b06"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3z"/></svg>
+  (62) 99350-9592
+</div>
+<div class="abs endc" id="ig">
+  <div class="av"><img src="../assets/img/logo-carlos-jr.png"></div>
+  <div class="h">@carlosguitarrajunior</div><div class="s">Instagram · Carlos JR Eventos</div>
+  <div id="btn">Seguir<div class="b2">Seguindo</div></div>
+</div>
+<div class="abs endc mono" id="eloc" style="left:0;right:0;top:1580px;text-align:center;font-size:24px;color:var(--mut)">Painel de LED · Som · Luz · Estrutura · Palco</div>
+<svg id="cursor" class="abs" viewBox="0 0 24 24"><path d="M5 2 L5 20 L9.5 15.5 L12.5 22 L15.5 20.7 L12.6 14.3 L19 14.3 Z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
+
+</div>
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const FPS = 30, NFR = 703, END = 23.44;
+
+/* ---------- legenda (tempos do vídeo final) ---------- */
+const CAP = [
+  [0.12, 0.70, "Carlos JR"], [0.70, 1.50, "*Eventos*"], [1.55, 2.40, "Tudo que você"], [2.40, 3.10, "precisa para"], [3.10, 3.93, "seu *evento*"],
+  [4.02, 5.00, "*Sonorização*"], [5.00, 6.05, "profissional,"], [6.08, 7.10, "*iluminação,*"], [7.13, 8.55, "*painel de LED,*"], [8.58, 9.40, "*estrutura*"], [9.42, 10.45, "e *palco.*"],
+  [10.58, 11.20, "Tudo para"], [11.20, 12.10, "atender seu evento"], [12.10, 12.82, "com maior"], [12.82, 13.65, "*qualidade*"], [13.68, 14.86, "e *segurança.*"],
+  [14.96, 15.42, "A gente tá aqui"], [15.42, 16.00, "pra te atender"], [16.00, 16.45, "da melhor"], [16.45, 17.08, "forma possível."],
+  [17.22, 17.80, "Conte com"], [17.80, 18.72, "nossa *equipe,*"], [18.76, 19.58, "*Carlos JR.*"], [19.62, 20.15, "Tudo para"], [20.15, 20.98, "seu evento."],
+  [21.04, 21.70, "Atendemos"], [21.72, 22.42, "*Goiânia*"], [22.45, 23.42, "e *região.*"],
+];
+const capEl = $("#cap");
+let capCur = -1;
+function renderCap(t) {
+  const i = CAP.findIndex(c => t >= c[0] && t < c[1]);
+  if (i !== capCur) {
+    capCur = i;
+    capEl.innerHTML = i < 0 ? "" : "<span>" + CAP[i][2].replace(/\*([^*]+)\*/g, "<b>$1</b>") + "</span>";
+  }
+  if (i >= 0) {
+    const k = Math.min(1, (t - CAP[i][0]) / 0.14), e = 1 - Math.pow(1 - k, 3);
+    const sp = capEl.firstChild; sp.style.transform = `translateY(${(1 - e) * 18}px) scale(${0.92 + 0.08 * e})`; sp.style.opacity = e;
+  }
+}
+
+/* ---------- moldura do vídeo ---------- */
+const V = { x: 0, y: 0, w: 1080, h: 1920, r: 0, o: 1, s: 1 };
+// enquadramento por take: [início, rosto x, rosto y, zoom no card]
+const TAKES = [[0, 512, 500, 1.0], [3.93, 560, 650, 1.12], [14.86, 528, 600, 1.38], [17.10, 520, 520, 1.08]];
+const fr = $("#fr"), vid = $("#vid");
+function renderVid(t) {
+  const tk = [...TAKES].reverse().find(k => t >= k[0]);
+  // zoom do take só vale quando já é card; no vídeo cheio (w=1080) usa 1
+  const card = Math.min(1, Math.max(0, (1080 - V.w) / (1080 - 972)));
+  const z = (1 + (tk[3] - 1) * card) * V.s;
+  const iw = 1080 * z, ih = 1920 * z;
+  let lx = V.w / 2 - tk[1] * z, ly = V.h * 0.26 - tk[2] * z;
+  lx = Math.min(0, Math.max(V.w - iw, lx)); ly = Math.min(0, Math.max(V.h - ih, ly));
+  vid.style.cssText = `left:${V.x}px;top:${V.y}px;width:${V.w}px;height:${V.h}px;border-radius:${V.r}px;opacity:${V.o};` +
+    `box-shadow:0 30px 80px rgba(0,0,0,${0.5 * card})`;
+  fr.style.transform = `translate(${lx}px,${ly}px) scale(${z})`;
+  capEl.style.top = (V.y + V.h * 0.64) + "px";
+  capEl.style.opacity = V.o;
+}
+
+/* ---------- elementos gerados ---------- */
+const eq = $("#eq"); const NB = 14;
+for (let i = 0; i < NB; i++) { const b = document.createElement("div"); b.style.cssText = `position:absolute;bottom:0;left:${i * (274 / NB)}px;width:${274 / NB - 6}px;border-radius:5px 5px 2px 2px;background:linear-gradient(0deg,#e0802e,#ffc83d)`; eq.appendChild(b); }
+const led = $("#led"); for (let i = 0; i < 14 * 8; i++) { const d = document.createElement("div"); d.style.cssText = "border-radius:3px;background:#ffc83d"; led.appendChild(d); }
+const P = (x) => `<svg class="person" style="left:${x}px" viewBox="0 0 60 68" fill="none" stroke="#e0802e" stroke-width="2.6" stroke-linecap="round"><circle cx="30" cy="20" r="12"/><path d="M8 64 C8 46, 18 38, 30 38 C42 38, 52 46, 52 64"/></svg>`;
+$("#people").innerHTML = [255, 465, 675].map(P).join("");
+const ICON = {
+  som: '<path d="M10 22 V42 H20 L34 54 V10 L20 22 Z"/><path d="M42 22 C47 27, 47 37, 42 42 M48 16 C57 25, 57 39, 48 48"/>',
+  luz: '<rect x="20" y="6" width="24" height="12" rx="3"/><path d="M26 18 L14 58 H50 L38 18"/>',
+  led: '<rect x="6" y="10" width="52" height="34" rx="3"/><path d="M32 44 V56 M22 56 H42"/><path d="M14 20 H22 M28 20 H36 M42 20 H50 M14 30 H22 M28 30 H36 M42 30 H50"/>',
+  est: '<path d="M10 58 V8 M22 58 V8 M42 58 V8 M54 58 V8 M10 8 H54 M10 18 H54 M10 18 L22 30 L10 42 L22 54 M54 18 L42 30 L54 42 L42 54"/>',
+  pal: '<path d="M6 42 L32 32 L58 42 L32 52 Z M6 42 V48 L32 58 L58 48 V42"/><path d="M32 6 L22 30 M32 6 L42 30"/>',
+};
+$("#icons").innerHTML = [["som", "Som"], ["luz", "Luz"], ["led", "LED"], ["est", "Estrutura"], ["pal", "Palco"]].map(([k, l]) =>
+  `<div class="ic" style="flex:1;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.03);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px">
+   <svg width="96" height="96" viewBox="0 0 64 64" fill="none" stroke="#e0802e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>
+   <div class="mono" style="font-size:20px">${l}</div></div>`).join("");
+
+// mapa: quarteirões, avenidas, anéis
+(function buildMap() {
+  let s = 7; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const cx = 740, cy = 620; let h = "";
+  h += `<rect width="1480" height="1180" fill="#120b06"/>`;
+  for (let x = 0; x < 1480; x += 46 + rnd() * 30) h += `<path d="M${x} 0 L${x + (rnd() - .5) * 60} 1180" stroke="rgba(255,255,255,.13)" stroke-width="${1 + rnd() * 2}"/>`;
+  for (let y = 0; y < 1180; y += 40 + rnd() * 30) h += `<path d="M0 ${y} L1480 ${y + (rnd() - .5) * 80}" stroke="rgba(255,255,255,.13)" stroke-width="${1 + rnd() * 2}"/>`;
+  h += `<path d="M0 300 C400 420, 700 560, 1480 700" stroke="rgba(224,128,46,.35)" stroke-width="7" fill="none"/>`;
+  h += `<path d="M300 1180 C420 800, 640 640, 900 0" stroke="rgba(224,128,46,.3)" stroke-width="6" fill="none"/>`;
+  h += `<path d="M0 900 C500 760, 900 760, 1480 380" stroke="rgba(224,128,46,.22)" stroke-width="5" fill="none"/>`;
+  h += `<circle id="reg" cx="${cx}" cy="${cy}" r="10" fill="rgba(224,128,46,.10)" stroke="#e0802e" stroke-width="3" stroke-dasharray="14 12"/>`;
+  for (let i = 0; i < 3; i++) h += `<circle class="pr" cx="${cx}" cy="${cy}" r="40" fill="none" stroke="#ffc83d" stroke-width="3"/>`;
+  h += `<circle cx="${cx}" cy="${cy}" r="18" fill="#ffc83d"/><circle cx="${cx}" cy="${cy}" r="34" fill="none" stroke="#ffc83d" stroke-width="4"/>`;
+  $("#map").innerHTML = h;
+})();
+
+/* ---------- animações contínuas (determinísticas) ---------- */
+function procedural(t) {
+  [...eq.children].forEach((b, i) => {
+    const v = 0.5 + 0.28 * Math.sin(t * 7.3 + i * 0.9) + 0.18 * Math.sin(t * 13.1 + i * 2.3) + 0.1 * Math.sin(t * 3.1 - i);
+    b.style.height = Math.max(10, v * 200) + "px";
+  });
+  $("#bm1").setAttribute("transform", `translate(95,26) rotate(${Math.sin(t * 1.7) * 20})`);
+  $("#bm2").setAttribute("transform", `translate(235,26) rotate(${Math.sin(t * 1.7 + 2.2) * 20})`);
+  [...led.children].forEach((d, i) => {
+    const c = i % 14, r = Math.floor(i / 14);
+    const w = Math.sin((c * 0.55 + r * 0.35) - t * 5.5);
+    d.style.opacity = 0.12 + 0.88 * Math.max(0, w) ** 2;
+    d.style.background = w > 0.6 ? "#ffd98a" : "#e0802e";
+  });
+  $$(".pr").forEach((c, i) => {
+    const k = ((t * 0.55 + i / 3) % 1);
+    c.setAttribute("r", 40 + k * 300); c.setAttribute("opacity", (1 - k) * 0.8);
+  });
+  const k1 = (t * 0.7) % 1, k2 = (t * 0.7 + 0.5) % 1;
+  $("#ring1").style.transform = `scale(${1 + k1 * 0.35})`; $("#ring1").style.opacity = 1 - k1;
+  $("#ring2").style.transform = `scale(${1 + k2 * 0.35})`; $("#ring2").style.opacity = 1 - k2;
+}
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({ paused: true });
+const E3 = "power3.out", EI = "power2.inOut";
+gsap.set(["#sv", "#at", "#eq4", "#mp"], { autoAlpha: 0 });
+gsap.set(".cardx", { autoAlpha: 0, x: 90 });
+gsap.set(["#conv", "#evbox", ".badge"], { autoAlpha: 0 });
+gsap.set("#endbg, .endc, #cursor", { autoAlpha: 0 });
+gsap.set("#cursor", { left: 980, top: 1700 });
+$$(".cv").forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+$$(".draw4 path, .draw5 path, #evck, #shck").forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+
+// intro: título com o nome
+tl.from("#it1t", { yPercent: 110, duration: .6, ease: E3 }, 0.12)
+  .from("#it2t", { yPercent: 110, duration: .6, ease: E3 }, 0.70)
+  .fromTo(V, { s: 1.0 }, { s: 1.035, duration: 3.6, ease: "none" }, 0)
+  .to("#intro", { y: -60, autoAlpha: 0, duration: .45, ease: "power2.in" }, 3.35)
+  .to(V, { s: 1, duration: .5, ease: EI }, 3.45)
+// vídeo vira card, painel aparece
+  .to(V, { x: 54, y: 718, w: 972, h: 1150, r: 44, duration: .62, ease: "expo.inOut" }, 3.42)
+  .to("#sv", { autoAlpha: 1, duration: .4 }, 3.7)
+  .from("#svpill", { y: -30, autoAlpha: 0, duration: .5, ease: E3 }, 3.75)
+  .from("#svcount", { y: -30, autoAlpha: 0, duration: .5, ease: E3 }, 3.8)
+  .from(".chip", { y: 30, autoAlpha: 0, stagger: .05, duration: .45, ease: E3 }, 3.8);
+
+// serviços, um a um
+const ITEMS = [4.02, 6.08, 7.13, 8.58, 9.42];
+ITEMS.forEach((t, i) => {
+  const n = i + 1;
+  if (i > 0) tl.to(`#it${i}`, { x: -90, autoAlpha: 0, duration: .3, ease: "power2.in" }, t - 0.06);
+  tl.to(`#it${n}`, { x: 0, autoAlpha: 1, duration: .45, ease: E3 }, t)
+    .add(() => {}, t)
+    .set(`.chip[data-i="${n}"]`, { attr: { class: "chip mono on" } }, t + 0.1)
+    .fromTo(`.chip[data-i="${n}"]`, { scale: 1.12 }, { scale: 1, duration: .4, ease: "back.out(3)" }, t + 0.1)
+});
+tl.to(".draw4 path", { strokeDashoffset: 0, duration: .7, stagger: .05, ease: "power2.out" }, 8.62)
+  .to(".draw5 path", { strokeDashoffset: 0, duration: .6, stagger: .08, ease: "power2.out" }, 9.45)
+  .from("#spots5 circle", { scale: 0, transformOrigin: "50% 50%", stagger: .06, duration: .3, ease: "back.out(3)" }, 9.75)
+  .from("#glow5", { autoAlpha: 0, duration: .5 }, 9.9);
+
+// "tudo para atender seu evento": serviços convergem
+tl.to("#it5", { x: -90, autoAlpha: 0, duration: .3, ease: "power2.in" }, 10.5)
+  .to(["#svcount"], { autoAlpha: 0, duration: .3 }, 10.5)
+  .to("#chips", { top: 196, duration: .55, ease: EI }, 10.55)
+  .set("#conv", { autoAlpha: 1 }, 10.9)
+  .to(".cv", { strokeDashoffset: 0, duration: .5, stagger: .04, ease: "power2.out" }, 10.95)
+  .to("#evbox", { autoAlpha: 1, duration: .01 }, 11.3)
+  .from("#evbox", { scale: .6, duration: .5, ease: "back.out(2)" }, 11.3)
+  .to("#evck", { strokeDashoffset: 0, duration: .35, ease: "power2.out" }, 11.6)
+// qualidade e segurança
+  .to(["#chips", "#conv", "#evbox", "#svpill"], { autoAlpha: 0, y: -24, duration: .35, ease: "power2.in" }, 12.45)
+  .to("#bq", { autoAlpha: 1, duration: .01 }, 12.82)
+  .from("#bq", { y: 60, scale: .92, duration: .55, ease: E3 }, 12.82)
+  .to("#bs", { autoAlpha: 1, duration: .01 }, 13.7)
+  .from("#bs", { y: 60, scale: .92, duration: .55, ease: E3 }, 13.7)
+  .to("#shck", { strokeDashoffset: 0, duration: .4, ease: "power2.out" }, 14.15)
+  .fromTo("#bs", { boxShadow: "0 0 0 rgba(224,128,46,0)" }, { boxShadow: "0 0 70px rgba(224,128,46,.45)", borderColor: "rgba(224,128,46,.7)", duration: .4 }, 14.15);
+
+// atendimento (corte para o take 3, com flash suave)
+tl.set("#sv", { autoAlpha: 0 }, 14.86)
+  .set("#at", { autoAlpha: 1 }, 14.86)
+  .fromTo("#vflash", { opacity: .35 }, { opacity: 0, duration: .25 }, 14.86)
+  .from("#at .abs:first-child", { scale: .5, autoAlpha: 0, duration: .55, ease: "back.out(1.6)" }, 14.88)
+  .from("#atk", { yPercent: 120, duration: .45, ease: E3 }, 14.96)
+  .from("#att", { yPercent: 110, duration: .5, ease: E3 }, 15.42)
+  .from("#att2", { yPercent: 110, duration: .5, ease: E3 }, 15.62)
+  .from("#ats", { yPercent: 120, duration: .45, ease: E3 }, 16.0);
+
+// equipe
+tl.set("#at", { autoAlpha: 0 }, 17.10)
+  .set("#eq4", { autoAlpha: 1 }, 17.10)
+  .fromTo("#vflash", { opacity: .3 }, { opacity: 0, duration: .25 }, 17.10)
+  .set("#icons", { autoAlpha: 0 }, 17.10)
+  .from("#eqpill", { y: -30, autoAlpha: 0, duration: .45, ease: E3 }, 17.15)
+  .from("#people .person", { y: 50, autoAlpha: 0, stagger: .12, duration: .5, ease: E3 }, 17.5)
+  .from("#eqlogo", { y: 40, autoAlpha: 0, scale: .9, duration: .55, ease: E3 }, 18.76)
+  .to(["#people", "#eqlogo"], { y: -40, autoAlpha: 0, duration: .35, ease: "power2.in" }, 19.5)
+  .to("#eqpill", { autoAlpha: 0, duration: .3 }, 19.5)
+  .set("#icons", { autoAlpha: 1 }, 19.62)
+  .from("#icons .ic", { y: 60, autoAlpha: 0, stagger: .08, duration: .45, ease: E3 }, 19.62)
+  .to("#icons .ic", { borderColor: "rgba(224,128,46,.7)", background: "rgba(224,128,46,.14)", stagger: .1, duration: .3 }, 20.2);
+
+// mapa: painel cresce, card desce
+tl.to("#eq4", { autoAlpha: 0, duration: .3 }, 20.85)
+  .to(V, { x: 170, y: 1060, w: 740, h: 820, r: 40, duration: .7, ease: "expo.inOut" }, 20.8)
+  .set("#mp", { autoAlpha: 1 }, 20.95)
+  .from("#mapwrap", { autoAlpha: 0, scale: 1.25, duration: 1.0, ease: E3 }, 20.95)
+  .from("#mpk", { yPercent: 120, duration: .45, ease: E3 }, 21.04)
+  .from("#mpt", { yPercent: 110, duration: .55, ease: E3 }, 21.72)
+  .from("#mpr", { yPercent: 120, duration: .5, ease: E3 }, 22.45)
+  .fromTo("#reg", { attr: { r: 10 } }, { attr: { r: 520 }, duration: 1.0, ease: "power3.out" }, 22.45)
+  .to("#mapwrap", { scale: .9, duration: 2.5, ease: "none" }, 21.0);
+
+// final
+tl.to(V, { s: .85, o: 0, duration: .5, ease: "power2.in" }, END - 0.1)
+  .to("#endbg", { autoAlpha: 1, duration: .5 }, END)
+  .to("#elogo", { autoAlpha: 1, duration: .01 }, END + 0.2)
+  .set("#e1", { autoAlpha: 1 }, END + 0.2)
+  .from("#elogo", { y: 40, scale: .9, autoAlpha: 0, duration: .6, ease: E3 }, END + 0.2)
+  .set(".endc:not(#wa):not(#ig)", { autoAlpha: 1 }, END + 0.3)
+  .from("#et1", { yPercent: 110, duration: .55, ease: E3 }, END + 0.4)
+  .from("#et2", { yPercent: 110, duration: .55, ease: E3 }, END + 0.52)
+  .fromTo("#wa", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: E3 }, END + 0.75)
+  .fromTo("#ig", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: E3 }, END + 0.9)
+  .to("#cursor", { autoAlpha: 1, duration: .2 }, END + 1.3)
+  .to("#cursor", { left: 850, top: 1430, duration: .7, ease: "power2.inOut" }, END + 1.3)
+  .to("#cursor", { scale: .82, duration: .08, yoyo: true, repeat: 1 }, END + 2.05)
+  .to("#btn .b2", { opacity: 1, duration: .15 }, END + 2.1)
+  .fromTo("#btn", { scale: 1 }, { scale: .94, duration: .08, yoyo: true, repeat: 1 }, END + 2.05)
+  .to("#cursor", { autoAlpha: 0, duration: .3 }, END + 2.6)
+  .to({}, { duration: .01 }, END + 3.3);
+
+/* ---------- seek determinístico ---------- */
+window.DUR = tl.duration();
+window.seek = async (t) => {
+  tl.seek(t, false);
+  procedural(t);
+  $("#cnum").textContent = "0" + Math.max(1, ITEMS.filter(x => t >= x).length);
+  renderVid(t);
+  renderCap(t);
+  const i = Math.min(NFR, Math.max(1, Math.floor(t * FPS) + 1));
+  const src = `seq/${String(i).padStart(5, "0")}.jpg`;
+  if (!fr.src.endsWith(src)) { fr.src = src; await fr.decode().catch(() => {}); }
+};
+window.ready = document.fonts.ready.then(() => Promise.all([...document.images].map(i => i.decode().catch(() => {}))));
+</script>
+</body></html>
