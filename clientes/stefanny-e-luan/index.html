@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stefanny & Luan · Casamento</title>
+<meta name="description" content="Site do casamento de Stefanny e Luan: detalhes do grande dia, confirmação de presença e lista de presentes.">
+<meta name="theme-color" content="#1c1612">
+<meta property="og:title" content="Stefanny & Luan · Vamos nos casar">
+<meta property="og:description" content="Detalhes do grande dia, confirmação de presença e lista de presentes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%231c1612'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='24' fill='%23c9a86a' text-anchor='middle'%3ES%26amp;L%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#fbf7f1; --paper:#f4ede2; --sand:#e8dbc6; --gold:#a8834a; --gold-2:#c9a86a; --gold-3:#e6d2a8;
+  --ink:#2b221c; --ink-2:#4a3d33; --muted:#86766a; --line:rgba(43,34,28,.12);
+  --night:#1c1612; --night-2:#2a211b;
+  --serif:"Cormorant Garamond", Georgia, serif; --sans:"Jost", system-ui, sans-serif; --script:"Pinyon Script", cursive;
+  --r:18px; --ease:cubic-bezier(.22,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:inherit}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:400;display:inline-flex;align-items:center;gap:14px}
+.eyebrow::before,.eyebrow::after{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
+.eyebrow.left::before{display:none}
+h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.3rem,5.4vw,4rem);line-height:1.05;letter-spacing:-.01em;margin:.5em 0 .45em}
+h2 em{font-style:italic;color:var(--gold)}
+.lead{color:var(--ink-2);font-size:1.05rem;max-width:560px}
+.center{text-align:center}.center .lead{margin-inline:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;text-decoration:none;
+  font-family:var(--sans);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;
+  padding:16px 30px;border-radius:999px;transition:transform .35s var(--ease),background .35s,color .35s,box-shadow .35s}
+.btn-gold{background:var(--ink);color:var(--ivory)}
+.btn-gold:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(168,131,74,.6)}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.btn-line:hover{box-shadow:inset 0 0 0 1px var(--gold);color:var(--gold)}
+.btn-light{background:var(--ivory);color:var(--ink)}
+.btn-light:hover{background:var(--gold-2);color:var(--night)}
+[hidden]{display:none!important}
+.ph{color:var(--gold);text-decoration:underline dashed 1px;text-underline-offset:6px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .5s,box-shadow .5s,padding .5s;padding:22px 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.mono{font-family:var(--serif);font-size:1.5rem;letter-spacing:.08em;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px;transition:color .5s}
+.mono i{font-family:var(--script);font-style:normal;color:var(--gold-2);font-size:1.6rem}
+.links{display:flex;gap:34px;align-items:center;list-style:none}
+.links a{color:rgba(255,255,255,.88);text-decoration:none;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;position:relative;transition:color .4s}
+.links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--gold-2);transform:scaleX(0);transition:transform .4s var(--ease)}
+.links a:not(.btn):hover::after,.links a.on::after{transform:scaleX(1)}
+.links .btn{padding:11px 22px;font-size:.7rem;background:rgba(255,255,255,.12);color:#fff;backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.links .btn:hover{background:var(--gold-2);color:var(--night);box-shadow:none}
+.nav.solid{background:rgba(251,247,241,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding:14px 0}
+.nav.solid .mono{color:var(--ink)}.nav.solid .mono i{color:var(--gold)}
+.nav.solid .links a{color:var(--ink-2)}
+.nav.solid .links .btn{background:var(--ink);color:var(--ivory);box-shadow:none}
+.nav.solid .links .btn:hover{background:var(--gold)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:11px;right:11px;height:1px;background:#fff;transition:transform .4s var(--ease),opacity .3s,background .5s}
+.burger span:nth-child(1){top:17px}.burger span:nth-child(2){top:26px}
+.nav.solid .burger span{background:var(--ink)}
+body.menu .burger span{background:var(--ivory)!important}
+body.menu .burger span:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+body.menu .burger span:nth-child(2){transform:translateY(-4.5px) rotate(-45deg)}
+.sheet{position:fixed;inset:0;z-index:45;background:var(--night);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
+.sheet a{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--ivory);text-decoration:none;opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.sheet a i{color:var(--gold-2)}
+body.menu{overflow:hidden}
+body.menu .sheet{opacity:1;visibility:visible}
+body.menu .sheet a{opacity:1;transform:none}
+body.menu .sheet a:nth-child(2){transition-delay:.06s}body.menu .sheet a:nth-child(3){transition-delay:.12s}body.menu .sheet a:nth-child(4){transition-delay:.18s}body.menu .sheet a:nth-child(5){transition-delay:.24s}
+body.menu .mono{color:var(--ivory)!important}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100svh;min-height:640px;overflow:hidden;color:#fff;background:var(--night)}
+.hero .bg{position:absolute;inset:0}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;animation:kb 22s ease-out both;transform-origin:30% 30%}
+@keyframes kb{from{transform:scale(1.16)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(120% 70% at 50% 100%,rgba(20,15,11,.88) 0%,rgba(20,15,11,.55) 38%,rgba(20,15,11,0) 70%),
+  linear-gradient(180deg,rgba(20,15,11,.45) 0%,rgba(20,15,11,0) 22%)}
+.hero .glow{position:absolute;width:60vmax;height:60vmax;left:-18vmax;top:-22vmax;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,206,130,.35),rgba(255,206,130,0) 60%);mix-blend-mode:screen;z-index:1;animation:breathe 9s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.55;transform:scale(1.08)}}
+.hero .content{position:absolute;inset:auto 0 0;z-index:2;text-align:center;padding:0 20px clamp(48px,9vh,96px)}
+.hero .eyebrow{color:var(--gold-3)}
+.names{font-family:var(--serif);font-weight:300;line-height:.9;font-size:clamp(3.6rem,13vw,9.5rem);letter-spacing:-.01em;margin:.18em 0 .12em;display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:0 .22em}
+.names .amp{font-family:var(--script);color:var(--gold-2);font-size:.82em;line-height:.6;transform:translateY(.06em)}
+.names span{display:inline-block;opacity:0;transform:translateY(40px);filter:blur(8px);animation:rise 1.6s var(--ease) forwards}
+.names span:nth-child(2){animation-delay:.35s}.names span:nth-child(3){animation-delay:.6s}
+@keyframes rise{to{opacity:1;transform:none;filter:none}}
+.hero .date{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.6vw,1.6rem);color:rgba(255,255,255,.9);opacity:0;animation:fade 1.4s .9s forwards}
+.hero .eyebrow{opacity:0;animation:fade 1.4s .1s forwards}
+@keyframes fade{to{opacity:1}}
+.count{display:flex;justify-content:center;gap:clamp(10px,2.4vw,22px);margin-top:28px;opacity:0;animation:fade 1.4s 1.2s forwards}
+.count div{min-width:74px;padding:14px 10px 10px;border-radius:14px;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.count b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,4.4vw,2.6rem);line-height:1;font-variant-numeric:tabular-nums}
+.count small{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-3)}
+.soon{margin-top:26px;display:inline-block;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-3);padding:12px 22px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(230,210,168,.4);opacity:0;animation:fade 1.4s 1.2s forwards}
+.cue{position:absolute;left:50%;bottom:18px;z-index:2;width:1px;height:46px;background:linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.7));overflow:hidden;transform:translateX(-50%)}
+.cue::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--gold-2);animation:drop 2.2s ease-in-out infinite}
+@keyframes drop{to{top:110%}}
+
+@media (min-width:900px){
+  .hero .bg{left:auto;width:60%;overflow:hidden}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 0%,rgba(28,22,18,.55) 22%,rgba(28,22,18,0) 50%)}
+  .hero::after{background:linear-gradient(180deg,rgba(20,15,11,.5) 0%,rgba(20,15,11,0) 20%),linear-gradient(0deg,rgba(20,15,11,.55) 0%,rgba(20,15,11,0) 30%)}
+  .hero .content{inset:0 auto 0 0;width:min(52%,760px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;padding:60px 0 0 max(20px,calc((100vw - 1180px)/2))}
+  .hero .eyebrow::before{display:none}
+  .names{flex-direction:column;align-items:flex-start;gap:0;font-size:clamp(4.6rem,7.4vw,7.6rem)}
+  .names .amp{margin:.02em 0 .02em .9em;font-size:.62em;line-height:1;transform:none}
+  .count{justify-content:flex-start}
+}
+@media (max-width:899px){
+  .hero .bg img{position:absolute;left:0;top:-15%;height:115%}
+  .hero::after{background:linear-gradient(0deg,rgba(20,15,11,.92) 0%,rgba(20,15,11,.66) 34%,rgba(20,15,11,0) 58%),linear-gradient(180deg,rgba(20,15,11,.45) 0%,rgba(20,15,11,0) 22%)}
+}
+
+/* ---------- convite ---------- */
+.invite{padding:clamp(90px,14vw,170px) 0 clamp(80px,12vw,140px);position:relative}
+.invite .grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(40px,7vw,110px);align-items:center}
+.arch{position:relative;border-radius:999px 999px 22px 22px;overflow:hidden;aspect-ratio:3/4.2;box-shadow:0 40px 80px -40px rgba(43,34,28,.45)}
+.arch img{width:100%;height:118%;object-fit:cover;will-change:transform}
+.arch-wrap{position:relative}
+.arch-wrap::before{content:"";position:absolute;inset:-16px -16px 26px 16px;border-radius:999px 999px 26px 26px;border:1px solid var(--gold-2);opacity:.55;z-index:-1}
+.badge{position:absolute;right:-18px;bottom:46px;width:118px;height:118px;border-radius:50%;background:var(--ivory);display:grid;place-items:center;box-shadow:0 20px 40px -20px rgba(43,34,28,.35)}
+.badge svg{position:absolute;inset:8px;animation:spin 26s linear infinite}
+.badge text{font-family:var(--sans);font-size:8.6px;letter-spacing:3.4px;fill:var(--gold);text-transform:uppercase}
+.badge i{font-family:var(--script);font-style:normal;font-size:2rem;color:var(--ink)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sign{font-family:var(--script);font-size:2.6rem;color:var(--gold);margin-top:26px;line-height:1}
+.facts{display:flex;gap:34px;margin-top:38px;padding-top:30px;border-top:1px solid var(--line);flex-wrap:wrap}
+.facts div small{display:block;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.facts div span{font-family:var(--serif);font-size:1.45rem}
+
+/* ---------- quote band ---------- */
+.band{position:relative;overflow:hidden;background:var(--night);color:var(--ivory);padding:clamp(70px,10vw,120px) 0}
+.band .marq{display:flex;white-space:nowrap;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(2.6rem,7vw,5.6rem);gap:.6em;animation:marq 38s linear infinite;width:max-content}
+.band .marq span{display:inline-flex;align-items:center;gap:.6em}
+.band .marq span::after{content:"✦";font-style:normal;font-size:.32em;color:var(--gold-2)}
+@keyframes marq{to{transform:translateX(-50%)}}
+.band .q{opacity:.92}
+
+/* ---------- galeria ---------- */
+.gallery{padding:clamp(90px,12vw,150px) 0}
+.g-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(10px,1.6vw,20px);margin-top:54px}
+.g-item{position:relative;overflow:hidden;border-radius:var(--r);cursor:zoom-in;background:var(--sand)}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .8s}
+.g-item:hover img{transform:scale(1.06)}
+.g-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,22,18,0) 60%,rgba(28,22,18,.35));opacity:0;transition:opacity .6s}
+.g-item:hover::after{opacity:1}
+.g-grid{grid-template-rows:repeat(2,clamp(220px,27vw,330px))}
+.g1{grid-column:1/6;grid-row:1/3}
+.g2{grid-column:6/10;grid-row:1}
+.g3{grid-column:10/13;grid-row:1}
+.g4{grid-column:6/9;grid-row:2}
+.g5{grid-column:9/13;grid-row:2}
+.g1 img{object-position:50% 30%}.g2 img{object-position:50% 45%}.g3 img{object-position:55% 30%}.g4 img{object-position:40% 45%}.g5 img{object-position:50% 40%}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:90;background:rgba(18,14,11,.94);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s}
+.lb.open{opacity:1;visibility:visible}
+.lb img{max-width:min(92vw,900px);max-height:86svh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5);transition:opacity .35s, transform .5s var(--ease)}
+.lb button{position:absolute;background:rgba(255,255,255,.08);border:0;color:#fff;width:52px;height:52px;border-radius:50%;cursor:pointer;font-size:1.3rem;display:grid;place-items:center;transition:background .3s}
+.lb button:hover{background:var(--gold)}
+.lb .x{top:18px;right:18px}.lb .pv{left:18px;top:50%;transform:translateY(-50%)}.lb .nx{right:18px;top:50%;transform:translateY(-50%)}
+.lb .n{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:var(--gold-3);font-size:.72rem;letter-spacing:.3em}
+
+/* ---------- grande dia ---------- */
+.day{position:relative;padding:clamp(100px,14vw,170px) 0;color:var(--ivory);overflow:hidden;background:var(--night)}
+.day .bg{position:absolute;inset:-12% 0;z-index:0}
+.day .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;opacity:.38;will-change:transform}
+.day::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--night) 0%,rgba(28,22,18,.55) 30%,rgba(28,22,18,.55) 70%,var(--night) 100%)}
+.day .wrap{position:relative;z-index:2}
+.day h2{color:#fff}
+.day .lead{color:rgba(251,247,241,.78)}
+.events{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:56px}
+.ev{position:relative;padding:44px 38px 38px;border-radius:24px;background:rgba(251,247,241,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(230,210,168,.2);transition:transform .6s var(--ease),box-shadow .6s}
+.ev:hover{transform:translateY(-6px);box-shadow:inset 0 0 0 1px rgba(230,210,168,.5)}
+.ev .ico{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--gold-2);color:var(--gold-2);margin-bottom:22px}
+.ev h3{font-family:var(--serif);font-weight:300;font-size:2.1rem;line-height:1.1;margin-bottom:16px;color:#fff}
+.ev ul{list-style:none;display:grid;gap:10px;margin-bottom:28px}
+.ev li{display:flex;gap:12px;align-items:flex-start;color:rgba(251,247,241,.85)}
+.ev li svg{flex:none;margin-top:5px;color:var(--gold-2)}
+.ev .ph{color:var(--gold-3)}
+.ev .acts{display:flex;gap:12px;flex-wrap:wrap}
+.ev .btn-line{color:var(--ivory);box-shadow:inset 0 0 0 1px rgba(251,247,241,.3);padding:13px 22px;font-size:.7rem}
+.ev .btn-line:hover{color:var(--gold-2);box-shadow:inset 0 0 0 1px var(--gold-2)}
+.dress{margin-top:22px;display:flex;align-items:center;justify-content:center;gap:14px;color:rgba(251,247,241,.82);text-align:center;flex-wrap:wrap}
+.dress small{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-2)}
+
+/* ---------- presentes ---------- */
+.gifts{padding:clamp(100px,13vw,160px) 0 clamp(90px,12vw,140px);background:linear-gradient(180deg,var(--ivory),var(--paper))}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:44px auto 0;max-width:820px}
+.steps div{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;background:#fff;box-shadow:0 1px 0 var(--line),0 18px 40px -30px rgba(43,34,28,.35)}
+.steps b{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold-2)}
+.steps span{font-size:.92rem;line-height:1.35;color:var(--ink-2)}
+.tools{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:56px 0 28px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;min-width:0;max-width:100%;overflow-x:auto;scrollbar-width:none;padding:2px;margin:-2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:0;cursor:pointer;padding:11px 18px;border-radius:999px;background:transparent;box-shadow:inset 0 0 0 1px var(--line);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);transition:all .35s var(--ease)}
+.chip:hover{box-shadow:inset 0 0 0 1px var(--gold-2);color:var(--gold)}
+.chip.on{background:var(--ink);color:var(--ivory);box-shadow:none}
+.chip sup{font-size:.62rem;margin-left:4px;opacity:.6}
+.sort{display:flex;align-items:center;gap:10px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sort select{appearance:none;-webkit-appearance:none;border:0;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a8834a' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;padding:10px 34px 10px 16px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:.8rem;letter-spacing:.04em;text-transform:none;color:var(--ink);cursor:pointer}
+.g-list{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.8vw,22px)}
+.card{position:relative;display:flex;flex-direction:column;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 1px 0 var(--line),0 24px 50px -36px rgba(43,34,28,.4);transition:transform .6s var(--ease),box-shadow .6s;animation:cardIn .7s var(--ease) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(24px)}}
+.card:hover{transform:translateY(-6px);box-shadow:0 1px 0 var(--line),0 34px 60px -30px rgba(43,34,28,.45)}
+.card .pic{aspect-ratio:1/1;background:#fff;display:grid;place-items:center;padding:18px;overflow:hidden;position:relative}
+.card .pic img{max-height:100%;width:100%;height:100%;object-fit:contain;transition:transform 1s var(--ease)}
+.card .pic.photo{padding:0}.card .pic.photo img{object-fit:cover}
+.card:hover .pic img{transform:scale(1.05)}
+.card .tag{position:absolute;top:12px;left:12px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(251,247,241,.92);color:var(--gold);backdrop-filter:blur(6px)}
+.card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1;border-top:1px solid var(--line)}
+.card h4{font-family:var(--serif);font-weight:400;font-size:1.22rem;line-height:1.18}
+.card p{font-size:.84rem;color:var(--muted);line-height:1.45}
+.card .foot{margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.price{font-family:var(--serif);font-size:1.5rem;font-weight:400;white-space:nowrap}
+.card .give{border:0;cursor:pointer;background:var(--ink);color:var(--ivory);border-radius:999px;padding:10px 16px;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;transition:background .35s,transform .35s var(--ease);white-space:nowrap}
+.card .give:hover{background:var(--gold);transform:translateY(-1px)}
+/* cota divertida */
+.card.fun{background:var(--night);color:var(--ivory);box-shadow:0 30px 60px -36px rgba(28,22,18,.7)}
+.card.fun .pic{background:radial-gradient(120% 90% at 30% 0%,#3a2d22 0%,var(--night) 70%);color:var(--gold-2);padding:26px;place-items:end start}
+.card.fun .pic .big{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.45rem,2vw,1.85rem);line-height:1.12;color:var(--ivory)}
+.card.fun .pic .big::before{content:"“";display:block;font-family:var(--serif);font-size:3.6rem;line-height:.6;color:var(--gold-2);margin-bottom:10px}
+.card.fun .pic .dots{position:absolute;inset:0;background:radial-gradient(circle at 85% 18%,rgba(201,168,106,.35),rgba(201,168,106,0) 30%)}
+.card.fun .tag{background:rgba(201,168,106,.16);color:var(--gold-3)}
+.card.fun .body{border-top:1px solid rgba(230,210,168,.14)}
+.card.fun p{color:rgba(251,247,241,.62)}
+.card.fun h4{display:none}
+.card.fun .give{background:var(--gold-2);color:var(--night)}
+.card.fun .give:hover{background:var(--ivory)}
+.card.free{background:linear-gradient(160deg,#fff 0%,var(--paper) 100%);box-shadow:inset 0 0 0 1px var(--gold-3)}
+.card.free .pic{background:transparent;place-items:center}
+.card.free .pic svg{width:46%;color:var(--gold)}
+.more{display:flex;justify-content:center;margin-top:44px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+
+/* ---------- modal ---------- */
+.md{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(28,22,18,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.md.open{opacity:1;visibility:visible}
+.md .box{width:min(560px,100%);max-height:calc(100svh - 40px);overflow:auto;background:var(--ivory);border-radius:26px;box-shadow:0 40px 100px -30px rgba(0,0,0,.55);transform:translateY(30px) scale(.98);transition:transform .55s var(--ease);position:relative}
+.md.open .box{transform:none}
+.md .close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(43,34,28,.06);cursor:pointer;font-size:1.1rem;z-index:2;transition:background .3s}
+.md .close:hover{background:var(--sand)}
+.md .head{display:flex;gap:16px;align-items:center;padding:26px 26px 20px;border-bottom:1px solid var(--line)}
+.md .head .th{width:78px;height:78px;flex:none;border-radius:16px;background:#fff;display:grid;place-items:center;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}
+.md .head .th img{width:100%;height:100%;object-fit:contain;padding:6px}
+.md .head .th.photo img{object-fit:cover;padding:0}
+.md .head .th.dark{background:var(--night);color:var(--gold-2);font-family:var(--serif);font-size:2.4rem;font-style:italic}
+.md .head small{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.md .head h3{font-family:var(--serif);font-weight:400;font-size:1.4rem;line-height:1.15;margin:2px 0 4px;padding-right:30px}
+.md .head .price{font-size:1.6rem}
+.md .sec{padding:22px 26px}
+.md .sec+.sec{border-top:1px solid var(--line)}
+.md label{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.md input,.md textarea{width:100%;border:0;background:#fff;border-radius:14px;padding:14px 16px;box-shadow:inset 0 0 0 1px var(--line);outline:none;transition:box-shadow .3s;font-size:1rem}
+.md input:focus,.md textarea:focus{box-shadow:inset 0 0 0 1.5px var(--gold-2)}
+.md textarea{resize:vertical;min-height:84px}
+.md .row{display:grid;gap:14px}
+.amount{position:relative}
+.amount span{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:1.3rem;color:var(--muted)}
+.amount input{padding-left:46px;font-family:var(--serif);font-size:1.5rem}
+.pix{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center}
+.qr{width:150px;height:150px;border-radius:16px;background:#fff;padding:10px;box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center;text-align:center;font-size:.72rem;color:var(--muted);line-height:1.35}
+.qr svg{width:100%;height:100%}
+.pix h5{font-family:var(--serif);font-weight:400;font-size:1.3rem;margin-bottom:4px}
+.pix p{font-size:.86rem;color:var(--ink-2);line-height:1.5}
+.code{margin-top:14px;display:flex;gap:8px}
+.code input{font-family:ui-monospace,Menlo,monospace;font-size:.72rem;padding:12px 14px;color:var(--ink-2);min-width:0}
+.copy{flex:none;border:0;cursor:pointer;background:var(--ink);color:var(--ivory);border-radius:12px;padding:0 16px;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
+.copy:hover,.copy.ok{background:var(--gold)}
+.key{margin-top:10px;font-size:.78rem;color:var(--muted)}
+.key b{font-weight:400;color:var(--ink)}
+.md .wa{width:100%;margin-top:16px;background:var(--ink);color:var(--ivory)}
+.md .wa:hover{background:var(--gold)}
+.md .note{font-size:.78rem;color:var(--muted);margin-top:10px;text-align:center}
+
+/* ---------- rsvp ---------- */
+.rsvp{position:relative;padding:clamp(100px,13vw,160px) 0;background:var(--night);color:var(--ivory);overflow:hidden}
+.rsvp .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:center;position:relative;z-index:1}
+.rsvp h2{color:#fff}
+.rsvp .lead{color:rgba(251,247,241,.75)}
+.rsvp .arch{aspect-ratio:3/3.8;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.rsvp .arch img{height:112%}
+.form{display:grid;gap:16px;margin-top:34px}
+.form label{display:block;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-3);margin-bottom:8px}
+.form input,.form textarea,.form select{width:100%;border:0;border-radius:14px;padding:15px 16px;background:rgba(251,247,241,.06);color:var(--ivory);box-shadow:inset 0 0 0 1px rgba(230,210,168,.22);outline:none;transition:box-shadow .3s,background .3s;font-size:1rem}
+.form input::placeholder,.form textarea::placeholder{color:rgba(251,247,241,.4)}
+.form input:focus,.form textarea:focus,.form select:focus{box-shadow:inset 0 0 0 1.5px var(--gold-2);background:rgba(251,247,241,.09)}
+.form select option{color:var(--ink)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{margin:0;cursor:pointer;text-align:center;padding:15px 10px;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(230,210,168,.22);font-size:.74rem;letter-spacing:.14em;color:rgba(251,247,241,.8);transition:all .35s var(--ease)}
+.seg input:checked+label{background:var(--gold-2);color:var(--night);box-shadow:none}
+.seg input:focus-visible+label{outline:2px solid var(--gold-3);outline-offset:2px}
+.two{display:grid;grid-template-columns:1fr 120px;gap:14px}
+.form .btn{margin-top:8px;width:100%;background:var(--gold-2);color:var(--night)}
+.form .btn:hover{background:var(--ivory)}
+.form .hint{font-size:.78rem;color:rgba(251,247,241,.5);text-align:center}
+
+/* ---------- footer ---------- */
+footer{padding:90px 0 50px;text-align:center;background:var(--ivory)}
+footer .s{font-family:var(--script);font-size:clamp(3rem,8vw,5rem);color:var(--gold);line-height:1}
+footer p{color:var(--muted);margin-top:10px}
+footer .d{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--ink-2)}
+footer .rule{width:1px;height:60px;background:linear-gradient(var(--gold-2),transparent);margin:30px auto 0}
+
+/* toast + hearts */
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);z-index:99;background:var(--night);color:var(--ivory);padding:14px 22px;border-radius:999px;font-size:.86rem;opacity:0;transition:all .45s var(--ease);pointer-events:none;box-shadow:0 20px 40px -20px rgba(0,0,0,.5)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.heart{position:fixed;z-index:100;pointer-events:none;color:var(--gold-2);font-size:16px;animation:heart 1.3s var(--ease) forwards}
+@keyframes heart{to{transform:translate(var(--x),var(--y)) scale(.4) rotate(var(--r));opacity:0}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1024px){
+  .g-list{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:860px){
+  .links{display:none}.burger{display:block}
+  .invite .grid,.rsvp .grid{grid-template-columns:1fr}
+  .arch-wrap{max-width:420px;margin:0 auto;width:86%}
+  .badge{right:-14px;width:100px;height:100px}
+  .events{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;max-width:420px}
+  .g-list{grid-template-columns:repeat(2,1fr)}
+  .rsvp .arch-wrap{order:-1;width:70%}
+  .g-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:none}
+  .g1,.g2,.g3,.g4,.g5{grid-column:auto;grid-row:auto;aspect-ratio:3/4}
+  .g1{grid-column:1/-1;aspect-ratio:4/4.6}
+  .g5{grid-column:1/-1;aspect-ratio:4/3.4}
+}
+@media (max-width:560px){
+  .wrap{width:calc(100% - 32px)}
+  .hero{min-height:600px}
+  .names{flex-direction:column;align-items:center;gap:0;font-size:clamp(3.8rem,19vw,5.6rem)}
+  .names .amp{font-size:.7em;line-height:.9;transform:none}
+  .count div{min-width:0;flex:1;max-width:80px;padding:12px 6px 8px}
+  .tools{flex-direction:column;align-items:stretch;flex-wrap:nowrap}
+  .chips{margin:0 -16px;padding:2px 16px;max-width:none}
+  .sort{justify-content:flex-end}
+  .card .pic{padding:12px}
+  .card .body{padding:12px 12px 14px}
+  .card h4{font-size:1.05rem}
+  .card p{font-size:.76rem}
+  .card .foot{flex-direction:column;align-items:stretch;gap:8px}
+  .price{font-size:1.3rem}
+  .card .give{padding:10px 8px}
+  .card.fun .pic{padding:16px}
+  .card.fun .pic .big{font-size:1.18rem}
+  .card.fun .pic .big::before{font-size:2.6rem}
+  .ev{padding:34px 24px 28px}
+  .pix{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .pix .code{width:100%}
+  .md{padding:0;align-items:flex-end}
+  .md .box{border-radius:26px 26px 0 0;max-height:92svh}
+  .md .head,.md .sec{padding-left:20px;padding-right:20px}
+  .two{grid-template-columns:1fr 96px}
+  .facts{gap:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#inicio" class="mono" aria-label="Início">S <i>&amp;</i> L</a>
+    <ul class="links">
+      <li><a href="#nos">Nós</a></li>
+      <li><a href="#dia">O grande dia</a></li>
+      <li><a href="#presentes">Presentes</a></li>
+      <li><a href="#rsvp" class="btn">Confirmar presença</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Abrir menu"><span></span><span></span></button>
+  </div>
+</header>
+<nav class="sheet" id="sheet" aria-label="Menu">
+  <a href="#nos">Nós <i>dois</i></a>
+  <a href="#galeria">Galeria</a>
+  <a href="#dia">O grande <i>dia</i></a>
+  <a href="#presentes">Presentes</a>
+  <a href="#rsvp">Confirmar <i>presença</i></a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="inicio">
+  <div class="bg"><img src="assets/fotos/foto-2.webp" alt="Stefanny e Luan se abraçando ao pôr do sol" fetchpriority="high"></div>
+  <div class="glow"></div>
+  <div class="content">
+    <span class="eyebrow">Vamos nos casar</span>
+    <h1 class="names"><span>Stefanny</span><span class="amp">&amp;</span><span>Luan</span></h1>
+    <p class="date" data-cfg="dataTexto"></p>
+    <div class="count" id="count" hidden>
+      <div><b id="cd-d">00</b><small>dias</small></div>
+      <div><b id="cd-h">00</b><small>horas</small></div>
+      <div><b id="cd-m">00</b><small>min</small></div>
+      <div><b id="cd-s">00</b><small>seg</small></div>
+    </div>
+    <span class="soon" id="soon" hidden>Contagem regressiva em breve</span>
+  </div>
+  <div class="cue" aria-hidden="true"></div>
+</section>
+
+<!-- ================= CONVITE ================= -->
+<section class="invite" id="nos">
+  <div class="wrap grid">
+    <div class="arch-wrap rv">
+      <div class="arch"><img src="assets/fotos/foto-3.webp" alt="Luan beijando o rosto de Stefanny" data-parallax="0.08" loading="lazy"></div>
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#circ">Stefanny · Luan · para sempre ·</textPath></text></svg>
+        <i>S&amp;L</i>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow left rv">Com muito amor</span>
+      <h2 class="rv d1">Um <em>sim</em> para a<br>vida inteira</h2>
+      <p class="lead rv d2">Criamos este cantinho para dividir com você a alegria desse momento. Aqui estão os detalhes do grande dia, o espaço para confirmar sua presença e, se quiser, a nossa lista de presentes para esta nova fase.</p>
+      <p class="lead rv d2" style="margin-top:14px">Ter você ao nosso lado vai deixar tudo ainda mais especial.</p>
+      <div class="sign rv d3">Stefanny &amp; Luan</div>
+      <div class="facts rv d3">
+        <div><small>Data</small><span data-cfg="dataTexto"></span></div>
+        <div><small>Cidade</small><span data-cfg="cidade"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAIXA ================= -->
+<div class="band" aria-hidden="true">
+  <div class="marq">
+    <span class="q">nós dois</span><span>para sempre</span><span class="q">Stefanny &amp; Luan</span><span>o nosso sim</span>
+    <span class="q">nós dois</span><span>para sempre</span><span class="q">Stefanny &amp; Luan</span><span>o nosso sim</span>
+  </div>
+</div>
+
+<!-- ================= GALERIA ================= -->
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow rv">Nós dois</span>
+      <h2 class="rv d1">Alguns dos nossos <em>momentos</em></h2>
+    </div>
+    <div class="g-grid">
+      <figure class="g-item g1 rv" data-i="0"><img src="assets/fotos/foto-1.webp" alt="Stefanny sentada no colo de Luan" loading="lazy"></figure>
+      <figure class="g-item g2 rv d1" data-i="1"><img src="assets/fotos/foto-4.webp" alt="Stefanny e Luan sorrindo, nariz com nariz" loading="lazy"></figure>
+      <figure class="g-item g3 rv d2" data-i="2"><img src="assets/fotos/foto-3.webp" alt="Luan beijando o rosto de Stefanny" loading="lazy"></figure>
+      <figure class="g-item g4 rv d1" data-i="3"><img src="assets/fotos/foto-2.webp" alt="Stefanny e Luan ao pôr do sol" loading="lazy"></figure>
+      <figure class="g-item g5 rv d2" data-i="4"><img src="assets/fotos/foto-5.webp" alt="Luan erguendo Stefanny nos braços" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GRANDE DIA ================= -->
+<section class="day" id="dia">
+  <div class="bg"><img src="assets/fotos/foto-5.webp" alt="" data-parallax="0.12" loading="lazy"></div>
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow rv" style="color:var(--gold-2)">O grande dia</span>
+      <h2 class="rv d1">Esperamos por <em>você</em></h2>
+      <p class="lead rv d2">Anote na agenda e venha celebrar com a gente.</p>
+    </div>
+    <div class="events">
+      <article class="ev rv">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M10 4l2-2 2 2-2 2z"/></svg></div>
+        <h3>Cerimônia</h3>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-cfg="dataTexto"></span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-cfg="cerimonia.horario"></span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><span data-cfg="cerimonia.local"></span><br><small style="opacity:.75" data-cfg="cerimonia.endereco"></small></span></li>
+        </ul>
+        <div class="acts">
+          <a class="btn btn-line" data-map="cerimonia" target="_blank" rel="noopener">Como chegar</a>
+          <button class="btn btn-line" data-ics="cerimonia">Salvar na agenda</button>
+        </div>
+      </article>
+      <article class="ev rv d1">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 3h4l-1 7a2 2 0 0 1-2 0zM8 10v10M5 21h6M17 3h4l-1 7a2 2 0 0 1-2 0zM18 10v10M15 21h6"/></svg></div>
+        <h3>Recepção</h3>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-cfg="dataTexto"></span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-cfg="recepcao.horario"></span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><span data-cfg="recepcao.local"></span><br><small style="opacity:.75" data-cfg="recepcao.endereco"></small></span></li>
+        </ul>
+        <div class="acts">
+          <a class="btn btn-line" data-map="recepcao" target="_blank" rel="noopener">Como chegar</a>
+        </div>
+      </article>
+    </div>
+    <p class="dress rv"><small>Traje</small><span data-cfg="traje"></span></p>
+  </div>
+</section>
+
+<!-- ================= PRESENTES ================= -->
+<section class="gifts" id="presentes">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow rv">Lista de presentes</span>
+      <h2 class="rv d1">Sua presença é o nosso<br><em>maior presente</em></h2>
+      <p class="lead rv d2">Mas, se quiser nos mimar, escolha um item abaixo. O valor vai direto para os noivos pelo PIX — rápido, seguro e sem frete.</p>
+    </div>
+    <div class="steps rv d2">
+      <div><b>1</b><span>Escolha o presente ou uma cota</span></div>
+      <div><b>2</b><span>Pague com PIX pelo QR Code ou copia e cola</span></div>
+      <div><b>3</b><span>Deixe um recado para os noivos</span></div>
+    </div>
+    <div class="tools">
+      <div class="chips" id="chips" role="tablist" aria-label="Categorias"></div>
+      <label class="sort">Ordenar
+        <select id="sort">
+          <option value="sug">Sugestão</option>
+          <option value="asc">Menor preço</option>
+          <option value="desc">Maior preço</option>
+        </select>
+      </label>
+    </div>
+    <div class="g-list" id="list"></div>
+    <div class="more"><button class="btn btn-line" id="more">Ver mais presentes</button></div>
+  </div>
+</section>
+
+<!-- ================= RSVP ================= -->
+<section class="rsvp" id="rsvp">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow left rv" style="color:var(--gold-2)">Confirme sua presença</span>
+      <h2 class="rv d1">Contamos com <em>você</em></h2>
+      <p class="lead rv d2">Pedimos que confirme até <span data-cfg="rsvpAte"></span>. Sua resposta chega direto no WhatsApp dos noivos.</p>
+      <form class="form rv d3" id="rsvpForm" novalidate>
+        <div><label for="r-nome">Nome completo</label><input id="r-nome" required placeholder="Como está no convite" autocomplete="name"></div>
+        <div>
+          <label>Você vai?</label>
+          <div class="seg">
+            <input type="radio" name="vai" id="vai-s" value="sim" checked><label for="vai-s">Sim, estarei lá</label>
+            <input type="radio" name="vai" id="vai-n" value="nao"><label for="vai-n">Não poderei ir</label>
+          </div>
+        </div>
+        <div class="two" id="pessoasRow">
+          <div><label for="r-acomp">Nomes dos acompanhantes</label><input id="r-acomp" placeholder="Opcional"></div>
+          <div><label for="r-qtd">Pessoas</label><select id="r-qtd"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+        </div>
+        <div><label for="r-msg">Recado para os noivos</label><textarea id="r-msg" rows="3" placeholder="Opcional"></textarea></div>
+        <button class="btn" type="submit">Enviar confirmação</button>
+        <p class="hint">Abre o WhatsApp com a mensagem pronta.</p>
+      </form>
+    </div>
+    <div class="arch-wrap rv d1">
+      <div class="arch"><img src="assets/fotos/foto-4.webp" alt="Stefanny e Luan sorrindo" data-parallax="0.06" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="s rv">Stefanny &amp; Luan</div>
+  <p class="d rv d1" data-cfg="dataTexto"></p>
+  <p class="rv d2">Obrigado por fazer parte da nossa história.</p>
+  <div class="rule"></div>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <img alt="">
+  <button class="x" aria-label="Fechar">✕</button>
+  <button class="pv" aria-label="Anterior">‹</button>
+  <button class="nx" aria-label="Próxima">›</button>
+  <span class="n"></span>
+</div>
+
+<!-- modal presente -->
+<div class="md" id="md" role="dialog" aria-modal="true" aria-labelledby="md-title">
+  <div class="box">
+    <button class="close" aria-label="Fechar">✕</button>
+    <div class="head">
+      <div class="th" id="md-th"></div>
+      <div><small id="md-cat"></small><h3 id="md-title"></h3><div class="price" id="md-price"></div></div>
+    </div>
+    <div class="sec" id="md-amount" hidden>
+      <label for="md-val">Quanto você quer presentear?</label>
+      <div class="amount"><span>R$</span><input id="md-val" inputmode="decimal" placeholder="0,00"></div>
+    </div>
+    <div class="sec">
+      <div class="pix">
+        <div class="qr" id="md-qr"></div>
+        <div>
+          <h5>Pague com PIX</h5>
+          <p>Aponte a câmera do app do banco para o QR Code ou copie o código abaixo. O valor já vem preenchido.</p>
+          <div class="code"><input id="md-code" readonly aria-label="Código PIX copia e cola"><button class="copy" id="md-copy">Copiar</button></div>
+          <p class="key">Chave PIX: <b id="md-key"></b></p>
+        </div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="row">
+        <div><label for="md-name">Seu nome</label><input id="md-name" autocomplete="name" placeholder="Para os noivos saberem quem foi"></div>
+        <div><label for="md-msg">Recado para os noivos</label><textarea id="md-msg" placeholder="Opcional"></textarea></div>
+      </div>
+      <button class="btn wa" id="md-wa"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Já paguei — avisar os noivos</button>
+      <p class="note">Abre o WhatsApp com seu recado e o presente escolhido.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/qrcode.js"></script>
+<script>
+/* =====================================================================
+   DADOS DO CASAMENTO — preencha aqui. Tudo que está entre [colchetes]
+   aparece destacado no site até ser preenchido.
+   ===================================================================== */
+const CONFIG = {
+  // Data e hora da cerimônia (formato AAAA-MM-DDTHH:MM). Ativa a contagem regressiva e o "Salvar na agenda".
+  data: "",                              // ex.: "2027-05-22T16:30"
+  dataTexto: "[Data do casamento]",      // ex.: "22 de maio de 2027"
+  cidade: "[Cidade]",
+  cerimonia: { horario: "[Horário da cerimônia]", local: "[Local da cerimônia]", endereco: "[Endereço]", mapa: "" },
+  recepcao:  { horario: "[Horário da recepção]",  local: "[Local da recepção]",  endereco: "[Endereço]", mapa: "" },
+  traje: "[Traje]",                      // ex.: "Esporte fino"
+  rsvpAte: "[data limite]",
+  whatsapp: "",                          // só números, com DDI e DDD. ex.: "5562999999999"
+  pix: {
+    chave: "",                           // CPF (só números), e-mail, chave aleatória ou celular no formato +5562999999999
+    nome: "Stefanny",                    // nome do titular da conta (como aparece no banco)
+    cidade: "Goiania"                    // cidade do titular, sem acento
+  }
+};
+
+/* =====================================================================
+   LISTA DE PRESENTES — preço em reais. cat: mesa | cozinha | eletro | cama | casa | fun
+   ===================================================================== */
+const P = "assets/presentes/";
+const GIFTS = [
+  // ---- Cotas divertidas
+  { cat:"fun", nome:"Ajude a pagar o condomínio", preco:1648.20 },
+  { cat:"fun", nome:"Ajude o noivo a se proteger da TPM da noiva", preco:252.63 },
+  { cat:"fun", nome:"Ajude o noivo com uma despedida de solteiro", preco:360.32 },
+  { cat:"fun", nome:"Ajude os noivos a contratarem o anão tequileiro", preco:747.18 },
+  { cat:"fun", nome:"Clonazepam para a noiva", preco:144.36 },
+  { cat:"fun", nome:"Cobertor para a noiva que está sempre coberta de razão", preco:285.69 },
+  { cat:"fun", nome:"Contribuição bondosa", preco:323.27 },
+  { cat:"fun", nome:"Contribuição generosa para a lua de mel", preco:1369.23 },
+  { cat:"fun", nome:"Aluguel de buggy para a noiva dirigir", preco:173.49 },
+  { cat:"fun", nome:"Apenas uma lembrancinha", preco:96.17 },
+  { cat:"fun", nome:"Café da manhã farto na lua de mel", preco:219.76 },
+  { cat:"fun", nome:"Camisa de força para a noiva não surtar até o casamento", preco:417.54 },
+  { cat:"fun", nome:"Ingredientes para o noivo fazer jantar", desc:"Se vai ficar comestível? Não sabemos…", preco:189.50 },
+  { cat:"fun", nome:"Mira precisa", desc:"Uma taxa que aumenta as chances de a noiva jogar o buquê na sua direção.", preco:351.90 },
+  { cat:"fun", nome:"Massagem relaxante para o noivo", desc:"Depois de ver a conta do casamento, ele vai precisar.", preco:265.00 },
+  { cat:"fun", nome:"Band-aid para quando a noiva descer a lenha no noivo", preco:67.49 },
+
+  // ---- Mesa posta
+  { cat:"mesa", nome:"Aparelho de jantar Porto Brasil Roma", desc:"42 peças", preco:799.99, img:"jantar-42" },
+  { cat:"mesa", nome:"Aparelho de jantar opalino branco", desc:"16 peças · pratos e bowls côncavos", preco:174.90, img:"jantar-16", foto:true },
+  { cat:"mesa", nome:"Faqueiro Home Style Veri", desc:"30 peças", preco:299.99, img:"faqueiro-30" },
+  { cat:"mesa", nome:"Faqueiro inox com maleta", desc:"24 peças", preco:95.00, img:"faqueiro-24" },
+  { cat:"mesa", nome:"Jogo de xícaras, pires e pratos Oxford Soleil", desc:"6 peças · branco", preco:186.15, img:"xicaras" },
+  { cat:"mesa", nome:"Kit suqueira cristal 4,5 L + taças diamante", desc:"7 peças", preco:206.82, img:"suqueira", foto:true },
+  { cat:"mesa", nome:"Jarra + 6 taças Hand Painting", desc:"7 peças · cristal floral", preco:163.90, img:"jarra", foto:true },
+  { cat:"mesa", nome:"Jogo de sobremesa em vidro Delisoga", desc:"7 potes", preco:145.49, img:"sobremesa-vidro" },
+  { cat:"mesa", nome:"Jogo de copos altos com borda dourada", desc:"6 copos · 370 ml", preco:130.00, img:"copos-dourados" },
+  { cat:"mesa", nome:"Taças Diamond com fio de ouro", desc:"6 taças · 320 ml", preco:89.00, img:"tacas-diamond", foto:true },
+  { cat:"mesa", nome:"Taças de sobremesa canelado", desc:"6 taças de vidro", preco:58.80, img:"tacas-sobremesa", foto:true },
+
+  // ---- Cozinha
+  { cat:"cozinha", nome:"Jogo de panelas cerâmica Oikos", desc:"8 peças · off white", preco:659.00, img:"panelas" },
+  { cat:"cozinha", nome:"Garrafa térmica canelada com borboleta dourada", desc:"Branca", preco:367.90, img:"garrafa" },
+  { cat:"cozinha", nome:"Assadeira refratária Home Style Orgânica", desc:"25 × 20 cm", preco:119.99, img:"assadeira-25" },
+  { cat:"cozinha", nome:"Conjunto de potes herméticos com tampa de bambu", desc:"6 peças", preco:102.39, img:"potes" },
+  { cat:"cozinha", nome:"Kit bowls inox Electrolux com tampa", desc:"3 tigelas", preco:99.87, img:"bowls" },
+  { cat:"cozinha", nome:"Assadeira refratária Home Style Orgânica", desc:"21 × 15 cm", preco:89.99, img:"assadeira-21" },
+
+  // ---- Eletros
+  { cat:"eletro", nome:"Geladeira Philco Inverter Frost Free 437 L", desc:"Side by side · inox", preco:3699.90, img:"geladeira" },
+  { cat:"eletro", nome:"Lava e seca Midea 11 kg", desc:"Cor titânio", preco:3228.95, img:"lava-e-seca" },
+  { cat:"eletro", nome:"Lava-louças Midea 8 serviços", desc:"Touch Plus · cinza", preco:1997.90, img:"lava-loucas" },
+  { cat:"eletro", nome:"Aspirador vertical sem fio Redroad W15", desc:"Seco e úmido · passa pano", preco:1701.38, img:"aspirador" },
+  { cat:"eletro", nome:"Robô aspirador Redroad R11", desc:"Passa pano · mapeamento Wi-Fi · estação autolimpante", preco:1519.83, img:"robo" },
+  { cat:"eletro", nome:"Cooktop de indução Dako Supreme", desc:"4 bocas · preto", preco:1287.00, img:"cooktop" },
+  { cat:"eletro", nome:"Forno elétrico de embutir Midea 68 L", desc:"Digital com air fryer · preto", preco:1234.90, img:"forno" },
+  { cat:"eletro", nome:"Cafeteira elétrica Ariete Vintage", desc:"Programável · bege · 12 xícaras", preco:699.99, img:"cafeteira" },
+  { cat:"eletro", nome:"Purificador de água Electrolux", desc:"Cinza", preco:620.00, img:"purificador" },
+  { cat:"eletro", nome:"Micro-ondas Panasonic 27 L", desc:"Preto", preco:579.00, img:"micro-ondas" },
+  { cat:"eletro", nome:"Liquidificador Arno Ultraforce Pro", desc:"Inox · copo de vidro", preco:533.99, img:"liquidificador" },
+  { cat:"eletro", nome:"Cafeteira Dolce Gusto Arno Genio S Basic", desc:"Automática · cinza escuro", preco:529.99, img:"dolce-gusto" },
+  { cat:"eletro", nome:"Echo Dot 5ª geração com Alexa", desc:"Preto", preco:424.89, img:"echo-dot" },
+  { cat:"eletro", nome:"Vaporizador portátil Black+Decker", desc:"3 em 1 · dobrável", preco:273.00, img:"vaporizador" },
+  { cat:"eletro", nome:"Mixer Elgin Power Inox 3 em 1", desc:"1.000 W", preco:211.90, img:"mixer" },
+
+  // ---- Cama & banho
+  { cat:"cama", nome:"Edredom Buddemeyer Vision Fill", desc:"Super king · 100% algodão", preco:899.90, img:"edredom", foto:true },
+  { cat:"cama", nome:"Jogo de lençol Home Style La Maison", desc:"King · 300 fios · branco", preco:599.99, img:"lencol" },
+  { cat:"cama", nome:"Kit cobre-leito + jogo de cama Grécia", desc:"King · bordado inglês · 7 peças · malva", preco:579.90, img:"kit-grecia", foto:true },
+  { cat:"cama", nome:"Jogo de colcha Home Style Diana", desc:"King · 3 peças · cinza", preco:379.99, img:"colcha" },
+  { cat:"cama", nome:"Jogo de toalhas felpudas algodão egípcio", desc:"4 peças", preco:419.90, img:"toalha-felpuda" },
+  { cat:"cama", nome:"Jogo de toalhas Karsten Imperial", desc:"Banho e rosto · 100% algodão", preco:259.90, img:"toalha-karsten" },
+  { cat:"cama", nome:"Toalhas de lavabo Trussardi Orlea", desc:"Home Style", preco:219.99, img:"lavabo-orlea" },
+  { cat:"cama", nome:"Toalhas de lavabo Trussardi Florene", desc:"Home Style", preco:219.99, img:"lavabo-florene" },
+  { cat:"cama", nome:"Jogo de toalhas Ágora Extra Soft", desc:"4 peças · 100% algodão", preco:199.90, img:"toalha-agora" },
+  { cat:"cama", nome:"Toalhas de lavabo Trussardi Rami", desc:"Home Style", preco:179.99, img:"lavabo-rami" },
+  { cat:"cama", nome:"Toalhas de lavabo Buddemeyer Lollipop", desc:"Branca", preco:59.99, img:"lavabo-lollipop" },
+  { cat:"cama", nome:"Kit 2 toalhas de lavabo", desc:"100% algodão · 30 × 45 cm", preco:44.90, img:"lavabo-kit" },
+
+  // ---- Casa
+  { cat:"casa", nome:"Cesto para roupas Home Style Burton", desc:"50 L · branco", preco:199.99, img:"cesto" },
+  { cat:"casa", nome:"Lixeira de pedal Home Style City", desc:"30 cm · inox", preco:159.99, img:"lixeira" },
+];
+
+const CATS = [
+  { id:"all", nome:"Todos" }, { id:"fun", nome:"Cotas divertidas" }, { id:"mesa", nome:"Mesa posta" },
+  { id:"cozinha", nome:"Cozinha" }, { id:"eletro", nome:"Eletros" }, { id:"cama", nome:"Cama & banho" }, { id:"casa", nome:"Casa" }
+];
+const CAT_NOME = { fun:"Cota divertida", mesa:"Mesa posta", cozinha:"Cozinha", eletro:"Eletro", cama:"Cama & banho", casa:"Casa", livre:"Valor livre" };
+
+/* ===================================================================== */
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => [...el.querySelectorAll(s)];
+const brl = v => v.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+const isPh = s => !s || /^\[.*\]$/.test(s.trim());
+const get = path => path.split(".").reduce((o,k) => o && o[k], CONFIG);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---------- textos do CONFIG ----------
+$$("[data-cfg]").forEach(el => {
+  const v = get(el.dataset.cfg) || "";
+  if (!v) { el.closest("li, .dress, small")?.setAttribute("hidden", ""); return; }
+  el.textContent = isPh(v) ? v.slice(1, -1) : v;
+  if (isPh(v)) el.classList.add("ph");
+});
+$$("[data-map]").forEach(a => {
+  const ev = CONFIG[a.dataset.map];
+  const q = ev.mapa || (!isPh(ev.endereco) ? "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ev.local + " " + ev.endereco) : "");
+  if (q) a.href = q; else a.hidden = true;
+});
+
+// ---------- nav ----------
+const nav = $("#nav");
+const onScroll = () => nav.classList.toggle("solid", scrollY > innerHeight * 0.6);
+addEventListener("scroll", onScroll, { passive:true }); onScroll();
+$("#burger").onclick = () => document.body.classList.toggle("menu");
+$$("#sheet a").forEach(a => a.onclick = () => document.body.classList.remove("menu"));
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) $$(".links a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
+}), { rootMargin:"-45% 0px -50% 0px" });
+["nos","dia","presentes","rsvp"].forEach(id => spy.observe(document.getElementById(id)));
+
+// ---------- contagem regressiva ----------
+(() => {
+  const t = CONFIG.data ? new Date(CONFIG.data).getTime() : NaN;
+  if (isNaN(t)) { $("#soon").hidden = false; return; }
+  $("#count").hidden = false;
+  const pad = n => String(n).padStart(2, "0");
+  const tick = () => {
+    let s = Math.max(0, Math.floor((t - Date.now()) / 1000));
+    $("#cd-d").textContent = Math.floor(s / 86400); s %= 86400;
+    $("#cd-h").textContent = pad(Math.floor(s / 3600)); s %= 3600;
+    $("#cd-m").textContent = pad(Math.floor(s / 60));
+    $("#cd-s").textContent = pad(s % 60);
+  };
+  tick(); setInterval(tick, 1000);
+})();
+
+// ---------- salvar na agenda (.ics) ----------
+$$("[data-ics]").forEach(b => {
+  if (!CONFIG.data) { b.hidden = true; return; }
+  b.onclick = () => {
+    const d = new Date(CONFIG.data), e = new Date(d.getTime() + 6 * 3600e3);
+    const f = x => x.getFullYear() + String(x.getMonth()+1).padStart(2,"0") + String(x.getDate()).padStart(2,"0") + "T" + String(x.getHours()).padStart(2,"0") + String(x.getMinutes()).padStart(2,"0") + "00";
+    const ev = CONFIG.cerimonia, loc = [ev.local, ev.endereco].filter(x => !isPh(x)).join(" - ");
+    const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//stefanny-luan//PT","BEGIN:VEVENT","UID:casamento-stefanny-luan","DTSTAMP:" + f(new Date()),
+      "DTSTART:" + f(d), "DTEND:" + f(e), "SUMMARY:Casamento Stefanny & Luan", "LOCATION:" + loc, "END:VEVENT","END:VCALENDAR"].join("\r\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([ics], { type:"text/calendar" }));
+    a.download = "casamento-stefanny-e-luan.ics"; a.click();
+  };
+});
+
+// ---------- reveal + parallax ----------
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold:.14 });
+$$(".rv").forEach(el => io.observe(el));
+const par = $$("[data-parallax]");
+if (!reduced && par.length) {
+  let ticking = false;
+  const run = () => {
+    par.forEach(img => {
+      const r = img.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return;
+      const c = (r.top + r.height / 2 - innerHeight / 2);
+      img.style.transform = `translate3d(0, ${(-c * img.dataset.parallax).toFixed(1)}px, 0)`;
+    });
+    ticking = false;
+  };
+  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(run); } }, { passive:true });
+  run();
+}
+
+// ---------- galeria / lightbox ----------
+const shots = $$(".g-item img").map(i => ({ src:i.src, alt:i.alt }));
+const lb = $("#lb"), lbImg = $("img", lb);
+let cur = 0;
+const show = i => { cur = (i + shots.length) % shots.length; lbImg.src = shots[cur].src; lbImg.alt = shots[cur].alt; $(".n", lb).textContent = `${cur+1} / ${shots.length}`; };
+$$(".g-item").forEach(f => f.onclick = () => { show(+f.dataset.i); lb.classList.add("open"); });
+$(".x", lb).onclick = () => lb.classList.remove("open");
+$(".pv", lb).onclick = () => show(cur - 1);
+$(".nx", lb).onclick = () => show(cur + 1);
+lb.onclick = e => { if (e.target === lb) lb.classList.remove("open"); };
+let tx = 0;
+lb.addEventListener("touchstart", e => tx = e.touches[0].clientX, { passive:true });
+lb.addEventListener("touchend", e => { const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) show(cur + (d < 0 ? 1 : -1)); });
+
+// ---------- lista de presentes ----------
+let cat = "all", sort = "sug", limit = 12;
+const PAGE = 12;
+const FREE = { cat:"livre", nome:"Escolha o valor", desc:"Quer presentear de outro jeito? Envie o valor que quiser.", preco:0 };
+
+function ordered() {
+  let list = cat === "all" ? GIFTS.slice() : GIFTS.filter(g => g.cat === cat);
+  if (sort === "asc") list.sort((a,b) => a.preco - b.preco);
+  else if (sort === "desc") list.sort((a,b) => b.preco - a.preco);
+  else if (cat === "all") {
+    // intercala: a cada 3 presentes, uma cota divertida
+    const fun = list.filter(g => g.cat === "fun"), rest = list.filter(g => g.cat !== "fun");
+    const order = ["mesa","eletro","cozinha","cama","casa"], buckets = order.map(c => rest.filter(g => g.cat === c));
+    const mixed = []; let k = 0;
+    while (buckets.some(b => b.length)) { const b = buckets[k++ % buckets.length]; if (b.length) mixed.push(b.shift()); }
+    list = []; mixed.forEach((g, i) => { list.push(g); if (i % 3 === 2 && fun.length) list.push(fun.shift()); });
+    list.push(...fun);
+  }
+  return list;
+}
+
+function card(g, i) {
+  const idx = GIFTS.indexOf(g);
+  const delay = `style="animation-delay:${(i % PAGE) * 40}ms"`;
+  if (g.cat === "fun") return `<article class="card fun" ${delay}>
+      <div class="pic"><div class="dots"></div><span class="tag">Cota divertida</span><div class="big">${esc(g.nome)}</div></div>
+      <div class="body"><h4>${esc(g.nome)}</h4>${g.desc ? `<p>${esc(g.desc)}</p>` : ""}
+        <div class="foot"><span class="price">${brl(g.preco)}</span><button class="give" data-g="${idx}">Presentear</button></div></div></article>`;
+  if (g.cat === "livre") return `<article class="card free" ${delay}>
+      <div class="pic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="8" y="24" width="48" height="32" rx="3"/><path d="M4 16h56v8H4zM32 16v40M32 16c-6-10-18-8-14 0M32 16c6-10 18-8 14 0"/></svg></div>
+      <div class="body"><h4>${esc(g.nome)}</h4><p>${esc(g.desc)}</p>
+        <div class="foot"><span class="price" style="font-size:1.1rem;color:var(--muted)">Você decide</span><button class="give" data-g="free">Presentear</button></div></div></article>`;
+  return `<article class="card" ${delay}>
+      <div class="pic${g.foto ? " photo" : ""}"><span class="tag">${CAT_NOME[g.cat]}</span><img src="${P + g.img}.webp" alt="${esc(g.nome)}" loading="lazy"></div>
+      <div class="body"><h4>${esc(g.nome)}</h4>${g.desc ? `<p>${esc(g.desc)}</p>` : ""}
+        <div class="foot"><span class="price">${brl(g.preco)}</span><button class="give" data-g="${idx}">Presentear</button></div></div></article>`;
+}
+
+function render() {
+  const list = ordered();
+  const shown = list.slice(0, limit);
+  let html = shown.map(card).join("");
+  if (limit >= list.length) html += card(FREE, shown.length);
+  $("#list").innerHTML = html || `<p class="empty">Nenhum presente nesta categoria.</p>`;
+  $("#more").parentElement.hidden = limit >= list.length;
+  $("#more").textContent = `Ver mais presentes (${list.length - limit})`;
+}
+$("#chips").innerHTML = CATS.map(c => {
+  const n = c.id === "all" ? GIFTS.length : GIFTS.filter(g => g.cat === c.id).length;
+  return `<button class="chip${c.id === "all" ? " on" : ""}" data-c="${c.id}" role="tab">${c.nome}<sup>${n}</sup></button>`;
+}).join("");
+$("#chips").onclick = e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  $$(".chip").forEach(c => c.classList.toggle("on", c === b));
+  cat = b.dataset.c; limit = PAGE; render();
+};
+$("#sort").onchange = e => { sort = e.target.value; limit = PAGE; render(); };
+$("#more").onclick = () => { limit += PAGE; render(); };
+render();
+
+// ---------- PIX (BR Code) ----------
+const emv = (id, v) => id + String(v.length).padStart(2, "0") + v;
+const plain = (s, n) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9 ]/g, "").toUpperCase().slice(0, n) || "BRASIL";
+function crc16(s) {
+  let c = 0xFFFF;
+  for (let i = 0; i < s.length; i++) { c ^= s.charCodeAt(i) << 8; for (let j = 0; j < 8; j++) c = (c & 0x8000) ? ((c << 1) ^ 0x1021) & 0xFFFF : (c << 1) & 0xFFFF; }
+  return c.toString(16).toUpperCase().padStart(4, "0");
+}
+function pixCode(valor) {
+  const p = emv("00","01") + emv("26", emv("00","br.gov.bcb.pix") + emv("01", CONFIG.pix.chave.trim()))
+    + emv("52","0000") + emv("53","986") + (valor > 0 ? emv("54", valor.toFixed(2)) : "")
+    + emv("58","BR") + emv("59", plain(CONFIG.pix.nome, 25)) + emv("60", plain(CONFIG.pix.cidade, 15))
+    + emv("62", emv("05","***")) + "6304";
+  return p + crc16(p);
+}
+
+// ---------- modal ----------
+const md = $("#md");
+let gift = null, lastFocus = null;
+const hasPix = () => !!CONFIG.pix.chave.trim();
+function valor() {
+  if (gift.cat !== "livre") return gift.preco;
+  const v = parseFloat(($("#md-val").value || "").replace(/\./g, "").replace(",", "."));
+  return isFinite(v) && v > 0 ? Math.round(v * 100) / 100 : 0;
+}
+function updatePix() {
+  const v = valor();
+  $("#md-price").textContent = v ? brl(v) : "R$ —";
+  $("#md-key").textContent = hasPix() ? CONFIG.pix.chave : "[chave PIX dos noivos]";
+  $("#md-key").classList.toggle("ph", !hasPix());
+  if (!hasPix()) { $("#md-qr").innerHTML = "O QR Code aparece quando a chave PIX for configurada"; $("#md-code").value = ""; return; }
+  if (gift.cat === "livre" && !v) { $("#md-qr").innerHTML = "Digite o valor para gerar o QR Code"; $("#md-code").value = ""; return; }
+  const code = pixCode(v);
+  $("#md-code").value = code;
+  if (window.qrcode) {
+    const q = qrcode(0, "M"); q.addData(code); q.make();
+    $("#md-qr").innerHTML = q.createSvgTag({ cellSize:4, margin:0, scalable:true });
+  } else $("#md-qr").innerHTML = "Use o código copia e cola ao lado";
+}
+function openGift(g, btn) {
+  gift = g; lastFocus = btn;
+  const th = $("#md-th");
+  th.className = "th"; th.innerHTML = "";
+  if (g.cat === "fun") { th.classList.add("dark"); th.textContent = "“"; }
+  else if (g.cat === "livre") { th.classList.add("dark"); th.textContent = "♡"; }
+  else { if (g.foto) th.classList.add("photo"); th.innerHTML = `<img src="${P + g.img}.webp" alt="">`; }
+  $("#md-cat").textContent = CAT_NOME[g.cat];
+  $("#md-title").textContent = g.nome;
+  $("#md-amount").hidden = g.cat !== "livre";
+  $("#md-val").value = "";
+  $("#md-copy").textContent = "Copiar"; $("#md-copy").classList.remove("ok");
+  updatePix();
+  md.classList.add("open");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => (g.cat === "livre" ? $("#md-val") : $("#md-copy")).focus({ preventScroll:true }), 350);
+}
+function closeGift() { md.classList.remove("open"); document.body.style.overflow = ""; lastFocus?.focus({ preventScroll:true }); }
+$("#list").onclick = e => {
+  const b = e.target.closest(".give"); if (!b) return;
+  openGift(b.dataset.g === "free" ? FREE : GIFTS[+b.dataset.g], b);
+};
+$(".close", md).onclick = closeGift;
+md.onclick = e => { if (e.target === md) closeGift(); };
+$("#md-val").oninput = updatePix;
+$("#md-copy").onclick = async e => {
+  const code = $("#md-code").value;
+  if (!code) { toast(hasPix() ? "Digite o valor primeiro" : "A chave PIX ainda não foi configurada"); return; }
+  try { await navigator.clipboard.writeText(code); } catch { $("#md-code").select(); document.execCommand("copy"); }
+  e.currentTarget.textContent = "Copiado"; e.currentTarget.classList.add("ok");
+  toast("Código PIX copiado. Agora é só colar no app do banco ♡"); hearts(e.currentTarget);
+};
+$("#md-wa").onclick = () => {
+  const nome = $("#md-name").value.trim(), msg = $("#md-msg").value.trim(), v = valor();
+  if (!nome) { $("#md-name").focus(); toast("Coloque seu nome para os noivos saberem quem foi"); return; }
+  const txt = `Oi, Stefanny e Luan! Aqui é ${nome}.\nAcabei de enviar pelo PIX o presente: *${gift.cat === "livre" ? "Valor livre" : gift.nome}*${v ? ` (${brl(v)})` : ""} 🎁` + (msg ? `\n\n${msg}` : "");
+  window.open(wa(txt), "_blank");
+};
+const wa = txt => `https://wa.me/${CONFIG.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(txt)}`;
+
+// ---------- teclado ----------
+addEventListener("keydown", e => {
+  if (e.key === "Escape") { if (md.classList.contains("open")) closeGift(); lb.classList.remove("open"); document.body.classList.remove("menu"); }
+  if (lb.classList.contains("open")) { if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); }
+});
+
+// ---------- RSVP ----------
+const vaiRadios = $$('input[name="vai"]');
+vaiRadios.forEach(r => r.onchange = () => { $("#pessoasRow").style.display = $("#vai-s").checked ? "" : "none"; });
+$("#rsvpForm").onsubmit = e => {
+  e.preventDefault();
+  const nome = $("#r-nome").value.trim();
+  if (!nome) { $("#r-nome").focus(); toast("Coloque seu nome completo"); return; }
+  const vai = $("#vai-s").checked, acomp = $("#r-acomp").value.trim(), qtd = $("#r-qtd").value, msg = $("#r-msg").value.trim();
+  const txt = vai
+    ? `Oi, Stefanny e Luan! Confirmo minha presença no casamento 💍\n\n*Nome:* ${nome}\n*Pessoas:* ${qtd}` + (acomp ? `\n*Acompanhantes:* ${acomp}` : "")
+    : `Oi, Stefanny e Luan! Aqui é ${nome}. Infelizmente não vou conseguir ir ao casamento, mas desejo muita felicidade a vocês ♡`;
+  window.open(wa(txt + (msg ? `\n\n${msg}` : "")), "_blank");
+  hearts(e.submitter || $("#rsvpForm .btn"));
+};
+
+// ---------- toast + corações ----------
+let tt;
+function toast(t) { const el = $("#toast"); el.textContent = t; el.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => el.classList.remove("show"), 2600); }
+function hearts(el) {
+  if (reduced || !el) return;
+  const r = el.getBoundingClientRect();
+  for (let i = 0; i < 12; i++) {
+    const h = document.createElement("span");
+    h.className = "heart"; h.textContent = "♥";
+    h.style.left = r.left + r.width / 2 + "px"; h.style.top = r.top + "px";
+    h.style.setProperty("--x", (Math.random() * 160 - 80) + "px");
+    h.style.setProperty("--y", (-60 - Math.random() * 110) + "px");
+    h.style.setProperty("--r", (Math.random() * 60 - 30) + "deg");
+    h.style.fontSize = 10 + Math.random() * 12 + "px";
+    document.body.appendChild(h); setTimeout(() => h.remove(), 1400);
+  }
+}
+</script>
+</body>
+</html>
