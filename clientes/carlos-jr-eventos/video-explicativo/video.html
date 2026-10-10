@@ -240,16 +240,15 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
 <script src="node_modules/gsap/dist/gsap.min.js"></script>
 <script>
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-const FPS = 30, NFR = 703, END = 23.44;
+const FPS = 30, NFR = 661, END = 21.2;
 
 /* ---------- legenda (tempos do vídeo final) ---------- */
 const CAP = [
   [0.12, 0.70, "Carlos JR"], [0.70, 1.50, "*Eventos*"], [1.55, 2.40, "Tudo que você"], [2.40, 3.10, "precisa para"], [3.10, 3.93, "seu *evento*"],
   [4.02, 5.00, "*Sonorização*"], [5.00, 6.05, "profissional,"], [6.08, 7.10, "*iluminação,*"], [7.13, 8.55, "*painel de LED,*"], [8.58, 9.40, "*estrutura*"], [9.42, 10.45, "e *palco.*"],
   [10.58, 11.20, "Tudo para"], [11.20, 12.10, "atender seu evento"], [12.10, 12.82, "com maior"], [12.82, 13.65, "*qualidade*"], [13.68, 14.86, "e *segurança.*"],
-  [14.96, 15.42, "A gente tá aqui"], [15.42, 16.00, "pra te atender"], [16.00, 16.45, "da melhor"], [16.45, 17.08, "forma possível."],
-  [17.22, 17.80, "Conte com"], [17.80, 18.72, "nossa *equipe,*"], [18.76, 19.58, "*Carlos JR.*"], [19.62, 20.15, "Tudo para"], [20.15, 20.98, "seu evento."],
-  [21.04, 21.70, "Atendemos"], [21.72, 22.42, "*Goiânia*"], [22.45, 23.42, "e *região.*"],
+  [14.98, 15.56, "Conte com"], [15.56, 16.48, "nossa *equipe,*"], [16.52, 17.34, "*Carlos JR.*"], [17.38, 17.91, "Tudo para"], [17.91, 18.74, "seu evento."],
+  [18.80, 19.46, "Atendemos"], [19.48, 20.18, "*Goiânia*"], [20.21, 21.18, "e *região.*"],
 ];
 const capEl = $("#cap");
 let capCur = -1;
@@ -268,7 +267,7 @@ function renderCap(t) {
 /* ---------- moldura do vídeo ---------- */
 const V = { x: 0, y: 0, w: 1080, h: 1920, r: 0, o: 1, s: 1 };
 // enquadramento por take: [início, rosto x, rosto y, zoom no card]
-const TAKES = [[0, 512, 500, 1.0], [3.93, 560, 650, 1.12], [14.86, 528, 600, 1.38], [17.10, 520, 520, 1.08]];
+const TAKES = [[0, 512, 500, 1.0], [3.93, 560, 650, 1.12], [14.86, 520, 520, 1.08]];
 const fr = $("#fr"), vid = $("#vid");
 function renderVid(t) {
   const tk = [...TAKES].reverse().find(k => t >= k[0]);
@@ -399,59 +398,33 @@ tl.to("#it5", { x: -90, autoAlpha: 0, duration: .3, ease: "power2.in" }, 10.5)
   .to("#shck", { strokeDashoffset: 0, duration: .4, ease: "power2.out" }, 14.15)
   .fromTo("#bs", { boxShadow: "0 0 0 rgba(224,128,46,0)" }, { boxShadow: "0 0 70px rgba(224,128,46,.45)", borderColor: "rgba(224,128,46,.7)", duration: .4 }, 14.15);
 
-// atendimento (corte para o take 3, com flash suave)
-tl.set("#sv", { autoAlpha: 0 }, 14.86)
-  .set("#at", { autoAlpha: 1 }, 14.86)
-  .fromTo("#vflash", { opacity: .35 }, { opacity: 0, duration: .25, immediateRender: false }, 14.86)
-  .from("#at .abs:first-child", { scale: .5, autoAlpha: 0, duration: .55, ease: "back.out(1.6)" }, 14.88)
-  .from("#atk", { yPercent: 120, duration: .45, ease: E3 }, 14.96)
-  .from("#att", { yPercent: 110, duration: .5, ease: E3 }, 15.42)
-  .from("#att2", { yPercent: 110, duration: .5, ease: E3 }, 15.62)
-  .from("#ats", { yPercent: 120, duration: .45, ease: E3 }, 16.0);
-
 // equipe
-tl.set("#at", { autoAlpha: 0 }, 17.10)
-  .set("#eq4", { autoAlpha: 1 }, 17.10)
-  .fromTo("#vflash", { opacity: .3 }, { opacity: 0, duration: .25, immediateRender: false }, 17.10)
-  .set("#icons", { autoAlpha: 0 }, 17.10)
-  .from("#eqpill", { y: -30, autoAlpha: 0, duration: .45, ease: E3 }, 17.15)
-  .from("#people .person", { y: 50, autoAlpha: 0, stagger: .12, duration: .5, ease: E3 }, 17.5)
-  .from("#eqlogo", { y: 40, autoAlpha: 0, scale: .9, duration: .55, ease: E3 }, 18.76)
-  .to(["#people", "#eqlogo"], { y: -40, autoAlpha: 0, duration: .35, ease: "power2.in" }, 19.5)
-  .to("#eqpill", { autoAlpha: 0, duration: .3 }, 19.5)
-  .set("#icons", { autoAlpha: 1 }, 19.62)
-  .from("#icons .ic", { y: 60, autoAlpha: 0, stagger: .08, duration: .45, ease: E3 }, 19.62)
-  .to("#icons .ic", { borderColor: "rgba(224,128,46,.7)", background: "rgba(224,128,46,.14)", stagger: .1, duration: .3 }, 20.2);
+tl.set("#at", { autoAlpha: 0 }, 14.86)
+  .set("#eq4", { autoAlpha: 1 }, 14.86)
+  .fromTo("#vflash", { opacity: .3 }, { opacity: 0, duration: .25, immediateRender: false }, 14.86)
+  .set("#icons", { autoAlpha: 0 }, 14.86)
+  .from("#eqpill", { y: -30, autoAlpha: 0, duration: .45, ease: E3 }, 14.91)
+  .from("#people .person", { y: 50, autoAlpha: 0, stagger: .12, duration: .5, ease: E3 }, 15.26)
+  .from("#eqlogo", { y: 40, autoAlpha: 0, scale: .9, duration: .55, ease: E3 }, 16.52)
+  .to(["#people", "#eqlogo"], { y: -40, autoAlpha: 0, duration: .35, ease: "power2.in" }, 17.26)
+  .to("#eqpill", { autoAlpha: 0, duration: .3 }, 17.26)
+  .set("#icons", { autoAlpha: 1 }, 17.38)
+  .from("#icons .ic", { y: 60, autoAlpha: 0, stagger: .08, duration: .45, ease: E3 }, 17.38)
+  .to("#icons .ic", { borderColor: "rgba(224,128,46,.7)", background: "rgba(224,128,46,.14)", stagger: .1, duration: .3 }, 17.96);
 
 // mapa: painel cresce, card desce
-tl.to("#eq4", { autoAlpha: 0, duration: .3 }, 20.85)
-  .to(V, { x: 170, y: 1060, w: 740, h: 820, r: 40, duration: .7, ease: "expo.inOut" }, 20.8)
-  .set("#mp", { autoAlpha: 1 }, 20.95)
-  .from("#mapwrap", { autoAlpha: 0, scale: 1.25, duration: 1.0, ease: E3 }, 20.95)
-  .from("#mpk", { yPercent: 120, duration: .45, ease: E3 }, 21.04)
-  .from("#mpt", { yPercent: 110, duration: .55, ease: E3 }, 21.72)
-  .from("#mpr", { yPercent: 120, duration: .5, ease: E3 }, 22.45)
-  .fromTo("#reg", { attr: { r: 10 } }, { attr: { r: 520 }, duration: 1.0, ease: "power3.out" }, 22.45)
-  .to("#mapwrap", { scale: .9, duration: 2.5, ease: "none" }, 21.0);
+tl.to("#eq4", { autoAlpha: 0, duration: .3 }, 18.61)
+  .to(V, { x: 170, y: 1060, w: 740, h: 820, r: 40, duration: .7, ease: "expo.inOut" }, 18.56)
+  .set("#mp", { autoAlpha: 1 }, 18.71)
+  .from("#mapwrap", { autoAlpha: 0, scale: 1.25, duration: 1.0, ease: E3 }, 18.71)
+  .from("#mpk", { yPercent: 120, duration: .45, ease: E3 }, 18.80)
+  .from("#mpt", { yPercent: 110, duration: .55, ease: E3 }, 19.48)
+  .from("#mpr", { yPercent: 120, duration: .5, ease: E3 }, 20.21)
+  .fromTo("#reg", { attr: { r: 10 } }, { attr: { r: 520 }, duration: 1.0, ease: "power3.out" }, 20.21)
+  .to("#mapwrap", { scale: .9, duration: 2.5, ease: "none" }, 18.76);
 
-// final
-tl.to(V, { s: .85, o: 0, duration: .5, ease: "power2.in" }, END - 0.1)
-  .to("#endbg", { autoAlpha: 1, duration: .5 }, END)
-  .to("#elogo", { autoAlpha: 1, duration: .01 }, END + 0.2)
-  .set("#e1", { autoAlpha: 1 }, END + 0.2)
-  .from("#elogo", { y: 40, scale: .9, autoAlpha: 0, duration: .6, ease: E3 }, END + 0.2)
-  .set(".endc:not(#wa):not(#ig)", { autoAlpha: 1 }, END + 0.3)
-  .from("#et1", { yPercent: 110, duration: .55, ease: E3 }, END + 0.4)
-  .from("#et2", { yPercent: 110, duration: .55, ease: E3 }, END + 0.52)
-  .fromTo("#wa", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: E3 }, END + 0.75)
-  .fromTo("#ig", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: E3 }, END + 0.9)
-  .to("#cursor", { autoAlpha: 1, duration: .2 }, END + 1.3)
-  .to("#cursor", { left: 850, top: 1430, duration: .7, ease: "power2.inOut" }, END + 1.3)
-  .to("#cursor", { scale: .82, duration: .08, yoyo: true, repeat: 1 }, END + 2.05)
-  .to("#btn .b2", { opacity: 1, duration: .15 }, END + 2.1)
-  .fromTo("#btn", { scale: 1 }, { scale: .94, duration: .08, yoyo: true, repeat: 1 }, END + 2.05)
-  .to("#cursor", { autoAlpha: 0, duration: .3 }, END + 2.6)
-  .to({}, { duration: .01 }, END + 3.3);
+// segura o mapa até a transição para a 2ª parte
+tl.to({}, { duration: .01 }, 22.0);
 
 /* ---------- seek determinístico ---------- */
 window.DUR = tl.duration();
