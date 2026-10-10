@@ -135,99 +135,115 @@ def hp(x, f): return sosfilt(butter(2, f, "high", fs=SR, output="sos"), x)
 
 
 def efeitos(rot: dict, total: float) -> np.ndarray:
-    """Efeitos sonoros sincronizados com o que aparece na tela (sem música de fundo).
-    Todos sintetizados aqui: whoosh, estalos, notificação, falha digital, vidro, digitação, brilho, passos."""
+    """Sound design de cinema (sem música de fundo): cada evento da tela tem um som próprio, sincronizado.
+    Paleta sintetizada aqui (original, sem direitos): sub-impacto, swell invertido, sopro de ar, sinos de vidro,
+    bolha de mensagem, toque de tecla em madeira, brilho em arpejo, tensão grave, acorde de resolução.
+    Tudo passa por um reverb de sala no fim, pra soar elegante e com profundidade."""
+    from scipy.signal import fftconvolve
     rng = np.random.default_rng(9); N = int((total + .5) * SR); mix = np.zeros(N)
     def put(sig, at, g=1.):
         i = int(at * SR)
-        if 0 <= i < N: j = min(N, i + len(sig)); mix[i:j] += sig[: j - i] * g
-    def env(L, a=.005, d=6.):
-        k = np.arange(L) / SR; return np.minimum(1, k / a) * np.exp(-k * d)
-    def whoosh(dur=.6, hi=7000):
-        L = int(dur * SR); k = np.arange(L) / SR; n = rng.standard_normal(L); sw = k / dur
-        return hp(lp(n, 900) * (1 - sw) + lp(n, hi) * sw, 200) * np.sin(np.pi * sw) ** 1.5 * .7
-    def thump():
-        L = int(.5 * SR); k = np.arange(L) / SR; f = 40 + 90 * np.exp(-k * 20)
-        return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-k * 7)
-    def pop(f=900):
-        L = int(.07 * SR); k = np.arange(L) / SR; return np.sin(2 * np.pi * (f + 900 * np.exp(-k * 60)) * k) * env(L, .002, 55)
-    def ding(f=1320):
-        L = int(.9 * SR); k = np.arange(L) / SR
-        return (np.sin(2 * np.pi * f * k) + .5 * np.sin(2 * np.pi * f * 2.01 * k) + .25 * np.sin(2 * np.pi * f * 3 * k)) * env(L, .003, 5) * .5
-    def chime():
-        out = np.zeros(int(1.3 * SR))
-        for i, f in enumerate((1568, 1976, 2349, 3136)):
-            d = ding(f); j = int(i * .06 * SR); out[j:j + len(d)] += d * .6
+        if i < 0: sig, i = sig[-i:], 0
+        if i < N: j = min(N, i + len(sig)); mix[i:j] += sig[: j - i] * g
+    def T(d): return np.arange(int(d * SR)) / SR
+    def env(k, a=.005, d=6.): return np.minimum(1, k / a) * np.exp(-k * d)
+    def sino(f, d=2.2, dec=2.8):           # sino de vidro: parcial inarmônico dá o brilho
+        k = T(d); return (np.sin(2 * np.pi * f * k) + .35 * np.sin(2 * np.pi * f * 2.76 * k) * np.exp(-k * 4) + .12 * np.sin(2 * np.pi * f * 5.4 * k) * np.exp(-k * 9)) * env(k, .002, dec) * .5
+    def ar(dur=.55, f0=500, f1=4000):      # sopro de ar (whoosh suave) com filtro que abre
+        k = T(dur); n = rng.standard_normal(len(k)); sw = np.sin(np.pi * k / dur) ** 2
+        lo = lp(n, f0); hi = lp(n, f1); x = (lo * (1 - k / dur) + hi * (k / dur)); return hp(x, 150) * sw * .55
+    def sub(f=52, dur=1.6):                # impacto grave de cinema
+        k = T(dur); fr = f + 70 * np.exp(-k * 14)
+        return (np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.exp(-k * 2.6) + lp(rng.standard_normal(len(k)), 220) * np.exp(-k * 8) * .5) * .9
+    def swell(dur=.9, f=880):              # sino invertido que "puxa" pro impacto
+        x = sino(f, dur + .4, 3)[: int(dur * SR)][::-1]; return x * np.linspace(0, 1, len(x)) ** 2 * 1.2
+    def bolha(f=620):                      # mensagem chegando
+        k = T(.22); return np.sin(2 * np.pi * np.cumsum(f + 520 * (1 - np.exp(-k * 40))) / SR) * env(k, .003, 22) * .5
+    def enviada():                         # mensagem saindo: sopro curtinho pra cima
+        return ar(.28, 1200, 7000) * .8 + np.concatenate([np.zeros(int(.2 * SR)), bolha(980)]) [: int(.28 * SR)] * .6
+    def tecla():                           # tecla macia (madeira), nada de estalo áspero
+        k = T(.06); return lp(rng.standard_normal(len(k)), 2600) * env(k, .001, 90) * .45 + np.sin(2 * np.pi * 1900 * k) * env(k, .001, 120) * .12
+    def brilho(base=1047):                 # arpejo de sinos (pentatônica maior) pra momento bom
+        out = np.zeros(int(2.4 * SR))
+        for i, r in enumerate((1, 1.125, 1.25, 1.5, 2)):
+            x = sino(base * r, 2.0, 3.5) * .55; j = int(i * .07 * SR); out[j:j + len(x)] += x[: len(out) - j]
         return out
-    def glitch(dur=.35):
-        L = int(dur * SR); k = np.arange(L) / SR
-        sq = np.sign(np.sin(2 * np.pi * (180 + 900 * (np.floor(k * 40) % 3)) * k)) * .4
-        return (sq + hp(rng.standard_normal(L), 2000) * .5) * (np.floor(k * 25) % 2) * .6
-    def crack():
-        L = int(.6 * SR); k = np.arange(L) / SR; out = hp(rng.standard_normal(L), 2500) * np.exp(-k * 14) * .8
-        for i in range(8):
-            j = int(rng.uniform(0, .25) * SR); m = int(.01 * SR); out[j:j + m] += rng.standard_normal(m) * 1.2
-        return out
-    def boom():
-        L = int(1.2 * SR); k = np.arange(L) / SR
-        return (np.sin(2 * np.pi * 45 * k) * np.exp(-k * 3.5) + lp(rng.standard_normal(L), 300) * np.exp(-k * 5) * .6)
-    def key():
-        L = int(.035 * SR); return hp(rng.standard_normal(L), 3000) * env(L, .001, 120) * .6
-    def buzz():
-        L = int(.22 * SR); k = np.arange(L) / SR; return np.sign(np.sin(2 * np.pi * 150 * k)) * env(L, .003, 10) * .35
-    def step():
-        L = int(.12 * SR); k = np.arange(L) / SR; return lp(rng.standard_normal(L), 600) * env(L, .002, 35)
-    def queda(dur=1.6):
-        L = int(dur * SR); k = np.arange(L) / SR; f = 620 * (180 / 620) ** (k / dur)
-        return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.minimum(1, k / .05) * np.minimum(1, (dur - k) / .2) * .35
-    def riser(dur=.9):
-        L = int(dur * SR); k = np.arange(L) / SR; sw = k / dur
-        return (hp(lp(rng.standard_normal(L), 1500 + 6000 * 0) * (1 - sw) + lp(rng.standard_normal(L), 9000) * sw, 400) * sw ** 2 * .6)
+    def tensao(dur=1.3):                   # grave dissonante (segunda menor) pro "problema"
+        k = T(dur); sw = np.sin(np.pi * k / dur) ** 1.5
+        return (np.sin(2 * np.pi * 110 * k) + np.sin(2 * np.pi * 116.5 * k) + .4 * np.sin(2 * np.pi * 55 * k)) * sw * .3
+    def resolve(dur=2.2):                  # acorde maior suave pra fechar
+        k = T(dur); sw = np.minimum(1, k / .25) * np.exp(-k * 1.4)
+        return sum(np.sin(2 * np.pi * f * k) * g for f, g in ((261.6, .5), (329.6, .35), (392, .35), (523.3, .25), (659.3, .12))) * sw * .5
+    def queda(dur=1.2):
+        k = T(dur); fr = 700 * (200 / 700) ** (k / dur); return np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.sin(np.pi * k / dur) * .3
 
-    tipos = ["varredura", "iris", "barras"]
+    def norm(x): return "".join(ch for ch in __import__("unicodedata").normalize("NFD", x.lower()) if ch.isalnum() or ch in "/?=")
+    def quando(c, ref):                    # mesmo "em" do motor: fração da cena ou palavra da fala (tempo absoluto)
+        if isinstance(ref, (int, float)): return c["t0"] + ref * c["dur"]
+        for p in c.get("palavras", []):
+            if norm(p["w"]).startswith(norm(str(ref))): return p["a"]
+        return c["t0"] + .5 * c["dur"]
+
+    notas = [523.3, 587.3, 659.3, 784, 880, 1046.5, 1174.7]   # sobe a cada pedaço montado (sensação de progresso)
     for i, c in enumerate(rot["cenas"]):
         t0 = c["t0"]
-        if i:  # transição entre cenas
-            tp = c.get("transicao") or tipos[(i - 1) % 3]
-            if tp == "varredura": put(whoosh(.64), t0 - .32, .9)
-            elif tp == "iris": put(whoosh(.5, 5000), t0 - .3, .7); put(thump(), t0, .7); put(ding(988), t0 - .02, .25)
-            else:
-                for j in range(7): put(whoosh(.18, 9000), t0 - .3 + j * .045, .35)
-        nw = sum(len(l.split()) for l in c.get("texto", []))
-        for j in range(min(nw, 6)): put(pop(700 + 80 * j), t0 + .05 + j * .08, .22)
-        if c.get("fx") == "tremer": put(boom(), t0 + .02, .7)
+        if i == 0: put(swell(.9, 659), max(0, t0 + .05), .5); put(sub(), t0 + .35, .85)      # abertura: puxa e bate
+        else: put(ar(.6, 400, 5000), t0 - .3, .55)                                           # troca de cena: sopro
+        put(ar(.35, 2000, 9000), t0 + .05, .18)                                              # título entrando: ar fino
+        if c.get("fx") == "tremer": put(sub(48, 1.4), t0 + .02, .6)
         bs = c.get("boneco") or []; bs = bs if isinstance(bs, list) else [bs]
-        for b in bs:
-            if b.get("entrada") == "andando":
-                for j in range(6): put(step(), t0 + .08 + j * .14, .35)
-            if b.get("pose") == "comemorando": put(chime(), t0 + .3, .35)
-        pr = (c.get("prop") or {}).get("tipo")
-        if pr == "conta_off":
-            put(ding(1175), t0 + .45, .45); put(glitch(), t0 + .9, .6); put(boom(), t0 + 1.22, .6); put(crack(), t0 + 1.35, .6)
-        elif pr == "alugado": put(thump(), t0 + 1.0, .6)
-        elif pr == "grafico": put(queda(), t0 + .2, .6)
-        elif pr == "busca":
-            q = (c.get("prop") or {}).get("consulta", "")
-            for j in range(len(q)): put(key(), t0 + .1 + 1.2 * j / max(1, len(q)), .5)
-            put(buzz(), t0 + 1.5, .5); put(buzz(), t0 + 1.9, .5); put(chime(), t0 + 2.3, .45)
-        elif pr == "enquete": put(pop(500), t0 + .3, .6); put(pop(620), t0 + .5, .6); put(pop(900), t0 + .9, .4)
-        elif pr == "cta": put(riser(), t0 - .9, .5); put(chime(), t0 + .6, .5)
-        elif pr == "site_desktop": put(whoosh(.7, 5000), t0 + .05, .5); put(chime(), t0 + .6, .3)
-        elif pr == "site_celular": put(whoosh(.7, 5000), t0 + .05, .5); put(chime(), t0 + .6, .3)
-        elif pr == "plano":
-            for j in range(10): put(key(), t0 + .3 + j * .1, .3)
-            put(ding(1568), t0 + 1.3, .45)
-            for j, _ in enumerate((c.get("prop") or {}).get("itens", [])): put(pop(700 + 60 * j), t0 + .9 + j * .28, .3)
-        elif pr == "comparar":
-            put(whoosh(.5), t0 + .2, .5); put(thump(), t0 + 1.1, .6); put(chime(), t0 + 1.2, .4); put(whoosh(.3, 9000), t0 + 2.0, .5); put(ding(1760), t0 + 2.5, .5)
-        elif pr == "passo": put(thump(), t0 + .15, .6); put(ding(1320), t0 + .2, .35); put(pop(900), t0 + .5, .3)
+        for bo in bs:
+            if bo.get("entrada") == "andando":
+                for j in range(5): put(tecla(), t0 + .1 + j * .16, .35)
+            if bo.get("pose") == "comemorando": put(brilho(), t0 + .3, .3)
+            if bo.get("pose") == "chocado" and i: put(tensao(), t0 + .1, .5)
+        # beats: zoom = sopro curto; destaque = sino (sobe a cada beat); reação do boneco = brilho ou tensão
+        for j, bt in enumerate(c.get("beats", [])):
+            tb = quando(c, bt.get("em", .5))
+            if bt.get("foco"): put(ar(.4, 900, 6000), tb - .12, .28)
+            if bt.get("destaque"): put(sino(notas[min(j, len(notas) - 1)] * 1.5, 1.8, 3.2), tb + .38, .32)
+            if bt.get("pose") == "chocado": put(tensao(1.1), tb, .45)
+            if bt.get("pose") == "comemorando": put(brilho(1175), tb + .05, .28)
+        p = c.get("prop") or {}; pr = p.get("tipo")
+        if pr == "chat_demo":
+            for m in p.get("msgs", []):
+                tm = quando(c, m.get("em", .2))
+                if m.get("de") == "cli":
+                    for q in range(3): put(tecla(), tm - .7 + q * .18, .25)
+                    put(bolha(560), tm, .6)
+                else: put(enviada(), tm - .05, .55)
+                if m.get("tag"): put(sino(1568, 1.6, 4), tm + .38, .35)
+            if p.get("digitar"):
+                d = p["digitar"]; td = quando(c, d.get("em", .3))
+                for q in range(len(d["txt"])): put(tecla(), td + q * .14, .5)
+                if d.get("vira"): put(brilho(1047), quando(c, d["vira"].get("em", .7)), .4)
+            if p.get("preenchido"): tp = quando(c, p["preenchido"].get("em", .5)); put(ar(.3, 1500, 8000), tp - .1, .4); put(sino(1318.5, 1.8, 3), tp + .6, .35)
+        elif pr == "link_montagem":
+            for j, q in enumerate(p.get("partes", [])): put(sino(notas[min(j, len(notas) - 1)], 1.6, 3.4), quando(c, q.get("em", .5)), .42)
         elif pr == "whatsapp":
-            for j, m in enumerate((c.get("prop") or {}).get("msgs", [])): put(pop(1200 if m[0] == "eu" else 800), t0 + .5 + j * 1.1, .5)
+            for j, m in enumerate(p.get("msgs", [])): put(bolha(560 if m[0] != "eu" else 760), t0 + .5 + j * 1.1, .55)
+        elif pr == "busca":
+            q = p.get("consulta", "")
+            for j in range(len(q)): put(tecla(), t0 + .1 + 1.2 * j / max(1, len(q)), .4)
+            put(sino(1318.5), t0 + 2.3, .35)
+        elif pr == "passo": put(sub(60, .9), t0 + .15, .4); put(sino(1046.5), t0 + .25, .35)
+        elif pr in ("site_celular", "site_desktop"): put(ar(.7, 300, 4000), t0 + .05, .45); put(sino(1568, 2, 3), t0 + .7, .3)
         elif pr == "preco":
-            for j in range(12): put(key(), t0 + .2 + j * .1, .35)
-            put(ding(1760), t0 + 1.4, .5); put(pop(800), t0 + 1.2, .4); put(pop(950), t0 + 1.45, .4)
+            for j in range(8): put(tecla(), t0 + .2 + j * .12, .3)
+            put(brilho(1175), t0 + 1.3, .4)
+        elif pr == "enquete": put(bolha(600), t0 + .3, .5); put(bolha(760), t0 + .5, .5)
+        elif pr == "cta": put(swell(1.0, 784), t0 - .2, .35); put(resolve(), t0 + .45, .55); put(brilho(1568), t0 + .6, .22)
+        elif pr == "conta_off": put(tensao(), t0 + .3, .6); put(sub(), t0 + 1.2, .7)
+        elif pr == "grafico": put(queda(), t0 + .2, .6)
+        elif pr == "comparar": put(ar(.5), t0 + .2, .5); put(sub(70, .8), t0 + 1.1, .4); put(sino(1760), t0 + 2.5, .4)
+        elif pr == "plano":
+            for j in range(8): put(tecla(), t0 + .3 + j * .1, .3)
+            put(brilho(), t0 + 1.3, .35)
+    # reverb de sala (cauda curta e escura) pra dar profundidade e elegância
+    k = np.arange(int(1.6 * SR)) / SR; ir = lp(rng.standard_normal(len(k)), 5000) * np.exp(-k * 3.6); ir /= np.sqrt(np.sum(ir ** 2))
+    wet = fftconvolve(mix, ir)[:N]; mix = mix * .78 + wet * .32
     mix /= np.max(np.abs(mix)) + 1e-9
-    return mix
+    return np.tanh(mix * 1.2) / np.tanh(1.2)
 
 
 def tratar_voz(v: np.ndarray) -> np.ndarray:
@@ -286,7 +302,9 @@ def main():
             i = int(c["fala_t0"] * SR); voz[i:i + len(v)] += v[: N - i]
         voz = tratar_voz(voz)
         fx = efeitos(rot, total)[:N]; fx = np.pad(fx, (0, N - len(fx)))  # só efeitos, sem música de fundo
-        mix = voz + fx * .32; mix /= max(1, np.abs(mix).max() / .95)
+        envv = np.convolve(np.abs(voz), np.ones(int(.12 * SR)) / int(.12 * SR), mode="same")   # envelope da voz
+        duck = 1 - .45 * np.clip(envv / (np.percentile(envv[envv > 1e-4], 60) + 1e-9), 0, 1)       # efeitos abaixam sob a fala
+        mix = voz + fx * .4 * duck; mix /= max(1, np.abs(mix).max() / .95)
         wav = tmp / "a.wav"; sf.write(wav, np.stack([mix, mix], 1), SR)
         ff = imageio_ffmpeg.get_ffmpeg_exe()
         subprocess.run([ff, "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", str(frames / "f%05d.jpg"), "-i", str(wav),
