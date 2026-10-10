@@ -18,6 +18,7 @@ Regras fixas:
 - Títulos só com balanço lento e suave. Nada tremendo rápido (poluição visual). Usar `"fx": "zoom"` ou `"flash"`; `"tremer"` hoje é só um zoom suave.
 - Transições entre cenas; só efeitos sonoros, sem música de fundo.
 - Voz: a dele gravada (Kokoro é só voz guia enquanto ele não manda).
+- Roteiro (pedido dele em 10/10, o v04 "tem gente pior que você vendendo mais" foi reprovado): gancho estranho/engraçado que serve pra qualquer pessoa (ex.: "você escolhe dentista igual escolhe melancia"), **quebra de expectativa no meio** (a virada: "a melancia é você") e público amplo (manicure, mecânico, quem vende bolo, não só médico/advogado). Nada de gancho genérico de marketing.
 - Toda vez: gancho polêmico no início, pergunta pra gerar comentário (prop `enquete`), prova (`site_celular` com site real), preço (`preco`, a partir de R$ 300) e CTA final pro perfil/link da bio (`cta`).
 - Não inventar dados, depoimentos ou números.
 - Capa: `python3 capa.py ../roteiros/vNN.json` → `saida/vNN-capa.jpg` (1ª cena + chave "capa" no roteiro: texto, tamanho, selo com a pergunta do gancho, selo_y). Tudo dentro do recorte 3:4 da grade.
