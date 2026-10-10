@@ -16,7 +16,13 @@
         "x": 540,
         "y": 1400,
         "escala": 1.12
-      }
+      },
+      "beats": [
+        {
+          "em": "ultima",
+          "pose": "chocado"
+        }
+      ]
     },
     {
       "fala": "Primeira: mensagem de saudação. O cliente chama e já recebe um oi explicando o que você faz, sem você pegar no celular.",
@@ -41,8 +47,36 @@
             "em": "recebe",
             "tag": "⚡ Automático"
           }
-        ]
-      }
+        ],
+        "x": 30
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "chama",
+          "foco": "msg1",
+          "zoom": 1.18,
+          "destaque": "msg1",
+          "pose": "apontando"
+        },
+        {
+          "em": "recebe",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "comemorando"
+        },
+        {
+          "em": "sem",
+          "pose": "confiante"
+        }
+      ]
     },
     {
       "fala": "Segunda: mensagem de ausência. Chamou de madrugada? Ele recebe seu horário e sabe que vai ser atendido.",
@@ -68,8 +102,36 @@
             "em": "recebe",
             "tag": "⚡ Fora do horário"
           }
-        ]
-      }
+        ],
+        "x": 30
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "madrugada",
+          "foco": "hora",
+          "zoom": 1.18,
+          "destaque": "hora",
+          "pose": "chocado"
+        },
+        {
+          "em": "recebe",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "tag",
+          "pose": "apontando"
+        },
+        {
+          "em": "atendido",
+          "pose": "comemorando"
+        }
+      ]
     },
     {
       "fala": "Terceira: respostas rápidas. Você digita barra preço e a mensagem inteira aparece pronta.",
@@ -96,8 +158,32 @@
             "em": "aparece",
             "txt": "Corte R$ 40 · Barba R$ 30 · Combo R$ 60 ✂️"
           }
+        },
+        "x": 30
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "digita",
+          "foco": "campo",
+          "zoom": 1.18,
+          "destaque": "campo",
+          "pose": "apontando"
+        },
+        {
+          "em": "aparece",
+          "foco": "sugest",
+          "zoom": 1.18,
+          "destaque": "sugest",
+          "pose": "comemorando"
         }
-      }
+      ]
     },
     {
       "fala": "E a quarta, que quase ninguém usa: o link com mensagem pronta. A pessoa clica e o WhatsApp já abre escrito: oi, quero um orçamento.",
@@ -113,8 +199,33 @@
         "preenchido": {
           "txt": "Oi! Vim pelo Instagram e quero um orçamento 😊",
           "em": "abre"
+        },
+        "x": 30
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "ninguem",
+          "pose": "chocado"
+        },
+        {
+          "em": "clica",
+          "pose": "apontando"
+        },
+        {
+          "em": "abre",
+          "foco": "campo",
+          "zoom": 1.18,
+          "destaque": "campo",
+          "pose": "comemorando"
         }
-      }
+      ]
     },
     {
       "fala": "É só usar wa.me, barra, cinquenta e cinco, o DDD e o seu número. Depois, interrogação text igual e a mensagem que você quiser.",
@@ -158,7 +269,45 @@
             "em": "mensagem"
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "em": "wa",
+          "foco": "r1",
+          "zoom": 1.14,
+          "destaque": "r1"
+        },
+        {
+          "em": "cinquenta",
+          "foco": "r2",
+          "zoom": 1.14,
+          "destaque": "r2"
+        },
+        {
+          "em": "ddd",
+          "foco": "r3",
+          "zoom": 1.14,
+          "destaque": "r3"
+        },
+        {
+          "em": "numero",
+          "foco": "r4",
+          "zoom": 1.14,
+          "destaque": "r4"
+        },
+        {
+          "em": "interrogacao",
+          "foco": "r5",
+          "zoom": 1.14,
+          "destaque": "r5"
+        },
+        {
+          "em": "mensagem",
+          "foco": "r6",
+          "zoom": 1.14,
+          "destaque": "r6"
+        }
+      ]
     },
     {
       "fala": "Esse é o botão que eu coloco em todo site que eu faço. O cliente nem precisa pensar no que escrever.",
@@ -196,7 +345,17 @@
         "y": 1400,
         "escala": 0.72,
         "entrada": "andando"
-      }
+      },
+      "beats": [
+        {
+          "em": "salva",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
     }
   ],
   "fundo": "auras",
