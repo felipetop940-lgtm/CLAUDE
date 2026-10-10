@@ -18,9 +18,9 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
 
 /* vídeo do Carlos */
 #vid { position: absolute; overflow: hidden; background: #000; z-index: 5; }
-#vid img { filter: contrast(1.16) saturate(1.14) brightness(.97); position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+#vid img { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
 #vshade { position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,0) 24%, rgba(0,0,0,0) 62%, rgba(0,0,0,.35) 100%); }
+  background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 70%, rgba(0,0,0,.18) 100%); }
 #vflash { position: absolute; inset: 0; background: #fff; opacity: 0; }
 
 /* legenda */
@@ -374,7 +374,7 @@ ITEMS.forEach((t, i) => {
   tl.to(`#it${n}`, { x: 0, autoAlpha: 1, duration: .45, ease: E3 }, t)
     .add(() => {}, t)
     .set(`.chip[data-i="${n}"]`, { attr: { class: "chip mono on" } }, t + 0.1)
-    .fromTo(`.chip[data-i="${n}"]`, { scale: 1.12 }, { scale: 1, duration: .4, ease: "back.out(3)" }, t + 0.1)
+    .fromTo(`.chip[data-i="${n}"]`, { scale: 1.12 }, { scale: 1, duration: .4, ease: "back.out(3)", immediateRender: false }, t + 0.1)
 });
 tl.to(".draw4 path", { strokeDashoffset: 0, duration: .7, stagger: .05, ease: "power2.out" }, 8.62)
   .to(".draw5 path", { strokeDashoffset: 0, duration: .6, stagger: .08, ease: "power2.out" }, 9.45)
@@ -402,7 +402,7 @@ tl.to("#it5", { x: -90, autoAlpha: 0, duration: .3, ease: "power2.in" }, 10.5)
 // atendimento (corte para o take 3, com flash suave)
 tl.set("#sv", { autoAlpha: 0 }, 14.86)
   .set("#at", { autoAlpha: 1 }, 14.86)
-  .fromTo("#vflash", { opacity: .35 }, { opacity: 0, duration: .25 }, 14.86)
+  .fromTo("#vflash", { opacity: .35 }, { opacity: 0, duration: .25, immediateRender: false }, 14.86)
   .from("#at .abs:first-child", { scale: .5, autoAlpha: 0, duration: .55, ease: "back.out(1.6)" }, 14.88)
   .from("#atk", { yPercent: 120, duration: .45, ease: E3 }, 14.96)
   .from("#att", { yPercent: 110, duration: .5, ease: E3 }, 15.42)
@@ -412,7 +412,7 @@ tl.set("#sv", { autoAlpha: 0 }, 14.86)
 // equipe
 tl.set("#at", { autoAlpha: 0 }, 17.10)
   .set("#eq4", { autoAlpha: 1 }, 17.10)
-  .fromTo("#vflash", { opacity: .3 }, { opacity: 0, duration: .25 }, 17.10)
+  .fromTo("#vflash", { opacity: .3 }, { opacity: 0, duration: .25, immediateRender: false }, 17.10)
   .set("#icons", { autoAlpha: 0 }, 17.10)
   .from("#eqpill", { y: -30, autoAlpha: 0, duration: .45, ease: E3 }, 17.15)
   .from("#people .person", { y: 50, autoAlpha: 0, stagger: .12, duration: .5, ease: E3 }, 17.5)
