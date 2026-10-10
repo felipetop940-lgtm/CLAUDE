@@ -37,7 +37,7 @@ body { font-family: "IT", sans-serif; color: var(--white); -webkit-font-smoothin
 .progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--blue), var(--gold)); transform-origin: 0 50%; }
 .handle { position: absolute; top: 126px; left: 0; right: 0; text-align: center; font-size: 30px; font-weight: 600; color: var(--gold); letter-spacing: .02em; }
 
-.txt { position: absolute; left: 50px; right: 50px; top: 290px; text-align: center; font-family: "Anton", sans-serif; text-transform: uppercase; line-height: 1.07; letter-spacing: .01em; text-shadow: 0 10px 34px rgba(0,0,0,.75); }
+.txt { position: absolute; left: 50px; right: 50px; top: 390px; text-align: center; font-family: "Anton", sans-serif; text-transform: uppercase; line-height: 1.07; letter-spacing: .01em; text-shadow: 0 10px 34px rgba(0,0,0,.75); }
 .txt .ln { display: table; margin: 0 auto; }
 .w { display: inline-block; margin: 0 .1em; transform-origin: 50% 80%; }
 .w.gold, .w.red, .w.blue { font-family: "Marker", "Anton", sans-serif; font-size: 1.16em; letter-spacing: 0; }
@@ -69,6 +69,7 @@ svg { overflow: visible; }
   <svg class="layer" id="stick" viewBox="0 0 1080 1920" width="1080" height="1920"></svg>
   <div class="layer" id="labels"></div>
   <div class="txt" id="txt"></div>
+  <svg class="layer" id="fg" viewBox="0 0 1080 1920" width="1080" height="1920"></svg>
 </div>
 <div class="subs" id="subs"></div>
 <div class="layer" id="trans" style="pointer-events:none"></div>
@@ -98,7 +99,7 @@ const BOKEH = Array.from({ length: 14 }, () => ({ x: rnd() * 1080, y: rnd() * 22
 
 /* ---------------- Título cinético ---------------- */
 function buildText(c) {
-  const box = $('txt'); box.innerHTML = ''; box.style.fontSize = (c.tamanho || 132) + 'px'; c._words = [];
+  const box = $('txt'); box.innerHTML = ''; box.style.fontSize = (c.tamanho || 120) + 'px'; c._words = [];
   const CLS = { '*': 'gold', '~': 'red', '_': 'blue', '#': 'box' };
   (c.texto || []).forEach(line => {
     const ln = document.createElement('span'); ln.className = 'ln'; let open = null;
@@ -165,15 +166,23 @@ function figure(s, lt, t) {
   let cx = s.x ?? 540, walkK = 0;
   if (s.entrada === 'andando') { const k = ease(lt / .9); cx = lerp(s.x < 540 ? -200 : 1280, s.x ?? 540, k); walkK = 1 - clamp((lt - .75) / .25); }
   const inK = s.entrada === 'andando' ? 1 : back(lt / .38);
-  let P = mixPose(POSES.parado, POSES[s.pose] || POSES.parado, ease((lt - (s.entrada === 'andando' ? .8 : 0)) / .3));
+  let P = s._P ? { ...s._P, a: [...s._P.a], b: [...s._P.b], p: [...s._P.p], q: [...s._P.q] } : mixPose(POSES.parado, POSES[s.pose] || POSES.parado, ease((lt - (s.entrada === 'andando' ? .8 : 0)) / .3));
   if (walkK > 0) { const ph = Math.sin(lt * 14); P = mixPose(P, { ...POSES.andando, a: [16 * ph, -6], b: [-16 * ph, 6], p: [20 * ph, -Math.max(0, -ph) * 30], q: [-20 * ph, -Math.max(0, ph) * 30] }, walkK); }
   const osc = Math.sin(t * 6);
   if (s.pose === 'acenando') P.b = [P.b[0], P.b[1] + osc * 22];
   if (s.pose === 'comemorando' || s.pose === 'dancando') { P.a[0] += osc * 8; P.b[0] += osc * 8; }
   if (s.pose === 'socando') { const hit = Math.max(0, Math.sin(t * 7)); P.b = [P.b[0], P.b[1]]; cx += hit * 10 * S; }
   if (s.pose === 'triste') P.h += Math.sin(t * 2.5) * 2;
-  if (!['acenando', 'comemorando', 'dancando', 'socando'].includes(s.pose)) { P.a[0] += Math.sin(t * 1.7) * 3; P.b[0] += Math.sin(t * 1.7 + 1) * 3; P.h += Math.sin(t * 1.3) * 2; }
-  const hop = (s.pose === 'comemorando' || s.pose === 'dancando') ? Math.abs(Math.sin(t * 5)) * 30 * S : 0;
+  // vivo: nunca parado. Braço "preso" (segurando algo/na cabeça) mexe pouco; braço livre gesticula como quem conversa.
+  const PRESO = { celular: 'b', pensando: 'b', chocado: 'ab', confiante: 'ab', cintura: 'ab' }[s.pose] || '';
+  const g1 = Math.sin(t * 2.3), g2 = Math.sin(t * 2.9 + 1.3), g3 = Math.sin(t * 1.9 + 2.1);
+  if (!s.parado && !['acenando', 'comemorando', 'dancando', 'socando'].includes(s.pose)) {
+    if (!PRESO.includes('a')) { P.a = [P.a[0] + 14 + g1 * 16, P.a[1] - 20 + g2 * 22]; } else { P.a = [P.a[0] + g1 * 4, P.a[1] + g2 * 4]; }
+    if (!PRESO.includes('b')) { P.b = [P.b[0] + 10 + g2 * 14, P.b[1] - 16 + g3 * 20]; } else { P.b = [P.b[0] + g2 * 4, P.b[1] + g3 * 4]; }
+    P.h += Math.sin(t * 2.1) * 6; P.t += Math.sin(t * 1.5) * 4;
+    P.p = [P.p[0] + Math.max(0, Math.sin(t * 1.2)) * 6, P.p[1]]; P.q = [P.q[0] + Math.max(0, -Math.sin(t * 1.2)) * 6, P.q[1]];
+    cx += Math.sin(t * 1.2) * 12 * S; }
+  const hop = (s.pose === 'comemorando' || s.pose === 'dancando') ? Math.abs(Math.sin(t * 5)) * 30 * S : (s.parado ? 0 : Math.abs(Math.sin(t * 2.4)) * 10 * S);
   const shake = s.pose === 'chocado' ? Math.sin(t * 60) * 3 * S : 0;
   const L = 108 * S, W = 44 * S, HR = 58 * S, gap = 10 * S;
   const hipY = base - 2 * L - hop, tr = P.t * Math.PI / 180;
@@ -428,6 +437,41 @@ function drawMG(c, lt, t) {
   $('mg').innerHTML = h;
 }
 
+
+/* ---------------- Primeiro plano: reações + efeitos (nunca para) ----------------
+   Um boneco menor entra pelo canto e vai trocando de reação a cada ~1,4 s, com balão.
+   Por cena: "reacao": {"lado": "esq"|"dir", "poses": ["chocado","comemorando",...]} ou "reacao": false. */
+const REAC = { red: ['chocado', 'apontando', 'cintura'], gold: ['comemorando', 'ideia', 'apontando'], blue: ['pensando', 'apontando', 'ideia'] };
+const BAL = { chocado: '!', pensando: '?', comemorando: 'coracao', ideia: 'estrela', apontando: 'cursor', cintura: '!?', triste: '...', confiante: 'check', acenando: 'chat', dancando: 'coracao' };
+function drawFG(c, lt, t, i) {
+  let h = '';
+  const r = c.reacao === false ? null : (c.reacao || {});
+  const temBonecoNoCentro = c.boneco && !Array.isArray(c.boneco) && Math.abs((c.boneco.x ?? 540) - 540) < 120;
+  if (r) {
+    const lado = r.lado || (i % 2 ? 'dir' : 'esq'), x = lado === 'esq' ? 112 : 968, poses = r.poses || REAC[c.acento] || REAC.gold;
+    const per = 1.4, n = Math.floor(lt / per), fr = (lt % per) / per;
+    const cur = poses[n % poses.length], prev = poses[(n + poses.length - 1) % poses.length];
+    const P = n === 0 ? mixPose(POSES.parado, POSES[cur], ease(fr / .2)) : mixPose(POSES[prev], POSES[cur], back(fr / .22));
+    const inK = back((lt - .45) / .5), y = 1440 + (1 - clamp(inK)) * 420;
+    if (inK > 0) {
+      const S = temBonecoNoCentro ? .4 : .45;
+      h += figure({ pose: cur, _P: P, x, y, escala: S, emocao: cur === 'comemorando' ? 'brilho' : undefined }, 5, t * 1.15 + i);
+      // balão de reação (pula a cada troca)
+      const pk = back(fr / .2), bx = x + (lado === 'esq' ? 4 : -4), by = y - 640 * S - 78, b = BAL[cur] || '!';
+      const icon = ICO[b] ? `<g transform="translate(-24 -26) scale(2)" fill="none" stroke="#07080A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${ICO[b]}</g>` :
+        `<text x="0" y="22" text-anchor="middle" font-family="Anton" font-size="62" fill="#07080A">${b}</text>`;
+      h += `<g transform="translate(${bx} ${by + Math.sin(t * 3) * 6}) scale(${clamp(pk, 0, 1.25)}) rotate(${Math.sin(t * 2) * 6})">
+        <path d="M-58 -50 h116 a22 22 0 0 1 22 22 v58 a22 22 0 0 1 -22 22 h-${lado === 'esq' ? 84 : 20} l${lado === 'esq' ? -26 : 26} 26 l4 -26 h-${lado === 'esq' ? 10 : 74} a22 22 0 0 1 -22 -22 v-58 a22 22 0 0 1 22 -22z" fill="${cur === 'chocado' || cur === 'cintura' ? C.red : C.gold}" style="filter:drop-shadow(0 12px 22px rgba(0,0,0,.6))"/>${icon}</g>`;
+    }
+  }
+  // efeitos pipocando na frente: estrelinhas e riscos de impacto em volta da cena (posições mudam a cada ciclo)
+  for (let j = 0; j < 2; j++) { const per = 1.1 + j * .35, n = Math.floor((t + j * .5) / per), ph = ((t + j * .5) % per) / per;
+    const sx = 160 + ((n * 389 + j * 241) % 760), sy = 700 + ((n * 211 + j * 397) % 620), k = Math.sin(ph * Math.PI), col = (n + j) % 2 ? C.gold : C.blue;
+    if (ph < .6) h += `<g transform="translate(${sx} ${sy}) scale(${.6 + ph}) rotate(${n * 37})" opacity="${k}">${[0, 1, 2, 3, 4, 5].map(q => `<line x1="0" y1="-26" x2="0" y2="-58" transform="rotate(${q * 60})" stroke="${col}" stroke-width="7" stroke-linecap="round"/>`).join('')}</g>`;
+    else h += `<path transform="translate(${sx} ${sy}) scale(${1.4 - ph})" d="M0 -30 Q0 0 30 0 Q0 0 0 30 Q0 0 -30 0 Q0 0 0 -30Z" fill="${col}" opacity="${k}"/>`; }
+  $('fg').innerHTML = h;
+}
+
 /* ---------------- Fundo iluminado ---------------- */
 // R.fundo: "feixes" (luz azul e dourada em diagonal) · "auras" (esferas de luz) · "palco" (holofote dourado + borda azul)
 function drawBg(t) {
@@ -514,9 +558,11 @@ function render(t) {
   $('world').style.filter = 'none';
   $('flash').style.opacity = c.fx === 'flash' && lt > .3 ? Math.max(0, .22 - (lt - .3) * 3) : 0;  // depois da transição
   $('props').innerHTML = prop(c, lt, t);
-  $('props').style.transform = `translateY(${Math.sin(t * 1.6) * 9}px) rotate(${Math.sin(t * 1.1) * .7}deg)`;   // cards nunca ficam parados
+  $('props').style.transformOrigin = '50% 1450px';
+  $('props').style.transform = `translateY(${Math.sin(t * 1.6) * 9}px) rotate(${Math.sin(t * 1.1) * .7}deg) translateY(28px) scale(.92)`;   // cards nunca ficam parados
   if (c.mg !== false) drawMG(c, lt, t); else $('mg').innerHTML = '';
   drawFigures(c, lt, t);
+  drawFG(c, lt, t, i);
   renderSubs(c, t);
   drawTransition(t);
 }
