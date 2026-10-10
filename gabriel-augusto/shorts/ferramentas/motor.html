@@ -410,7 +410,7 @@ function prop(c, lt, t) {
         sugest = `<div data-a="sugest" style="position:absolute;left:24px;right:24px;bottom:120px;padding:22px 26px;border-radius:24px;background:#1F2C34;border:3px solid ${C.gold};font-size:32px;line-height:1.3;color:#E9EDEF;opacity:${v};transform:translateY(${(1 - v) * 30}px)"><div style="font-size:24px;font-weight:800;color:${C.gold};margin-bottom:8px">${p.digitar.txt} → resposta pronta</div>${p.digitar.vira.txt}</div>`; } }
     if (p.preenchido) { const f0 = quando(p.preenchido.em), v = ease((lt - f0) / .5);
       if (lt > f0) campo = `<span style="color:#E9EDEF;opacity:${v}">${p.preenchido.txt}</span>`;
-      if (lt > f0 + .6) sugest = `<div style="position:absolute;right:30px;bottom:130px;padding:10px 22px;border-radius:30px;background:${C.gold};color:#07080A;font-size:28px;font-weight:800;opacity:${ease((lt - f0 - .6) / .4)}">já vem escrito ✓</div>`; }
+      if (lt > f0 + .6) sugest = `<div style="position:absolute;right:30px;bottom:200px;padding:10px 22px;border-radius:30px;background:${C.gold};color:#07080A;font-size:28px;font-weight:800;opacity:${ease((lt - f0 - .6) / .4)}">já vem escrito ✓</div>`; }
     const inner = `<div style="flex:1;padding:10px 30px">${bolhas}</div>${sugest}
       <div style="display:flex;align-items:center;gap:16px;padding:18px 22px 28px"><div data-a="campo" style="flex:1;min-height:76px;padding:18px 26px;border-radius:40px;background:#1F2C34;font-size:32px;line-height:1.25">${campo}</div>
       <div style="width:76px;height:76px;border-radius:50%;background:#00A884;display:grid;place-items:center;font-size:34px;color:#fff">➤</div></div>`;
@@ -551,13 +551,13 @@ function drawBeats(c, lt, t) {
   // nunca deixa a cena subir pra baixo do título (topo >= 660) nem descer na legenda (base <= 1440)
   let ty = (1020 - fy) * (z - 1) * 1.2;
   if (A._top != null) { const topo = fy + (A._top - fy) * z + ty, base = fy + (A._bot - fy) * z + ty;
-    if (topo < 660) ty += 660 - topo; else if (base > 1440) ty -= Math.min(base - 1440, topo - 660); }
+    if (topo < 660) ty += 660 - topo; else if (base > 1410) ty -= Math.min(base - 1410, topo - 660); }
   $('cam').style.transformOrigin = `${fx}px ${fy}px`;
   $('cam').style.transform = `translate(${tx}px, ${ty}px) scale(${z})`;
   // destaque dourado se desenhando em volta do elemento citado
   let h = '';
   B.forEach((b, j) => { if (!b.destaque || !A[b.destaque] || lt < b.t) return; const a = A[b.destaque], d = lt - b.t, fim = j < B.length - 1 ? B[j + 1].t - b.t : 99;
-    const on = ease(d / .5), off = 1 - ease((d - fim + .1) / .3); if (off <= 0) return;
+    const on = ease((d - .35) / .5), off = 1 - ease((d - fim + .1) / .3); if (off <= 0 || on <= 0) return;   // só desenha depois que o elemento já apareceu
     const pad = 16, x = a.x - pad, y = a.y - pad, W = a.w + pad * 2, H = a.h + pad * 2, per = 2 * (W + H);
     h += `<rect x="${x}" y="${y}" width="${W}" height="${H}" rx="26" fill="none" stroke="${C.gold}" stroke-width="7" stroke-dasharray="${per}" stroke-dashoffset="${per * (1 - on)}" opacity="${off}" style="filter:drop-shadow(0 0 14px ${C.gold})"/>`; });
   $('hl').innerHTML = h;
