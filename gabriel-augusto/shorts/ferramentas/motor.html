@@ -175,14 +175,14 @@ function figure(s, lt, t) {
   if (s.pose === 'triste') P.h += Math.sin(t * 2.5) * 2;
   // vivo: nunca parado. Braço "preso" (segurando algo/na cabeça) mexe pouco; braço livre gesticula como quem conversa.
   const PRESO = { celular: 'b', pensando: 'b', chocado: 'ab', confiante: 'ab', cintura: 'ab' }[s.pose] || '';
-  const g1 = Math.sin(t * 2.3), g2 = Math.sin(t * 2.9 + 1.3), g3 = Math.sin(t * 1.9 + 2.1);
+  const g1 = Math.sin(t * 1.5), g2 = Math.sin(t * 1.8 + 1.3), g3 = Math.sin(t * 1.3 + 2.1);   // calmo: gesto lento
   if (!s.parado && !['acenando', 'comemorando', 'dancando', 'socando'].includes(s.pose)) {
-    if (!PRESO.includes('a')) { P.a = [P.a[0] + 14 + g1 * 16, P.a[1] - 20 + g2 * 22]; } else { P.a = [P.a[0] + g1 * 4, P.a[1] + g2 * 4]; }
-    if (!PRESO.includes('b')) { P.b = [P.b[0] + 10 + g2 * 14, P.b[1] - 16 + g3 * 20]; } else { P.b = [P.b[0] + g2 * 4, P.b[1] + g3 * 4]; }
-    P.h += Math.sin(t * 2.1) * 6; P.t += Math.sin(t * 1.5) * 4;
+    if (!PRESO.includes('a')) { P.a = [P.a[0] + 6 + g1 * 7, P.a[1] - 8 + g2 * 9]; } else { P.a = [P.a[0] + g1 * 2, P.a[1] + g2 * 2]; }
+    if (!PRESO.includes('b')) { P.b = [P.b[0] + 5 + g2 * 6, P.b[1] - 6 + g3 * 8]; } else { P.b = [P.b[0] + g2 * 2, P.b[1] + g3 * 2]; }
+    P.h += Math.sin(t * 1.4) * 3; P.t += Math.sin(t * 1.1) * 2;
     P.p = [P.p[0] + Math.max(0, Math.sin(t * 1.2)) * 6, P.p[1]]; P.q = [P.q[0] + Math.max(0, -Math.sin(t * 1.2)) * 6, P.q[1]];
-    cx += Math.sin(t * 1.2) * 12 * S; }
-  const hop = (s.pose === 'comemorando' || s.pose === 'dancando') ? Math.abs(Math.sin(t * 5)) * 30 * S : (s.parado ? 0 : Math.abs(Math.sin(t * 2.4)) * 10 * S);
+    cx += Math.sin(t * .8) * 6 * S; }
+  const hop = (s.pose === 'comemorando' || s.pose === 'dancando') ? Math.abs(Math.sin(t * 5)) * 30 * S : (s.parado ? 0 : Math.abs(Math.sin(t * 1.6)) * 4 * S);
   const shake = s.pose === 'chocado' ? Math.sin(t * 60) * 3 * S : 0;
   const L = 108 * S, W = 44 * S, HR = 58 * S, gap = 10 * S;
   const hipY = base - 2 * L - hop, tr = P.t * Math.PI / 180;
@@ -199,7 +199,7 @@ function figure(s, lt, t) {
   let extra = '';
   if (s.pose === 'celular') { const px = B.x2 + 8 * S, py = B.y2 - 40 * S, tap = Math.max(0, Math.sin(t * 5));
     // celular na mão direita + bolhas de notificação subindo (movimento constante)
-    let pings = ''; for (let i = 0; i < 3; i++) { const ph = ((t * .8 + i / 3) % 1), y = py - 90 * S - ph * 230 * S, x = px + (i - 1) * 46 * S + Math.sin(t * 2 + i) * 10 * S, o = Math.sin(ph * Math.PI);
+    let pings = ''; for (let i = 0; i < 1; i++) { const ph = ((t * .45) % 1), y = py - 90 * S - ph * 230 * S, x = px + (i - 1) * 46 * S + Math.sin(t * 2 + i) * 10 * S, o = Math.sin(ph * Math.PI);
       pings += `<g opacity="${o}" transform="translate(${x} ${y}) scale(${S * (.7 + .3 * o)})"><rect x="-34" y="-24" width="68" height="44" rx="16" fill="${i === 1 ? C.gold : C.blue}"/><path d="M-10 20 l-8 14 l20 -14z" fill="${i === 1 ? C.gold : C.blue}"/><circle cx="-14" cy="-2" r="5" fill="#0B0D11"/><circle cx="0" cy="-2" r="5" fill="#0B0D11"/><circle cx="14" cy="-2" r="5" fill="#0B0D11"/></g>`; }
     extra = `<g transform="rotate(${-8 + Math.sin(t * 1.4) * 3} ${px} ${py})"><rect x="${px - 38 * S}" y="${py - 66 * S}" width="${76 * S}" height="${132 * S}" rx="${15 * S}" fill="#0B0D11" stroke="${C.white}" stroke-width="${6 * S}"/>
       <rect x="${px - 28 * S}" y="${py - 54 * S}" width="${56 * S}" height="${100 * S}" rx="${7 * S}" fill="${C.blue}" opacity="${.55 + .25 * Math.sin(t * 4)}"/>
@@ -378,6 +378,55 @@ function prop(c, lt, t) {
       <div style="margin-top:60px;padding:44px 50px;${card}font-size:54px;font-weight:600;line-height:1.3;color:${C.white};opacity:${tx};transform:translateY(${(1 - tx) * 40}px)">${p.texto || ''}</div>
       <div style="display:flex;justify-content:center;gap:16px;margin-top:56px">${dots}</div></div>`);
   }
+
+  /* ---- Props explicativos, sincronizados com a fala ----
+     "em": número (fração da cena) ou palavra da fala (o elemento aparece quando ela é dita). */
+  const quando = ref => { if (typeof ref === 'number') return ref * c.dur;
+    const norm = x => x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9/?=]/g, '');
+    const w = (c.palavras || []).find(p => norm(p.w).startsWith(norm(String(ref)))); return w ? w.a - c.t0 : .5 * c.dur; };
+  const fone = (inner, nome, hora) => { const inn = ease(lt / .7);
+    return `<div style="width:680px;height:860px;border-radius:70px;padding:16px;background:linear-gradient(145deg,#2a2f3a,#0c0e12);box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.08),0 0 80px rgba(79,123,255,.16);transform:translateY(${(1 - inn) * 60}px);opacity:${inn}">
+      <div style="position:relative;height:100%;border-radius:56px;overflow:hidden;background:#0B141A;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:20px;padding:40px 34px 24px;background:#1F2C34">
+          <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#3a404c,#1a1e25);display:grid;place-items:center;font-size:36px">🏪</div>
+          <div style="flex:1"><div style="font-size:36px;font-weight:700;color:#E9EDEF">${nome || 'Sua loja'}</div><div style="font-size:26px;color:#25D366">online</div></div>
+          ${hora ? `<div style="padding:8px 18px;border-radius:20px;background:rgba(79,123,255,.18);border:2px solid rgba(79,123,255,.5);font-size:28px;font-weight:700;color:#C9D6FF">${hora}</div>` : ''}</div>
+        ${inner}</div></div>`; };
+  if (p.tipo === 'chat_demo') {
+    // conversa que acontece no ritmo da fala: mensagem do cliente, resposta (automática ou não), digitação no campo e etiqueta explicando
+    const bolhas = (p.msgs || []).map(m => { const t0 = quando(m.em), eu = m.de !== 'cli', kk = back((lt - t0) / .45), typing = !eu && lt > t0 - .8 && lt < t0;
+      if (lt < t0 - .8 || (eu && lt < t0)) return '';
+      const tag = m.tag && lt > t0 + .35 ? `<div style="margin-top:12px;display:flex;justify-content:flex-end"><span style="padding:10px 22px;border-radius:30px;background:${C.gold};color:#07080A;font-size:28px;font-weight:800;opacity:${ease((lt - t0 - .35) / .4)};transform:translateY(${(1 - ease((lt - t0 - .35) / .4)) * 12}px)">${m.tag}</span></div>` : '';
+      return `<div style="margin-top:22px"><div style="display:flex;justify-content:${eu ? 'flex-end' : 'flex-start'}">${typing ? `<div style="padding:22px 30px;border-radius:26px;background:#1F2C34;font-size:40px;color:${C.gray}">• • •</div>` :
+        `<div style="max-width:540px;padding:22px 30px;border-radius:26px;${eu ? 'border-bottom-right-radius:6px;background:#005C4B' : 'border-bottom-left-radius:6px;background:#1F2C34'};font-size:35px;line-height:1.3;color:#E9EDEF;transform:scale(${kk});transform-origin:${eu ? '100%' : '0%'} 100%;opacity:${clamp(kk)};${m.tag ? `box-shadow:0 0 0 3px ${C.gold}` : ''}">${m.txt}</div>`}</div>${tag}</div>`; }).join('');
+    let campo = '<span style="color:#8696A0">Mensagem</span>', sugest = '';
+    if (p.digitar) { const d0 = quando(p.digitar.em), n = Math.floor(clamp((lt - d0) / (p.digitar.txt.length * .14)) * p.digitar.txt.length);
+      if (lt > d0) campo = `<span style="color:#E9EDEF">${p.digitar.txt.slice(0, n)}</span><span style="color:${C.gold};opacity:${Math.sin(t * 8) > 0 ? 1 : 0}">|</span>`;
+      if (p.digitar.vira && lt > quando(p.digitar.vira.em)) { const v = ease((lt - quando(p.digitar.vira.em)) / .5);
+        sugest = `<div style="position:absolute;left:24px;right:24px;bottom:120px;padding:22px 26px;border-radius:24px;background:#1F2C34;border:3px solid ${C.gold};font-size:32px;line-height:1.3;color:#E9EDEF;opacity:${v};transform:translateY(${(1 - v) * 30}px)"><div style="font-size:24px;font-weight:800;color:${C.gold};margin-bottom:8px">${p.digitar.txt} → resposta pronta</div>${p.digitar.vira.txt}</div>`; } }
+    if (p.preenchido) { const f0 = quando(p.preenchido.em), v = ease((lt - f0) / .5);
+      if (lt > f0) campo = `<span style="color:#E9EDEF;opacity:${v}">${p.preenchido.txt}</span>`;
+      if (lt > f0 + .6) sugest = `<div style="position:absolute;right:30px;bottom:130px;padding:10px 22px;border-radius:30px;background:${C.gold};color:#07080A;font-size:28px;font-weight:800;opacity:${ease((lt - f0 - .6) / .4)}">já vem escrito ✓</div>`; }
+    const inner = `<div style="flex:1;padding:10px 30px">${bolhas}</div>${sugest}
+      <div style="display:flex;align-items:center;gap:16px;padding:18px 22px 28px"><div style="flex:1;min-height:76px;padding:18px 26px;border-radius:40px;background:#1F2C34;font-size:32px;line-height:1.25">${campo}</div>
+      <div style="width:76px;height:76px;border-radius:50%;background:#00A884;display:grid;place-items:center;font-size:34px;color:#fff">➤</div></div>`;
+    return at(200, 600, fone(inner, p.nome, p.hora));
+  }
+  if (p.tipo === 'link_montagem') {
+    // o link vai sendo montado pedaço por pedaço, cada pedaço com uma explicação embaixo
+    const partes = p.partes || [], CORES = [C.white, C.gold, C.blue, '#7CE0A0', C.red, '#C9A7FF'];
+    let atual = -1; partes.forEach((q, i) => { if (lt >= quando(q.em)) atual = i; });
+    const url = partes.map((q, i) => { const v = ease((lt - quando(q.em)) / .4); if (v <= 0) return '';
+      return `<span style="color:${CORES[i % CORES.length]};opacity:${i === atual ? 1 : .75};${i === atual ? `text-shadow:0 0 24px ${CORES[i % CORES.length]}` : ''}">${q.txt}</span>`; }).join('');
+    const linhas = partes.map((q, i) => { const v = ease((lt - quando(q.em) - .15) / .4); if (v <= 0) return '';
+      return `<div style="display:flex;align-items:center;gap:22px;margin-top:20px;opacity:${i === atual ? v : .55};transform:translateX(${(1 - v) * -30}px)">
+        <span style="min-width:200px;padding:10px 18px;border-radius:16px;border:3px solid ${CORES[i % CORES.length]};color:${CORES[i % CORES.length]};font-family:monospace;font-size:34px;font-weight:700;text-align:center">${q.txt}</span>
+        <span style="font-size:38px;font-weight:600;color:${C.white}">${q.rot}</span></div>`; }).join('');
+    return at(90, 640, `<div style="width:900px;padding:40px 44px;${card}">
+      <div style="font-size:26px;font-weight:800;letter-spacing:.12em;color:${C.gray};margin-bottom:16px">SEU LINK</div>
+      <div style="min-height:150px;font-family:monospace;font-size:46px;font-weight:700;line-height:1.35;word-break:break-all">${url}<span style="color:${C.gold};opacity:${Math.sin(t * 6) > 0 ? 1 : 0}">|</span></div>
+      <div style="height:2px;background:rgba(255,255,255,.1);margin:22px 0 6px"></div>${linhas}</div>`);
+  }
   if (p.tipo === 'whatsapp') {
     // conversa de WhatsApp ilustrativa (mensagens entram com "digitando…")
     const msgs = p.msgs || [];
@@ -445,7 +494,7 @@ const REAC = { red: ['chocado', 'apontando', 'cintura'], gold: ['comemorando', '
 const BAL = { chocado: '!', pensando: '?', comemorando: 'coracao', ideia: 'estrela', apontando: 'cursor', cintura: '!?', triste: '...', confiante: 'check', acenando: 'chat', dancando: 'coracao' };
 function drawFG(c, lt, t, i) {
   let h = '';
-  const r = c.reacao === false ? null : (c.reacao || {});
+  const r = c.reacao && typeof c.reacao === 'object' ? c.reacao : null;   // reator só quando a cena pede
   const temBonecoNoCentro = c.boneco && !Array.isArray(c.boneco) && Math.abs((c.boneco.x ?? 540) - 540) < 120;
   if (r) {
     const lado = r.lado || (i % 2 ? 'dir' : 'esq'), x = lado === 'esq' ? 112 : 968, poses = r.poses || REAC[c.acento] || REAC.gold;
@@ -464,8 +513,8 @@ function drawFG(c, lt, t, i) {
         <path d="M-58 -50 h116 a22 22 0 0 1 22 22 v58 a22 22 0 0 1 -22 22 h-${lado === 'esq' ? 84 : 20} l${lado === 'esq' ? -26 : 26} 26 l4 -26 h-${lado === 'esq' ? 10 : 74} a22 22 0 0 1 -22 -22 v-58 a22 22 0 0 1 22 -22z" fill="${cur === 'chocado' || cur === 'cintura' ? C.red : C.gold}" style="filter:drop-shadow(0 12px 22px rgba(0,0,0,.6))"/>${icon}</g>`;
     }
   }
-  // efeitos pipocando na frente: estrelinhas e riscos de impacto em volta da cena (posições mudam a cada ciclo)
-  for (let j = 0; j < 2; j++) { const per = 1.1 + j * .35, n = Math.floor((t + j * .5) / per), ph = ((t + j * .5) % per) / per;
+  // efeitos pipocando: só com "pipocar": true na cena
+  for (let j = 0; j < (c.pipocar ? 2 : 0); j++) { const per = 1.1 + j * .35, n = Math.floor((t + j * .5) / per), ph = ((t + j * .5) % per) / per;
     const sx = 160 + ((n * 389 + j * 241) % 760), sy = 700 + ((n * 211 + j * 397) % 620), k = Math.sin(ph * Math.PI), col = (n + j) % 2 ? C.gold : C.blue;
     if (ph < .6) h += `<g transform="translate(${sx} ${sy}) scale(${.6 + ph}) rotate(${n * 37})" opacity="${k}">${[0, 1, 2, 3, 4, 5].map(q => `<line x1="0" y1="-26" x2="0" y2="-58" transform="rotate(${q * 60})" stroke="${col}" stroke-width="7" stroke-linecap="round"/>`).join('')}</g>`;
     else h += `<path transform="translate(${sx} ${sy}) scale(${1.4 - ph})" d="M0 -30 Q0 0 30 0 Q0 0 0 30 Q0 0 -30 0 Q0 0 0 -30Z" fill="${col}" opacity="${k}"/>`; }
@@ -545,22 +594,22 @@ function render(t) {
   $('grain').style.backgroundPosition = `${(t * 997) % 256}px ${(t * 613) % 256}px`;
   [...$('dust').children].forEach((el, j) => { const d = DUST[j]; const y = (d.y - t * d.v + 1920) % 1920;
     el.style.transform = `translate(${d.x + Math.sin(t * .5 + j) * 20}px, ${y}px) scale(${d.s})`; el.style.opacity = d.o; });
-  c._words.forEach((w, j) => { const k = ease((lt - .05 - j * .07) / .45);   // entrada suave: sobe e aparece, sem girar
-    w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 40}px) scale(${.94 + .06 * k})`; w.style.filter = k < 1 ? `blur(${(1 - k) * 14}px)` : 'none';
+  c._words.forEach((w, j) => { const k = ease((lt - .05 - j * .1) / .6);   // entrada suave: sobe e aparece, sem girar
+    w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 40}px) scale(${.94 + .06 * k})`; w.style.filter = k < 1 ? `blur(${(1 - k) * 8}px)` : 'none';
     w.style.setProperty('--u', ease((lt - .45 - j * .08) / .3)); });
   // transição: saída com zoom + desfoque, entrada com zoom de volta
   const out = ease((lt - (c.dur - .18)) / .18), inn = 1 - ease(lt / .22);
   $('txt').style.opacity = 1 - out;
   $('txt').style.transform = `translateY(${Math.sin(t * 1.5) * 5}px) rotate(${Math.sin(t * 1.1) * .8}deg)`;  // balanço leve
-  let sx = Math.sin(t * .55) * 10, sy = Math.cos(t * .45) * 8, sc = 1 + .05 * easeIO(lt / c.dur) + out * .05 + inn * .05;   // câmera nunca para: push-in + deriva
+  let sx = Math.sin(t * .35) * 4, sy = Math.cos(t * .3) * 3, sc = 1 + .03 * easeIO(lt / c.dur) + out * .04 + inn * .04;   // câmera calma: push-in lento
   if (c.fx === 'tremer') sc += .045 * (1 - ease(lt / .7));  // impacto com zoom suave (sem tremer)
   $('world').style.transform = `translate(${sx}px, ${sy}px) scale(${sc})`;
   $('world').style.filter = 'none';
   $('flash').style.opacity = c.fx === 'flash' && lt > .3 ? Math.max(0, .22 - (lt - .3) * 3) : 0;  // depois da transição
   $('props').innerHTML = prop(c, lt, t);
   $('props').style.transformOrigin = '50% 1450px';
-  $('props').style.transform = `translateY(${Math.sin(t * 1.6) * 9}px) rotate(${Math.sin(t * 1.1) * .7}deg) translateY(28px) scale(.92)`;   // cards nunca ficam parados
-  if (c.mg !== false) drawMG(c, lt, t); else $('mg').innerHTML = '';
+  $('props').style.transform = `translateY(${28 + Math.sin(t * 1) * 4}px) scale(.92)`;   // cards nunca ficam parados
+  if (Array.isArray(c.mg)) drawMG(c, lt, t); else $('mg').innerHTML = '';   // decoração só quando a cena pede
   drawFigures(c, lt, t);
   drawFG(c, lt, t, i);
   renderSubs(c, t);

@@ -27,10 +27,21 @@
         "*saudação*"
       ],
       "prop": {
-        "tipo": "passo",
-        "n": 1,
-        "total": 4,
-        "texto": "O cliente chama e já recebe um <b>oi automático</b> com o que você faz."
+        "tipo": "chat_demo",
+        "nome": "Sua barbearia",
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Oi! Quanto custa o corte?",
+            "em": "chama"
+          },
+          {
+            "de": "eu",
+            "txt": "Olá! 👋 Já te respondo! Atendemos de seg a sáb, das 9h às 19h.",
+            "em": "recebe",
+            "tag": "⚡ Automático"
+          }
+        ]
       }
     },
     {
@@ -42,17 +53,21 @@
         "_ausência_"
       ],
       "prop": {
-        "tipo": "whatsapp",
-        "nome": "Cliente",
+        "tipo": "chat_demo",
+        "nome": "Sua barbearia",
+        "hora": "23:47 🌙",
         "msgs": [
-          [
-            "cli",
-            "Oi, vocês abrem amanhã?"
-          ],
-          [
-            "eu",
-            "Oi! Agora estamos fechados 🌙 Atendemos das 8h às 18h e te respondo logo cedo!"
-          ]
+          {
+            "de": "cli",
+            "txt": "Vocês abrem amanhã?",
+            "em": "chamou"
+          },
+          {
+            "de": "eu",
+            "txt": "Agora estamos fechados 🌙 Atendemos das 8h às 18h e te respondo logo cedo!",
+            "em": "recebe",
+            "tag": "⚡ Fora do horário"
+          }
         ]
       }
     },
@@ -65,10 +80,23 @@
         "*rápidas*"
       ],
       "prop": {
-        "tipo": "passo",
-        "n": 3,
-        "total": 4,
-        "texto": "Digita <b>/preço</b> e a mensagem inteira aparece pronta. Chega de digitar tudo de novo."
+        "tipo": "chat_demo",
+        "nome": "Sua barbearia",
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Qual o preço?",
+            "em": 0.05
+          }
+        ],
+        "digitar": {
+          "txt": "/preço",
+          "em": "digita",
+          "vira": {
+            "em": "aparece",
+            "txt": "Corte R$ 40 · Barba R$ 30 · Combo R$ 60 ✂️"
+          }
+        }
       }
     },
     {
@@ -80,14 +108,12 @@
         "~mensagem pronta~"
       ],
       "prop": {
-        "tipo": "whatsapp",
+        "tipo": "chat_demo",
         "nome": "Sua loja",
-        "msgs": [
-          [
-            "eu",
-            "Oi! Vim pelo Instagram e quero um orçamento 😊"
-          ]
-        ]
+        "preenchido": {
+          "txt": "Oi! Vim pelo Instagram e quero um orçamento 😊",
+          "em": "abre"
+        }
       }
     },
     {
@@ -99,10 +125,39 @@
         "_link_"
       ],
       "prop": {
-        "tipo": "passo",
-        "n": 4,
-        "total": 4,
-        "texto": "wa.me/<b>55 + DDD + número</b><br>?text=<b>sua mensagem</b>"
+        "tipo": "link_montagem",
+        "partes": [
+          {
+            "txt": "wa.me/",
+            "rot": "endereço do WhatsApp",
+            "em": "wa"
+          },
+          {
+            "txt": "55",
+            "rot": "código do Brasil",
+            "em": "cinquenta"
+          },
+          {
+            "txt": "62",
+            "rot": "seu DDD (sem o zero)",
+            "em": "ddd"
+          },
+          {
+            "txt": "999999999",
+            "rot": "seu número",
+            "em": "numero"
+          },
+          {
+            "txt": "?text=",
+            "rot": "aqui começa a mensagem",
+            "em": "interrogacao"
+          },
+          {
+            "txt": "Oi%20quero...",
+            "rot": "sua mensagem (espaço vira %20)",
+            "em": "mensagem"
+          }
+        ]
       }
     },
     {
