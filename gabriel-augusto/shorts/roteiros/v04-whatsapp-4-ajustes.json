@@ -7,61 +7,151 @@
       "fala": "Se você vende pelo WhatsApp, configura essas quatro coisas hoje. A última quase ninguém usa.",
       "acento": "red",
       "fx": "zoom",
-      "texto": ["Configura isso no", "*WhatsApp* hoje"],
-      "boneco": {"pose": "celular", "emocao": "exclamacao", "x": 540, "y": 1400, "escala": 1.05}
+      "texto": [
+        "Configura isso no",
+        "*WhatsApp* hoje"
+      ],
+      "boneco": {
+        "pose": "celular",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.12
+      }
     },
     {
       "fala": "Primeira: mensagem de saudação. O cliente chama e já recebe um oi explicando o que você faz, sem você pegar no celular.",
       "acento": "gold",
       "fx": "flash",
-      "texto": ["1. Mensagem de", "*saudação*"],
-      "prop": {"tipo": "passo", "n": 1, "total": 4, "texto": "O cliente chama e já recebe um <b>oi automático</b> com o que você faz."}
+      "texto": [
+        "1. Mensagem de",
+        "*saudação*"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 1,
+        "total": 4,
+        "texto": "O cliente chama e já recebe um <b>oi automático</b> com o que você faz."
+      }
     },
     {
       "fala": "Segunda: mensagem de ausência. Chamou de madrugada? Ele recebe seu horário e sabe que vai ser atendido.",
       "acento": "blue",
       "fx": "zoom",
-      "texto": ["2. Mensagem de", "_ausência_"],
-      "prop": {"tipo": "whatsapp", "nome": "Cliente", "msgs": [["cli", "Oi, vocês abrem amanhã?"], ["eu", "Oi! Agora estamos fechados 🌙 Atendemos das 8h às 18h e te respondo logo cedo!"]]}
+      "texto": [
+        "2. Mensagem de",
+        "_ausência_"
+      ],
+      "prop": {
+        "tipo": "whatsapp",
+        "nome": "Cliente",
+        "msgs": [
+          [
+            "cli",
+            "Oi, vocês abrem amanhã?"
+          ],
+          [
+            "eu",
+            "Oi! Agora estamos fechados 🌙 Atendemos das 8h às 18h e te respondo logo cedo!"
+          ]
+        ]
+      }
     },
     {
       "fala": "Terceira: respostas rápidas. Você digita barra preço e a mensagem inteira aparece pronta.",
       "acento": "gold",
       "fx": "flash",
-      "texto": ["3. Respostas", "*rápidas*"],
-      "prop": {"tipo": "passo", "n": 3, "total": 4, "texto": "Digita <b>/preço</b> e a mensagem inteira aparece pronta. Chega de digitar tudo de novo."}
+      "texto": [
+        "3. Respostas",
+        "*rápidas*"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 3,
+        "total": 4,
+        "texto": "Digita <b>/preço</b> e a mensagem inteira aparece pronta. Chega de digitar tudo de novo."
+      }
     },
     {
       "fala": "E a quarta, que quase ninguém usa: o link com mensagem pronta. A pessoa clica e o WhatsApp já abre escrito: oi, quero um orçamento.",
       "acento": "red",
       "fx": "zoom",
-      "texto": ["4. Link com", "~mensagem pronta~"],
-      "prop": {"tipo": "whatsapp", "nome": "Sua loja", "msgs": [["eu", "Oi! Vim pelo Instagram e quero um orçamento 😊"]]}
+      "texto": [
+        "4. Link com",
+        "~mensagem pronta~"
+      ],
+      "prop": {
+        "tipo": "whatsapp",
+        "nome": "Sua loja",
+        "msgs": [
+          [
+            "eu",
+            "Oi! Vim pelo Instagram e quero um orçamento 😊"
+          ]
+        ]
+      }
     },
     {
       "fala": "É só usar wa.me, barra, cinquenta e cinco, o DDD e o seu número. Depois, interrogação text igual e a mensagem que você quiser.",
       "acento": "blue",
       "fx": "flash",
-      "texto": ["Como fazer o", "_link_"],
-      "prop": {"tipo": "passo", "n": 4, "total": 4, "texto": "wa.me/<b>55 + DDD + número</b><br>?text=<b>sua mensagem</b>"}
+      "texto": [
+        "Como fazer o",
+        "_link_"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 4,
+        "total": 4,
+        "texto": "wa.me/<b>55 + DDD + número</b><br>?text=<b>sua mensagem</b>"
+      }
     },
     {
       "fala": "Esse é o botão que eu coloco em todo site que eu faço. O cliente nem precisa pensar no que escrever.",
       "acento": "gold",
       "fx": "zoom",
-      "texto": ["Eu coloco isso em", "*todo site*"],
-      "prop": {"tipo": "site_celular", "img": "../../video/src/fernando-scroll.jpg", "selo": "Botão com mensagem pronta", "x": 350}
+      "texto": [
+        "Eu coloco isso em",
+        "*todo site*"
+      ],
+      "prop": {
+        "tipo": "site_celular",
+        "img": "../../video/src/fernando-scroll.jpg",
+        "selo": "Botão com mensagem pronta",
+        "x": 350
+      }
     },
     {
       "fala": "Salva esse vídeo pra configurar depois. E segue pra mais dica que faz vender.",
       "acento": "gold",
       "fx": "flash",
-      "texto": ["Salva pra", "*configurar depois*"],
-      "prop": {"tipo": "cta", "botao": "Salva e segue", "sub": "Mais dicas que fazem vender", "y": 600},
+      "texto": [
+        "Salva pra",
+        "*configurar depois*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Salva e segue",
+        "sub": "Mais dicas que fazem vender",
+        "y": 600
+      },
       "fim": 1.6,
-      "boneco": {"pose": "confiante", "x": 540, "y": 1400, "escala": 0.9, "entrada": "andando"}
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.9,
+        "entrada": "andando"
+      }
     }
   ],
   "fundo": "auras",
-  "capa": {"texto": ["Configura isso no", "*WhatsApp* hoje"], "tamanho": 150, "selo": "A 4ª quase ninguém usa", "selo_y": 560}
+  "capa": {
+    "texto": [
+      "Configura isso no",
+      "*WhatsApp* hoje"
+    ],
+    "tamanho": 150,
+    "selo": "A 4ª quase ninguém usa",
+    "selo_y": 560
+  }
 }
