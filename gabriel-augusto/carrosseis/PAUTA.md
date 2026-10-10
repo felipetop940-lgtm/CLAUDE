@@ -53,3 +53,19 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 34 | Dia a dia | Você já desistiu de comprar por isso? | feito 10/10 (c06, 1º no modelo X) |
 | 35 | Vídeo | Todo mundo que vende já teve esses 5 clientes (virada: o pior é o que nunca te chamou) | feito 10/10 (v04, 4ª versão) |
 | 36 | Design | Esse U esconde 25 desenhos (Unilever, Carrefour, Apple, BMW, mostrando os logos) | feito 10/10 (t06 v2) |
+
+## Pauta de conteúdo ÚTIL (direção de 10/10) · usar primeiro
+Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (tela atual do app) antes de postar.
+
+| Nº | Formato | Ideia | Status |
+|---|---|---|---|
+| U01 | Vídeo | Configura essas 4 coisas no WhatsApp Business hoje (saudação, ausência, respostas rápidas, link com mensagem pronta) | feito 10/10 (v04) |
+| U02 | Carrossel | Como criar o link do WhatsApp com mensagem pronta (wa.me/55DDDnúmero?text=) passo a passo | pendente |
+| U03 | Carrossel | Sua bio do Instagram está espantando cliente: 4 ajustes (o que faz, pra quem, onde, botão) | pendente |
+| U04 | Vídeo | Como aparecer no Google Maps de graça (Perfil da Empresa no Google) em 4 passos | pendente |
+| U05 | Carrossel | 5 erros nas fotos do produto que fazem parecer golpe (luz, fundo, tamanho real, foto de banco) | pendente |
+| U06 | Arte TikTok | Antes x depois: a mesma loja com e sem site (mostrar as telas) | pendente |
+| U07 | Vídeo | 3 respostas prontas pra quem pergunta "quanto é?" e some | pendente |
+| U08 | Carrossel | Como saber se um site é golpe em 30 segundos (CNPJ na Receita, registro.br, Reclame Aqui) | pendente |
+| U09 | Arte TikTok | Destaques do Instagram que vendem: quais criar e em que ordem | pendente |
+| U10 | Vídeo | Como responder avaliação ruim no Google sem perder cliente | pendente |

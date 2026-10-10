@@ -42,9 +42,11 @@ Todo dia, 3 itens com **temas diferentes**:
 2. **Carrossel do Instagram (cNN)** no modelo post do X escuro (x.css). Postar 19h. (09/10 ainda no viral; X a partir de 10/10.)
 3. **Arte do TikTok (tNN)** no modelo viral, 9:16. Postar 13h30.
 Substitui o esquema antigo (principal Instagram+TikTok 19h + extra do TikTok 13h30).
-Temas: **sempre do nicho dele** (internet, design, logos/marcas, vendas, atendimento, WhatsApp, redes sociais, golpes online,
-presença digital), com identificação, humor e polêmica leve. Curiosidade de vida fora disso ("você é mais alto de manhã") foi
-reprovada em 10/10 como "nada a ver". Nada de "história de empresa" chata (Kodak, pixels...).
+Temas (direção dele em 10/10): **conteúdo útil de verdade, que ajude a pessoa e a faça parar de rolar, ligado ao trabalho dele**:
+WhatsApp Business, Instagram/bio, Google/Perfil da Empresa, site, fotos do produto, atendimento, golpes online, design/logo.
+Dica aplicável na hora ("configura isso hoje", "3 erros", "como fazer X"), promessa clara no gancho + surpresa no meio.
+Quando o assunto é visual (logo, tela, site), MOSTRAR a coisa. Reprovados: curiosidade fora do nicho, humor sem utilidade,
+"história de empresa" chata, gancho de anúncio.
 
 ## INSTAGRAM: MODELO POST DO X ESCURO (decidido em 09/10) · teste: `x00-teste`
 
@@ -181,3 +183,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 10/10: melancia também reprovada. Ele quer o VISUAL fixo e o CONTEÚDO/estrutura diferente todo dia (sem site+preço+link em todo vídeo). v04 = grupo da família.
 - 10/10: arte "você é mais alto de manhã" e vídeo "grupo da família" reprovados: fora do nicho. Assunto sempre dentro de internet/design/vendas/redes. Feitos t06 (logos escondidos) e v04 (5 tipos de cliente).
 - 10/10: arte de logos SEM mostrar o logo foi reprovada. Quando o assunto é visual (logo, site, tela), MOSTRAR a coisa (ícones do Simple Icons via npm pack simple-icons, img/logos/) com o detalhe destacado (.anel vermelho). Formato "achou? arrasta" → revelação.
+- 10/10: direção final dele: "quero que meu conteúdo seja útil de verdade, que ajude as pessoas e as faça parar de rolar, juntando com o meu trabalho". Vídeo v04 = 4 ajustes no WhatsApp Business. Pauta de conteúdo útil no fim da PAUTA.md.
