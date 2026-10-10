@@ -1,94 +1,30 @@
-# Roteiro · Vídeo institucional Carlos JR Eventos (v2)
+# Roteiro · Vídeo institucional Carlos JR Eventos (v3, motion graphics)
 
-**Formato:** vertical 9:16 (1080×1920) · **Duração:** ~42 s · **Tom:** firme, seguro, de quem domina o que faz.
-**Regra:** o Carlos **aparece só nos 3 primeiros segundos**. Daí pra frente o vídeo é todo montado com as imagens dos eventos, com a voz dele narrando por cima.
-
----
-
-## 1. Abertura: os 3 segundos do Carlos na câmera
-
-**Fala (recomendada):**
-> **"Evento bom não acontece por acaso. Acontece com estrutura."**
-
-É uma afirmação, não uma apresentação. Ele começa falando o que acredita, e só depois diz o nome. É isso que passa confiança logo de cara.
-
-**Alternativas, se quiser testar:**
-- "Seu evento não tem segunda chance. Por isso a gente não erra."
-- "O seu convidado nunca vai saber o trabalho que deu. E é assim que tem que ser."
-
-**Como gravar (faz toda a diferença):**
-- **Cenário:** na frente do palco ou do painel de LED **aceso**, com luz atrás dele.
-- **Câmera:** celular na vertical, **um pouco abaixo da altura dos olhos**, apontando levemente pra cima. Esse ângulo passa autoridade.
-- **Postura:** de pé, ombros abertos, olhando direto na lente. Pode começar dando um passo em direção à câmera.
-- **Voz:** firme e sem pressa, com uma pausa curta depois de "acaso". Sorriso leve só no final da frase.
-- **Sem:** "fala, pessoal", "oi, gente" ou mão balançando. Começar já na frase.
-- Gravar umas 5 vezes. Eu escolho a melhor.
+**Formato:** vertical 1080×1920 · **Duração:** ~24,5 s (3 s do Carlos + 21,5 s de animação)
+**Estilo (referência):** fundo preto alternando com laranja da marca, tipografia condensada em negrito com **uma palavra por frase em itálico colorido**, transições de cortina (*wipe*) e de íris, número com contagem, botão "Seguir" sendo clicado.
+**Arquivo da animação:** `video-institucional/carlos-jr-motion-v1.mp4` (feito em HTML + GSAP, `video-institucional/video.html`)
 
 ---
 
-## 2. Narração (voz do Carlos sobre as imagens)
+## Cenas
 
-Gravar **só o áudio** num lugar silencioso (pode ser no carro, com o celular perto da boca), no mesmo tom firme da abertura, com uma pausa curta entre as frases.
+| Tempo* | Cena | O que acontece | Narração do Carlos |
+|---|---|---|---|
+| 0:00–0:03 | **Carlos na câmera** | Ele de frente, com o palco aceso atrás. Corta seco no fim. | "Evento bom não acontece por acaso." |
+| 0:03–0:06 | **1 · Logo** | Uma linha laranja cruza a tela, vira uma pílula e depois um anel que pousa no "O" de CARLOS. A logo abre a partir do centro, e embaixo surge "PAINEL DE LED · SOM · LUZ · ESTRUTURA". | "Carlos JR Eventos." |
+| 0:06–0:10 | **2 · Círculo** | Íris laranja abre a partir do "O". Vídeo do palco num círculo, com o texto dos serviços girando em volta. Frase: **SEU EVENTO SEM *IMPROVISO.*** | "Seu evento, sem improviso." |
+| 0:10–0:15,5 | **3 · Destaques** | Cortina preta. "O QUE A GENTE *ENTREGA*", e três infográficos trocando com cortina laranja: **01 Painel de LED** (matriz de pontos acende formando um coração), **02 Som & luz** (equalizador + feixes de luz), **03 Estrutura & energia** (treliça se desenhando + raio do gerador). | "Painel de LED, som, luz, estrutura e energia." |
+| 0:15,5–0:19 | **4 · Cenas reais** | Quatro cartões entram em cortina, com cenas reais: ***Casamentos*** (vídeo), ***Congressos*** (vídeo), ***Shows*** (palco ao pôr do sol), ***Festas*** (painel com coração). Contador 01/04 no canto. | "Casamentos, congressos, shows e festas." |
+| 0:19–0:21 | **5 · Contagem** | Íris laranja. O número conta **0 → 5** enquanto aparecem os 5 serviços: Painel de LED, Som, Iluminação, Estrutura, Gerador. **5 SOLUÇÕES. *UM SÓ CONTATO.*** | "Tudo num contato só." |
+| 0:21–0:24,5 | **6 · Final** | Cortina preta. Foto do palco no jardim, logo, cartão do Instagram **@carlosguitarrajunior** com o cursor clicando em **Seguir → Seguindo ✓**, e o WhatsApp **(62) 99350-9592**. | "Chama no WhatsApp." |
 
-> Eu sou o Carlos, da Carlos JR Eventos.
-> Painel de LED, som, iluminação e estrutura completa.
-> Do casamento ao congresso, do palco do show à pista da festa.
-> A gente chega antes, monta e testa cada detalhe…
-> …e fica do seu lado até o último minuto.
-> E pra nada parar: gerador de energia também.
-> Você cuida de aproveitar. O resto é com a gente.
-> **Carlos JR Eventos. Chama no WhatsApp.**
-
-(~35 s falados)
-
----
-
-## 3. Linha do tempo
-
-| Tempo | Imagem | Voz | Na tela | Efeito |
-|---|---|---|---|---|
-| **0:00–0:03** | **Carlos na câmera**, contra-luz do palco | "Evento bom não acontece por acaso. Acontece com estrutura." | Legenda grande, com **"ESTRUTURA"** em laranja | Leve zoom-in; na última sílaba, **corte seco** com um flash de luz |
-| **0:03–0:06** | Mesa de iluminação: mão subindo o fader e as luzes acendendo | "Eu sou o Carlos, da Carlos JR Eventos." | Logo Carlos JR entrando no canto | Batida forte da música entra aqui |
-| **0:06–0:10** | Palco com painel de LED aceso → luz roxa varrendo o salão | "Painel de LED, som, iluminação e estrutura completa." | 4 balões em sequência, um por palavra: **Painel de LED · Som · Iluminação · Estrutura** | Cortes de 1 s, cada um junto com um balão |
-| **0:10–0:15** | Truss ao pôr do sol → coração no painel → auditório do congresso | "Do casamento ao congresso, do palco do show à pista da festa." | Balões **Casamentos** e **Congressos** | Ken Burns nas fotos, corte no beat |
-| **0:15–0:20** | Truss em pé (foto) → mesa de transmissão com a equipe | "A gente chega antes, monta e testa cada detalhe…" | Checklist aparecendo: ✔ **Montagem** ✔ **Testes** | Zoom lento |
-| **0:20–0:24** | Palco com refletores e caixas de som → estrela vermelha com luz laranja | "…e fica do seu lado até o último minuto." | Selo **Equipe no local** | Plano mais longo, a música respira |
-| **0:24–0:28** | Gerador de energia (plano a gravar) ou palco iluminado ao anoitecer | "E pra nada parar: gerador de energia também." | Balão **Gerador de energia ⚡** | Pulso de luz no balão |
-| **0:28–0:33** | Palco ao pôr do sol com cobertura e painel → pista do XV anos | "Você cuida de aproveitar. O resto é com a gente." | Legenda com **"com a gente"** em laranja | Os planos mais bonitos ficam aqui |
-| **0:33–0:37** | Palco do jardim com a pista iluminada, plano aberto | "Carlos JR Eventos. Chama no WhatsApp." | Botão **Chama no WhatsApp** surgindo | Desacelera |
-| **0:37–0:42** | Cartão final: logo, **(62) 99350-9592** e **@carlosguitarrajunior** | (música fecha) | Botão do WhatsApp pulsando | Fade-out |
-
-**Ritmo:** começa rápido (cortes de 1 s), abre um respiro no meio e termina com os planos mais bonitos, mais longos. Nenhum plano passa de 4 s.
+\* Os tempos já contam os 3 s do Carlos. Na animação de prévia (sem o Carlos), subtraia 3 s.
 
 ---
 
-## 4. Visual dos elementos
+## O que falta pro vídeo final
 
-- **Balões:** pílula laranja da marca (#e0802e) com texto branco em letra condensada. Entram com um *pop* rápido (0,25 s) e saem com fade.
-- **Legenda:** cobre a fala inteira, no terço inferior, com a palavra-chave em laranja. Funciona sem som.
-- **Checklist e selo:** brancos com ícone laranja, aparecem uma vez só.
-- **Cores:** só laranja, branco e preto, iguais ao site. Nada de neon, emoji colorido ou efeito exagerado.
-
----
-
-## 5. Áudio
-
-- **Voz:** limpa, sem ruído, normalizada.
-- **Música:** instrumental, moderna, com batida marcada. Entra **forte no corte de 0:03**, e logo depois baixa pra ficar bem baixinha sob a voz (cerca de 20 dB abaixo).
-- **Efeitos:** *whoosh* no corte de 0:03, *pop* discreto nos balões.
-- A música precisa ser livre de direitos. Você manda uma ou eu escolho.
-
----
-
-## 6. Material necessário
-
-**Do Carlos:**
-1. A abertura em vídeo (seção 1), umas 5 tentativas.
-2. A narração só em áudio (seção 2).
-3. Se possível, planos de 5 a 8 s, na vertical: **montagem acontecendo**, **painel de LED aceso de perto**, **gerador ligado** e **plateia curtindo** um evento.
-
-**Já temos:** vídeo de casamentos, vídeo de congressos e as 7 fotos dos trabalhos.
-
-**Confirmar:**
-- Que "chega antes, monta, testa e fica até o fim" é verdade pro Carlos.
-- Que pode aparecer a marca do ConexMed e os noivos no telão.
+1. **3 s do Carlos na câmera:** de pé, na frente do palco ou painel aceso, celular na vertical um pouco abaixo dos olhos, falando direto: *"Evento bom não acontece por acaso."*
+2. **Narração em áudio**, com as falas da tabela (dá uns 20 s; ele grava num lugar silencioso).
+3. **Música** instrumental com batida, livre de direitos, baixinha sob a voz. As trocas de cena caem na batida.
+4. **Efeitos sonoros:** *whoosh* nas cortinas, *pop* nos selos e um clique no "Seguir".

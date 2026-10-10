@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@font-face { font-family: "BS"; font-weight: 100 900; src: url("../assets/fonts/bigshoulders.woff2"); }
+@font-face { font-family: "IT"; font-weight: 100 900; src: url("../assets/fonts/inter-tight-var.woff2"); }
+@font-face { font-family: "JB"; font-weight: 500; src: url("../assets/fonts/jbmono-500.woff2"); }
+:root { --o: #e0802e; --sun: #ffc83d; --ink: #120c05; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #050505; font-family: "IT", sans-serif; color: #fff; }
+.abs { position: absolute; }
+.full { position: absolute; inset: 0; }
+.bs { font-family: "BS", sans-serif; font-weight: 800; text-transform: uppercase; line-height: .9; }
+.mono { font-family: "JB", monospace; font-weight: 500; text-transform: uppercase; letter-spacing: .3em; }
+.mask { display: block; overflow: hidden; padding: .16em 0 .05em; margin-top: -.16em; }
+.mask > span { display: inline-block; }
+em { font-style: italic; }
+
+/* S1 */
+#morph { left: 540px; top: 960px; width: 640px; height: 8px; background: var(--o); transform: translate(-50%, -50%); border: 0 solid var(--o); }
+#logo1 { left: 90px; top: 871px; width: 900px; }
+#tag1 { left: 0; right: 0; top: 1090px; text-align: center; color: var(--o); font-size: 26px; }
+#tag1 span { display: inline-block; }
+#glow1 { left: 540px; top: 960px; width: 1400px; height: 1400px; margin: -700px 0 0 -700px; border-radius: 50%; background: radial-gradient(circle, rgba(224,128,46,.28), transparent 62%); }
+
+/* S2 */
+#iris { background: var(--o); clip-path: circle(0px at 591px 924px); }
+#s2lab { left: 0; right: 0; top: 190px; text-align: center; color: var(--ink); font-size: 26px; }
+#ring2 { left: 540px; top: 800px; width: 680px; height: 680px; margin: -340px 0 0 -340px; border-radius: 50%; overflow: hidden; border: 12px solid var(--ink); background: #000; box-shadow: 0 40px 90px -20px rgba(80,30,0,.6); }
+#ring2 img { width: 100%; height: 100%; object-fit: cover; }
+#rot2 { left: 540px; top: 800px; width: 900px; height: 900px; margin: -450px 0 0 -450px; }
+#rot2 text { font-family: "JB", monospace; font-weight: 500; font-size: 28px; letter-spacing: 0; fill: var(--ink); }
+#ph2 { left: 0; right: 0; top: 1260px; text-align: center; color: var(--ink); font-size: 196px; }
+#ph2 em { color: #fff; }
+
+/* S3 */
+#s3bg { background: #070605; clip-path: inset(100% 0 0 0); }
+#h3 { left: 0; right: 0; top: 190px; text-align: center; font-size: 150px; }
+#h3 em { color: var(--o); }
+.dest { left: 0; top: 520px; width: 1080px; height: 1300px; overflow: hidden; }
+.dest .num { position: absolute; left: 0; right: 0; top: 0; text-align: center; color: var(--o); font-size: 30px; }
+.dest .tt { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font-size: 170px; }
+.dest .tt em { color: var(--o); }
+.dest .ig { position: absolute; left: 160px; top: 400px; width: 760px; height: 640px; transform: scale(1.18); transform-origin: 50% 0; }
+#wipe3 { left: 0; top: 0; width: 1080px; height: 1920px; background: var(--o); transform: translateX(-100%); }
+.dot { position: absolute; width: 36px; height: 36px; border-radius: 50%; background: #2a1a0c; }
+.bar { position: absolute; bottom: 120px; width: 36px; border-radius: 6px 6px 0 0; background: linear-gradient(0deg, var(--o), var(--sun)); height: 40px; }
+.beam { position: absolute; top: -40px; width: 280px; height: 700px; transform-origin: 50% 0; background: linear-gradient(180deg, rgba(255,210,110,.55), transparent 85%); clip-path: polygon(46% 0, 54% 0, 100% 100%, 0 100%); mix-blend-mode: screen; }
+
+/* S4 */
+.card { left: 70px; top: 300px; width: 940px; height: 1253px; border-radius: 34px; overflow: hidden; clip-path: inset(0 0 0 100% round 34px); background: #111; }
+.card img { width: 100%; height: 100%; object-fit: cover; }
+.lab4 { left: 0; right: 0; top: 1590px; text-align: center; font-size: 190px; }
+.lab4 em { color: var(--o); }
+.cnt4 { right: 80px; top: 200px; color: var(--o); font-size: 26px; }
+
+/* S5 */
+#iris5 { background: var(--o); clip-path: circle(0px at 540px 960px); }
+#n5 { left: 0; right: 0; top: 380px; text-align: center; font-size: 640px; color: var(--ink); line-height: .8; }
+#l5 { left: 0; right: 0; top: 950px; text-align: center; font-size: 132px; color: var(--ink); }
+#l5 em { color: #fff; }
+#chips5 { left: 70px; right: 70px; top: 1330px; display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; }
+.chip { display: inline-flex; align-items: center; gap: 16px; padding: 26px 40px; border-radius: 999px; background: var(--ink); color: #fff; font-family: "IT"; font-weight: 700; font-size: 48px; }
+.chip i { width: 34px; height: 34px; border-radius: 50%; background: var(--sun); display: grid; place-items: center; font-style: normal; color: var(--ink); font-size: 24px; font-weight: 900; }
+
+/* S6 */
+#s6bg { background: #070605; clip-path: inset(0 0 100% 0); }
+#ph6 { left: 70px; top: 170px; width: 940px; height: 860px; border-radius: 34px; overflow: hidden; }
+#ph6 img { width: 100%; height: 100%; object-fit: cover; }
+#logo6 { left: 165px; top: 1090px; width: 750px; }
+#prof { left: 70px; top: 1360px; width: 940px; height: 190px; border-radius: 30px; background: #fff; color: var(--ink); display: flex; align-items: center; gap: 26px; padding: 0 34px; }
+#prof .av { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 4px solid var(--o); flex: none; }
+#prof .av img { width: 100%; height: 100%; }
+#prof .who { flex: 1; min-width: 0; }
+#prof .who b { display: block; font-size: 34px; font-weight: 800; }
+#prof .who small { display: block; font-size: 28px; color: #6d5f4c; margin-top: 4px; }
+#btn { position: relative; flex: none; width: 270px; height: 92px; border-radius: 22px; background: var(--o); color: #fff; font-weight: 800; font-size: 34px; display: grid; place-items: center; overflow: hidden; }
+#btn .b2 { position: absolute; inset: 0; display: grid; place-items: center; background: #efe7da; color: var(--ink); opacity: 0; }
+#rip { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px; border-radius: 50%; background: rgba(255,255,255,.7); transform: scale(0); }
+#cur { left: 1100px; top: 1700px; width: 70px; }
+#wa6 { left: 0; right: 0; top: 1620px; text-align: center; color: var(--o); font-size: 30px; }
+#wa6 b { display: block; margin-top: 18px; color: #fff; font-family: "BS"; font-size: 96px; letter-spacing: .02em; }
+</style></head>
+<body><div id="stage">
+
+  <!-- S1 · linha → pílula → "O" da logo -->
+  <div id="s1" class="full">
+    <div id="glow1" class="abs" style="opacity:0"></div>
+    <img id="logo1" class="abs" src="img/logo-carlos-jr.png" style="clip-path: inset(0 50% 0 50%)">
+    <div id="morph" class="abs"></div>
+    <div id="tag1" class="abs mono"></div>
+  </div>
+
+  <!-- S2 · íris laranja + vídeo no círculo com texto girando + frase -->
+  <div id="iris" class="full">
+    <div id="s2lab" class="abs mono">Carlos JR Eventos</div>
+    <svg id="rot2" class="abs" viewBox="0 0 900 900"><defs><path id="cp" d="M450,450 m-405,0 a405,405 0 1,1 810,0 a405,405 0 1,1 -810,0"/></defs>
+      <g id="rotg"><text><textPath href="#cp" textLength="2540" lengthAdjust="spacing">PAINEL DE LED • SOM • ILUMINAÇÃO • ESTRUTURA • GERADOR • PAINEL DE LED • SOM • ILUMINAÇÃO • ESTRUTURA • GERADOR • </textPath></text></g></svg>
+    <div id="ring2" class="abs"><img data-seq="seq/stage" data-start="3.0" data-n="126" src="seq/stage/001.jpg"></div>
+    <div id="ph2" class="abs bs"><span class="mask"><span>Seu evento</span></span><span class="mask"><span>sem <em>improviso.</em></span></span></div>
+  </div>
+
+  <!-- S3 · o que a gente entrega (3 destaques com infográficos) -->
+  <div id="s3bg" class="full">
+    <div id="h3" class="abs bs"><span class="mask"><span>O que a gente</span></span><span class="mask"><span><em>entrega</em></span></span></div>
+
+    <div id="d1" class="abs dest">
+      <div class="num mono">01 / 03</div>
+      <div class="tt bs">Painel de <em>LED</em></div>
+      <div class="ig" id="ledgrid"></div>
+    </div>
+    <div id="d2" class="abs dest" style="transform:translateX(1080px)">
+      <div class="num mono">02 / 03</div>
+      <div class="tt bs">Som &amp; <em>luz</em></div>
+      <div class="ig" id="eq"><i class="beam" style="left:-40px"></i><i class="beam" style="right:-40px"></i></div>
+    </div>
+    <div id="d3" class="abs dest" style="transform:translateX(1080px)">
+      <div class="num mono">03 / 03</div>
+      <div class="tt bs">Estrutura &amp; <em>energia</em></div>
+      <div class="ig">
+        <svg id="truss" viewBox="0 0 760 640" width="760" height="640" fill="none" stroke="#e0802e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></svg>
+      </div>
+    </div>
+
+    <!-- S4 · montagem de cenas reais -->
+    <div class="abs cnt4 mono" id="cnt4" style="opacity:0">01 / 04</div>
+    <div class="abs card" id="k1"><img data-seq="seq/casam" data-start="12.4" data-n="36" src="seq/casam/001.jpg"></div>
+    <div class="abs card" id="k2"><img data-seq="seq/congr" data-start="13.25" data-n="36" src="seq/congr/001.jpg"></div>
+    <div class="abs card" id="k3"><img src="img/palco-por-do-sol.jpg"></div>
+    <div class="abs card" id="k4"><img src="img/led-coracao.jpg"></div>
+    <div class="abs lab4 bs" id="w1"><span class="mask"><span><em>Casamentos</em></span></span></div>
+    <div class="abs lab4 bs" id="w2"><span class="mask"><span><em>Congressos</em></span></span></div>
+    <div class="abs lab4 bs" id="w3"><span class="mask"><span><em>Shows</em></span></span></div>
+    <div class="abs lab4 bs" id="w4"><span class="mask"><span><em>Festas</em></span></span></div>
+  </div>
+  <div id="wipe3" class="abs"></div>
+
+  <!-- S5 · 5 soluções, 1 só contato (contagem) -->
+  <div id="iris5" class="full">
+    <div id="n5" class="abs bs">0</div>
+    <div id="l5" class="abs bs"><span class="mask"><span>soluções.</span></span><span class="mask"><span><em>Um só contato.</em></span></span></div>
+    <div id="chips5" class="abs">
+      <span class="chip"><i>✓</i>Painel de LED</span><span class="chip"><i>✓</i>Som</span><span class="chip"><i>✓</i>Iluminação</span><span class="chip"><i>✓</i>Estrutura</span><span class="chip"><i>✓</i>Gerador</span>
+    </div>
+  </div>
+
+  <!-- S6 · foto + nome + CTA com clique no Seguir -->
+  <div id="s6bg" class="full">
+    <div id="ph6" class="abs"><img src="img/jardim-por-do-sol.jpg"></div>
+    <img id="logo6" class="abs" src="img/logo-carlos-jr.png">
+    <div id="prof" class="abs">
+      <div class="av"><img src="img/favicon.png"></div>
+      <div class="who"><b>@carlosguitarrajunior</b><small>Carlos JR Eventos</small></div>
+      <div id="btn">Seguir<span class="b2">Seguindo ✓</span><i id="rip"></i></div>
+    </div>
+    <div id="wa6" class="abs mono">Orçamento no WhatsApp<b>(62) 99350-9592</b></div>
+    <svg id="cur" class="abs" viewBox="0 0 24 24"><path d="M5 3l13 7.5-5.6 1.4 3.3 6.1-2.4 1.3-3.3-6.1L6 17.5 5 3Z" fill="#fff" stroke="#120c05" stroke-width="1.2"/></svg>
+  </div>
+</div>
+
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+const O = { x: 591, y: 924, d: 104 };
+
+/* ---------- S1 ---------- */
+const tag = "PAINEL DE LED · SOM · LUZ · ESTRUTURA";
+$("#tag1").innerHTML = [...tag].map(c => `<span>${c === " " ? "&nbsp;" : c}</span>`).join("");
+tl.fromTo("#morph", { scaleX: 0 }, { scaleX: 1, duration: .55, ease: "power4.inOut" }, 0)
+  .to("#morph", { width: 170, height: 58, borderRadius: 29, duration: .4, ease: "power3.inOut" }, .6)
+  .to("#morph", { left: O.x, top: O.y, width: O.d, height: O.d, borderRadius: "50%", backgroundColor: "rgba(224,128,46,0)", borderWidth: 10, duration: .5, ease: "power3.inOut" }, 1.0)
+  .to("#logo1", { clipPath: "inset(0 0% 0 0%)", duration: .7, ease: "power3.inOut" }, 1.25)
+  .to("#glow1", { opacity: 1, duration: .8 }, 1.3)
+  .to("#morph", { opacity: 0, duration: .35 }, 1.85)
+  .fromTo("#tag1 span", { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: .018, duration: .3 }, 1.7)
+  .to("#logo1", { scale: 1.04, duration: 1.2, ease: "none", transformOrigin: "56% 30%" }, 1.8)
+  .to("#iris", { clipPath: `circle(2300px at ${O.x}px ${O.y}px)`, duration: .55, ease: "power3.in" }, 2.55);
+
+/* ---------- S2 ---------- */
+tl.fromTo("#ring2", { scale: 0 }, { scale: 1, duration: .6, ease: "back.out(1.4)" }, 3.0)
+  .fromTo("#rot2", { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: .6 }, 3.15)
+  .fromTo("#rotg", { rotation: 0 }, { rotation: 140, duration: 4.0, ease: "none", svgOrigin: "450 450" }, 3.0)
+  .fromTo("#s2lab", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: .4 }, 3.2)
+  .fromTo("#ph2 .mask > span", { yPercent: 110 }, { yPercent: 0, stagger: .14, duration: .6 }, 3.45)
+  .to("#ring2", { scale: 1.06, duration: 3, ease: "none" }, 3.6);
+
+/* ---------- S3 ---------- */
+tl.to("#s3bg", { clipPath: "inset(0% 0 0 0)", duration: .5, ease: "power4.inOut" }, 6.6)
+  .fromTo("#h3 .mask > span", { yPercent: 110 }, { yPercent: 0, stagger: .1, duration: .5 }, 7.0)
+  .fromTo("#d1 .num, #d1 .tt", { opacity: 0, y: 40 }, { opacity: 1, y: 0, stagger: .08, duration: .45 }, 7.25);
+
+// D1: matriz de LED que acende formando um coração
+const grid = $("#ledgrid"), cols = 15, rows = 12, sp = 50, dots = [];
+for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+  const d = document.createElement("i"); d.className = "dot";
+  d.style.left = (c * sp + 7) + "px"; d.style.top = (r * sp + 30) + "px";
+  const x = (c - 7) / 5.6, y = -(r - 5.2) / 5.4;
+  const heart = Math.pow(x * x + y * y - 1, 3) - x * x * y * y * y <= 0;
+  d.dataset.h = heart ? 1 : 0; d.dataset.k = Math.hypot(c - 7, r - 5.5);
+  grid.appendChild(d); dots.push(d);
+}
+const hd = dots.filter(d => d.dataset.h === "1").sort((a, b) => a.dataset.k - b.dataset.k);
+tl.fromTo(dots, { scale: 0 }, { scale: 1, duration: .3, stagger: { each: .002, from: "center" } }, 7.35)
+  .to(hd, { backgroundColor: "#ffc83d", boxShadow: "0 0 26px 6px rgba(255,190,60,.75)", duration: .25, stagger: .008 }, 7.7)
+  .to(hd, { backgroundColor: "#e0802e", duration: .4, stagger: .004 }, 8.5);
+
+// troca D1 → D2 com cortina laranja
+function swap(a, b, t) {
+  tl.fromTo("#wipe3", { x: -1080 }, { x: 1080, duration: .55, ease: "power2.inOut" }, t)
+    .to(a, { x: -1080, duration: .01 }, t + .27)
+    .to(b, { x: 0, duration: .01 }, t + .27);
+}
+swap("#d1", "#d2", 8.85);
+
+// D2: equalizador + feixes de luz
+const eq = $("#eq"), bars = [];
+for (let i = 0; i < 14; i++) { const b = document.createElement("i"); b.className = "bar"; b.style.left = (i * 54 + 6) + "px"; eq.appendChild(b); bars.push(b); }
+bars.forEach((b, i) => {
+  const kf = []; for (let k = 0; k < 7; k++) kf.push({ height: 60 + Math.abs(Math.sin(i * 1.7 + k * 2.3)) * 420, duration: .22, ease: "sine.inOut" });
+  tl.to(b, { keyframes: kf }, 9.15);
+});
+tl.fromTo("#eq .beam", { rotation: i => i ? 18 : -18, opacity: 0 }, { rotation: i => i ? -14 : 14, opacity: 1, duration: 1.4, ease: "sine.inOut" }, 9.15);
+swap("#d2", "#d3", 10.55);
+
+// D3: treliça desenhando + raio do gerador
+const tr = $("#truss"), NS = "http://www.w3.org/2000/svg", paths = [];
+const P = d => { const p = document.createElementNS(NS, "path"); p.setAttribute("d", d); tr.appendChild(p); paths.push(p); return p; };
+P("M90 620 V120 H670 V620"); P("M130 620 V160 H630 V620"); P("M90 120 L130 160 M670 120 L630 160");
+let zz = "M90 620"; for (let y = 620; y > 160; y -= 46) zz += ` L130 ${y - 23} L90 ${y - 46}`; P(zz);
+zz = "M670 620"; for (let y = 620; y > 160; y -= 46) zz += ` L630 ${y - 23} L670 ${y - 46}`; P(zz);
+zz = "M130 120"; for (let x = 130; x < 630; x += 50) zz += ` L${x + 25} 160 L${x + 50} 120`; P(zz);
+const bolt = P("M392 300 L340 400 H382 L366 480 L428 370 H386 Z"); bolt.setAttribute("fill", "#ffc83d"); bolt.setAttribute("stroke", "#ffc83d");
+paths.forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+tl.to(paths.slice(0, -1), { strokeDashoffset: 0, duration: .7, stagger: .08, ease: "power2.inOut" }, 10.85)
+  .fromTo(bolt, { strokeDashoffset: 0, scale: 0, transformOrigin: "50% 50%" }, { scale: 1.25, duration: .3, ease: "back.out(3)" }, 11.6)
+  .to(bolt, { scale: 1, filter: "drop-shadow(0 0 22px rgba(255,200,61,.9))", duration: .3 }, 11.9);
+
+/* ---------- S4 ---------- */
+tl.to(["#h3", "#d3"], { opacity: 0, duration: .3 }, 12.15)
+  .to("#cnt4", { opacity: 1, duration: .2 }, 12.4);
+["#k1", "#k2", "#k3", "#k4"].forEach((k, i) => {
+  const t = 12.4 + i * .85;
+  tl.to(k, { clipPath: "inset(0 0 0 0% round 34px)", duration: .45, ease: "power4.inOut" }, t)
+    .fromTo(k + " img", { scale: 1.18 }, { scale: 1, duration: 1.3, ease: "power2.out" }, t)
+    .fromTo(`#w${i + 1} .mask > span`, { yPercent: 110 }, { yPercent: 0, duration: .4 }, t + .12)
+    .call(() => { $("#cnt4").textContent = `0${i + 1} / 04`; }, null, t);
+  if (i < 3) tl.to(`#w${i + 1} .mask > span`, { yPercent: -110, duration: .3, ease: "power3.in" }, t + .7);
+});
+
+/* ---------- S5 ---------- */
+tl.to("#iris5", { clipPath: "circle(2300px at 540px 960px)", duration: .55, ease: "power3.in" }, 15.65);
+const n5 = { v: 0 };
+tl.fromTo("#n5", { scale: .6, opacity: 0 }, { scale: 1, opacity: 1, duration: .5, ease: "back.out(1.6)" }, 16.1)
+  .fromTo("#l5 .mask > span", { yPercent: 110 }, { yPercent: 0, stagger: .12, duration: .5 }, 16.25)
+  .fromTo("#chips5 .chip", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: .32, stagger: .2, ease: "back.out(2)" }, 16.4)
+  .to(n5, { v: 5, duration: 1.0, ease: "none", onUpdate: () => { $("#n5").textContent = Math.round(n5.v); } }, 16.4)
+  .to("#n5", { scale: 1.06, duration: .2, yoyo: true, repeat: 1 }, 17.4);
+
+/* ---------- S6 ---------- */
+tl.to("#s6bg", { clipPath: "inset(0 0 0% 0)", duration: .55, ease: "power4.inOut" }, 17.9)
+  .fromTo("#ph6 img", { scale: 1.2 }, { scale: 1, duration: 3.6, ease: "power1.out" }, 17.9)
+  .fromTo("#logo6", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .5 }, 18.35)
+  .fromTo("#prof", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: .5 }, 18.6)
+  .fromTo("#wa6", { opacity: 0 }, { opacity: 1, duration: .5 }, 18.9)
+  .to("#cur", { left: 900, top: 1440, duration: .8, ease: "power2.inOut" }, 19.0)
+  .to("#cur", { scale: .82, duration: .1, yoyo: true, repeat: 1, transformOrigin: "20% 10%" }, 19.85)
+  .to("#rip", { scale: 14, opacity: 0, duration: .5, ease: "power2.out" }, 19.9)
+  .to("#btn .b2", { opacity: 1, duration: .2 }, 19.95)
+  .to("#btn", { scale: 1.08, duration: .12, yoyo: true, repeat: 1 }, 19.92)
+  .to("#cur", { left: 1100, top: 1800, duration: .7, ease: "power2.in" }, 20.6)
+  .to({}, { duration: .1 }, 21.4);
+
+/* ---------- seek determinístico p/ render ---------- */
+const seqs = [...document.querySelectorAll("img[data-seq]")];
+window.DUR = tl.duration();
+window.seek = async (t) => {
+  tl.seek(t, false);
+  const waits = [];
+  for (const im of seqs) {
+    const st = +im.dataset.start, n = +im.dataset.n;
+    const i = Math.min(n, Math.max(1, Math.floor((t - st) * 30) + 1));
+    const src = `${im.dataset.seq}/${String(i).padStart(3, "0")}.jpg`;
+    if (!im.src.endsWith(src)) { im.src = src; waits.push(im.decode().catch(() => {})); }
+  }
+  await Promise.all(waits);
+};
+window.ready = document.fonts.ready.then(() => Promise.all([...document.images].map(i => i.decode().catch(() => {}))));
+</script>
+</body></html>
