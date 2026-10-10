@@ -49,6 +49,7 @@ Quando acabar, escrever mais 30 no mesmo estilo (sem repetir gancho).
 | 30 | Negócios | A empresa que perdeu milhões por um erro no site (caso real a pesquisar) | pendente |
 | 31 | Dia a dia | Esse site é golpe se tiver isso (5 sinais, Procon) | feito 09/10 (c05, Instagram) |
 | 32 | Vídeo | Seu cliente te procurou às 23h e ninguém respondeu | feito 09/10 (v03) |
-| 33 | Curiosidade | Você é mais alto de manhã (discos da coluna; astronautas até 3%) | feito 10/10 (t05) |
+| 33 | Curiosidade | Você é mais alto de manhã | feito 10/10 (t05) · REPROVADO: fora do nicho |
 | 34 | Dia a dia | Você já desistiu de comprar por isso? | feito 10/10 (c06, 1º no modelo X) |
-| 35 | Vídeo | Todo grupo da família tem esses 5 tipos (virada: o tipo é você) | feito 10/10 (v04, 3ª versão) |
+| 35 | Vídeo | Todo mundo que vende já teve esses 5 clientes (virada: o pior é o que nunca te chamou) | feito 10/10 (v04, 4ª versão) |
+| 36 | Design | Você nunca viu isso nesses logos (Amazon, FedEx, Carrefour, BMW) | feito 10/10 (t06, substitui t05) |

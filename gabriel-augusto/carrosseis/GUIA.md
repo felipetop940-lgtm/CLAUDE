@@ -42,8 +42,9 @@ Todo dia, 3 itens com **temas diferentes**:
 2. **Carrossel do Instagram (cNN)** no modelo post do X escuro (x.css). Postar 19h. (09/10 ainda no viral; X a partir de 10/10.)
 3. **Arte do TikTok (tNN)** no modelo viral, 9:16. Postar 13h30.
 Substitui o esquema antigo (principal Instagram+TikTok 19h + extra do TikTok 13h30).
-Temas: dia a dia com identificação, polêmica leve, humor, curiosidade de vida. O post antigo dele com 10,5 mil curtidas
-foi "5 maneiras para ficar alto". Nada de "história de empresa" (Kodak, pixels...): não engajou.
+Temas: **sempre do nicho dele** (internet, design, logos/marcas, vendas, atendimento, WhatsApp, redes sociais, golpes online,
+presença digital), com identificação, humor e polêmica leve. Curiosidade de vida fora disso ("você é mais alto de manhã") foi
+reprovada em 10/10 como "nada a ver". Nada de "história de empresa" chata (Kodak, pixels...).
 
 ## INSTAGRAM: MODELO POST DO X ESCURO (decidido em 09/10) · teste: `x00-teste`
 
@@ -178,3 +179,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 09/10: pacote diário = vídeo + carrossel do Instagram (modelo X, teste a partir de 10/10) + arte do TikTok (viral). Rotina passou pra 11h50.
 - 10/10: vídeo reprovado ("tem gente pior que você vendendo mais": gancho fraco e nichado). Refeito como "você escolhe dentista igual melancia" com virada. Regra no CLAUDE.md.
 - 10/10: melancia também reprovada. Ele quer o VISUAL fixo e o CONTEÚDO/estrutura diferente todo dia (sem site+preço+link em todo vídeo). v04 = grupo da família.
+- 10/10: arte "você é mais alto de manhã" e vídeo "grupo da família" reprovados: fora do nicho. Assunto sempre dentro de internet/design/vendas/redes. Feitos t06 (logos escondidos) e v04 (5 tipos de cliente).
