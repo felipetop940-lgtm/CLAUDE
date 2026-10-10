@@ -232,6 +232,30 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   .tr-cta .btn { width: 100%; }
   .gen-tag { right: 14px; top: 14px; }
 }
+/* vídeo de apresentação (faixa escura) */
+.reel { position: relative; overflow: hidden; background: #120b06; color: #fff; }
+.reel-glow { position: absolute; width: 900px; height: 900px; right: -220px; top: 50%; transform: translateY(-50%); border-radius: 50%; background: radial-gradient(circle, rgba(224, 128, 46, .34), transparent 62%); pointer-events: none; animation: breathe 9s ease-in-out infinite; }
+.reel::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 80% at 0% 0%, rgba(255, 200, 61, .10), transparent 60%); pointer-events: none; }
+.reel-in { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: clamp(36px, 6vw, 96px); }
+.reel .mark { color: var(--sun); }
+.reel .h2 { color: #fff; }
+.reel-p { margin-top: 24px; max-width: 46ch; color: rgba(255, 255, 255, .72); font-size: clamp(16px, 1.3vw, 19px); }
+.reel-ls { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.reel-ls li { padding: 9px 16px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; color: rgba(255, 255, 255, .85); }
+.reel-cta { margin-top: 34px; }
+.v23 { --h: clamp(420px, 74vh, 660px); --w: calc(var(--h) * 2 / 3); border-radius: 26px; box-shadow: 0 50px 100px -30px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 255, 255, .1), 0 0 90px -10px rgba(224, 128, 46, .45); }
+.v23 .vplay { width: 92px; height: 92px; }
+.v23 .vplay .ico { width: 32px; height: 32px; }
+.v23 .vcover::after { background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, .15)); }
+@media (max-width: 860px) {
+  .reel-in { grid-template-columns: 1fr; text-align: center; }
+  .reel-p { margin-inline: auto; }
+  .reel-ls { justify-content: center; }
+  .reel-vid { order: -1; justify-self: center; }
+  .v23 { --w: min(100vw - 2 * var(--gutter), 400px); --h: calc(var(--w) * 1.5); }
+  .reel-glow { right: 50%; top: 22%; transform: translate(50%, -50%); width: 640px; height: 640px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
   html { scroll-behavior: auto; }
