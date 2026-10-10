@@ -18,8 +18,9 @@ Regras fixas:
 - Títulos só com balanço lento e suave. Nada tremendo rápido (poluição visual). Usar `"fx": "zoom"` ou `"flash"`; `"tremer"` hoje é só um zoom suave.
 - Transições entre cenas; só efeitos sonoros, sem música de fundo.
 - Voz: a dele gravada (Kokoro é só voz guia enquanto ele não manda).
-- Roteiro (pedido dele em 10/10, o v04 "tem gente pior que você vendendo mais" foi reprovado): gancho estranho/engraçado que serve pra qualquer pessoa (ex.: "você escolhe dentista igual escolhe melancia"), **quebra de expectativa no meio** (a virada: "a melancia é você") e público amplo (manicure, mecânico, quem vende bolo, não só médico/advogado). Nada de gancho genérico de marketing.
-- Toda vez: gancho polêmico no início, pergunta pra gerar comentário (prop `enquete`), prova (`site_celular` com site real), preço (`preco`, a partir de R$ 300) e CTA final pro perfil/link da bio (`cta`).
+- **O que é fixo é só o visual** (bonecos, fundo "auras", legenda karaokê, títulos com marcas, transições). **O conteúdo muda todo dia**, inclusive a estrutura (pedido dele em 10/10: "use o modelo artístico, não o roteiro igual pra todos"). Nada de repetir site + preço + link em todo vídeo.
+- Roteiro: gancho forte e curioso que sirva pra qualquer pessoa, **quebra de expectativa** (virada) e assunto do dia a dia (lista engraçada, curiosidade, história com virada). Exemplo do formato (10/10, aguardando opinião dele): "Todo grupo da família tem esses 5 tipos… e um deles é você". Reprovados: "tem gente pior que você vendendo mais" e "você escolhe dentista igual melancia" (cara de anúncio).
+- Final: CTA pra seguir/comentar (prop `cta` com o texto do dia). Vídeo de venda (site_celular, preço a partir de R$ 300, enquete, link da bio) só quando ele pedir ou 1 vez por semana.
 - Não inventar dados, depoimentos ou números.
 - Capa: `python3 capa.py ../roteiros/vNN.json` → `saida/vNN-capa.jpg` (1ª cena + chave "capa" no roteiro: texto, tamanho, selo com a pergunta do gancho, selo_y). Tudo dentro do recorte 3:4 da grade.
 - Renderização: ~7 min, 4 processos em paralelo. Manter o mp4 abaixo de 30 MB. Não apagar /tmp/short_* durante render.

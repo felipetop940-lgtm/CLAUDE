@@ -177,3 +177,4 @@ Depois de 2 a 3 semanas, pedir pra ele o print de **Insights > Público > Horár
 - 09/10: título maior (98/112px), selo de verificado depois do nome e foto do perfil no avatar.
 - 09/10: pacote diário = vídeo + carrossel do Instagram (modelo X, teste a partir de 10/10) + arte do TikTok (viral). Rotina passou pra 11h50.
 - 10/10: vídeo reprovado ("tem gente pior que você vendendo mais": gancho fraco e nichado). Refeito como "você escolhe dentista igual melancia" com virada. Regra no CLAUDE.md.
+- 10/10: melancia também reprovada. Ele quer o VISUAL fixo e o CONTEÚDO/estrutura diferente todo dia (sem site+preço+link em todo vídeo). v04 = grupo da família.
