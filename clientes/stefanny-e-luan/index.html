@@ -543,7 +543,7 @@ h2.split.in .w>span{transform:none}
         <h3>Cerimônia</h3>
         <ul>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-cfg="dataTexto"></span></li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-cfg="cerimonia.horario"></span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><span data-cfg="cerimonia.horario"></span><br><small style="opacity:.75" data-cfg="cerimonia.chegada"></small></span></li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><span data-cfg="cerimonia.local"></span><br><small style="opacity:.75" data-cfg="cerimonia.endereco"></small></span></li>
         </ul>
         <div class="acts">
@@ -690,18 +690,22 @@ h2.split.in .w>span{transform:none}
    ===================================================================== */
 const CONFIG = {
   // Data e hora da cerimônia (formato AAAA-MM-DDTHH:MM). Ativa a contagem regressiva e o "Salvar na agenda".
-  data: "2026-12-12",                    // quando tiver o horário: "2026-12-12T16:30"
+  data: "2026-12-12T10:00:00-03:00",     // horário de Brasília
   dataTexto: "12 de dezembro de 2026",
-  cidade: "Goiânia",
-  cerimonia: { horario: "[Horário da cerimônia]", local: "[Local da cerimônia]", endereco: "[Endereço]", mapa: "" },
-  recepcao:  { horario: "[Horário da recepção]",  local: "[Local da recepção]",  endereco: "[Endereço]", mapa: "" },
+  cidade: "Brasília · DF",
+  cerimonia: { horario: "10h", chegada: "Chegue com 30 min de antecedência", local: "Paróquia São Mateus",
+               endereco: "SH Mansões Sobradinho, Condomínio Mini-Chácaras, QMS 14 · Sobradinho II, Brasília - DF, 73081-805",
+               mapa: "https://www.google.com/maps/search/?api=1&query=Par%C3%B3quia+S%C3%A3o+Mateus+Sobradinho+II+Bras%C3%ADlia+DF" },
+  recepcao:  { horario: "Logo após a cerimônia", local: "Chácara Irmão Sol",
+               endereco: "Rua 5, Chácara 60/C, Núcleo Rural Lago Oeste · Sobradinho II, Brasília - DF, 73100-150",
+               mapa: "https://www.google.com/maps/search/?api=1&query=Ch%C3%A1cara+Irm%C3%A3o+Sol+Lago+Oeste+Sobradinho+II+Bras%C3%ADlia+DF" },
   traje: "[Traje]",                      // ex.: "Esporte fino"
   rsvpAte: "28 de novembro",               // 2 semanas antes
   whatsapp: "",                          // só números, com DDI e DDD. ex.: "5562999999999"
   pix: {
     chave: "stefanny.correa@icloud.com", // CPF (só números), e-mail, chave aleatória ou celular no formato +5562999999999
     nome: "Stefanny",                    // nome do titular da conta (como aparece no banco)
-    cidade: "Goiania"                    // cidade do titular, sem acento
+    cidade: "Brasilia"                   // cidade do titular, sem acento
   }
 };
 
@@ -847,11 +851,12 @@ $$("[data-ics]").forEach(b => {
   if (!CONFIG.data) { b.hidden = true; return; }
   b.onclick = () => {
     const allDay = !CONFIG.data.includes("T");
-    const d = new Date(allDay ? CONFIG.data + "T00:00" : CONFIG.data), e = new Date(d.getTime() + (allDay ? 24 : 6) * 3600e3);
+    const d = new Date(allDay ? CONFIG.data + "T00:00" : CONFIG.data), e = new Date(d.getTime() + (allDay ? 24 : 2) * 3600e3);
+    const utc = x => x.toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
     const f = x => x.getFullYear() + String(x.getMonth()+1).padStart(2,"0") + String(x.getDate()).padStart(2,"0") + "T" + String(x.getHours()).padStart(2,"0") + String(x.getMinutes()).padStart(2,"0") + "00";
     const ev = CONFIG.cerimonia, loc = [ev.local, ev.endereco].filter(x => !isPh(x)).join(" - ");
     const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//stefanny-luan//PT","BEGIN:VEVENT","UID:casamento-stefanny-luan","DTSTAMP:" + f(new Date()),
-      ...(allDay ? ["DTSTART;VALUE=DATE:" + f(d).slice(0, 8), "DTEND;VALUE=DATE:" + f(e).slice(0, 8)] : ["DTSTART:" + f(d), "DTEND:" + f(e)]), "SUMMARY:Casamento Stefanny & Luan", "LOCATION:" + loc, "END:VEVENT","END:VCALENDAR"].join("\r\n");
+      ...(allDay ? ["DTSTART;VALUE=DATE:" + f(d).slice(0, 8), "DTEND;VALUE=DATE:" + f(e).slice(0, 8)] : ["DTSTART:" + utc(d), "DTEND:" + utc(e)]), "SUMMARY:Casamento Stefanny & Luan", "LOCATION:" + loc, "END:VEVENT","END:VCALENDAR"].join("\r\n");
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([ics], { type:"text/calendar" }));
     a.download = "casamento-stefanny-e-luan.ics"; a.click();
