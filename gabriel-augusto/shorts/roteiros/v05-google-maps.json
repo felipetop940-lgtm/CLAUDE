@@ -1,0 +1,272 @@
+{
+  "titulo": "Aparecer no Google Maps de graça",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Seu cliente pesquisa perto de mim no Google. Se você não aparece no mapa, pra ele você não existe.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Você ~não aparece~",
+        "no *Google Maps*?"
+      ],
+      "boneco": {
+        "pose": "celular",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.12
+      },
+      "beats": [
+        {
+          "em": "existe",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "E o melhor: aparecer lá é de graça. Chama Perfil da Empresa no Google, e você faz em quatro passos.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": [
+        "E é de",
+        "_graça_"
+      ],
+      "prop": {
+        "tipo": "busca",
+        "consulta": "barbearia perto de mim",
+        "res": [
+          [
+            "📍 Aparece no mapa",
+            "gold",
+            "✓"
+          ],
+          [
+            "🕒 Horário e telefone",
+            "gold",
+            "✓"
+          ],
+          [
+            "⭐ Avaliações",
+            "gold",
+            "✓"
+          ]
+        ]
+      },
+      "beats": [
+        {
+          "em": "graca",
+          "foco": "q",
+          "zoom": 1.12,
+          "destaque": "q"
+        },
+        {
+          "em": "perfil",
+          "foco": "res1",
+          "zoom": 1.12,
+          "destaque": "res1"
+        },
+        {
+          "em": "quatro",
+          "foco": null
+        }
+      ]
+    },
+    {
+      "fala": "Primeiro: entra em business ponto google ponto com e cria o perfil com o nome real do seu negócio.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "1. *Cria* o perfil"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 1,
+        "total": 4,
+        "texto": "<b>business.google.com</b><br>com o nome real do negócio"
+      },
+      "beats": [
+        {
+          "em": "business",
+          "foco": "texto",
+          "zoom": 1.12,
+          "destaque": "texto"
+        }
+      ]
+    },
+    {
+      "fala": "Segundo: escolhe a categoria certa. É ela que faz o Google te mostrar pra quem procura o que você faz.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "2. Categoria *certa*"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 2,
+        "total": 4,
+        "texto": "Seja específico:<br><b>Barbearia</b>, e não \"Serviços\""
+      },
+      "beats": [
+        {
+          "em": "categoria",
+          "foco": "texto",
+          "zoom": 1.12,
+          "destaque": "texto"
+        }
+      ]
+    },
+    {
+      "fala": "Terceiro: coloca endereço, horário, telefone e o link do seu site ou do seu WhatsApp.",
+      "acento": "blue",
+      "fx": "flash",
+      "texto": [
+        "3. Info _completa_"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 3,
+        "total": 4,
+        "texto": "📍 Endereço · 🕒 Horário<br>📞 Telefone · 🔗 Site ou WhatsApp"
+      },
+      "beats": [
+        {
+          "em": "endereco",
+          "foco": "texto",
+          "zoom": 1.12,
+          "destaque": "texto"
+        }
+      ]
+    },
+    {
+      "fala": "Quarto: verifica o perfil. O Google pede vídeo, ligação, e-mail ou carta. Sem verificar, você não aparece.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "4. ~Verifica~ o perfil"
+      ],
+      "prop": {
+        "tipo": "passo",
+        "n": 4,
+        "total": 4,
+        "texto": "Vídeo · ligação · e-mail · carta<br><b>Sem verificar, não aparece</b>"
+      },
+      "beats": [
+        {
+          "em": "verifica",
+          "foco": "texto",
+          "zoom": 1.12,
+          "destaque": "texto"
+        }
+      ]
+    },
+    {
+      "fala": "E o que quase ninguém faz: pede avaliação pra todo cliente satisfeito. O próprio Google diz que avaliação ajuda no ranking.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Pede *avaliação*",
+        "pra todo cliente"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "eu",
+            "txt": "Obrigado pela visita! 😊 Pode deixar sua avaliação no Google? Leva 30 segundos.",
+            "em": "pede",
+            "tag": "⭐ Pedido de avaliação"
+          },
+          {
+            "de": "cli",
+            "txt": "Claro! Deixei 5 estrelas ⭐⭐⭐⭐⭐",
+            "em": "google"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "pede",
+          "foco": "msg1",
+          "zoom": 1.15,
+          "destaque": "msg1",
+          "pose": "apontando"
+        },
+        {
+          "em": "google",
+          "foco": "msg2",
+          "zoom": 1.15,
+          "destaque": "msg2",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "E coloca o link do seu site no perfil. Quem te acha no mapa já vê o seu trabalho.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Link do *site*",
+        "no perfil"
+      ],
+      "prop": {
+        "tipo": "site_celular",
+        "img": "../../video/src/fernando-scroll.jpg",
+        "selo": "Site no perfil do Google",
+        "x": 350
+      }
+    },
+    {
+      "fala": "Salva esse vídeo pra fazer hoje. E segue pra mais dica que faz vender.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Salva pra",
+        "*fazer hoje*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Salva e segue",
+        "sub": "Mais dicas que fazem vender",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "salva",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "Você ~não aparece~",
+      "no *Google Maps*?"
+    ],
+    "tamanho": 140,
+    "selo": "É de graça (4 passos)",
+    "selo_y": 560
+  }
+}
