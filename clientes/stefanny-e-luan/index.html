@@ -205,7 +205,9 @@ body.menu .mono{color:var(--ivory)!important}
 .dress-code.in .sw:nth-child(1) i::after{transition-delay:.5s}.dress-code.in .sw:nth-child(2) i::after{transition-delay:.7s}.dress-code.in .sw:nth-child(3) i::after{transition-delay:.9s}
 .sw b{font-family:var(--serif);font-weight:400;font-size:1.3rem;color:#fff}
 .sw small{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-3)}
-.dress-code .dress{margin-top:30px;padding-top:22px;border-top:1px solid rgba(230,210,168,.14)}
+.dress-code .dress{flex-direction:column;gap:6px;margin-top:30px;padding-top:22px;border-top:1px solid rgba(230,210,168,.14)}
+.tj{font-family:var(--serif);font-weight:300;font-size:1.9rem;line-height:1.1;color:#fff}
+.tj-obs{font-size:.95rem;color:rgba(251,247,241,.78)}
 .dress{margin-top:22px;display:flex;align-items:center;justify-content:center;gap:14px;color:rgba(251,247,241,.82);text-align:center;flex-wrap:wrap}
 .dress small{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-2)}
 
@@ -594,7 +596,7 @@ h2.split.in .w>span{transform:none}
         <div class="sw"><i style="--c:#ffffff"></i><b>Branco</b><small>Cor dos noivos</small></div>
         <div class="sw"><i style="--c:#efe6d4"></i><b>Off white</b><small>Cor dos noivos</small></div>
       </div>
-      <p class="dress"><small>Traje</small><span data-cfg="traje"></span></p>
+      <p class="dress"><small>Traje</small><span class="tj" data-cfg="traje"></span><span class="tj-obs" data-cfg="trajeObs"></span></p>
     </div>
   </div>
 </section>
@@ -732,9 +734,10 @@ const CONFIG = {
                endereco: "Rua 5, Chácara 60/C, Núcleo Rural Lago Oeste · Sobradinho II, Brasília - DF, 73100-150",
                mapa: "https://www.google.com/maps/search/?api=1&query=Ch%C3%A1cara+Irm%C3%A3o+Sol+Lago+Oeste+Sobradinho+II+Bras%C3%ADlia+DF",
                waze: "https://waze.com/ul?q=Ch%C3%A1cara%20Irm%C3%A3o%20Sol%20Lago%20Oeste%20Sobradinho%20II&navigate=yes" },
-  traje: "[Traje]",                      // ex.: "Esporte fino"
+  traje: "Esporte fino",
+  trajeObs: "Para as mulheres, vestidos longos",
   rsvpAte: "28 de novembro",               // 2 semanas antes
-  whatsapp: "",                          // só números, com DDI e DDD. ex.: "5562999999999"
+  whatsapp: "556191098259",              // Stefanny, como aparece no WhatsApp (+55 61 9109-8259) · só números, com DDI e DDD. ex.: "5562999999999"
   pix: {
     chave: "stefanny.correa@icloud.com", // CPF (só números), e-mail, chave aleatória ou celular no formato +5562999999999
     nome: "Stefanny",                    // nome do titular da conta (como aparece no banco)
