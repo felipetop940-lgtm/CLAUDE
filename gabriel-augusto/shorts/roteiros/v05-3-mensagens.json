@@ -1,0 +1,369 @@
+{
+  "titulo": "3 mensagens que fazem o cliente sumir",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Essas três mensagens fazem o cliente sumir do seu WhatsApp. E a terceira, todo mundo manda.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "3 mensagens que",
+        "fazem o cliente ~sumir~"
+      ],
+      "boneco": {
+        "pose": "celular",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.12
+      },
+      "beats": [
+        {
+          "em": "terceira",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Primeira: o cliente pergunta o preço e você responde: depende. Ele perguntou uma coisa e recebeu uma dúvida. Some.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "1. ~\"Depende\"~"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Oi! Quanto custa o corte?",
+            "em": "pergunta"
+          },
+          {
+            "de": "eu",
+            "txt": "Depende 🙂",
+            "em": "responde",
+            "tag": "❌ Cliente some"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "pergunta",
+          "foco": "msg1",
+          "zoom": 1.15,
+          "destaque": "msg1",
+          "pose": "apontando"
+        },
+        {
+          "em": "depende",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "No lugar: dá a faixa de preço e já faz uma pergunta. Aí a conversa continua.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Manda *assim*"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Oi! Quanto custa o corte?",
+            "em": 0.02
+          },
+          {
+            "de": "eu",
+            "txt": "A partir de R$ 40! É só corte ou corte e barba? 😊",
+            "em": "faixa",
+            "tag": "✅ Preço + pergunta"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "faixa",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "apontando"
+        },
+        {
+          "em": "continua",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Segunda: mandar um áudio de três minutos pra explicar o preço. Quem tá no trabalho não consegue ouvir.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "2. ~Áudio~ de 3 minutos"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Quais os valores?",
+            "em": 0.02
+          },
+          {
+            "de": "eu",
+            "txt": "🎤 Áudio · 2:58",
+            "em": "audio",
+            "tag": "❌ Fica sem ouvir"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "audio",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "No lugar: escreve curto, em tópicos. Dá pra ler em qualquer lugar.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Manda *assim*"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Quais os valores?",
+            "em": 0.02
+          },
+          {
+            "de": "eu",
+            "txt": "✂️ Corte: R$ 40<br>🧔 Barba: R$ 30<br>🔥 Combo: R$ 60",
+            "em": "escreve",
+            "tag": "✅ Lê na hora"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "escreve",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "apontando"
+        },
+        {
+          "em": "qualquer",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "E a terceira, que todo mundo manda: qualquer dúvida, estou à disposição. Parece educado, mas encerra a conversa.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "3. ~\"Estou à disposição\"~"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Ah, legal. Vou ver aqui.",
+            "em": 0.02
+          },
+          {
+            "de": "eu",
+            "txt": "Qualquer dúvida, estou à disposição! 😊",
+            "em": "duvida",
+            "tag": "❌ Conversa morre"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "duvida",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "apontando"
+        },
+        {
+          "em": "encerra",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "No lugar: oferece o próximo passo. Quer que eu já reserve? Tenho dez ou quinze horas.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Manda *assim*"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Ah, legal. Vou ver aqui.",
+            "em": 0.02
+          },
+          {
+            "de": "eu",
+            "txt": "Quer que eu já reserve pra você? Amanhã tenho 10h ou 15h 😊",
+            "em": "reserve",
+            "tag": "✅ Próximo passo"
+          },
+          {
+            "de": "cli",
+            "txt": "15h! 🙌",
+            "em": "quinze"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "reserve",
+          "foco": "msg2",
+          "zoom": 1.15,
+          "destaque": "msg2",
+          "pose": "apontando"
+        },
+        {
+          "em": "quinze",
+          "foco": "msg3",
+          "zoom": 1.15,
+          "destaque": "msg3",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "E nos sites que eu faço, o botão do WhatsApp já leva o cliente com a mensagem pronta. Ele chega querendo comprar.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "O cliente já chega",
+        "*querendo comprar*"
+      ],
+      "prop": {
+        "tipo": "site_celular",
+        "img": "../../video/src/fernando-scroll.jpg",
+        "selo": "Botão com mensagem pronta",
+        "x": 350
+      }
+    },
+    {
+      "fala": "Salva pra usar hoje. E segue pra mais dica que faz vender.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Salva pra",
+        "*usar hoje*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Salva e segue",
+        "sub": "Mais dicas que fazem vender",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "salva",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "3 mensagens que",
+      "fazem o cliente ~sumir~"
+    ],
+    "tamanho": 130,
+    "selo": "A 3ª todo mundo manda",
+    "selo_y": 560
+  }
+}
