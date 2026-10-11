@@ -5,6 +5,7 @@ ou sobe em qualquer hospedagem) + stefanny-e-luan-site.zip.
 Uso: python3 build.py
 """
 import base64
+import json
 import re
 import zipfile
 from pathlib import Path
@@ -33,6 +34,10 @@ def main() -> None:
                   'const src = g => IMG[(g.cat === "fun" ? "c/" : "p/") + g.img];')]:
         assert a in html, a
         html = html.replace(a, b)
+    # links do Mercado Pago (gerar-links-mercadopago.py)
+    links = ROOT / "assets/mp-links.json"
+    if links.exists():
+        html = html.replace("const MP_LINKS = {};", "const MP_LINKS = " + json.dumps(json.loads(links.read_text()), ensure_ascii=False) + ";")
     assert "assets/" not in html, "sobrou caminho de arquivo sem embutir"
     DIST.mkdir(exist_ok=True)
     out = DIST / "index.html"

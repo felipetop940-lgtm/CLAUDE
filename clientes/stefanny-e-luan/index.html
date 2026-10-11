@@ -776,14 +776,17 @@ const CONFIG = {
     nome: "Stefanny",                    // nome do titular da conta (como aparece no banco)
     cidade: "Brasilia"                   // cidade do titular, sem acento
   },
-  // Cartão de crédito pela InfinitePay (Checkout Integrado). Só precisa da InfiniteTag da Stefanny, sem o "$".
+  // Cartão de crédito pelo Mercado Pago. "link" é o link pessoal da Stefanny: o convidado digita o valor lá.
+  // Se existir um link com valor fixo para o presente (gerar-links-mercadopago.py), ele é usado no lugar.
   cartao: {
-    infiniteTag: "",                     // ex.: "stefannycorrea"
+    link: "https://link.mercadopago.com.br/stefannyeluan",
     parcelas: 12,                        // máximo de parcelas aceito
-    semJuros: 1,                         // até quantas vezes sem juros para o convidado (1 = só à vista)
-    api: "https://api.checkout.infinitepay.io/links"
+    semJuros: 1                          // até quantas vezes sem juros para o convidado (1 = só à vista)
   }
 };
+const MP_LINKS = {};                     // preenchido pelo build.py
+// chave de cada presente nos links: nome + descrição sem acento (igual ao gerador)
+const giftKey = g => (g.nome + " " + (g.desc || "")).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
 /* =====================================================================
    LISTA DE PRESENTES — preço em reais. cat: mesa | cozinha | eletro | cama | casa | fun
@@ -1156,48 +1159,35 @@ function openGift(g, btn) {
   document.body.style.overflow = "hidden";
   setTimeout(() => (g.cat === "livre" ? $("#md-val") : $("#md-copy")).focus({ preventScroll:true }), 350);
 }
-const hasCard = () => !!CONFIG.cartao.infiniteTag.trim();
+const fixedLink = () => gift && gift.cat !== "livre" ? MP_LINKS[giftKey(gift)] : "";
+const cardLink = () => fixedLink() || CONFIG.cartao.link;
 function setPay(m) {
   $$(".tab", md).forEach(t => t.classList.toggle("on", t.dataset.pay === m));
   $("#pane-pix").hidden = m !== "pix"; $("#pane-card").hidden = m !== "card";
 }
 function cardInfo() {
-  const c = CONFIG.cartao, v = valor();
-  const sj = c.semJuros > 1 ? `Em até ${c.semJuros}x sem juros` : "À vista no crédito sem acréscimo";
+  const c = CONFIG.cartao, v = valor(), fixo = !!fixedLink();
   $("#card-tab-sub").textContent = `Até ${c.parcelas}x`;
   $("#card-info").innerHTML = [
-    `${sj}${v ? ` — ${c.semJuros > 1 ? `${c.semJuros}x de ${brl(v / c.semJuros)}` : brl(v)}` : ""}`,
-    `Parcele em até ${c.parcelas}x: os juros do parcelamento são da operadora e aparecem na tela de pagamento antes de você confirmar`,
-    "Pagamento seguro pela InfinitePay, numa página própria de pagamento"
-  ].map(t => `<li>${t}</li>`).join("");
-  $("#card-go").disabled = !hasCard();
-  $("#card-note").textContent = hasCard() ? "Abre a página de pagamento em outra aba." : "Pagamento no cartão disponível em breve. Por enquanto, use o PIX ♡";
+    fixo ? `O valor ${v ? brl(v) + " " : ""}já vem preenchido na página de pagamento`
+         : `Na página do Mercado Pago, digite o valor do presente: <b>${v ? brl(v) : "o valor que você escolheu"}</b>`,
+    c.semJuros > 1 ? `Em até ${c.semJuros}x sem juros` : "À vista no crédito sem acréscimo",
+    `Parcele em até ${c.parcelas}x: os juros do parcelamento são do Mercado Pago e aparecem antes de você confirmar`,
+    "Pagamento seguro pelo Mercado Pago, não precisa ter conta"
+  ].map(t => `<li><span>${t}</span></li>`).join("");
+  $("#card-go").disabled = !cardLink() || (!fixo && !v);
+  $("#card-note").textContent = !cardLink() ? "Pagamento no cartão disponível em breve. Por enquanto, use o PIX ♡"
+    : !fixo && !v ? "Digite o valor acima para continuar."
+    : fixo ? "Abre o Mercado Pago em outra aba." : `Ao tocar, o valor ${brl(v)} é copiado para você colar no Mercado Pago.`;
 }
 $$(".tab", md).forEach(t => t.onclick = () => setPay(t.dataset.pay));
 $("#card-go").onclick = async () => {
-  const v = valor();
-  if (!v) { $("#md-val").focus(); toast("Digite o valor primeiro"); return; }
-  const btn = $("#card-go"), label = btn.innerHTML;
-  const win = window.open("", "_blank");   // abre já no clique para o navegador não bloquear
-  btn.disabled = true; btn.textContent = "Gerando pagamento…";
-  try {
-    const r = await fetch(CONFIG.cartao.api, {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        handle: CONFIG.cartao.infiniteTag.trim().replace(/^\$/, ""),
-        order_nsu: "SL-" + Date.now().toString(36),
-        redirect_url: location.href.split("#")[0] + "#presentes",
-        items: [{ quantity: 1, price: Math.round(v * 100), description: (gift.cat === "livre" ? "Presente de casamento (valor livre)" : "Presente: " + gift.nome).slice(0, 120) }]
-      })
-    });
-    const j = await r.json();
-    const url = j.url || j.payment_url || j.link || (j.data && j.data.url);
-    if (!r.ok || !url) throw new Error("sem link");
-    if (win) win.location.href = url; else location.href = url;
-  } catch (err) {
-    if (win) win.close();
-    toast("Não deu para abrir o pagamento no cartão agora. Tente o PIX ou fale com os noivos.");
-  } finally { btn.disabled = !hasCard(); btn.innerHTML = label; }
+  const u = cardLink(), v = valor(); if (!u) return;
+  if (!fixedLink() && v) {
+    // copia o valor para o convidado só colar no campo do Mercado Pago
+    try { await navigator.clipboard.writeText(v.toFixed(2).replace(".", ",")); toast(`Valor ${brl(v)} copiado. Cole no campo de valor do Mercado Pago ♡`); } catch {}
+  }
+  window.open(u, "_blank", "noopener");
 };
 
 function closeGift() { md.classList.remove("open"); document.body.style.overflow = ""; lastFocus?.focus({ preventScroll:true }); }
