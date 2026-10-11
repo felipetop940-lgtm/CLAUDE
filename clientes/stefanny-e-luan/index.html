@@ -190,9 +190,22 @@ body.menu .mono{color:var(--ivory)!important}
 .ev li{display:flex;gap:12px;align-items:flex-start;color:rgba(251,247,241,.85)}
 .ev li svg{flex:none;margin-top:5px;color:var(--gold-2)}
 .ev .ph{color:var(--gold-3)}
-.ev .acts{display:flex;gap:12px;flex-wrap:wrap}
+.ev .acts{display:flex;gap:10px;flex-wrap:wrap}
+.ev .acts .btn svg{margin:-2px 0}
 .ev .btn-line{color:var(--ivory);box-shadow:inset 0 0 0 1px rgba(251,247,241,.3);padding:13px 22px;font-size:.7rem}
 .ev .btn-line:hover{color:var(--gold-2);box-shadow:inset 0 0 0 1px var(--gold-2)}
+.dress-code{margin:34px auto 0;max-width:760px;text-align:center;padding:44px 32px 36px;border-radius:24px;background:rgba(251,247,241,.04);box-shadow:inset 0 0 0 1px rgba(230,210,168,.16)}
+.dress-code h3{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,4vw,2.5rem);color:#fff;margin:10px 0 6px}
+.dress-code .lead{margin:0 auto;font-size:.98rem}
+.swatches{display:flex;justify-content:center;gap:clamp(18px,6vw,56px);margin-top:30px;flex-wrap:wrap}
+.sw{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:110px}
+.sw i{position:relative;width:64px;height:64px;border-radius:50%;background:var(--c);box-shadow:0 0 0 1px rgba(230,210,168,.35),0 0 0 6px rgba(28,22,18,.6),0 0 0 7px rgba(230,210,168,.18);margin-bottom:10px;overflow:hidden}
+.sw i::after{content:"";position:absolute;left:-10%;right:-10%;top:50%;height:2px;margin-top:-1px;background:#b23a3a;transform:rotate(-45deg) scaleX(0);transition:transform .9s var(--ease)}
+.dress-code.in .sw i::after{transform:rotate(-45deg) scaleX(1)}
+.dress-code.in .sw:nth-child(1) i::after{transition-delay:.5s}.dress-code.in .sw:nth-child(2) i::after{transition-delay:.7s}.dress-code.in .sw:nth-child(3) i::after{transition-delay:.9s}
+.sw b{font-family:var(--serif);font-weight:400;font-size:1.3rem;color:#fff}
+.sw small{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-3)}
+.dress-code .dress{margin-top:30px;padding-top:22px;border-top:1px solid rgba(230,210,168,.14)}
 .dress{margin-top:22px;display:flex;align-items:center;justify-content:center;gap:14px;color:rgba(251,247,241,.82);text-align:center;flex-wrap:wrap}
 .dress small{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-2)}
 
@@ -426,6 +439,12 @@ h2.split.in .w>span{transform:none}
   .md .head,.md .sec{padding-left:20px;padding-right:20px}
   .two{grid-template-columns:1fr 96px}
   .facts{gap:22px}
+  .dress-code{padding:36px 18px 30px}
+  .swatches{gap:8px;flex-wrap:nowrap}
+  .sw{flex:1;min-width:0}
+  .sw i{width:54px;height:54px}
+  .sw b{font-size:1.15rem}
+  .sw small{font-size:.58rem;letter-spacing:.1em;line-height:1.4}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -547,7 +566,8 @@ h2.split.in .w>span{transform:none}
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><span data-cfg="cerimonia.local"></span><br><small style="opacity:.75" data-cfg="cerimonia.endereco"></small></span></li>
         </ul>
         <div class="acts">
-          <a class="btn btn-line" data-map="cerimonia" target="_blank" rel="noopener">Como chegar</a>
+          <a class="btn btn-line" data-map="cerimonia" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+          <a class="btn btn-line" data-waze="cerimonia" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 15.5C3.6 14.6 3 13.3 3 11.5 3 7 7 3.5 12 3.5s9 3.5 9 8c0 4.6-4 8-9 8-1.3 0-2.6-.2-3.7-.7"/><circle cx="8.5" cy="20" r="1.6"/><circle cx="16" cy="20" r="1.6"/><circle cx="9.5" cy="10.5" r=".6" fill="currentColor"/><circle cx="14.5" cy="10.5" r=".6" fill="currentColor"/><path d="M9.5 13.5c1.4 1.2 3.6 1.2 5 0"/></svg>Waze</a>
           <button class="btn btn-line" data-ics="cerimonia">Salvar na agenda</button>
         </div>
       </article>
@@ -560,11 +580,22 @@ h2.split.in .w>span{transform:none}
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><span data-cfg="recepcao.local"></span><br><small style="opacity:.75" data-cfg="recepcao.endereco"></small></span></li>
         </ul>
         <div class="acts">
-          <a class="btn btn-line" data-map="recepcao" target="_blank" rel="noopener">Como chegar</a>
+          <a class="btn btn-line" data-map="recepcao" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+          <a class="btn btn-line" data-waze="recepcao" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 15.5C3.6 14.6 3 13.3 3 11.5 3 7 7 3.5 12 3.5s9 3.5 9 8c0 4.6-4 8-9 8-1.3 0-2.6-.2-3.7-.7"/><circle cx="8.5" cy="20" r="1.6"/><circle cx="16" cy="20" r="1.6"/><circle cx="9.5" cy="10.5" r=".6" fill="currentColor"/><circle cx="14.5" cy="10.5" r=".6" fill="currentColor"/><path d="M9.5 13.5c1.4 1.2 3.6 1.2 5 0"/></svg>Waze</a>
         </div>
       </article>
     </div>
-    <p class="dress rv"><small>Traje</small><span data-cfg="traje"></span></p>
+    <div class="dress-code rv">
+      <span class="eyebrow" style="color:var(--gold-2)">Dress code</span>
+      <h3>Cores reservadas</h3>
+      <p class="lead">Pedimos com carinho que os convidados não usem estas cores no grande dia.</p>
+      <div class="swatches">
+        <div class="sw"><i style="--c:#e8b4c2"></i><b>Rosa</b><small>Reservado para as madrinhas</small></div>
+        <div class="sw"><i style="--c:#ffffff"></i><b>Branco</b><small>Cor dos noivos</small></div>
+        <div class="sw"><i style="--c:#efe6d4"></i><b>Off white</b><small>Cor dos noivos</small></div>
+      </div>
+      <p class="dress"><small>Traje</small><span data-cfg="traje"></span></p>
+    </div>
   </div>
 </section>
 
@@ -695,10 +726,12 @@ const CONFIG = {
   cidade: "Brasília · DF",
   cerimonia: { horario: "10h", chegada: "Chegue com 30 min de antecedência", local: "Paróquia São Mateus",
                endereco: "SH Mansões Sobradinho, Condomínio Mini-Chácaras, QMS 14 · Sobradinho II, Brasília - DF, 73081-805",
-               mapa: "https://www.google.com/maps/search/?api=1&query=Par%C3%B3quia+S%C3%A3o+Mateus+Sobradinho+II+Bras%C3%ADlia+DF" },
+               mapa: "https://www.google.com/maps/search/?api=1&query=Par%C3%B3quia+S%C3%A3o+Mateus+Sobradinho+II+Bras%C3%ADlia+DF",
+               waze: "https://waze.com/ul?q=Par%C3%B3quia%20S%C3%A3o%20Mateus%20Sobradinho%20II%20Bras%C3%ADlia&navigate=yes" },
   recepcao:  { horario: "Logo após a cerimônia", local: "Chácara Irmão Sol",
                endereco: "Rua 5, Chácara 60/C, Núcleo Rural Lago Oeste · Sobradinho II, Brasília - DF, 73100-150",
-               mapa: "https://www.google.com/maps/search/?api=1&query=Ch%C3%A1cara+Irm%C3%A3o+Sol+Lago+Oeste+Sobradinho+II+Bras%C3%ADlia+DF" },
+               mapa: "https://www.google.com/maps/search/?api=1&query=Ch%C3%A1cara+Irm%C3%A3o+Sol+Lago+Oeste+Sobradinho+II+Bras%C3%ADlia+DF",
+               waze: "https://waze.com/ul?q=Ch%C3%A1cara%20Irm%C3%A3o%20Sol%20Lago%20Oeste%20Sobradinho%20II&navigate=yes" },
   traje: "[Traje]",                      // ex.: "Esporte fino"
   rsvpAte: "28 de novembro",               // 2 semanas antes
   whatsapp: "",                          // só números, com DDI e DDD. ex.: "5562999999999"
@@ -815,6 +848,12 @@ $$("[data-cfg]").forEach(el => {
 $$("[data-map]").forEach(a => {
   const ev = CONFIG[a.dataset.map];
   const q = ev.mapa || (!isPh(ev.endereco) ? "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ev.local + " " + ev.endereco) : "");
+  if (q) a.href = q; else a.hidden = true;
+});
+// Waze: usa o link do CONFIG ou busca pelo nome do local (com coordenadas fica exato: https://waze.com/ul?ll=LAT,LNG&navigate=yes)
+$$("[data-waze]").forEach(a => {
+  const ev = CONFIG[a.dataset.waze];
+  const q = ev.waze || (!isPh(ev.local) ? "https://waze.com/ul?q=" + encodeURIComponent(ev.local) + "&navigate=yes" : "");
   if (q) a.href = q; else a.hidden = true;
 });
 
