@@ -156,13 +156,16 @@ body.menu .mono{color:var(--ivory)!important}
 .g-item:hover img{transform:scale(1.06)}
 .g-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,22,18,0) 60%,rgba(28,22,18,.35));opacity:0;transition:opacity .6s}
 .g-item:hover::after{opacity:1}
-.g-grid{grid-template-rows:repeat(2,clamp(220px,27vw,330px))}
+.g-grid{grid-template-rows:repeat(3,clamp(220px,27vw,330px))}
 .g1{grid-column:1/6;grid-row:1/3}
 .g2{grid-column:6/10;grid-row:1}
 .g3{grid-column:10/13;grid-row:1}
 .g4{grid-column:6/9;grid-row:2}
 .g5{grid-column:9/13;grid-row:2}
-.g1 img{object-position:50% 30%}.g2 img{object-position:50% 45%}.g3 img{object-position:55% 30%}.g4 img{object-position:40% 45%}.g5 img{object-position:50% 40%}
+.g6{grid-column:1/5;grid-row:3}
+.g7{grid-column:5/9;grid-row:3}
+.g8{grid-column:9/13;grid-row:3}
+.g1 img{object-position:50% 30%}.g2 img{object-position:50% 45%}.g3 img{object-position:55% 30%}.g4 img{object-position:40% 45%}.g5 img{object-position:50% 40%}.g6 img{object-position:50% 62%}.g7 img{object-position:50% 45%}.g8 img{object-position:50% 35%}
 
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:90;background:rgba(18,14,11,.94);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s}
@@ -305,6 +308,21 @@ body.menu .mono{color:var(--ivory)!important}
 .md .wa:hover{background:var(--gold)}
 .md .note{font-size:.78rem;color:var(--muted);margin-top:10px;text-align:center}
 
+/* escolha da forma de pagamento */
+.pay-t{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tab{border:0;cursor:pointer;text-align:left;padding:14px 16px;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .3s,background .3s,transform .3s var(--ease)}
+.tab b{display:block;font-family:var(--serif);font-weight:400;font-size:1.2rem;line-height:1.2}
+.tab span{font-size:.76rem;color:var(--muted)}
+.tab:hover{transform:translateY(-1px)}
+.tab.on{background:var(--ink);color:var(--ivory);box-shadow:none}
+.tab.on span{color:var(--gold-3)}
+.card-info{list-style:none;display:grid;gap:10px;margin-bottom:18px}
+.card-info li{display:flex;gap:10px;font-size:.92rem;color:var(--ink-2);line-height:1.45}
+.card-info li::before{content:"";flex:none;width:6px;height:6px;margin-top:8px;transform:rotate(45deg);box-shadow:inset 0 0 0 1px var(--gold)}
+.card-go{width:100%}
+.card-go[disabled]{opacity:.45;cursor:not-allowed;transform:none!important;box-shadow:none!important;background:var(--ink)!important}
+
 /* ---------- rsvp ---------- */
 .rsvp{position:relative;padding:clamp(100px,13vw,160px) 0;background:var(--night);color:var(--ivory);overflow:hidden}
 .rsvp .grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:center;position:relative;z-index:1}
@@ -410,9 +428,9 @@ h2.split.in .w>span{transform:none}
   .g-list{grid-template-columns:repeat(2,1fr)}
   .rsvp .arch-wrap{order:-1;width:70%}
   .g-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:none}
-  .g1,.g2,.g3,.g4,.g5{grid-column:auto;grid-row:auto;aspect-ratio:3/4}
+  .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8{grid-column:auto;grid-row:auto;aspect-ratio:3/4}
   .g1{grid-column:1/-1;aspect-ratio:4/4.6}
-  .g5{grid-column:1/-1;aspect-ratio:4/3.4}
+  .g4{grid-column:1/-1;aspect-ratio:4/4.4}
 }
 @media (max-width:560px){
   .wrap{width:calc(100% - 32px)}
@@ -542,6 +560,9 @@ h2.split.in .w>span{transform:none}
       <figure class="g-item g3 rv d2" data-i="2"><img src="assets/fotos/foto-3.webp" alt="Luan beijando o rosto de Stefanny" loading="lazy"></figure>
       <figure class="g-item g4 rv d1" data-i="3"><img src="assets/fotos/foto-2.webp" alt="Stefanny e Luan ao pôr do sol" loading="lazy"></figure>
       <figure class="g-item g5 rv d2" data-i="4"><img src="assets/fotos/foto-5.webp" alt="Luan erguendo Stefanny nos braços" loading="lazy"></figure>
+      <figure class="g-item g6 rv" data-i="5"><img src="assets/fotos/foto-6.webp" alt="Stefanny e Luan abraçados na rua de pedra" loading="lazy"></figure>
+      <figure class="g-item g7 rv d1" data-i="6"><img src="assets/fotos/foto-8.webp" alt="Mãos de Stefanny e Luan se encontrando" loading="lazy"></figure>
+      <figure class="g-item g8 rv d2" data-i="7"><img src="assets/fotos/foto-7.webp" alt="Stefanny e Luan quase se beijando entre as árvores" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -607,11 +628,11 @@ h2.split.in .w>span{transform:none}
       <span class="eyebrow rv">Lista de presentes</span>
       <h2 class="rv d1">Sua presença é o nosso<br><em>maior presente</em></h2>
       <div class="orn rv" aria-hidden="true"><i></i><b></b><i></i></div>
-      <p class="lead rv d2">Mas, se quiser nos mimar, escolha um item abaixo. O valor vai direto para os noivos pelo PIX — rápido, seguro e sem frete.</p>
+      <p class="lead rv d2">Mas, se quiser nos mimar, escolha um item abaixo. O valor vai direto para os noivos, pelo PIX ou no cartão em até 12x — rápido, seguro e sem frete.</p>
     </div>
     <div class="steps rv d2">
       <div><b>1</b><span>Escolha o presente ou uma cota</span></div>
-      <div><b>2</b><span>Pague com PIX pelo QR Code ou copia e cola</span></div>
+      <div><b>2</b><span>Pague com PIX ou no cartão em até 12x</span></div>
       <div><b>3</b><span>Deixe um recado para os noivos</span></div>
     </div>
     <div class="tools">
@@ -690,7 +711,19 @@ h2.split.in .w>span{transform:none}
       <label for="md-val">Quanto você quer presentear?</label>
       <div class="amount"><span>R$</span><input id="md-val" inputmode="decimal" placeholder="0,00"></div>
     </div>
-    <div class="sec">
+    <div class="sec pay">
+      <p class="pay-t">Como você quer pagar?</p>
+      <div class="tabs" role="tablist">
+        <button class="tab on" data-pay="pix" role="tab"><b>PIX</b><span>Sem taxa · cai na hora</span></button>
+        <button class="tab" data-pay="card" role="tab"><b>Cartão de crédito</b><span id="card-tab-sub">Até 12x</span></button>
+      </div>
+    </div>
+    <div class="sec" id="pane-card" hidden>
+      <ul class="card-info" id="card-info"></ul>
+      <button class="btn btn-gold card-go" id="card-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg>Pagar com cartão</button>
+      <p class="note" id="card-note"></p>
+    </div>
+    <div class="sec" id="pane-pix">
       <div class="pix">
         <div class="qr" id="md-qr"></div>
         <div>
@@ -706,6 +739,7 @@ h2.split.in .w>span{transform:none}
         <div><label for="md-name">Seu nome</label><input id="md-name" autocomplete="name" placeholder="Para os noivos saberem quem foi"></div>
         <div><label for="md-msg">Recado para os noivos</label><textarea id="md-msg" placeholder="Opcional"></textarea></div>
       </div>
+      <p class="pay-t" style="margin-bottom:14px">Depois de pagar, avise os noivos</p>
       <button class="btn wa" id="md-wa"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Já paguei — avisar os noivos</button>
       <p class="note">Abre o WhatsApp com seu recado e o presente escolhido.</p>
     </div>
@@ -741,6 +775,13 @@ const CONFIG = {
     chave: "stefanny.correa@icloud.com", // CPF (só números), e-mail, chave aleatória ou celular no formato +5562999999999
     nome: "Stefanny",                    // nome do titular da conta (como aparece no banco)
     cidade: "Brasilia"                   // cidade do titular, sem acento
+  },
+  // Cartão de crédito pela InfinitePay (Checkout Integrado). Só precisa da InfiniteTag da Stefanny, sem o "$".
+  cartao: {
+    infiniteTag: "",                     // ex.: "stefannycorrea"
+    parcelas: 12,                        // máximo de parcelas aceito
+    semJuros: 1,                         // até quantas vezes sem juros para o convidado (1 = só à vista)
+    api: "https://api.checkout.infinitepay.io/links"
   }
 };
 
@@ -1021,19 +1062,19 @@ function card(g, i) {
   if (g.cat === "fun" && g.img) return `<article class="card fun" ${delay}>
       <div class="pic photo"><span class="tag">Cota divertida</span><img src="${src(g)}" alt="" loading="lazy"></div>
       <div class="body"><h4>${esc(g.nome)}</h4>${g.desc ? `<p>${esc(g.desc)}</p>` : ""}
-        <div class="foot"><span class="price">${brl(g.preco)}</span><button class="give" data-g="${idx}">Presentear</button></div></div></article>`;
+        <div class="foot"><span class="price">${brl(g.preco)}</span><button class="give" data-g="${idx}">Comprar</button></div></div></article>`;
   if (g.cat === "fun") return `<article class="card fun txt" ${delay}>
       <div class="pic"><div class="dots"></div><span class="tag">Cota divertida</span><div class="big">${esc(g.nome)}</div></div>
       <div class="body"><h4>${esc(g.nome)}</h4>${g.desc ? `<p>${esc(g.desc)}</p>` : ""}
-        <div class="foot"><span class="price">${brl(g.preco)}</span><button class="give" data-g="${idx}">Presentear</button></div></div></article>`;
+        <div class="foot"><span class="price">${brl(g.preco)}</span><button class="give" data-g="${idx}">Comprar</button></div></div></article>`;
   if (g.cat === "livre") return `<article class="card free" ${delay}>
       <div class="pic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="8" y="24" width="48" height="32" rx="3"/><path d="M4 16h56v8H4zM32 16v40M32 16c-6-10-18-8-14 0M32 16c6-10 18-8 14 0"/></svg></div>
       <div class="body"><h4>${esc(g.nome)}</h4><p>${esc(g.desc)}</p>
-        <div class="foot"><span class="price" style="font-size:1.1rem;color:var(--muted)">Você decide</span><button class="give" data-g="free">Presentear</button></div></div></article>`;
+        <div class="foot"><span class="price" style="font-size:1.1rem;color:var(--muted)">Você decide</span><button class="give" data-g="free">Comprar</button></div></div></article>`;
   return `<article class="card" ${delay}>
       <div class="pic${g.foto ? " photo" : ""}"><span class="tag">${CAT_NOME[g.cat]}</span><img src="${src(g)}" alt="${esc(g.nome)}" loading="lazy"></div>
       <div class="body"><h4>${esc(g.nome)}</h4>${g.desc ? `<p>${esc(g.desc)}</p>` : ""}
-        <div class="foot"><span class="price">${brl(g.preco)}</span><button class="give" data-g="${idx}">Presentear</button></div></div></article>`;
+        <div class="foot"><span class="price">${brl(g.preco)}</span><button class="give" data-g="${idx}">Comprar</button></div></div></article>`;
 }
 
 function render() {
@@ -1110,11 +1151,55 @@ function openGift(g, btn) {
   $("#md-amount").hidden = g.cat !== "livre";
   $("#md-val").value = "";
   $("#md-copy").textContent = "Copiar"; $("#md-copy").classList.remove("ok");
-  updatePix();
+  updatePix(); cardInfo(); setPay("pix");
   md.classList.add("open");
   document.body.style.overflow = "hidden";
   setTimeout(() => (g.cat === "livre" ? $("#md-val") : $("#md-copy")).focus({ preventScroll:true }), 350);
 }
+const hasCard = () => !!CONFIG.cartao.infiniteTag.trim();
+function setPay(m) {
+  $$(".tab", md).forEach(t => t.classList.toggle("on", t.dataset.pay === m));
+  $("#pane-pix").hidden = m !== "pix"; $("#pane-card").hidden = m !== "card";
+}
+function cardInfo() {
+  const c = CONFIG.cartao, v = valor();
+  const sj = c.semJuros > 1 ? `Em até ${c.semJuros}x sem juros` : "À vista no crédito sem acréscimo";
+  $("#card-tab-sub").textContent = `Até ${c.parcelas}x`;
+  $("#card-info").innerHTML = [
+    `${sj}${v ? ` — ${c.semJuros > 1 ? `${c.semJuros}x de ${brl(v / c.semJuros)}` : brl(v)}` : ""}`,
+    `Parcele em até ${c.parcelas}x: os juros do parcelamento são da operadora e aparecem na tela de pagamento antes de você confirmar`,
+    "Pagamento seguro pela InfinitePay, numa página própria de pagamento"
+  ].map(t => `<li>${t}</li>`).join("");
+  $("#card-go").disabled = !hasCard();
+  $("#card-note").textContent = hasCard() ? "Abre a página de pagamento em outra aba." : "Pagamento no cartão disponível em breve. Por enquanto, use o PIX ♡";
+}
+$$(".tab", md).forEach(t => t.onclick = () => setPay(t.dataset.pay));
+$("#card-go").onclick = async () => {
+  const v = valor();
+  if (!v) { $("#md-val").focus(); toast("Digite o valor primeiro"); return; }
+  const btn = $("#card-go"), label = btn.innerHTML;
+  const win = window.open("", "_blank");   // abre já no clique para o navegador não bloquear
+  btn.disabled = true; btn.textContent = "Gerando pagamento…";
+  try {
+    const r = await fetch(CONFIG.cartao.api, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        handle: CONFIG.cartao.infiniteTag.trim().replace(/^\$/, ""),
+        order_nsu: "SL-" + Date.now().toString(36),
+        redirect_url: location.href.split("#")[0] + "#presentes",
+        items: [{ quantity: 1, price: Math.round(v * 100), description: (gift.cat === "livre" ? "Presente de casamento (valor livre)" : "Presente: " + gift.nome).slice(0, 120) }]
+      })
+    });
+    const j = await r.json();
+    const url = j.url || j.payment_url || j.link || (j.data && j.data.url);
+    if (!r.ok || !url) throw new Error("sem link");
+    if (win) win.location.href = url; else location.href = url;
+  } catch (err) {
+    if (win) win.close();
+    toast("Não deu para abrir o pagamento no cartão agora. Tente o PIX ou fale com os noivos.");
+  } finally { btn.disabled = !hasCard(); btn.innerHTML = label; }
+};
+
 function closeGift() { md.classList.remove("open"); document.body.style.overflow = ""; lastFocus?.focus({ preventScroll:true }); }
 $("#list").onclick = e => {
   const b = e.target.closest(".give"); if (!b) return;
@@ -1122,7 +1207,7 @@ $("#list").onclick = e => {
 };
 $(".close", md).onclick = closeGift;
 md.onclick = e => { if (e.target === md) closeGift(); };
-$("#md-val").oninput = updatePix;
+$("#md-val").oninput = () => { updatePix(); cardInfo(); };
 $("#md-copy").onclick = async e => {
   const code = $("#md-code").value;
   if (!code) { toast(hasPix() ? "Digite o valor primeiro" : "A chave PIX ainda não foi configurada"); return; }
@@ -1133,7 +1218,7 @@ $("#md-copy").onclick = async e => {
 $("#md-wa").onclick = () => {
   const nome = $("#md-name").value.trim(), msg = $("#md-msg").value.trim(), v = valor();
   if (!nome) { $("#md-name").focus(); toast("Coloque seu nome para os noivos saberem quem foi"); return; }
-  const txt = `Oi, Stefanny e Luan! Aqui é ${nome}.\nAcabei de enviar pelo PIX o presente: *${gift.cat === "livre" ? "Valor livre" : gift.nome}*${v ? ` (${brl(v)})` : ""} 🎁` + (msg ? `\n\n${msg}` : "");
+  const txt = `Oi, Stefanny e Luan! Aqui é ${nome}.\nAcabei de enviar ${$(".tab.on", md)?.dataset.pay === "card" ? "no cartão" : "pelo PIX"} o presente: *${gift.cat === "livre" ? "Valor livre" : gift.nome}*${v ? ` (${brl(v)})` : ""} 🎁` + (msg ? `\n\n${msg}` : "");
   window.open(wa(txt), "_blank");
 };
 const wa = txt => `https://wa.me/${CONFIG.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(txt)}`;
