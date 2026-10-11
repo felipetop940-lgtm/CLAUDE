@@ -355,10 +355,10 @@ h2.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .0
 h2.split .w>span{display:inline-block;transform:translateY(110%);transition:transform 1.15s var(--ease);transition-delay:calc(var(--i) * 75ms + .1s)}
 h2.split.in .w>span{transform:none}
 /* fotos: revelação em cortina */
-.g-item.rv{opacity:1;transform:none;clip-path:inset(100% 0 0 0);transition:clip-path 1.5s cubic-bezier(.76,0,.24,1)}
-.g-item.rv img{transform:scale(1.28);transition:transform 1.8s var(--ease)}
-.g-item.in{clip-path:inset(0 0 0 0)}
-.g-item.in img{transform:scale(1)}
+/* o recorte fica na foto (não no bloco observado): o navegador ignora elementos 100% recortados ao checar se estão na tela */
+.g-item.rv{opacity:1;transform:none;background:transparent}
+.g-item.rv img{clip-path:inset(100% 0 0 0);transform:scale(1.28);transition:clip-path 1.5s cubic-bezier(.76,0,.24,1),transform 1.8s var(--ease)}
+.g-item.in img{clip-path:inset(0 0 0 0);transform:scale(1)}
 .g-item.in:hover img{transform:scale(1.06)}
 .arch-wrap.rv{opacity:1;transform:none}
 .arch-wrap.rv .arch{clip-path:inset(100% 0 0 0);transition:clip-path 1.6s cubic-bezier(.76,0,.24,1)}
