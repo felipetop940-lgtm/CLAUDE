@@ -63,10 +63,12 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U02 | Carrossel | Como criar o link do WhatsApp com mensagem pronta (wa.me/55DDDnúmero?text=) passo a passo | pendente |
 | U03 | Carrossel | Sua bio do Instagram está espantando cliente: 4 ajustes (o que faz, pra quem, onde, botão) | feito 11/10 (c07) |
 | U04 | Vídeo | Como aparecer no Google Maps de graça (Perfil da Empresa no Google) em 4 passos | REPROVADO 11/10 (tutorial com cartões de texto) |
-| U05 | Carrossel | 5 erros nas fotos do produto que fazem parecer golpe (luz, fundo, tamanho real, foto de banco) | pendente |
+| U05 | Carrossel | 5 erros nas fotos do produto que fazem parecer golpe (luz, fundo, tamanho real, foto de banco) | feito 12/10 (c08) |
 | U06 | Arte TikTok | Antes x depois: a mesma loja com e sem site (mostrar as telas) | pendente |
 | U07 | Vídeo | 3 respostas prontas pra quem pergunta "quanto é?" e some | pendente |
 | U08 | Carrossel | Como saber se um site é golpe em 30 segundos (CNPJ na Receita, registro.br, Reclame Aqui) | pendente |
 | U09 | Arte TikTok | Destaques do Instagram que vendem: quais criar e em que ordem | feito 11/10 (t07) |
 | U10 | Vídeo | Como responder avaliação ruim no Google sem perder cliente | pendente |
 | U11 | Vídeo | 3 mensagens que fazem o cliente sumir do WhatsApp (❌ x ✅ na conversa) | feito 11/10 (v05) |
+| U12 | Vídeo | O cliente pediu desconto: 2 respostas que perdem dinheiro e a que fecha (desconto com troca) | feito 12/10 (v06) |
+| U13 | Arte TikTok | 4 apps grátis pra parecer empresa grande (WhatsApp Business, Perfil da Empresa, Canva, CapCut) | feito 12/10 (t08) |

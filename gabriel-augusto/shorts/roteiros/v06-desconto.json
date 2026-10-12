@@ -1,0 +1,257 @@
+{
+  "titulo": "Cliente pediu desconto",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "O cliente pediu desconto. Essas duas respostas te fazem perder dinheiro. E a terceira fecha a venda.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "O cliente pediu",
+        "~desconto~. E agora?"
+      ],
+      "boneco": {
+        "pose": "celular",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.12
+      },
+      "beats": [
+        {
+          "em": "perder",
+          "pose": "chocado"
+        },
+        {
+          "em": "fecha",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Errado número um: não faço. Seco assim. O cliente se sente ignorado e vai embora.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "1. ~\"Não faço\"~"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Faz por menos? 🙏",
+            "em": "errado"
+          },
+          {
+            "de": "eu",
+            "txt": "Não faço.",
+            "em": "faco",
+            "tag": "❌ Cliente vai embora"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "faco",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Errado número dois: dar o desconto na hora. Ele aprende que seu preço é negociável e vai pedir sempre.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "2. ~Desconto na hora~"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Faz por menos? 🙏",
+            "em": 0.02
+          },
+          {
+            "de": "eu",
+            "txt": "Tá bom, faço por 30 😅",
+            "em": "desconto",
+            "tag": "❌ Preço vira negociável"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "desconto",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "apontando"
+        },
+        {
+          "em": "sempre",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "O certo: o desconto vem com uma troca. Pagando agora no pix, ou fechando o pacote, eu consigo um valor melhor.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "3. Desconto *com troca*"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Faz por menos? 🙏",
+            "em": 0.02
+          },
+          {
+            "de": "eu",
+            "txt": "Consigo sim! Fechando o pacote de 4 cortes, cada um sai por R$ 35 😊",
+            "em": "troca",
+            "tag": "✅ Desconto com troca"
+          },
+          {
+            "de": "cli",
+            "txt": "Fechado! 🙌",
+            "em": "melhor"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "troca",
+          "foco": "msg2",
+          "zoom": 1.15,
+          "destaque": "msg2",
+          "pose": "apontando"
+        },
+        {
+          "em": "melhor",
+          "foco": "msg3",
+          "zoom": 1.15,
+          "destaque": "msg3",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Você não baixou o preço. Você vendeu mais. E o cliente ainda sente que ganhou.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Você não baixou o preço.",
+        "Você *vendeu mais*."
+      ],
+      "boneco": {
+        "pose": "comemorando",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.0
+      },
+      "beats": [
+        {
+          "em": "vendeu",
+          "pose": "comemorando"
+        },
+        {
+          "em": "ganhou",
+          "pose": "confiante"
+        }
+      ]
+    },
+    {
+      "fala": "E quando o seu preço tá no seu site, o cliente já chega sabendo o valor. A conversa começa no fechamento.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Preço no *site*",
+        "conversa no fechamento"
+      ],
+      "prop": {
+        "tipo": "site_celular",
+        "img": "../../video/src/fernando-scroll.jpg",
+        "selo": "Site com botão do WhatsApp",
+        "x": 350
+      }
+    },
+    {
+      "fala": "Salva pra usar na próxima vez que pedirem desconto. E segue pra mais dica que faz vender.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Salva pra",
+        "*próxima vez*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Salva e segue",
+        "sub": "Mais dicas que fazem vender",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "salva",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "O cliente pediu",
+      "~desconto~. E agora?"
+    ],
+    "tamanho": 130,
+    "selo": "2 respostas que perdem dinheiro",
+    "selo_y": 560
+  }
+}
