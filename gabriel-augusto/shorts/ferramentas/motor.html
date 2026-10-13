@@ -416,6 +416,32 @@ function prop(c, lt, t) {
       <div style="width:76px;height:76px;border-radius:50%;background:#00A884;display:grid;place-items:center;font-size:34px;color:#fff">➤</div></div>`;
     return at(p.x ?? 200, 640, fone(inner, p.nome, p.hora));
   }
+  if (p.tipo === 'avaliacao') {
+    // avaliação do Google (tema escuro do Maps) + resposta do proprietário montada parte por parte no ritmo da fala
+    const inn = ease(lt / .7), rv = p.rev || {}, rs = p.resp, est = rv.estrelas || 1;
+    const stars = [1, 2, 3, 4, 5].map(i => `<span style="color:${i <= est ? '#FBBC04' : '#5F6368'}">★</span>`).join('');
+    let resp = '';
+    if (rs) { const partes = rs.partes || [], t0 = quando(rs.em ?? partes[0]?.em ?? .3);
+      if (lt > t0) { let atual = -1; partes.forEach((q, i) => { if (lt >= quando(q.em ?? rs.em)) atual = i; });
+        const txt = partes.map((q, i) => { const v = ease((lt - quando(q.em ?? rs.em)) / .45); if (v <= 0) return '';
+          return `<span data-a="r${i + 1}" style="display:block;margin-top:${i ? 8 : 0}px;opacity:${v};${partes.length > 1 && i === atual ? `color:#fff;text-shadow:0 0 18px rgba(214,179,108,.55)` : ''}">${q.txt} </span>`; }).join('');
+        const v = ease((lt - t0) / .5), cor = rs.ruim ? C.red : C.gold;
+        const tag = rs.tag && lt > (rs.tag_em != null ? quando(rs.tag_em) : t0 + .6) ? (() => { const tv = ease((lt - (rs.tag_em != null ? quando(rs.tag_em) : t0 + .6)) / .4);
+          return `<div style="margin-top:20px"><span data-a="tag" style="display:inline-block;padding:10px 22px;border-radius:30px;background:${cor};color:${rs.ruim ? '#fff' : '#07080A'};font-size:28px;font-weight:800;opacity:${tv};transform:translateY(${(1 - tv) * 12}px)">${rs.tag}</span></div>`; })() : '';
+        resp = `<div style="margin-top:26px;opacity:${v};transform:translateY(${(1 - v) * 24}px)"><div data-a="resp" style="padding:24px 28px;border-radius:22px;background:#2B2C30;border-left:6px solid ${cor}">
+          <div style="font-size:26px;font-weight:700;color:#9AA0A6;margin-bottom:10px">Resposta do proprietário</div>
+          <div style="font-size:33px;line-height:1.35;color:#E8EAED">${txt}</div></div>${tag}</div>`; } }
+    const r0 = quando(rv.em ?? .02), rk = back((lt - r0) / .45);
+    return at(p.x ?? 30, p.y ?? 640, `<div style="width:${p.w || 700}px;padding:34px 34px 38px;border-radius:40px;background:#202124;box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.08),0 0 80px rgba(79,123,255,.14);transform:translateY(${(1 - inn) * 60}px);opacity:${inn}">
+      <div style="display:flex;align-items:center;gap:16px;padding-bottom:22px;border-bottom:2px solid #3C4043"><span style="font-size:34px">📍</span>
+        <div style="flex:1"><div style="font-size:34px;font-weight:700;color:#E8EAED">${p.negocio || 'Sua empresa'}</div><div style="font-size:24px;color:#9AA0A6">Avaliações no Google</div></div></div>
+      <div data-a="rev" style="margin-top:24px;opacity:${clamp(rk)};transform:scale(${.9 + .1 * clamp(rk)});transform-origin:0 0">
+        <div style="display:flex;align-items:center;gap:18px"><div style="width:64px;height:64px;border-radius:50%;background:${rv.cor || '#7E57C2'};display:grid;place-items:center;font-size:32px;font-weight:700;color:#fff">${(rv.nome || 'C')[0]}</div>
+          <div><div style="font-size:30px;font-weight:700;color:#E8EAED">${rv.nome || 'Cliente'}</div><div style="font-size:24px;color:#9AA0A6">${rv.quando || 'há 2 dias'}</div></div></div>
+        <div data-a="estrelas" style="display:inline-block;margin-top:14px;font-size:40px;letter-spacing:4px">${stars}</div>
+        <div style="margin-top:8px;font-size:34px;line-height:1.35;color:#E8EAED">${rv.txt || ''}</div></div>
+      ${resp}</div>`);
+  }
   if (p.tipo === 'link_montagem') {
     // o link vai sendo montado pedaço por pedaço, cada pedaço com uma explicação embaixo
     const partes = p.partes || [], CORES = [C.white, C.gold, C.blue, '#7CE0A0', C.red, '#C9A7FF'];

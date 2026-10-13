@@ -1,0 +1,87 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Arte do TikTok 09 · modelo viral · "5 coisas que todo site precisa ter" · só TikTok (9:16) · conteúdo útil (variação do U06: MOSTRA a tela)
+     Site de exemplo fictício (Studio Bella, manicure). Em cada slide o item da vez ganha o anel vermelho; o resto apaga. -->
+<link rel="stylesheet" href="../viral.css"><script src="../viral.js"></script>
+<style>
+.tt .s .t{font-size:104px}
+.t em{font-style:normal}
+.tt .s.foco{gap:30px}
+.tt .s.foco .sub{margin-bottom:40px}
+.fone{width:470px;border-radius:56px;padding:12px;background:linear-gradient(145deg,#2a2f3a,#0c0e12);box-shadow:0 0 0 3px rgba(255,255,255,.08),0 40px 80px -30px #000;text-align:left}
+.tela{border-radius:46px;overflow:hidden;background:#F7F4EF;color:#1d1b19;padding:22px 22px 26px;font-family:Inter}
+.tela>div{position:relative;border-radius:16px;transition:none}
+.nav{display:flex;align-items:center;justify-content:space-between;font-size:20px;font-weight:800;letter-spacing:.06em;padding:4px 6px 14px}
+.nav i{font-style:normal;font-size:22px;color:#8a8580}
+.hero{padding:10px 8px}
+.hero h4{font-size:34px;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+.hero small{display:block;margin-top:6px;font-size:18px;color:#6b665f;font-weight:600}
+.bt{margin:12px 8px 6px;padding:14px 0;border-radius:40px;background:#1FA855;color:#fff;font-size:21px;font-weight:800;text-align:center}
+.precos{margin-top:12px;padding:12px 14px;background:#fff;display:grid;gap:8px;font-size:19px;font-weight:600}
+.precos span{display:flex;justify-content:space-between}.precos b{font-weight:800}
+.fotos{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:4px}
+.fotos span{aspect-ratio:1;border-radius:12px;display:grid;place-items:center;font-size:42px;background:linear-gradient(145deg,#efe2d6,#d9c3b0)}
+.prova{margin-top:12px;padding:12px 14px;background:#fff;font-size:18px;font-weight:600;line-height:1.45}
+.prova b{color:#E8A400;letter-spacing:2px}
+/* foco: o item da vez ganha anel vermelho, o resto apaga */
+.foco .tela>div{opacity:.28}
+.foco .tela>div.on{opacity:1;box-shadow:0 0 0 5px #FF1F2E,0 0 40px 6px rgba(255,31,46,.45)}
+.capa .fone,.fim .fone{width:420px}
+</style>
+</head><body>
+
+<section class="s capa">
+ <h1 class="t"><span>Seu site</span><span>precisa ter</span><span class="r">essas 5</span></h1>
+ <div class="fone" data-site></div>
+ <p class="mini">(confere se o seu tem)</p>
+</section>
+
+<section class="s foco">
+ <h2 class="t"><span><em class="r">1.</em> O que você faz</span><span class="r">em 1 frase</span></h2>
+ <div class="fone" data-site="hero"></div>
+ <p class="sub">No topo. O cliente tem que entender <b>o que você faz e onde</b> sem rolar a tela.</p>
+</section>
+
+<section class="s foco">
+ <h2 class="t"><span><em class="r">2.</em> Botão do</span><span class="r">WhatsApp à vista</span></h2>
+ <div class="fone" data-site="bt"></div>
+ <p class="sub">Sem precisar procurar. E <b>com a mensagem pronta.</b></p>
+</section>
+
+<section class="s foco">
+ <h2 class="t"><span><em class="r">3.</em> Preço ou</span><span class="r">"a partir de"</span></h2>
+ <div class="fone" data-site="precos"></div>
+ <p class="sub">Filtra o curioso. <b>Quem chama já chega decidido.</b></p>
+</section>
+
+<section class="s foco">
+ <h2 class="t"><span><em class="r">4.</em> Fotos</span><span class="r">reais</span></h2>
+ <div class="fone" data-site="fotos"></div>
+ <p class="sub">Do seu trabalho. <b>Foto de banco de imagem passa desconfiança.</b></p>
+</section>
+
+<section class="s foco">
+ <h2 class="t"><span><em class="r">5.</em> Avaliações</span><span class="r">e endereço</span></h2>
+ <div class="fone" data-site="prova"></div>
+ <p class="sub">Prova de que <b>você existe</b> e de que gente de verdade gosta.</p>
+</section>
+
+<section class="s fim">
+ <h2 class="t"><span>Qual falta</span><span class="r">no seu?</span></h2>
+ <div class="boneco" data-pose="apontando" data-h="320"></div>
+ <p class="sub">Comenta aí. É o que eu coloco <b>em todo site que eu faço.</b></p>
+ <p><span class="seguir">Segue pra mais</span></p>
+</section>
+
+<script>
+const SITE = `<div class="tela">
+  <div class="nav">STUDIO BELLA <i>☰</i></div>
+  <div class="hero" data-k="hero"><h4>Manicure e pedicure em Goiânia</h4><small>Setor Bueno · seg a sáb</small></div>
+  <div class="bt" data-k="bt">💬 Agendar pelo WhatsApp</div>
+  <div class="precos" data-k="precos"><span>Mão <b>a partir de R$ 35</b></span><span>Pé <b>a partir de R$ 40</b></span></div>
+  <div class="fotos" data-k="fotos"><span>💅</span><span>💅🏽</span><span>💅🏾</span></div>
+  <div class="prova" data-k="prova"><b>★★★★★</b> 4,9 no Google<br>📍 Rua Exemplo, 123 · Goiânia</div>
+</div>`;
+document.querySelectorAll('[data-site]').forEach(f => { f.innerHTML = SITE; const k = f.dataset.site;
+  if (k) f.querySelectorAll('[data-k]').forEach(d => d.classList.toggle('on', d.dataset.k === k)); });
+</script>
+</body></html>

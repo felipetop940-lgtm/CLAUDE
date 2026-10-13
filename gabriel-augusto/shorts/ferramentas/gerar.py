@@ -218,6 +218,16 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
                 for q in range(len(d["txt"])): put(tecla(), td + q * .14, .5)
                 if d.get("vira"): put(brilho(1047), quando(c, d["vira"].get("em", .7)), .4)
             if p.get("preenchido"): tp = quando(c, p["preenchido"].get("em", .5)); put(ar(.3, 1500, 8000), tp - .1, .4); put(sino(1318.5, 1.8, 3), tp + .6, .35)
+        elif pr == "avaliacao":
+            rv = p.get("rev") or {}; put(bolha(520), quando(c, rv.get("em", .02)), .5)
+            if (rv.get("estrelas") or 1) <= 2: put(tensao(), quando(c, rv.get("em", .02)) + .3, .4)
+            else: put(brilho(1175), quando(c, rv.get("em", .02)) + .3, .3)
+            rs = p.get("resp")
+            if rs:
+                ps = rs.get("partes", [])
+                put(enviada(), quando(c, rs.get("em", ps[0].get("em", .3) if ps else .3)) - .05, .5)
+                for j, q in enumerate(ps[1:], 1): put(sino(notas[min(j, len(notas) - 1)], 1.6, 3.4), quando(c, q.get("em", .5)), .38)
+                if rs.get("tag"): put(sino(1568, 1.6, 4) if not rs.get("ruim") else tensao(), quando(c, rs.get("tag_em", rs.get("em", .3))) + .6, .35)
         elif pr == "link_montagem":
             for j, q in enumerate(p.get("partes", [])): put(sino(notas[min(j, len(notas) - 1)], 1.6, 3.4), quando(c, q.get("em", .5)), .42)
         elif pr == "whatsapp":

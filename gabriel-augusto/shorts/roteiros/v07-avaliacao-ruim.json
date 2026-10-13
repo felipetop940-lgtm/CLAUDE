@@ -1,0 +1,104 @@
+{
+  "titulo": "Avaliação ruim no Google",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Recebeu uma estrela no Google? Calma. A sua resposta não é pra quem reclamou. É pra quem vai ler depois.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": ["Recebeu ~1 estrela~", "no Google?"],
+      "prop": {
+        "tipo": "avaliacao", "negocio": "Studio Bella", "x": 30,
+        "rev": {"nome": "Ana", "estrelas": 1, "txt": "Esperei 40 minutos além do horário e ninguém avisou.", "em": 0.03}
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "estrela", "foco": "estrelas", "zoom": 1.16, "destaque": "estrelas", "pose": "chocado"},
+        {"em": "ler", "foco": "rev", "zoom": 1.08, "pose": "apontando"}
+      ]
+    },
+    {
+      "fala": "Errado: rebater. Você que chegou atrasado. Quem lê isso pensa: esse lugar briga com cliente.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": ["~Errado:~ rebater"],
+      "prop": {
+        "tipo": "avaliacao", "negocio": "Studio Bella", "x": 30,
+        "rev": {"nome": "Ana", "estrelas": 1, "txt": "Esperei 40 minutos além do horário e ninguém avisou.", "em": 0.01},
+        "resp": {"ruim": true, "partes": [{"txt": "Você que chegou atrasado e ainda reclama.", "em": "voce"}], "tag": "❌ Briga em público", "tag_em": "briga"}
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "voce", "foco": "resp", "zoom": 1.15, "destaque": "resp", "pose": "chocado"},
+        {"em": "briga", "foco": "tag", "zoom": 1.12, "pose": "cintura"}
+      ]
+    },
+    {
+      "fala": "O certo tem três partes. Agradece e pede desculpa. Fala o que você já mudou. E chama pra resolver no privado.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["O certo em *3 partes*"],
+      "prop": {
+        "tipo": "avaliacao", "negocio": "Studio Bella", "x": 30,
+        "rev": {"nome": "Ana", "estrelas": 1, "txt": "Esperei 40 minutos além do horário e ninguém avisou.", "em": 0.01},
+        "resp": {"partes": [
+          {"txt": "Ana, obrigada pelo retorno e desculpa pela espera.", "em": "agradece"},
+          {"txt": "Já mudamos a agenda pra avisar qualquer atraso.", "em": "mudou"},
+          {"txt": "Me chama no WhatsApp que eu resolvo com você.", "em": "chama"}
+        ], "tag": "✅ Quem lê confia", "tag_em": "privado"}
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "agradece", "foco": "r1", "zoom": 1.15, "destaque": "r1", "pose": "apontando"},
+        {"em": "mudou", "foco": "r2", "zoom": 1.15, "destaque": "r2", "pose": "ideia"},
+        {"em": "chama", "foco": "r3", "zoom": 1.15, "destaque": "r3", "pose": "comemorando"}
+      ]
+    },
+    {
+      "fala": "Curta, educada e no mesmo dia. Sem desculpa esfarrapada. Quem lê vê que tem gente cuidando.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["Curta, educada", "e *no mesmo dia*"],
+      "boneco": {"pose": "confiante", "x": 540, "y": 1400, "escala": 1.0},
+      "beats": [
+        {"em": "esfarrapada", "pose": "cintura"},
+        {"em": "cuidando", "pose": "comemorando"}
+      ]
+    },
+    {
+      "fala": "E responde as boas também. Um obrigado com o nome do cliente mostra que tem gente de verdade do outro lado.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Responde as *boas* também"],
+      "prop": {
+        "tipo": "avaliacao", "negocio": "Studio Bella", "x": 30,
+        "rev": {"nome": "Carla", "cor": "#00897B", "estrelas": 5, "txt": "Amei o atendimento, unha perfeita! 💅", "em": "boas"},
+        "resp": {"partes": [{"txt": "Obrigada, Carla! Te espero no próximo mês 😊", "em": "obrigado"}], "tag": "✅ Gente de verdade", "tag_em": "verdade"}
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "obrigado", "foco": "resp", "zoom": 1.15, "destaque": "resp", "pose": "comemorando"}
+      ]
+    },
+    {
+      "fala": "Quem gostou do que leu clica no próximo passo: o seu site. Ele tem que estar pronto pra fechar.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["Depois do Google,", "o *seu site*"],
+      "prop": {"tipo": "site_celular", "img": "../../video/src/fernando-scroll.jpg", "selo": "Site com botão do WhatsApp", "x": 350}
+    },
+    {
+      "fala": "Salva pra quando chegar a próxima avaliação ruim. E segue pra mais dica que faz vender.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Salva pra", "*próxima vez*"],
+      "prop": {"tipo": "cta", "botao": "Salva e segue", "sub": "Mais dicas que fazem vender", "y": 600},
+      "fim": 1.6,
+      "boneco": {"pose": "confiante", "x": 540, "y": 1400, "escala": 0.72, "entrada": "andando"},
+      "beats": [{"em": "salva", "pose": "apontando"}, {"em": "segue", "pose": "comemorando"}]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {"texto": ["Recebeu ~1 estrela~", "no Google?"], "tamanho": 130, "selo": "Responde assim", "selo_y": 560}
+}
