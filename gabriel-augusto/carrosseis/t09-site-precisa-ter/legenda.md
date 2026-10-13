@@ -5,7 +5,7 @@ Site de exemplo fictício (Studio Bella, manicure); preços e endereço são ilu
 
 ## Título (escolha um)
 1. Seu site precisa ter essas 5 coisas 📱
-2. Se o seu site não tem isso, o cliente vai embora
+2. O que todo site de negócio precisa ter (confere o seu)
 3. Antes de fazer (ou refazer) seu site, confere essa lista
 
 ## Descrição
