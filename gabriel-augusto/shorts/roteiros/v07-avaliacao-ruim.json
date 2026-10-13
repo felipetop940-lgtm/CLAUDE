@@ -100,5 +100,5 @@
     }
   ],
   "fundo": "auras",
-  "capa": {"texto": ["Recebeu ~1 estrela~", "no Google?"], "tamanho": 130, "selo": "Responde assim", "selo_y": 560}
+  "capa": {"texto": ["Recebeu ~1 estrela~", "no Google?"], "tamanho": 130, "selo": "Responde assim", "selo_y": 610}
 }
