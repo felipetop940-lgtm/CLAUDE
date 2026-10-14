@@ -442,6 +442,26 @@ function prop(c, lt, t) {
         <div style="margin-top:8px;font-size:34px;line-height:1.35;color:#E8EAED">${rv.txt || ''}</div></div>
       ${resp}</div>`);
   }
+  if (p.tipo === 'tela_menu') {
+    // caminho dentro do app, tela por tela: cada tela entra deslizando quando a palavra é dita e o item tocado acende (âncora "item")
+    const telas = p.telas || []; let ci = 0; telas.forEach((s, i) => { if (lt >= quando(s.em ?? 0)) ci = i; });
+    const T = telas[ci] || {}, t0 = quando(T.em ?? 0), sl = ci ? ease((lt - t0) / .45) : 1, inn = ease(lt / .7);
+    const tq = T.toque_em != null ? quando(T.toque_em) : t0 + .7, tk = ease((lt - tq) / .35);
+    const rows = (T.itens || []).map((it, i) => { const on = i === T.toque && lt > tq;
+      return `<div ${i === T.toque ? 'data-a="item"' : ''} style="position:relative;display:flex;align-items:center;gap:26px;padding:26px 30px;border-radius:20px;margin:4px 10px;font-size:36px;color:#E9EDEF;${on ? `background:rgba(214,179,108,${.16 * tk});box-shadow:0 0 0 ${3 * tk}px ${C.gold}` : ''}">
+        <span style="width:48px;text-align:center;font-size:36px">${it[0]}</span><span style="flex:1">${it[1]}</span>${it[2] ? `<span style="font-size:26px;color:#8696A0">${it[2]}</span>` : ''}</div>`; }).join('');
+    let pin = '';
+    if (T.pin) { const pe = T.pin_em != null ? quando(T.pin_em) : t0 + .6, n = Math.floor(clamp((lt - pe) / 1.4) * 6);
+      pin = `<div style="padding:30px 40px;text-align:center"><div style="font-size:30px;line-height:1.35;color:#8696A0">${T.pin_txt || 'Crie um PIN de 6 dígitos'}</div>
+        <div data-a="pin" style="display:inline-flex;gap:22px;margin-top:40px;padding:18px 26px">${Array.from({ length: 6 }, (_, i) => `<div style="width:52px;text-align:center;border-bottom:4px solid ${i < n ? C.gold : '#3B4A54'};font-size:52px;line-height:70px;color:#E9EDEF">${i < n ? '•' : ''}</div>`).join('')}</div>
+        ${T.botao ? `<div data-a="botao" style="margin:46px auto 0;width:300px;padding:22px 0;border-radius:40px;background:#00A884;color:#0B141A;font-size:32px;font-weight:800;opacity:${n >= 6 ? 1 : .35}">${T.botao}</div>` : ''}</div>`; }
+    return at(p.x ?? 30, 640, `<div style="width:680px;height:760px;border-radius:70px;padding:16px;background:linear-gradient(145deg,#2a2f3a,#0c0e12);box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.08),0 0 80px rgba(79,123,255,.16);transform:translateY(${(1 - inn) * 60}px);opacity:${inn}">
+      <div data-a="tela" style="position:relative;height:100%;border-radius:56px;overflow:hidden;background:#0B141A">
+        <div style="opacity:${sl};transform:translateX(${(1 - sl) * 120}px)">
+          <div style="display:flex;align-items:center;gap:24px;padding:46px 34px 26px;background:#1F2C34;font-size:36px;font-weight:700;color:#E9EDEF"><span style="color:#8696A0">←</span>${T.titulo || ''}</div>
+          ${T.sub ? `<div style="padding:22px 40px 0;font-size:26px;line-height:1.35;color:#8696A0">${T.sub}</div>` : ''}
+          <div style="padding-top:12px">${rows}</div>${pin}</div></div></div>`);
+  }
   if (p.tipo === 'link_montagem') {
     // o link vai sendo montado pedaço por pedaço, cada pedaço com uma explicação embaixo
     const partes = p.partes || [], CORES = [C.white, C.gold, C.blue, '#7CE0A0', C.red, '#C9A7FF'];

@@ -1,0 +1,98 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Arte do TikTok 10 · modelo viral · "4 erros que deixam seu logo com cara de amador" · só TikTok (9:16) · conteúdo útil (design/logo)
+     Todos os logos são desenhados aqui (marca fictícia "Trigo Bom", padaria). Cada erro mostra ❌ x ✅ lado a lado. -->
+<link rel="stylesheet" href="../viral.css"><script src="../viral.js"></script>
+<style>
+@font-face{font-family:Mont;src:url(../fontes/montserrat-800.woff2)}
+@font-face{font-family:Caveat;src:url(../fontes/caveat-bold.woff2)}
+@font-face{font-family:Bebas;src:url(../fontes/bebas-neue.woff2)}
+@font-face{font-family:Play;src:url(../fontes/playfair-800-italic.woff2)}
+@font-face{font-family:Peace;src:url(../fontes/peace-sans.woff2)}
+.tt .s .t{font-size:100px}
+.t em{font-style:normal}
+.par{display:flex;gap:18px}
+.cd{position:relative;width:400px;height:430px;border-radius:30px;background:#F4EEE4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;overflow:hidden}
+.cd.ruim{box-shadow:0 0 0 5px rgba(255,31,46,.85)}.cd.bom{box-shadow:0 0 0 5px rgba(124,224,160,.85)}
+.cd .tag{position:absolute;left:14px;top:14px;padding:6px 16px;border-radius:20px;font-size:24px;font-weight:800;background:rgba(0,0,0,.75);color:#fff}
+.cd.bom .tag{background:#145A32}
+/* logo bom: ícone simples + 1 fonte */
+.lb{display:flex;flex-direction:column;align-items:center;color:#5A3418}
+.lb svg{width:120px;height:120px}
+.lb b{font-family:Mont;font-size:52px;letter-spacing:.04em;line-height:1;margin-top:8px}
+.lb small{font-family:Mont;font-size:20px;letter-spacing:.42em;margin-top:8px;opacity:.75}
+/* perfil pequeno */
+.av{display:flex;align-items:center;gap:14px;font-size:22px;font-weight:700;color:#5d564e}
+.av i{width:84px;height:84px;border-radius:50%;background:#F4EEE4;box-shadow:0 0 0 2px #cfc6b8;overflow:hidden;display:grid;place-items:center}
+.capa .cd{width:560px;height:420px}
+</style>
+</head><body>
+
+<section class="s capa">
+ <h1 class="t"><span>Seu logo tá com</span><span class="r">cara de amador?</span></h1>
+ <div class="cd ruim"><span class="tag">❌ é o seu?</span><div data-logo="tudo" style="transform:scale(1.15)"></div></div>
+ <p class="mini">(4 erros que entregam na hora)</p>
+</section>
+
+<section class="s">
+ <h2 class="t"><span><em class="r">1.</em> Fonte</span><span class="r">demais</span></h2>
+ <div class="par"><div class="cd ruim"><span class="tag">❌ 4 fontes</span><div data-logo="fontes"></div></div><div class="cd bom"><span class="tag">✅ 1 fonte</span><div data-logo="bom"></div></div></div>
+ <p class="sub">Uma fonte, no máximo duas. <b>O resto vira bagunça.</b></p>
+</section>
+
+<section class="s">
+ <h2 class="t"><span><em class="r">2.</em> Detalhe que</span><span class="r">some no pequeno</span></h2>
+ <div class="par"><div class="cd ruim"><span class="tag">❌ cheio</span><div data-logo="detalhe" style="zoom:.7"></div><div class="av"><i><div data-logo="detalhe" style="zoom:.21"></div></i>no perfil</div></div><div class="cd bom"><span class="tag">✅ simples</span><div data-logo="bom" style="zoom:.85"></div><div class="av"><i><div data-logo="icone" style="zoom:.6"></div></i>no perfil</div></div></div>
+ <p class="sub">Seu logo aparece minúsculo no perfil. <b>Testa ele bem pequeno.</b></p>
+</section>
+
+<section class="s">
+ <h2 class="t"><span><em class="r">3.</em> Efeito</span><span class="r">pra todo lado</span></h2>
+ <div class="par"><div class="cd ruim"><span class="tag">❌ sombra + brilho</span><div data-logo="efeito"></div></div><div class="cd bom"><span class="tag">✅ limpo</span><div data-logo="bom"></div></div></div>
+ <p class="sub">Sombra, brilho e contorno <b>envelhecem a marca.</b></p>
+</section>
+
+<section class="s">
+ <h2 class="t"><span><em class="r">4.</em> Logo</span><span class="r">pixelado</span></h2>
+ <div class="par"><div class="cd ruim"><span class="tag">❌ print / foto</span><canvas id="px" width="64" height="64" style="width:300px;height:300px;image-rendering:pixelated"></canvas></div><div class="cd bom"><span class="tag">✅ vetor</span><div data-logo="bom" style="transform:scale(1.05)"></div></div></div>
+ <p class="sub">Pede o arquivo em <b>vetor (SVG ou PDF)</b>. Aí fica nítido em qualquer tamanho.</p>
+</section>
+
+<section class="s">
+ <h2 class="t"><span>Logo simples</span><span class="r">fica bonito em tudo</span></h2>
+ <div class="boneco" data-pose="ideia" data-h="320"></div>
+ <p class="sub">No perfil, no site, na fachada e na sacola. <b>É por ele que o cliente lembra de você.</b></p>
+</section>
+
+<section class="s fim">
+ <h2 class="t"><span>Qual erro</span><span class="r">o seu tem?</span></h2>
+ <div class="boneco" data-pose="apontando" data-h="320"></div>
+ <p class="sub">Comenta o número. E manda pra quem <b>tá criando a marca.</b></p>
+ <p><span class="seguir">Segue pra mais</span></p>
+</section>
+
+<script>
+const TRIGO = (cor, extra = '') => `<svg viewBox="0 0 120 120"><g fill="${cor}"><rect x="57" y="22" width="6" height="86" rx="3"/>
+  ${[30, 48, 66].map(y => `<ellipse cx="46" cy="${y}" rx="9" ry="16" transform="rotate(-35 46 ${y})"/><ellipse cx="74" cy="${y}" rx="9" ry="16" transform="rotate(35 74 ${y})"/>`).join('')}
+  <ellipse cx="60" cy="16" rx="8" ry="14"/></g>${extra}</svg>`;
+const L = {
+  bom: `<div class="lb">${TRIGO('#5A3418')}<b>TRIGO BOM</b><small>PADARIA</small></div>`,
+  icone: `<div class="lb">${TRIGO('#5A3418')}</div>`,
+  fontes: `<div style="text-align:center;line-height:1"><div style="font-family:Caveat;font-size:58px;color:#C2410C">Padaria</div><div style="font-family:Bebas;font-size:110px;color:#1D4ED8;letter-spacing:.02em">TRIGO</div><div style="font-family:Play;font-size:70px;color:#15803D">Bom</div><div style="font-family:Peace;font-size:26px;color:#9333EA;margin-top:8px">desde sempre!</div></div>`,
+  detalhe: `<div style="position:relative;width:380px;height:380px;border-radius:50%;border:6px double #7C2D12;display:grid;place-items:center;background:radial-gradient(circle,#FDE68A,#F59E0B 70%,#B45309)">
+    <div style="position:absolute;inset:14px;border-radius:50%;border:3px dashed #7C2D12"></div>
+    <div style="position:absolute;top:22px;font-family:Caveat;font-size:30px;color:#7C2D12">★ Padaria e Confeitaria ★</div>
+    <div style="font-size:60px;line-height:1">🌾🥖🥐<br>☕🍰🌾</div>
+    <div style="position:absolute;bottom:30px;font-family:Play;font-size:46px;color:#7C2D12">Trigo Bom</div>
+    <div style="position:absolute;bottom:16px;font-size:16px;color:#7C2D12">qualidade • sabor • tradição</div></div>`,
+  efeito: `<div style="text-align:center;transform:rotate(-4deg)"><div style="font-family:Bebas;font-size:120px;line-height:.9;background:linear-gradient(180deg,#FFF7AE,#F59E0B 45%,#B91C1C 55%,#7C2D12);-webkit-background-clip:text;color:transparent;-webkit-text-stroke:3px #1E3A8A;filter:drop-shadow(6px 6px 0 #1E3A8A) drop-shadow(0 0 18px #FDE047)">TRIGO<br>BOM</div>
+    <div style="font-family:Caveat;font-size:40px;color:#DC2626;text-shadow:2px 2px 0 #FDE047,4px 4px 0 #000">padaria ✨</div></div>`,
+};
+L.tudo = L.fontes;
+document.querySelectorAll('[data-logo]').forEach(d => d.innerHTML = L[d.dataset.logo]);
+// logo pixelado: desenha o logo bom num canvas minúsculo e amplia sem suavizar
+document.fonts.ready.then(() => { const c = document.getElementById('px'), x = c.getContext('2d');
+  x.fillStyle = '#F4EEE4'; x.fillRect(0, 0, 64, 64); x.fillStyle = '#5A3418';
+  x.fillRect(31, 8, 2, 30); [14, 21, 28].forEach(y => { x.beginPath(); x.ellipse(27, y, 3, 6, -.6, 0, 7); x.fill(); x.beginPath(); x.ellipse(37, y, 3, 6, .6, 0, 7); x.fill(); });
+  x.font = '11px Mont'; x.textAlign = 'center'; x.fillText('TRIGO BOM', 32, 50); x.font = '5px Mont'; x.fillText('PADARIA', 32, 57); });
+</script>
+</body></html>

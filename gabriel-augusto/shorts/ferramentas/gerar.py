@@ -228,6 +228,15 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
                 put(enviada(), quando(c, rs.get("em", ps[0].get("em", .3) if ps else .3)) - .05, .5)
                 for j, q in enumerate(ps[1:], 1): put(sino(notas[min(j, len(notas) - 1)], 1.6, 3.4), quando(c, q.get("em", .5)), .38)
                 if rs.get("tag"): put(sino(1568, 1.6, 4) if not rs.get("ruim") else tensao(), quando(c, rs.get("tag_em", rs.get("em", .3))) + .6, .35)
+        elif pr == "tela_menu":
+            for j, s in enumerate(p.get("telas", [])):
+                ts = quando(c, s.get("em", 0)) if j else t0
+                if j: put(ar(.35, 1200, 7000), ts - .05, .3)
+                if s.get("toque") is not None: put(tecla(), quando(c, s["toque_em"]) if s.get("toque_em") is not None else ts + .7, .5)
+                if s.get("pin"):
+                    pe = quando(c, s["pin_em"]) if s.get("pin_em") is not None else ts + .6
+                    for q in range(6): put(tecla(), pe + q * 1.4 / 6, .45)
+                    put(sino(1568, 1.6, 4), pe + 1.5, .32)
         elif pr == "link_montagem":
             for j, q in enumerate(p.get("partes", [])): put(sino(notas[min(j, len(notas) - 1)], 1.6, 3.4), quando(c, q.get("em", .5)), .42)
         elif pr == "whatsapp":

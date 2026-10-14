@@ -72,3 +72,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U11 | Vídeo | 3 mensagens que fazem o cliente sumir do WhatsApp (❌ x ✅ na conversa) | feito 11/10 (v05) |
 | U12 | Vídeo | O cliente pediu desconto: 2 respostas que perdem dinheiro e a que fecha (desconto com troca) | feito 12/10 (v06) |
 | U13 | Arte TikTok | 4 apps grátis pra parecer empresa grande (WhatsApp Business, Perfil da Empresa, Canva, CapCut) | feito 12/10 (t08) |
+| U14 | Vídeo | Te pediram um código de 6 dígitos? É golpe: ativa a confirmação em duas etapas (tela do app) | feito 14/10 (v08, tela_menu) |
+| U15 | Carrossel | Como pedir avaliação no Google do jeito certo (link, WhatsApp, QR, nada de desconto em troca) | feito 14/10 (c10) |
+| U16 | Arte TikTok | 4 erros que deixam o logo com cara de amador (❌ x ✅ desenhado) | feito 14/10 (t10) |

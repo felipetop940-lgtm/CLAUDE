@@ -1,0 +1,372 @@
+{
+  "titulo": "Código de 6 dígitos",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Se alguém te pedir um código de seis dígitos pelo WhatsApp, é golpe. E dá pra se proteger em um minuto.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Te pediram",
+        "~um código~?"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Suporte 🛡️",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Olá! Aqui é do suporte. Te enviamos um código por SMS, me passa pra confirmar seu cadastro.",
+            "em": 0.03
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "codigo",
+          "foco": "msg1",
+          "zoom": 1.15,
+          "destaque": "msg1",
+          "pose": "chocado"
+        },
+        {
+          "em": "proteger",
+          "pose": "ideia"
+        }
+      ]
+    },
+    {
+      "fala": "Com esse código, o golpista entra no seu WhatsApp e pede pix pros seus contatos. Até pros seus clientes.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "Ele vira ~você~"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Você (clonado)",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "eu",
+            "txt": "Oi! Troquei de banco, me faz um pix urgente? Amanhã te devolvo.",
+            "em": "pix",
+            "tag": "❌ Não foi você que mandou"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "chocado",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "pix",
+          "foco": "msg1",
+          "zoom": 1.15,
+          "destaque": "msg1",
+          "pose": "chocado"
+        },
+        {
+          "em": "clientes",
+          "foco": "tag",
+          "zoom": 1.12,
+          "pose": "cintura"
+        }
+      ]
+    },
+    {
+      "fala": "A proteção chama confirmação em duas etapas. Abre o WhatsApp e vai em configurações, conta, confirmação em duas etapas.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Confirmação em",
+        "*duas etapas*"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Configurações",
+            "em": 0,
+            "toque": 0,
+            "toque_em": "conta",
+            "itens": [
+              [
+                "🔑",
+                "Conta",
+                "segurança"
+              ],
+              [
+                "🔒",
+                "Privacidade"
+              ],
+              [
+                "💬",
+                "Conversas"
+              ],
+              [
+                "🔔",
+                "Notificações"
+              ]
+            ]
+          },
+          {
+            "titulo": "Conta",
+            "em": "conta",
+            "toque": 1,
+            "toque_em": "etapas,",
+            "itens": [
+              [
+                "🛡️",
+                "Notificações de segurança"
+              ],
+              [
+                "🔐",
+                "Confirmação em duas etapas"
+              ],
+              [
+                "📱",
+                "Mudar número"
+              ],
+              [
+                "📄",
+                "Solicitar dados da conta"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "conta",
+          "foco": "item",
+          "zoom": 1.12,
+          "destaque": "item",
+          "pose": "apontando"
+        },
+        {
+          "em": "etapas,",
+          "foco": "item",
+          "zoom": 1.15,
+          "destaque": "item",
+          "pose": "ideia"
+        }
+      ]
+    },
+    {
+      "fala": "Toca em ativar e cria um PIN de seis números que só você sabe. Depois coloca seu e-mail pra recuperar.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Cria um *PIN*",
+        "só seu"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Confirmação em duas etapas",
+            "em": 0,
+            "sub": "Proteção extra: o WhatsApp pede esse PIN pra entrar na sua conta.",
+            "itens": [
+              [
+                "✅",
+                "Ativar"
+              ]
+            ],
+            "toque": 0,
+            "toque_em": "ativar"
+          },
+          {
+            "titulo": "Confirmação em duas etapas",
+            "em": "cria",
+            "pin": true,
+            "pin_em": "seis",
+            "botao": "Avançar"
+          },
+          {
+            "titulo": "E-mail de recuperação",
+            "em": "e-mail",
+            "itens": [
+              [
+                "✉️",
+                "seuemail@exemplo.com"
+              ]
+            ],
+            "toque": 0,
+            "toque_em": "recuperar"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "ativar",
+          "foco": "item",
+          "zoom": 1.12,
+          "destaque": "item",
+          "pose": "apontando"
+        },
+        {
+          "em": "sabe",
+          "foco": "pin",
+          "zoom": 1.15,
+          "destaque": "pin",
+          "pose": "confiante"
+        },
+        {
+          "em": "recuperar",
+          "foco": "item",
+          "zoom": 1.12,
+          "destaque": "item",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Pronto. Mesmo que alguém consiga o código do SMS, sem o seu PIN ele não entra.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Sem o PIN,",
+        "*ninguém entra*"
+      ],
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.0
+      },
+      "beats": [
+        {
+          "em": "codigo",
+          "pose": "cintura"
+        },
+        {
+          "em": "entra",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "E lembra: nenhuma empresa séria pede esse código. Nem o WhatsApp.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "Ninguém sério",
+        "pede ~esse código~"
+      ],
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "nenhuma",
+          "foco": "msg1",
+          "zoom": 1.1,
+          "pose": "ideia"
+        },
+        {
+          "em": "whatsapp",
+          "foco": "msg2",
+          "zoom": 1.15,
+          "destaque": "msg2",
+          "pose": "comemorando"
+        }
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Suporte 🛡️",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Me passa o código que chegou por SMS?",
+            "em": 0.02
+          },
+          {
+            "de": "eu",
+            "txt": "Não passo código pra ninguém 😉",
+            "em": "whatsapp",
+            "tag": "✅ Golpe evitado"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Salva e manda pra quem atende cliente pelo WhatsApp. E segue pra mais dica que protege seu negócio.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Manda pra quem",
+        "*atende no WhatsApp*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Salva e segue",
+        "sub": "Mais dicas pro seu negócio",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "salva",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "Te pediram",
+      "~um código~?"
+    ],
+    "tamanho": 130,
+    "selo": "É golpe. Se protege assim",
+    "selo_y": 610
+  }
+}
