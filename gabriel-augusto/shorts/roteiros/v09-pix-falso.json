@@ -1,0 +1,292 @@
+{
+  "titulo": "Comprovante de pix falso",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "O cliente mandou o comprovante do pix? Não entrega ainda. Esse print não prova que o dinheiro entrou.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Mandou o",
+        "~comprovante~?"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Pronto, paguei! Segue o comprovante 👇",
+            "em": 0.03
+          },
+          {
+            "de": "cli",
+            "txt": "🧾 <b>Pix enviado</b><br>R$ 180,00 · Concluído ✅",
+            "em": "comprovante"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "comprovante",
+          "foco": "msg2",
+          "zoom": 1.15,
+          "destaque": "msg2",
+          "pose": "apontando"
+        },
+        {
+          "em": "print",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Tem golpista que edita o comprovante, reaproveita um antigo, ou faz um pix agendado e cancela depois.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "3 truques do ~golpista~"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "🧾 Valor editado no print",
+            "em": "edita"
+          },
+          {
+            "de": "cli",
+            "txt": "🧾 Comprovante de 3 semanas atrás",
+            "em": "antigo"
+          },
+          {
+            "de": "cli",
+            "txt": "🗓️ Pix <b>agendado</b> (dá pra cancelar)",
+            "em": "agendado"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "chocado",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "edita",
+          "foco": "msg1",
+          "zoom": 1.12,
+          "destaque": "msg1",
+          "pose": "chocado"
+        },
+        {
+          "em": "antigo",
+          "foco": "msg2",
+          "zoom": 1.12,
+          "destaque": "msg2",
+          "pose": "cintura"
+        },
+        {
+          "em": "agendado",
+          "foco": "msg3",
+          "zoom": 1.12,
+          "destaque": "msg3",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "A única confirmação é no app do seu banco. Abre o extrato e procura o pix com o valor e o nome.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Confere no *seu banco*"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Extrato · Pix de hoje",
+            "em": 0,
+            "toque": 1,
+            "toque_em": "nome",
+            "itens": [
+              [
+                "⬆️",
+                "Conta de luz",
+                "− R$ 92,40"
+              ],
+              [
+                "⬇️",
+                "Maria S.",
+                "+ R$ 180,00"
+              ],
+              [
+                "⬆️",
+                "Mercado",
+                "− R$ 37,90"
+              ],
+              [
+                "⬇️",
+                "João P.",
+                "+ R$ 50,00"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "extrato",
+          "foco": "tela",
+          "zoom": 1.06,
+          "pose": "apontando"
+        },
+        {
+          "em": "nome",
+          "foco": "item",
+          "zoom": 1.15,
+          "destaque": "item",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Não apareceu no extrato? Não entrega. Simples assim.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "Não tá no extrato?",
+        "~Não entrega~"
+      ],
+      "boneco": {
+        "pose": "cintura",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.0
+      },
+      "beats": [
+        {
+          "em": "entrega",
+          "pose": "confiante"
+        }
+      ]
+    },
+    {
+      "fala": "E desconfia de pressa. Cliente correndo, motoboy esperando: é tudo pra você não conferir.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Pressa é ~sinal~"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Já paguei! Libera rápido, o motoboy tá aí 🏍️",
+            "em": 0.03
+          },
+          {
+            "de": "eu",
+            "txt": "Só um minuto, vou conferir no extrato 😉",
+            "em": "conferir",
+            "tag": "✅ Confere sempre"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "motoboy",
+          "foco": "msg1",
+          "zoom": 1.12,
+          "destaque": "msg1",
+          "pose": "chocado"
+        },
+        {
+          "em": "conferir",
+          "foco": "msg2",
+          "zoom": 1.15,
+          "destaque": "msg2",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Salva e manda pra quem vende pelo WhatsApp. E segue pra mais dica que protege seu negócio.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Manda pra quem",
+        "*vende no WhatsApp*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Salva e segue",
+        "sub": "Mais dicas pro seu negócio",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "salva",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "Mandou o",
+      "~comprovante~?"
+    ],
+    "tamanho": 130,
+    "selo": "O print não prova nada",
+    "selo_y": 1450
+  }
+}

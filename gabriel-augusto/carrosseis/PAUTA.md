@@ -65,7 +65,7 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U04 | Vídeo | Como aparecer no Google Maps de graça (Perfil da Empresa no Google) em 4 passos | REPROVADO 11/10 (tutorial com cartões de texto) |
 | U05 | Carrossel | 5 erros nas fotos do produto que fazem parecer golpe (luz, fundo, tamanho real, foto de banco) | feito 12/10 (c08) |
 | U06 | Arte TikTok | Antes x depois: a mesma loja com e sem site (mostrar as telas) | virou t09 em 13/10: 5 coisas que todo site precisa ter (tela com destaque) |
-| U07 | Vídeo | 3 respostas prontas pra quem pergunta "quanto é?" e some | pendente |
+| U07 | Vídeo | 3 respostas prontas pra quem pergunta "quanto é?" e some | coberto pelo v05 (11/10) |
 | U08 | Carrossel | Como saber se um site é golpe em 30 segundos (CNPJ na Receita, registro.br, Reclame Aqui) | pendente |
 | U09 | Arte TikTok | Destaques do Instagram que vendem: quais criar e em que ordem | feito 11/10 (t07) |
 | U10 | Vídeo | Como responder avaliação ruim no Google sem perder cliente | feito 13/10 (v07, card avaliacao) |
@@ -75,3 +75,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U14 | Vídeo | Te pediram um código de 6 dígitos? É golpe: ativa a confirmação em duas etapas (tela do app) | feito 14/10 (v08, tela_menu) |
 | U15 | Carrossel | Como pedir avaliação no Google do jeito certo (link, WhatsApp, QR, nada de desconto em troca) | feito 14/10 (c10) |
 | U16 | Arte TikTok | 4 erros que deixam o logo com cara de amador (❌ x ✅ desenhado) | feito 14/10 (t10) |
+| U17 | Vídeo | Comprovante de pix falso: não entrega antes de conferir no extrato (3 truques do golpista) | feito 15/10 (v09) |
+| U18 | Carrossel | Horário de feriado no Google (horário especial) antes de Finados | feito 15/10 (c11) |
+| U19 | Arte TikTok | A fonte errada espanta cliente: mesmo nome em fonte errada x certa (4 ramos) | feito 15/10 (t11) |
