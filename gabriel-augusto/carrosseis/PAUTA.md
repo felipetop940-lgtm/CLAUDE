@@ -78,3 +78,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U17 | Vídeo | Comprovante de pix falso: não entrega antes de conferir no extrato (3 truques do golpista) | feito 15/10 (v09) |
 | U18 | Carrossel | Horário de feriado no Google (horário especial) antes de Finados | feito 15/10 (c11) |
 | U19 | Arte TikTok | A fonte errada espanta cliente: mesmo nome em fonte errada x certa (4 ramos) | feito 15/10 (t11) |
+| U20 | Vídeo | Para de mandar foto por foto: catálogo do WhatsApp Business (tela do app) | feito 16/10 (v10) |
+| U21 | Carrossel | As fotos que o Perfil do Google precisa ter (capa ruim vira foto de cliente) | feito 16/10 (c12) |
+| U22 | Arte TikTok | Post de promoção amador x profissional (1 oferta, preço manda, contraste, respiro) | feito 16/10 (t12) |

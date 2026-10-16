@@ -1,0 +1,103 @@
+{
+  "titulo": "Catálogo do WhatsApp",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Para de mandar foto por foto quando o cliente pergunta o que você tem. O WhatsApp Business tem um catálogo. E é de graça.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": ["Para de mandar", "~foto por foto~"],
+      "prop": {
+        "tipo": "chat_demo", "nome": "Cliente", "x": 30,
+        "msgs": [
+          {"de": "cli", "txt": "Oi! Tem foto dos bolos? E o preço?", "em": 0.02},
+          {"de": "eu", "txt": "📷 📷 📷 📷 📷 📷<br>📷 📷 📷 📷 📷 📷", "em": "foto", "tag": "❌ 12 fotos soltas, sem preço"}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "foto", "foco": "msg2", "zoom": 1.15, "destaque": "msg2", "pose": "chocado"},
+        {"em": "catalogo", "pose": "ideia"},
+        {"em": "gratis", "pose": "comemorando"}
+      ]
+    },
+    {
+      "fala": "Abre o WhatsApp Business e vai em configurações, ferramentas comerciais, catálogo.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Onde fica o", "*catálogo*"],
+      "prop": {
+        "tipo": "tela_menu", "x": 30,
+        "telas": [
+          {"titulo": "Configurações", "em": 0, "toque": 0, "toque_em": "ferramentas", "itens": [["🏪", "Ferramentas comerciais"], ["🔑", "Conta"], ["🔒", "Privacidade"], ["💬", "Conversas"]]},
+          {"titulo": "Ferramentas comerciais", "em": "ferramentas", "toque": 1, "toque_em": "catalogo", "itens": [["🏪", "Perfil comercial"], ["🛍️", "Catálogo"], ["👋", "Mensagem de saudação"], ["⚡", "Respostas rápidas"]]}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "ferramentas", "foco": "item", "zoom": 1.12, "destaque": "item", "pose": "apontando"},
+        {"em": "catalogo", "foco": "item", "zoom": 1.15, "destaque": "item", "pose": "ideia"}
+      ]
+    },
+    {
+      "fala": "Toca em adicionar item: foto, nome e preço. Só a foto e o nome são obrigatórios, mas coloca o preço.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["Foto, nome", "e *preço*"],
+      "prop": {
+        "tipo": "tela_menu", "x": 30,
+        "telas": [
+          {"titulo": "Catálogo", "em": 0, "toque": 0, "toque_em": "adicionar", "itens": [["➕", "Adicionar novo item"]]},
+          {"titulo": "Novo item", "em": "foto", "toque": 2, "toque_em": "coloca", "itens": [["📷", "Fotos", "até 10"], ["🏷️", "Bolo de pote"], ["💲", "R$ 12,00", "opcional"], ["📝", "Descrição", "opcional"]]}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "adicionar", "foco": "item", "zoom": 1.12, "destaque": "item", "pose": "apontando"},
+        {"em": "obrigatorios", "foco": "tela", "zoom": 1.06, "pose": "pensando"},
+        {"em": "coloca", "foco": "item", "zoom": 1.15, "destaque": "item", "pose": "comemorando"}
+      ]
+    },
+    {
+      "fala": "Agora, quando o cliente perguntar, você manda o catálogo inteiro em um toque.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Tudo em", "*um toque*"],
+      "prop": {
+        "tipo": "chat_demo", "nome": "Cliente", "x": 30,
+        "msgs": [
+          {"de": "cli", "txt": "Oi! Tem foto dos bolos? E o preço?", "em": 0.02},
+          {"de": "eu", "txt": "🛍️ <b>Catálogo · Doce Lar</b><br>Bolo de pote · R$ 12,00<br>Brigadeiro · R$ 3,00<br>Torta de limão · R$ 65,00", "em": "catalogo", "tag": "✅ Com foto e preço"}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "catalogo", "foco": "msg2", "zoom": 1.15, "destaque": "msg2", "pose": "comemorando"}
+      ]
+    },
+    {
+      "fala": "Ele vê tudo, com preço, e já escolhe. Você não perde tempo, e ele não perde a paciência.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["Ele já chega", "*escolhendo*"],
+      "boneco": {"pose": "comemorando", "x": 540, "y": 1400, "escala": 1.0},
+      "beats": [
+        {"em": "escolhe", "pose": "apontando"},
+        {"em": "paciencia", "pose": "confiante"}
+      ]
+    },
+    {
+      "fala": "Salva pra montar o seu hoje. E segue pra mais dica que faz vender.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Monta o seu", "*hoje*"],
+      "prop": {"tipo": "cta", "botao": "Salva e segue", "sub": "Mais dicas que fazem vender", "y": 600},
+      "fim": 1.6,
+      "boneco": {"pose": "confiante", "x": 540, "y": 1400, "escala": 0.72, "entrada": "andando"},
+      "beats": [{"em": "salva", "pose": "apontando"}, {"em": "segue", "pose": "comemorando"}]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {"texto": ["Para de mandar", "~foto por foto~"], "tamanho": 120, "selo": "Usa o catálogo (é grátis)", "selo_y": 1450}
+}
