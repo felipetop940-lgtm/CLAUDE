@@ -1,0 +1,75 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Arte do TikTok 13 · modelo viral · "Sua foto de perfil some no feed?" · só TikTok (9:16) · conteúdo útil (design/Instagram)
+     Avatares desenhados aqui (marcas fictícias). Cada erro: ❌ x ✅ no tamanho grande + no tamanho real do feed. -->
+<link rel="stylesheet" href="../viral.css"><script src="../viral.js"></script>
+<style>
+@font-face{font-family:Mont;src:url(../fontes/montserrat-800.woff2)}
+@font-face{font-family:Play;src:url(../fontes/playfair-600.woff2)}
+.tt .s .t{font-size:100px}
+.t em{font-style:normal}
+.par{display:flex;gap:18px}
+.cd{position:relative;width:400px;height:430px;border-radius:30px;background:#16181C;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.cd.ruim{box-shadow:0 0 0 5px rgba(255,31,46,.85)}.cd.bom{box-shadow:0 0 0 5px rgba(124,224,160,.85)}
+.cd .tag{position:absolute;left:14px;top:14px;padding:6px 16px;border-radius:20px;font-size:24px;font-weight:800;background:rgba(0,0,0,.8);color:#fff}
+.cd.bom .tag{background:#145A32}
+.av{border-radius:50%;overflow:hidden;position:relative;display:grid;place-items:center;flex-shrink:0;box-shadow:0 0 0 4px #16181C,0 0 0 7px #DD2A7B}
+.big{width:220px;height:220px}
+.feed{display:flex;align-items:center;gap:12px;font-family:Inter;font-size:22px;font-weight:700;color:#E7E9EA}
+.feed .av{width:44px;height:44px;box-shadow:0 0 0 2px #16181C,0 0 0 3px #DD2A7B}
+.feed small{display:block;font-size:18px;font-weight:500;color:#8B9097}
+.in{position:absolute;inset:0;display:grid;place-items:center}
+.capa .cd{width:560px}
+</style>
+</head><body>
+
+<section class="s capa">
+ <h1 class="t"><span>Sua foto de perfil</span><span class="r">some no feed?</span></h1>
+ <div class="cd ruim"><span class="tag">❌ é a sua?</span><div class="av big" data-av="texto"></div><div class="feed"><div class="av" data-av="texto"></div><div>studiobella<small>no feed fica assim</small></div></div></div>
+ <p class="mini">(3 erros que deixam ela invisível)</p>
+</section>
+
+<section class="s">
+ <h2 class="t"><span><em class="r">1.</em> Logo cortado</span><span class="r">pelo círculo</span></h2>
+ <div class="par"><div class="cd ruim"><span class="tag">❌ cortado</span><div class="av big" data-av="largo"></div><div class="feed"><div class="av" data-av="largo"></div><div>trigobom<small>no feed</small></div></div></div><div class="cd bom"><span class="tag">✅ símbolo no centro</span><div class="av big" data-av="simbolo"></div><div class="feed"><div class="av" data-av="simbolo"></div><div>trigobom<small>no feed</small></div></div></div></div>
+ <p class="sub">O Instagram corta em círculo. <b>Usa o símbolo, com margem.</b></p>
+</section>
+
+<section class="s">
+ <h2 class="t"><span><em class="r">2.</em> Texto</span><span class="r">que ninguém lê</span></h2>
+ <div class="par"><div class="cd ruim"><span class="tag">❌ texto miúdo</span><div class="av big" data-av="texto"></div><div class="feed"><div class="av" data-av="texto"></div><div>studiobella<small>no feed</small></div></div></div><div class="cd bom"><span class="tag">✅ só a inicial</span><div class="av big" data-av="inicial"></div><div class="feed"><div class="av" data-av="inicial"></div><div>studiobella<small>no feed</small></div></div></div></div>
+ <p class="sub">Telefone e slogan vão na bio. <b>Na foto, uma coisa só.</b></p>
+</section>
+
+<section class="s">
+ <h2 class="t"><span><em class="r">3.</em> Rosto</span><span class="r">de longe</span></h2>
+ <div class="par"><div class="cd ruim"><span class="tag">❌ longe e escuro</span><div class="av big" data-av="longe"></div><div class="feed"><div class="av" data-av="longe"></div><div>dra.ana<small>no feed</small></div></div></div><div class="cd bom"><span class="tag">✅ perto e claro</span><div class="av big" data-av="perto"></div><div class="feed"><div class="av" data-av="perto"></div><div>dra.ana<small>no feed</small></div></div></div></div>
+ <p class="sub">Se o negócio é você, <b>rosto perto, luz boa, fundo limpo.</b></p>
+</section>
+
+<section class="s">
+ <h2 class="t"><span>O teste do</span><span class="r">tamanho real</span></h2>
+ <div class="boneco" data-pose="ideia" data-h="300"></div>
+ <p class="sub">Olha sua foto do lado de um comentário. <b>Deu pra reconhecer? Tá aprovada.</b></p>
+</section>
+
+<section class="s fim">
+ <h2 class="t"><span>A sua</span><span class="r">passa no teste?</span></h2>
+ <div class="boneco" data-pose="apontando" data-h="300"></div>
+ <p class="sub">Comenta o número do erro. E manda pra quem <b>tá montando o perfil.</b></p>
+ <p><span class="seguir">Segue pra mais</span></p>
+</section>
+
+<script>
+const TRIGO = c => `<svg viewBox="0 0 120 120" style="width:62%;height:62%"><g fill="${c}"><rect x="57" y="22" width="6" height="86" rx="3"/>${[30,48,66].map(y=>`<ellipse cx="46" cy="${y}" rx="9" ry="16" transform="rotate(-35 46 ${y})"/><ellipse cx="74" cy="${y}" rx="9" ry="16" transform="rotate(35 74 ${y})"/>`).join('')}<ellipse cx="60" cy="16" rx="8" ry="14"/></g></svg>`;
+const A = {
+  largo: `<div class="in" style="background:#F4EEE4"><div style="display:flex;align-items:center;gap:6px;white-space:nowrap;color:#5A3418;font-family:Mont;font-size:56px">${TRIGO('#5A3418').replace('62%','60px').replace('62%','60px')}TRIGO BOM PADARIA</div></div>`,
+  simbolo: `<div class="in" style="background:#F4EEE4">${TRIGO('#5A3418')}</div>`,
+  texto: `<div class="in" style="background:#FCE7F3;color:#9D174D;text-align:center;font-family:Play;line-height:1.05"><div><div style="font-size:30px">Studio Bella</div><div style="font-family:Inter;font-size:11px;margin-top:4px">unhas · cílios · sobrancelha</div><div style="font-family:Inter;font-size:10px;margin-top:2px">(62) 9XXXX-XXXX · Setor Bueno</div></div></div>`,
+  inicial: `<div class="in" style="background:#9D174D;color:#FCE7F3;font-family:Play;font-size:120px;line-height:1">B</div>`,
+  longe: `<div class="in" style="background:linear-gradient(#3b3f46,#1f2226)"><div style="font-size:72px;filter:brightness(.5);margin-top:80px">🧍‍♀️</div></div>`,
+  perto: `<div class="in" style="background:linear-gradient(135deg,#E8F1F8,#BBD3E6)"><div style="font-size:150px;line-height:1;margin-top:30px">👩‍⚕️</div></div>`,
+};
+document.querySelectorAll('[data-av]').forEach(d => d.innerHTML = A[d.dataset.av]);
+document.querySelectorAll('.feed .av .in').forEach(n => { n.style.transform = 'scale(.2)'; n.style.inset = 'auto'; n.style.width = '220px'; n.style.height = '220px'; n.style.left = '-88px'; n.style.top = '-88px'; n.style.position = 'absolute'; });
+</script>
+</body></html>

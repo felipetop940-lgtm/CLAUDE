@@ -1,0 +1,306 @@
+{
+  "titulo": "Golpe do direito autoral",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Chegou mensagem dizendo que o seu Instagram vai ser desativado por direitos autorais? Respira. Antes de clicar, faz isso.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Seu Insta vai ser",
+        "~desativado~?"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Copyright Team ✔️",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "⚠️ Sua conta violou direitos autorais e será <b>desativada em 24h</b>.<br>Recorra aqui: instagrarn-suporte.com",
+            "em": 0.03
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "desativado",
+          "foco": "msg1",
+          "zoom": 1.15,
+          "destaque": "msg1",
+          "pose": "chocado"
+        },
+        {
+          "em": "respira",
+          "pose": "cintura"
+        },
+        {
+          "em": "clicar",
+          "pose": "ideia"
+        }
+      ]
+    },
+    {
+      "fala": "O link abre uma página igualzinha à do Instagram. Você coloca a senha, e pronto: perdeu o perfil.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "Página ~falsa~"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "instagrarn-suporte.com",
+            "em": 0,
+            "sub": "Confirme seus dados para recorrer da desativação.",
+            "toque": 1,
+            "toque_em": "senha",
+            "itens": [
+              [
+                "👤",
+                "Usuário"
+              ],
+              [
+                "🔑",
+                "Senha"
+              ],
+              [
+                "➡️",
+                "Recorrer agora"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "chocado",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "igualzinha",
+          "foco": "tela",
+          "zoom": 1.06,
+          "pose": "pensando"
+        },
+        {
+          "em": "senha",
+          "foco": "item",
+          "zoom": 1.15,
+          "destaque": "item",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Primeiro: o Instagram não fala da segurança da sua conta por direct.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Instagram ~não~ manda",
+        "isso por *direct*"
+      ],
+      "boneco": {
+        "pose": "ideia",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.0
+      },
+      "beats": [
+        {
+          "em": "direct",
+          "pose": "confiante"
+        }
+      ]
+    },
+    {
+      "fala": "E pra conferir um e-mail, abre o app: menu, central de contas, senha e segurança, e-mails recentes.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Confere no",
+        "*próprio app*"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Central de Contas",
+            "em": 0,
+            "toque": 1,
+            "toque_em": "senha",
+            "itens": [
+              [
+                "👤",
+                "Dados pessoais"
+              ],
+              [
+                "🛡️",
+                "Senha e segurança"
+              ],
+              [
+                "📢",
+                "Preferências de anúncios"
+              ]
+            ]
+          },
+          {
+            "titulo": "Senha e segurança",
+            "em": "senha",
+            "toque": 2,
+            "toque_em": "recentes",
+            "itens": [
+              [
+                "🔑",
+                "Alterar senha"
+              ],
+              [
+                "📲",
+                "Autenticação de dois fatores"
+              ],
+              [
+                "✉️",
+                "E-mails recentes"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "senha",
+          "foco": "item",
+          "zoom": 1.12,
+          "destaque": "item",
+          "pose": "apontando"
+        },
+        {
+          "em": "recentes",
+          "foco": "item",
+          "zoom": 1.15,
+          "destaque": "item",
+          "pose": "ideia"
+        }
+      ]
+    },
+    {
+      "fala": "Ali aparecem os e-mails que o Instagram mandou de verdade. Se o aviso não tá na lista, é golpe. Apaga e não clica.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Não tá na lista?",
+        "~É golpe~"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "E-mails recentes",
+            "em": 0,
+            "sub": "E-mails que o Instagram enviou pra você.",
+            "itens": [
+              [
+                "✉️",
+                "Novo login detectado",
+                "há 3 dias"
+              ],
+              [
+                "✉️",
+                "Sua senha foi alterada",
+                "há 2 sem."
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "verdade",
+          "foco": "tela",
+          "zoom": 1.08,
+          "pose": "apontando"
+        },
+        {
+          "em": "golpe",
+          "pose": "cintura"
+        },
+        {
+          "em": "apaga",
+          "pose": "confiante"
+        }
+      ]
+    },
+    {
+      "fala": "Salva e manda pra quem vende pelo Instagram. E segue pra mais dica que protege seu negócio.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Manda pra quem",
+        "*vende no Insta*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Salva e segue",
+        "sub": "Mais dicas pro seu negócio",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "salva",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "Seu Insta vai ser",
+      "~desativado~?"
+    ],
+    "tamanho": 120,
+    "selo": "Antes de clicar, faz isso",
+    "selo_y": 1450
+  }
+}

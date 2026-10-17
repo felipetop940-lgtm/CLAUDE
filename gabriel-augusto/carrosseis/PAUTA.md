@@ -81,3 +81,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U20 | Vídeo | Para de mandar foto por foto: catálogo do WhatsApp Business (tela do app) | feito 16/10 (v10) |
 | U21 | Carrossel | As fotos que o Perfil do Google precisa ter (capa ruim vira foto de cliente) | feito 16/10 (c12) |
 | U22 | Arte TikTok | Post de promoção amador x profissional (1 oferta, preço manda, contraste, respiro) | feito 16/10 (t12) |
+| U23 | Vídeo | Golpe do falso aviso de direitos autorais no Instagram + como conferir (E-mails recentes) | feito 17/10 (v11) |
+| U24 | Carrossel | Respostas salvas (/preco) e perguntas frequentes no direct do Instagram | feito 17/10 (c13) |
+| U25 | Arte TikTok | Foto de perfil que some no feed: 3 erros + teste do tamanho real | feito 17/10 (t13) |
