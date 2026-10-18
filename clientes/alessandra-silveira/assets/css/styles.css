@@ -218,9 +218,14 @@ button { font: inherit; color: inherit; }
 
 /* Sobre */
 .about__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; align-items: center; }
-.about__photo { position: relative; aspect-ratio: 4 / 5; border-radius: 200px 200px 28px 28px; overflow: hidden; box-shadow: 0 50px 90px -48px rgba(29, 42, 34, .6); }
+.about__photo { position: relative; margin: 0 26px 26px 0; }
+.about__photo::before { content: ""; position: absolute; inset: 26px -26px -26px 26px; border: 1px solid rgba(176, 141, 87, .55); border-radius: 22px; pointer-events: none; transition: transform 1s var(--ease), opacity 1s var(--ease) .9s; }
+.about__photo:hover::before { transform: translate(-8px, -8px); }
+.about__frame { position: relative; aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; background: var(--sage-soft); box-shadow: 0 34px 70px -40px rgba(29, 42, 34, .5); }
+.js .about__photo.reveal--clip::before { opacity: 0; }
+.js .about__photo.reveal--clip.is-in::before { opacity: 1; }
 .about__photo img { width: 100%; height: 116%; object-fit: cover; object-position: 50% 20%; will-change: transform; }
-.about__photo::after, .faq__photo::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); background: linear-gradient(180deg, transparent 60%, rgba(29, 42, 34, .35)); }
+.about__frame::after, .faq__photo::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); background: linear-gradient(180deg, transparent 60%, rgba(29, 42, 34, .35)); }
 .about__photo figcaption, .faq__photo figcaption { position: absolute; left: 18px; bottom: 18px; z-index: 1; display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(29, 42, 34, .7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; font-size: .85rem; font-weight: 600; }
 .about__photo figcaption .i { width: 16px; height: 16px; color: var(--brass-2); }
 .about__lead { margin-top: 24px; font-size: 1.12rem; color: var(--muted); max-width: 540px; }
@@ -434,7 +439,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   .hero__ctas .btn { width: 100%; }
   .section { padding: 96px 0; }
   .why__grid, .faq__grid, .contact__grid, .about__grid { grid-template-columns: 1fr; gap: 52px; }
-  .about__photo { max-width: 460px; width: 100%; margin-inline: auto; }
+  .about__photo { max-width: 440px; width: calc(100% - 18px); margin: 0 auto 18px; }
+  .about__photo::before { inset: 18px -18px -18px 18px; }
   .faq__photo { max-width: none; aspect-ratio: 4 / 3.4; }
   .faq .head { position: static; }
   .who__grid, .testis { grid-template-columns: 1fr; }
