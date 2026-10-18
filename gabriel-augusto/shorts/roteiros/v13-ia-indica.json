@@ -4,12 +4,12 @@
   "bpm": 100,
   "cenas": [
     {
-      "fala": "Mais da metade de quem compra pela internet no Brasil já usou inteligência artificial pra decidir a compra. Quando o cliente pergunta pra IA, o seu negócio aparece?",
+      "fala": "Abre a inteligência artificial agora e pergunta: qual a melhor manicure da minha cidade? Se você não apareceu, o seu concorrente apareceu.",
       "acento": "red",
       "fx": "zoom",
       "texto": [
-        "A IA indica",
-        "~o seu negócio~?"
+        "Pergunta pra IA",
+        "~agora~"
       ],
       "prop": {
         "tipo": "chat_demo",
@@ -18,13 +18,13 @@
         "msgs": [
           {
             "de": "eu",
-            "txt": "Me indica uma manicure boa no Setor Bueno, em Goiânia?",
-            "em": "inteligencia"
+            "txt": "Qual a melhor manicure de Goiânia?",
+            "em": "pergunta"
           },
           {
             "de": "cli",
-            "txt": "Claro! Encontrei 3 opções bem avaliadas na região:<br>1. ...<br>2. ...<br>3. ...",
-            "em": "pergunta"
+            "txt": "Recomendo o <b>Studio Bella</b> e o <b>Espaço Unhas</b> 💅",
+            "em": "concorrente"
           }
         ]
       },
@@ -37,208 +37,109 @@
       },
       "beats": [
         {
-          "em": "metade",
-          "pose": "chocado"
+          "em": "pergunta",
+          "foco": "msg1",
+          "zoom": 1.12,
+          "pose": "apontando"
         },
         {
-          "em": "pergunta",
-          "foco": "msg2",
-          "zoom": 1.15,
-          "destaque": "msg2",
+          "em": "apareceu,",
           "pose": "pensando"
         },
         {
-          "em": "aparece",
-          "pose": "apontando"
+          "em": "concorrente",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "chocado"
         }
       ]
     },
     {
-      "fala": "A IA monta a resposta com o que ela encontra sobre você na internet. Se não tem nada, você não existe pra ela.",
-      "acento": "red",
-      "fx": "flash",
-      "texto": [
-        "Sem informação,",
-        "~você não existe~"
-      ],
-      "prop": {
-        "tipo": "busca",
-        "consulta": "manicure setor bueno goiânia",
-        "res": [
-          [
-            "Studio Bella ★ 4,9",
-            "#81C995",
-            "✓"
-          ],
-          [
-            "Espaço Unhas ★ 4,7",
-            "#81C995",
-            "✓"
-          ],
-          [
-            "Seu negócio: nada",
-            "#F28B82",
-            "✕"
-          ]
-        ]
-      },
-      "beats": [
-        {
-          "em": "encontra",
-          "foco": "res1",
-          "zoom": 1.08
-        },
-        {
-          "em": "existe",
-          "foco": "res3",
-          "zoom": 1.15,
-          "destaque": "res3"
-        }
-      ]
-    },
-    {
-      "fala": "Primeiro: o Perfil da Empresa no Google completo. Categoria certa, horário, fotos e o mesmo telefone em todo lugar.",
-      "acento": "gold",
-      "fx": "zoom",
-      "texto": [
-        "1. *Google* completo"
-      ],
-      "prop": {
-        "tipo": "tela_menu",
-        "x": 30,
-        "telas": [
-          {
-            "titulo": "Perfil da Empresa",
-            "em": 0,
-            "sub": "Quanto mais completo, mais a IA sabe sobre você.",
-            "toque": 3,
-            "toque_em": "telefone",
-            "itens": [
-              [
-                "🏷️",
-                "Categoria certa",
-                "✅"
-              ],
-              [
-                "🕘",
-                "Horário",
-                "✅"
-              ],
-              [
-                "📷",
-                "Fotos",
-                "✅"
-              ],
-              [
-                "📞",
-                "Mesmo telefone em tudo",
-                "✅"
-              ]
-            ]
-          }
-        ]
-      },
-      "boneco": {
-        "pose": "apontando",
-        "x": 890,
-        "y": 1430,
-        "escala": 0.72,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "categoria",
-          "foco": "tela",
-          "zoom": 1.06,
-          "pose": "apontando"
-        },
-        {
-          "em": "telefone",
-          "foco": "item",
-          "zoom": 1.15,
-          "destaque": "item",
-          "pose": "ideia"
-        }
-      ]
-    },
-    {
-      "fala": "Segundo: um site que diz com todas as letras o que você faz e onde. Manicure em Goiânia, no Setor Bueno. Isso não pode faltar no topo do site.",
+      "fala": "E repara no motivo que ela dá. Bem avaliada no Google. Site com preço e horário. Perfil completo, com fotos.",
       "acento": "gold",
       "fx": "flash",
       "texto": [
-        "2. Site que diz",
-        "*o que* e *onde*"
-      ],
-      "prop": {
-        "tipo": "site_celular",
-        "img": "../../video/src/fernando-scroll.jpg",
-        "selo": "O que faz + cidade no topo",
-        "x": 350
-      }
-    },
-    {
-      "fala": "Terceiro: avaliações, e respondidas. É a prova de que você existe e atende bem.",
-      "acento": "gold",
-      "fx": "zoom",
-      "texto": [
-        "3. *Avaliações*",
-        "respondidas"
-      ],
-      "prop": {
-        "tipo": "avaliacao",
-        "negocio": "Studio Bella",
-        "x": 30,
-        "rev": {
-          "nome": "Carla",
-          "cor": "#00897B",
-          "estrelas": 5,
-          "txt": "Atendimento impecável, voltarei com certeza!",
-          "em": 0.02
-        },
-        "resp": {
-          "partes": [
-            {
-              "txt": "Obrigada, Carla! Te espero no próximo mês 😊",
-              "em": "respondidas"
-            }
-          ],
-          "tag": "✅ Prova de que você existe",
-          "tag_em": "prova"
-        }
-      },
-      "boneco": {
-        "pose": "apontando",
-        "x": 890,
-        "y": 1430,
-        "escala": 0.72,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "respondidas",
-          "foco": "resp",
-          "zoom": 1.15,
-          "destaque": "resp",
-          "pose": "comemorando"
-        }
-      ]
-    },
-    {
-      "fala": "Faz o teste agora: pergunta pra IA qual o melhor do seu ramo na sua cidade. Você apareceu?",
-      "acento": "red",
-      "fx": "flash",
-      "texto": [
-        "Faz o teste",
-        "~agora~"
+        "Repara no",
+        "*motivo*"
       ],
       "prop": {
         "tipo": "chat_demo",
         "nome": "Assistente de IA 🤖",
         "x": 30,
-        "digitar": {
-          "txt": "Qual a melhor barbearia de Anápolis?",
-          "em": "pergunta"
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "⭐ Studio Bella: <b>muito bem avaliada no Google</b>",
+            "em": "avaliada"
+          },
+          {
+            "de": "cli",
+            "txt": "🌐 Espaço Unhas: <b>site com preços e horário</b>",
+            "em": "site"
+          },
+          {
+            "de": "cli",
+            "txt": "📍 Nail Lab: <b>perfil completo, com fotos</b>",
+            "em": "perfil"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "avaliada",
+          "foco": "msg1",
+          "zoom": 1.15,
+          "destaque": "msg1",
+          "pose": "apontando"
+        },
+        {
+          "em": "site",
+          "foco": "msg2",
+          "zoom": 1.15,
+          "destaque": "msg2",
+          "pose": "ideia"
+        },
+        {
+          "em": "perfil",
+          "foco": "msg3",
+          "zoom": 1.15,
+          "destaque": "msg3",
+          "pose": "comemorando"
         }
+      ]
+    },
+    {
+      "fala": "E se você pergunta do seu negócio e ela diz que não encontrou nada? Ela só indica quem deixou informação na internet.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "E o ~seu negócio~?"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Assistente de IA 🤖",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "eu",
+            "txt": "E o Studio da Ju, é bom?",
+            "em": "pergunta"
+          },
+          {
+            "de": "cli",
+            "txt": "Não encontrei informações sobre esse negócio. 🤷",
+            "em": "encontrou",
+            "tag": "❌ Pra IA, você não existe"
+          }
+        ]
       },
       "boneco": {
         "pose": "apontando",
@@ -250,34 +151,90 @@
       "beats": [
         {
           "em": "pergunta",
-          "foco": "campo",
-          "zoom": 1.12,
-          "destaque": "campo",
-          "pose": "apontando"
+          "foco": "msg1",
+          "zoom": 1.1,
+          "pose": "pensando"
         },
         {
-          "em": "apareceu",
-          "pose": "pensando"
+          "em": "encontrou",
+          "foco": "msg2",
+          "zoom": 1.18,
+          "destaque": "msg2",
+          "pose": "chocado"
+        },
+        {
+          "em": "informacao",
+          "pose": "ideia"
         }
       ]
     },
     {
-      "fala": "Salva e manda pra quem tem negócio. E segue pra mais dica que faz vender.",
+      "fala": "Então: Google completo, site que diz o que você faz e onde, e avaliações respondidas.",
       "acento": "gold",
       "fx": "flash",
       "texto": [
-        "Manda pra quem",
-        "*tem negócio*"
+        "O que a IA",
+        "*precisa achar*"
+      ],
+      "prop": {
+        "tipo": "link_montagem",
+        "rotulo": "SEU CHECKLIST",
+        "partes": [
+          {
+            "txt": "Google ✓ ",
+            "rot": "perfil completo",
+            "em": "google"
+          },
+          {
+            "txt": "Site ✓ ",
+            "rot": "o que faz e onde",
+            "em": "site"
+          },
+          {
+            "txt": "Avaliações ✓",
+            "rot": "e respondidas",
+            "em": "avaliacoes"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "em": "google",
+          "foco": "r1",
+          "zoom": 1.08,
+          "destaque": "r1"
+        },
+        {
+          "em": "site",
+          "foco": "r2",
+          "zoom": 1.08,
+          "destaque": "r2"
+        },
+        {
+          "em": "avaliacoes",
+          "foco": "r3",
+          "zoom": 1.08,
+          "destaque": "r3"
+        }
+      ]
+    },
+    {
+      "fala": "Comenta aqui o seu ramo e a sua cidade, que eu faço o teste pra você e te falo se você apareceu.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Comenta seu",
+        "*ramo + cidade*"
       ],
       "prop": {
         "tipo": "cta",
-        "botao": "Salva e segue",
-        "sub": "Mais dicas que fazem vender",
+        "botao": "Ramo + cidade 👇",
+        "sub": "Eu faço o teste pra você",
         "y": 600
       },
       "fim": 1.6,
       "boneco": {
-        "pose": "confiante",
+        "pose": "apontando",
         "x": 540,
         "y": 1400,
         "escala": 0.72,
@@ -285,11 +242,11 @@
       },
       "beats": [
         {
-          "em": "salva",
+          "em": "comenta",
           "pose": "apontando"
         },
         {
-          "em": "segue",
+          "em": "teste",
           "pose": "comemorando"
         }
       ]
@@ -298,11 +255,11 @@
   "fundo": "auras",
   "capa": {
     "texto": [
-      "A IA indica",
-      "~o seu negócio~?"
+      "Pergunta pra IA",
+      "~agora~"
     ],
-    "tamanho": 120,
-    "selo": "Faz esse teste agora",
+    "tamanho": 130,
+    "selo": "Seu negócio aparece?",
     "selo_y": 1450
   }
 }

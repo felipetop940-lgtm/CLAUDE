@@ -1,37 +1,36 @@
-# Vídeo 13: "A IA indica o seu negócio?" (ASSUNTO EM ALTA, refeito em 18/10 no lugar do v12)
+# Vídeo 13 (v2, 18/10): "Pergunta pra IA agora" (ASSUNTO EM ALTA)
 
-IA nas compras: conversa com um assistente de IA, busca com o seu negócio sem nada (❌), e as 3 coisas que dão informação pra IA te encontrar (Perfil do Google completo, site que diz o que e onde, avaliações respondidas) + o teste pra fazer agora.
+v2 a pedido dele ("o conteúdo é bom, mas não foi aproveitado da maneira certa"): gancho virou ação (pergunta pra IA agora), a IA mostra o MOTIVO de indicar cada concorrente, a virada "não encontrei informações sobre esse negócio", checklist rápido e CTA que vira cliente: "comenta seu ramo + cidade que eu faço o teste pra você". 37 s.
 
 ## Roteiro para gravar (sua voz)
 Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem tá dando um toque pra um amigo. Fale as palavras como estão (as animações acendem nelas).
 
-1. Mais da metade de quem compra pela internet no Brasil já usou inteligência artificial pra decidir a compra. Quando o cliente pergunta pra IA, o seu negócio aparece?
-2. A IA monta a resposta com o que ela encontra sobre você na internet. Se não tem nada, você não existe pra ela.
-3. Primeiro: o Perfil da Empresa no Google completo. Categoria certa, horário, fotos e o mesmo telefone em todo lugar.
-4. Segundo: um site que diz com todas as letras o que você faz e onde. Manicure em Goiânia, no Setor Bueno. Isso não pode faltar no topo do site.
-5. Terceiro: avaliações, e respondidas. É a prova de que você existe e atende bem.
-6. Faz o teste agora: pergunta pra IA qual o melhor do seu ramo na sua cidade. Você apareceu?
-7. Salva e manda pra quem tem negócio. E segue pra mais dica que faz vender.
+1. Abre a inteligência artificial agora e pergunta: qual a melhor manicure da minha cidade? Se você não apareceu, o seu concorrente apareceu.
+2. E repara no motivo que ela dá. Bem avaliada no Google. Site com preço e horário. Perfil completo, com fotos.
+3. E se você pergunta do seu negócio e ela diz que não encontrou nada? Ela só indica quem deixou informação na internet.
+4. Então: Google completo, site que diz o que você faz e onde, e avaliações respondidas.
+5. Comenta aqui o seu ramo e a sua cidade, que eu faço o teste pra você e te falo se você apareceu.
 
 ## Título
-O cliente agora pergunta pra IA onde comprar. Seu negócio aparece? 🤖
+Pergunta pra IA qual o melhor do seu ramo. Você apareceu? 🤖
 
 ## Legenda do post (TikTok / Reels)
-53% dos brasileiros que compram online já usaram IA na compra (pesquisa Visa + PYMNTS 2026). Quando o cliente pergunta "qual a melhor manicure aqui perto?", o seu negócio aparece? 👇
+Abre a IA e pergunta: "qual a melhor [seu ramo] da minha cidade?" 👇
 
-A IA responde com o que encontra sobre você na internet. Pra ela te achar:
+Se você não apareceu, seu concorrente apareceu. E repara no motivo que ela dá: bem avaliado no Google, site com preço e horário, perfil completo.
 
-1. Perfil da Empresa no Google completo: categoria certa, horário, fotos e o mesmo telefone em todo lugar.
-2. Site que diz com todas as letras o que você faz e onde.
-3. Avaliações, e respondidas.
+A IA indica quem deixou informação na internet. E 53% dos brasileiros que compram online já usaram IA na compra (Visa + PYMNTS 2026).
 
-🧪 Faz o teste: pergunta pra IA qual o melhor do seu ramo na sua cidade. Você apareceu?
+✅ Google completo
+✅ Site que diz o que você faz e onde
+✅ Avaliações respondidas
 
-📌 Salva pra arrumar hoje.
-📲 Manda pra quem tem negócio.
-➕ Segue pra mais dica que faz vender.
+💬 Comenta seu ramo + cidade que eu faço o teste pra você.
+➕ Segue pra mais.
 
 #inteligenciaartificial #chatgpt #google #empreendedorismo #marketingdigital
+
+**Primeiro comentário (fixar):** Comenta assim: "barbearia, Anápolis". Eu testo e te respondo se você aparece 👇
 
 ## Fontes checadas
 - 53% dos brasileiros usaram IA na última compra online (PYMNTS + Visa, Global Digital Shopping Index 2026): [PYMNTS](https://www.pymnts.com/?p=4193084) · [Mobile Time](https://www.mobiletime.com.br/noticias/15/09/2026/ferramentas-de-ia-compra/)
