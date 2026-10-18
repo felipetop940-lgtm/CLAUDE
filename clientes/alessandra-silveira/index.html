@@ -118,18 +118,6 @@
   <a class="scroll-cue" href="#beneficios" aria-label="Rolar para a próxima seção"><span></span></a>
 </section>
 
-<!-- Faixa: áreas investigadas, em movimento contínuo -->
-<section class="ticker" aria-label="Áreas investigadas na avaliação">
-  <div class="ticker__track">
-    <ul class="ticker__list" role="list">
-      <li>Atenção</li><li>Memória</li><li>Linguagem</li><li>Funções executivas</li><li>Aspectos emocionais</li><li>Ritmo e estilo de aprendizagem</li><li>Habilidades visuais e motoras</li><li>Motivação e autoestima</li>
-    </ul>
-    <ul class="ticker__list" role="list" aria-hidden="true">
-      <li>Atenção</li><li>Memória</li><li>Linguagem</li><li>Funções executivas</li><li>Aspectos emocionais</li><li>Ritmo e estilo de aprendizagem</li><li>Habilidades visuais e motoras</li><li>Motivação e autoestima</li>
-    </ul>
-  </div>
-</section>
-
 <!-- ================= BENEFÍCIOS ================= -->
 <section class="section why" id="beneficios" aria-labelledby="why-title">
   <div class="wrap why__grid">
@@ -146,30 +134,62 @@
       <a class="btn btn--dark reveal" href="#localizacao" data-wa="duvida">Quero entender meu caso<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
 
-    <!-- O iceberg: o que aparece é só a ponta -->
+    <!-- O iceberg: o que aparece é só a ponta. A varredura desce e revela cada área -->
     <div class="berg reveal" data-berg>
-      <div class="berg__sky">
-        <p class="berg__title">Eu investigo <em>suas profundezas</em></p>
-        <svg class="berg__ice" viewBox="0 0 400 130" aria-hidden="true">
-          <polygon points="110,130 170,46 196,64 228,12 262,56 300,130" fill="#F4F1EA"/>
-          <polygon points="170,46 196,64 188,130 110,130" fill="#DCE3D5"/>
-          <polygon points="228,12 262,56 250,130 196,64" fill="#C3CFBB"/>
-        </svg>
-      </div>
-      <div class="berg__sea">
-        <svg class="berg__wave" viewBox="0 0 800 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0 15 Q50 0 100 15 T200 15 T300 15 T400 15 T500 15 T600 15 T700 15 T800 15 V30 H0Z"/></svg>
-        <svg class="berg__under" viewBox="0 0 400 160" aria-hidden="true"><polygon points="70,0 330,0 300,70 236,150 150,128 96,64"/></svg>
-        <p class="berg__hint">o que não se vê</p>
-        <ul class="berg__list" role="list" aria-label="Áreas investigadas">
-          <li>Atenção</li>
-          <li>Memória</li>
-          <li>Linguagem</li>
-          <li>Motivação e autoestima</li>
-          <li>Aspectos emocionais</li>
-          <li>Ritmo e estilo de aprendizagem</li>
-          <li>Habilidades visuais e motoras</li>
-        </ul>
-      </div>
+      <svg class="berg__scene" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="bg-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF8F2"/><stop offset="1" stop-color="#EEE4D4"/></linearGradient>
+          <linearGradient id="bg-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#456650"/><stop offset=".45" stop-color="#2B4234"/><stop offset="1" stop-color="#17221B"/></linearGradient>
+          <linearGradient id="bg-deep" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D8C1" stop-opacity=".42"/><stop offset=".6" stop-color="#9DB394" stop-opacity=".2"/><stop offset="1" stop-color="#8CA284" stop-opacity=".04"/></linearGradient>
+          <linearGradient id="bg-ray" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E7CF" stop-opacity=".34"/><stop offset="1" stop-color="#F3E7CF" stop-opacity="0"/></linearGradient>
+          <radialGradient id="bg-sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#E9D3A8" stop-opacity=".75"/><stop offset="1" stop-color="#E9D3A8" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="400" height="500" fill="url(#bg-sky)"/>
+        <circle class="berg__sun" cx="316" cy="96" r="70" fill="url(#bg-sun)"/>
+        <g class="berg__drift">
+          <g class="berg__bob">
+            <!-- ponta (acima da água) -->
+            <polygon points="146,190 176,120 194,132 222,64 250,118 264,106 288,190" fill="#F7F4EC"/>
+            <polygon points="176,120 194,132 200,190 146,190" fill="#E2E8DA"/>
+            <polygon points="222,64 250,118 236,190 194,132" fill="#CDD9C4"/>
+            <polygon points="250,118 264,106 288,190 236,190" fill="#E9EEE2"/>
+            <polyline points="222,64 230,96 236,190" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1"/>
+          </g>
+        </g>
+        <rect y="172" width="400" height="328" fill="url(#bg-sea)"/>
+        <g class="berg__rays">
+          <polygon points="150,172 196,172 150,430 62,430" fill="url(#bg-ray)"/>
+          <polygon points="236,172 262,172 300,420 236,420" fill="url(#bg-ray)"/>
+          <polygon points="300,172 326,172 400,380 352,380" fill="url(#bg-ray)"/>
+        </g>
+        <g class="berg__drift">
+          <g class="berg__bob">
+            <!-- parte submersa -->
+            <polygon class="berg__mass" points="136,174 300,174 322,226 302,306 266,384 214,452 172,404 122,322 102,240" fill="url(#bg-deep)"/>
+            <g fill="none" stroke="#DCE6D4" stroke-opacity=".16" stroke-width="1">
+              <polyline points="102,240 196,226 300,174"/><polyline points="196,226 214,452"/><polyline points="122,322 196,226 302,306"/><polyline points="172,404 266,384"/>
+            </g>
+          </g>
+        </g>
+        <g class="berg__bubbles" fill="#E8F0E2">
+          <circle cx="120" cy="480" r="2.2"/><circle cx="168" cy="470" r="1.5"/><circle cx="246" cy="486" r="2.6"/><circle cx="292" cy="476" r="1.6"/><circle cx="330" cy="490" r="2"/><circle cx="84" cy="488" r="1.4"/>
+        </g>
+        <path class="berg__wave berg__wave--back" d="M0 170 Q25 162 50 170 T100 170 T150 170 T200 170 T250 170 T300 170 T350 170 T400 170 T450 170 T500 170 T550 170 T600 170 T650 170 T700 170 T750 170 T800 170 V184 H0Z" fill="#6F8A6A" fill-opacity=".55"/>
+        <path class="berg__wave" d="M0 174 Q33 166 66 174 T133 174 T200 174 T266 174 T333 174 T400 174 T466 174 T533 174 T600 174 T666 174 T733 174 T800 174 V186 H0Z" fill="#456650"/>
+      </svg>
+
+      <p class="berg__title">Eu investigo <em>suas profundezas</em></p>
+      <p class="berg__hint" aria-hidden="true">o que não se vê</p>
+      <span class="berg__scan" aria-hidden="true"></span>
+      <ul class="berg__list" role="list" aria-label="Áreas investigadas">
+        <li style="--y:45%">Atenção</li>
+        <li class="r" style="--y:52%">Memória</li>
+        <li style="--y:60%">Linguagem</li>
+        <li class="r" style="--y:67%">Motivação e autoestima</li>
+        <li style="--y:75%">Aspectos emocionais</li>
+        <li class="r" style="--y:82%">Ritmo e estilo de aprendizagem</li>
+        <li style="--y:89%">Habilidades visuais e motoras</li>
+      </ul>
     </div>
   </div>
 </section>

@@ -89,9 +89,11 @@
       var on = Math.round(progressOf(el, .9, .45) * el._scrub.length);
       el._scrub.forEach(function (w, i) { w.classList.toggle('on', reduce || i < on); });
     });
-    if (berg) { // as áreas "emergem" uma a uma conforme o iceberg sobe na tela
-      var bp = progressOf(berg, .95, .55);
-      bergItems.forEach(function (li, i) { li.classList.toggle('on', reduce || bp > i / bergItems.length * .85 + .05); });
+    if (berg) { // a varredura desce pelo iceberg conforme a página rola e acende cada área ao passar por ela
+      var bt = berg.getBoundingClientRect().top, bp = reduce ? 1 : clamp((vh * .85 - bt) / (vh * .7), 0, 1), scanY = 35 + bp * 60;
+      berg.style.setProperty('--scan', bp);
+      berg.style.setProperty('--scan-o', bp > .01 && bp < .99 ? 1 : 0);
+      bergItems.forEach(function (li) { li.classList.toggle('on', scanY >= parseFloat(li.style.getPropertyValue('--y')) - 1); });
     }
     var cur = -1; sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top < vh * .4) cur = i; });
     links.forEach(function (a, i) { a.classList.toggle('is-active', i === cur); });
@@ -202,6 +204,15 @@
     glow.style.setProperty('--gx', (x + .5) * 100 + '%'); glow.style.setProperty('--gy', (yy + .5) * 100 + '%');
   });
   hero.addEventListener('mouseleave', function () { layers.forEach(function (l) { l.style.transform = ''; }); });
+
+  // iceberg: a cena acompanha o mouse de leve
+  if (berg) {
+    berg.addEventListener('mousemove', function (e) {
+      var r = berg.getBoundingClientRect();
+      berg.style.setProperty('--bx', (e.clientX - r.left) / r.width - .5); berg.style.setProperty('--by', (e.clientY - r.top) / r.height - .5);
+    });
+    berg.addEventListener('mouseleave', function () { berg.style.setProperty('--bx', 0); berg.style.setProperty('--by', 0); });
+  }
 
   // contato: luz segue o cursor
   var contact = $('.contact'), cglow = $('.contact__glow');
