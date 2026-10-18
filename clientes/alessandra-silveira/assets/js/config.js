@@ -17,9 +17,7 @@ window.SITE = {
   endereco: {
     local: "Clínica Saúde e Cia",
     rua: "R. Itauçu, nº 246 · Qd. 03, Lt. 06 · Conj. Guadalajara",
-    bairro: "Cidade Jardim",
-    cidade: "Goiânia · GO",
-    cep: "74423-400",
+    cidade: "Cidade Jardim · Goiânia · GO · 74423-400",
     // Link de localização enviado pela cliente
     mapa: "https://www.google.com/searchviewer/10?svid=CAwSHRlbCgNwdnESFENnMHZaeTh4TVhseU0zSmliamczGAo",
     // Mapa embutido na página
@@ -31,9 +29,12 @@ window.SITE = {
   // Mensagens automáticas do WhatsApp
   mensagens: {
     padrao: "Olá, Alessandra! Vim pelo site e gostaria de agendar uma avaliação neuropsicológica.",
-    beneficios: "Olá, Alessandra! Vim pelo site e queria entender melhor como funciona a avaliação neuropsicológica.",
+    duvida: "Olá, Alessandra! Vim pelo site e queria entender melhor como funciona a avaliação neuropsicológica.",
     avaliacoes: "Olá, Alessandra! Vim pelo site e gostaria de informações sobre as avaliações.",
+    diagnostico: "Olá, Alessandra! Vim pelo site e gostaria de informações sobre diagnóstico neuropsicológico.",
     acompanhamento: "Olá, Alessandra! Vim pelo site e gostaria de informações sobre acompanhamento psicológico.",
-    diagnostico: "Olá, Alessandra! Vim pelo site e gostaria de informações sobre diagnóstico neuropsicológico."
+    criancas: "Olá, Alessandra! Vim pelo site e gostaria de informações sobre atendimento para criança.",
+    adolescentes: "Olá, Alessandra! Vim pelo site e gostaria de informações sobre atendimento para adolescente.",
+    adultos: "Olá, Alessandra! Vim pelo site e gostaria de informações sobre atendimento para adulto."
   }
 };
