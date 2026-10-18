@@ -84,3 +84,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U23 | Vídeo | Golpe do falso aviso de direitos autorais no Instagram + como conferir (E-mails recentes) | feito 17/10 (v11) |
 | U24 | Carrossel | Respostas salvas (/preco) e perguntas frequentes no direct do Instagram | feito 17/10 (c13) |
 | U25 | Arte TikTok | Foto de perfil que some no feed: 3 erros + teste do tamanho real | feito 17/10 (t13) |
+| U26 | Vídeo | Cliente sumiu sem pagar: etiquetas do WhatsApp Business (filtrar pagamento pendente) | feito 18/10 (v12) |
+| U27 | Carrossel | A categoria errada te esconde no Google (principal específica, adicionais) | feito 18/10 (c14) |
+| U28 | Arte TikTok | Cor demais na marca: 3 cores, 60-30-10, destaque só no botão, mesmas em todo lugar | feito 18/10 (t14) |

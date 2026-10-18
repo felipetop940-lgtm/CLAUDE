@@ -1,0 +1,364 @@
+{
+  "titulo": "Etiquetas do WhatsApp",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "O cliente falou que ia pagar e sumiu no meio das conversas? O WhatsApp Business tem etiquetas pra isso. E é de graça.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Cliente sumiu",
+        "~sem pagar~?"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Conversas",
+            "em": 0,
+            "itens": [
+              [
+                "👤",
+                "Carlos",
+                "10:42"
+              ],
+              [
+                "👤",
+                "Fornecedor",
+                "09:15"
+              ],
+              [
+                "👤",
+                "Grupo da loja",
+                "ontem"
+              ],
+              [
+                "👤",
+                "Maria S.",
+                "ontem"
+              ],
+              [
+                "👤",
+                "Juliana",
+                "seg."
+              ]
+            ],
+            "toque": 3,
+            "toque_em": "sumiu"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "sumiu",
+          "foco": "item",
+          "zoom": 1.15,
+          "destaque": "item",
+          "pose": "chocado"
+        },
+        {
+          "em": "etiquetas",
+          "pose": "ideia"
+        }
+      ]
+    },
+    {
+      "fala": "Ele já vem com etiquetas prontas: novo cliente, novo pedido, pagamento pendente, pago e pedido finalizado.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Etiquetas *prontas*"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Etiquetas",
+            "em": 0,
+            "toque": 2,
+            "toque_em": "pendente",
+            "itens": [
+              [
+                "🔵",
+                "Novo cliente"
+              ],
+              [
+                "🟣",
+                "Novo pedido"
+              ],
+              [
+                "🟠",
+                "Pagamento pendente"
+              ],
+              [
+                "🟢",
+                "Pago"
+              ],
+              [
+                "⚪",
+                "Pedido finalizado"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "prontas",
+          "foco": "tela",
+          "zoom": 1.06,
+          "pose": "apontando"
+        },
+        {
+          "em": "pendente",
+          "foco": "item",
+          "zoom": 1.15,
+          "destaque": "item",
+          "pose": "ideia"
+        }
+      ]
+    },
+    {
+      "fala": "Segura a conversa, toca no ícone de etiqueta e escolhe. Pagamento pendente, por exemplo.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Segura e",
+        "*etiqueta*"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "1 selecionada",
+            "em": 0,
+            "toque": 0,
+            "toque_em": "segura",
+            "itens": [
+              [
+                "✔️",
+                "Maria S.",
+                "ontem"
+              ]
+            ]
+          },
+          {
+            "titulo": "Etiquetar conversa",
+            "em": "etiqueta",
+            "toque": 2,
+            "toque_em": "pagamento",
+            "itens": [
+              [
+                "🔵",
+                "Novo cliente"
+              ],
+              [
+                "🟣",
+                "Novo pedido"
+              ],
+              [
+                "🟠",
+                "Pagamento pendente"
+              ],
+              [
+                "🟢",
+                "Pago"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "segura",
+          "foco": "item",
+          "zoom": 1.12,
+          "destaque": "item",
+          "pose": "apontando"
+        },
+        {
+          "em": "pagamento",
+          "foco": "item",
+          "zoom": 1.15,
+          "destaque": "item",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Depois é só filtrar pela etiqueta: aparece só quem ainda não pagou. Você cobra um por um, sem esquecer ninguém.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Filtra e",
+        "*cobra*"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "🟠 Pagamento pendente",
+            "em": 0,
+            "sub": "3 conversas",
+            "toque": 0,
+            "toque_em": "pagou",
+            "itens": [
+              [
+                "👤",
+                "Maria S.",
+                "ontem"
+              ],
+              [
+                "👤",
+                "Rafael",
+                "sex."
+              ],
+              [
+                "👤",
+                "Bianca",
+                "qui."
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "filtrar",
+          "foco": "tela",
+          "zoom": 1.08,
+          "pose": "apontando"
+        },
+        {
+          "em": "ninguem",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Dá pra criar até vinte etiquetas, com cor. Monta o seu caminho: novo, negociando, pago, entregue.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Monta o seu",
+        "*funil*"
+      ],
+      "prop": {
+        "tipo": "link_montagem",
+        "rotulo": "SEU FUNIL",
+        "partes": [
+          {
+            "txt": "Novo → ",
+            "rot": "chegou e perguntou",
+            "em": "novo"
+          },
+          {
+            "txt": "Negociando → ",
+            "rot": "pediu orçamento",
+            "em": "negociando"
+          },
+          {
+            "txt": "Pago → ",
+            "rot": "pix confirmado",
+            "em": "pago"
+          },
+          {
+            "txt": "Entregue",
+            "rot": "pedido na mão",
+            "em": "entregue"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "em": "negociando",
+          "foco": "r2",
+          "zoom": 1.1,
+          "destaque": "r2"
+        },
+        {
+          "em": "entregue",
+          "foco": "r4",
+          "zoom": 1.1,
+          "destaque": "r4"
+        }
+      ]
+    },
+    {
+      "fala": "Salva pra organizar o seu hoje. E segue pra mais dica que faz vender.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Organiza o seu",
+        "*hoje*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Salva e segue",
+        "sub": "Mais dicas que fazem vender",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "salva",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "Cliente sumiu",
+      "~sem pagar~?"
+    ],
+    "tamanho": 130,
+    "selo": "Usa as etiquetas do WhatsApp",
+    "selo_y": 1450
+  }
+}

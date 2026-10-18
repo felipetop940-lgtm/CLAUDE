@@ -473,7 +473,7 @@ function prop(c, lt, t) {
         <span style="min-width:200px;padding:10px 18px;border-radius:16px;border:3px solid ${CORES[i % CORES.length]};color:${CORES[i % CORES.length]};font-family:monospace;font-size:34px;font-weight:700;text-align:center">${q.txt}</span>
         <span style="font-size:38px;font-weight:600;color:${C.white}">${q.rot}</span></div>`; }).join('');
     return at(90, 640, `<div style="width:900px;padding:40px 44px;${card}">
-      <div style="font-size:26px;font-weight:800;letter-spacing:.12em;color:${C.gray};margin-bottom:16px">SEU LINK</div>
+      <div style="font-size:26px;font-weight:800;letter-spacing:.12em;color:${C.gray};margin-bottom:16px">${p.rotulo || 'SEU LINK'}</div>
       <div style="min-height:150px;font-family:monospace;font-size:46px;font-weight:700;line-height:1.35;word-break:break-all">${url}<span style="color:${C.gold};opacity:${Math.sin(t * 6) > 0 ? 1 : 0}">|</span></div>
       <div style="height:2px;background:rgba(255,255,255,.1);margin:22px 0 6px"></div>${linhas}</div>`);
   }
