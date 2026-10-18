@@ -84,6 +84,15 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U23 | Vídeo | Golpe do falso aviso de direitos autorais no Instagram + como conferir (E-mails recentes) | feito 17/10 (v11) |
 | U24 | Carrossel | Respostas salvas (/preco) e perguntas frequentes no direct do Instagram | feito 17/10 (c13) |
 | U25 | Arte TikTok | Foto de perfil que some no feed: 3 erros + teste do tamanho real | feito 17/10 (t13) |
-| U26 | Vídeo | Cliente sumiu sem pagar: etiquetas do WhatsApp Business (filtrar pagamento pendente) | feito 18/10 (v12) |
+| U26 | Vídeo | Cliente sumiu sem pagar: etiquetas do WhatsApp Business (filtrar pagamento pendente) | REPROVADO 18/10 (assunto fraco; trocado pelo v13) |
 | U27 | Carrossel | A categoria errada te esconde no Google (principal específica, adicionais) | feito 18/10 (c14) |
 | U28 | Arte TikTok | Cor demais na marca: 3 cores, 60-30-10, destaque só no botão, mesmas em todo lugar | feito 18/10 (t14) |
+| U29 | Vídeo | EM ALTA: a IA indica o seu negócio? (53% usaram IA na compra; Google completo, site, avaliações) | feito 18/10 (v13) |
+| U30 | Arte TikTok | EM ALTA: nova regra do Pix, 80 dias pra contestar o golpe do falso cliente (MED) | feito 18/10 (t15) |
+| U31 | Carrossel | EM ALTA: Black Friday 27/11, seu cliente já tá pesquisando (44%, 81% querem incentivo) | feito 18/10 (c15) |
+
+## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
+- WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
+- Golpes: falsa central bancária (alerta da Polícia Civil 17/10) · WhatsApp clonado pedindo pix "da conta nova".
+- Black Friday 27/11: contagem regressiva semanal (lista VIP, preço de antes, frete, Pix), Black Week 16 a 26/11.
+- IA nas compras: 70% esperam comprar com agentes de IA até 2028; só 15% dos lojistas se dizem preparados (PYMNTS/Visa 2026).
