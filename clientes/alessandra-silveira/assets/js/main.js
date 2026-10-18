@@ -72,7 +72,7 @@
   requestAnimationFrame(function () { root.classList.add('is-ready'); });
 
   /* ---------- Rolagem: progresso, header, frase, iceberg, menu ativo ---------- */
-  var header = $('.header'), hero = $('.hero'), berg = $('[data-berg]');
+  var header = $('.header'), hero = $('.hero'), berg = $('[data-berg]'), parallax = $$('[data-parallax]');
   var bergItems = berg ? $$('.berg__list li', berg) : [];
   var links = $$('.nav a[href^="#"]:not(.btn)');
   var sections = links.map(function (a) { return $(a.getAttribute('href')); });
@@ -95,6 +95,10 @@
       berg.style.setProperty('--scan-o', bp > .01 && bp < .99 ? 1 : 0);
       bergItems.forEach(function (li) { li.classList.toggle('on', scanY >= parseFloat(li.style.getPropertyValue('--y')) - 1); });
     }
+    if (!reduce) parallax.forEach(function (img) {
+      var r = img.parentNode.getBoundingClientRect(), k = +img.getAttribute('data-parallax');
+      img.style.transform = 'translateY(' + ((r.top + r.height / 2 - vh / 2) * -k - r.height * .08) + 'px)';
+    });
     var cur = -1; sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top < vh * .4) cur = i; });
     links.forEach(function (a, i) { a.classList.toggle('is-active', i === cur); });
   }

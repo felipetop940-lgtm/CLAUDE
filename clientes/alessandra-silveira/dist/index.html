@@ -232,6 +232,39 @@ button { font: inherit; color: inherit; }
 .berg__list li:hover { background: var(--brass-2); border-color: var(--brass-2); color: var(--forest); }
 .js .berg__list li:not(.on) { opacity: 0; }
 
+/* Sobre */
+.about__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; align-items: center; }
+.about__photo { position: relative; aspect-ratio: 4 / 5; border-radius: 200px 200px 28px 28px; overflow: hidden; box-shadow: 0 50px 90px -48px rgba(29, 42, 34, .6); }
+.about__photo img { width: 100%; height: 116%; object-fit: cover; object-position: 50% 20%; will-change: transform; }
+.about__photo::after, .faq__photo::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); background: linear-gradient(180deg, transparent 60%, rgba(29, 42, 34, .35)); }
+.about__photo figcaption, .faq__photo figcaption { position: absolute; left: 18px; bottom: 18px; z-index: 1; display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(29, 42, 34, .7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; font-size: .85rem; font-weight: 600; }
+.about__photo figcaption .i { width: 16px; height: 16px; color: var(--brass-2); }
+.about__lead { margin-top: 24px; font-size: 1.12rem; color: var(--muted); max-width: 540px; }
+.about__words { margin-top: 30px; padding: 22px 24px; border-radius: 20px; background: var(--linen); border: 1px solid var(--line); }
+.about__words > p { font-size: .74rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sage); }
+.words { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; }
+.words li { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.6rem; line-height: 1.2; color: var(--forest); opacity: .25; transition: opacity .7s var(--ease), color .7s; }
+.words li:not(:last-child)::after { content: "·"; margin-left: 14px; color: var(--brass); font-style: normal; }
+.about__words.is-in .words li { opacity: 1; }
+.about__words.is-in .words li:nth-child(2) { transition-delay: .25s; } .about__words.is-in .words li:nth-child(3) { transition-delay: .5s; }
+.about__words.is-in .words li:nth-child(4) { transition-delay: .75s; } .about__words.is-in .words li:nth-child(5) { transition-delay: 1s; }
+.about__list { display: grid; gap: 18px; margin: 32px 0 36px; }
+.about__list li { display: flex; align-items: center; gap: 16px; }
+.about__list .i { width: 48px; height: 48px; padding: 12px; border-radius: 16px; background: var(--forest); color: var(--brass-2); transition: transform .6s var(--ease); }
+.about__list li:hover .i { transform: rotate(-8deg) scale(1.06); }
+.about__list span { display: flex; flex-direction: column; font-size: .93rem; color: var(--muted); line-height: 1.45; }
+.about__list strong { font-size: 1.02rem; color: var(--forest); }
+.js .about__photo.reveal--clip img { clip-path: inset(100% 0 0 0); transition: clip-path 1.5s var(--ease); }
+.js .about__photo.reveal--clip.is-in img { clip-path: inset(0 0 0 0); }
+
+/* Foto na seção de dúvidas */
+.faq__photo { position: relative; margin-top: 30px; aspect-ratio: 4 / 4.4; max-width: 400px; border-radius: 26px 120px 26px 26px; overflow: hidden; box-shadow: 0 40px 80px -46px rgba(29, 42, 34, .6); }
+.faq__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; transition: transform 1.4s var(--ease); }
+.faq__photo:hover img { transform: scale(1.05); }
+.faq__photo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 0 4px rgba(37, 211, 102, .25); animation: pulse 2.4s var(--ease) infinite; }
+.js .faq__photo.reveal--clip img { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s var(--ease), transform 1.4s var(--ease); }
+.js .faq__photo.reveal--clip.is-in img { clip-path: inset(0 0 0 0); }
+
 /* Frase: palavras acendem ao rolar */
 .quote { position: relative; overflow: hidden; padding: 150px 0; background: var(--forest); }
 .quote::before { content: ""; position: absolute; inset: -40%; background: radial-gradient(28% 32% at 34% 42%, rgba(140, 162, 132, .34), transparent 70%), radial-gradient(24% 26% at 66% 58%, rgba(217, 190, 142, .2), transparent 70%), radial-gradient(20% 22% at 52% 30%, rgba(92, 115, 86, .3), transparent 70%); filter: blur(24px); animation: aurora 16s ease-in-out infinite alternate; pointer-events: none; }
@@ -302,7 +335,7 @@ button { font: inherit; color: inherit; }
 
 /* Dúvidas */
 .faq__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; align-items: start; }
-.faq .head { position: sticky; top: 120px; margin-bottom: 0; }
+.faq .head { margin-bottom: 0; }
 .faq .head .btn { margin-top: 28px; }
 .acc__item { border-bottom: 1px solid var(--line); }
 .acc__item:first-child { border-top: 1px solid var(--line); }
@@ -416,7 +449,9 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   .hero__visual { width: min(100%, 420px); }
   .hero__ctas .btn { width: 100%; }
   .section { padding: 96px 0; }
-  .why__grid, .faq__grid, .contact__grid { grid-template-columns: 1fr; gap: 52px; }
+  .why__grid, .faq__grid, .contact__grid, .about__grid { grid-template-columns: 1fr; gap: 52px; }
+  .about__photo { max-width: 460px; width: 100%; margin-inline: auto; }
+  .faq__photo { max-width: none; aspect-ratio: 4 / 3.4; }
   .faq .head { position: static; }
   .who__grid, .testis { grid-template-columns: 1fr; }
   .card { min-height: 0; }
@@ -447,6 +482,9 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   .panel__side { padding: 34px 26px; }
   .panel__list { grid-template-columns: 1fr; padding: 16px 26px 24px; }
   .testi p { font-size: 1.28rem; }
+  .words li { font-size: 1.35rem; }
+  .about__words { padding: 18px; }
+  .about .btn--lg { width: 100%; }
   .social__in { padding: 32px 26px; }
   .contact__map { aspect-ratio: 4 / 3; }
   .footer__grid { grid-template-columns: 1fr; }
@@ -458,6 +496,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   .js .reveal, .js .hero__visual .hero__arch, .js .hero__visual .float, .js .hero__visual .hero__orbit, .berg__list li { opacity: 1; transform: none; filter: none; clip-path: none; }
   .w > span { transform: none; }
   .sw { opacity: 1; }
+  .words li { opacity: 1; }
+  .js .about__photo.reveal--clip img, .js .faq__photo.reveal--clip img { clip-path: none; }
   .berg__list li { transform: translateY(-50%) !important; }
   .berg__list li::before { transform: none; }
   .berg__list li::after { opacity: 1; }
@@ -526,6 +566,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
     </a>
     <nav class="nav" id="nav" aria-label="Principal">
       <a href="#beneficios">Benefícios</a>
+      <a href="#sobre">Sobre</a>
       <a href="#servicos">Serviços</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#duvidas">Dúvidas</a>
@@ -646,6 +687,31 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
 <section class="quote" aria-label="Frase">
   <div class="wrap">
     <p class="quote__txt" data-scrub>Conhecer seu cérebro é <em>descobrir seu potencial.</em></p>
+  </div>
+</section>
+
+<!-- ================= SOBRE ================= -->
+<section class="section about" id="sobre" aria-labelledby="about-title">
+  <div class="wrap about__grid">
+    <figure class="about__photo reveal reveal--clip">
+      <img src="assets/img/alessandra-jaleco.webp" alt="Alessandra Silveira de jaleco no consultório" width="1080" height="1440" loading="lazy" decoding="async" data-parallax=".1">
+      <figcaption><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Clínica Saúde e Cia · Goiânia</figcaption>
+    </figure>
+    <div class="about__text">
+      <p class="eyebrow reveal">Quem vai cuidar de você</p>
+      <h2 class="title reveal" id="about-title">Olhar técnico, <em>cuidado acolhedor.</em></h2>
+      <p class="about__lead reveal">Alessandra Silveira é psicóloga especialista em Avaliação Neuropsicológica. Atende crianças, adolescentes e adultos em Goiânia, com avaliação presencial ou online.</p>
+      <div class="about__words reveal">
+        <p>Como as famílias descrevem o atendimento</p>
+        <ul class="words" role="list"><li>Atenciosa</li><li>Humana</li><li>Acolhedora</li><li>Gentil</li><li>Amorosa</li></ul>
+      </div>
+      <ul class="about__list" role="list">
+        <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-brain"/></svg><span><strong>Avaliação neuropsicológica</strong>TDAH, autismo, ansiedade e aprendizagem</span></li>
+        <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg><span><strong>Laudo claro e embasado</strong>Com estratégias para pais e escola</span></li>
+        <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-leaf"/></svg><span><strong>Psicoterapia</strong>Para crianças, adolescentes e adultos</span></li>
+      </ul>
+      <a class="btn btn--wa btn--lg magnetic reveal" href="#localizacao" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar com a Alessandra</a>
+    </div>
   </div>
 </section>
 
@@ -790,7 +856,11 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
     <div class="head">
       <p class="eyebrow reveal">Dúvidas</p>
       <h2 class="title reveal" id="faq-title">Antes de <em>agendar.</em></h2>
-      <a class="btn btn--ghost reveal" href="#localizacao" data-wa="duvida">Tirar dúvida no WhatsApp<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <figure class="faq__photo reveal reveal--clip">
+        <img src="assets/img/alessandra-consultorio.webp" alt="Alessandra Silveira no consultório" width="1080" height="1440" loading="lazy" decoding="async">
+        <figcaption><span class="dot" aria-hidden="true"></span>Fale direto com a Alessandra</figcaption>
+      </figure>
+      <a class="btn btn--wa reveal" href="#localizacao" data-wa="duvida"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Tirar dúvida no WhatsApp</a>
     </div>
     <div class="acc">
       <details class="acc__item reveal"><summary>Para que serve a avaliação neuropsicológica?<span class="acc__icon" aria-hidden="true"></span></summary>
@@ -846,7 +916,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
       <img src="data:image/webp;base64,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" alt="Alessandra Silveira · Psicóloga" width="435" height="300" loading="lazy">
       <p>Conhecer seu cérebro é descobrir seu potencial.</p>
     </div>
-    <nav aria-label="Rodapé"><h3>Navegação</h3><a href="#beneficios">Benefícios</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#duvidas">Dúvidas</a><a href="#localizacao">Localização</a></nav>
+    <nav aria-label="Rodapé"><h3>Navegação</h3><a href="#beneficios">Benefícios</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#duvidas">Dúvidas</a><a href="#localizacao">Localização</a></nav>
     <div><h3>Especialidades</h3><p>Avaliação neuropsicológica</p><p>TDAH · Autismo · Ansiedade</p><p>Psicoterapia</p></div>
     <div><h3>Contato</h3><p data-f="endereco.local"></p><p data-f="endereco.cidade"></p><a href="#localizacao" data-wa="padrao">WhatsApp <span data-f="telefone"></span></a><a href="#" data-ig data-need="instagram">Instagram</a></div>
   </div>
@@ -977,7 +1047,7 @@ window.SITE = {
   requestAnimationFrame(function () { root.classList.add('is-ready'); });
 
   /* ---------- Rolagem: progresso, header, frase, iceberg, menu ativo ---------- */
-  var header = $('.header'), hero = $('.hero'), berg = $('[data-berg]');
+  var header = $('.header'), hero = $('.hero'), berg = $('[data-berg]'), parallax = $$('[data-parallax]');
   var bergItems = berg ? $$('.berg__list li', berg) : [];
   var links = $$('.nav a[href^="#"]:not(.btn)');
   var sections = links.map(function (a) { return $(a.getAttribute('href')); });
@@ -1000,6 +1070,10 @@ window.SITE = {
       berg.style.setProperty('--scan-o', bp > .01 && bp < .99 ? 1 : 0);
       bergItems.forEach(function (li) { li.classList.toggle('on', scanY >= parseFloat(li.style.getPropertyValue('--y')) - 1); });
     }
+    if (!reduce) parallax.forEach(function (img) {
+      var r = img.parentNode.getBoundingClientRect(), k = +img.getAttribute('data-parallax');
+      img.style.transform = 'translateY(' + ((r.top + r.height / 2 - vh / 2) * -k - r.height * .08) + 'px)';
+    });
     var cur = -1; sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top < vh * .4) cur = i; });
     links.forEach(function (a, i) { a.classList.toggle('is-active', i === cur); });
   }

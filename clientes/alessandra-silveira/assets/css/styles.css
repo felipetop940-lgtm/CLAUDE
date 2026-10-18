@@ -216,6 +216,39 @@ button { font: inherit; color: inherit; }
 .berg__list li:hover { background: var(--brass-2); border-color: var(--brass-2); color: var(--forest); }
 .js .berg__list li:not(.on) { opacity: 0; }
 
+/* Sobre */
+.about__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; align-items: center; }
+.about__photo { position: relative; aspect-ratio: 4 / 5; border-radius: 200px 200px 28px 28px; overflow: hidden; box-shadow: 0 50px 90px -48px rgba(29, 42, 34, .6); }
+.about__photo img { width: 100%; height: 116%; object-fit: cover; object-position: 50% 20%; will-change: transform; }
+.about__photo::after, .faq__photo::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); background: linear-gradient(180deg, transparent 60%, rgba(29, 42, 34, .35)); }
+.about__photo figcaption, .faq__photo figcaption { position: absolute; left: 18px; bottom: 18px; z-index: 1; display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(29, 42, 34, .7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; font-size: .85rem; font-weight: 600; }
+.about__photo figcaption .i { width: 16px; height: 16px; color: var(--brass-2); }
+.about__lead { margin-top: 24px; font-size: 1.12rem; color: var(--muted); max-width: 540px; }
+.about__words { margin-top: 30px; padding: 22px 24px; border-radius: 20px; background: var(--linen); border: 1px solid var(--line); }
+.about__words > p { font-size: .74rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sage); }
+.words { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; }
+.words li { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.6rem; line-height: 1.2; color: var(--forest); opacity: .25; transition: opacity .7s var(--ease), color .7s; }
+.words li:not(:last-child)::after { content: "·"; margin-left: 14px; color: var(--brass); font-style: normal; }
+.about__words.is-in .words li { opacity: 1; }
+.about__words.is-in .words li:nth-child(2) { transition-delay: .25s; } .about__words.is-in .words li:nth-child(3) { transition-delay: .5s; }
+.about__words.is-in .words li:nth-child(4) { transition-delay: .75s; } .about__words.is-in .words li:nth-child(5) { transition-delay: 1s; }
+.about__list { display: grid; gap: 18px; margin: 32px 0 36px; }
+.about__list li { display: flex; align-items: center; gap: 16px; }
+.about__list .i { width: 48px; height: 48px; padding: 12px; border-radius: 16px; background: var(--forest); color: var(--brass-2); transition: transform .6s var(--ease); }
+.about__list li:hover .i { transform: rotate(-8deg) scale(1.06); }
+.about__list span { display: flex; flex-direction: column; font-size: .93rem; color: var(--muted); line-height: 1.45; }
+.about__list strong { font-size: 1.02rem; color: var(--forest); }
+.js .about__photo.reveal--clip img { clip-path: inset(100% 0 0 0); transition: clip-path 1.5s var(--ease); }
+.js .about__photo.reveal--clip.is-in img { clip-path: inset(0 0 0 0); }
+
+/* Foto na seção de dúvidas */
+.faq__photo { position: relative; margin-top: 30px; aspect-ratio: 4 / 4.4; max-width: 400px; border-radius: 26px 120px 26px 26px; overflow: hidden; box-shadow: 0 40px 80px -46px rgba(29, 42, 34, .6); }
+.faq__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; transition: transform 1.4s var(--ease); }
+.faq__photo:hover img { transform: scale(1.05); }
+.faq__photo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 0 4px rgba(37, 211, 102, .25); animation: pulse 2.4s var(--ease) infinite; }
+.js .faq__photo.reveal--clip img { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s var(--ease), transform 1.4s var(--ease); }
+.js .faq__photo.reveal--clip.is-in img { clip-path: inset(0 0 0 0); }
+
 /* Frase: palavras acendem ao rolar */
 .quote { position: relative; overflow: hidden; padding: 150px 0; background: var(--forest); }
 .quote::before { content: ""; position: absolute; inset: -40%; background: radial-gradient(28% 32% at 34% 42%, rgba(140, 162, 132, .34), transparent 70%), radial-gradient(24% 26% at 66% 58%, rgba(217, 190, 142, .2), transparent 70%), radial-gradient(20% 22% at 52% 30%, rgba(92, 115, 86, .3), transparent 70%); filter: blur(24px); animation: aurora 16s ease-in-out infinite alternate; pointer-events: none; }
@@ -286,7 +319,7 @@ button { font: inherit; color: inherit; }
 
 /* Dúvidas */
 .faq__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; align-items: start; }
-.faq .head { position: sticky; top: 120px; margin-bottom: 0; }
+.faq .head { margin-bottom: 0; }
 .faq .head .btn { margin-top: 28px; }
 .acc__item { border-bottom: 1px solid var(--line); }
 .acc__item:first-child { border-top: 1px solid var(--line); }
@@ -400,7 +433,9 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   .hero__visual { width: min(100%, 420px); }
   .hero__ctas .btn { width: 100%; }
   .section { padding: 96px 0; }
-  .why__grid, .faq__grid, .contact__grid { grid-template-columns: 1fr; gap: 52px; }
+  .why__grid, .faq__grid, .contact__grid, .about__grid { grid-template-columns: 1fr; gap: 52px; }
+  .about__photo { max-width: 460px; width: 100%; margin-inline: auto; }
+  .faq__photo { max-width: none; aspect-ratio: 4 / 3.4; }
   .faq .head { position: static; }
   .who__grid, .testis { grid-template-columns: 1fr; }
   .card { min-height: 0; }
@@ -431,6 +466,9 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   .panel__side { padding: 34px 26px; }
   .panel__list { grid-template-columns: 1fr; padding: 16px 26px 24px; }
   .testi p { font-size: 1.28rem; }
+  .words li { font-size: 1.35rem; }
+  .about__words { padding: 18px; }
+  .about .btn--lg { width: 100%; }
   .social__in { padding: 32px 26px; }
   .contact__map { aspect-ratio: 4 / 3; }
   .footer__grid { grid-template-columns: 1fr; }
@@ -442,6 +480,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   .js .reveal, .js .hero__visual .hero__arch, .js .hero__visual .float, .js .hero__visual .hero__orbit, .berg__list li { opacity: 1; transform: none; filter: none; clip-path: none; }
   .w > span { transform: none; }
   .sw { opacity: 1; }
+  .words li { opacity: 1; }
+  .js .about__photo.reveal--clip img, .js .faq__photo.reveal--clip img { clip-path: none; }
   .berg__list li { transform: translateY(-50%) !important; }
   .berg__list li::before { transform: none; }
   .berg__list li::after { opacity: 1; }
