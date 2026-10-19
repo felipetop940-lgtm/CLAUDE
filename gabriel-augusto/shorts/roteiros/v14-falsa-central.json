@@ -1,0 +1,236 @@
+{
+  "titulo": "Falsa central do banco",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Se o banco te chamar falando de uma compra suspeita e pedindo pix pra uma conta segura, desliga. A polícia acabou de soltar alerta sobre esse golpe.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "\"Compra suspeita\"?",
+        "~Desliga~"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Central de Segurança 🏦",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "⚠️ Identificamos uma <b>compra suspeita de R$ 2.890</b> no seu cartão. Foi você?",
+            "em": 0.03
+          },
+          {
+            "de": "cli",
+            "txt": "Pra proteger seu dinheiro, faça um pix pra nossa <b>conta segura</b>.",
+            "em": "conta"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "suspeita",
+          "foco": "msg1",
+          "zoom": 1.12,
+          "destaque": "msg1",
+          "pose": "chocado"
+        },
+        {
+          "em": "conta",
+          "foco": "msg2",
+          "zoom": 1.16,
+          "destaque": "msg2",
+          "pose": "chocado"
+        },
+        {
+          "em": "desliga",
+          "pose": "cintura"
+        }
+      ]
+    },
+    {
+      "fala": "Eles sabem seu nome, o final do cartão, e até ligam de um número parecido com o do banco. Por isso tanta gente cai.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "Por que ~parece real~"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Chamada recebida",
+            "em": 0,
+            "sub": "O que o golpista já sabe:",
+            "toque": 2,
+            "toque_em": "numero",
+            "itens": [
+              [
+                "👤",
+                "Seu nome completo"
+              ],
+              [
+                "💳",
+                "Final do cartão",
+                "•••• 4821"
+              ],
+              [
+                "📞",
+                "Número parecido com o do banco"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "chocado",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "nome",
+          "foco": "tela",
+          "zoom": 1.06,
+          "pose": "pensando"
+        },
+        {
+          "em": "numero",
+          "foco": "item",
+          "zoom": 1.15,
+          "destaque": "item",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Mas guarda isso: banco nenhum pede transferência pra proteger o seu dinheiro. Conta segura não existe.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "\"Conta segura\"",
+        "~não existe~"
+      ],
+      "boneco": {
+        "pose": "ideia",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.0
+      },
+      "beats": [
+        {
+          "em": "nenhum",
+          "pose": "ideia"
+        },
+        {
+          "em": "existe",
+          "pose": "confiante"
+        }
+      ]
+    },
+    {
+      "fala": "E o detalhe que quase ninguém sabe: desliga e liga você mesmo pro número do cartão, de outro celular. Tem golpista que segura a linha pra fingir que é o banco atendendo.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Liga de",
+        "*outro celular*"
+      ],
+      "prop": {
+        "tipo": "link_montagem",
+        "rotulo": "FAZ ASSIM",
+        "partes": [
+          {
+            "txt": "Desliga ",
+            "rot": "não discute, não confirma nada",
+            "em": "desliga"
+          },
+          {
+            "txt": "Outro cel ",
+            "rot": "a linha pode continuar presa",
+            "em": "outro"
+          },
+          {
+            "txt": "Nº cartão",
+            "rot": "o que tá atrás do seu cartão",
+            "em": "cartao,"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "em": "desliga",
+          "foco": "r1",
+          "zoom": 1.08,
+          "destaque": "r1"
+        },
+        {
+          "em": "outro",
+          "foco": "r2",
+          "zoom": 1.08,
+          "destaque": "r2"
+        },
+        {
+          "em": "segura",
+          "foco": "r2",
+          "zoom": 1.12,
+          "destaque": "r2"
+        }
+      ]
+    },
+    {
+      "fala": "Manda isso pra quem cuida do financeiro da sua loja e pros seus pais. E segue pra mais dica que protege seu dinheiro.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Manda pra",
+        "*quem precisa*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Encaminha 📲",
+        "sub": "Segue pra mais dicas de segurança",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "manda",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "\"Compra suspeita\"?",
+      "~Desliga~"
+    ],
+    "tamanho": 120,
+    "selo": "É golpe da falsa central",
+    "selo_y": 1450
+  }
+}

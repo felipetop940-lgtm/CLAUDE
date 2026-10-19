@@ -90,9 +90,15 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U29 | Vídeo | EM ALTA: a IA indica o seu negócio? (53% usaram IA na compra; Google completo, site, avaliações) | feito 18/10 (v13) |
 | U30 | Arte TikTok | EM ALTA: nova regra do Pix, 80 dias pra contestar o golpe do falso cliente (MED) | feito 18/10 (t15) |
 | U31 | Carrossel | EM ALTA: Black Friday 27/11, seu cliente já tá pesquisando (44%, 81% querem incentivo) | feito 18/10 (c15) |
+| U32 | Vídeo | EM ALTA: golpe da falsa central bancária (alerta Polícia Civil PR 16–17/10) + ligar de outro celular | feito 19/10 (v14) |
+| U33 | Carrossel | EM ALTA: o WhatsApp começou a cobrar? (API desde 01/10; app continua grátis; golpe do "pague pra liberar") | feito 19/10 (c16) |
+| U34 | Arte TikTok | EM ALTA: Black Friday sem queimar a margem (kit, frete acima de X, Pix, brinde, cupom pra próxima) | feito 19/10 (t16) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
 - Golpes: falsa central bancária (alerta da Polícia Civil 17/10) · WhatsApp clonado pedindo pix "da conta nova".
 - Black Friday 27/11: contagem regressiva semanal (lista VIP, preço de antes, frete, Pix), Black Week 16 a 26/11.
 - IA nas compras: 70% esperam comprar com agentes de IA até 2028; só 15% dos lojistas se dizem preparados (PYMNTS/Visa 2026).
+- (19/10) Golpe com nome de secretário/órgão público abordando EMPRESAS no WhatsApp com dados reais de contratos (Prefeitura de Campo Grande, 16/10).
+- (19/10) Edits (Meta) com assistente de IA: só nos EUA por enquanto (out/2026). Usar quando chegar ao Brasil.
+- (19/10) Google: "Ask Maps" e perfil da empresa alimentando respostas de IA (blogs de SEO, sem confirmação oficial pro Brasil).
