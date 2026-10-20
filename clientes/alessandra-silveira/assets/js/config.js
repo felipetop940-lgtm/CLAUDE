@@ -1,5 +1,6 @@
 /* =========================================================
-   Dados editáveis do site. Troque aqui e o site inteiro atualiza.
+   Dados editáveis do site (comuns aos três sites).
+   Endereços, títulos e mensagens de cada site ficam em build.py (SITES).
    Campos vazios ("") ficam ocultos.
    ========================================================= */
 window.SITE = {
@@ -14,17 +15,7 @@ window.SITE = {
   // Registro profissional (obrigatório na divulgação em psicologia)
   registro: "", // Ex.: "CRP 09/00000"  [CRP]
 
-  endereco: {
-    local: "Florah Saúde Mental",
-    rua: "Av. Trindade, nº 530 · Ana Rosa",
-    cidade: "Trindade · GO · 75389-048",
-    // Botão "Como chegar"
-    mapa: "https://www.google.com/maps/search/?api=1&query=Florah%20Sa%C3%BAde%20Mental%2C%20Av.%20Trindade%2C%20530%20-%20Ana%20Rosa%2C%20Trindade%20-%20GO%2C%2075389-048",
-    // Mapa embutido na página
-    embed: "https://maps.google.com/maps?q=Florah%20Sa%C3%BAde%20Mental%2C%20Av.%20Trindade%2C%20530%20-%20Ana%20Rosa%2C%20Trindade%20-%20GO%2C%2075389-048&z=15&output=embed"
-  },
-
-  horario: "", // Ex.: "Segunda a sexta, das 8h às 18h"  [HORÁRIO DA ALESSANDRA NA FLORAH]
+  horario: "", // Ex.: "Segunda a sexta, das 8h às 18h"  [HORÁRIO]
 
   // Mensagens automáticas do WhatsApp
   mensagens: {

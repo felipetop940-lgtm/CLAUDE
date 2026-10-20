@@ -180,10 +180,10 @@
         }
         for (var j = i + 1; j < nodes.length; j++) {
           var b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
-          if (d < LINK) { ctx.strokeStyle = 'rgba(92,115,86,' + (1 - d / LINK) * .28 + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+          if (d < LINK) { ctx.strokeStyle = 'rgba(84,98,80,' + (1 - d / LINK) * .28 + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
         }
         var near = (mouse.x - a.x) * (mouse.x - a.x) + (mouse.y - a.y) * (mouse.y - a.y) < 20000;
-        ctx.fillStyle = near ? 'rgba(176,141,87,.85)' : 'rgba(92,115,86,.45)';
+        ctx.fillStyle = near ? 'rgba(180,143,102,.9)' : 'rgba(84,98,80,.45)';
         ctx.beginPath(); ctx.arc(a.x, a.y, near ? a.r + 1 : a.r, 0, 6.283); ctx.fill();
       }
       if (running && !reduce) raf = requestAnimationFrame(draw);

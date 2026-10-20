@@ -3,39 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alessandra Silveira · Neuropsicóloga em Goiânia</title>
-  <meta name="description" content="Avaliação neuropsicológica com Alessandra Silveira, em Trindade e região de Goiânia. TDAH, Autismo (TEA), ansiedade e dificuldades de aprendizagem, com laudo claro e orientação para pais e escola. Florah Saúde Mental, Trindade (GO).">
-  <link rel="canonical" href="https://psialenssandra.consultoriodesucessoo.com/">
-  <meta name="theme-color" content="#1E2A22">
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{DESC}}">
+  <meta name="theme-color" content="#546250">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:title" content="Alessandra Silveira · Neuropsicóloga em Goiânia">
-  <meta property="og:description" content="Especialista em Avaliação Neuropsicológica. TDAH · Autismo · Ansiedade.">
-  <meta property="og:image" content="assets/img/alessandra-jaleco.webp">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{OG_DESC}}">
+  <meta property="og:image" content="assets/img/alessandra-hero.webp">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/fonts/cormorant-garamond-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/forum-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/allura-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Psychologist",
-    "name": "Alessandra Silveira · Neuropsicóloga",
-    "description": "Especialista em Avaliação Neuropsicológica: TDAH, Autismo, ansiedade e dificuldades de aprendizagem.",
-    "image": "assets/img/alessandra-jaleco.webp",
-    "telephone": "+55 62 98137-5302",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Trindade, nº 530, Ana Rosa",
-      "addressLocality": "Trindade",
-      "addressRegion": "GO",
-      "postalCode": "75389-048",
-      "addressCountry": "BR"
-    }
-  }
+{{JSONLD}}
   </script>
 </head>
-<body>
+<body class="site--{{VARIANTE}}">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-wa" viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.8 8.6c.2-.5.6-.6 1-.6l.6 1.5-.6.9c.5 1.1 1.4 2 2.5 2.5l.9-.6 1.5.6c0 .4-.1.8-.6 1-1.9.9-6.2-3.3-5.3-5.3Z"/></symbol>
@@ -53,18 +38,17 @@
     <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
     <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.3 1.1 6.1L12 16.9 6.6 19.8l1.1-6.1-4.5-4.3 6.1-.8z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.3 7.5 9.5 4.3-1.2 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m8.8 12.2 2.3 2.3 4.3-4.6"/></symbol>
     <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7Z"/></symbol>
   </defs>
 </svg>
 
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- Abertura: nome se escreve e a cortina sobe -->
+<!-- Abertura: a logo surge e a cortina sobe -->
 <div class="intro" aria-hidden="true">
   <div class="intro__in">
-    <span class="intro__name">Alessandra Silveira</span>
-    <span class="intro__line"></span>
-    <span class="intro__role">Neuropsicóloga</span>
+    <img class="intro__logo" src="assets/img/logo-claro.webp" alt="" width="837" height="579">
   </div>
 </div>
 
@@ -72,8 +56,8 @@
 <header class="header">
   <div class="wrap header__in">
     <a class="brand" href="#inicio" aria-label="Alessandra Silveira, neuropsicóloga · início">
-      <span class="brand__mark" aria-hidden="true">AS</span>
-      <span class="brand__txt"><strong>Alessandra Silveira</strong><small>Neuropsicóloga</small></span>
+      <img class="brand__tree" src="assets/img/logo-arvore.webp" alt="" width="206" height="319">
+      <img class="brand__name" src="assets/img/logo-nome.webp" alt="Alessandra Silveira · Neuropsicóloga" width="997" height="206">
     </a>
     <nav class="nav" id="nav" aria-label="Principal">
       <a href="#beneficios">Benefícios</a>
@@ -81,7 +65,7 @@
       <a href="#servicos">Serviços</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#duvidas">Dúvidas</a>
-      <a href="#localizacao">Localização</a>
+      <a href="#localizacao">{{NAV_LOCAL}}</a>
       <a class="btn btn--wa nav__cta" href="#localizacao" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar avaliação</a>
     </nav>
     <a class="header__wa" href="#localizacao" data-wa="padrao" aria-label="Agendar pelo WhatsApp"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg></a>
@@ -98,19 +82,20 @@
   <span class="hero__glow" aria-hidden="true"></span>
   <div class="wrap hero__grid">
     <div class="hero__text">
-      <h1 class="hero__title" id="hero-title" data-split>Neuropsicóloga <em>em Goiânia</em></h1>
+      <!--IPASGO--><p class="hero__badge reveal"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg>Atendimento pelo IPASGO</p><!--/IPASGO-->
+      <h1 class="hero__title{{HERO_CLASS}}" id="hero-title" data-split>Neuropsicóloga <em>{{HERO_EM}}</em></h1>
       <p class="hero__name reveal">Alessandra Silveira</p>
       <p class="hero__spec reveal"><strong>Especialista</strong> em <strong>Avaliação Neuropsicológica</strong></p>
       <ul class="hero__tags reveal" role="list"><li>TDAH</li><li>Autismo</li><li>Ansiedade</li></ul>
       <div class="hero__ctas reveal">
         <a class="btn btn--wa btn--lg magnetic" href="#localizacao" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar Avaliação</a>
       </div>
-      <p class="hero__note reveal"><span class="dot" aria-hidden="true"></span>Florah Saúde Mental · Trindade, GO</p>
+      <p class="hero__note reveal"><span class="dot" aria-hidden="true"></span>{{HERO_NOTE}}</p>
     </div>
     <figure class="hero__visual reveal reveal--clip">
       <span class="hero__block" aria-hidden="true" data-depth="-10"></span>
       <div class="hero__frame" data-depth="6">
-        <img src="assets/img/alessandra-jaleco.webp" alt="Alessandra Silveira, psicóloga, de jaleco no consultório" width="1080" height="1440" fetchpriority="high">
+        <img src="assets/img/alessandra-hero.webp" alt="Alessandra Silveira, neuropsicóloga, de jaleco" width="968" height="1380" fetchpriority="high">
       </div>
       <figcaption class="float float--a" data-depth="24"><svg class="i" aria-hidden="true"><use href="#i-brain"/></svg><span><strong>Avaliação neuropsicológica</strong><small>Presencial e online</small></span></figcaption>
       <div class="float float--b" aria-hidden="true" data-depth="32"><svg class="i"><use href="#i-doc"/></svg><span><strong>Laudo claro e embasado</strong><small>Orientação para pais e escola</small></span></div>
@@ -118,6 +103,25 @@
   </div>
   <a class="scroll-cue" href="#beneficios" aria-label="Rolar para a próxima seção"><span></span></a>
 </section>
+
+<!--IPASGO-->
+<!-- ================= IPASGO ================= -->
+<section class="conv" aria-labelledby="conv-title">
+  <div class="wrap conv__in">
+    <span class="conv__ic reveal"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span>
+    <div class="conv__txt">
+      <p class="eyebrow eyebrow--light reveal">Convênio</p>
+      <h2 class="conv__title reveal" id="conv-title">Avaliação neuropsicológica <strong>pelo IPASGO</strong></h2>
+      <p class="conv__lead reveal">Atendimento pelo IPASGO em Goiânia e em Trindade. Chame no WhatsApp para confirmar a cobertura do seu plano e escolher a unidade.</p>
+      <ul class="conv__units reveal" role="list">
+        <li><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Clínica NeuroVitta · Goiânia</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Florah Saúde Mental · Trindade</li>
+      </ul>
+    </div>
+    <a class="btn btn--wa btn--lg magnetic reveal" href="#localizacao" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo IPASGO</a>
+  </div>
+</section>
+<!--/IPASGO-->
 
 <!-- ================= BENEFÍCIOS ================= -->
 <section class="section why" id="beneficios" aria-labelledby="why-title">
@@ -139,11 +143,11 @@
     <div class="berg reveal" data-berg>
       <svg class="berg__scene" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <defs>
-          <linearGradient id="bg-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF8F2"/><stop offset="1" stop-color="#EEE4D4"/></linearGradient>
-          <linearGradient id="bg-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#456650"/><stop offset=".45" stop-color="#2B4234"/><stop offset="1" stop-color="#17221B"/></linearGradient>
+          <linearGradient id="bg-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FDF7EE"/><stop offset="1" stop-color="#F6E4CC"/></linearGradient>
+          <linearGradient id="bg-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6B7A66"/><stop offset=".45" stop-color="#546250"/><stop offset="1" stop-color="#3B4538"/></linearGradient>
           <linearGradient id="bg-deep" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D8C1" stop-opacity=".42"/><stop offset=".6" stop-color="#9DB394" stop-opacity=".2"/><stop offset="1" stop-color="#8CA284" stop-opacity=".04"/></linearGradient>
-          <linearGradient id="bg-ray" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E7CF" stop-opacity=".34"/><stop offset="1" stop-color="#F3E7CF" stop-opacity="0"/></linearGradient>
-          <radialGradient id="bg-sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#E9D3A8" stop-opacity=".75"/><stop offset="1" stop-color="#E9D3A8" stop-opacity="0"/></radialGradient>
+          <linearGradient id="bg-ray" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF0E4" stop-opacity=".34"/><stop offset="1" stop-color="#F3E7CF" stop-opacity="0"/></linearGradient>
+          <radialGradient id="bg-sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#F4D9B9" stop-opacity=".75"/><stop offset="1" stop-color="#E9D3A8" stop-opacity="0"/></radialGradient>
         </defs>
         <rect width="400" height="500" fill="url(#bg-sky)"/>
         <circle class="berg__sun" cx="316" cy="96" r="70" fill="url(#bg-sun)"/>
@@ -175,8 +179,8 @@
         <g class="berg__bubbles" fill="#E8F0E2">
           <circle cx="120" cy="480" r="2.2"/><circle cx="168" cy="470" r="1.5"/><circle cx="246" cy="486" r="2.6"/><circle cx="292" cy="476" r="1.6"/><circle cx="330" cy="490" r="2"/><circle cx="84" cy="488" r="1.4"/>
         </g>
-        <path class="berg__wave berg__wave--back" d="M0 170 Q25 162 50 170 T100 170 T150 170 T200 170 T250 170 T300 170 T350 170 T400 170 T450 170 T500 170 T550 170 T600 170 T650 170 T700 170 T750 170 T800 170 V184 H0Z" fill="#6F8A6A" fill-opacity=".55"/>
-        <path class="berg__wave" d="M0 174 Q33 166 66 174 T133 174 T200 174 T266 174 T333 174 T400 174 T466 174 T533 174 T600 174 T666 174 T733 174 T800 174 V186 H0Z" fill="#456650"/>
+        <path class="berg__wave berg__wave--back" d="M0 170 Q25 162 50 170 T100 170 T150 170 T200 170 T250 170 T300 170 T350 170 T400 170 T450 170 T500 170 T550 170 T600 170 T650 170 T700 170 T750 170 T800 170 V184 H0Z" fill="#8A9682" fill-opacity=".55"/>
+        <path class="berg__wave" d="M0 174 Q33 166 66 174 T133 174 T200 174 T266 174 T333 174 T400 174 T466 174 T533 174 T600 174 T666 174 T733 174 T800 174 V186 H0Z" fill="#6B7A66"/>
       </svg>
 
       <p class="berg__title">Eu investigo <em>suas profundezas</em></p>
@@ -197,6 +201,7 @@
 
 <!-- ================= FRASE (acende ao rolar) ================= -->
 <section class="quote" aria-label="Frase">
+  <span class="quote__bg" aria-hidden="true"></span>
   <div class="wrap">
     <p class="quote__txt" data-scrub>Conhecer seu cérebro é <em>descobrir seu potencial.</em></p>
   </div>
@@ -207,12 +212,12 @@
   <div class="wrap about__grid">
     <figure class="about__photo reveal reveal--clip">
       <div class="about__frame"><img src="assets/img/alessandra-consultorio.webp" alt="Alessandra Silveira no consultório" width="1080" height="1440" loading="lazy" decoding="async" data-parallax=".1"></div>
-      <figcaption><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Florah Saúde Mental · Trindade</figcaption>
+      <figcaption><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>{{SOBRE_LEGENDA}}</figcaption>
     </figure>
     <div class="about__text">
       <p class="eyebrow reveal">Quem vai cuidar de você</p>
       <h2 class="title reveal" id="about-title">Olhar técnico, <em>cuidado acolhedor.</em></h2>
-      <p class="about__lead reveal">Alessandra Silveira é psicóloga especialista em Avaliação Neuropsicológica. Atende crianças, adolescentes e adultos na Florah Saúde Mental, em Trindade (GO), com avaliação presencial ou online.</p>
+      <p class="about__lead reveal">Alessandra Silveira é psicóloga especialista em Avaliação Neuropsicológica. Atende crianças, adolescentes e adultos {{SOBRE_LOCAL}}, com avaliação presencial ou online.</p>
       <div class="about__words reveal">
         <p>Como as famílias descrevem o atendimento</p>
         <ul class="words" role="list"><li>Atenciosa</li><li>Humana</li><li>Acolhedora</li><li>Gentil</li><li>Amorosa</li></ul>
@@ -369,13 +374,15 @@
       <p class="eyebrow reveal">Dúvidas</p>
       <h2 class="title reveal" id="faq-title">Antes de <em>agendar.</em></h2>
       <figure class="faq__photo reveal reveal--clip">
-        <img src="assets/img/alessandra-silveira.webp" alt="Alessandra Silveira sorrindo" width="972" height="960" loading="lazy" decoding="async">
+        <img src="assets/img/alessandra-jaleco.webp" alt="Alessandra Silveira de jaleco no consultório" width="1080" height="1440" loading="lazy" decoding="async">
         <figcaption><span class="dot" aria-hidden="true"></span>Fale direto com a Alessandra</figcaption>
       </figure>
       <a class="btn btn--wa reveal" href="#localizacao" data-wa="duvida"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Tirar dúvida no WhatsApp</a>
     </div>
     <div class="acc">
-      <details class="acc__item reveal"><summary>Para que serve a avaliação neuropsicológica?<span class="acc__icon" aria-hidden="true"></span></summary>
+<!--IPASGO-->      <details class="acc__item reveal"><summary>Atende pelo IPASGO?<span class="acc__icon" aria-hidden="true"></span></summary>
+        <div class="acc__body"><p>Sim. O atendimento pelo IPASGO é feito na Clínica NeuroVitta, em Goiânia, e na Florah Saúde Mental, em Trindade. Chame no WhatsApp para confirmar a cobertura do seu plano e agendar.</p></div></details>
+<!--/IPASGO-->      <details class="acc__item reveal"><summary>Para que serve a avaliação neuropsicológica?<span class="acc__icon" aria-hidden="true"></span></summary>
         <div class="acc__body"><p>Para identificar causas de dificuldades de aprendizagem, compreender comportamentos e emoções e detectar sinais de TDAH, autismo ou ansiedade.</p></div></details>
       <details class="acc__item reveal"><summary>O que eu recebo no final?<span class="acc__icon" aria-hidden="true"></span></summary>
         <div class="acc__body"><p>Um laudo claro e embasado, com orientações e estratégias práticas para pais e escola.</p></div></details>
@@ -384,7 +391,7 @@
       <details class="acc__item reveal"><summary>Além da avaliação, há acompanhamento?<span class="acc__icon" aria-hidden="true"></span></summary>
         <div class="acc__body"><p>Sim. Psicoterapia para crianças, adolescentes e adultos, acompanhamento neuropsicológico e tratamento para ansiedade e depressão.</p></div></details>
       <details class="acc__item reveal"><summary>Onde é o atendimento?<span class="acc__icon" aria-hidden="true"></span></summary>
-        <div class="acc__body"><p>Na Florah Saúde Mental, Av. Trindade, nº 530, Ana Rosa, Trindade (GO). A avaliação neuropsicológica também pode ser feita online.</p></div></details>
+        <div class="acc__body"><p>{{FAQ_ONDE}} A avaliação neuropsicológica também pode ser feita online.</p></div></details>
     </div>
   </div>
 </section>
@@ -406,16 +413,11 @@
       <h2 class="contact__title reveal" id="contact-title">Entender a mente é <em>cuidar do seu bem-estar.</em></h2>
       <a class="btn btn--wa btn--xl magnetic reveal" href="#localizacao" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo WhatsApp</a>
     </div>
-    <div class="contact__grid">
-      <div class="contact__map reveal">
-        <iframe data-embed title="Mapa: Florah Saúde Mental, Trindade" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-      <ul class="contact__list" role="list">
-        <li class="reveal"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg><div><strong data-f="endereco.local"></strong><span data-f="endereco.rua"></span><span data-f="endereco.cidade"></span><a class="contact__link" href="#" data-map target="_blank" rel="noopener">Como chegar <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></li>
-        <li class="reveal" data-need="horario"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><div><strong>Horário</strong><span data-f="horario"></span></div></li>
-        <li class="reveal" data-need="telefone"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><div><strong>WhatsApp</strong><a href="#localizacao" data-wa="padrao"><span data-f="telefone"></span></a></div></li>
-      </ul>
-    </div>
+{{LOCAIS}}
+    <ul class="contact__extra" role="list">
+      <li class="reveal" data-need="telefone"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><div><strong>WhatsApp</strong><a href="#localizacao" data-wa="padrao"><span data-f="telefone"></span></a></div></li>
+      <li class="reveal" data-need="horario"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><div><strong>Horário</strong><span data-f="horario"></span></div></li>
+    </ul>
   </div>
 </section>
 
@@ -425,12 +427,12 @@
 <footer class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <img src="assets/img/logo.webp" alt="Alessandra Silveira · Psicóloga" width="435" height="300" loading="lazy">
-      <p>Conhecer seu cérebro é descobrir seu potencial.</p>
+      <img src="assets/img/logo-claro.webp" alt="Alessandra Silveira · Neuropsicóloga" width="837" height="579" loading="lazy">
+      <p>Uma árvore que nasce do cérebro: o florescimento e o crescimento das ideias.</p>
     </div>
-    <nav aria-label="Rodapé"><h3>Navegação</h3><a href="#beneficios">Benefícios</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#duvidas">Dúvidas</a><a href="#localizacao">Localização</a></nav>
+    <nav aria-label="Rodapé"><h3>Navegação</h3><a href="#beneficios">Benefícios</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#duvidas">Dúvidas</a><a href="#localizacao">{{NAV_LOCAL}}</a></nav>
     <div><h3>Especialidades</h3><p>Avaliação neuropsicológica</p><p>TDAH · Autismo · Ansiedade</p><p>Psicoterapia</p></div>
-    <div><h3>Contato</h3><p data-f="endereco.local"></p><p data-f="endereco.cidade"></p><a href="#localizacao" data-wa="padrao">WhatsApp <span data-f="telefone"></span></a><a href="#" data-ig data-need="instagram">Instagram</a></div>
+    <div><h3>Contato</h3>{{FOOTER_LOCAIS}}<a href="#localizacao" data-wa="padrao">WhatsApp <span data-f="telefone"></span></a><a href="#" data-ig data-need="instagram">Instagram</a></div>
   </div>
   <div class="wrap footer__legal">
     <p>Alessandra Silveira · Psicóloga<span data-need="registro"> · <span data-f="registro"></span></span></p>
@@ -442,6 +444,7 @@
 <a class="wa-float" href="#localizacao" data-wa="padrao" aria-label="Agendar pelo WhatsApp"><span class="wa-float__ic"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg></span><span class="wa-float__txt">Agendar pelo <b>WhatsApp</b></span></a>
 
 <script src="assets/js/config.js"></script>
+<script>{{VARIANTE_JS}}</script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>
