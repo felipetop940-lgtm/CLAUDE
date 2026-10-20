@@ -15,16 +15,16 @@ window.SITE = {
   registro: "", // Ex.: "CRP 09/00000"  [CRP]
 
   endereco: {
-    local: "Clínica Saúde e Cia",
-    rua: "R. Itauçu, nº 246 · Qd. 03, Lt. 06 · Conj. Guadalajara",
-    cidade: "Cidade Jardim · Goiânia · GO · 74423-400",
-    // Link de localização enviado pela cliente
-    mapa: "https://www.google.com/searchviewer/10?svid=CAwSHRlbCgNwdnESFENnMHZaeTh4TVhseU0zSmliamczGAo",
+    local: "Florah Saúde Mental",
+    rua: "Av. Trindade, nº 530 · Ana Rosa",
+    cidade: "Trindade · GO · 75389-048",
+    // Botão "Como chegar"
+    mapa: "https://www.google.com/maps/search/?api=1&query=Florah%20Sa%C3%BAde%20Mental%2C%20Av.%20Trindade%2C%20530%20-%20Ana%20Rosa%2C%20Trindade%20-%20GO%2C%2075389-048",
     // Mapa embutido na página
-    embed: "https://maps.google.com/maps?q=SA%C3%9ADE%20E%20CIA%20Cl%C3%ADnica%20de%20Especialidades%2C%20R.%20Itau%C3%A7u%20246%2C%20Cidade%20Jardim%2C%20Goi%C3%A2nia%20-%20GO%2C%2074423-400&z=15&output=embed"
+    embed: "https://maps.google.com/maps?q=Florah%20Sa%C3%BAde%20Mental%2C%20Av.%20Trindade%2C%20530%20-%20Ana%20Rosa%2C%20Trindade%20-%20GO%2C%2075389-048&z=15&output=embed"
   },
 
-  horario: "Segunda a sexta, das 8h às 18h",
+  horario: "", // Ex.: "Segunda a sexta, das 8h às 18h"  [HORÁRIO DA ALESSANDRA NA FLORAH]
 
   // Mensagens automáticas do WhatsApp
   mensagens: {
