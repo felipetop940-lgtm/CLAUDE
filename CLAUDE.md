@@ -41,3 +41,12 @@ Valem para todo site de profissional da saúde (médico, psicólogo, dentista et
 3. Foto de jaleco sempre como a primeira do site; as outras podem variar.
 4. Botão de WhatsApp fácil, chamativo e já na primeira tela (mais botão fixo).
 5. Priorizar sempre o formato para celular.
+
+## Skills em todo site (ordem de uso)
+
+1. **Início** — `design:design-system`: montar/reaproveitar cores, fontes e componentes do cliente (salvar em `clientes/<nome>/design-system.md`). `marketing:brand-review`: conferir com o branding que a Vitória fez, quando existir.
+2. **Construção** — `frontend-design`: direção estética, tipografia e composição (nada de cara de template). `design:ux-copy`: botões, CTAs, formulário e microcopy focados em levar pro WhatsApp.
+3. **Primeira versão** — `design:design-critique` sobre print/link, e iterar.
+4. **Antes de entregar** — `design:accessibility-review` (contraste, tamanho de letra, navegação; muito paciente mais velho) e `marketing:seo-audit` (title, meta description, headings, schema, velocidade, SEO local + Google Meu Negócio).
+
+Não usar em site real: `web-artifacts-builder`, `artifact-design` (páginas dentro do claude.ai) e `canvas-design` (peça estática PNG/PDF).

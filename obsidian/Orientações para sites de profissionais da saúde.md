@@ -25,6 +25,20 @@ aplica-se: sites de profissionais da saúde (médicos, psicólogos, dentistas, f
 5. **Priorizar sempre o formato para celular**
    Pensar e testar primeiro no celular: textos legíveis, botões grandes, nada cortado ou vazando para o lado. O computador vem depois.
 
+## Skills do Claude em todo site
+
+| Etapa | Skill | Para quê |
+|---|---|---|
+| Início | design-system | Cores, fontes e componentes padrão do cliente, pra não recomeçar do zero |
+| Início | brand-review | Conferir se está alinhado com o branding da Vitória |
+| Construção | frontend-design | Direção estética, tipografia e composição sem cara de template |
+| Construção | ux-copy | Textos de botão, CTA e microcopy que levam pro WhatsApp |
+| 1ª versão | design-critique | Crítica estruturada a partir de print ou link |
+| Antes de entregar | accessibility-review | Contraste, leitura e navegação (paciente mais velho) |
+| Antes de entregar | seo-audit | Título, meta, headings, schema, velocidade e SEO local + Google Meu Negócio |
+
+**Não usar em site real:** web-artifacts-builder, artifact-design, canvas-design.
+
 ## Checklist rápido antes de entregar
 
 - [ ] Recebi logo original, cores, fontes e fotos boas?
@@ -32,3 +46,4 @@ aplica-se: sites de profissionais da saúde (médicos, psicólogos, dentistas, f
 - [ ] A primeira foto é de jaleco?
 - [ ] O botão de WhatsApp aparece na primeira tela e chama atenção?
 - [ ] Testei no celular antes do computador?
+- [ ] Rodei accessibility-review e seo-audit?
