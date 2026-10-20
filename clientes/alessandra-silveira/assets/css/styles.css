@@ -440,6 +440,38 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
 .footer__loc { margin-bottom: 12px; }
 .footer__loc strong { display: block; color: rgba(255, 255, 255, .85); font-weight: 600; }
 
+/* ---------- Avaliações no Google ---------- */
+.gmb { background: linear-gradient(180deg, var(--linen), #FFFDF9); }
+.gmb__grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 64px; align-items: center; }
+.gmb__card { display: flex; align-items: center; gap: 22px; margin-top: 34px; padding: 26px 28px; border-radius: 24px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.gmb__g { display: grid; place-items: center; flex: none; width: 66px; height: 66px; border-radius: 50%; background: #fff; border: 1px solid var(--line); font: 700 2.1rem/1 var(--sans); color: #4285F4; }
+.gmb__num { font-family: var(--serif); font-size: 4rem; line-height: .9; color: var(--ink); }
+.stars--lg { margin-top: 8px; color: #F2B33D; }
+.stars--lg svg { width: 22px; height: 22px; }
+.gmb__count { margin-top: 6px; font-size: .97rem; color: var(--muted); }
+.gmb__count strong { color: var(--ink); }
+.gmb__name { margin-top: 16px; font-size: .88rem; color: var(--muted); }
+.gmb__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.gmb .testis { grid-template-columns: 1fr; gap: 16px; }
+.gmb .testi { padding: 24px 26px 20px; }
+.gmb .testi::before { display: none; }
+.gmb .testi p { margin: 14px 0 18px; font-size: 1.22rem; }
+.gmb .stars { color: #F2B33D; }
+.testi__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.testi__src { font-size: .78rem; color: var(--muted); }
+.testi footer > span:last-child { display: flex; flex-direction: column; line-height: 1.3; }
+.testi footer small { font-size: .78rem; font-weight: 500; color: var(--muted); }
+@media (max-width: 900px) {
+  .gmb__grid { grid-template-columns: 1fr; gap: 36px; }
+}
+@media (max-width: 600px) {
+  .gmb__card { padding: 20px; gap: 16px; }
+  .gmb__g { width: 54px; height: 54px; font-size: 1.7rem; }
+  .gmb__num { font-size: 3.2rem; }
+  .gmb__btns .btn { flex: 1 1 100%; }
+  .gmb .testi p { font-size: 1.12rem; }
+}
+
 /* ---------- Entradas ao rolar ---------- */
 .js .reveal { opacity: 0; transform: translateY(34px); filter: blur(6px); transition: opacity 1s var(--ease), transform 1.1s var(--ease), filter 1s var(--ease); }
 .js .reveal.is-in { opacity: 1; transform: none; filter: none; }
