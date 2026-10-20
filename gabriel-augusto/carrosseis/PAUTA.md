@@ -93,6 +93,9 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U32 | Vídeo | EM ALTA: golpe da falsa central bancária (alerta Polícia Civil PR 16–17/10) + ligar de outro celular | feito 19/10 (v14) |
 | U33 | Carrossel | EM ALTA: o WhatsApp começou a cobrar? (API desde 01/10; app continua grátis; golpe do "pague pra liberar") | feito 19/10 (c16) |
 | U34 | Arte TikTok | EM ALTA: Black Friday sem queimar a margem (kit, frete acima de X, Pix, brinde, cupom pra próxima) | feito 19/10 (t16) |
+| U35 | Vídeo | EM ALTA: golpe do falso "Procon Brasil" cobrando multa de R$ 23.450 de empresas por e-mail (out/2026) | feito 20/10 (v15) |
+| U36 | Carrossel | EM ALTA: 13º cai até 30/11 e 18/12 + Black Friday 27/11 + Natal 25/12: calendário de vendas | feito 20/10 (c17) |
+| U37 | Arte TikTok | EM ALTA: site do governo ou golpe? (alerta PF passaporte 20/10): gov.br, Pix pra liberar, anúncio no topo | feito 20/10 (t17) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -101,4 +104,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - IA nas compras: 70% esperam comprar com agentes de IA até 2028; só 15% dos lojistas se dizem preparados (PYMNTS/Visa 2026).
 - (19/10) Golpe com nome de secretário/órgão público abordando EMPRESAS no WhatsApp com dados reais de contratos (Prefeitura de Campo Grande, 16/10).
 - (19/10) Edits (Meta) com assistente de IA: só nos EUA por enquanto (out/2026). Usar quando chegar ao Brasil.
+- (20/10) Google Brasil no Fórum E-commerce Brasil: 57% dos brasileiros já usaram IA em alguma jornada de compra; Google mudou o Modo IA pra mostrar mais links (15/10).
+- (20/10) Boleto com QR Code Pix obrigatório a partir de out/2026 (só fonte Stone; conferir no BC antes de usar).
 - (19/10) Google: "Ask Maps" e perfil da empresa alimentando respostas de IA (blogs de SEO, sem confirmação oficial pro Brasil).

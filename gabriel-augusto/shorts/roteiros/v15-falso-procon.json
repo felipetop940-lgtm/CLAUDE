@@ -1,0 +1,83 @@
+{
+  "titulo": "Golpe do falso Procon",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Chegou e-mail do Procon com multa de vinte e três mil reais pra sua empresa? Não clica. Esse golpe tá rodando agora.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": ["Multa do ~Procon~", "no seu e-mail?"],
+      "prop": {
+        "tipo": "tela_menu", "x": 30,
+        "telas": [
+          {"titulo": "Caixa de entrada", "em": 0, "toque": 0, "toque_em": "multa", "itens": [["⚠️", "Procon Brasil · Multa R$ 23.450", "agora"], ["✉️", "Fornecedor · Pedido 482", "09:12"], ["✉️", "Banco · Extrato de outubro", "ontem"], ["✉️", "Contador · Guia do mês", "seg."]]}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "multa", "foco": "item", "zoom": 1.16, "destaque": "item", "pose": "chocado"},
+        {"em": "clica", "pose": "cintura"}
+      ]
+    },
+    {
+      "fala": "O e-mail fala de uma reclamação e manda você consultar o processo num link. O link pede os dados da empresa e depois o pagamento da multa.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": ["O link ~falso~"],
+      "prop": {
+        "tipo": "tela_menu", "x": 30,
+        "telas": [
+          {"titulo": "site-falso.com/procon", "em": 0, "sub": "Consulte o processo da sua empresa.", "toque": 2, "toque_em": "pagamento", "itens": [["🏢", "CNPJ da empresa"], ["👤", "Nome do responsável"], ["💳", "Pagar multa", "R$ 23.450"]]}
+        ]
+      },
+      "boneco": {"pose": "chocado", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "dados", "foco": "tela", "zoom": 1.08, "pose": "pensando"},
+        {"em": "pagamento", "foco": "item", "zoom": 1.16, "destaque": "item", "pose": "chocado"}
+      ]
+    },
+    {
+      "fala": "Só que o Procon Brasil não existe. O Procon é do seu estado ou da sua cidade. E multa de verdade não chega assim, sem a sua empresa ser ouvida.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": ["\"Procon Brasil\"", "~não existe~"],
+      "boneco": {"pose": "ideia", "x": 540, "y": 1400, "escala": 1.0},
+      "beats": [
+        {"em": "existe", "pose": "ideia"},
+        {"em": "ouvida", "pose": "confiante"}
+      ]
+    },
+    {
+      "fala": "Recebeu? Não clica, não paga, e confere ligando pro Procon do seu estado, pelo número do site oficial.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Recebeu?", "*Faz assim*"],
+      "prop": {
+        "tipo": "link_montagem", "rotulo": "FAZ ASSIM",
+        "partes": [
+          {"txt": "Não clica ", "rot": "nem no link, nem no anexo", "em": "clica"},
+          {"txt": "Não paga ", "rot": "nem boleto, nem pix", "em": "paga"},
+          {"txt": "Confere", "rot": "no telefone do site oficial", "em": "confere"}
+        ]
+      },
+      "beats": [
+        {"em": "clica", "foco": "r1", "zoom": 1.08, "destaque": "r1"},
+        {"em": "paga", "foco": "r2", "zoom": 1.08, "destaque": "r2"},
+        {"em": "oficial", "foco": "r3", "zoom": 1.08, "destaque": "r3"}
+      ]
+    },
+    {
+      "fala": "Manda pra quem tem CNPJ. E segue pra mais alerta que protege o seu negócio.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Manda pra quem", "*tem CNPJ*"],
+      "prop": {"tipo": "cta", "botao": "Encaminha 📲", "sub": "Segue pra mais alertas", "y": 600},
+      "fim": 1.6,
+      "boneco": {"pose": "confiante", "x": 540, "y": 1400, "escala": 0.72, "entrada": "andando"},
+      "beats": [{"em": "manda", "pose": "apontando"}, {"em": "segue", "pose": "comemorando"}]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {"texto": ["Multa do ~Procon~", "no seu e-mail?"], "tamanho": 120, "selo": "É golpe. Não clica", "selo_y": 1450}
+}
