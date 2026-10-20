@@ -4,3 +4,6 @@ gabriel-augusto/video/amostras/
 # Arquivos temporários do gerador de vídeos curtos
 __pycache__/
 gabriel-augusto/shorts/ferramentas/_render_*
+
+# HTML único do site Carlos JR (gerado a partir de dist/, 29 MB)
+clientes/carlos-jr-eventos/html-unico/
