@@ -81,7 +81,7 @@ def main() -> None:
     for page in ["index.html"]:
         build_page(page, css)
     (DIST / "assets/img").mkdir(parents=True, exist_ok=True)
-    for extra in ["assets/img/favicon.svg", "assets/img/alessandra-silveira.webp"]:
+    for extra in ["assets/img/favicon.svg", "assets/img/alessandra-jaleco.webp"]:
         if (ROOT / extra).exists():
             shutil.copy2(ROOT / extra, DIST / extra)
 
