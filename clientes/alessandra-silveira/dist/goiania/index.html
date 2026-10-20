@@ -131,9 +131,9 @@ button { font: inherit; color: inherit; }
 .hero__net { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; -webkit-mask-image: radial-gradient(ellipse 75% 70% at 70% 45%, #000 25%, transparent 80%); mask-image: radial-gradient(ellipse 75% 70% at 70% 45%, #000 25%, transparent 80%); }
 .hero__glow { position: absolute; left: var(--gx, 72%); top: var(--gy, 38%); width: 760px; height: 760px; margin: -380px 0 0 -380px; border-radius: 50%; background: radial-gradient(closest-side, rgba(180, 143, 102, .16), transparent 70%); pointer-events: none; transition: left 1.4s var(--ease), top 1.4s var(--ease); }
 .hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 64px; }
-.hero__title { font-family: var(--serif); font-weight: 400; font-size: clamp(2.9rem, 5.8vw, 5.3rem); line-height: 1; letter-spacing: -.01em; color: var(--forest); }
-.hero__title em { display: block; margin-top: .04em; font-size: 1.2em; line-height: 1; }
-.hero__title--long em { font-size: 1.02em; }
+.hero__title { font-family: var(--serif); font-weight: 400; font-size: clamp(2.9rem, 5.8vw, 5.3rem); line-height: 1.02; letter-spacing: -.01em; color: var(--ink); }
+.hero__title em { display: block; font-family: var(--serif); font-size: 1em; line-height: 1.02; color: var(--ink); }
+.hero__title--long em { font-size: .86em; }
 @media (max-width: 900px) { .br-d { display: none; } }
 .hero__name { margin-top: 26px; font-size: clamp(1.25rem, 1vw + 1rem, 1.6rem); font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
 .hero__spec { margin-top: 10px; font-size: clamp(1.08rem, .6vw + 1rem, 1.3rem); color: var(--muted); }
@@ -142,6 +142,7 @@ button { font: inherit; color: inherit; }
 .hero__tags li { padding: 8px 18px; border-radius: 999px; background: var(--forest); border: 1px solid var(--forest); font-weight: 700; font-size: .95rem; color: var(--linen); transition: background-color .35s, color .35s, border-color .35s, transform .5s var(--ease); }
 .hero__tags li:hover { background: var(--brass-2); border-color: var(--brass-2); color: var(--forest); transform: translateY(-3px); }
 .hero__ctas { margin-top: 34px; }
+.hero__note strong { color: var(--ink); font-weight: 800; }
 .hero__note { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: .9rem; font-weight: 600; color: var(--muted); }
 .hero__note .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 0 4px rgba(37, 211, 102, .18); animation: pulse 2.4s var(--ease) infinite; }
 @keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba(37, 211, 102, .08); } }
@@ -576,6 +577,35 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   .site--ipasgo .hero__grid { gap: 20px; }
   .hero__name { margin-top: 12px; }
 }
+/* ---------- Topo no celular: mesmo formato do site validado ----------
+   título centralizado em cima; nome, especialidade e temas à esquerda;
+   foto de jaleco à direita; botão verde por cima da foto */
+@media (max-width: 760px) {
+  .hero { padding: 26px 0 0; background: #FFFFFF; }
+  .hero__net, .hero__glow, .hero__block, .hero__visual .float, .hero__badge { display: none; }
+  .hero__grid, .site--ipasgo .hero__grid { display: block; position: relative; gap: 0; }
+  .hero__text { position: relative; z-index: 2; padding-bottom: 34px; }
+  .hero__title, .hero__ctas, .hero__note { position: relative; z-index: 3; }
+  .hero__title, .site--ipasgo .hero__title--long { text-align: center; font-size: clamp(2.45rem, 11.2vw, 3.1rem); }
+  .hero__title--long em { font-size: .8em; }
+  .hero__name { max-width: 56%; margin-top: 30px; font-size: 1.14rem; font-weight: 800; }
+  .hero__spec { max-width: 54%; margin-top: 12px; font-size: 1.04rem; line-height: 1.35; color: var(--ink); }
+  .hero__spec strong { font-weight: 800; }
+  .hero__tags { max-width: 52%; gap: 7px; margin-top: 14px; }
+  .hero__tags li { padding: 6px 13px; font-size: .86rem; }
+  .hero__ctas { margin-top: 64px; text-align: center; }
+  .hero__ctas .btn { width: auto; min-width: 232px; min-height: 58px; padding: 14px 28px; font-size: 1.06rem; box-shadow: 0 0 0 4px rgba(255, 253, 249, .85), 0 18px 34px -12px rgba(18, 140, 74, .8); }
+  .hero__note .dot { display: inline-block; margin-right: 8px; vertical-align: 1px; }
+  .hero__note { display: block; text-align: center; width: max-content; max-width: 100%; margin: 14px auto 0; padding: 7px 14px; border-radius: 999px; background: rgba(255, 253, 249, .88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); font-size: .86rem; color: var(--ink); }
+  .hero__visual, .site--ipasgo .hero__visual { position: absolute; z-index: 1; top: 108px; right: -20px; bottom: 0; width: 68%; max-width: 320px; margin: 0; }
+  .site--ipasgo .hero__visual { top: 112px; }
+  .hero__frame, .site--ipasgo .hero__frame { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; background: none; box-shadow: none; }
+  .hero__frame::after { display: none; }
+  .hero__frame img { object-fit: contain; object-position: 100% 100%; transform: none; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24%), linear-gradient(180deg, transparent 0, #000 7%, #000 90%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0, #000 24%), linear-gradient(180deg, transparent 0, #000 7%, #000 90%, transparent); mask-composite: intersect; }
+  .js .hero__visual.reveal--clip .hero__frame, .js .hero__visual.reveal--clip.is-in .hero__frame { clip-path: none; }
+  .js .hero__visual.reveal--clip { opacity: 0; transition: opacity 1.2s var(--ease) 1.4s; }
+  .js .hero__visual.reveal--clip.is-in { opacity: 1; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -687,7 +717,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
     <figure class="hero__visual reveal reveal--clip">
       <span class="hero__block" aria-hidden="true" data-depth="-10"></span>
       <div class="hero__frame" data-depth="6">
-        <img src="assets/img/alessandra-hero.webp" alt="Alessandra Silveira, neuropsicóloga, de jaleco" width="968" height="1380" fetchpriority="high">
+        <img src="assets/img/alessandra-hero.webp" alt="Alessandra Silveira, neuropsicóloga, de jaleco" width="968" height="1470" fetchpriority="high">
       </div>
       <figcaption class="float float--a" data-depth="24"><svg class="i" aria-hidden="true"><use href="#i-brain"/></svg><span><strong>Avaliação neuropsicológica</strong><small>Presencial e online</small></span></figcaption>
       <div class="float float--b" aria-hidden="true" data-depth="32"><svg class="i"><use href="#i-doc"/></svg><span><strong>Laudo claro e embasado</strong><small>Orientação para pais e escola</small></span></div>

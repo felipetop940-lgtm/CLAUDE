@@ -25,6 +25,14 @@ aplica-se: sites de profissionais da saúde (médicos, psicólogos, dentistas, f
 5. **Priorizar sempre o formato para celular**
    Pensar e testar primeiro no celular: textos legíveis, botões grandes, nada cortado ou vazando para o lado. O computador vem depois.
 
+## Topo no celular (modelo validado no tráfego pago)
+
+- Título grande, centralizado, em cor escura e fonte fácil de ler (nada de verde claro ou letra cursiva no título principal).
+- Logo abaixo, à esquerda: nome, especialidade e para quem atende (ex.: TDAH · Autismo · Ansiedade).
+- Foto de jaleco à direita, ocupando a metade da tela, com o fundo fundido ao site.
+- Botão verde de WhatsApp grande, centralizado e **nítido na frente da foto**.
+- Embaixo do botão: convênio ou local em uma linha curta.
+
 ## Skills do Claude em todo site
 
 | Etapa | Skill | Para quê |

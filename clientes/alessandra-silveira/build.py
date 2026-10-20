@@ -80,7 +80,7 @@ SITES = {
         "DESC": "Avaliação neuropsicológica pelo IPASGO em Goiânia e Trindade com Alessandra Silveira: TDAH, Autismo (TEA), ansiedade e dificuldades de aprendizagem. Clínica NeuroVitta (Goiânia) e Florah Saúde Mental (Trindade).",
         "OG_DESC": "Avaliação Neuropsicológica pelo IPASGO em Goiânia e Trindade. TDAH · Autismo · Ansiedade.",
         "HERO_EM": "em Goiânia <br class=\"br-d\">e Trindade", "HERO_CLASS": " hero__title--long",
-        "HERO_NOTE": "Atendimento em Goiânia e em Trindade",
+        "HERO_NOTE": "Aceitamos convênio <strong>IPASGO</strong>",
         "SOBRE_LOCAL": "na Clínica NeuroVitta, em Goiânia, e na Florah Saúde Mental, em Trindade",
         "SOBRE_LEGENDA": "Goiânia e Trindade",
         "FAQ_ONDE": "Em Goiânia, na Clínica NeuroVitta (R. C-185, nº 125, Nova Suíça). Em Trindade, na Florah Saúde Mental (Av. Trindade, nº 530, Ana Rosa).",

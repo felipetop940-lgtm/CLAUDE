@@ -41,6 +41,7 @@ Valem para todo site de profissional da saúde (médico, psicólogo, dentista et
 3. Foto de jaleco sempre como a primeira do site; as outras podem variar.
 4. Botão de WhatsApp fácil, chamativo e já na primeira tela (mais botão fixo).
 5. Priorizar sempre o formato para celular.
+6. Topo no celular (modelo validado no tráfego pago): título grande centralizado e escuro (legível, sem script); nome + especialidade + para quem atende à esquerda; foto de jaleco à direita; botão verde do WhatsApp nítido na frente da foto; convênio/local logo abaixo.
 
 ## Skills em todo site (ordem de uso)
 
