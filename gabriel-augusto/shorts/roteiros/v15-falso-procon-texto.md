@@ -3,29 +3,28 @@
 Golpe do falso "Procon Brasil" cobrando multa de R$ 23.450 de empresas por e-mail. Alertas do Procon-SC e do Procon de Francisco Beltrão (PR) em outubro/2026. Caixa de entrada (`tela_menu`), página falsa pedindo CNPJ e pagamento, a virada ("Procon Brasil" não existe; multa de verdade não chega sem a empresa ser ouvida) e o "faz assim" (`link_montagem`).
 
 ## Roteiro para gravar (sua voz)
-Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem tá dando um toque pra um amigo. Fale as palavras como estão (as animações acendem nelas).
+Grave em ordem, com **3 segundos de silêncio** entre as partes. Fala como se tivesse contando pra um amigo (linguagem popular, pedido dele em 20/10).
 
-1. Chegou e-mail do Procon com multa de vinte e três mil reais pra sua empresa? Não clica. Esse golpe tá rodando agora.
-2. O e-mail fala de uma reclamação e manda você consultar o processo num link. O link pede os dados da empresa e depois o pagamento da multa.
-3. Só que o Procon Brasil não existe. O Procon é do seu estado ou da sua cidade. E multa de verdade não chega assim, sem a sua empresa ser ouvida.
-4. Recebeu? Não clica, não paga, e confere ligando pro Procon do seu estado, pelo número do site oficial.
-5. Manda pra quem tem CNPJ. E segue pra mais alerta que protege o seu negócio.
+1. Chegou um e-mail do Procon cobrando multa de vinte e três mil da sua empresa? Calma. Não clica em nada. Isso é golpe.
+2. O e-mail diz que um cliente reclamou de você e manda clicar num link pra ver o processo. Aí o site pede os dados da empresa, e depois pede pra pagar a multa.
+3. Só que esse tal de Procon Brasil nem existe. E multa de verdade não chega do nada assim, sem ninguém nem te perguntar nada antes.
+4. Recebeu? Não clica, não paga. Liga no Procon daí da sua região e pergunta. O número tá no site deles.
+5. Manda esse vídeo pra quem tem empresa. E me segue que eu te aviso dos golpes antes deles chegarem em você.
 
 ## Título
-Multa de R$ 23 mil do "Procon" no seu e-mail? É golpe 🚨
+Chegou multa de 23 mil do "Procon" no seu e-mail? É golpe 🚨
 
 ## Legenda do post (TikTok / Reels)
-Tá circulando e-mail do "Procon Brasil" cobrando multa de R$ 23.450 de empresas 👇
+Tá chegando e-mail do "Procon Brasil" cobrando multa de 23 mil de quem tem empresa 👇
 
-O e-mail fala de uma reclamação e manda "consultar o processo" num link. A página pede os dados da empresa e depois o pagamento.
+O e-mail diz que um cliente reclamou de você e manda clicar num link. Aí o site pede os dados da empresa... e depois pede pra pagar a multa.
 
-✅ "Procon Brasil" não existe. O Procon é estadual ou municipal.
-✅ Multa de verdade não chega assim, sem a empresa ser ouvida.
+Só que esse tal de Procon Brasil NEM EXISTE. E multa de verdade não chega do nada assim.
 
-Recebeu? Não clica, não paga, e confere ligando pro Procon do seu estado, pelo número do site oficial.
+Recebeu? Não clica, não paga. Liga no Procon da sua região e pergunta.
 
-📲 Manda pra quem tem CNPJ.
-➕ Segue pra mais alerta que protege seu negócio.
+📲 Manda pra quem tem empresa.
+➕ Me segue que eu te aviso dos golpes antes deles chegarem em você.
 
 #golpe #procon #empreendedorismo #cnpj #seguranca
 

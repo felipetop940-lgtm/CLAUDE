@@ -4,20 +4,20 @@
 Alerta da Polícia Federal sobre sites falsos de passaporte (20/10/2026). Endereços falsos fictícios.
 
 ## Título (escolha um)
-1. Site do governo ou golpe? Olha o endereço 🔍
-2. A Polícia Federal alertou: sites falsos cobrando por Pix
-3. Antes de pagar qualquer taxa do governo, confere isso
+1. Site do governo ou golpe? Olha o final do endereço 🔍
+2. A Polícia Federal avisou: tem site falso cobrando Pix
+3. Antes de pagar qualquer taxa do governo, faz isso
 
 ## Descrição
-A Polícia Federal alertou essa semana sobre sites falsos de passaporte cobrando taxa por Pix. Como não cair:
+A Polícia Federal deu o alerta essa semana: tem site falso de passaporte cobrando taxa no Pix. Pra não cair:
 
-1. Site oficial termina em gov.br. "gov-br" no meio do nome não é gov.br.
-2. Pediu Pix pra "liberar" formulário ou horário? É o principal sinal de golpe.
-3. O primeiro resultado do Google pode ser anúncio: o oficial às vezes aparece embaixo.
-4. Na dúvida, digita gov.br você mesmo e procura o serviço lá dentro.
+1. Site do governo termina em gov.br. Tem "gov-br" no meio de outro nome? É falso.
+2. Pediu Pix na hora pra liberar horário ou formulário? Fecha e sai. É golpe.
+3. O primeiro do Google pode ser propaganda. Às vezes o site do governo tá lá embaixo.
+4. Na dúvida, digita gov.br você mesmo. Não clica em link que te mandaram.
 
 📲 Manda pra quem vai viajar.
-➕ Segue o perfil pra mais.
+➕ Me segue pra mais.
 
 #golpe #passaporte #policiafederal #seguranca #dicas
 

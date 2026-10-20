@@ -48,6 +48,8 @@ Dica aplicável na hora ("configura isso hoje", "3 erros", "como fazer X"), prom
 Quando o assunto é visual (logo, tela, site), MOSTRAR a coisa. Reprovados: curiosidade fora do nicho, humor sem utilidade,
 "história de empresa" chata, gancho de anúncio.
 
+**Linguagem popular (pedido dele em 20/10):** títulos, textos dos slides e legendas em linguagem de conversa, que todo mundo entende na hora. Sem palavra de jornal ou de empresa ("instituição", "parcela", "prazo final", "incentivo", "patrocinado", "API"). Frase curta, palavra do dia a dia, exemplo concreto.
+
 **Assunto em alta (pedido dele em 18/10):** antes de montar o pacote, pesquisar o que está em alta agora (novidades de WhatsApp/Instagram/Google/Pix, golpes do momento, datas do varejo, IA nas compras) e usar no vídeo + pelo menos mais 1 item. Fato recente conferido em 2 fontes, com a data. Reprovado: tutorial de configuração sem novidade (ex.: etiquetas do WhatsApp, 18/10).
 
 ## INSTAGRAM: MODELO POST DO X ESCURO (decidido em 09/10) · teste: `x00-teste`

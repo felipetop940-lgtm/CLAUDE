@@ -3,28 +3,29 @@
 **Slides:** 8 · `saida/c17-13-salario/` · **Postar:** terça 20/10, 19h no Instagram (publicação de carrossel, com música)
 
 ## Legenda Instagram
-Seu cliente recebe o 13º em 2 datas. Sua oferta tem que estar pronta antes 👇
+O 13º vai cair na conta do seu cliente. Sua promoção tem que estar pronta antes 👇
 
+Anota essas datas:
 📅 27/11 (sexta): Black Friday
-💰 30/11 (segunda): prazo da 1ª parcela do 13º
-💰 18/12 (sexta): prazo da 2ª parcela (o dia 20 cai num domingo)
+💰 30/11 (segunda): cai a 1ª parte do 13º (até esse dia)
+💰 18/12 (sexta): cai a 2ª parte (dia 20 é domingo, então vem antes)
 🎄 25/12 (sexta): Natal
 
 O que fazer:
-1. Estica a Black Friday até segunda, 30/11: quem recebe o 13º no fim do mês ainda pega a promoção.
-2. Na semana do dia 18: kits prontos e embalagem de presente.
-3. Avisa o prazo final de pedidos de Natal (ex.: até 21/12, ajusta pro teu prazo de entrega).
-4. Monta agora a lista VIP no WhatsApp e os posts pras 4 datas.
+1. Deixa a promoção da Black Friday até segunda, dia 30. Tem gente que só recebe o 13º nesse dia.
+2. Na semana do dia 18: kits prontos e papel de presente.
+3. Avisa até quando dá pra pedir de Natal (ex.: até 21/12, muda pro teu prazo).
+4. Já faz agora a lista do WhatsApp e os posts. Em dezembro é só apertar enviar.
 
-E o link da bio com preço, prazo de entrega e botão do WhatsApp.
+E o link da bio tem que mostrar preço, prazo de entrega e o botão do WhatsApp.
 
-💬 Seu negócio vende mais no fim de ano? Comenta aí.
-📌 Salva o calendário.
+💬 Teu negócio vende mais no fim de ano? Comenta aí.
+📌 Salva essas datas.
 👉 Segue @euaugusto_oliv pra mais.
 
 #13salario #blackfriday #natal #vendas #empreendedorismo
 
-**Primeiro comentário (fixar):** Faltam 38 dias pra Black Friday. Qual dessas 4 datas é a mais forte no seu negócio? 👇
+**Primeiro comentário (fixar):** Faltam 38 dias pra Black Friday. Qual dessas datas mais vende no teu negócio? 👇
 
 ## Fontes checadas
 - 13º 2026: 1ª parcela até 30/11; 2ª até 18/12 porque 20/12 é domingo: [O Povo](https://www.opovo.com.br/trends/13o-salario-de-2026-tem-duas-datas-chave-primeira-parcela-ate-30-de-novembro-e-segunda-ate-18-de-dezembro/) · [Xataka](https://www.xataka.com.br/diversos/13o-salario-sera-pago-mais-cedo-em-2026-2a-parcela-foi-antecipada-veja-que-muda-no-calendario) · [Marra CLT](https://www.marraclt.com.br/salario/calendario-13-salario-2026)
