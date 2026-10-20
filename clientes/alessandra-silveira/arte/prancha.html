@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Quiet Soundings · Prancha VII</title>
+<style>
+  @font-face { font-family: "Serif"; src: url("fonts/InstrumentSerif-Italic.ttf"); font-style: italic; }
+  @font-face { font-family: "Mono"; src: url("fonts/DMMono-Regular.ttf"); }
+  html, body { margin: 0; padding: 0; background: #F3ECE0; }
+  svg { display: block; }
+  .mono { font-family: "Mono", monospace; letter-spacing: .22em; text-transform: uppercase; }
+  .serif { font-family: "Serif", serif; font-style: italic; }
+</style>
+</head>
+<body>
+<svg id="art" xmlns="http://www.w3.org/2000/svg" width="1600" height="2000" viewBox="0 0 1600 2000"></svg>
+<script>
+(function () {
+  var W = 1600, H = 2000, WL = 640;                // horizonte
+  var C = { linen: '#F3ECE0', linen2: '#EAE1D2', ink: '#1B2620', deep: '#141E18', deep2: '#1D2C23',
+            sage: '#8CA284', sage2: '#B9C9B0', pale: '#D9E2D2', brass: '#C4A46C' };
+  var svg = document.getElementById('art'), NS = 'http://www.w3.org/2000/svg', out = [];
+  function el(tag, a, txt) {
+    var s = '<' + tag; for (var k in a) s += ' ' + k + '="' + a[k] + '"';
+    return txt == null ? s + '/>' : s + '>' + txt + '</' + tag + '>';
+  }
+  function f(n) { return Math.round(n * 100) / 100; }
+
+  /* ---------- fundo ---------- */
+  out.push('<defs>' +
+    '<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + C.deep2 + '"/><stop offset="1" stop-color="' + C.deep + '"/></linearGradient>' +
+    '<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6F0E6"/><stop offset="1" stop-color="' + C.linen2 + '"/></linearGradient>' +
+    '<clipPath id="under"><rect x="0" y="' + WL + '" width="' + W + '" height="' + (H - WL) + '"/></clipPath>' +
+    '</defs>');
+  out.push(el('rect', { x: 0, y: 0, width: W, height: WL, fill: 'url(#sky)' }));
+  out.push(el('rect', { x: 0, y: WL, width: W, height: H - WL, fill: 'url(#sea)' }));
+
+  /* ---------- malha de pontos de levantamento (só na água) ---------- */
+  var g = '';
+  for (var gy = WL + 40; gy < H - 110; gy += 40) for (var gx = 160; gx <= W - 160; gx += 40)
+    g += '<circle cx="' + gx + '" cy="' + gy + '" r="1"/>';
+  out.push('<g fill="' + C.sage + '" fill-opacity=".16">' + g + '</g>');
+
+  /* ---------- massa submersa: isolinhas ---------- */
+  var cx = 788, cy = 1172, vx = 372, vy = 566, N = 72;
+  function shape(k) {                                // contorno k (0 = externo)
+    var t = k / N, s = 1 - t * .985, pts = [];
+    var ox = cx - 34 * t + 10 * Math.sin(t * 5.1), oy = cy - 120 * t + 18 * Math.sin(t * 3.7);
+    for (var i = 0; i <= 360; i++) {
+      var a = i / 360 * Math.PI * 2;
+      var r = 1 + .075 * Math.sin(3 * a + 1.1 + t * 2.2) + .048 * Math.sin(5 * a + 2.3 - t * 1.6)
+                + .028 * Math.sin(7 * a + .4 + t * 3.1) + .012 * Math.sin(11 * a + t * 5);
+      var x = Math.cos(a) * vx * r * s, y = Math.sin(a) * vy * r * s;
+      if (y > 0) x *= 1 - .36 * Math.pow(y / (vy * s), 1.55);          // afunila para o fundo
+      pts.push([ox + x, oy + y]);
+    }
+    return pts;
+  }
+  var lines = '';
+  for (var k = 0; k < N; k++) {
+    var p = shape(k), d = 'M' + p.map(function (q) { return f(q[0]) + ' ' + f(q[1]); }).join('L') + 'Z';
+    var idx = k % 10 === 0, depth = k / N;
+    var col = idx ? C.brass : (depth < .5 ? C.sage2 : C.pale);
+    var op = idx ? .62 : (.2 + .3 * depth);
+    lines += '<path d="' + d + '" stroke="' + col + '" stroke-opacity="' + f(op) + '" stroke-width="' + (idx ? 1.25 : .7) + '"/>';
+  }
+  out.push('<g fill="none" clip-path="url(#under)" stroke-linejoin="round">' + lines + '</g>');
+
+  /* ---------- ponta visível: facetas ---------- */
+  var tip = [
+    { p: '676,640 742,512 772,536 640,640', c: '#E3E7DB' },
+    { p: '742,512 772,536 806,428 ', c: '#F7F4EC' },
+    { p: '772,536 806,428 852,520 820,640 700,640', c: '#FBF9F3' },
+    { p: '806,428 852,520 878,486', c: '#DCE3D3' },
+    { p: '852,520 878,486 936,640 820,640', c: '#E9EDE2' },
+    { p: '640,640 700,640 772,536', c: '#EEF0E8' }
+  ];
+  var t = '';
+  tip.forEach(function (q) { t += el('polygon', { points: q.p, fill: q.c, stroke: C.ink, 'stroke-opacity': .5, 'stroke-width': .8, 'stroke-linejoin': 'round' }); });
+  out.push('<g>' + t + '</g>');
+
+  /* ---------- horizonte com régua ---------- */
+  out.push(el('line', { x1: 96, y1: WL, x2: W - 96, y2: WL, stroke: C.ink, 'stroke-width': 1 }));
+  var tk = '';
+  for (var x = 96; x <= W - 96; x += 16) {
+    var big = (x - 96) % 160 === 0;
+    tk += el('line', { x1: x, y1: WL - (big ? 10 : 4), x2: x, y2: WL, stroke: C.ink, 'stroke-opacity': big ? .7 : .35, 'stroke-width': .8 });
+  }
+  out.push(tk);
+
+  /* ---------- escala de profundidade ---------- */
+  var sx = 96, top = WL + 24, bot = 1850, sc = el('line', { x1: sx, y1: top, x2: sx, y2: bot, stroke: C.sage2, 'stroke-opacity': .5, 'stroke-width': .8 });
+  var roman = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI'], steps = 48;
+  for (var i = 0; i <= steps; i++) {
+    var y = top + (bot - top) * i / steps, major = i % 8 === 0;
+    sc += el('line', { x1: sx, y1: f(y), x2: sx + (major ? 14 : 6), y2: f(y), stroke: major ? C.brass : C.sage2, 'stroke-opacity': major ? .85 : .45, 'stroke-width': .8 });
+    if (major) sc += el('text', { x: sx + 24, y: f(y + 4), 'font-size': 11, fill: C.sage2, 'fill-opacity': .75, class: 'mono' }, roman[i / 8]);
+  }
+  out.push(sc);
+
+  /* ---------- sondagens: prumo, anel e etiqueta ---------- */
+  var S = [
+    { x: 724, y: 812, side: 'L', n: '01', t: ['Atenção'] },
+    { x: 902, y: 918, side: 'R', n: '02', t: ['Memória'] },
+    { x: 642, y: 1052, side: 'L', n: '03', t: ['Linguagem'] },
+    { x: 968, y: 1176, side: 'R', n: '04', t: ['Motivação', 'e autoestima'] },
+    { x: 744, y: 1318, side: 'L', n: '05', t: ['Aspectos', 'emocionais'] },
+    { x: 912, y: 1474, side: 'R', n: '06', t: ['Ritmo e estilo', 'de aprendizagem'] },
+    { x: 792, y: 1640, side: 'L', n: '07', t: ['Habilidades', 'visuais e motoras'] }
+  ];
+  var LX = 320, RX = 1280, s = '';
+  S.forEach(function (q) {
+    s += el('line', { x1: q.x, y1: WL, x2: q.x, y2: q.y - 9, stroke: C.pale, 'stroke-opacity': .42, 'stroke-width': .8, 'stroke-dasharray': '1.5 5' });
+    s += el('circle', { cx: q.x, cy: WL, r: 2.2, fill: C.ink });
+    var ex = q.side === 'L' ? LX : RX;
+    s += el('line', { x1: q.side === 'L' ? q.x - 9 : q.x + 9, y1: q.y, x2: ex, y2: q.y, stroke: C.brass, 'stroke-opacity': .55, 'stroke-width': .8 });
+    s += el('circle', { cx: ex, cy: q.y, r: 1.8, fill: C.brass });
+    s += el('circle', { cx: q.x, cy: q.y, r: 9, fill: 'none', stroke: C.brass, 'stroke-width': 1.1 });
+    s += el('circle', { cx: q.x, cy: q.y, r: 2.4, fill: C.brass });
+    var tx = q.side === 'L' ? LX - 18 : RX + 18, anchor = q.side === 'L' ? 'end' : 'start';
+    s += el('text', { x: tx, y: q.y - 12, 'text-anchor': anchor, 'font-size': 11, fill: C.brass, class: 'mono' }, q.n);
+    q.t.forEach(function (line, j) {
+      s += el('text', { x: tx, y: q.y + 8 + j * 19, 'text-anchor': anchor, 'font-size': 13, fill: C.pale, 'fill-opacity': .92, class: 'mono' }, line);
+    });
+  });
+  out.push(s);
+
+  /* ---------- tipografia ---------- */
+  var ty = '';
+  ty += el('text', { x: 96, y: 118, 'font-size': 12, fill: C.ink, 'fill-opacity': .75, class: 'mono' }, 'Prancha VII');
+  ty += el('text', { x: W - 96, y: 118, 'text-anchor': 'end', 'font-size': 12, fill: C.ink, 'fill-opacity': .75, class: 'mono' }, 'Estudo de profundidade · fig. 1');
+  ty += el('line', { x1: 96, y1: 140, x2: W - 96, y2: 140, stroke: C.ink, 'stroke-opacity': .25, 'stroke-width': .8 });
+  ty += el('text', { x: 90, y: 318, 'font-size': 148, fill: C.ink, class: 'serif' }, 'o que não');
+  ty += el('text', { x: 90, y: 456, 'font-size': 148, fill: C.ink, class: 'serif' }, 'se vê');
+  ty += el('text', { x: 96, y: WL - 30, 'font-size': 11, fill: C.ink, 'fill-opacity': .6, class: 'mono' }, 'Superfície');
+  ty += el('text', { x: 96, y: WL + 34 + 0, 'font-size': 11, fill: C.sage2, 'fill-opacity': 0, class: 'mono' }, '');
+  ty += el('line', { x1: 96, y1: H - 112, x2: W - 96, y2: H - 112, stroke: C.sage2, 'stroke-opacity': .22, 'stroke-width': .8 });
+  ty += el('text', { x: 96, y: H - 80, 'font-size': 11, fill: C.sage2, 'fill-opacity': .8, class: 'mono' }, 'Sondagem de sete regiões');
+  ty += el('text', { x: W - 96, y: H - 80, 'text-anchor': 'end', 'font-size': 11, fill: C.sage2, 'fill-opacity': .8, class: 'mono' }, 'Alessandra Silveira · Neuropsicologia');
+  out.push(ty);
+
+  svg.innerHTML = out.join('');
+  document.title = 'ready';
+})();
+</script>
+</body>
+</html>

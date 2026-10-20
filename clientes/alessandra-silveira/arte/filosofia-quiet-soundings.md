@@ -1,0 +1,15 @@
+# Quiet Soundings
+
+*A movement for depicting what lies beneath the surface: rendered with the patience of a cartographer and the tenderness of a listener.*
+
+---
+
+**Space and form.** Every composition is divided by a single, decisive horizon. Above it, the world is legible: crisp, angular, faceted, lit — form that announces itself in a few clean planes. Below it, form dissolves into accumulation: hundreds of nested, breathing isolines that never quite repeat, each a slight drift of the last, describing a mass that can only be known by patient measurement. The visible is drawn as geometry; the invisible is drawn as time. The ratio is always unfair — the surface is small, the depth immense — and that imbalance is the whole argument of the work.
+
+**Color and material.** The palette is tidal and restrained: a warm unbleached linen for air and light, a deep forest-black for the water column, and a quiet ladder of sage greens that carry the lines down into darkness. One metal accent — old brass — is reserved exclusively for moments of attention: an index contour, a sounding point, a numeral. Nothing is saturated; nothing shouts. The materials should feel like archival ink on heavy cotton paper, hairlines laid with a ruling pen, every stroke the product of painstaking, master-level control.
+
+**Scale and rhythm.** Rhythm comes from repetition held at the edge of perception: contour after contour, tick after tick, a faint lattice of survey points across the deep. Every tenth line is drawn a fraction heavier, as cartographers have always done, so the eye can count without being told to. Scale shifts are extreme but calm — a monumental field of linework against labels set so small they read as texture until approached. The work must reward sustained viewing; it should look as though it took countless hours, line by line, by someone at the absolute top of their field.
+
+**Composition and balance.** The mass sits slightly off the true center, as living things do. Plumb lines descend from the horizon with surgical verticality, terminating in small brass rings — soundings, places where attention was paid. Their leaders travel horizontally to the margins, where whispered labels wait in disciplined columns. Margins are generous and absolute; nothing touches an edge, nothing collides, nothing overlaps unless the overlap is the point. Balance is achieved not through symmetry but through the meticulous weighting of empty space against dense accumulation.
+
+**Visual hierarchy and text.** Type is sparse, clinical, and quiet: a thin monospace for reference marks, plate numbers, and scales, as if lifted from an instrument; a single expressive italic serif used once, like a handwritten annotation by the observer. Words never explain — they only name. The hierarchy is carried by line weight, by the brass accent, and by the drama of the horizon itself. The finished plate should read as a document from an imaginary science devoted to mapping the unseen: rigorous in method, intimate in subject, and executed with the deep expertise and labored-over care of a true master.
