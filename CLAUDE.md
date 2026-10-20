@@ -32,3 +32,12 @@ Regras fixas:
 Clientes ficam em `clientes/<nome>/` (ex.: `clientes/renato-sericaku/`). Material de portfólio de cada um: `midia/` (capturas + artes feed/story via `artes.html`) e vídeo `shorts/roteiros/portfolio-<nome>.json` (props `site_desktop` + `site_celular` com `continua`, `y`, `escala`).
 
 Base de referência: `gabriel-augusto/` (site dele) e a raiz (site ICL Saúde): HTML/CSS/JS estático, `config.js` com os dados, `build.py` gera `dist/index.html` único + zip. Estética premium, minimalista, conversiva, fotos leves, botões de WhatsApp com mensagem automática. Usar só dados reais do cliente; o que faltar vira marcador para ele preencher.
+
+## Orientações para sites de profissionais da saúde (Felipe · Consultório de Sucesso)
+
+Valem para todo site de profissional da saúde (médico, psicólogo, dentista etc.). Nota completa: `obsidian/Orientações para sites de profissionais da saúde.md`.
+1. Pedir a identidade visual completa (logo original, cores, fontes, fotos boas) antes de começar.
+2. Focar no produto principal do cliente e nas palavras-chave do anúncio.
+3. Foto de jaleco sempre como a primeira do site; as outras podem variar.
+4. Botão de WhatsApp fácil, chamativo e já na primeira tela (mais botão fixo).
+5. Priorizar sempre o formato para celular.
