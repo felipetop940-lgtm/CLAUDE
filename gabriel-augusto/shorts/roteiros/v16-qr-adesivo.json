@@ -1,0 +1,84 @@
+{
+  "titulo": "Golpe do adesivo de QR Code",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Vai pagar com QR Code no bar, na feira ou na loja? Antes de confirmar, olha o nome que aparece. Tem golpe novo rolando.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": ["Vai pagar no", "~QR Code~?"],
+      "prop": {
+        "tipo": "tela_menu", "x": 30,
+        "telas": [
+          {"titulo": "Confirmar Pix", "em": 0, "sub": "Você tá pagando o Bar do Zé, né?", "toque": 0, "toque_em": "nome", "itens": [["👤", "Pra: Carlos M. Souza", "?"], ["💰", "Valor", "R$ 48,00"], ["✅", "Confirmar pagamento"]]}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "confirmar", "foco": "tela", "zoom": 1.06, "pose": "pensando"},
+        {"em": "nome", "foco": "item", "zoom": 1.16, "destaque": "item", "pose": "chocado"}
+      ]
+    },
+    {
+      "fala": "O golpista cola um adesivo com o QR Code dele por cima do verdadeiro. Você paga achando que é pro bar, e o dinheiro vai pra conta dele.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": ["O ~adesivo~ por cima"],
+      "prop": {"tipo": "qr_adesivo", "loja": "Bar do Zé", "em": "adesivo"},
+      "beats": [
+        {"em": "adesivo", "foco": "placa", "zoom": 1.08},
+        {"em": "dele", "foco": "adesivo", "zoom": 1.14, "destaque": "adesivo"}
+      ]
+    },
+    {
+      "fala": "E se for no seu balcão? O cliente paga, o dinheiro não cai pra você, e ele jura que pagou. Os dois saem no prejuízo.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": ["E se for no", "~seu balcão~?"],
+      "prop": {
+        "tipo": "chat_demo", "nome": "Cliente", "x": 30,
+        "msgs": [
+          {"de": "cli", "txt": "Paguei pelo QR do balcão, ó ✅", "em": "cliente"},
+          {"de": "eu", "txt": "Uai, não caiu nada aqui 😳", "em": "cai", "tag": "❌ O QR tava trocado"}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "cliente", "foco": "msg1", "zoom": 1.1, "pose": "pensando"},
+        {"em": "cai", "foco": "msg2", "zoom": 1.16, "destaque": "msg2", "pose": "chocado"}
+      ]
+    },
+    {
+      "fala": "Então: antes de pagar, confere o nome e o valor no app. E se você tem QR no balcão, passa a mão nele todo dia pra ver se não tem adesivo.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Faz *assim*"],
+      "prop": {
+        "tipo": "link_montagem", "rotulo": "FAZ ASSIM",
+        "partes": [
+          {"txt": "Nome ", "rot": "é o nome da loja?", "em": "nome"},
+          {"txt": "Valor ", "rot": "é o valor certo?", "em": "valor"},
+          {"txt": "Balcão", "rot": "passa a mão no QR todo dia", "em": "balcao,"}
+        ]
+      },
+      "beats": [
+        {"em": "nome", "foco": "r1", "zoom": 1.08, "destaque": "r1"},
+        {"em": "valor", "foco": "r2", "zoom": 1.08, "destaque": "r2"},
+        {"em": "mao", "foco": "r3", "zoom": 1.08, "destaque": "r3"}
+      ]
+    },
+    {
+      "fala": "Manda pra quem tem QR Code no balcão. E me segue que eu te aviso dos golpes antes deles chegarem em você.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Manda pra quem", "*tem QR no balcão*"],
+      "prop": {"tipo": "cta", "botao": "Encaminha 📲", "sub": "Segue que eu te aviso dos golpes", "y": 600},
+      "fim": 1.6,
+      "boneco": {"pose": "confiante", "x": 540, "y": 1400, "escala": 0.72, "entrada": "andando"},
+      "beats": [{"em": "manda", "pose": "apontando"}, {"em": "segue", "pose": "comemorando"}]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {"texto": ["Vai pagar no", "~QR Code~?"], "tamanho": 130, "selo": "Olha o nome antes!", "selo_y": 1450}
+}

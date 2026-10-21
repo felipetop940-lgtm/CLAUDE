@@ -442,6 +442,23 @@ function prop(c, lt, t) {
         <div style="margin-top:8px;font-size:34px;line-height:1.35;color:#E8EAED">${rv.txt || ''}</div></div>
       ${resp}</div>`);
   }
+  if (p.tipo === 'qr_adesivo') {
+    // plaquinha de QR Code no balcão; no "em" um adesivo com outro QR desce e cobre o verdadeiro (golpe do adesivo)
+    const inn = ease(lt / .7), a0 = quando(p.em ?? .4), av = ease((lt - a0) / .6);
+    const qr = (seed, cor) => { let h = '', s = seed; for (let y = 0; y < 21; y++) for (let x = 0; x < 21; x++) {
+        const fx = x < 7 ? x : x > 13 ? x - 14 : -1, fy = y < 7 ? y : y > 13 ? y - 14 : -1; let on;
+        if (fx >= 0 && fy >= 0 && !(x > 13 && y > 13)) on = fx === 0 || fx === 6 || fy === 0 || fy === 6 || (fx >= 2 && fx <= 4 && fy >= 2 && fy <= 4);
+        else if ((x < 8 && y < 8) || (x > 12 && y < 8) || (x < 8 && y > 12)) on = false;
+        else { s = (s * 73 + 29) % 211; on = s % 2 === 0; }
+        h += `<i style="background:${on ? cor : 'transparent'}"></i>`; }
+      return `<div style="display:grid;grid-template-columns:repeat(21,1fr);width:100%;height:100%">${h}</div>`; };
+    const sticker = av > 0 ? `<div data-a="adesivo" style="position:absolute;left:66px;top:150px;width:368px;height:368px;padding:20px;background:#fff;border-radius:10px;box-shadow:0 18px 30px -8px rgba(0,0,0,.6),0 0 0 4px ${C.red};transform:translateY(${(1 - av) * -260}px) rotate(${-4 + (1 - av) * -8}deg);opacity:${clamp(av * 1.5)}">${qr(97, '#111')}
+      <div style="position:absolute;left:50%;bottom:-62px;transform:translateX(-50%);white-space:nowrap;padding:8px 20px;border-radius:14px;background:${C.red};color:#fff;font-size:28px;font-weight:800">QR do golpista colado por cima</div></div>` : '';
+    return at(p.x ?? 210, p.y ?? 640, `<div data-a="placa" style="position:relative;width:500px;height:700px;border-radius:34px;background:linear-gradient(160deg,#F7F4EF,#E6E1D8);box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.1);transform:translateY(${(1 - inn) * 60}px);opacity:${inn};text-align:center;color:#1d1b19">
+      <div style="padding-top:38px;font-size:40px;font-weight:900">${p.loja || 'Bar do Zé'}</div><div style="font-size:26px;font-weight:700;color:#6b665f">Pague com Pix aqui 👇</div>
+      <div style="position:absolute;left:76px;top:160px;width:348px;height:348px">${qr(13, '#1d1b19')}</div>${sticker}
+      <div style="position:absolute;left:0;right:0;bottom:34px;font-size:24px;color:#6b665f">aponte a câmera do app do banco</div></div>`);
+  }
   if (p.tipo === 'tela_menu') {
     // caminho dentro do app, tela por tela: cada tela entra deslizando quando a palavra é dita e o item tocado acende (âncora "item")
     const telas = p.telas || []; let ci = 0; telas.forEach((s, i) => { if (lt >= quando(s.em ?? 0)) ci = i; });

@@ -228,6 +228,8 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
                 put(enviada(), quando(c, rs.get("em", ps[0].get("em", .3) if ps else .3)) - .05, .5)
                 for j, q in enumerate(ps[1:], 1): put(sino(notas[min(j, len(notas) - 1)], 1.6, 3.4), quando(c, q.get("em", .5)), .38)
                 if rs.get("tag"): put(sino(1568, 1.6, 4) if not rs.get("ruim") else tensao(), quando(c, rs.get("tag_em", rs.get("em", .3))) + .6, .35)
+        elif pr == "qr_adesivo":
+            ta = quando(c, p.get("em", .4)); put(ar(.4, 900, 6000), ta - .1, .35); put(sub(55, .9), ta + .45, .45); put(tensao(), ta + .5, .4)
         elif pr == "tela_menu":
             for j, s in enumerate(p.get("telas", [])):
                 ts = quando(c, s.get("em", 0)) if j else t0
