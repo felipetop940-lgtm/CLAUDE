@@ -99,6 +99,9 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U38 | Vídeo | EM ALTA: golpe do adesivo de QR Code (alerta Febraban 20/10) + virada "pode ser no seu balcão" | feito 21/10 (v16, prop qr_adesivo) |
 | U39 | Carrossel | EM ALTA: chamada no WhatsApp com quem nem tem WhatsApp (liberado no Brasil 20/10) | feito 21/10 (c18) |
 | U40 | Arte TikTok | EM ALTA: acabou o limite de 500 do Pix por aproximação (desde 01/10) + ajusta o limite | feito 21/10 (t18) |
+| U41 | Vídeo | EM ALTA: Black Friday, a lista do cliente já tá pronta (Google: 48% com lista, 50% desconfia da oferta) + posta o preço normal hoje | feito 22/10 (v17) |
+| U42 | Carrossel | EM ALTA: mensagem da Febraban no WhatsApp é golpe (alerta 09/10) + falso empréstimo | feito 22/10 (c19) |
+| U43 | Arte TikTok | 6 de cada 10 pequenos negócios: uma pessoa só faz tudo (Sebrae) + 3 coisas pra parar de fazer na mão | feito 22/10 (t19) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -112,3 +115,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (20/10) Google Brasil no Fórum E-commerce Brasil: 57% dos brasileiros já usaram IA em alguma jornada de compra; Google mudou o Modo IA pra mostrar mais links (15/10).
 - (20/10) Boleto com QR Code Pix obrigatório a partir de out/2026 (só fonte Stone; conferir no BC antes de usar).
 - (19/10) Google: "Ask Maps" e perfil da empresa alimentando respostas de IA (blogs de SEO, sem confirmação oficial pro Brasil).
+- (22/10) Febraban de novo (20 e 21/10): QR Code falso também em boleto impresso e site de loja (o v16 já cobriu o adesivo; dá pra fazer "confere o nome antes de pagar boleto").
+- (22/10) Golpe do falso "Auxílio Reconstrução 2026" de R$ 1.050 pelo WhatsApp (Procon; data do alerta não confirmada).
+- (22/10) WhatsApp testando: postar fotos/Reels do Instagram direto no Status (set/2026, liberação aos poucos) e filtro de ligação de número desconhecido (em desenvolvimento).

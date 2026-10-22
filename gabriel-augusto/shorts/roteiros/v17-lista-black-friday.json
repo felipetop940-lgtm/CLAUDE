@@ -1,0 +1,273 @@
+{
+  "titulo": "Black Friday: o povo já fez a lista",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Faz isso agora: pesquisa no Google o que você vende, Black Friday e a sua cidade. Vê quem aparece.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Pesquisa isso",
+        "*agora*"
+      ],
+      "prop": {
+        "tipo": "busca",
+        "consulta": "bolo black friday goiânia",
+        "res": [
+          [
+            "Doceria sem preço",
+            "red",
+            "✕"
+          ],
+          [
+            "Perfil sem foto",
+            "red",
+            "✕"
+          ],
+          [
+            "Doce Ana: preço e oferta",
+            "gold",
+            "✓"
+          ]
+        ]
+      },
+      "beats": [
+        {
+          "em": "pesquisa",
+          "foco": "q",
+          "zoom": 1.08
+        },
+        {
+          "em": "aparece",
+          "foco": "res3",
+          "zoom": 1.14,
+          "destaque": "res3"
+        }
+      ]
+    },
+    {
+      "fala": "Quem aparece com preço entra na lista do cliente. E essa lista tá sendo feita agora: quase metade do povo já sabe o que vai comprar. Quem não aparece, nem entra.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "A lista do cliente",
+        "~já tá pronta~"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Notas",
+            "em": 0,
+            "sub": "Minha lista da Black Friday 🛒",
+            "toque": 3,
+            "toque_em": "nem",
+            "itens": [
+              [
+                "👟",
+                "Tênis",
+                "Loja Passo · R$ 289",
+                "aparece"
+              ],
+              [
+                "🎂",
+                "Bolo da festa",
+                "Doce Ana · R$ 95",
+                "lista"
+              ],
+              [
+                "💇",
+                "Escova",
+                "Salão Bela · R$ 80",
+                "agora"
+              ],
+              [
+                "❓",
+                "Você",
+                "não tá na lista",
+                "nao",
+                "red"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "lista",
+          "foco": "tela",
+          "zoom": 1.06,
+          "pose": "apontando"
+        },
+        {
+          "em": "quase",
+          "pose": "pensando"
+        },
+        {
+          "em": "nem",
+          "foco": "item",
+          "zoom": 1.16,
+          "destaque": "item",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Sabe o cliente que pergunta: esse desconto é de verdade? Pois é. Pesquisa do Google: metade do povo não sabe se a oferta é boa mesmo.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "*Metade* desconfia",
+        "da oferta"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "Esse desconto é de verdade? 🤨",
+            "em": "pergunta"
+          },
+          {
+            "de": "cli",
+            "txt": "Semana passada tava o mesmo preço…",
+            "em": "pois"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "pergunta",
+          "foco": "msg1",
+          "zoom": 1.12,
+          "pose": "pensando"
+        },
+        {
+          "em": "pois",
+          "foco": "msg2",
+          "zoom": 1.16,
+          "destaque": "msg2",
+          "pose": "chocado"
+        },
+        {
+          "em": "metade",
+          "pose": "ideia"
+        }
+      ]
+    },
+    {
+      "fala": "Então: posta hoje o preço normal do que vai entrar na oferta. No dia vinte e sete, o cliente vê que o desconto é real. E põe o preço no Google e no site.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Faz *assim*"
+      ],
+      "prop": {
+        "tipo": "link_montagem",
+        "rotulo": "FAZ ASSIM",
+        "partes": [
+          {
+            "txt": "Hoje ",
+            "rot": "posta o preço normal",
+            "em": "hoje"
+          },
+          {
+            "txt": "Dia 27 ",
+            "rot": "mostra o desconto",
+            "em": "vinte"
+          },
+          {
+            "txt": "Google",
+            "rot": "e site com preço",
+            "em": "google"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "em": "hoje",
+          "foco": "r1",
+          "zoom": 1.08,
+          "destaque": "r1"
+        },
+        {
+          "em": "vinte",
+          "foco": "r2",
+          "zoom": 1.08,
+          "destaque": "r2"
+        },
+        {
+          "em": "google",
+          "foco": "r3",
+          "zoom": 1.08,
+          "destaque": "r3"
+        }
+      ]
+    },
+    {
+      "fala": "Comenta o que você vende e a sua cidade, que eu pesquiso pra você. Salva e segue pra mais.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Comenta o que",
+        "*você vende + cidade*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Ramo + cidade 👇",
+        "sub": "Eu pesquiso pra você",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "apontando",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "comenta",
+          "pose": "apontando"
+        },
+        {
+          "em": "pesquiso",
+          "pose": "comemorando"
+        },
+        {
+          "em": "salva",
+          "pose": "confiante"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "A lista do cliente",
+      "~já tá pronta~"
+    ],
+    "tamanho": 120,
+    "selo": "Você tá nela?",
+    "selo_y": 1450
+  }
+}

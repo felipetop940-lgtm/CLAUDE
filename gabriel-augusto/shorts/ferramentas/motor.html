@@ -464,8 +464,8 @@ function prop(c, lt, t) {
     const telas = p.telas || []; let ci = 0; telas.forEach((s, i) => { if (lt >= quando(s.em ?? 0)) ci = i; });
     const T = telas[ci] || {}, t0 = quando(T.em ?? 0), sl = ci ? ease((lt - t0) / .45) : 1, inn = ease(lt / .7);
     const tq = T.toque_em != null ? quando(T.toque_em) : t0 + .7, tk = ease((lt - tq) / .35);
-    const rows = (T.itens || []).map((it, i) => { const on = i === T.toque && lt > tq;
-      return `<div ${i === T.toque ? 'data-a="item"' : ''} style="position:relative;display:flex;align-items:center;gap:26px;padding:26px 30px;border-radius:20px;margin:4px 10px;font-size:36px;color:#E9EDEF;${on ? `background:rgba(214,179,108,${.16 * tk});box-shadow:0 0 0 ${3 * tk}px ${C.gold}` : ''}">
+    const rows = (T.itens || []).map((it, i) => { const on = i === T.toque && lt > tq, ie = it[3] != null ? ease((lt - quando(it[3])) / .4) : 1;  // 4º campo: item entra quando a palavra é dita
+      return `<div ${i === T.toque ? 'data-a="item"' : ''} style="position:relative;display:flex;align-items:center;gap:26px;padding:26px 30px;border-radius:20px;margin:4px 10px;font-size:36px;color:${it[4] ? C[it[4]] || it[4] : '#E9EDEF'};opacity:${ie};transform:translateX(${(1 - ie) * -40}px);${on ? `background:rgba(214,179,108,${.16 * tk});box-shadow:0 0 0 ${3 * tk}px ${C.gold}` : ''}">
         <span style="width:48px;text-align:center;font-size:36px">${it[0]}</span><span style="flex:1">${it[1]}</span>${it[2] ? `<span style="font-size:26px;color:#8696A0">${it[2]}</span>` : ''}</div>`; }).join('');
     let pin = '';
     if (T.pin) { const pe = T.pin_em != null ? quando(T.pin_em) : t0 + .6, n = Math.floor(clamp((lt - pe) / 1.4) * 6);

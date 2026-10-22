@@ -234,6 +234,8 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
             for j, s in enumerate(p.get("telas", [])):
                 ts = quando(c, s.get("em", 0)) if j else t0
                 if j: put(ar(.35, 1200, 7000), ts - .05, .3)
+                for q in s.get("itens", []):
+                    if len(q) > 3 and q[3] is not None: put(tecla(), quando(c, q[3]), .4)
                 if s.get("toque") is not None: put(tecla(), quando(c, s["toque_em"]) if s.get("toque_em") is not None else ts + .7, .5)
                 if s.get("pin"):
                     pe = quando(c, s["pin_em"]) if s.get("pin_em") is not None else ts + .6
