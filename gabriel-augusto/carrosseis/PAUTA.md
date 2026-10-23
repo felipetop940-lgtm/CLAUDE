@@ -102,6 +102,9 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U41 | Vídeo | EM ALTA: Black Friday, a lista do cliente já tá pronta (Google: 48% com lista, 50% desconfia da oferta) + posta o preço normal hoje | feito 22/10 (v17) |
 | U42 | Carrossel | EM ALTA: mensagem da Febraban no WhatsApp é golpe (alerta 09/10) + falso empréstimo | feito 22/10 (c19) |
 | U43 | Arte TikTok | 6 de cada 10 pequenos negócios: uma pessoa só faz tudo (Sebrae) + 3 coisas pra parar de fazer na mão | feito 22/10 (t19) |
+| U44 | Vídeo | EM ALTA: Gemini novo pra pequeno negócio (20/10): manda logo e cores, mas ele copia até o erro | feito 23/10 (v18) |
+| U45 | Carrossel | EM ALTA: loja falsa na Black Friday, 5 sinais (Serasa: propaganda falsa +147% na semana da BF) | feito 23/10 (c20) |
+| U46 | Arte TikTok | Pesquisa o nome do teu negócio: Editar perfil direto no Google + horário da Black Friday (leva 1 a 2 dias) | feito 23/10 (t20) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -118,3 +121,7 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (22/10) Febraban de novo (20 e 21/10): QR Code falso também em boleto impresso e site de loja (o v16 já cobriu o adesivo; dá pra fazer "confere o nome antes de pagar boleto").
 - (22/10) Golpe do falso "Auxílio Reconstrução 2026" de R$ 1.050 pelo WhatsApp (Procon; data do alerta não confirmada).
 - (22/10) WhatsApp testando: postar fotos/Reels do Instagram direto no Status (set/2026, liberação aos poucos) e filtro de ligação de número desconhecido (em desenvolvimento).
+- (23/10) Procon-SP (20 a 22/10): golpe do "ativa/regulariza teu Open Finance" por WhatsApp/SMS; Open Finance nunca pede senha nem código.
+- (23/10) Golpe do empréstimo com taxa adiantada (Procon de Tangará, 22/10) e e-mail falso do Procon-SP com multa (Procon-Bertioga, 21/10).
+- (23/10) Google Maps pedindo login pra ler todas as avaliações (desde 30/09, fontes de fora; conferir se vale no Brasil antes de usar).
+- (23/10) Instagram Plus (R$ 10/mês, desde junho): story anônimo, story de 48 h, 6 posts fixados. Não ajuda no alcance. Dá um "vale a pena?" se voltar pras notícias.

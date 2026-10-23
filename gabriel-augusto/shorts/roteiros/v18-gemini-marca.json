@@ -1,0 +1,280 @@
+{
+  "titulo": "Gemini novo: manda teu logo pra IA",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Abre o Gemini, manda o seu logo e pede: faz um post de Black Friday com a minha marca. Olha o que ele devolve: um post com a sua cara.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Manda teu *logo*",
+        "pra IA"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Gemini ✨",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "eu",
+            "txt": "<span style=\"display:inline-flex;align-items:center;gap:10px;vertical-align:middle;\"><span style=\"width:54px;height:54px;border-radius:50%;background:#D6B36C;color:#07080A;display:inline-grid;place-items:center;font-family:Anton;font-size:26px\">DA</span><span style=\"font-family:Anton;font-size:32px;letter-spacing:1px;color:#fff\">DOCE ANA</span></span><div style=\"margin-top:12px\">Faz um post de Black Friday com a minha marca</div>",
+            "em": "pede"
+          },
+          {
+            "de": "cli",
+            "txt": "<div style=\"width:440px;padding:16px 0;border-radius:18px;background:linear-gradient(135deg,#1a1408,#000);border:2px solid #D6B36C;text-align:center\"><span style=\"display:inline-flex;align-items:center;gap:10px;vertical-align:middle;\"><span style=\"width:43px;height:43px;border-radius:50%;background:#D6B36C;color:#07080A;display:inline-grid;place-items:center;font-family:Anton;font-size:20px\">DA</span><span style=\"font-family:Anton;font-size:25px;letter-spacing:1px;color:#fff\">DOCE ANA</span></span><div style=\"margin-top:10px;font-family:Anton;font-size:52px;line-height:1;color:#D6B36C\">BLACK FRIDAY</div><div style=\"margin-top:8px;font-size:26px;color:#fff\">bolos com desconto 🎂</div></div>",
+            "em": "olha"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "logo",
+          "pose": "pensando"
+        },
+        {
+          "em": "pede",
+          "foco": "msg1",
+          "zoom": 1.1,
+          "pose": "apontando"
+        },
+        {
+          "em": "olha",
+          "foco": "msg2",
+          "zoom": 1.14,
+          "destaque": "msg2",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "O Google lançou essa semana um espaço no Gemini só pra pequeno negócio. Você manda o site, o logo e as cores uma vez, e ele faz post, propaganda e até vídeo no seu padrão.",
+      "acento": "blue",
+      "fx": "flash",
+      "texto": [
+        "Lançou *essa semana*"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Gemini · Meu negócio",
+            "em": 0,
+            "sub": "Manda uma vez, ele guarda 💾",
+            "toque": 3,
+            "toque_em": "padrao",
+            "itens": [
+              [
+                "🌐",
+                "Site",
+                "guardado ✓",
+                "site"
+              ],
+              [
+                "🔤",
+                "Logo",
+                "guardado ✓",
+                "logo"
+              ],
+              [
+                "🎨",
+                "Cores",
+                "guardado ✓",
+                "cores"
+              ],
+              [
+                "✨",
+                "Post, propaganda, vídeo",
+                "",
+                "post"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "lancou",
+          "foco": "tela",
+          "zoom": 1.06,
+          "pose": "ideia"
+        },
+        {
+          "em": "cores",
+          "pose": "apontando"
+        },
+        {
+          "em": "padrao",
+          "foco": "item",
+          "zoom": 1.14,
+          "destaque": "item",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Só que a IA copia o que você manda. Mandou logo borrado, com cor diferente em cada lugar? Ela faz igualzinho. Só que mais rápido.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Ela ~copia~",
+        "o que você manda"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Gemini ✨",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "eu",
+            "txt": "<span style=\"display:inline-flex;align-items:center;gap:10px;vertical-align:middle;filter:blur(2.5px) saturate(.6);\"><span style=\"width:54px;height:54px;border-radius:50%;background:#C77DB0;color:#07080A;display:inline-grid;place-items:center;font-family:Anton;font-size:26px\">DA</span><span style=\"font-family:Anton;font-size:32px;letter-spacing:1px;color:#9BD49B\">DOCE ANA</span></span><div style=\"margin-top:8px;font-size:28px\">print do logo 🤳</div>",
+            "em": "borrado"
+          },
+          {
+            "de": "cli",
+            "txt": "<div style=\"width:440px;padding:16px 0;border-radius:18px;background:linear-gradient(135deg,#3b2a3a,#1d2b1d);border:2px solid #6b6b6b;text-align:center\"><span style=\"display:inline-flex;align-items:center;gap:10px;vertical-align:middle;filter:blur(2.5px) saturate(.6);\"><span style=\"width:43px;height:43px;border-radius:50%;background:#C77DB0;color:#07080A;display:inline-grid;place-items:center;font-family:Anton;font-size:20px\">DA</span><span style=\"font-family:Anton;font-size:25px;letter-spacing:1px;color:#9BD49B\">DOCE ANA</span></span><div style=\"margin-top:10px;font-family:Anton;font-size:52px;line-height:1;color:#E58BC9\">BLACK FRIDAY</div><div style=\"margin-top:8px;font-size:26px;color:#fff\">bolos com desconto 🎂</div></div>",
+            "em": "igualzinho",
+            "tag": "❌ Copiou o borrado"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "copia",
+          "pose": "pensando"
+        },
+        {
+          "em": "borrado",
+          "foco": "msg1",
+          "zoom": 1.1
+        },
+        {
+          "em": "igualzinho",
+          "foco": "msg2",
+          "zoom": 1.14,
+          "destaque": "msg2",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Então, antes de mandar: logo em boa qualidade, duas ou três cores que nunca mudam, e um site que diz o que você faz.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Antes de *mandar*"
+      ],
+      "prop": {
+        "tipo": "link_montagem",
+        "rotulo": "ANTES DE MANDAR",
+        "partes": [
+          {
+            "txt": "Logo ",
+            "rot": "em boa qualidade",
+            "em": "logo"
+          },
+          {
+            "txt": "Cores ",
+            "rot": "2 ou 3, sempre as mesmas",
+            "em": "cores"
+          },
+          {
+            "txt": "Site",
+            "rot": "que diz o que você faz",
+            "em": "site"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "em": "logo",
+          "foco": "r1",
+          "zoom": 1.08,
+          "destaque": "r1"
+        },
+        {
+          "em": "cores",
+          "foco": "r2",
+          "zoom": 1.08,
+          "destaque": "r2"
+        },
+        {
+          "em": "site",
+          "foco": "r3",
+          "zoom": 1.08,
+          "destaque": "r3"
+        }
+      ]
+    },
+    {
+      "fala": "Comenta o que você vende, que eu te mando o pedido pronto pra colar no Gemini. Salva e segue pra mais.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Comenta o que",
+        "*você vende*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Teu ramo 👇",
+        "sub": "Te mando o pedido pronto",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "apontando",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "comenta",
+          "pose": "apontando"
+        },
+        {
+          "em": "pronto",
+          "pose": "comemorando"
+        },
+        {
+          "em": "salva",
+          "pose": "confiante"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "Manda teu *logo*",
+      "pra IA"
+    ],
+    "tamanho": 130,
+    "selo": "Ela copia até o erro",
+    "selo_y": 1450
+  }
+}
