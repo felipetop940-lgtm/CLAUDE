@@ -1,0 +1,96 @@
+{
+  "titulo": "Pix parcelado: regra nova do Banco Central",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Abre o app do teu banco e vai no Pix. Se aparecer parcelar, ou Pix no crédito, presta atenção: isso é empréstimo.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": ["Abre o *Pix*", "do teu banco"],
+      "prop": {
+        "tipo": "tela_menu", "x": 30,
+        "telas": [
+          {"titulo": "Pix · R$ 600", "em": 0, "sub": "Como você quer pagar?", "toque": 1, "toque_em": "emprestimo",
+           "itens": [["💰", "Saldo da conta", "R$ 600", "pix"], ["💳", "Parcelar em 6x", "no crédito", "parcelar"]]}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "pix", "foco": "tela", "zoom": 1.06, "pose": "celular"},
+        {"em": "parcelar", "pose": "pensando"},
+        {"em": "emprestimo", "foco": "item", "zoom": 1.16, "destaque": "item", "pose": "chocado"}
+      ]
+    },
+    {
+      "fala": "Funciona assim: o banco paga a loja na hora. E você paga o banco depois, aos poucos. Com juros.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Como *funciona*"],
+      "prop": {
+        "tipo": "link_montagem", "rotulo": "PIX NO CRÉDITO",
+        "partes": [
+          {"txt": "Banco ", "rot": "paga a loja na hora", "em": "banco"},
+          {"txt": "Você ", "rot": "paga o banco aos poucos", "em": "voce"},
+          {"txt": "Juros", "rot": "em cima do valor", "em": "juros"}
+        ]
+      },
+      "beats": [
+        {"em": "banco", "foco": "r1", "zoom": 1.08, "destaque": "r1"},
+        {"em": "voce", "foco": "r2", "zoom": 1.08, "destaque": "r2"},
+        {"em": "juros", "foco": "r3", "zoom": 1.1, "destaque": "r3"}
+      ]
+    },
+    {
+      "fala": "E o Banco Central aprovou essa semana uma regra nova: o banco só vai poder te oferecer isso se você autorizar antes. E a autorização só vale vinte e quatro horas depois.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": ["Regra *nova*", "do Banco Central"],
+      "prop": {
+        "tipo": "chat_demo", "nome": "Teu banco 🏦", "x": 30,
+        "msgs": [
+          {"de": "cli", "txt": "Quer parcelar esse Pix? 💳", "em": "oferecer"},
+          {"de": "eu", "txt": "Só se eu autorizar antes ✋", "em": "autorizar", "tag": "⏱️ Vale 24 horas depois"}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "aprovou", "pose": "ideia"},
+        {"em": "oferecer", "foco": "msg1", "zoom": 1.1, "pose": "pensando"},
+        {"em": "autorizar", "foco": "msg2", "zoom": 1.14, "destaque": "msg2", "pose": "apontando"},
+        {"em": "vinte", "foco": "tag", "zoom": 1.16, "destaque": "tag", "pose": "comemorando"}
+      ]
+    },
+    {
+      "fala": "E pra quem vende: o cliente parcela, mas você recebe tudo na hora, como um Pix normal. A regra começa em julho de dois mil e vinte e sete.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Pra quem *vende*"],
+      "prop": {
+        "tipo": "tela_menu", "x": 30,
+        "telas": [
+          {"titulo": "Pix recebido ✅", "em": 0, "sub": "Doce Ana · agora", "toque": 0, "toque_em": "tudo",
+           "itens": [["✅", "R$ 600", "na hora", "vende"], ["🧾", "Cliente parcelou", "com o banco dele", "parcela"], ["📅", "Regra vale de", "julho/2027", "julho"]]}
+        ]
+      },
+      "boneco": {"pose": "apontando", "x": 890, "y": 1430, "escala": 0.72, "espelho": true},
+      "beats": [
+        {"em": "parcela", "pose": "pensando"},
+        {"em": "tudo", "foco": "item", "zoom": 1.16, "destaque": "item", "pose": "comemorando"},
+        {"em": "julho", "foco": "tela", "zoom": 1.06, "pose": "ideia"}
+      ]
+    },
+    {
+      "fala": "Antes de parcelar, olha quanto você vai pagar no final. Salva e manda pra quem parcela tudo. E segue pra mais.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": ["Olha o", "*total no final*"],
+      "prop": {"tipo": "cta", "botao": "Salva 📌", "sub": "Manda pra quem parcela tudo", "y": 600},
+      "fim": 1.6,
+      "boneco": {"pose": "apontando", "x": 540, "y": 1400, "escala": 0.72, "entrada": "andando"},
+      "beats": [{"em": "olha", "pose": "apontando"}, {"em": "manda", "pose": "comemorando"}, {"em": "segue", "pose": "confiante"}]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {"texto": ["Abre o *Pix*", "do teu banco"], "tamanho": 130, "selo": "Viu \"parcelar\"? Cuidado", "selo_y": 1450}
+}

@@ -105,6 +105,9 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U44 | Vídeo | EM ALTA: Gemini novo pra pequeno negócio (20/10): manda logo e cores, mas ele copia até o erro | feito 23/10 (v18) |
 | U45 | Carrossel | EM ALTA: loja falsa na Black Friday, 5 sinais (Serasa: propaganda falsa +147% na semana da BF) | feito 23/10 (c20) |
 | U46 | Arte TikTok | Pesquisa o nome do teu negócio: Editar perfil direto no Google + horário da Black Friday (leva 1 a 2 dias) | feito 23/10 (t20) |
+| U47 | Vídeo | EM ALTA: Pix parcelado é empréstimo + regra nova do BC (23/10, vale jul/2027): autoriza antes, 24 h; quem vende recebe tudo na hora | feito 24/10 (v19) |
+| U48 | Carrossel | EM ALTA: o Natal do comércio já começou (Fecomércio RJ: 54% já fazem encomenda; fornecedor +8,4%) + 5 coisas pra fazer hoje | feito 24/10 (c21) |
+| U49 | Arte TikTok | EM ALTA: WhatsApp testando agendar mensagem (Android 12/10, iPhone 22/10) + pra que serve no negócio | feito 24/10 (t21) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -125,3 +128,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (23/10) Golpe do empréstimo com taxa adiantada (Procon de Tangará, 22/10) e e-mail falso do Procon-SP com multa (Procon-Bertioga, 21/10).
 - (23/10) Google Maps pedindo login pra ler todas as avaliações (desde 30/09, fontes de fora; conferir se vale no Brasil antes de usar).
 - (23/10) Instagram Plus (R$ 10/mês, desde junho): story anônimo, story de 48 h, 6 posts fixados. Não ajuda no alcance. Dá um "vale a pena?" se voltar pras notícias.
+- (24/10) BC também aprovou em 23/10: painel com todas as tuas dívidas (Res. 601, mar/2027) e bloqueio de oferta de crédito por ligação/mensagem (Res. 602, jul/2027). Bom pra "o BC vai deixar bloquear ligação de empréstimo".
+- (24/10) Golpe da taxa falsa dos Correios/alfândega pra Black Friday (Metrópoles; Procon Maringá). Rastrear só no app/site dos Correios.
+- (24/10) Instagram (19/10, SocialBee): perfil mostra "gerenciado por outra empresa"; Edits fazendo carrossel (iOS). Conferir se chegou no Brasil.
