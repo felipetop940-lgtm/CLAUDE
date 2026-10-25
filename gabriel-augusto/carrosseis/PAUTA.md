@@ -108,6 +108,9 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U47 | Vídeo | EM ALTA: Pix parcelado é empréstimo + regra nova do BC (23/10, vale jul/2027): autoriza antes, 24 h; quem vende recebe tudo na hora | feito 24/10 (v19) |
 | U48 | Carrossel | EM ALTA: o Natal do comércio já começou (Fecomércio RJ: 54% já fazem encomenda; fornecedor +8,4%) + 5 coisas pra fazer hoje | feito 24/10 (c21) |
 | U49 | Arte TikTok | EM ALTA: WhatsApp testando agendar mensagem (Android 12/10, iPhone 22/10) + pra que serve no negócio | feito 24/10 (t21) |
+| U50 | Vídeo | EM ALTA: Black Friday não é um dia (LWSA: 54% compram aos poucos, 20% no dia 27) + marca 4 sextas | feito 25/10 (v20) |
+| U51 | Carrossel | Bio do Instagram antes x depois: nome, 3 linhas, 1 link, destaques que respondem | feito 25/10 (c22) |
+| U52 | Arte TikTok | EM ALTA: BC vai deixar bloquear ligação de empréstimo (31/03/2027) + painel de dívidas (jul/2027) | feito 25/10 (t22) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -131,3 +134,7 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (24/10) BC também aprovou em 23/10: painel com todas as tuas dívidas (Res. 601, mar/2027) e bloqueio de oferta de crédito por ligação/mensagem (Res. 602, jul/2027). Bom pra "o BC vai deixar bloquear ligação de empréstimo".
 - (24/10) Golpe da taxa falsa dos Correios/alfândega pra Black Friday (Metrópoles; Procon Maringá). Rastrear só no app/site dos Correios.
 - (24/10) Instagram (19/10, SocialBee): perfil mostra "gerenciado por outra empresa"; Edits fazendo carrossel (iOS). Conferir se chegou no Brasil.
+- (25/10) TIM avisando de SMS falso de "CPF bloqueado" e portabilidade (25/10, região de Criciúma). Golpe do falso brinde em Orlândia/SP (R$ 36 mil).
+- (25/10) Golpe da "cobrança do WhatsApp": pedem Pix pra "liberar o app" usando a notícia da cobrança das empresas (só 1 fonte, E Agora 16/10; achar 2ª antes de usar).
+- (25/10) LWSA/Opinion Box: 63% usam IA (ChatGPT, Gemini) pra pesquisar produto; 45% são influenciados pelo resumo de IA no Google (só O Povo achado; conferir).
+- (25/10) Instagram: propaganda em live (Live Video Ads) liberada no Brasil desde 29/09 pra contas com +1 mil seguidores.

@@ -479,6 +479,17 @@ function prop(c, lt, t) {
           ${T.sub ? `<div style="padding:22px 40px 0;font-size:26px;line-height:1.35;color:#8696A0">${T.sub}</div>` : ''}
           <div style="padding-top:12px">${rows}</div>${pin}</div></div></div>`);
   }
+  if (p.tipo === 'barras') {
+    // barras de pesquisa enchendo no ritmo da fala: itens [{txt, pct, cor, em}] + rotulo + fonte
+    const inn = ease(lt / .6);
+    const rows = (p.itens || []).map((it, i) => { const v = ease((lt - quando(it.em)) / 1.1), col = C[it.cor] || it.cor || C.gold;
+      return `<div data-a="b${i + 1}" style="margin-top:${i ? 46 : 26}px;opacity:${clamp(v * 3)}">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;font-size:38px;font-weight:700;color:${C.white}"><span>${it.txt}</span><b style="font-family:Anton;font-size:76px;color:${col}">${it.rot || Math.round(it.pct * v) + '%'}</b></div>
+        <div style="margin-top:14px;height:34px;border-radius:18px;background:rgba(255,255,255,.08);overflow:hidden"><div style="width:${it.pct * v}%;height:100%;border-radius:18px;background:${col};box-shadow:0 0 30px ${col}"></div></div></div>`; }).join('');
+    return at(90, 640, `<div style="width:900px;padding:44px 48px;${card}opacity:${inn};transform:translateY(${(1 - inn) * 40}px)">
+      <div style="font-size:26px;font-weight:800;letter-spacing:.12em;color:${C.gray}">${p.rotulo || ''}</div>${rows}
+      ${p.fonte ? `<div style="margin-top:34px;font-size:24px;color:${C.gray}">${p.fonte}</div>` : ''}</div>`);
+  }
   if (p.tipo === 'link_montagem') {
     // o link vai sendo montado pedaço por pedaço, cada pedaço com uma explicação embaixo
     const partes = p.partes || [], CORES = [C.white, C.gold, C.blue, '#7CE0A0', C.red, '#C9A7FF'];

@@ -241,6 +241,8 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
                     pe = quando(c, s["pin_em"]) if s.get("pin_em") is not None else ts + .6
                     for q in range(6): put(tecla(), pe + q * 1.4 / 6, .45)
                     put(sino(1568, 1.6, 4), pe + 1.5, .32)
+        elif pr == "barras":
+            for j, q in enumerate(p.get("itens", [])): put(sino(notas[min(j, len(notas) - 1)], 1.6, 3.4), quando(c, q.get("em", .5)), .4)
         elif pr == "link_montagem":
             for j, q in enumerate(p.get("partes", [])): put(sino(notas[min(j, len(notas) - 1)], 1.6, 3.4), quando(c, q.get("em", .5)), .42)
         elif pr == "whatsapp":

@@ -1,0 +1,266 @@
+{
+  "titulo": "Black Friday não é um dia: marca 4 sextas",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "cenas": [
+    {
+      "fala": "Abre o calendário do celular e marca quatro sextas de novembro: seis, treze, vinte e vinte e sete.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Marca *4 sextas*",
+        "de novembro"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Novembro 📅",
+            "em": 0,
+            "sub": "Minha Black Friday",
+            "toque": 3,
+            "toque_em": 0.97,
+            "itens": [
+              [
+                "📅",
+                "Sexta, 6",
+                "1ª oferta",
+                "seis"
+              ],
+              [
+                "📅",
+                "Sexta, 13",
+                "2ª oferta",
+                "treze"
+              ],
+              [
+                "📅",
+                "Sexta, 20",
+                "3ª oferta",
+                "vinte"
+              ],
+              [
+                "🔥",
+                "Sexta, 27",
+                "Black Friday",
+                "sete"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "calendario",
+          "foco": "tela",
+          "zoom": 1.06,
+          "pose": "celular"
+        },
+        {
+          "em": "treze",
+          "pose": "apontando"
+        },
+        {
+          "em": "sete",
+          "foco": "item",
+          "zoom": 1.14,
+          "destaque": "item",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "Porque o povo não compra tudo num dia só. Numa pesquisa, mais da metade disse que vai comprar aos poucos, durante novembro. Só dois em cada dez deixam tudo pra sexta.",
+      "acento": "blue",
+      "fx": "flash",
+      "texto": [
+        "Não é *um dia só*"
+      ],
+      "prop": {
+        "tipo": "barras",
+        "rotulo": "QUEM VAI COMPRAR NA BLACK FRIDAY",
+        "fonte": "Pesquisa LWSA / Opinion Box, 2026",
+        "itens": [
+          {
+            "txt": "Compra aos poucos, em novembro",
+            "pct": 54,
+            "cor": "gold",
+            "em": "pesquisa"
+          },
+          {
+            "txt": "Deixa tudo pro dia 27",
+            "pct": 20,
+            "cor": "red",
+            "em": "dois"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "em": "pesquisa",
+          "foco": "b1",
+          "zoom": 1.08,
+          "destaque": "b1"
+        },
+        {
+          "em": "dois",
+          "foco": "b2",
+          "zoom": 1.08,
+          "destaque": "b2"
+        }
+      ]
+    },
+    {
+      "fala": "Então quem só aparece no dia vinte e sete chega atrasado. O cliente já comprou de quem apareceu antes.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Chegou",
+        "~atrasado~"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "Cliente",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "eu",
+            "txt": "Hoje é Black Friday! Tudo com desconto 🔥",
+            "em": "aparece"
+          },
+          {
+            "de": "cli",
+            "txt": "Ah, já comprei semana passada 😅",
+            "em": "comprou"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "aparece",
+          "foco": "msg1",
+          "zoom": 1.1,
+          "pose": "confiante"
+        },
+        {
+          "em": "comprou",
+          "foco": "msg2",
+          "zoom": 1.16,
+          "destaque": "msg2",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Faz assim: toda sexta, uma oferta pequena no status e no Instagram. E no dia vinte e sete, a maior de todas.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Faz *assim*"
+      ],
+      "prop": {
+        "tipo": "link_montagem",
+        "rotulo": "TODA SEXTA",
+        "partes": [
+          {
+            "txt": "Sextas ",
+            "rot": "6, 13 e 20: oferta pequena",
+            "em": "sexta"
+          },
+          {
+            "txt": "Status ",
+            "rot": "e Instagram",
+            "em": "status"
+          },
+          {
+            "txt": "Dia 27",
+            "rot": "a maior de todas",
+            "em": "vinte"
+          }
+        ]
+      },
+      "beats": [
+        {
+          "em": "sexta",
+          "foco": "r1",
+          "zoom": 1.08,
+          "destaque": "r1"
+        },
+        {
+          "em": "status",
+          "foco": "r2",
+          "zoom": 1.08,
+          "destaque": "r2"
+        },
+        {
+          "em": "maior",
+          "foco": "r3",
+          "zoom": 1.1,
+          "destaque": "r3"
+        }
+      ]
+    },
+    {
+      "fala": "Comenta o que você vende, que eu te dou uma ideia de oferta pra cada sexta. Salva e segue pra mais.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Comenta o que",
+        "*você vende*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Teu ramo 👇",
+        "sub": "Te dou a oferta de cada sexta",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "apontando",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "comenta",
+          "pose": "apontando"
+        },
+        {
+          "em": "ideia",
+          "pose": "ideia"
+        },
+        {
+          "em": "salva",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "Black Friday",
+      "~não é um dia~"
+    ],
+    "tamanho": 130,
+    "selo": "Marca essas 4 sextas",
+    "selo_y": 1450
+  }
+}
