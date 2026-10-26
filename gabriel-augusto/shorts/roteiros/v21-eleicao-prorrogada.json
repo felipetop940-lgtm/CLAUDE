@@ -13,7 +13,7 @@
   },
   "cenas": [
     {
-      "fala": "O Supremo deu duas horas a mais pra votar. Só que a maioria das urnas já tinha fechado.",
+      "fala": "O STF deu duas horas a mais pra votar. Só que a maioria das urnas já tinha fechado.",
       "texto": [
         "+2 horas"
       ],
@@ -28,7 +28,7 @@
         ]
       ],
       "enfase": [
-        "supremo",
+        "stf",
         "2 horas",
         "so que",
         "maioria",
@@ -68,49 +68,29 @@
         "chuva"
       ],
       "prop": {
-        "tipo": "cards",
-        "w": 830,
-        "x": 70,
-        "altura": 200,
+        "tipo": "pictos",
+        "selo": {
+          "txt": "1ª VEZ NO PAÍS INTEIRO",
+          "em": "primeira"
+        },
         "itens": [
           {
-            "icone": "🇧🇷",
-            "titulo": "1ª vez no país todo",
-            "txt": "Votação prorrogada no Brasil inteiro",
-            "cor": "gold",
-            "em": "primeira"
-          },
-          {
             "icone": "🚌",
-            "titulo": "Campanha do Lula",
-            "txt": "Faltou ônibus em cidades da Bahia e de São Paulo",
-            "cor": "red",
+            "txt": "Falta de ônibus",
+            "sub": "pedido da campanha do Lula",
             "em": "onibus"
           },
           {
             "icone": "🌧️",
-            "titulo": "Campanha do Flávio",
-            "txt": "Chuva e alagamento em SP, PR e SC",
-            "cor": "blue",
+            "txt": "Chuva e alagamento",
+            "sub": "pedido da campanha do Flávio",
             "em": "chuva"
           }
         ]
-      },
-      "beats": [
-        {
-          "em": "onibus",
-          "foco": "c2",
-          "zoom": 1.04
-        },
-        {
-          "em": "chuva",
-          "foco": "c3",
-          "zoom": 1.04
-        }
-      ]
+      }
     },
     {
-      "fala": "Quem decidiu foi o ministro Cristiano Zanin, do Supremo: votação até as sete da noite.",
+      "fala": "Quem decidiu foi o ministro Cristiano Zanin, do STF: votação até as sete da noite.",
       "texto": [
         "19h"
       ],
@@ -126,7 +106,8 @@
       ],
       "enfase": [
         "zanin",
-        "19h"
+        "19h",
+        "stf"
       ],
       "prop": {
         "tipo": "relogio",
@@ -162,46 +143,31 @@
         "normal"
       ],
       "prop": {
-        "tipo": "cards",
-        "w": 830,
-        "x": 70,
-        "altura": 200,
-        "itens": [
+        "tipo": "linha_tempo",
+        "de": 16,
+        "ate": 19,
+        "rotulo": "DOMINGO, 25/10",
+        "marcos": [
           {
-            "icone": "⏱️",
-            "titulo": "Aviso chegou tarde",
-            "txt": "A maioria das urnas já tava lacrada",
-            "cor": "red",
-            "em": "aviso"
-          },
-          {
+            "h": 17,
+            "txt": "URNAS FECHAM",
             "icone": "🔒",
-            "titulo": "Urna já fechada",
-            "txt": "Não abriu de novo. Os votos valeram normal.",
-            "cor": "red",
-            "em": "fechado"
+            "em": 0
           },
           {
+            "h": 17.9,
+            "txt": "AVISO CHEGA",
+            "icone": "⏱️",
+            "em": "chegou"
+          },
+          {
+            "h": 19,
+            "txt": "NOVO FIM",
             "icone": "🗳️",
-            "titulo": "Urna ainda aberta",
-            "txt": "Ficou recebendo voto até as 19h",
-            "cor": "gold",
             "em": "valeram"
           }
         ]
-      },
-      "beats": [
-        {
-          "em": "fechado",
-          "foco": "c2",
-          "zoom": 1.04
-        },
-        {
-          "em": "valeram",
-          "foco": "c3",
-          "zoom": 1.04
-        }
-      ]
+      }
     },
     {
       "fala": "E a contagem dos votos parou. Só voltou depois das sete.",
@@ -228,11 +194,12 @@
         "19h"
       ],
       "prop": {
-        "tipo": "apuracao",
+        "tipo": "anel",
         "pct": 0.25,
         "pausa_em": "parou",
         "volta_em": "voltou",
-        "sub": "das urnas contadas"
+        "sub": "DAS URNAS CONTADAS",
+        "volta_txt": "VOLTOU ÀS 19H"
       }
     },
     {
@@ -251,38 +218,26 @@
         "flavio"
       ],
       "prop": {
-        "tipo": "barras",
+        "tipo": "rosca",
         "rotulo": "VOTOS VÁLIDOS · 2º TURNO",
-        "fonte": "Fonte: TSE",
+        "centro": "TSE",
         "itens": [
           {
-            "txt": "Lula (PT)",
-            "pct": 51.8,
+            "txt": "LULA",
             "rot": "51,8%",
+            "pct": 51.8,
             "cor": "gold",
             "em": "lula"
           },
           {
-            "txt": "Flávio Bolsonaro (PL)",
-            "pct": 48.2,
+            "txt": "FLÁVIO",
             "rot": "48,2%",
+            "pct": 48.2,
             "cor": "blue",
             "em": "contra"
           }
         ]
-      },
-      "beats": [
-        {
-          "em": "lula",
-          "foco": "b1",
-          "zoom": 1.04
-        },
-        {
-          "em": "contra",
-          "foco": "b2",
-          "zoom": 1.04
-        }
-      ]
+      }
     },
     {
       "fala": "Gostou? Segue pra entender a notícia sem enrolação. E manda pra quem ficou perdido no domingo.",

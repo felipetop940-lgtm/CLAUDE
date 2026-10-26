@@ -31,8 +31,8 @@
         "acordou"
       ],
       "prop": {
-        "tipo": "cotacao",
-        "rotulo": "US$ 1 =",
+        "tipo": "linha",
+        "rotulo": "DÓLAR · US$ 1 EM REAIS",
         "min": 4.85,
         "max": 5.75,
         "pontos": [
@@ -44,22 +44,15 @@
           {
             "rot": "ABERTURA",
             "v": 5.42,
-            "em": "acordou"
+            "em": "segunda"
           },
           {
             "rot": "MANHÃ",
             "v": 5.6,
-            "em": "com"
+            "em": "ele"
           }
         ]
-      },
-      "beats": [
-        {
-          "em": "acordou",
-          "foco": "valor",
-          "zoom": 1.04
-        }
-      ]
+      }
     },
     {
       "fala": "Foi o primeiro dia depois da eleição. O mercado apostava no Flávio. Com o Lula reeleito, quem investe ficou com medo das contas do governo.",
@@ -87,46 +80,12 @@
         "medo"
       ],
       "prop": {
-        "tipo": "cards",
-        "w": 830,
-        "x": 70,
-        "altura": 200,
-        "itens": [
-          {
-            "icone": "🎯",
-            "titulo": "A aposta",
-            "txt": "O mercado esperava a vitória do Flávio",
-            "cor": "gold",
-            "em": "apostava"
-          },
-          {
-            "icone": "🗳️",
-            "titulo": "O resultado",
-            "txt": "Lula reeleito: a aposta virou",
-            "cor": "blue",
-            "em": "reeleito"
-          },
-          {
-            "icone": "😰",
-            "titulo": "O medo",
-            "txt": "Das contas do governo, dizem os analistas",
-            "cor": "red",
-            "em": "medo"
-          }
-        ]
-      },
-      "beats": [
-        {
-          "em": "reeleito",
-          "foco": "c2",
-          "zoom": 1.04
-        },
-        {
-          "em": "medo",
-          "foco": "c3",
-          "zoom": 1.04
-        }
-      ]
+        "tipo": "gauge",
+        "em": "medo",
+        "de": "CALMO",
+        "ate": "MEDO",
+        "rotulo": "O HUMOR DE QUEM INVESTE"
+      }
     },
     {
       "fala": "Aí todo mundo corre pro dólar. E quando muita gente quer a mesma coisa, o preço sobe.",
@@ -189,20 +148,44 @@
         "2020"
       ],
       "prop": {
-        "tipo": "queda_bolsa",
-        "em": "caiu",
-        "pausa_em": "parou",
-        "pausa_txt": "PAROU 30 MIN",
-        "pausa_sub": "1ª vez desde 2020",
-        "queda": "DESPENCOU"
-      },
-      "beats": [
-        {
-          "em": "parou",
-          "foco": "pausa",
-          "zoom": 1.04
+        "tipo": "linha",
+        "rotulo": "BOLSA (IBOVESPA)",
+        "mostrar_valor": false,
+        "min": 80,
+        "max": 104,
+        "pontos": [
+          {
+            "rot": "SEXTA",
+            "v": 100,
+            "em": 0
+          },
+          {
+            "rot": "",
+            "v": 101.5,
+            "em": 0
+          },
+          {
+            "rot": "",
+            "v": 99.5,
+            "em": 0
+          },
+          {
+            "rot": "",
+            "v": 100.5,
+            "em": 0
+          },
+          {
+            "rot": "SEGUNDA",
+            "v": 85,
+            "em": "caiu"
+          }
+        ],
+        "carimbo": {
+          "txt": "⏸ PAROU 30 MIN",
+          "sub": "1ª vez desde 2020",
+          "em": "parou"
         }
-      ]
+      }
     },
     {
       "fala": "E no teu bolso? O que tem dólar no preço tende a subir: celular, eletrônico, viagem e até o pãozinho, porque boa parte do trigo vem de fora.",
@@ -234,7 +217,8 @@
         "trigo"
       ],
       "prop": {
-        "tipo": "itens_sobe",
+        "tipo": "icones_sobe",
+        "rotulo": "TENDE A FICAR MAIS CARO",
         "itens": [
           [
             "📱",
@@ -280,25 +264,8 @@
         "susto"
       ],
       "prop": {
-        "tipo": "cards",
-        "w": 830,
-        "x": 70,
-        "itens": [
-          {
-            "icone": "📅",
-            "titulo": "Muda todo dia",
-            "txt": "O primeiro dia depois da eleição é o mais nervoso",
-            "cor": "blue",
-            "em": "muda"
-          },
-          {
-            "icone": "🧘",
-            "titulo": "Compra grande?",
-            "txt": "Acompanha uns dias antes de decidir",
-            "cor": "gold",
-            "em": "susto"
-          }
-        ]
+        "tipo": "onda",
+        "rotulo": "A COTAÇÃO MUDA TODO DIA"
       }
     },
     {
