@@ -1,12 +1,12 @@
-# Vídeo 22: "O dólar disparou" (modo PRETO: fundo 100% preto, sem boneco, texto cinético no meio)
+# Vídeo 22: "O dólar disparou" (motor CINÉTICO: fundo alternando preto e vermelho, legenda gigante palavra por palavra, motion graphics em vidro)
 
 Mesmo estilo novo do v21. Motion graphics: cotação contando 4,99 → 5,42 → 5,60 com gráfico, cartões do porquê, moedas indo do real pro dólar, bolsa despencando com carimbo de parada, itens que ficam mais caros. Os valores são do começo do pregão de segunda (26/10); o fechamento pode ser outro.
 
 ## Roteiro para gravar (sua voz)
 Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem explica pra um amigo, sem opinião.
 
-1. O dólar disparou nessa segunda. Na sexta, custava quatro e noventa e nove. Na segunda, abriu a cinco e quarenta e dois. E de manhã passou de cinco e sessenta.
-2. Por quê? O mercado apostava no Flávio. Com o Lula reeleito, quem investe ficou com medo das contas do governo.
+1. Quem foi dormir na sexta com o dólar a quatro e noventa e nove, acordou na segunda com ele a cinco e sessenta.
+2. Foi o primeiro dia depois da eleição. O mercado apostava no Flávio. Com o Lula reeleito, quem investe ficou com medo das contas do governo.
 3. Aí todo mundo corre pro dólar. E quando muita gente quer a mesma coisa, o preço sobe.
 4. A bolsa caiu tanto que parou por meia hora. Isso não acontecia desde dois mil e vinte.
 5. E no teu bolso? O que tem dólar no preço tende a subir: celular, eletrônico, viagem e até o pãozinho, porque boa parte do trigo vem de fora.
@@ -14,10 +14,10 @@ Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem exp
 7. Gostou? Segue pra entender a notícia sem enrolação. E se você tem negócio, no meu perfil tem o passo a passo pra ajustar teu preço.
 
 ## Título
-O dólar disparou depois da eleição. O que muda no teu bolso? 💵
+Dormiu com o dólar a R$ 4,99, acordou com ele a R$ 5,60 💵
 
 ## Legenda do post (TikTok / Reels)
-O dólar disparou nessa segunda 💵 Na sexta custava R$ 4,99. Abriu a semana a R$ 5,42 e de manhã passou de R$ 5,60.
+Quem foi dormir na sexta com o dólar a R$ 4,99, acordou na segunda com ele a R$ 5,60 💵 (abriu a R$ 5,42 e de manhã passou de R$ 5,60)
 
 Por quê? O mercado apostava na vitória do Flávio. Com o Lula reeleito, quem investe ficou com medo das contas do governo e correu pro dólar. Quando muita gente quer a mesma coisa, o preço sobe.
 

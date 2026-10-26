@@ -6,14 +6,14 @@ Saída: /tmp/previa_<roteiro>.jpg (folha com os quadros) — os tempos são esti
 """
 import json, os, subprocess, sys, tempfile
 from pathlib import Path
-from gerar import HERE, RESPIRO, tempos_palavras
+from gerar import HERE, RESPIRO, tempos_palavras, texto_legenda
 
 src = Path(sys.argv[1]).resolve(); n = int(sys.argv[2]) if len(sys.argv) > 2 else 2
 rot = json.loads(src.read_text()); cenas = rot["cenas"]; t = .5
 for i, c in enumerate(cenas):
     d = .36 * len(c["fala"].split()) + .3
     c["t0"] = round(t - (.35 if i else .5), 3); c["fala_t0"] = t
-    c["palavras"] = [p for p in tempos_palavras(c["fala"], t, d) if p["w"]]
+    c["palavras"] = [p for p in tempos_palavras(texto_legenda(rot, c), t, d) if p["w"]]
     t += d + RESPIRO + c.get("fim", 0)
 for a, b in zip(cenas, cenas[1:]): a["dur"] = round(b["t0"] - a["t0"], 3)
 rot["total"] = round(t, 2); cenas[-1]["dur"] = round(t - cenas[-1]["t0"], 3)

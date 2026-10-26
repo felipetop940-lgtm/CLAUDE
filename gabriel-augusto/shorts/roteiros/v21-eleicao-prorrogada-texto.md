@@ -1,23 +1,25 @@
-# Vídeo 21: "Eleição prorrogada" (modo PRETO: fundo 100% preto, sem boneco, texto cinético no meio)
+# Vídeo 21: "Eleição prorrogada" (motor CINÉTICO: fundo alternando preto e vermelho, legenda gigante palavra por palavra, motion graphics em vidro)
 
 Teste novo pedido em 26/10: palavras-chave enormes cortando no ritmo da fala (faixas vermelha/branca/preta/dourada/azul), motion graphics explicativo no meio (relógio 17h → 19h, cartões, apuração pausada, barras do resultado) e boneco pequeno no canto. Motor: `ferramentas/motor-dinamico.html`. Assunto de eleição, sem venda. Ajuste dele (26/10): texto no MEIO da tela, motion graphics menor em cima só complementando; sem falar de site no fim (ficava deslocado).
 
 ## Roteiro para gravar (sua voz)
 Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem conta a notícia pra um amigo, sem opinião.
 
-1. Domingo aconteceu uma coisa que nunca tinha acontecido no Brasil: a eleição pra presidente ganhou duas horas a mais.
-2. Era pra votação acabar às cinco da tarde. Mas as duas campanhas pediram mais tempo: uma por falta de ônibus, a outra por chuva e alagamento.
-3. Quem decidiu foi o ministro Cristiano Zanin, do Supremo: votação até as sete da noite, no país inteiro.
-4. Só que a decisão saiu tão em cima da hora que a maioria das urnas já tinha fechado. E essas não abriram de novo.
+1. O Supremo deu duas horas a mais pra votar. Só que a maioria das urnas já tinha fechado.
+2. Foi a primeira vez no país inteiro. As duas campanhas pediram mais tempo: uma por falta de ônibus, a outra por chuva e alagamento.
+3. Quem decidiu foi o ministro Cristiano Zanin, do Supremo: votação até as sete da noite.
+4. Mas o aviso chegou em cima da hora. Urna que já tinha fechado não abriu de novo, e os votos dela valeram normal.
 5. E a contagem dos votos parou. Só voltou depois das sete.
 6. No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois do Flávio.
 7. Gostou? Segue pra entender a notícia sem enrolação. E manda pra quem ficou perdido no domingo.
 
 ## Título
-Pela primeira vez, a eleição pra presidente ganhou 2 horas a mais ⏰
+O Supremo deu 2 horas a mais pra votar. Só que as urnas já tinham fechado ⏰
 
 ## Legenda do post (TikTok / Reels)
-Domingo aconteceu uma coisa que nunca tinha acontecido no Brasil: a votação do 2º turno foi prorrogada até as 19h no país inteiro ⏰
+O Supremo deu 2 horas a mais pra votar. Só que a maioria das urnas já tinha fechado ⏰
+
+Foi a primeira vez que a votação foi prorrogada no país inteiro.
 
 🚌 A campanha do Lula pediu mais tempo por falta de ônibus em cidades da Bahia e de São Paulo.
 🌧️ A do Flávio, por chuva e alagamento em SP, PR e SC.

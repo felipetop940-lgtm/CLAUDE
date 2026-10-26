@@ -119,6 +119,13 @@ def tempos_palavras(texto: str, t0: float, dur: float) -> list:
     return out
 
 
+def texto_legenda(rot: dict, c: dict) -> str:
+    """Fala como aparece na legenda: o roteiro pode trocar número falado por algarismo ("exibir": {"cinco e sessenta": "R$ 5,60"})."""
+    t = c["fala"]
+    for a, b in (rot.get("exibir") or {}).items(): t = t.replace(a, b)
+    return t
+
+
 def exibir(texto: str) -> str:
     """Valores por extenso viram algarismos na legenda."""
     for a, b in [("duzentos e cinquenta reais", "R$ 250"), ("trezentos e vinte reais", "R$ 320"), ("trezentos e trinta e oito reais", "R$ 338"),
@@ -204,6 +211,9 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
             if bt.get("destaque"): put(sino(notas[min(j, len(notas) - 1)] * 1.5, 1.8, 3.2), tb + .38, .32)
             if bt.get("pose") == "chocado": put(tensao(1.1), tb, .45)
             if bt.get("pose") == "comemorando": put(brilho(1175), tb + .05, .28)
+        # fundo trocando de cor (motor cinético): sopro + impacto grave
+        for j, (em, cor) in enumerate(c.get("fundo_cor", [])):
+            if j or em: tf = quando(c, em); put(ar(.4, 500, 7000), tf - .2, .45); put(sub(58, .8), tf + .02, .5)
         # texto cinético (modo dinâmico): cada palavra-chave tem seu golpe de som, baixinho
         for j, kw in enumerate(c.get("kw", [])):
             tk = quando(c, kw.get("em", 0)); f = kw.get("fx", "punch")
@@ -338,7 +348,7 @@ def main():
     for c, v in zip(cenas, vozes):
         d = len(v) / SR
         c["t0"] = round(t - (.35 if cortes else .5), 3); cortes.append(c["t0"])
-        c["fala_t0"] = t; c["palavras"] = tempos_palavras(c["fala"], t, d)
+        c["fala_t0"] = t; c["palavras"] = tempos_palavras(texto_legenda(rot, c), t, d)
         c["palavras"] = [p for p in c["palavras"] if p["w"]]
         t += d + RESPIRO + c.get("fim", 0)
     for a, b in zip(cenas, cenas[1:]): a["dur"] = round(b["t0"] - a["t0"], 3)

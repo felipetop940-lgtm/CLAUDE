@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Motor CINÉTICO — fundo preto/vermelho, legenda gigante palavra por palavra, motion graphics em vidro</title>
+<!--
+  MODELO DE VÍDEO CURTO 1080x1920 — narração + legenda palavra por palavra.
+  O gerador injeta o roteiro já com tempos: c.t0, c.dur e c.palavras = [{w, a, b}].
+  Áreas (seguras para TikTok/Reels):
+    120–200  perfil · 280–760 título · 800–1400 boneco/cena · 1450–1600 legenda
+  Marcações no título: ~vermelho~  *dourado*  _azul_  #faixa#  (valem para várias palavras)
+  Bonecos: pictogramas originais desenhados aqui (SVG), animados por articulações.
+  MODO DINÂMICO (26/10): palavras-chave gigantes cortando no ritmo da fala ("kw" por cena, faixa colorida em 250–640),
+  motion graphics explicativos no centro (670–1390) e boneco pequeno no canto. Roteiro: "motor": "motor-dinamico.html".
+-->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 700; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "CG"; font-style: italic; src: url("../../assets/fonts/cormorant-garamond-italic.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "Marker"; src: url("fontes/permanent-marker.woff2") format("woff2"); }
+:root { --gold: #D6B36C; --blue: #4F7BFF; --red: #FF4D5E; --white: #F5F6F8; --gray: #9BA2AE; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+body { font-family: "IT", sans-serif; color: var(--white); -webkit-font-smoothing: antialiased; }
+#world { position: absolute; inset: 0; transform-origin: 50% 50%; background: #040405; }
+.bg { position: absolute; inset: 0; pointer-events: none; }
+.beam { position: absolute; top: -300px; width: 900px; height: 2400px; filter: blur(40px); mix-blend-mode: screen; transform-origin: 50% 0; }
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); mix-blend-mode: screen; }
+.floor { position: absolute; left: -10%; right: -10%; bottom: -200px; height: 900px; background: radial-gradient(ellipse at 50% 30%, rgba(214,179,108,.10), transparent 60%); }
+.lines { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px); background-size: 100% 6px; opacity: .5; }
+.grain { position: absolute; inset: 0; opacity: .08; mix-blend-mode: screen; background-size: 256px 256px; }
+.vig { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 48%, transparent 40%, rgba(0,0,0,.8)); }
+.glow { position: absolute; width: 1300px; height: 1300px; left: -110px; top: -250px; border-radius: 50%; opacity: .16; mix-blend-mode: screen; }
+.spot { position: absolute; left: 50%; top: 1400px; width: 900px; height: 260px; margin-left: -450px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.10), transparent); }
+.layer { position: absolute; inset: 0; }
+#dust i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff; }
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+.progress { position: absolute; left: 70px; right: 70px; top: 92px; height: 6px; border-radius: 6px; background: rgba(255,255,255,.12); overflow: hidden; }
+.progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--blue), var(--gold)); transform-origin: 0 50%; }
+.handle { position: absolute; top: 126px; left: 0; right: 0; text-align: center; font-size: 30px; font-weight: 600; color: var(--gold); letter-spacing: .02em; }
+
+.txt { position: absolute; left: 50px; right: 50px; top: 390px; text-align: center; font-family: "Anton", sans-serif; text-transform: uppercase; line-height: 1.07; letter-spacing: .01em; text-shadow: 0 10px 34px rgba(0,0,0,.75); }
+.txt .ln { display: table; margin: 0 auto; }
+.w { display: inline-block; margin: 0 .1em; transform-origin: 50% 80%; }
+.w.gold, .w.red, .w.blue { font-family: "Marker", "Anton", sans-serif; font-size: 1.16em; letter-spacing: 0; }
+.w.gold { color: var(--gold); } .w.red { color: var(--red); } .w.blue { color: var(--blue); }
+.w.box { background: var(--white); color: #07080A; padding: 0 .2em; margin: .05em; text-shadow: none; }
+.hl { position: relative; }
+.hl::after { content: ""; position: absolute; left: -2px; right: -2px; bottom: .05em; height: .07em; border-radius: 4px; background: currentColor; transform-origin: 0 50%; transform: scaleX(var(--u, 0)); }
+.w.red.hl::after { display: none; }
+
+.subs { position: absolute; left: 60px; right: 60px; top: 1420px; text-align: center; font-family: "IT", sans-serif; font-weight: 800; text-transform: none; font-size: 50px; line-height: 1.2; }
+.subs span { display: inline-block; margin: 0 .11em; color: var(--white); text-shadow: 0 5px 0 #000, 0 0 26px rgba(0,0,0,.95); }
+.subs span.on { color: var(--gold); }
+.subs span.next { color: rgba(245,246,248,.55); }
+
+.label { position: absolute; transform: translateX(-50%); font-family: "CG", serif; font-style: italic; font-size: 62px; white-space: nowrap; text-shadow: 0 4px 20px #000; }
+svg { overflow: visible; }
+#bg, #grain, #glow, .spot, #dust, .vig, #stick, #labels, #fg, #mg { display: none !important; }
+#world { background: #000 !important; }
+#bgc { position: absolute; inset: 0; }
+#subs, #txt { display: none !important; }
+#kin { position: absolute; left: 0; right: 0; top: 0; height: 0; }
+.band { position: absolute; left: -60px; right: -60px; top: 770px; height: 390px; overflow: hidden; }
+#kin .kt { position: absolute; left: 0; right: 0; text-align: center; font-family: "Anton", sans-serif; text-transform: uppercase; line-height: .98; white-space: pre; padding-top: .04em; }
+#kin .ks { position: absolute; left: 0; right: 0; text-align: center; font-family: "IT", sans-serif; font-weight: 800; font-size: 38px; letter-spacing: .14em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div id="world">
+  <div class="layer" id="bgc"></div>
+  <div class="bg" id="bg"></div>
+  <div class="grain" id="grain"></div>
+  <div class="glow" id="glow"></div>
+  <div class="spot"></div>
+  <div class="layer" id="dust"></div>
+  <div class="vig"></div>
+  <svg class="layer" id="mg" viewBox="0 0 1080 1920" width="1080" height="1920"></svg>
+  <div class="layer" id="cam">
+    <div class="layer" id="props"></div>
+    <svg class="layer" id="hl" viewBox="0 0 1080 1920" width="1080" height="1920"></svg>
+  </div>
+  <svg class="layer" id="stick" viewBox="0 0 1080 1920" width="1080" height="1920"></svg>
+  <div class="layer" id="labels"></div>
+  <div class="txt" id="txt"></div>
+  <div id="kin"></div>
+  <svg class="layer" id="fg" viewBox="0 0 1080 1920" width="1080" height="1920"></svg>
+</div>
+<div class="subs" id="subs"></div>
+<div class="layer" id="trans" style="pointer-events:none"></div>
+<div class="progress"><i id="prog"></i></div>
+<div class="handle" id="handle"></div>
+<div class="flash" id="flash"></div>
+
+<script>
+const R = __ROTEIRO__;
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+const back = x => { x = clamp(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const easeIO = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const lerp = (a, b, k) => a + (b - a) * k;
+const C = { gold: '#D6B36C', blue: '#4F7BFF', red: '#FF4D5E', white: '#F5F6F8', gray: '#9BA2AE' };
+$('handle').textContent = R.perfil || '';
+
+// Granulado e poeira (estáticos, sementes fixas → quadros determinísticos)
+let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+(() => { const cv = document.createElement('canvas'); cv.width = cv.height = 256; const g = cv.getContext('2d'); const d = g.createImageData(256, 256);
+  for (let i = 0; i < d.data.length; i += 4) { const v = rnd() * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; }
+  g.putImageData(d, 0, 0); $('grain').style.backgroundImage = `url(${cv.toDataURL()})`; })();
+const DUST = Array.from({ length: 26 }, () => ({ x: rnd() * 1080, y: rnd() * 1920, s: .4 + rnd() * .9, v: 12 + rnd() * 30, o: .08 + rnd() * .25 }));
+$('dust').innerHTML = DUST.map(() => '<i></i>').join('');
+const BOKEH = Array.from({ length: 14 }, () => ({ x: rnd() * 1080, y: rnd() * 2200, r: 30 + rnd() * 90, v: 8 + rnd() * 18, o: (.10 + rnd() * .18).toFixed(2), bl: 6 + rnd() * 14, g: rnd() > .5 }));
+
+/* ---------------- Título cinético ---------------- */
+function buildText(c) {
+  const box = $('txt'); box.innerHTML = ''; box.style.fontSize = (c.tamanho || 120) + 'px'; c._words = [];
+  const CLS = { '*': 'gold', '~': 'red', '_': 'blue', '#': 'box' };
+  (c.texto || []).forEach(line => {
+    const ln = document.createElement('span'); ln.className = 'ln'; let open = null;
+    line.split(' ').forEach(tok => {
+      const w = document.createElement('span'); w.className = 'w'; let t = tok, mk = open;
+      if (!open && CLS[t[0]]) { mk = t[0]; t = t.slice(1); open = mk; }
+      const end = mk && t.match(new RegExp('\\' + mk + '([.,!?…:]*)$'));
+      if (end) { t = t.slice(0, end.index) + end[1]; open = null; }
+      if (mk) { w.classList.add(CLS[mk]); if (mk !== '#') w.classList.add('hl'); }
+      w.textContent = t; ln.appendChild(w); c._words.push(w);
+    });
+    box.appendChild(ln);
+  });
+  let fs = parseFloat(box.style.fontSize);
+  for (let k = 0; k < 25 && [...box.children].some(l => l.offsetWidth > 970); k++) { fs *= .94; box.style.fontSize = fs + 'px'; }
+}
+
+/* ---------------- Legenda (karaokê) ---------------- */
+function renderSubs(c, t) {
+  const box = $('subs'); const P = c.palavras || [];
+  if (!P.length) { box.innerHTML = ''; return; }
+  const chunks = []; let cur = [];
+  P.forEach((p, i) => { cur.push(i); if (cur.length >= 4 || /[.,!?:]$/.test(p.w)) { chunks.push(cur); cur = []; } });
+  if (cur.length) chunks.push(cur);
+  let idx = P.findIndex(p => t >= p.a && t < p.b);
+  if (idx < 0) { if (t < P[0].a) { box.innerHTML = ''; box.dataset.h = ''; return; } idx = P.length - 1; }
+  const ch = chunks.find(k => k.includes(idx));
+  const html = ch.map(i => `<span class="${i === idx ? 'on' : i > idx ? 'next' : ''}">${P[i].w}</span>`).join('');
+  if (box.dataset.h !== html) { box.innerHTML = html; box.dataset.h = html; }
+  const k = back((t - P[ch[0]].a) / .16);
+  box.style.transform = `translateY(${(1 - k) * 24}px) scale(${.9 + .1 * k})`; box.style.opacity = clamp(k * 2);
+}
+
+/* ---------------- Bonecos pictograma (originais) ---------------- */
+// Ângulos em graus, sempre "para fora do corpo": 0 = para baixo, 90 = horizontal para fora, 180 = para cima.
+// Valores negativos apontam para dentro (cruzando o corpo). O lado esquerdo é espelhado automaticamente.
+// a = braço esquerdo, b = braço direito: [ombro, cotovelo]. p = perna esquerda, q = perna direita: [quadril, joelho].
+const POSES = {
+  parado:      { h: 0,   t: 0,  a: [13, 0],     b: [13, 0],      p: [5, 0],   q: [5, 0] },
+  socando:     { h: -4,  t: 4,  a: [22, -172],  b: [90, 0],     p: [16, 0],  q: [18, -8] },     // guarda no queixo + soco para a direita
+  andando:     { h: -2,  t: 3,  a: [18, -10],   b: [-14, 6],    p: [22, -4], q: [-18, 26] },
+  pensando:    { h: 8,   t: 2,  a: [6, 0],      b: [60, 150],   p: [5, 0],   q: [5, 0] },       // mão no queixo
+  acenando:    { h: -4,  t: -2, a: [6, 0],      b: [140, 25],   p: [5, 0],   q: [5, 0] },
+  dancando:    { h: -8,  t: -5, a: [95, -40],   b: [150, 12],   p: [10, 0],  q: [36, 55] },
+  comemorando: { h: -10, t: 0,  a: [150, 10],   b: [150, 10],   p: [15, 0],  q: [15, 0] },      // braços em V
+  triste:      { h: 34,  t: 6,  a: [3, -4],     b: [3, -4],     p: [4, -5],  q: [4, -5] },      // cabisbaixo
+  chocado:     { h: -6,  t: 0,  a: [100, 105],  b: [100, 105],  p: [13, 0],  q: [13, 0] },      // mãos na cabeça
+  celular:     { h: 14,  t: 2,  a: [12, 0],     b: [36, 112],    p: [6, 0],   q: [6, 0] },       // celular numa mão, do lado do rosto
+  confiante:   { h: -6,  t: 0,  a: [26, -122],  b: [26, -116],  p: [11, 0],  q: [11, 0] },      // braços cruzados
+  apontando:   { h: -6,  t: -3, a: [8, 0],      b: [90, -4],    p: [9, 0],   q: [9, 0] },
+  ideia:       { h: -10, t: -2, a: [12, 0],     b: [158, 16],    p: [5, 0],   q: [5, 0] },       // dedo para cima
+  empurrando:  { h: 10,  t: 18, a: [-80, -5],   b: [80, 5],     p: [-8, -6], q: [34, 30] },
+  cintura:     { h: -6,  t: 0,  a: [40, -68],   b: [40, -68],   p: [13, 0],  q: [13, 0] },      // mãos na cintura
+};
+function mixPose(A, B, k) { const o = {}; for (const key in A) o[key] = Array.isArray(A[key]) ? A[key].map((v, i) => lerp(v, B[key][i], k)) : lerp(A[key], B[key], k); return o; }
+function limb(x, y, a1, a2, l1, l2) {
+  const r1 = a1 * Math.PI / 180, r2 = (a1 + a2) * Math.PI / 180;
+  const x1 = x + Math.sin(r1) * l1, y1 = y + Math.cos(r1) * l1;
+  return { d: `M${x} ${y} L${x1} ${y1} L${x1 + Math.sin(r2) * l2} ${y1 + Math.cos(r2) * l2}`, x2: x1 + Math.sin(r2) * l2, y2: y1 + Math.cos(r2) * l2 };
+}
+function figure(s, lt, t) {
+  if (s._pose) s = { ...s, pose: s._pose };
+  const S = s.escala || 1, base = s.y ?? 1400;
+  // entrada: pode chegar andando pela lateral
+  let cx = s.x ?? 540, walkK = 0;
+  if (s.entrada === 'andando') { const k = ease(lt / .9); cx = lerp(s.x < 540 ? -200 : 1280, s.x ?? 540, k); walkK = 1 - clamp((lt - .75) / .25); }
+  const inK = s.entrada === 'andando' ? 1 : back(lt / .38);
+  let P = s._P ? { ...s._P, a: [...s._P.a], b: [...s._P.b], p: [...s._P.p], q: [...s._P.q] } : mixPose(POSES.parado, POSES[s.pose] || POSES.parado, ease((lt - (s.entrada === 'andando' ? .8 : 0)) / .3));
+  if (walkK > 0) { const ph = Math.sin(lt * 14); P = mixPose(P, { ...POSES.andando, a: [16 * ph, -6], b: [-16 * ph, 6], p: [20 * ph, -Math.max(0, -ph) * 30], q: [-20 * ph, -Math.max(0, ph) * 30] }, walkK); }
+  const osc = Math.sin(t * 6);
+  if (s.pose === 'acenando') P.b = [P.b[0], P.b[1] + osc * 22];
+  if (s.pose === 'comemorando' || s.pose === 'dancando') { P.a[0] += osc * 8; P.b[0] += osc * 8; }
+  if (s.pose === 'socando') { const hit = Math.max(0, Math.sin(t * 7)); P.b = [P.b[0], P.b[1]]; cx += hit * 10 * S; }
+  if (s.pose === 'triste') P.h += Math.sin(t * 2.5) * 2;
+  // vivo: nunca parado. Braço "preso" (segurando algo/na cabeça) mexe pouco; braço livre gesticula como quem conversa.
+  const PRESO = { celular: 'b', pensando: 'b', chocado: 'ab', confiante: 'ab', cintura: 'ab' }[s.pose] || '';
+  const g1 = Math.sin(t * 1.5), g2 = Math.sin(t * 1.8 + 1.3), g3 = Math.sin(t * 1.3 + 2.1);   // calmo: gesto lento
+  if (!s.parado && !['acenando', 'comemorando', 'dancando', 'socando'].includes(s.pose)) {
+    if (!PRESO.includes('a')) { P.a = [P.a[0] + 6 + g1 * 7, P.a[1] - 8 + g2 * 9]; } else { P.a = [P.a[0] + g1 * 2, P.a[1] + g2 * 2]; }
+    if (!PRESO.includes('b')) { P.b = [P.b[0] + 5 + g2 * 6, P.b[1] - 6 + g3 * 8]; } else { P.b = [P.b[0] + g2 * 2, P.b[1] + g3 * 2]; }
+    P.h += Math.sin(t * 1.4) * 3; P.t += Math.sin(t * 1.1) * 2;
+    P.p = [P.p[0] + Math.max(0, Math.sin(t * 1.2)) * 6, P.p[1]]; P.q = [P.q[0] + Math.max(0, -Math.sin(t * 1.2)) * 6, P.q[1]];
+    cx += Math.sin(t * .8) * 6 * S; }
+  const hop = (s.pose === 'comemorando' || s.pose === 'dancando') ? Math.abs(Math.sin(t * 5)) * 30 * S : (s.parado ? 0 : Math.abs(Math.sin(t * 1.6)) * 4 * S);
+  const shake = s.pose === 'chocado' ? Math.sin(t * 60) * 3 * S : 0;
+  const L = 108 * S, W = 44 * S, HR = 58 * S, gap = 10 * S;
+  const hipY = base - 2 * L - hop, tr = P.t * Math.PI / 180;
+  const nx = cx + Math.sin(tr) * 1.42 * L + shake, ny = hipY - Math.cos(tr) * 1.42 * L + Math.sin(t * 3) * 2 * S;
+  const hr = (P.t + P.h) * Math.PI / 180;
+  const hx = nx + Math.sin(hr) * (HR + gap + W * .2), hy = ny - Math.cos(hr) * (HR + gap + W * .2);
+  const sh = ny + W * .35;
+  // lado esquerdo espelhado: ângulo positivo sempre abre para fora do corpo
+  const A = limb(nx - W * .25, sh, -P.a[0], -P.a[1], .9 * L, .82 * L);
+  const B = limb(nx + W * .25, sh, P.b[0], P.b[1], .9 * L, .82 * L);
+  const Lp = limb(cx - W * .28, hipY, -P.p[0], -P.p[1], L, L);
+  const Lq = limb(cx + W * .28, hipY, P.q[0], P.q[1], L, L);
+  const col = C[s.cor] || C.white;
+  let extra = '';
+  if (s.pose === 'celular') { const px = B.x2 + 8 * S, py = B.y2 - 40 * S, tap = Math.max(0, Math.sin(t * 5));
+    // celular na mão direita + bolhas de notificação subindo (movimento constante)
+    let pings = ''; for (let i = 0; i < 1; i++) { const ph = ((t * .45) % 1), y = py - 90 * S - ph * 230 * S, x = px + (i - 1) * 46 * S + Math.sin(t * 2 + i) * 10 * S, o = Math.sin(ph * Math.PI);
+      pings += `<g opacity="${o}" transform="translate(${x} ${y}) scale(${S * (.7 + .3 * o)})"><rect x="-34" y="-24" width="68" height="44" rx="16" fill="${i === 1 ? C.gold : C.blue}"/><path d="M-10 20 l-8 14 l20 -14z" fill="${i === 1 ? C.gold : C.blue}"/><circle cx="-14" cy="-2" r="5" fill="#0B0D11"/><circle cx="0" cy="-2" r="5" fill="#0B0D11"/><circle cx="14" cy="-2" r="5" fill="#0B0D11"/></g>`; }
+    extra = `<g transform="rotate(${-8 + Math.sin(t * 1.4) * 3} ${px} ${py})"><rect x="${px - 38 * S}" y="${py - 66 * S}" width="${76 * S}" height="${132 * S}" rx="${15 * S}" fill="#0B0D11" stroke="${C.white}" stroke-width="${6 * S}"/>
+      <rect x="${px - 28 * S}" y="${py - 54 * S}" width="${56 * S}" height="${100 * S}" rx="${7 * S}" fill="${C.blue}" opacity="${.55 + .25 * Math.sin(t * 4)}"/>
+      <circle cx="${px}" cy="${py + 10 * S}" r="${(10 + tap * 6) * S}" fill="#fff" opacity="${.25 * tap}"/></g>${pings}`; }
+  if (s.pose === 'socando') { const hk = Math.max(0, Math.sin(t * 7)); if (hk > .6) extra += [0, 1, 2].map(i => `<path d="M${B.x2 + 40 * S} ${B.y2 + (i - 1) * 34 * S} l${50 * S} ${(i - 1) * 16 * S}" stroke="${C.gold}" stroke-width="${8 * S}" stroke-linecap="round" opacity="${(hk - .6) * 2.5}"/>`).join(''); }
+  let emo = ''; const ek = back((lt - .35) / .4);
+  if (s.emocao === 'chuva') { let d = ''; for (let i = 0; i < 7; i++) { const dy = (t * 420 + i * 47) % 150;
+      d += `<line x1="${hx - 80 * S + i * 27 * S}" y1="${hy - 140 * S + dy}" x2="${hx - 86 * S + i * 27 * S}" y2="${hy - 118 * S + dy}" stroke="${C.blue}" stroke-width="${7 * S}" stroke-linecap="round" opacity="${1 - dy / 150}"/>`; }
+    emo = `<g opacity="${clamp(ek)}"><path d="M${hx - 118 * S} ${hy - 160 * S} a50 50 0 0 1 64 -58 a66 66 0 0 1 122 12 a44 44 0 0 1 22 82 Z" fill="#3A404C"/>${d}</g>`; }
+  if (s.emocao === 'exclamacao') emo = `<text x="${hx + 84 * S}" y="${hy - 30 * S}" font-family="Anton" font-size="${150 * S * clamp(ek, 0, 1.2)}" fill="${C.red}">!</text><text x="${hx - 150 * S}" y="${hy - 50 * S}" font-family="Anton" font-size="${110 * S * clamp(ek, 0, 1.2)}" fill="${C.red}" transform="rotate(-14 ${hx - 130 * S} ${hy - 90 * S})">!</text>`;
+  if (s.emocao === 'interrogacao') emo = `<text x="${hx + 84 * S}" y="${hy - 44 * S}" font-family="Anton" font-size="${150 * S * clamp(ek, 0, 1.2)}" fill="${C.gold}" transform="rotate(${osc * 8} ${hx + 100 * S} ${hy - 90 * S})">?</text>`;
+  if (s.emocao === 'lampada') { const on = lt > .5 ? 1 : 0, g = .5 + .5 * Math.sin(t * 6), x = B.x2, y = B.y2 - 70 * S;
+    emo = `<g transform="translate(${x} ${y}) scale(${S * clamp(ek)})"><circle r="${60 + 12 * g}" fill="${C.gold}" opacity="${on * .18}"/><path d="M-30 10 a36 36 0 1 1 60 0 q-10 12 -10 26 h-40 q0 -14 -10 -26Z" fill="${on ? C.gold : '#555'}"/><rect x="-18" y="42" width="36" height="14" rx="4" fill="#9BA2AE"/>${[0, 1, 2, 3, 4].map(i => { const a = (-150 + i * 30) * Math.PI / 180; return `<line x1="${Math.cos(a) * 58}" y1="${Math.sin(a) * 58 - 10}" x2="${Math.cos(a) * 80}" y2="${Math.sin(a) * 80 - 10}" stroke="${C.gold}" stroke-width="7" stroke-linecap="round" opacity="${on}"/>`; }).join('')}</g>`; }
+  if (s.emocao === 'brilho') [[-128, -100], [128, -130], [160, 20], [-160, 10]].forEach(([dx, dy], i) => { const k = (Math.sin(t * 8 + i * 1.7) + 1) / 2, r = (15 + k * 16) * S * clamp(ek), x = hx + dx * S, y = hy + dy * S;
+      emo += `<path d="M${x} ${y - r} Q${x} ${y} ${x + r} ${y} Q${x} ${y} ${x} ${y + r} Q${x} ${y} ${x - r} ${y} Q${x} ${y} ${x} ${y - r}Z" fill="${C.gold}"/>`; });
+  const bodyW = W * 1.25;
+  return `<g transform="translate(${cx} ${base}) scale(${s.espelho ? -inK : inK}, ${inK}) translate(${-cx} ${-base})">
+    <ellipse cx="${cx}" cy="${base + 6 * S}" rx="${105 * S}" ry="${13 * S}" fill="rgba(0,0,0,.7)"/>
+    <g stroke="${col}" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#sombra)">
+      <path d="${Lp.d}" stroke-width="${W}"/><path d="${Lq.d}" stroke-width="${W}"/>
+      <path d="M${cx} ${hipY - W * .1} L${nx} ${ny + W * .45}" stroke-width="${bodyW}"/>
+      <path d="${A.d}" stroke-width="${W * .92}"/><path d="${B.d}" stroke-width="${W * .92}"/>
+      <circle cx="${hx}" cy="${hy}" r="${HR}" fill="${col}" stroke="none"/>
+    </g>${extra}${emo}</g>`;
+}
+function drawFigures(c, lt, t) {
+  const list = !c.boneco ? [] : Array.isArray(c.boneco) ? c.boneco : [c.boneco];
+  $('stick').innerHTML = `<defs><filter id="sombra" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".7"/></filter></defs>` +
+    list.map((s, n) => figure(s, Math.max(0, lt - n * .15), t + n * .9)).join('');
+  $('labels').innerHTML = list.filter(s => s.rotulo).map(s => { const k = ease((lt - .2) / .35);
+    return `<div class="label" style="left:${s.x ?? 540}px;top:${(s.y ?? 1400) - 610 * (s.escala || 1) - 70}px;color:${C[s.corRotulo] || C.white};opacity:${k};transform:translateX(-50%) translateY(${(1 - k) * 16}px)">${s.rotulo}</div>`; }).join('');
+}
+
+/* ---------------- Ilustrações ---------------- */
+function prop(c, lt, t) {
+  const p = c.prop; if (!p) return '';
+  const k = back(lt / .45), f = ease(lt / .3), at = (x, y, h) => `<div style="position:absolute;left:${x}px;top:${y}px">${h}</div>`;
+  const card = 'background:linear-gradient(160deg, rgba(255,255,255,.10), rgba(0,0,0,.42));border:1.5px solid rgba(255,255,255,.22);border-radius:32px;box-shadow:0 30px 80px -30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.18);backdrop-filter:blur(18px);';
+  const sweep = (w, x) => `<div style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none"><div style="position:absolute;top:-20%;bottom:-20%;width:${w}px;left:${x}%;background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);transform:skewX(-18deg)"></div></div>`;
+  if (p.tipo === 'conta_off') {
+    // 1) aparelho entra girando em 3D · 2) perfil normal · 3) notificação desce · 4) falha digital · 5) conta desativada + rachadura com brilho
+    const inn = ease(lt / .7), glitch = lt > .9 && lt < 1.25, gk = glitch ? Math.sin(lt * 90) : 0;
+    const off = ease((lt - 1.2) / .35), crack = ease((lt - 1.35) / .45), notif = ease((lt - .45) / .35) * (1 - ease((lt - 1.15) / .2));
+    const ry = lerp(-38, -14, inn) + Math.sin(t * .9) * 4, rx = 6 + Math.sin(t * .7) * 3, fy = Math.sin(t * 1.4) * 10;
+    const posts = Array.from({ length: 9 }, (_, i) => `<div style="aspect-ratio:1;border-radius:6px;background:linear-gradient(${40 * i}deg, ${['#2B3A67', '#5A4A2E', '#23324F', '#3D2F4F', '#2E4A45', '#4A3A28', '#27365A', '#3A2A3A', '#2F3F55'][i]}, #11141a)"></div>`).join('');
+    return at(560, 790, `<div style="perspective:1400px;transform:translateY(${fy + (1 - inn) * 120}px);opacity:${inn}">
+      <div style="position:relative;width:360px;height:720px;border-radius:66px;padding:14px;background:linear-gradient(145deg,#3a404c,#0c0e12 45%,#262b34);box-shadow:0 60px 120px -30px #000, 0 0 0 2px rgba(255,255,255,.08), 0 0 90px -20px ${off > .1 ? 'rgba(255,77,94,.45)' : 'rgba(79,123,255,.35)'};transform:rotateY(${ry}deg) rotateX(${rx}deg) translateX(${gk * 8}px)">
+        <div style="position:absolute;right:-5px;top:170px;width:6px;height:90px;border-radius:4px;background:#2a2f38"></div>
+        <div style="position:absolute;left:-5px;top:150px;width:6px;height:60px;border-radius:4px;background:#2a2f38"></div>
+        <div style="position:relative;width:100%;height:100%;border-radius:54px;overflow:hidden;background:#0A0B0E">
+          <div style="position:absolute;left:50%;top:14px;width:110px;height:32px;margin-left:-55px;border-radius:20px;background:#000;z-index:5"></div>
+          <div style="position:absolute;inset:0;padding:70px 22px 0;filter:${glitch ? `hue-rotate(${gk * 90}deg) saturate(2)` : 'none'};transform:translateX(${gk * 6}px)">
+            <div style="display:flex;align-items:center;gap:16px"><div style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,${C.gold},${C.blue});padding:4px"><div style="width:100%;height:100%;border-radius:50%;background:#1b1f27"></div></div>
+              <div style="flex:1"><div style="height:14px;width:70%;border-radius:8px;background:rgba(255,255,255,.55)"></div><div style="height:10px;width:45%;margin-top:10px;border-radius:8px;background:rgba(255,255,255,.2)"></div></div></div>
+            <div style="display:flex;justify-content:space-around;margin:24px 0;font-size:20px;color:${C.gray};text-align:center"><div><b style="display:block;color:#fff;font-size:24px">248</b>posts</div><div><b style="display:block;color:#fff;font-size:24px">3,1k</b>seguid.</div><div><b style="display:block;color:#fff;font-size:24px">512</b>seguindo</div></div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px">${posts}</div>
+          </div>
+          ${glitch ? `<div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg, rgba(255,77,94,.18) 0 3px, transparent 3px 9px);mix-blend-mode:screen;transform:translateY(${gk * 20}px)"></div>` : ''}
+          <div style="position:absolute;left:12px;right:12px;top:${-110 + notif * 170}px;padding:16px 18px;border-radius:24px;background:rgba(40,44,54,.92);backdrop-filter:blur(8px);display:flex;gap:12px;align-items:center;font-size:18px;line-height:1.3;color:#fff;box-shadow:0 20px 40px -10px #000">
+            <div style="width:44px;height:44px;border-radius:12px;background:${C.red};display:grid;place-items:center;font-family:Anton;font-size:28px;flex-shrink:0">!</div><div><b>Aviso da plataforma</b><br><span style="color:${C.gray}">Sua conta foi suspensa</span></div></div>
+          <div style="position:absolute;inset:0;background:rgba(5,5,7,${.9 * off});display:grid;place-content:center;justify-items:center;gap:18px;text-align:center">
+            <div style="width:120px;height:120px;border-radius:50%;border:4px solid ${C.red};display:grid;place-items:center;font-family:Anton;font-size:74px;color:${C.red};opacity:${off};transform:scale(${back((lt - 1.25) / .4)});box-shadow:0 0 60px rgba(255,77,94,.5)">!</div>
+            <div style="font-family:Anton;font-size:44px;line-height:1.05;text-transform:uppercase;color:#fff;opacity:${off};transform:translateY(${(1 - off) * 20}px)">Conta<br><span style="color:${C.red}">desativada</span></div>
+            <div style="font-size:18px;color:${C.gray};opacity:${ease((lt - 1.6) / .3)}">0 seguidores · 0 clientes</div></div>
+          <svg style="position:absolute;inset:0" viewBox="0 0 332 692"><g stroke-linecap="round" fill="none" stroke-dasharray="1200" stroke-dashoffset="${1200 - 1200 * crack}">
+            <path d="M250 0 L200 140 L232 210 L160 330 L190 400 L120 540 L150 692" stroke="rgba(255,255,255,.9)" stroke-width="3"/>
+            <path d="M200 140 L120 170 M160 330 L60 360 M190 400 L270 470 M120 540 L40 600" stroke="rgba(255,255,255,.55)" stroke-width="2"/></g>
+            <path d="M250 0 L200 140 L232 210 L160 330 L190 400 L120 540 L150 692" stroke="rgba(255,77,94,.6)" stroke-width="10" fill="none" opacity="${crack * .5}" filter="blur(4px)"/></svg>
+          <div style="position:absolute;inset:0;background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.10) 45%, transparent 55%);transform:translateX(${Math.sin(t * .8) * 40}px)"></div>
+        </div></div></div>`); }
+  if (p.tipo === 'alugado') { const sign = back((lt - .8) / .4);
+    return at(170, 800, `<div style="position:relative;width:740px;height:600px;opacity:${f}">
+      <div style="position:absolute;left:110px;right:110px;bottom:40px;height:92px;border-radius:24px;background:#12151B;border:3px solid rgba(255,255,255,.14);display:grid;place-items:center;font-family:Anton;font-size:46px;letter-spacing:.08em;color:${C.gray}">INSTAGRAM</div>
+      <svg style="position:absolute;left:190px;bottom:132px;transform:scale(${k});transform-origin:50% 100%" width="360" height="320" viewBox="0 0 360 320"><path d="M30 150 L180 30 L330 150 V320 H30 Z" fill="#F5F6F8"/><rect x="145" y="210" width="70" height="110" rx="8" fill="#07080A"/><rect x="60" y="180" width="60" height="60" rx="6" fill="#07080A"/><rect x="240" y="180" width="60" height="60" rx="6" fill="#07080A"/></svg>
+      <div style="position:absolute;right:10px;top:50px;transform:rotate(${-8 + Math.sin(t * 4) * 3}deg) scale(${sign});transform-origin:50% 100%">
+        <div style="padding:14px 34px;background:${C.gold};color:#07080A;font-family:Anton;font-size:66px;text-transform:uppercase;box-shadow:0 20px 40px -10px #000">Alugado</div>
+        <div style="width:12px;height:190px;margin:0 auto;background:#8A6B3A"></div></div></div>`); }
+  if (p.tipo === 'grafico') { const d = ease((lt - .2) / 1.8);
+    const pts = [[0, 70], [70, 50], [140, 78], [210, 58], [270, 110], [330, 190], [400, 250], [470, 320], [500, 330]];
+    const n = Math.max(2, Math.ceil(d * pts.length)), sub = pts.slice(0, n), last = sub[sub.length - 1];
+    const line = sub.map((q, i) => (i ? 'L' : 'M') + q[0] + ' ' + q[1]).join(' '), area = line + ` L${last[0]} 360 L0 360 Z`;
+    return at(450, 840, `<div style="position:relative;${card}width:580px;height:500px;padding:36px 40px;opacity:${f};transform:scale(${.9 + .1 * k})">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:28px;color:${C.gray};font-weight:600;letter-spacing:.04em">ALCANCE</span><span style="padding:8px 16px;border-radius:20px;background:rgba(255,77,94,.15);color:${C.red};font-weight:700;font-size:24px">▼ caindo</span></div>
+      <svg width="500" height="370" viewBox="-10 0 520 370" style="margin-top:14px"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.red}" stop-opacity=".45"/><stop offset="1" stop-color="${C.red}" stop-opacity="0"/></linearGradient></defs>
+        ${[90, 180, 270].map(y => `<line x1="0" x2="500" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.07)" stroke-dasharray="6 8"/>`).join('')}
+        <path d="${area}" fill="url(#ga)"/><path d="${line}" stroke="${C.red}" stroke-width="16" fill="none" opacity=".25" stroke-linecap="round" stroke-linejoin="round" filter="blur(6px)"/>
+        <path d="${line}" stroke="${C.red}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="${last[0]}" cy="${last[1]}" r="${12 + 4 * Math.sin(t * 8)}" fill="${C.red}"/><circle cx="${last[0]}" cy="${last[1]}" r="${26 + 10 * ((t * 1.5) % 1)}" fill="none" stroke="${C.red}" stroke-width="3" opacity="${1 - (t * 1.5) % 1}"/></svg></div>`); }
+  if (p.tipo === 'busca') { const q = p.consulta, n = Math.floor(clamp((lt - .1) / 1.2) * q.length);
+    const res = (p.res || [['Perfil sem site', 'red', '✕'], ['Sem avaliações', 'red', '✕'], ['Site profissional', 'gold', '✓']]).map(r => [r[0], C[r[1]] || r[1], r[2]]);   // "res": [[texto, cor, ícone]]
+    return at(100, 840, `<div style="width:880px;opacity:${f};transform:translateY(${Math.sin(t * 1.2) * 6}px)">
+      <div data-a="q" style="height:116px;border-radius:60px;border:2px solid rgba(255,255,255,.18);background:linear-gradient(160deg, rgba(34,38,48,.85), rgba(12,14,18,.92));box-shadow:0 30px 70px -30px #000, 0 0 0 6px rgba(79,123,255,.08);display:flex;align-items:center;padding:0 42px;font-size:42px;gap:20px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="${C.gold}" stroke-width="2.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>${q.slice(0, n)}<span style="width:4px;height:46px;background:${C.gold};opacity:${Math.floor(t * 3) % 2}"></span></div>
+      ${res.map((x, i) => { const kk = ease((lt - 1.5 - i * .4) / .35); return `<div data-a="res${i + 1}" style="position:relative;margin-top:22px;padding:28px 36px;${card}display:flex;justify-content:space-between;font-size:40px;font-weight:600;opacity:${kk};transform:translateX(${(1 - kk) * -60}px) scale(${i === 2 && lt > 2.6 ? 1 + .022 * (Math.sin((lt - 2.6) * 3.4 - Math.PI / 2) + 1) : 1});${i === 2 ? `border-color:rgba(214,179,108,${.55 + .45 * (Math.sin(lt * 3.4) + 1) / 2});box-shadow:0 0 ${40 + 50 * (Math.sin(lt * 3.4) + 1) / 2}px -6px rgba(214,179,108,${.35 + .4 * (Math.sin(lt * 3.4) + 1) / 2})` : ''}">${i === 2 ? sweep(160, ((lt - 2.3) * 90) % 200 - 40) : ''}<span style="color:${i === 2 ? C.white : C.gray}">${x[0]}</span><b style="color:${x[1]}">${x[2]}</b></div>`; }).join('')}</div>`); }
+  if (p.tipo === 'enquete') {
+    const btn = (txt, col, x, i) => { const kk = back((lt - .3 - i * .2) / .4), pulse = 1 + .05 * Math.sin(t * 8 + i * 3);
+      return `<div style="position:absolute;left:${x}px;top:0;width:290px;height:170px;border-radius:40px;background:${col};color:#07080A;display:grid;place-items:center;font-family:Anton;font-size:96px;transform:scale(${kk * pulse});box-shadow:0 20px 60px -10px ${col}">${txt}</div>`; };
+    return at(430, 880, `<div style="position:relative;width:620px;height:520px">${btn('SIM', C.gold, 0, 0)}${btn('NÃO', C.red, 320, 1)}
+      <div style="position:absolute;left:20px;top:250px;width:580px;padding:28px 34px;${card}display:flex;gap:22px;align-items:center;font-size:38px;font-weight:600;opacity:${ease((lt - .9) / .4)}">
+        <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="${C.white}" stroke-width="2" stroke-linejoin="round"><path d="M4 18.5V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H8L4 20.5Z"/></svg>
+        <span>Comenta <b style="color:${C.gold}">SIM</b> ou <b style="color:${C.red}">NÃO</b></span></div></div>`); }
+  if (p.tipo === 'site_celular') {
+    // celular premium mostrando um site real rolando (prova do trabalho)
+    const inn = p.continua ? 1 : ease(lt / .7), fy = Math.sin(t * 1.3) * 10, ry = lerp(-30, -10, inn) + Math.sin(t * .8) * 3;  // continua: sem nova entrada
+    const H = p.altura || 10588, stops = p.paradas || [0, 1150, 2750, 4400, 8000];
+    const seg = (c.dur - 1.2) / (stops.length - 1); const q = Math.max(0, lt - .6) / seg; const i0 = Math.min(stops.length - 2, Math.floor(q));
+    const y = lerp(stops[i0], stops[i0 + 1], easeIO(Math.min(1, (q - i0) * 1.6)));
+    return at(p.x ?? 540, p.y ?? 800, `<div style="perspective:1400px;transform:translateY(${fy + (1 - inn) * 140}px) scale(${p.escala ?? 1.15});transform-origin:50% 0;opacity:${inn}">
+      <div style="position:relative;width:380px;height:760px;border-radius:66px;padding:14px;background:linear-gradient(145deg,#3a404c,#0c0e12 45%,#262b34);box-shadow:0 60px 120px -30px #000, 0 0 0 2px rgba(255,255,255,.08), 0 0 110px -20px rgba(214,179,108,.45);transform:rotateY(${ry}deg) rotateX(6deg)">
+        <div style="position:relative;width:100%;height:100%;border-radius:54px;overflow:hidden;background:#07080A">
+          <div style="position:absolute;left:50%;top:14px;width:110px;height:32px;margin-left:-55px;border-radius:20px;background:#000;z-index:5"></div>
+          <img src="${p.img}" style="position:absolute;left:0;top:${50 - y * 352 / 584}px;width:352px">
+          <div style="position:absolute;inset:0;background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.08) 45%, transparent 55%);transform:translateX(${Math.sin(t * .8) * 40}px)"></div></div></div>
+      ${p.selo ? `<div style="position:absolute;left:-60px;top:${-40}px;padding:14px 26px;border-radius:40px;background:rgba(16,19,24,.92);border:2px solid rgba(214,179,108,.6);font-size:30px;font-weight:600;white-space:nowrap;opacity:${ease((lt - .5) / .4)};transform:translateY(${(1 - ease((lt - .5) / .4)) * 20}px)"><span style="color:${C.gold}">●</span> ${p.selo}</div>` : ''}</div>`);
+  }
+  if (p.tipo === 'preco') {
+    const v = Math.round((p.valor || 250) * ease((lt - .2) / 1.2)), glow = (Math.sin(lt * 3) + 1) / 2;
+    return at(90, 820, `<div style="width:900px;text-align:center">
+      <div style="font-family:Anton;font-size:60px;color:${C.gray};letter-spacing:.06em;opacity:${f}">A PARTIR DE</div>
+      <div style="font-family:Anton;font-size:250px;line-height:1;color:${C.white};text-shadow:0 0 ${40 + 40 * glow}px rgba(214,179,108,${.35 + .3 * glow});transform:scale(${.9 + .1 * k})"><span style="font-size:.4em;color:${C.gold};vertical-align:.9em;margin-right:14px">R$</span>${v}</div>
+      <div style="display:flex;justify-content:center;gap:22px;margin-top:40px">${(p.chips || []).map((x, i) => { const kk = back((lt - 1.2 - i * .25) / .4);
+        return `<div style="padding:20px 34px;${card}font-size:38px;font-weight:600;transform:scale(${kk});opacity:${clamp(kk)}"><span style="color:${C.gold}">✓</span> ${x}</div>`; }).join('')}</div></div>`);
+  }
+  if (p.tipo === 'site_desktop') {
+    // janela de navegador com o site no computador (zoom lento)
+    const inn = ease(lt / .7), z = 1 + .06 * ease(lt / c.dur), fy = Math.sin(t * 1.2) * 6;
+    return at(60, p.y || 700, `<div style="width:960px;transform:translateY(${(1 - inn) * 80 + fy}px) scale(${.96 + .04 * inn});opacity:${inn}">
+      <div style="border-radius:22px;overflow:hidden;background:#12151b;box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.08),0 0 110px -30px rgba(79,123,255,.5)">
+        <div style="display:flex;align-items:center;gap:12px;height:54px;padding:0 22px;background:#1b1f27">
+          <i style="width:14px;height:14px;border-radius:50%;background:#ff5f57"></i><i style="width:14px;height:14px;border-radius:50%;background:#febc2e"></i><i style="width:14px;height:14px;border-radius:50%;background:#28c840"></i>
+          <div style="flex:1;margin-left:20px;height:32px;border-radius:9px;background:#0e1116;color:${C.gray};font-size:20px;display:flex;align-items:center;padding-left:18px">🔒 ${p.url || ''}</div></div>
+        <div style="height:${p.altura || 600}px;overflow:hidden"><img src="${p.img}" style="width:960px;transform:scale(${z});transform-origin:30% 20%"></div></div>
+      ${p.selo ? `<div style="position:absolute;left:30px;top:-34px;padding:14px 26px;border-radius:40px;background:rgba(16,19,24,.92);border:2px solid rgba(214,179,108,.6);font-size:30px;font-weight:600;white-space:nowrap;opacity:${ease((lt - .5) / .4)}"><span style="color:${C.gold}">●</span> ${p.selo}</div>` : ''}</div>`);
+  }
+  if (p.tipo === 'plano') {
+    // card de plano: preço sobe contando, itens entram um a um (✓ incluso / ✕ não incluso)
+    const dest = !!p.destaque, v = Math.round((p.valor || 0) * ease((lt - .3) / 1));
+    const brd = dest ? `border:3px solid rgba(214,179,108,${.55 + .35 * (Math.sin(lt * 3.2) + 1) / 2});box-shadow:0 0 ${60 + 40 * (Math.sin(lt * 3.2) + 1) / 2}px rgba(214,179,108,.28), 0 30px 80px -30px #000;` : '';
+    const itens = (p.itens || []).map((x, i) => { const on = x[0] !== '✕', kk = ease((lt - .9 - i * .28) / .35);
+      return `<div style="display:flex;gap:22px;align-items:center;font-size:42px;font-weight:${on ? 600 : 500};color:${on ? C.white : 'rgba(245,246,248,.38)'};opacity:${kk};transform:translateX(${(1 - kk) * -30}px)">
+        <span style="width:54px;height:54px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:32px;${on ? `background:${C.gold};color:#07080A` : 'border:2px solid rgba(245,246,248,.25)'}">${on ? '✓' : '✕'}</span>${x.slice(1).trim()}</div>`; }).join('');
+    return at(110, 640, `<div style="width:860px;position:relative;padding:54px 60px 60px;${card}${brd}transform:translateY(${(1 - k) * 60}px) scale(${.94 + .06 * k});opacity:${f}">
+      ${dest ? sweep(160, ((lt - .4) * 60) % 240 - 80) : ''}
+      ${p.selo ? `<div style="position:absolute;top:-30px;left:60px;padding:12px 30px;border-radius:30px;background:linear-gradient(135deg,#E8CC8E,${C.gold} 45%,#B8924A);color:#07080A;font-family:Anton;font-size:34px;letter-spacing:.06em;text-transform:uppercase">${p.selo}</div>` : ''}
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px">
+        <div style="font-family:Anton;text-transform:uppercase;font-size:76px;line-height:1;color:${dest ? C.gold : C.white}">${p.nome}</div>
+        <div style="font-family:Anton;font-size:140px;line-height:.85;color:${C.white};text-shadow:0 0 50px rgba(214,179,108,.35)"><span style="font-size:.36em;color:${C.gold};vertical-align:1.3em;margin-right:8px">R$</span>${v}</div></div>
+      <div style="height:2px;background:rgba(255,255,255,.1);margin:40px 0 36px"></div>
+      <div style="display:grid;gap:26px">${itens}</div></div>`);
+  }
+  if (p.tipo === 'comparar') {
+    // Essencial + vídeo (riscado) × Premium com tudo
+    const a = ease((lt - .2) / .5), b = back((lt - 1.1) / .5), risco = ease((lt - 2.0) / .5), dif = back((lt - 2.5) / .5);
+    return at(90, 560, `<div style="width:900px;display:grid;gap:28px;text-align:center">
+      <div style="position:relative;padding:30px;${card}opacity:${a};transform:translateY(${(1 - a) * 40}px)">
+        <div style="font-size:40px;color:${C.gray};font-weight:600">${p.a || ''}</div>
+        <div style="position:relative;display:inline-block;font-family:Anton;font-size:104px;color:rgba(245,246,248,${1 - .5 * risco})">R$ ${p.va}
+          <div style="position:absolute;left:-10px;right:-10px;top:52%;height:10px;border-radius:6px;background:${C.red};transform:scaleX(${risco}) rotate(-6deg);transform-origin:0 50%"></div></div></div>
+      <div style="position:relative;padding:34px;${card}border:3px solid rgba(214,179,108,.8);box-shadow:0 0 90px rgba(214,179,108,.3);transform:scale(${b});opacity:${clamp(b)}">
+        ${sweep(160, ((lt - 1.2) * 60) % 240 - 80)}
+        <div style="font-size:40px;color:${C.gold};font-weight:700">${p.b || ''}</div>
+        <div style="font-family:Anton;font-size:136px;line-height:1.05;color:${C.white};text-shadow:0 0 50px rgba(214,179,108,.4)">R$ ${p.vb}</div>
+        <div style="font-size:36px;color:${C.white};opacity:.85">${p.sub || ''}</div></div>
+      <div style="font-family:Anton;text-transform:uppercase;font-size:58px;color:${C.gold};transform:scale(${dif});opacity:${clamp(dif)}">${p.dif || ''}</div></div>`);
+  }
+  if (p.tipo === 'passo') {
+    // passo numerado com trilha de progresso
+    const N = p.total || 4, n = p.n || 1, kk = back((lt - .15) / .5), tx = ease((lt - .5) / .45);
+    const dots = Array.from({ length: N }, (_, i) => { const done = i < n - 1, cur = i === n - 1;
+      return `<div style="width:${cur ? 120 : 26}px;height:26px;border-radius:13px;background:${done || cur ? C.gold : 'rgba(255,255,255,.15)'};box-shadow:${cur ? '0 0 30px rgba(214,179,108,.6)' : 'none'}"></div>`; }).join('');
+    const prog = ease(clamp(lt / Math.max(1, c.dur - .4))), CIRC = 2 * Math.PI * 150;
+    return at(90, 650, `<div style="width:900px;text-align:center">
+      <svg width="340" height="340" style="position:absolute;left:280px;top:-45px;transform:rotate(-90deg) scale(${kk})"><circle cx="170" cy="170" r="150" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="10"/>
+        <circle cx="170" cy="170" r="150" fill="none" stroke="${C.gold}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${CIRC}" stroke-dashoffset="${CIRC * (1 - prog)}" style="filter:drop-shadow(0 0 12px ${C.gold})"/></svg>
+      <div style="margin:0 auto;width:250px;height:250px;border-radius:50%;display:grid;place-items:center;font-family:Anton;font-size:170px;color:#07080A;
+        background:radial-gradient(circle at 35% 30%,#F1DDA8,${C.gold} 55%,#9C7A3A);box-shadow:0 0 ${80 + 30 * Math.sin(lt * 3)}px rgba(214,179,108,.5);transform:scale(${kk})">${n}</div>
+      <div data-a="texto" style="margin-top:60px;padding:44px 50px;${card}font-size:54px;font-weight:600;line-height:1.3;color:${C.white};opacity:${tx};transform:translateY(${(1 - tx) * 40}px)">${p.texto || ''}</div>
+      <div style="display:flex;justify-content:center;gap:16px;margin-top:56px">${dots}</div></div>`);
+  }
+
+  /* ---- Props explicativos, sincronizados com a fala ----
+     "em": número (fração da cena) ou palavra da fala (o elemento aparece quando ela é dita). */
+  const quando = ref => { if (typeof ref === 'number') return ref * c.dur;
+    const norm = x => x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9/?=]/g, '');
+    const w = (c.palavras || []).find(p => norm(p.w).startsWith(norm(String(ref)))); return w ? w.a - c.t0 : ((c.palavras || []).length ? .5 * c.dur : 0); };
+  /* ===== motion graphics do modo dinâmico (centro da tela, 670–1390) ===== */
+  const sh = 'box-shadow:0 40px 90px -30px #000, inset 0 1px 0 rgba(255,255,255,.08);';
+  const cardD = `background:linear-gradient(160deg, rgba(255,255,255,.10), rgba(0,0,0,.42));border:1.5px solid rgba(255,255,255,.22);border-radius:36px;backdrop-filter:blur(18px);box-shadow:0 40px 90px -30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.18);`;
+  const fmt = (v, d = 2) => v.toFixed(d).replace('.', ',');
+  if (p.tipo === 'relogio') {
+    // relógio: o ponteiro anda de "de" até "ate" quando a palavra é dita; arco vermelho marca o tempo extra
+    const te = quando(p.em ?? .3), m = easeIO((lt - te) / 1.5), de = p.de ?? 17, ate = p.ate ?? 19, h = de + (ate - de) * m;
+    const ang = hh => ((hh % 12) / 12) * 360, a0 = ang(de), a1 = ang(h), R0 = 240, cx = 540, cy = 300, inn = back(lt / .5);
+    const pt = (a, r) => [cx + Math.sin(a * Math.PI / 180) * r, cy - Math.cos(a * Math.PI / 180) * r];
+    const [ax, ay] = pt(a0, R0 - 18), [bx, by] = pt(a1, R0 - 18), large = a1 - a0 > 180 ? 1 : 0;
+    const ticks = Array.from({ length: 60 }, (_, i) => { const [x1, y1] = pt(i * 6, R0 - 6), [x2, y2] = pt(i * 6, R0 - (i % 5 ? 22 : 46));
+      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${i % 5 ? 'rgba(255,255,255,.25)' : C.white}" stroke-width="${i % 5 ? 3 : 8}" stroke-linecap="round"/>`; }).join('');
+    const [hx, hy] = pt(a1, R0 * .52), [mx, my] = pt(m * 720, R0 * .78);
+    const hhmm = `${String(Math.floor(h)).padStart(2, '0')}:${String(Math.floor((h % 1) * 60)).padStart(2, '0')}`;
+    const badge = back((lt - te - 1.4) / .4);
+    return at(0, 700, `<div style="position:relative;width:1080px;height:680px;transform-origin:540px 300px;transform:scale(${inn})">
+      <svg width="1080" height="680" style="position:absolute;inset:0">
+        <circle cx="${cx}" cy="${cy}" r="${R0 + 30}" fill="rgba(10,11,15,.92)" stroke="rgba(255,255,255,.12)" stroke-width="3"/>
+        <circle cx="${cx}" cy="${cy}" r="${R0 + 30}" fill="none" stroke="${C.red}" stroke-width="3" opacity="${.25 + .25 * Math.sin(t * 3)}" style="filter:blur(6px)"/>
+        ${m > 0 ? `<path d="M${cx} ${cy} L${ax} ${ay} A${R0 - 18} ${R0 - 18} 0 ${large} 1 ${bx} ${by} Z" fill="${C.red}" opacity=".28"/>
+        <path d="M${ax} ${ay} A${R0 - 18} ${R0 - 18} 0 ${large} 1 ${bx} ${by}" fill="none" stroke="${C.red}" stroke-width="20" stroke-linecap="round" style="filter:drop-shadow(0 0 18px ${C.red})"/>` : ''}
+        ${ticks}
+        <line x1="${cx}" y1="${cy}" x2="${mx}" y2="${my}" stroke="${C.gray}" stroke-width="10" stroke-linecap="round"/>
+        <line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" stroke="${C.white}" stroke-width="18" stroke-linecap="round"/>
+        <circle cx="${cx}" cy="${cy}" r="18" fill="${C.red}"/></svg>
+      <div style="position:absolute;left:0;right:0;top:${cy + R0 + 52}px;text-align:center;font-family:Anton;font-size:96px;letter-spacing:.04em;color:${m > .02 ? C.red : C.white};text-shadow:0 0 40px rgba(0,0,0,.8)">${hhmm}</div>
+      ${badge > 0 ? `<div style="position:absolute;left:${cx + 150}px;top:${cy - R0 - 30}px;transform:scale(${badge}) rotate(8deg);padding:16px 30px;border-radius:24px;background:${C.gold};color:#07080A;font-family:Anton;font-size:64px;box-shadow:0 20px 50px rgba(214,179,108,.45)">${p.rot || '+2 HORAS'}</div>` : ''}</div>`);
+  }
+  if (p.tipo === 'cards') {
+    // cartões empilhados que entram no ritmo da fala: [{icone, titulo, txt, cor, em}]
+    const L = p.itens || [], H = p.altura || 230, gap = 28, y0 = p.y ?? (1030 - (L.length * H + (L.length - 1) * gap) / 2);
+    return L.map((it, i) => { const v = ease((lt - quando(it.em ?? i * .2)) / .45), col = C[it.cor] || it.cor || C.gold, dir = i % 2 ? 1 : -1;
+      if (v <= 0) return '';
+      return at(p.x ?? 90, y0 + i * (H + gap), `<div data-a="c${i + 1}" style="width:${p.w || 900}px;height:${H}px;display:flex;align-items:center;gap:34px;padding:0 40px;${cardD}border-left:12px solid ${col};opacity:${v};transform:translateX(${(1 - v) * dir * 160}px);filter:blur(${(1 - v) * 10}px)">
+        <div style="flex-shrink:0;width:128px;height:128px;border-radius:50%;display:grid;place-items:center;font-size:68px;background:${col}22;box-shadow:inset 0 0 0 3px ${col}">${it.icone || ''}</div>
+        <div><div style="font-family:Anton;font-size:${it.tam || 60}px;line-height:1;text-transform:uppercase;color:${col}">${it.titulo || ''}</div>
+        <div style="margin-top:12px;font-size:36px;line-height:1.25;font-weight:600;color:${C.white}">${it.txt || ''}</div></div></div>`); }).join('');
+  }
+  if (p.tipo === 'apuracao') {
+    // apuração travada: barra quase vazia + carimbo PAUSADA; depois "voltou"
+    const inn = ease(lt / .5), tp = quando(p.pausa_em ?? .4), tv = p.volta_em != null ? quando(p.volta_em) : 1e9;
+    const pk = back((lt - tp) / .35), vk = back((lt - tv) / .35), cresce = lt > tv ? ease((lt - tv) / 2.5) : 0;
+    const pct = p.pct ?? .25, w = Math.max(.6, pct) + cresce * 9;
+    return at(90, 760, `<div style="width:900px;padding:48px 50px 56px;${cardD}opacity:${inn};transform:translateY(${(1 - inn) * 40}px)">
+      <div style="font-size:30px;font-weight:800;letter-spacing:.14em;color:${C.gray}">${p.rotulo || 'APURAÇÃO DOS VOTOS'}</div>
+      <div style="display:flex;align-items:baseline;gap:20px;margin-top:20px"><b style="font-family:Anton;font-size:150px;line-height:1;color:${C.white}">${lt > tv ? '' : fmt(pct) + '%'}</b>
+        <span style="font-size:34px;color:${C.gray}">${lt > tv ? '' : p.sub || 'das urnas apuradas'}</span></div>
+      <div style="margin-top:28px;height:44px;border-radius:22px;background:rgba(255,255,255,.08);overflow:hidden"><div style="width:${w}%;height:100%;border-radius:22px;background:${lt > tv ? C.gold : C.red};box-shadow:0 0 30px ${lt > tv ? C.gold : C.red}"></div></div>
+      ${pk > 0 && lt < tv ? `<div data-a="pausa" style="position:absolute;right:60px;top:70px;transform:scale(${pk}) rotate(-10deg);padding:14px 28px;border:8px solid ${C.red};border-radius:20px;color:${C.red};font-family:Anton;font-size:84px;letter-spacing:.04em">⏸ ${p.pausa_txt || 'PAUSADA'}</div>` : ''}
+      ${vk > 0 && lt >= tv ? `<div data-a="volta" style="position:absolute;left:50px;right:50px;top:80px;transform:scale(${vk});text-align:center;font-family:Anton;font-size:100px;color:${C.gold}">▶ ${p.volta_txt || 'VOLTOU ÀS 19H'}</div>` : ''}</div>`);
+  }
+  if (p.tipo === 'cotacao') {
+    // cotação: número contando de um ponto pro outro + gráfico subindo, no ritmo da fala
+    const P = p.pontos || [], ts = P.map(q => quando(q.em ?? 0)); let i = 0; ts.forEach((x, j) => { if (lt >= x) i = j; });
+    const kk = i ? easeIO((lt - ts[i] + .1) / .45) : 1, v = i ? lerp(P[i - 1].v, P[i].v, kk) : P[0].v, v0 = P[0].v, up = v > v0 + .001;
+    const vmin = p.min ?? Math.min(...P.map(q => q.v)) - .1, vmax = p.max ?? Math.max(...P.map(q => q.v)) + .1, W = 800, Hh = 300;
+    const X = j => 50 + j * (W - 100) / Math.max(1, P.length - 1), Y = val => Hh - 30 - (val - vmin) / (vmax - vmin) * (Hh - 70);
+    let d = `M${X(0)} ${Y(P[0].v)}`; for (let j = 1; j <= i; j++) { const f = j === i ? kk : 1; d += ` L${lerp(X(j - 1), X(j), f)} ${lerp(Y(P[j - 1].v), Y(P[j].v), f)}`; }
+    const pts = P.map((q, j) => j > i ? '' : `<circle cx="${X(j)}" cy="${Y(q.v)}" r="${j === i ? 14 + 4 * Math.sin(t * 6) : 10}" fill="${j ? C.red : C.white}"/>
+      <text x="${X(j)}" y="${Hh + 26}" text-anchor="middle" font-family="IT" font-weight="800" font-size="26" letter-spacing="2" fill="${C.gray}">${q.rot || ''}</text>`).join('');
+    const pct = (v / v0 - 1) * 100, inn = ease(lt / .5), pulse = up ? 1 + .03 * Math.sin(t * 8) : 1;
+    return at(90, 690, `<div style="width:900px;padding:40px 50px 30px;${cardD}opacity:${inn};transform:translateY(${(1 - inn) * 40}px)">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:34px;font-weight:800;letter-spacing:.08em;color:${C.gray}">${p.rotulo || 'US$ 1 ='}</span>
+        ${up ? `<span data-a="pct" style="padding:10px 24px;border-radius:30px;background:${C.red};font-family:Anton;font-size:46px;color:${C.red === '#FFFFFF' ? '#C3101F' : '#fff'}">▲ +${fmt(pct, 1)}%</span>` : ''}</div>
+      <div data-a="valor" style="font-family:Anton;font-size:190px;line-height:1.05;color:${up ? C.red : C.white};transform:scale(${pulse});transform-origin:0 50%;text-shadow:0 0 ${up ? 60 : 0}px rgba(255,77,94,.45)">R$ ${fmt(v)}</div>
+      <svg width="${W}" height="${Hh + 40}" style="margin-top:6px"><path d="${d}" fill="none" stroke="${C.red}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 14px ${C.red})"/>${pts}</svg></div>`);
+  }
+  if (p.tipo === 'fluxo') {
+    // dinheiro saindo de um lado e indo pro outro (moedas em arco): mostra "todo mundo correndo pro dólar"
+    const te = quando(p.em ?? .2), on = lt > te, inn = ease(lt / .5), cresce = on ? ease((lt - te) / 3) : 0;
+    const box = (x, lbl, col, s) => `<div style="position:absolute;left:${x}px;top:110px;width:300px;height:300px;border-radius:40px;${cardD}display:grid;place-items:center;transform:scale(${s});border-color:${col}">
+      <div style="font-family:Anton;font-size:110px;color:${col}">${lbl}</div></div>`;
+    let coins = ''; if (on) for (let j = 0; j < 7; j++) { const ph = ((lt - te) * .9 + j / 7) % 1; if (lt - te < j * .14) continue;
+      const x = lerp(250, 830, ph), y = 260 - Math.sin(ph * Math.PI) * 300, o = Math.sin(ph * Math.PI);
+      coins += `<div style="position:absolute;left:${x - 44}px;top:${y - 44}px;width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE6A6,${C.gold} 60%,#8A6A2C);display:grid;place-items:center;font-family:Anton;font-size:40px;color:#3A2A08;opacity:${o};transform:rotate(${ph * 360}deg)">$</div>`; }
+    const seta = on ? back((lt - te - .8) / .5) : 0;
+    return at(0, 760, `<div style="position:relative;width:1080px;height:560px;opacity:${inn}">${box(100, p.de || 'R$', C.white, 1 - .12 * cresce)}${box(680, p.para || 'US$', C.gold, 1 + .14 * cresce)}${coins}
+      ${seta > 0 ? `<div style="position:absolute;left:0;right:0;top:455px;text-align:center;transform:scale(${seta})"><span style="display:inline-block;padding:16px 34px;border-radius:26px;background:${C.red};font-family:Anton;font-size:56px;color:${C.red === '#FFFFFF' ? '#C3101F' : '#fff'};letter-spacing:.02em">${p.txt || 'MAIS GENTE QUER ▶ PREÇO SOBE'}</span></div>` : ''}
+      <div style="position:absolute;left:100px;width:300px;top:40px;text-align:center;font-size:30px;font-weight:800;letter-spacing:.1em;color:${C.gray}">${p.rot_de || 'VENDE REAL'}</div>
+      <div style="position:absolute;left:680px;width:300px;top:40px;text-align:center;font-size:30px;font-weight:800;letter-spacing:.1em;color:${C.gold}">${p.rot_para || 'COMPRA DÓLAR'}</div></div>`);
+  }
+  if (p.tipo === 'queda_bolsa') {
+    // bolsa despencando + carimbo de parada
+    const tq = quando(p.em ?? .2), tp = quando(p.pausa_em ?? .6), inn = ease(lt / .5), W = 800, Hh = 360;
+    const base = [.30, .34, .31, .36, .33, .37, .35], q = clamp((lt - tq) / 1.1), drop = easeIO(q);
+    let d = ''; base.forEach((y, j) => { d += `${j ? 'L' : 'M'}${40 + j * 70} ${y * Hh}`; });
+    const lastX = 40 + 6 * 70, endX = lastX + 300 * drop, endY = .36 * Hh + (.92 - .36) * Hh * drop; d += ` L${endX} ${endY}`;
+    const pk = back((lt - tp) / .35);
+    return at(90, 740, `<div style="width:900px;padding:40px 50px;${cardD}opacity:${inn};transform:translateY(${(1 - inn) * 40}px);position:relative">
+      <div style="display:flex;justify-content:space-between"><span style="font-size:34px;font-weight:800;letter-spacing:.1em;color:${C.gray}">${p.rotulo || 'BOLSA (IBOVESPA)'}</span>
+        ${q > 0 ? `<span style="font-family:Anton;font-size:52px;color:${C.red}">▼ ${p.queda || 'DESPENCOU'}</span>` : ''}</div>
+      <svg width="${W}" height="${Hh}" style="margin-top:20px"><path d="${d}" fill="none" stroke="${q > 0 ? C.red : C.white}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 14px ${C.red})"/>
+        <circle cx="${endX}" cy="${endY}" r="${12 + 4 * Math.sin(t * 7)}" fill="${C.red}"/></svg>
+      ${pk > 0 ? `<div data-a="pausa" style="position:absolute;left:120px;top:150px;transform:scale(${pk}) rotate(-8deg);padding:16px 30px;background:rgba(5,5,7,.88);border:8px solid ${C.red};border-radius:22px;text-align:center">
+        <div style="font-family:Anton;font-size:96px;line-height:1;color:${C.red}">⏸ ${p.pausa_txt || 'PAROU 30 MIN'}</div><div style="margin-top:8px;font-size:34px;font-weight:700;color:${C.white}">${p.pausa_sub || ''}</div></div>` : ''}</div>`);
+  }
+  if (p.tipo === 'itens_sobe') {
+    // grade de itens; cada um ganha seta vermelha "subiu" quando é falado
+    const L = p.itens || [];
+    return L.map((it, j) => { const te = quando(it[2] ?? j * .2), v = back((lt - te) / .45), ar = back((lt - te - .25) / .4), x = 70 + (j % 2) * 420, y = 700 + Math.floor(j / 2) * 320;
+      if (v <= 0) return '';
+      return at(x, y, `<div data-a="i${j + 1}" style="width:400px;height:290px;${cardD}display:flex;flex-direction:column;align-items:center;justify-content:center;transform:scale(${clamp(v, 0, 1.2)});position:relative">
+        <div style="font-size:110px;line-height:1">${it[0]}</div><div style="margin-top:14px;font-family:Anton;font-size:50px;text-transform:uppercase;color:${C.white}">${it[1]}</div>
+        ${ar > 0 ? `<div style="position:absolute;right:22px;top:18px;transform:scale(${ar});font-family:Anton;font-size:64px;color:${C.red};text-shadow:0 0 24px rgba(255,77,94,.6)">▲</div>` : ''}</div>`); }).join('');
+  }
+  const fone = (inner, nome, hora) => { const inn = ease(lt / .7);
+    return `<div style="width:680px;height:760px;border-radius:70px;padding:16px;background:linear-gradient(145deg,#2a2f3a,#0c0e12);box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.08),0 0 80px rgba(79,123,255,.16);transform:translateY(${(1 - inn) * 60}px);opacity:${inn}">
+      <div style="position:relative;height:100%;border-radius:56px;overflow:hidden;background:#0B141A;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:20px;padding:40px 34px 24px;background:#1F2C34">
+          <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#3a404c,#1a1e25);display:grid;place-items:center;font-size:36px">🏪</div>
+          <div style="flex:1"><div style="font-size:36px;font-weight:700;color:#E9EDEF">${nome || 'Sua loja'}</div><div style="font-size:26px;color:#25D366">online</div></div>
+          ${hora ? `<div data-a="hora" style="padding:8px 18px;border-radius:20px;background:rgba(79,123,255,.18);border:2px solid rgba(79,123,255,.5);font-size:28px;font-weight:700;color:#C9D6FF">${hora}</div>` : ''}</div>
+        ${inner}</div></div>`; };
+  if (p.tipo === 'chat_demo') {
+    // conversa que acontece no ritmo da fala: mensagem do cliente, resposta (automática ou não), digitação no campo e etiqueta explicando
+    const bolhas = (p.msgs || []).map((m, mi) => { const t0 = quando(m.em), eu = m.de !== 'cli', kk = back((lt - t0) / .45), typing = !eu && lt > t0 - .8 && lt < t0;
+      if (lt < t0 - .8 || (eu && lt < t0)) return '';
+      const tag = m.tag && lt > t0 + .35 ? `<div style="margin-top:12px;display:flex;justify-content:flex-end"><span data-a="tag" style="padding:10px 22px;border-radius:30px;background:${C.gold};color:#07080A;font-size:28px;font-weight:800;opacity:${ease((lt - t0 - .35) / .4)};transform:translateY(${(1 - ease((lt - t0 - .35) / .4)) * 12}px)">${m.tag}</span></div>` : '';
+      return `<div style="margin-top:22px"><div style="display:flex;justify-content:${eu ? 'flex-end' : 'flex-start'}">${typing ? `<div data-a="msg${mi + 1}" style="padding:22px 30px;border-radius:26px;background:#1F2C34;font-size:40px;color:${C.gray}">• • •</div>` :
+        `<div data-a="msg${mi + 1}" style="max-width:540px;padding:22px 30px;border-radius:26px;${eu ? 'border-bottom-right-radius:6px;background:#005C4B' : 'border-bottom-left-radius:6px;background:#1F2C34'};font-size:35px;line-height:1.3;color:#E9EDEF;transform:scale(${kk});transform-origin:${eu ? '100%' : '0%'} 100%;opacity:${clamp(kk)};${m.tag ? `box-shadow:0 0 0 3px ${C.gold}` : ''}">${m.txt}</div>`}</div>${tag}</div>`; }).join('');
+    let campo = '<span style="color:#8696A0">Mensagem</span>', sugest = '';
+    if (p.digitar) { const d0 = quando(p.digitar.em), n = Math.floor(clamp((lt - d0) / (p.digitar.txt.length * .14)) * p.digitar.txt.length);
+      if (lt > d0) campo = `<span style="color:#E9EDEF">${p.digitar.txt.slice(0, n)}</span><span style="color:${C.gold};opacity:${Math.sin(t * 8) > 0 ? 1 : 0}">|</span>`;
+      if (p.digitar.vira && lt > quando(p.digitar.vira.em)) { const v = ease((lt - quando(p.digitar.vira.em)) / .5);
+        sugest = `<div data-a="sugest" style="position:absolute;left:24px;right:24px;bottom:120px;padding:22px 26px;border-radius:24px;background:#1F2C34;border:3px solid ${C.gold};font-size:32px;line-height:1.3;color:#E9EDEF;opacity:${v};transform:translateY(${(1 - v) * 30}px)"><div style="font-size:24px;font-weight:800;color:${C.gold};margin-bottom:8px">${p.digitar.txt} → resposta pronta</div>${p.digitar.vira.txt}</div>`; } }
+    if (p.preenchido) { const f0 = quando(p.preenchido.em), v = ease((lt - f0) / .5);
+      if (lt > f0) campo = `<span style="color:#E9EDEF;opacity:${v}">${p.preenchido.txt}</span>`;
+      if (lt > f0 + .6) sugest = `<div style="position:absolute;right:30px;bottom:200px;padding:10px 22px;border-radius:30px;background:${C.gold};color:#07080A;font-size:28px;font-weight:800;opacity:${ease((lt - f0 - .6) / .4)}">já vem escrito ✓</div>`; }
+    const inner = `<div style="flex:1;padding:10px 30px">${bolhas}</div>${sugest}
+      <div style="display:flex;align-items:center;gap:16px;padding:18px 22px 28px"><div data-a="campo" style="flex:1;min-height:76px;padding:18px 26px;border-radius:40px;background:#1F2C34;font-size:32px;line-height:1.25">${campo}</div>
+      <div style="width:76px;height:76px;border-radius:50%;background:#00A884;display:grid;place-items:center;font-size:34px;color:#fff">➤</div></div>`;
+    return at(p.x ?? 200, 640, fone(inner, p.nome, p.hora));
+  }
+  if (p.tipo === 'avaliacao') {
+    // avaliação do Google (tema escuro do Maps) + resposta do proprietário montada parte por parte no ritmo da fala
+    const inn = ease(lt / .7), rv = p.rev || {}, rs = p.resp, est = rv.estrelas || 1;
+    const stars = [1, 2, 3, 4, 5].map(i => `<span style="color:${i <= est ? '#FBBC04' : '#5F6368'}">★</span>`).join('');
+    let resp = '';
+    if (rs) { const partes = rs.partes || [], t0 = quando(rs.em ?? partes[0]?.em ?? .3);
+      if (lt > t0) { let atual = -1; partes.forEach((q, i) => { if (lt >= quando(q.em ?? rs.em)) atual = i; });
+        const txt = partes.map((q, i) => { const v = ease((lt - quando(q.em ?? rs.em)) / .45); if (v <= 0) return '';
+          return `<span data-a="r${i + 1}" style="display:block;margin-top:${i ? 8 : 0}px;opacity:${v};${partes.length > 1 && i === atual ? `color:#fff;text-shadow:0 0 18px rgba(214,179,108,.55)` : ''}">${q.txt} </span>`; }).join('');
+        const v = ease((lt - t0) / .5), cor = rs.ruim ? C.red : C.gold;
+        const tag = rs.tag && lt > (rs.tag_em != null ? quando(rs.tag_em) : t0 + .6) ? (() => { const tv = ease((lt - (rs.tag_em != null ? quando(rs.tag_em) : t0 + .6)) / .4);
+          return `<div style="margin-top:20px"><span data-a="tag" style="display:inline-block;padding:10px 22px;border-radius:30px;background:${cor};color:${rs.ruim ? '#fff' : '#07080A'};font-size:28px;font-weight:800;opacity:${tv};transform:translateY(${(1 - tv) * 12}px)">${rs.tag}</span></div>`; })() : '';
+        resp = `<div style="margin-top:26px;opacity:${v};transform:translateY(${(1 - v) * 24}px)"><div data-a="resp" style="padding:24px 28px;border-radius:22px;background:#2B2C30;border-left:6px solid ${cor}">
+          <div style="font-size:26px;font-weight:700;color:#9AA0A6;margin-bottom:10px">Resposta do proprietário</div>
+          <div style="font-size:33px;line-height:1.35;color:#E8EAED">${txt}</div></div>${tag}</div>`; } }
+    const r0 = quando(rv.em ?? .02), rk = back((lt - r0) / .45);
+    return at(p.x ?? 30, p.y ?? 640, `<div style="width:${p.w || 700}px;padding:34px 34px 38px;border-radius:40px;background:#202124;box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.08),0 0 80px rgba(79,123,255,.14);transform:translateY(${(1 - inn) * 60}px);opacity:${inn}">
+      <div style="display:flex;align-items:center;gap:16px;padding-bottom:22px;border-bottom:2px solid #3C4043"><span style="font-size:34px">📍</span>
+        <div style="flex:1"><div style="font-size:34px;font-weight:700;color:#E8EAED">${p.negocio || 'Sua empresa'}</div><div style="font-size:24px;color:#9AA0A6">Avaliações no Google</div></div></div>
+      <div data-a="rev" style="margin-top:24px;opacity:${clamp(rk)};transform:scale(${.9 + .1 * clamp(rk)});transform-origin:0 0">
+        <div style="display:flex;align-items:center;gap:18px"><div style="width:64px;height:64px;border-radius:50%;background:${rv.cor || '#7E57C2'};display:grid;place-items:center;font-size:32px;font-weight:700;color:#fff">${(rv.nome || 'C')[0]}</div>
+          <div><div style="font-size:30px;font-weight:700;color:#E8EAED">${rv.nome || 'Cliente'}</div><div style="font-size:24px;color:#9AA0A6">${rv.quando || 'há 2 dias'}</div></div></div>
+        <div data-a="estrelas" style="display:inline-block;margin-top:14px;font-size:40px;letter-spacing:4px">${stars}</div>
+        <div style="margin-top:8px;font-size:34px;line-height:1.35;color:#E8EAED">${rv.txt || ''}</div></div>
+      ${resp}</div>`);
+  }
+  if (p.tipo === 'qr_adesivo') {
+    // plaquinha de QR Code no balcão; no "em" um adesivo com outro QR desce e cobre o verdadeiro (golpe do adesivo)
+    const inn = ease(lt / .7), a0 = quando(p.em ?? .4), av = ease((lt - a0) / .6);
+    const qr = (seed, cor) => { let h = '', s = seed; for (let y = 0; y < 21; y++) for (let x = 0; x < 21; x++) {
+        const fx = x < 7 ? x : x > 13 ? x - 14 : -1, fy = y < 7 ? y : y > 13 ? y - 14 : -1; let on;
+        if (fx >= 0 && fy >= 0 && !(x > 13 && y > 13)) on = fx === 0 || fx === 6 || fy === 0 || fy === 6 || (fx >= 2 && fx <= 4 && fy >= 2 && fy <= 4);
+        else if ((x < 8 && y < 8) || (x > 12 && y < 8) || (x < 8 && y > 12)) on = false;
+        else { s = (s * 73 + 29) % 211; on = s % 2 === 0; }
+        h += `<i style="background:${on ? cor : 'transparent'}"></i>`; }
+      return `<div style="display:grid;grid-template-columns:repeat(21,1fr);width:100%;height:100%">${h}</div>`; };
+    const sticker = av > 0 ? `<div data-a="adesivo" style="position:absolute;left:66px;top:150px;width:368px;height:368px;padding:20px;background:#fff;border-radius:10px;box-shadow:0 18px 30px -8px rgba(0,0,0,.6),0 0 0 4px ${C.red};transform:translateY(${(1 - av) * -260}px) rotate(${-4 + (1 - av) * -8}deg);opacity:${clamp(av * 1.5)}">${qr(97, '#111')}
+      <div style="position:absolute;left:50%;bottom:-62px;transform:translateX(-50%);white-space:nowrap;padding:8px 20px;border-radius:14px;background:${C.red};color:#fff;font-size:28px;font-weight:800">QR do golpista colado por cima</div></div>` : '';
+    return at(p.x ?? 210, p.y ?? 640, `<div data-a="placa" style="position:relative;width:500px;height:700px;border-radius:34px;background:linear-gradient(160deg,#F7F4EF,#E6E1D8);box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.1);transform:translateY(${(1 - inn) * 60}px);opacity:${inn};text-align:center;color:#1d1b19">
+      <div style="padding-top:38px;font-size:40px;font-weight:900">${p.loja || 'Bar do Zé'}</div><div style="font-size:26px;font-weight:700;color:#6b665f">Pague com Pix aqui 👇</div>
+      <div style="position:absolute;left:76px;top:160px;width:348px;height:348px">${qr(13, '#1d1b19')}</div>${sticker}
+      <div style="position:absolute;left:0;right:0;bottom:34px;font-size:24px;color:#6b665f">aponte a câmera do app do banco</div></div>`);
+  }
+  if (p.tipo === 'tela_menu') {
+    // caminho dentro do app, tela por tela: cada tela entra deslizando quando a palavra é dita e o item tocado acende (âncora "item")
+    const telas = p.telas || []; let ci = 0; telas.forEach((s, i) => { if (lt >= quando(s.em ?? 0)) ci = i; });
+    const T = telas[ci] || {}, t0 = quando(T.em ?? 0), sl = ci ? ease((lt - t0) / .45) : 1, inn = ease(lt / .7);
+    const tq = T.toque_em != null ? quando(T.toque_em) : t0 + .7, tk = ease((lt - tq) / .35);
+    const rows = (T.itens || []).map((it, i) => { const on = i === T.toque && lt > tq, ie = it[3] != null ? ease((lt - quando(it[3])) / .4) : 1;  // 4º campo: item entra quando a palavra é dita
+      return `<div ${i === T.toque ? 'data-a="item"' : ''} style="position:relative;display:flex;align-items:center;gap:26px;padding:26px 30px;border-radius:20px;margin:4px 10px;font-size:36px;color:${it[4] ? C[it[4]] || it[4] : '#E9EDEF'};opacity:${ie};transform:translateX(${(1 - ie) * -40}px);${on ? `background:rgba(214,179,108,${.16 * tk});box-shadow:0 0 0 ${3 * tk}px ${C.gold}` : ''}">
+        <span style="width:48px;text-align:center;font-size:36px">${it[0]}</span><span style="flex:1">${it[1]}</span>${it[2] ? `<span style="font-size:26px;color:#8696A0">${it[2]}</span>` : ''}</div>`; }).join('');
+    let pin = '';
+    if (T.pin) { const pe = T.pin_em != null ? quando(T.pin_em) : t0 + .6, n = Math.floor(clamp((lt - pe) / 1.4) * 6);
+      pin = `<div style="padding:30px 40px;text-align:center"><div style="font-size:30px;line-height:1.35;color:#8696A0">${T.pin_txt || 'Crie um PIN de 6 dígitos'}</div>
+        <div data-a="pin" style="display:inline-flex;gap:22px;margin-top:40px;padding:18px 26px">${Array.from({ length: 6 }, (_, i) => `<div style="width:52px;text-align:center;border-bottom:4px solid ${i < n ? C.gold : '#3B4A54'};font-size:52px;line-height:70px;color:#E9EDEF">${i < n ? '•' : ''}</div>`).join('')}</div>
+        ${T.botao ? `<div data-a="botao" style="margin:46px auto 0;width:300px;padding:22px 0;border-radius:40px;background:#00A884;color:#0B141A;font-size:32px;font-weight:800;opacity:${n >= 6 ? 1 : .35}">${T.botao}</div>` : ''}</div>`; }
+    return at(p.x ?? 30, 640, `<div style="width:680px;height:760px;border-radius:70px;padding:16px;background:linear-gradient(145deg,#2a2f3a,#0c0e12);box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.08),0 0 80px rgba(79,123,255,.16);transform:translateY(${(1 - inn) * 60}px);opacity:${inn}">
+      <div data-a="tela" style="position:relative;height:100%;border-radius:56px;overflow:hidden;background:#0B141A">
+        <div style="opacity:${sl};transform:translateX(${(1 - sl) * 120}px)">
+          <div style="display:flex;align-items:center;gap:24px;padding:46px 34px 26px;background:#1F2C34;font-size:36px;font-weight:700;color:#E9EDEF"><span style="color:#8696A0">←</span>${T.titulo || ''}</div>
+          ${T.sub ? `<div style="padding:22px 40px 0;font-size:26px;line-height:1.35;color:#8696A0">${T.sub}</div>` : ''}
+          <div style="padding-top:12px">${rows}</div>${pin}</div></div></div>`);
+  }
+  if (p.tipo === 'barras') {
+    // barras de pesquisa enchendo no ritmo da fala: itens [{txt, pct, cor, em}] + rotulo + fonte
+    const inn = ease(lt / .6);
+    const rows = (p.itens || []).map((it, i) => { const v = ease((lt - quando(it.em)) / 1.1), col = C[it.cor] || it.cor || C.gold;
+      return `<div data-a="b${i + 1}" style="margin-top:${i ? 46 : 26}px;opacity:${clamp(v * 3)}">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;font-size:38px;font-weight:700;color:${C.white}"><span>${it.txt}</span><b style="font-family:Anton;font-size:76px;color:${col}">${it.rot || Math.round(it.pct * v) + '%'}</b></div>
+        <div style="margin-top:14px;height:34px;border-radius:18px;background:rgba(255,255,255,.08);overflow:hidden"><div style="width:${it.pct * v}%;height:100%;border-radius:18px;background:${col};box-shadow:0 0 30px ${col}"></div></div></div>`; }).join('');
+    return at(90, 640, `<div style="width:900px;padding:44px 48px;${card}opacity:${inn};transform:translateY(${(1 - inn) * 40}px)">
+      <div style="font-size:26px;font-weight:800;letter-spacing:.12em;color:${C.gray}">${p.rotulo || ''}</div>${rows}
+      ${p.fonte ? `<div style="margin-top:34px;font-size:24px;color:${C.gray}">${p.fonte}</div>` : ''}</div>`);
+  }
+  if (p.tipo === 'link_montagem') {
+    // o link vai sendo montado pedaço por pedaço, cada pedaço com uma explicação embaixo
+    const partes = p.partes || [], CORES = [C.white, C.gold, C.blue, '#7CE0A0', C.red, '#C9A7FF'];
+    let atual = -1; partes.forEach((q, i) => { if (lt >= quando(q.em)) atual = i; });
+    const url = partes.map((q, i) => { const v = ease((lt - quando(q.em)) / .4); if (v <= 0) return '';
+      return `<span data-a="p${i + 1}" style="color:${CORES[i % CORES.length]};opacity:${i === atual ? 1 : .75};${i === atual ? `text-shadow:0 0 24px ${CORES[i % CORES.length]}` : ''}">${q.txt}</span>`; }).join('');
+    const linhas = partes.map((q, i) => { const v = ease((lt - quando(q.em) - .15) / .4); if (v <= 0) return '';
+      return `<div data-a="r${i + 1}" style="display:flex;align-items:center;gap:22px;margin-top:20px;opacity:${i === atual ? v : .55};transform:translateX(${(1 - v) * -30}px)">
+        <span style="min-width:200px;padding:10px 18px;border-radius:16px;border:3px solid ${CORES[i % CORES.length]};color:${CORES[i % CORES.length]};font-family:monospace;font-size:34px;font-weight:700;text-align:center">${q.txt}</span>
+        <span style="font-size:38px;font-weight:600;color:${C.white}">${q.rot}</span></div>`; }).join('');
+    return at(90, 640, `<div style="width:900px;padding:40px 44px;${card}">
+      <div style="font-size:26px;font-weight:800;letter-spacing:.12em;color:${C.gray};margin-bottom:16px">${p.rotulo || 'SEU LINK'}</div>
+      <div style="min-height:150px;font-family:monospace;font-size:46px;font-weight:700;line-height:1.35;word-break:break-all">${url}<span style="color:${C.gold};opacity:${Math.sin(t * 6) > 0 ? 1 : 0}">|</span></div>
+      <div style="height:2px;background:rgba(255,255,255,.1);margin:22px 0 6px"></div>${linhas}</div>`);
+  }
+  if (p.tipo === 'whatsapp') {
+    // conversa de WhatsApp ilustrativa (mensagens entram com "digitando…")
+    const msgs = p.msgs || [];
+    const bolhas = msgs.map((m, i) => { const t0 = .5 + i * 1.1, kk = back((lt - t0) / .35), eu = m[0] === 'eu';
+      const typing = lt > t0 - .6 && lt < t0 && !eu;
+      return `<div style="display:flex;justify-content:${eu ? 'flex-end' : 'flex-start'};margin-top:22px">${typing ? `<div style="padding:22px 30px;border-radius:26px;background:#1F2C34;font-size:40px;color:${C.gray}">• • •</div>` :
+        `<div style="max-width:520px;padding:22px 30px;border-radius:26px;${eu ? 'border-bottom-right-radius:6px;background:#005C4B' : 'border-bottom-left-radius:6px;background:#1F2C34'};font-size:36px;line-height:1.3;color:#E9EDEF;transform:scale(${kk});transform-origin:${eu ? '100%' : '0%'} 100%;opacity:${clamp(kk)}">${m[1]}</div>`}</div>`; }).join('');
+    const inn = ease(lt / .6);
+    return at(200, 620, `<div style="width:680px;height:820px;border-radius:70px;padding:16px;background:linear-gradient(145deg,#2a2f3a,#0c0e12);box-shadow:0 60px 120px -40px #000,0 0 0 2px rgba(255,255,255,.08),0 0 80px rgba(79,123,255,.18);transform:translateY(${(1 - inn) * 80 + Math.sin(t * 1.2) * 6}px);opacity:${inn}">
+      <div style="height:100%;border-radius:56px;overflow:hidden;background:#0B141A;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:20px;padding:40px 34px 24px;background:#1F2C34">
+          <div style="width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-family:Anton;font-size:34px;color:#07080A;background:linear-gradient(135deg,#E8CC8E,${C.gold})">GA</div>
+          <div><div style="font-size:36px;font-weight:700;color:#E9EDEF">${p.nome || 'Gabriel Augusto'}</div><div style="font-size:26px;color:#25D366">online</div></div></div>
+        <div style="flex:1;padding:10px 30px">${bolhas}</div></div></div>`);
+  }
+  if (p.tipo === 'cta') { const pulse = 1 + .035 * Math.sin(t * 7);
+    return at(90, p.y || 860, `<div style="width:900px;text-align:center;opacity:${f}">
+      <div style="position:relative;display:inline-block;padding:24px 64px;border-radius:18px;background:linear-gradient(135deg,#E8CC8E,${C.gold} 45%,#B8924A);color:#07080A;font-family:Anton;text-transform:uppercase;font-size:104px;transform:scale(${k * pulse}) rotate(-2deg);box-shadow:0 0 120px rgba(214,179,108,.55), inset 0 2px 0 rgba(255,255,255,.4)">${sweep(180, ((lt - .6) * 70) % 220 - 60)}${p.botao}</div>
+      <div style="margin-top:60px;font-family:Anton;text-transform:uppercase;font-size:54px;color:${C.white};opacity:${ease((lt - .5) / .4)}">${p.sub || ''}</div></div>`); }
+  return '';
+}
+
+
+/* ---------------- Motion graphics (camada que nunca para) ----------------
+   Anéis girando com pontos em órbita, pulso de sonar atrás da cena e ícones de vidro flutuando nas laterais.
+   Ícones por cena: "mg": ["chat","sino","check","coracao","estrela","lupa","cursor","pin"] (senão escolhe pelo prop). */
+const ICO = {
+  chat: '<path d="M4 5h16v10H9l-5 4z"/>', check: '<circle cx="12" cy="12" r="8"/><path d="M8 12l3 3 5-6"/>',
+  sino: '<path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/>', coracao: '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>',
+  estrela: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>', lupa: '<circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/>',
+  cursor: '<path d="M6 3l13 7-6 2-2 6z"/>', pin: '<path d="M12 21s-6-6-6-11a6 6 0 0 1 12 0c0 5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/>' };
+const MGDEF = { whatsapp: ['chat', 'check', 'sino', 'coracao'], passo: ['check', 'estrela', 'cursor', 'sino'], busca: ['lupa', 'pin', 'estrela', 'cursor'],
+  site_celular: ['cursor', 'check', 'coracao', 'estrela'], site_desktop: ['cursor', 'check', 'estrela', 'pin'], cta: ['coracao', 'estrela', 'sino', 'check'],
+  preco: ['check', 'estrela', 'coracao', 'sino'], enquete: ['chat', 'coracao', 'check', 'estrela'] };
+const SLOTS = [[64, 760, 0], [1016, 900, 1], [60, 1240, 2], [1020, 1340, 3]];   // bem nas bordas, sem cobrir os cards
+function drawMG(c, lt, t) {
+  const acc = C[c.acento] || C.gold, cy = c.prop ? 1050 : 1080;
+  let h = '';
+  // anéis tracejados girando + pontos em órbita
+  [[440, .18, C.gold, 1], [360, .22, C.blue, -1]].forEach(([r, o, col, dir], j) => {
+    const off = (t * 60 * dir) % 2000, inK = ease((lt - .1 - j * .1) / .6);
+    h += `<ellipse cx="540" cy="${cy}" rx="${r * inK}" ry="${r * .62 * inK}" fill="none" stroke="${col}" stroke-opacity="${o}" stroke-width="3" stroke-dasharray="4 18" stroke-dashoffset="${off}" transform="rotate(${-12 + Math.sin(t * .4) * 4} 540 ${cy})"/>`;
+    for (let d = 0; d < 2; d++) { const a = t * .7 * dir + d * Math.PI + j, x = 540 + Math.cos(a) * r * inK, y = cy + Math.sin(a) * r * .62 * inK;
+      h += `<circle cx="${x}" cy="${y}" r="7" fill="${col}" opacity="${.8 * inK}" style="filter:drop-shadow(0 0 10px ${col})"/>`; } });
+  // pulso de sonar atrás da cena
+  for (let i = 0; i < 2; i++) { const ph = ((t * .55 + i * .5) % 1);
+    h += `<circle cx="540" cy="${cy}" r="${120 + ph * 420}" fill="none" stroke="${acc}" stroke-width="${4 * (1 - ph)}" opacity="${.28 * (1 - ph)}"/>`; }
+  // ícones de vidro flutuando (entram com mola, balançam e respiram)
+  const icons = c.mg || (c.prop && MGDEF[c.prop.tipo]) || ['chat', 'sino', 'coracao', 'estrela'];
+  icons.slice(0, 4).forEach((name, j) => { const [x0, y0] = SLOTS[j], k = back((lt - .35 - j * .12) / .45);
+    if (k <= 0) return;
+    const x = x0 + Math.sin(t * .9 + j * 1.7) * 14, y = y0 + Math.sin(t * 1.3 + j) * 22, rot = Math.sin(t * 1.1 + j) * 8, col = j % 2 ? C.blue : C.gold;
+    const badge = (name === 'sino' || name === 'chat') ? `<circle cx="38" cy="-38" r="${13 + Math.max(0, Math.sin(t * 4 + j)) * 4}" fill="${C.red}"/>` : '';
+    h += `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${clamp(k, 0, 1.2) * .74})" opacity="${clamp(k)}">
+      <rect x="-56" y="-56" width="112" height="112" rx="30" fill="rgba(18,21,28,.72)" stroke="${col}" stroke-opacity=".55" stroke-width="2.5" style="filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))"/>
+      <g transform="translate(-30 -30) scale(2.5)" fill="none" stroke="${col}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICO[name] || ''}</g>${badge}</g>`; });
+  $('mg').innerHTML = h;
+}
+
+
+/* ---------------- Primeiro plano: reações + efeitos (nunca para) ----------------
+   Um boneco menor entra pelo canto e vai trocando de reação a cada ~1,4 s, com balão.
+   Por cena: "reacao": {"lado": "esq"|"dir", "poses": ["chocado","comemorando",...]} ou "reacao": false. */
+const REAC = { red: ['chocado', 'apontando', 'cintura'], gold: ['comemorando', 'ideia', 'apontando'], blue: ['pensando', 'apontando', 'ideia'] };
+const BAL = { chocado: '!', pensando: '?', comemorando: 'coracao', ideia: 'estrela', apontando: 'cursor', cintura: '!?', triste: '...', confiante: 'check', acenando: 'chat', dancando: 'coracao' };
+function drawFG(c, lt, t, i) {
+  let h = '';
+  const r = c.reacao && typeof c.reacao === 'object' ? c.reacao : null;   // reator só quando a cena pede
+  const temBonecoNoCentro = c.boneco && !Array.isArray(c.boneco) && Math.abs((c.boneco.x ?? 540) - 540) < 120;
+  if (r) {
+    const lado = r.lado || (i % 2 ? 'dir' : 'esq'), x = lado === 'esq' ? 112 : 968, poses = r.poses || REAC[c.acento] || REAC.gold;
+    const per = 1.4, n = Math.floor(lt / per), fr = (lt % per) / per;
+    const cur = poses[n % poses.length], prev = poses[(n + poses.length - 1) % poses.length];
+    const P = n === 0 ? mixPose(POSES.parado, POSES[cur], ease(fr / .2)) : mixPose(POSES[prev], POSES[cur], back(fr / .22));
+    const inK = back((lt - .45) / .5), y = 1440 + (1 - clamp(inK)) * 420;
+    if (inK > 0) {
+      const S = temBonecoNoCentro ? .4 : .45;
+      h += figure({ pose: cur, _P: P, x, y, escala: S, emocao: cur === 'comemorando' ? 'brilho' : undefined }, 5, t * 1.15 + i);
+      // balão de reação (pula a cada troca)
+      const pk = back(fr / .2), bx = x + (lado === 'esq' ? 4 : -4), by = y - 640 * S - 78, b = BAL[cur] || '!';
+      const icon = ICO[b] ? `<g transform="translate(-24 -26) scale(2)" fill="none" stroke="#07080A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${ICO[b]}</g>` :
+        `<text x="0" y="22" text-anchor="middle" font-family="Anton" font-size="62" fill="#07080A">${b}</text>`;
+      h += `<g transform="translate(${bx} ${by + Math.sin(t * 3) * 6}) scale(${clamp(pk, 0, 1.25)}) rotate(${Math.sin(t * 2) * 6})">
+        <path d="M-58 -50 h116 a22 22 0 0 1 22 22 v58 a22 22 0 0 1 -22 22 h-${lado === 'esq' ? 84 : 20} l${lado === 'esq' ? -26 : 26} 26 l4 -26 h-${lado === 'esq' ? 10 : 74} a22 22 0 0 1 -22 -22 v-58 a22 22 0 0 1 22 -22z" fill="${cur === 'chocado' || cur === 'cintura' ? C.red : C.gold}" style="filter:drop-shadow(0 12px 22px rgba(0,0,0,.6))"/>${icon}</g>`;
+    }
+  }
+  // efeitos pipocando: só com "pipocar": true na cena
+  for (let j = 0; j < (c.pipocar ? 2 : 0); j++) { const per = 1.1 + j * .35, n = Math.floor((t + j * .5) / per), ph = ((t + j * .5) % per) / per;
+    const sx = 160 + ((n * 389 + j * 241) % 760), sy = 700 + ((n * 211 + j * 397) % 620), k = Math.sin(ph * Math.PI), col = (n + j) % 2 ? C.gold : C.blue;
+    if (ph < .6) h += `<g transform="translate(${sx} ${sy}) scale(${.6 + ph}) rotate(${n * 37})" opacity="${k}">${[0, 1, 2, 3, 4, 5].map(q => `<line x1="0" y1="-26" x2="0" y2="-58" transform="rotate(${q * 60})" stroke="${col}" stroke-width="7" stroke-linecap="round"/>`).join('')}</g>`;
+    else h += `<path transform="translate(${sx} ${sy}) scale(${1.4 - ph})" d="M0 -30 Q0 0 30 0 Q0 0 0 30 Q0 0 -30 0 Q0 0 0 -30Z" fill="${col}" opacity="${k}"/>`; }
+  $('fg').innerHTML = h;
+}
+
+
+/* ---------------- Beats: foco de câmera + destaque + reação do boneco, no ritmo da fala ----------------
+   "beats": [{"em": "palavra", "foco": "tag", "zoom": 1.3, "destaque": "tag", "pose": "apontando"}, ...]
+   foco/destaque usam as âncoras dos props (data-a: msg1, msg2, tag, campo, sugest, p1..p6, r1..r6). foco null = volta pro geral. */
+function ancoras() {
+  const cam = $('cam'), w = $('world'), tc = cam.style.transform, tw = w.style.transform;
+  cam.style.transform = 'none'; w.style.transform = 'none'; const A = {};
+  cam.querySelectorAll('[data-a]').forEach(el => { const r = el.getBoundingClientRect(); if (r.width) A[el.dataset.a] = { x: r.left, y: r.top, w: r.width, h: r.height }; });
+  const f = $('props').firstElementChild?.firstElementChild; if (f) { const r = f.getBoundingClientRect(); A._top = r.top; A._bot = r.bottom; }
+  cam.style.transform = tc; w.style.transform = tw; return A;
+}
+function beatAt(c, lt) {
+  const B = (c.beats || []).map(b => ({ ...b, t: typeof b.em === 'number' ? b.em * c.dur : (() => { const norm = x => x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9/?=]/g, '');
+    const w = (c.palavras || []).find(p => norm(p.w).startsWith(norm(String(b.em)))); return w ? w.a - c.t0 : .5 * c.dur; })() })).sort((a, b) => a.t - b.t);
+  let i = -1; B.forEach((b, j) => { if (lt >= b.t) i = j; }); return { B, i };
+}
+function drawBeats(c, lt, t) {
+  const { B, i } = beatAt(c, lt), A = (B.length ? ancoras() : {});
+  const alvo = b => { if (!b || !b.foco || !A[b.foco]) return { z: 1, x: 540, y: 1000 }; const a = A[b.foco]; return { z: b.zoom || 1.25, x: a.x + a.w / 2, y: a.y + a.h / 2 }; };
+  const prev = alvo(B[i - 1]), cur = alvo(B[i]), k = i < 0 ? 0 : easeIO((lt - B[i].t) / .55);
+  const z = lerp(prev.z, cur.z, k), fx = lerp(prev.x, cur.x, k), fy = lerp(prev.y, cur.y, k);
+  // leva o ponto de foco pra perto do centro da cena e aproxima
+  const tx = clamp((540 - fx) * (z - 1) * 1.2, -70, 70);
+  // nunca deixa a cena subir pra baixo do título (topo >= 660) nem descer na legenda (base <= 1440)
+  let ty = (1020 - fy) * (z - 1) * 1.2;
+  if (A._top != null) { const topo = fy + (A._top - fy) * z + ty, base = fy + (A._bot - fy) * z + ty;
+    if (topo < 215) ty += 215 - topo; else if (base > 980) ty -= Math.min(base - 980, topo - 215); }
+  $('cam').style.transformOrigin = `${fx}px ${fy}px`;
+  $('cam').style.transform = `translate(${tx}px, ${ty}px) scale(${z})`;
+  // destaque dourado se desenhando em volta do elemento citado
+  let h = '';
+  B.forEach((b, j) => { if (!b.destaque || !A[b.destaque] || lt < b.t) return; const a = A[b.destaque], d = lt - b.t, fim = j < B.length - 1 ? B[j + 1].t - b.t : 99;
+    const on = ease((d - .35) / .5), off = 1 - ease((d - fim + .1) / .3); if (off <= 0 || on <= 0) return;   // só desenha depois que o elemento já apareceu
+    const pad = 16, x = a.x - pad, y = a.y - pad, W = a.w + pad * 2, H = a.h + pad * 2, per = 2 * (W + H);
+    h += `<rect x="${x}" y="${y}" width="${W}" height="${H}" rx="26" fill="none" stroke="${C.gold}" stroke-width="7" stroke-dasharray="${per}" stroke-dashoffset="${per * (1 - on)}" opacity="${off}" style="filter:drop-shadow(0 0 14px ${C.gold})"/>`; });
+  $('hl').innerHTML = h;
+  return B[i];
+}
+
+/* ---------------- Fundo iluminado ---------------- */
+// R.fundo: "feixes" (luz azul e dourada em diagonal) · "auras" (esferas de luz) · "palco" (holofote dourado + borda azul)
+function drawBg(t) {
+  const f = R.fundo || 'feixes', B = 'rgba(79,123,255,', G = 'rgba(214,179,108,';
+  let h = '';
+  if (f === 'feixes') {
+    const a = Math.sin(t * .35) * 6, b = Math.cos(t * .3) * 6;
+    h = `<div class="beam" style="left:-420px;transform:rotate(${-24 + a}deg);background:linear-gradient(90deg, transparent, ${B}.22) 45%, ${B}.06) 60%, transparent)"></div>
+         <div class="beam" style="right:-420px;transform:rotate(${24 + b}deg);background:linear-gradient(90deg, transparent, ${G}.06) 40%, ${G}.20) 55%, transparent)"></div>
+         <div class="orb" style="width:700px;height:700px;left:-260px;top:-200px;background:${B}.35)"></div>
+         <div class="orb" style="width:600px;height:600px;right:-220px;top:-120px;background:${G}.28)"></div>
+         <div class="floor"></div>`;
+  } else if (f === 'auras') {
+    const x1 = 540 + Math.sin(t * .4) * 320, y1 = 600 + Math.cos(t * .33) * 260, x2 = 540 + Math.cos(t * .37) * 320, y2 = 1300 + Math.sin(t * .29) * 260;
+    h = `<div class="orb" style="width:900px;height:900px;left:${x1 - 450}px;top:${y1 - 450}px;background:${B}.38)"></div>
+         <div class="orb" style="width:820px;height:820px;left:${x2 - 410}px;top:${y2 - 410}px;background:${G}.30)"></div><div class="floor"></div>` +
+        BOKEH.map((b, j) => { const y = (b.y - t * b.v + 2200) % 2200 - 140, x = b.x + Math.sin(t * .3 + j) * 40;
+          return `<div style="position:absolute;left:${x}px;top:${y}px;width:${b.r}px;height:${b.r}px;border-radius:50%;background:${b.g ? G : B}${b.o});filter:blur(${b.bl}px)"></div>`; }).join('');
+  } else {
+    const sw = Math.sin(t * .5) * 3;
+    h = `<div class="beam" style="left:90px;width:900px;top:-200px;transform:rotate(${sw}deg);background:radial-gradient(ellipse at 50% 0%, ${G}.42), ${G}.10) 45%, transparent 70%)"></div>
+         <div class="orb" style="width:900px;height:500px;left:-420px;bottom:-160px;background:${B}.40)"></div>
+         <div class="orb" style="width:900px;height:500px;right:-420px;bottom:-160px;background:${B}.40)"></div><div class="floor"></div>`;
+  }
+  $('bg').innerHTML = h + '<div class="lines"></div>';
+}
+
+/* ---------------- Transições entre cenas ----------------
+   Cobrem o corte (cobertura total no instante da troca). Alternam: varredura · íris · barras. */
+const TR = ['varredura', 'iris', 'barras'];
+function drawTransition(t) {
+  const el = $('trans'); const D = .32;
+  const k = R.cenas.findIndex((c, i) => i > 0 && Math.abs(t - c.t0) < D);
+  if (k < 0) { if (el.dataset.on) { el.innerHTML = ''; el.dataset.on = ''; } return; }
+  el.dataset.on = '1';
+  const tipo = R.cenas[k].transicao || TR[(k - 1) % TR.length];
+  const p = (t - R.cenas[k].t0 + D) / (2 * D);               // 0 → 1 (0,5 = tela coberta)
+  const G = '#D6B36C', Bl = '#4F7BFF';
+  if (tipo === 'varredura') {
+    const x = lerp(130, -130, easeIO(p));                     // painel diagonal atravessa a tela
+    el.innerHTML = `<div style="position:absolute;top:-20%;height:140%;left:0;width:100%;transform:translateX(${x}%) skewX(-16deg)">
+      <div style="position:absolute;inset:0;background:#050507"></div>
+      <div style="position:absolute;top:0;bottom:0;left:-10px;width:26px;background:linear-gradient(90deg,transparent,${G},#fff,${G},transparent);box-shadow:0 0 60px 20px rgba(214,179,108,.55)"></div>
+      <div style="position:absolute;top:0;bottom:0;right:-10px;width:18px;background:linear-gradient(90deg,transparent,${Bl},transparent);box-shadow:0 0 50px 16px rgba(79,123,255,.5)"></div></div>`;
+  } else if (tipo === 'iris') {
+    const r = p < .5 ? lerp(1250, 0, easeIO(p * 2)) : lerp(0, 1250, easeIO((p - .5) * 2));
+    const mark = 1 - Math.abs(p - .5) * 4;
+    el.innerHTML = `<svg width="1080" height="1920" style="position:absolute;inset:0"><path fill="#050507" fill-rule="evenodd" d="M0 0H1080V1920H0Z M${540 - r} 900 a${r} ${r} 0 1 0 ${2 * r} 0 a${r} ${r} 0 1 0 ${-2 * r} 0Z"/>
+      <circle cx="540" cy="900" r="${r}" fill="none" stroke="${G}" stroke-width="6" style="filter:drop-shadow(0 0 18px ${G})"/>
+      ${mark > 0 ? `<g opacity="${clamp(mark)}"><rect x="480" y="840" width="120" height="120" rx="28" fill="none" stroke="${G}" stroke-width="4"/><text x="540" y="928" text-anchor="middle" font-family="CG" font-style="italic" font-size="70" fill="${G}">GA</text></g>` : ''}</svg>`;
+  } else {
+    let h = ''; const N = 7;
+    for (let j = 0; j < N; j++) { const d = j * .045, q = clamp((p - d) / (1 - (N - 1) * .045));
+      const x = q < .5 ? lerp(j % 2 ? 105 : -105, 0, easeIO(q * 2)) : lerp(0, j % 2 ? -105 : 105, easeIO((q - .5) * 2));
+      h += `<div style="position:absolute;left:0;width:100%;top:${j * 1920 / N - 2}px;height:${1920 / N + 4}px;background:#050507;transform:translateX(${x}%);border-${j % 2 ? 'left' : 'right'}:6px solid ${j % 3 === 0 ? G : Bl};box-shadow:0 0 40px ${j % 3 === 0 ? 'rgba(214,179,108,.5)' : 'rgba(79,123,255,.45)'}"></div>`; }
+    el.innerHTML = h;
+  }
+}
+
+/* ---------------- MOTOR CINÉTICO (ajuste dele em 26/10, 3ª versão) ----------------
+   "tá muito preto": o FUNDO alterna entre preto e vermelho no ritmo (cena: "fundo_cor": [[em, "black"|"red"], ...]), trocando com um círculo que abre.
+   Legenda = a FALA INTEIRA, palavra por palavra, gigante no meio (sem faixa). Cada pedaço entra com uma animação diferente.
+   Palavras de destaque ("enfase": [...] na cena, e todo número) mudam de cor e ganham brilho. Motion graphics em cima, em vidro. */
+const FUNDO = {
+  black: 'radial-gradient(ellipse at 50% 42%, #17171B 0%, #060607 62%, #000 100%)',
+  red: 'radial-gradient(ellipse at 50% 42%, #F0273A 0%, #C3101F 48%, #6E0611 100%)',
+};
+let BGATUAL = 'black';
+function qd(c, ref) { if (typeof ref === 'number') return ref * c.dur;
+  const norm = x => x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9/?=$]/g, '');
+  const w = (c.palavras || []).find(p => norm(p.w).startsWith(norm(String(ref)))); return w ? w.a - c.t0 : ((c.palavras || []).length ? .5 * c.dur : 0); }
+function corFundo(c, lt) {   // cor atual + anterior + progresso da troca
+  const L = (c.fundo_cor || [[0, c.cor_base || 'black']]).map(([em, cor]) => [qd(c, em), cor]);
+  let j = 0; L.forEach((x, k) => { if (lt >= x[0]) j = k; });
+  const ant = j ? L[j - 1][1] : (c._antes || L[0][1]);
+  return { cor: L[j][1], ant, p: L[j][0] <= .001 && !c._antes ? 1 : ease((lt - L[j][0]) / .5) };
+}
+function drawFundo(c, lt, t) {
+  const f = corFundo(c, lt); BGATUAL = f.p > .5 ? f.cor : f.ant;
+  const r = f.p * 1500, cy = 1080;
+  const anel = f.p > 0 && f.p < 1 ? `<div style="position:absolute;left:${540 - r}px;top:${cy - r}px;width:${2 * r}px;height:${2 * r}px;border-radius:50%;box-shadow:0 0 0 6px rgba(255,255,255,${.5 * (1 - f.p)}), 0 0 80px 20px rgba(255,255,255,${.25 * (1 - f.p)})"></div>` : '';
+  // linhas finas de luz que atravessam devagar (elegância, sem poluir)
+  const linhas = [0, 1].map(k => { const y = ((t * 40 + k * 900) % 2200) - 140; return `<div style="position:absolute;left:0;right:0;top:${y}px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.10),transparent)"></div>`; }).join('');
+  $('bgc').innerHTML = `<div style="position:absolute;inset:0;background:${FUNDO[f.ant] || f.ant}"></div>
+    <div style="position:absolute;inset:0;background:${FUNDO[f.cor] || f.cor};clip-path:circle(${r}px at 540px ${cy}px)"></div>${anel}${linhas}
+    <div style="position:absolute;inset:0;opacity:.06;background-image:url(${GRAO})"></div>`;
+}
+const GRAO = (() => { const cv = document.createElement('canvas'); cv.width = cv.height = 200; const g = cv.getContext('2d'), d = g.createImageData(200, 200); let s = 7;
+  for (let i = 0; i < d.data.length; i += 4) { s = (s * 16807) % 2147483647; const v = s / 2147483647 * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; } g.putImageData(d, 0, 0); return cv.toDataURL(); })();
+
+/* legenda gigante palavra por palavra */
+const MEDE = document.createElement('canvas').getContext('2d');
+const nrm = x => String(x).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9%$,+]/g, '');
+function pedacos(c) {
+  if (c._ped) return c._ped;
+  const P = (c.palavras || []).map(p => ({ ...p })), out = [];
+  for (let i = 0; i < P.length; i++) {   // "R$" gruda no número
+    if (P[i].w === 'R$' && P[i + 1]) { P[i + 1] = { ...P[i + 1], w: 'R$ ' + P[i + 1].w, a: P[i].a }; continue; }
+    const cur = out[out.length - 1], limpa = P[i].w.replace(/[.,!?:;]+$/, '');
+    const fecha = cur && /[.,!?:;]$/.test(cur.ws[cur.ws.length - 1]);
+    if (cur && !fecha && cur.ws.length < 2 && cur.txt.replace(/[^\p{L}\d$]/gu, '').length <= 3 && !/\d/.test(cur.txt) && (cur.txt + ' ' + limpa).length <= 14) { cur.ws.push(P[i].w); cur.txt += ' ' + limpa; cur.b = P[i].b; }
+    else out.push({ ws: [P[i].w], txt: limpa, a: P[i].a, b: P[i].b });
+  }
+  const enf = (c.enfase || []).map(nrm);
+  out.forEach((o, k) => { const n = nrm(o.txt); o.enf = /\d/.test(o.txt) || enf.some(e => e && (n.includes(e) || e.includes(n) && n.length > 3)); o.k = k; });
+  return (c._ped = out);
+}
+function fitTxt(o) {
+  if (o._fs) return o;
+  const s = o.txt.toUpperCase(); let fs = o.enf ? 260 : 220; MEDE.font = `${fs}px Anton`; let w = MEDE.measureText(s).width;
+  if (w > 940) { fs *= 940 / w; w = 940; }
+  if (fs < 130 && o.ws.length > 1) { o.linhas = o.txt.toUpperCase().split(' '); fs = o.enf ? 200 : 170; MEDE.font = `${fs}px Anton`;
+    const ww = Math.max(...o.linhas.map(l => MEDE.measureText(l).width)); if (ww > 940) fs *= 940 / ww; }
+  o._fs = fs; MEDE.font = `${fs}px Anton`; o._w = Math.min(940, Math.max(...(o.linhas || [s]).map(l => MEDE.measureText(l).width))); return o;
+}
+const ENTRA = ['pop', 'up', 'mask', 'zoom', 'drop', 'letras', 'left'];
+function drawCap(c, lt, t) {
+  const box = $('kin');
+  if (!(c.palavras || []).length) {   // capa: texto fixo gigante (chave "texto" da capa), destaque com *asterisco*
+    const L = (c.texto || []).map(x => x.toUpperCase()); MEDE.font = '200px Anton'; const w = Math.max(...L.map(l => MEDE.measureText(l.replace(/[*~_#]/g, '')).width)), fs = Math.min(200, 200 * 940 / w);
+    const verm = BGATUAL === 'red', acc = verm ? '#0B0B0D' : '#FF2E43';
+    box.innerHTML = `<div class="kt" style="top:1160px;font-size:${fs}px;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.4);transform:translateY(-50%)">${L.map(l => l.replace(/[*~]([^*~]+)[*~]/g, `<span style="color:${acc}">$1</span>`)).join('\n')}</div>`; return; }
+  const P = pedacos(c), T = lt + c.t0;
+  let i = -1; P.forEach((o, k) => { if (T >= o.a - .03) i = k; });
+  if (i < 0) { box.innerHTML = ''; return; }
+  const o = fitTxt(P[i]), d = T - o.a + .03, fs = o._fs, CYc = 1080, verm = BGATUAL === 'red';
+  const ink = '#FFFFFF', acc = verm ? '#0B0B0D' : '#FF2E43', cor = o.enf ? acc : ink;
+  const tipo = i === 0 && c._i === 0 ? 'zoom' : o.enf ? (['pop', 'zoom', 'drop'][o.k % 3]) : ENTRA[(o.k * 3 + (c._i || 0)) % ENTRA.length];
+  const e = x => ease(clamp(x)), q = e(d / .22), qb = back(d / .3), drift = 1 + .03 * Math.min(d, 1.5) / 1.5;
+  let tr = '', blur = 0, clip = '', html = (o.linhas || [o.txt.toUpperCase()]).join('\n');
+  if (tipo === 'pop') { tr = `scale(${lerp(.55, 1, clamp(qb, 0, 1.2)) * drift})`; blur = 10 * (1 - q); }
+  else if (tipo === 'up') { tr = `translateY(${90 * (1 - q)}px) scale(${drift})`; blur = 12 * (1 - q); }
+  else if (tipo === 'drop') { tr = `translateY(${-110 * (1 - clamp(qb))}px) scale(${drift})`; blur = 10 * (1 - q); }
+  else if (tipo === 'zoom') { tr = `scale(${lerp(2.4, 1, q) * drift})`; blur = 18 * (1 - q); }
+  else if (tipo === 'left') { tr = `translateX(${-160 * (1 - q)}px) skewX(${12 * (1 - q)}deg) scale(${drift})`; blur = 10 * (1 - q); }
+  else if (tipo === 'mask') { clip = `clip-path:inset(-30% ${100 - 100 * e(d / .28)}% -30% 0);`; tr = `scale(${drift})`; }
+  else if (tipo === 'letras') { let j = 0; html = html.split('').map(ch => ch === '\n' ? ch : `<span style="display:inline-block;opacity:${e((d - (j) * .025) / .14)};transform:translateY(${(1 - e((d - (j++) * .025) / .16)) * 50}px)">${ch === ' ' ? '&nbsp;' : ch}</span>`).join(''); tr = `scale(${drift})`; }
+  const brilho = o.enf ? (verm ? 'text-shadow:0 8px 30px rgba(0,0,0,.35);' : `text-shadow:0 0 40px rgba(255,46,67,.55);`) : 'text-shadow:0 10px 40px rgba(0,0,0,.45);';
+  // saída do pedaço anterior: sobe e some rapidinho (dá continuidade)
+  let sai = ''; if (i > 0 && d < .14) { const p = P[i - 1]; fitTxt(p); const k2 = d / .14;
+    sai = `<div class="kt" style="top:${CYc}px;font-size:${p._fs}px;color:${p.enf ? acc : ink};opacity:${1 - k2};transform:translateY(-50%) translateY(${-60 * k2}px) scale(${1 - .1 * k2});filter:blur(${8 * k2}px)">${(p.linhas || [p.txt.toUpperCase()]).join('\n')}</div>`; }
+  // linha de destaque que corre embaixo da palavra importante
+  const H = fs * .98 * (o.linhas ? o.linhas.length : 1);
+  const ln = o.enf ? `<div style="position:absolute;left:${540 - o._w / 2}px;top:${CYc + H / 2 + 18}px;width:${o._w * e((d - .12) / .35)}px;height:10px;border-radius:5px;background:${verm ? '#0B0B0D' : '#FF2E43'}"></div>` : '';
+  box.innerHTML = `${sai}<div class="kt" style="top:${CYc}px;font-size:${fs}px;color:${cor};${brilho}${clip}transform:translateY(-50%) ${tr};filter:${blur > .3 ? `blur(${blur}px)` : 'none'}">${html}</div>${ln}`;
+}
+function esc(s) { return String(s).replace(/[*~_]/g, ''); }
+function marca(s) { return esc(s) === s ? s : String(s).replace(/\*([^*]+)\*/g, `<span style="color:${C.gold}">$1</span>`).replace(/~([^~]+)~/g, `<span style="color:#E0182D">$1</span>`).replace(/_([^_]+)_/g, `<span style="color:${C.blue}">$1</span>`); }
+
+/* ---------------- Quadro ---------------- */
+let current = -1;
+function render(t) {
+  let i = R.cenas.findIndex(c => t >= c.t0 && t < c.t0 + c.dur); if (i < 0) i = R.cenas.length - 1;
+  const c = R.cenas[i], lt = t - c.t0;
+  if (i !== current) { buildText(c); current = i; }
+  $('prog').style.transform = `scaleX(${clamp(t / R.total)})`;
+  const acc = C[c.acento] || C.blue;
+  $('glow').style.background = `radial-gradient(closest-side, ${acc}70, transparent 70%)`;
+  $('glow').style.transform = `translate(${Math.sin(t * .7) * 70}px, ${Math.cos(t * .5) * 50}px)`;
+  drawBg(t);
+  $('grain').style.backgroundPosition = `${(t * 997) % 256}px ${(t * 613) % 256}px`;
+  [...$('dust').children].forEach((el, j) => { const d = DUST[j]; const y = (d.y - t * d.v + 1920) % 1920;
+    el.style.transform = `translate(${d.x + Math.sin(t * .5 + j) * 20}px, ${y}px) scale(${d.s})`; el.style.opacity = d.o; });
+  c._words.forEach((w, j) => { const k = ease((lt - .05 - j * .1) / .6);   // entrada suave: sobe e aparece, sem girar
+    w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 40}px) scale(${.94 + .06 * k})`; w.style.filter = k < 1 ? `blur(${(1 - k) * 8}px)` : 'none';
+    w.style.setProperty('--u', ease((lt - .45 - j * .08) / .3)); });
+  // transição: saída com zoom + desfoque, entrada com zoom de volta
+  const out = ease((lt - (c.dur - .18)) / .18), inn = 1 - ease(lt / .22);
+  $('txt').style.opacity = 1 - out;
+  $('txt').style.transform = `translateY(${Math.sin(t * 1.5) * 5}px) rotate(${Math.sin(t * 1.1) * .8}deg)`;  // balanço leve
+  let sx = Math.sin(t * .35) * 4, sy = Math.cos(t * .3) * 3, sc = 1 + .03 * easeIO(lt / c.dur) + out * .04 + inn * .04;   // câmera calma: push-in lento
+  if (c.fx === 'tremer') sc += .045 * (1 - ease(lt / .7));  // impacto com zoom suave (sem tremer)
+  $('world').style.transform = `translate(${sx}px, ${sy}px) scale(${sc})`;
+  $('world').style.filter = 'none';
+  $('flash').style.opacity = c.fx === 'flash' && lt > .3 ? Math.max(0, .22 - (lt - .3) * 3) : 0;  // depois da transição
+  // texto no MEIO da tela (faixa 770–1160); o motion graphics fica menor, em cima (230–740), só complementando (ajuste dele em 26/10)
+  $('props').style.transformOrigin = '540px 1040px';
+  $('props').style.transform = `translateY(${-440 + Math.sin(t * 1) * 4}px) scale(.84)`;
+  c._i = i; drawFundo(c, lt, t); C.red = BGATUAL === 'red' ? '#FFFFFF' : '#FF4D5E'; C.gold = BGATUAL === 'red' ? '#FFE3A3' : '#D6B36C';
+  $('props').innerHTML = prop(c, lt, t);
+  drawCap(c, lt, t);
+  if (Array.isArray(c.mg)) drawMG(c, lt, t); else $('mg').innerHTML = '';   // decoração só quando a cena pede
+  const bt = drawBeats(c, lt, t);
+  if (c.beats && c.boneco && !Array.isArray(c.boneco)) {   // boneco reage a cada beat (troca de pose com mola)
+    const { B, i: bi } = beatAt(c, lt), poseDe = j => (j >= 0 && B[j].pose) || c.boneco.pose || 'parado';
+    let pj = bi; while (pj >= 0 && !B[pj].pose) pj--; let pp = pj - 1; while (pp >= 0 && !B[pp].pose) pp--;
+    const kk = pj < 0 ? 1 : back((lt - B[pj].t) / .35);
+    c.boneco._P = mixPose(POSES[poseDe(pp)] || POSES.parado, POSES[poseDe(pj)] || POSES.parado, kk);
+    c.boneco._pose = poseDe(pj);
+  }
+  drawFigures(c, lt, t);
+  drawFG(c, lt, t, i);
+  renderSubs(c, t);
+  drawTransition(t);
+}
+window.render = render; window.R = R;
+render(0);
+</script>
+</body>
+</html>
