@@ -91,7 +91,7 @@ def falas_gravadas(wav: Path, n: int, cortes: list = None) -> list:
     if cortes:
         out = []
         for x, y in cortes:
-            seg = a[int((x - .06) * SR): int((y + .15) * SR)].copy(); f = int(.02 * SR)
+            seg = a[max(0, int((x - .06) * SR)): int((y + .15) * SR)].copy(); f = int(.02 * SR)
             seg[:f] *= np.linspace(0, 1, f); seg[-f:] *= np.linspace(1, 0, f); out.append(seg)
         return out
     fr = int(.01 * SR); e = np.array([np.sqrt(np.mean(a[i:i + fr] ** 2)) for i in range(0, len(a) - fr, fr)])

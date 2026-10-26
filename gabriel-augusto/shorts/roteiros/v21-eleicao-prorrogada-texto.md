@@ -6,11 +6,11 @@ Teste novo pedido em 26/10: palavras-chave enormes cortando no ritmo da fala (fa
 Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem conta a notícia pra um amigo, sem opinião.
 
 1. O STF deu duas horas a mais pra votar. Só que a maioria das urnas já tinha fechado.
-2. Foi a primeira vez no país inteiro. As duas campanhas pediram mais tempo: uma por falta de ônibus, a outra por chuva e alagamento.
+2. Foi a primeira vez no país inteiro. As duas campanhas pediam mais tempo: uma por falta de ônibus, a outra por chuva e alagamento.
 3. Quem decidiu foi o ministro Cristiano Zanin, do STF: votação até as sete da noite.
 4. Mas o aviso chegou em cima da hora. Urna que já tinha fechado não abriu de novo, e os votos dela valeram normal.
 5. E a contagem dos votos parou. Só voltou depois das sete.
-6. No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois por cento.
+6. No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois do Flávio.
 7. Gostou? Segue pra entender a notícia sem enrolação. E manda pra quem ficou perdido no domingo.
 
 ## Título
