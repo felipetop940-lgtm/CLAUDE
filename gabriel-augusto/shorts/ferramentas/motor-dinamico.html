@@ -57,8 +57,8 @@ body { font-family: "IT", sans-serif; color: var(--white); -webkit-font-smoothin
 .label { position: absolute; transform: translateX(-50%); font-family: "CG", serif; font-style: italic; font-size: 62px; white-space: nowrap; text-shadow: 0 4px 20px #000; }
 svg { overflow: visible; }
 #kin { position: absolute; left: 0; right: 0; top: 0; height: 0; }
-.band { position: absolute; left: -60px; right: -60px; top: 250px; height: 390px; overflow: hidden; }
-.band .kt { position: absolute; left: 0; right: 0; top: 50%; text-align: center; font-family: "Anton", sans-serif; text-transform: uppercase; line-height: .92; white-space: pre; }
+.band { position: absolute; left: -60px; right: -60px; top: 770px; height: 390px; overflow: hidden; }
+.band .kt { position: absolute; left: 0; right: 0; top: 50%; text-align: center; font-family: "Anton", sans-serif; text-transform: uppercase; line-height: 1; white-space: pre; padding-top: .06em; }
 .band .ks { position: absolute; left: 0; right: 0; text-align: center; font-family: "IT", sans-serif; font-weight: 800; font-size: 38px; letter-spacing: .14em; text-transform: uppercase; }
 </style>
 </head>
@@ -737,7 +737,7 @@ function drawBeats(c, lt, t) {
   // nunca deixa a cena subir pra baixo do título (topo >= 660) nem descer na legenda (base <= 1440)
   let ty = (1020 - fy) * (z - 1) * 1.2;
   if (A._top != null) { const topo = fy + (A._top - fy) * z + ty, base = fy + (A._bot - fy) * z + ty;
-    if (topo < 660) ty += 660 - topo; else if (base > 1410) ty -= Math.min(base - 1410, topo - 660); }
+    if (topo < 215) ty += 215 - topo; else if (base > 750) ty -= Math.min(base - 750, topo - 215); }
   $('cam').style.transformOrigin = `${fx}px ${fy}px`;
   $('cam').style.transform = `translate(${tx}px, ${ty}px) scale(${z})`;
   // destaque dourado se desenhando em volta do elemento citado
@@ -888,9 +888,9 @@ function render(t) {
   $('world').style.filter = 'none';
   $('flash').style.opacity = c.fx === 'flash' && lt > .3 ? Math.max(0, .22 - (lt - .3) * 3) : 0;  // depois da transição
   $('props').innerHTML = prop(c, lt, t);
-  $('props').style.transformOrigin = '50% 1000px';
-  $('props').style.transform = c.prop && ['tela_menu', 'chat_demo', 'link_montagem', 'barras', 'cta', 'busca'].includes(c.prop.tipo)
-    ? `translateY(${70 + Math.sin(t * 1) * 4}px) scale(.88)` : `translateY(${Math.sin(t * 1) * 5}px)`;   // props antigos descem pra caber debaixo da faixa
+  // texto no MEIO da tela (faixa 770–1160); o motion graphics fica menor, em cima (230–740), só complementando (ajuste dele em 26/10)
+  $('props').style.transformOrigin = '540px 1040px';
+  $('props').style.transform = `translateY(${-555 + Math.sin(t * 1) * 4}px) scale(.68)`;
   drawKin(c, lt, t);
   if (Array.isArray(c.mg)) drawMG(c, lt, t); else $('mg').innerHTML = '';   // decoração só quando a cena pede
   const bt = drawBeats(c, lt, t);

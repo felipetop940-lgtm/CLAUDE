@@ -409,7 +409,7 @@
       ]
     },
     {
-      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de site, me chama no direct.",
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E manda pra quem ficou perdido no domingo.",
       "acento": "gold",
       "texto": [
         "Gostou?"
@@ -429,8 +429,8 @@
           "sub": "NOTÍCIA SEM ENROLAÇÃO"
         },
         {
-          "em": "site",
-          "txt": "PRECISA\nDE SITE?",
+          "em": "manda",
+          "txt": "MANDA PRA\nQUEM FICOU\nPERDIDO",
           "painel": "white",
           "fx": "slide"
         }
@@ -438,7 +438,7 @@
       "prop": {
         "tipo": "cta",
         "botao": "Seguir ➕",
-        "sub": "Notícia sem enrolação",
+        "sub": "Manda pra quem ficou perdido",
         "y": 760
       },
       "fim": 1.4,
@@ -455,7 +455,7 @@
           "pose": "apontando"
         },
         {
-          "em": "site",
+          "em": "manda",
           "pose": "comemorando"
         }
       ]
@@ -472,6 +472,6 @@
       "sub": "ELEIÇÃO PRORROGADA"
     },
     "selo": "Nunca tinha acontecido",
-    "selo_y": 1450
+    "selo_y": 1230
   }
 }

@@ -11,7 +11,7 @@ Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem exp
 4. A bolsa caiu tanto que parou por meia hora. Isso não acontecia desde dois mil e vinte.
 5. E no teu bolso? O que tem dólar no preço tende a subir: celular, eletrônico, viagem e até o pãozinho, porque boa parte do trigo vem de fora.
 6. Mas calma: a cotação muda todo dia. Vai comprar algo em dólar? Não decide no susto.
-7. Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de site, me chama no direct.
+7. Gostou? Segue pra entender a notícia sem enrolação. E se você tem negócio, no meu perfil tem o passo a passo pra ajustar teu preço.
 
 ## Título
 O dólar disparou depois da eleição. O que muda no teu bolso? 💵
@@ -28,6 +28,7 @@ No teu bolso: o que tem dólar no preço tende a subir (celular, eletrônico, vi
 Calma: a cotação muda todo dia. Vai comprar algo em dólar? Não decide no susto.
 
 ➕ Segue pra entender a notícia sem enrolação.
+💼 Tem negócio? No meu perfil tem o passo a passo pra ajustar teu preço (carrossel do dólar).
 
 #dolar #economia #eleicoes2026 #bolsa #noticias
 

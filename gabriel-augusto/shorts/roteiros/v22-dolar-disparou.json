@@ -404,7 +404,7 @@
       ]
     },
     {
-      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de site, me chama no direct.",
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem negócio, no meu perfil tem o passo a passo pra ajustar teu preço.",
       "acento": "gold",
       "texto": [
         "Gostou?"
@@ -424,16 +424,23 @@
           "sub": "NOTÍCIA SEM ENROLAÇÃO"
         },
         {
-          "em": "site",
-          "txt": "PRECISA\nDE SITE?",
+          "em": "negocio",
+          "txt": "TEM\nNEGÓCIO?",
           "painel": "white",
-          "fx": "slide"
+          "fx": "slide",
+          "sub": "PASSO A PASSO NO PERFIL"
+        },
+        {
+          "em": "preco",
+          "txt": "AJUSTA\nTEU PREÇO",
+          "painel": "red",
+          "fx": "punch"
         }
       ],
       "prop": {
         "tipo": "cta",
         "botao": "Seguir ➕",
-        "sub": "Notícia sem enrolação",
+        "sub": "Passo a passo do preço no perfil",
         "y": 760
       },
       "fim": 1.4,
@@ -450,8 +457,8 @@
           "pose": "apontando"
         },
         {
-          "em": "site",
-          "pose": "comemorando"
+          "em": "negocio",
+          "pose": "ideia"
         }
       ]
     }
@@ -467,6 +474,6 @@
       "sub": "O DÓLAR DISPAROU"
     },
     "selo": "E no teu bolso?",
-    "selo_y": 1450
+    "selo_y": 1230
   }
 }

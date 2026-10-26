@@ -1,6 +1,6 @@
 # Vídeo 21: "Eleição prorrogada" (modo dinâmico: texto gigante + motion graphics)
 
-Teste novo pedido em 26/10: palavras-chave enormes cortando no ritmo da fala (faixas vermelha/branca/preta/dourada/azul), motion graphics explicativo no meio (relógio 17h → 19h, cartões, apuração pausada, barras do resultado) e boneco pequeno no canto. Motor: `ferramentas/motor-dinamico.html`. Assunto de eleição, sem venda; o site só aparece no fim.
+Teste novo pedido em 26/10: palavras-chave enormes cortando no ritmo da fala (faixas vermelha/branca/preta/dourada/azul), motion graphics explicativo no meio (relógio 17h → 19h, cartões, apuração pausada, barras do resultado) e boneco pequeno no canto. Motor: `ferramentas/motor-dinamico.html`. Assunto de eleição, sem venda. Ajuste dele (26/10): texto no MEIO da tela, motion graphics menor em cima só complementando; sem falar de site no fim (ficava deslocado).
 
 ## Roteiro para gravar (sua voz)
 Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem conta a notícia pra um amigo, sem opinião.
@@ -11,7 +11,7 @@ Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem con
 4. Só que a decisão saiu tão em cima da hora que a maioria das urnas já tinha fechado. E essas não abriram de novo.
 5. E a contagem dos votos parou. Só voltou depois das sete.
 6. No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois do Flávio.
-7. Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de site, me chama no direct.
+7. Gostou? Segue pra entender a notícia sem enrolação. E manda pra quem ficou perdido no domingo.
 
 ## Título
 Pela primeira vez, a eleição pra presidente ganhou 2 horas a mais ⏰
@@ -27,7 +27,7 @@ Só que o aviso chegou em cima da hora: a maioria das urnas já tinha fechado, e
 
 Resultado: Lula 51,8% x Flávio 48,2% dos votos válidos (TSE).
 
-➕ Segue pra entender a notícia sem enrolação.
+➕ Segue pra entender a notícia sem enrolação. 📲 Manda pra quem ficou perdido no domingo.
 
 #eleicoes2026 #segundoturno #noticias #brasil #tse
 
