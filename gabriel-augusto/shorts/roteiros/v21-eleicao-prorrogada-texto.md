@@ -10,7 +10,7 @@ Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem con
 3. Quem decidiu foi o ministro Cristiano Zanin, do STF: votação até as sete da noite.
 4. Mas o aviso chegou em cima da hora. Urna que já tinha fechado não abriu de novo, e os votos dela valeram normal.
 5. E a contagem dos votos parou. Só voltou depois das sete.
-6. No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois do Flávio.
+6. No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois por cento.
 7. Gostou? Segue pra entender a notícia sem enrolação. E manda pra quem ficou perdido no domingo.
 
 ## Título

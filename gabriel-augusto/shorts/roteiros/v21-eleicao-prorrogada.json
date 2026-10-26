@@ -9,7 +9,7 @@
     "sete da noite": "19h",
     "depois das sete": "depois das 19h",
     "cinquenta e um vírgula oito por cento": "51,8%",
-    "quarenta e oito vírgula dois": "48,2%"
+    "quarenta e oito vírgula dois por cento": "48,2%"
   },
   "cenas": [
     {
@@ -203,7 +203,7 @@
       }
     },
     {
-      "fala": "No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois do Flávio.",
+      "fala": "No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois por cento.",
       "texto": [
         "Resultado"
       ],
@@ -215,7 +215,7 @@
       ],
       "enfase": [
         "lula",
-        "flavio"
+        "contra"
       ],
       "prop": {
         "tipo": "rosca",
