@@ -1,0 +1,168 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 23 ANIMADO (Instagram 1080x1350, cada slide é um vídeo) · "O dólar subiu: teu preço vai ficar pra trás?"
+     Estrutura do guia que ele mandou (26/10): 1 gancho · 2 CTA de engajamento · 3–6 passo a passo com tela · 7 presente de verdade (planilha em presente/).
+     Dólar: R$ 4,99 na sexta 23/10 → passou de R$ 5,60 na manhã de 26/10 (Tribuna PR, Times Brasil, Money Times, Terra). Telas desenhadas, nomes fictícios.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c23-dolar-preco -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "ISI"; font-style: italic; src: url("../fontes/instrument-serif-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #060709; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+.kick { font-weight: 800; font-size: 28px; letter-spacing: .18em; color: #D6B36C; text-transform: uppercase; }
+.tit { font-family: "Anton"; text-transform: uppercase; line-height: 1.02; font-size: 112px; letter-spacing: .005em; }
+.tit i, .ser { font-family: "ISI"; font-style: italic; text-transform: none; font-weight: 400; letter-spacing: 0; }
+.tit i { color: #D6B36C; font-size: 1.12em; }
+.body { font-size: 40px; line-height: 1.32; color: #C9CDD6; font-weight: 500; }
+.body b { color: #fff; font-weight: 700; }
+.w { display: inline-block; }
+.card { background: linear-gradient(160deg, rgba(30,33,42,.92), rgba(9,10,13,.96)); border: 2px solid rgba(255,255,255,.10); border-radius: 34px; box-shadow: 0 40px 90px -30px #000, inset 0 1px 0 rgba(255,255,255,.08); }
+</style></head><body><div id="st"></div>
+<script>
+window.ALTURA = 1350;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x)), ease = x => 1 - Math.pow(1 - clamp(x), 3);
+const back = x => { x = clamp(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const eio = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const lerp = (a, b, k) => a + (b - a) * k, G = '#D6B36C', B = '#4F7BFF', RD = '#FF4D5E', W = '#F5F6F8';
+const fmt = (v, d = 2) => v.toFixed(d).replace('.', ',');
+const TOTAL = 7;
+// entra subindo com desfoque (palavra por palavra)
+const surge = (k, dy = 40) => `opacity:${clamp(k * 1.4)};transform:translateY(${(1 - k) * dy}px);filter:blur(${(1 - clamp(k)) * 10}px)`;
+function palavras(html, t, t0, passo = .07, dy = 50) {
+  let j = 0; return html.split(/(<i>.*?<\/i>|<br>|\s+)/).filter(x => x && !/^\s+$/.test(x)).map(tok => tok === '<br>' ? '<br>' :
+    `<span class="w" style="${surge(ease((t - t0 - (j++) * passo) / .45), dy)};margin-right:.22em">${tok}</span>`).join('');
+}
+function fundo(t, n) {
+  const x1 = 540 + Math.sin(t * .5 + n) * 300, y1 = 300 + Math.cos(t * .4 + n) * 200, x2 = 540 + Math.cos(t * .45 + n) * 320, y2 = 1100 + Math.sin(t * .35 + n) * 180;
+  return `<div class="abs" style="left:${x1 - 450}px;top:${y1 - 450}px;width:900px;height:900px;border-radius:50%;background:rgba(79,123,255,.30);filter:blur(110px)"></div>
+    <div class="abs" style="left:${x2 - 420}px;top:${y2 - 420}px;width:840px;height:840px;border-radius:50%;background:rgba(214,179,108,.24);filter:blur(110px)"></div>
+    <div class="abs" style="inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:100% 6px"></div>
+    <div class="abs" style="inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 45%,rgba(0,0,0,.7))"></div>`;
+}
+function topo(n, t) { const k = ease(t / .5);
+  return `<div class="abs" style="left:80px;right:80px;top:56px;display:flex;justify-content:space-between;align-items:center;opacity:${k}">
+    <div style="display:flex;align-items:center;gap:18px"><div style="width:58px;height:58px;border-radius:16px;border:2px solid ${G};display:grid;place-items:center;font-family:ISI;font-style:italic;font-size:34px;color:${G}">GA</div>
+    <span style="font-weight:700;font-size:28px;color:#C9CDD6">@euaugusto_oliv</span></div>
+    <span style="font-weight:800;font-size:26px;letter-spacing:.12em;color:#8A909C">${String(n).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}</span></div>`; }
+function rodape(t, t0, txt = 'ARRASTA') { const k = ease((t - t0) / .4), x = Math.sin(t * 4) * 8;
+  return `<div class="abs" style="left:0;right:0;bottom:56px;text-align:center;opacity:${k}"><span style="font-weight:800;font-size:26px;letter-spacing:.22em;color:#8A909C">${txt} <span style="display:inline-block;color:${RD};transform:translateX(${x}px)">→</span></span></div>`; }
+
+/* ---------- slides ---------- */
+const S = [];
+// 1 · gancho: cotação disparando
+S.push({ dur: 5.5, render: t => {
+  const k = eio((t - 1.0) / 1.6), v = lerp(4.99, 5.60, k), pct = (v / 4.99 - 1) * 100, on = t > 1.0;
+  const pts = 40, line = Array.from({ length: pts + 1 }, (_, i) => { const x = i / pts; const y = x < .55 ? .78 + Math.sin(i * 1.7) * .03 : lerp(.78, .12, eio((x - .55) / .45)); return [80 + x * 760, 40 + y * 260]; });
+  const vis = Math.floor(lerp(pts * .55, pts, k)) + 1, d = line.slice(0, vis).map((p, i) => `${i ? 'L' : 'M'}${p[0]} ${p[1]}`).join(' '), lp = line[vis - 1];
+  return `${topo(1, t)}
+  <div class="abs kick" style="left:80px;top:180px;${surge(ease((t - .2) / .5))}">● O dólar disparou</div>
+  <div class="abs card" style="left:80px;right:80px;top:250px;height:520px;padding:40px 50px;${surge(ease((t - .35) / .6))}">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:30px;letter-spacing:.1em;color:#8A909C">US$ 1 =</span>
+      ${on ? `<span style="padding:10px 24px;border-radius:30px;background:${RD};font-family:Anton;font-size:44px;transform:scale(${back((t - 1) / .4)});display:inline-block">▲ +${fmt(pct, 1)}%</span>` : ''}</div>
+    <div style="font-family:Anton;font-size:170px;line-height:1.05;color:${on ? RD : W};text-shadow:0 0 ${on ? 60 : 0}px rgba(255,77,94,.4)">R$ ${fmt(v)}</div>
+    <svg width="920" height="300" style="position:absolute;left:0;bottom:50px"><path d="${d}" fill="none" stroke="${RD}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 12px ${RD})"/>
+      <circle cx="${lp[0]}" cy="${lp[1]}" r="${12 + 4 * Math.sin(t * 7)}" fill="${RD}"/></svg>
+    <div style="position:absolute;left:50px;bottom:24px;font-weight:700;font-size:24px;letter-spacing:.06em;color:#8A909C">SEXTA (23/10): R$ 4,99 → SEGUNDA (26/10) DE MANHÃ</div></div>
+  <div class="abs tit" style="left:80px;right:80px;top:820px">${palavras('Teu preço vai <i>ficar pra trás?</i>', t, 2.2)}</div>
+  <div class="abs body" style="left:80px;right:80px;top:1080px;${surge(ease((t - 3.1) / .5))}">4 passos pra <b>não perder dinheiro</b> nas próximas semanas.</div>
+  ${rodape(t, 3.6)}${''}`; } });
+// 2 · CTA de engajamento: salva + promessa do presente
+S.push({ dur: 5, render: t => {
+  const fill = eio((t - 1.2) / .6), pop = back((t - 1.2) / .5);
+  return `${topo(2, t)}
+  <div class="abs" style="left:0;right:0;top:230px;display:grid;place-items:center;${surge(ease((t - .2) / .6))}">
+    <svg width="300" height="380" viewBox="0 0 30 38" style="transform:scale(${lerp(1, 1.08, pop) - (pop > 1 ? .08 : 0)});filter:drop-shadow(0 0 ${40 * fill}px rgba(214,179,108,.6))">
+      <path d="M3 2h24v33l-12-8-12 8z" fill="${fill > .02 ? G : 'none'}" fill-opacity="${fill}" stroke="${G}" stroke-width="2" stroke-linejoin="round"/></svg></div>
+  <div class="abs tit" style="left:80px;right:80px;top:660px;text-align:center">${palavras('Salva <i>esse post</i>', t, .6)}</div>
+  <div class="abs body" style="left:110px;right:110px;top:820px;text-align:center;${surge(ease((t - 1.6) / .5))}">Você vai precisar dele <b>essa semana</b>.</div>
+  <div class="abs card" style="left:150px;right:150px;top:960px;padding:30px 40px;display:flex;gap:24px;align-items:center;border-color:rgba(214,179,108,.5);${surge(ease((t - 2.4) / .6))}">
+    <span style="font-size:64px;display:inline-block;transform:rotate(${Math.sin(t * 5) * 8}deg)">🎁</span><span class="body" style="font-size:36px">No último slide tem <b>um presente</b> pra você.</span></div>
+  ${rodape(t, 3)}`; } });
+// 3 · passo 1: onde o dólar entra no custo
+S.push({ dur: 6.5, render: t => {
+  const L = [['📦', 'Embalagem'], ['🔩', 'Peça e equipamento'], ['🧴', 'Produto importado'], ['🌾', 'Matéria-prima (trigo, por exemplo)']];
+  return `${topo(3, t)}
+  <div class="abs kick" style="left:80px;top:180px;${surge(ease((t - .1) / .5))}">Passo 1</div>
+  <div class="abs tit" style="left:80px;right:80px;top:230px;font-size:100px">${palavras('Acha o dólar <i>no teu custo</i>', t, .3)}</div>
+  ${L.map((it, j) => { const k = ease((t - 1.3 - j * .45) / .5), tag = back((t - 1.6 - j * .45) / .4);
+    return `<div class="abs card" style="left:80px;right:80px;top:${500 + j * 150}px;height:126px;display:flex;align-items:center;gap:26px;padding:0 34px;opacity:${clamp(k * 1.3)};transform:translateX(${(1 - k) * (j % 2 ? 160 : -160)}px);filter:blur(${(1 - k) * 8}px)">
+      <span style="font-size:58px">${it[0]}</span><span style="font-weight:700;font-size:38px">${it[1]}</span>
+      <span style="margin-left:auto;padding:8px 20px;border-radius:14px;background:${G};color:#07080A;font-family:Anton;font-size:36px;transform:scale(${tag});display:inline-block">US$</span></div>`; }).join('')}
+  <div class="abs body" style="left:80px;right:80px;top:1110px;font-size:36px;${surge(ease((t - 3.5) / .5))}">Tudo que vem de fora, ou depende de coisa de fora, <b>pode subir primeiro.</b></div>
+  ${rodape(t, 4)}`; } });
+// 4 · passo 2: refaz a conta (o lucro some se o preço não muda)
+S.push({ dur: 8, render: t => {
+  const cresce = eio((t - 3.0) / 1.2), Hc = lerp(260, 360, cresce), Hd = 150, Hl = lerp(190, 90, cresce), base = 1080, x0 = 200, wB = 300;
+  const bloc = (y, h, col, txt, sub, k) => `<div class="abs" style="left:${x0}px;top:${y}px;width:${wB}px;height:${h}px;border-radius:18px;background:${col};opacity:${k};display:flex;flex-direction:column;justify-content:center;align-items:center;transform:scaleY(${k});transform-origin:50% 100%;color:#07080A">
+    <b style="font-family:Anton;font-size:42px;text-transform:uppercase">${txt}</b><span style="font-weight:700;font-size:24px">${sub || ''}</span></div>`;
+  const k1 = ease((t - 1.0) / .5), k2 = ease((t - 1.4) / .5), k3 = ease((t - 1.8) / .5);
+  const yC = base - Hc, yD = yC - Hd - 10, yL = yD - Hl - 10, preco = 860;
+  const alerta = back((t - 4.2) / .4);
+  return `${topo(4, t)}
+  <div class="abs kick" style="left:80px;top:180px;${surge(ease((t - .1) / .5))}">Passo 2</div>
+  <div class="abs tit" style="left:80px;right:80px;top:230px;font-size:100px">${palavras('Refaz <i>a conta</i>', t, .3)}</div>
+  ${bloc(yC, Hc, cresce > .05 ? RD : W, 'Custo', cresce > .05 ? '▲ subiu com o dólar' : 'o que você paga', k1)}
+  ${bloc(yD, Hd, B, 'Despesas', 'aluguel, taxa, entrega', k2)}
+  ${bloc(yL, Hl, G, 'Lucro', cresce > .5 ? '▼ encolheu' : 'o que sobra pra você', k3)}
+  <div class="abs" style="left:${x0 + wB + 50}px;top:${preco - 400}px;width:340px;${surge(ease((t - 2.2) / .5))}">
+    <div style="font-weight:800;font-size:26px;letter-spacing:.12em;color:#8A909C">PREÇO DE HOJE</div>
+    <div style="font-family:Anton;font-size:96px;line-height:1">R$ 100</div>
+    <div style="margin-top:10px;height:6px;width:100%;background:rgba(255,255,255,.15)"></div>
+    <div class="body" style="font-size:30px;margin-top:16px">Mesmo preço,<br>custo maior…</div></div>
+  ${alerta > 0 ? `<div class="abs" style="left:${x0 + wB + 50}px;top:820px;width:350px;padding:22px 26px;border-radius:24px;border:4px solid ${RD};transform:scale(${alerta});background:rgba(30,6,10,.7)">
+    <div style="font-family:Anton;font-size:46px;color:${RD};line-height:1.05">QUEM PAGA É<br>TEU LUCRO</div></div>` : ''}
+  <div class="abs body" style="left:80px;right:80px;top:1120px;font-size:34px;${surge(ease((t - 5) / .5))}">Valores de exemplo. <b>Faz a tua conta com o custo novo</b> antes de vender.</div>
+  ${rodape(t, 5.5)}`; } });
+// 5 · passo 3: avisa antes (vira motivo pra comprar agora)
+S.push({ dur: 7, render: t => {
+  const msg = 'Oi, Ana! 😊 Dia 10 o preço muda. Quem fechar até lá paga o valor de hoje.';
+  const n = Math.floor(clamp((t - 1.2) / 2.2) * msg.length), envia = t > 3.6, resp = back((t - 4.6) / .45), dig = t > 3.9 && t < 4.6;
+  return `${topo(5, t)}
+  <div class="abs kick" style="left:80px;top:180px;${surge(ease((t - .1) / .5))}">Passo 3</div>
+  <div class="abs tit" style="left:80px;right:80px;top:230px;font-size:100px">${palavras('Avisa <i>antes de mudar</i>', t, .3)}</div>
+  <div class="abs" style="left:150px;right:150px;top:470px;height:600px;border-radius:44px;padding:14px;background:linear-gradient(145deg,#2a2f3a,#0c0e12);${surge(ease((t - .6) / .6))}">
+    <div style="height:100%;border-radius:32px;background:#0B141A;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;gap:16px;padding:26px 26px 18px;background:#1F2C34"><div style="width:56px;height:56px;border-radius:50%;background:#3a404c;display:grid;place-items:center">👩</div><b style="font-size:30px">Ana (cliente)</b></div>
+      <div style="flex:1;padding:24px">
+        ${envia ? `<div style="margin-left:auto;max-width:86%;padding:18px 22px;border-radius:20px 20px 6px 20px;background:#005C4B;font-size:29px;line-height:1.3">${msg}</div>` : ''}
+        ${dig ? `<div style="margin-top:16px;width:110px;padding:16px 20px;border-radius:20px;background:#1F2C34;color:#8696A0;font-size:30px">• • •</div>` : ''}
+        ${resp > 0 ? `<div style="margin-top:16px;max-width:80%;padding:18px 22px;border-radius:20px 20px 20px 6px;background:#1F2C34;font-size:29px;transform:scale(${resp});transform-origin:0 100%">Então vou fechar hoje! 🙌</div>` : ''}</div>
+      <div style="display:flex;gap:12px;padding:16px 18px 22px"><div style="flex:1;min-height:64px;padding:16px 22px;border-radius:32px;background:#1F2C34;font-size:26px;color:${envia ? '#8696A0' : '#E9EDEF'}">${envia ? 'Mensagem' : msg.slice(0, n) + (Math.sin(t * 9) > 0 ? '|' : '')}</div>
+        <div style="width:64px;height:64px;border-radius:50%;background:#00A884;display:grid;place-items:center;font-size:28px">➤</div></div></div></div>
+  <div class="abs body" style="left:80px;right:80px;top:1120px;font-size:36px;${surge(ease((t - 5.2) / .5))}">Aviso com data <b>vira motivo pra comprar agora.</b></div>
+  ${rodape(t, 5.6)}`; } });
+// 6 · passo 4: mostra o valor (onde entra o trabalho dele)
+S.push({ dur: 7, render: t => {
+  const it = [['📸', 'Foto boa do produto', 1.4], ['⭐', 'Avaliação 4,9 no Google', 2.0], ['🌐', 'Site que explica o que você entrega', 2.6]];
+  return `${topo(6, t)}
+  <div class="abs kick" style="left:80px;top:180px;${surge(ease((t - .1) / .5))}">Passo 4</div>
+  <div class="abs tit" style="left:80px;right:80px;top:230px;font-size:96px">${palavras('Mostra o valor, <i>não só o preço</i>', t, .3)}</div>
+  <div class="abs body" style="left:80px;right:80px;top:500px;font-size:36px;${surge(ease((t - 1.0) / .5))}">Quando o preço sobe, o cliente procura <b>um motivo pra pagar.</b> Dá esse motivo:</div>
+  ${it.map((x, j) => { const k = back((t - x[2]) / .5), chk = back((t - x[2] - .35) / .4);
+    return `<div class="abs card" style="left:80px;right:80px;top:${670 + j * 140}px;height:118px;display:flex;align-items:center;gap:24px;padding:0 32px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">
+      <span style="font-size:54px">${x[0]}</span><span style="font-weight:700;font-size:36px">${x[1]}</span><span style="margin-left:auto;font-size:46px;color:${G};transform:scale(${chk});display:inline-block">✓</span></div>`; }).join('')}
+  <div class="abs body" style="left:80px;right:80px;top:1110px;font-size:34px;${surge(ease((t - 4) / .5))}">É isso que faz o cliente <b>pagar mais sem reclamar.</b></div>
+  ${rodape(t, 4.6)}`; } });
+// 7 · presente de verdade (substitui o CTA do guia): comenta PREÇO → planilha no direct
+S.push({ dur: 7.5, render: t => {
+  const word = 'PREÇO', n = Math.floor(clamp((t - 1.6) / .8) * word.length), voa = eio((t - 3.0) / 1.0), dm = back((t - 3.8) / .5);
+  return `${topo(7, t)}
+  <div class="abs kick" style="left:80px;top:180px;${surge(ease((t - .1) / .5))}">🎁 Presente pra você</div>
+  <div class="abs tit" style="left:80px;right:80px;top:230px;font-size:104px">${palavras('Comenta <i>PREÇO</i>', t, .3)}</div>
+  <div class="abs body" style="left:80px;right:80px;top:390px;${surge(ease((t - .9) / .5))}">que eu te mando no direct a <b>planilha do preço novo</b>: você coloca teus custos e ela mostra <b>quanto cobrar.</b></div>
+  <div class="abs card" style="left:80px;right:80px;top:640px;height:120px;display:flex;align-items:center;gap:20px;padding:0 30px;${surge(ease((t - 1.3) / .5))}">
+    <div style="width:64px;height:64px;border-radius:50%;background:#3a404c;display:grid;place-items:center">🙂</div>
+    <div style="flex:1;font-size:36px;font-weight:700">${word.slice(0, n)}<span style="color:${G};opacity:${n < word.length && Math.sin(t * 9) > 0 ? 1 : 0}">|</span></div>
+    <span style="font-size:30px;color:#8A909C">Publicar</span></div>
+  <div class="abs" style="left:${lerp(170, 540, voa) - 60}px;top:${lerp(800, 950, voa) - Math.sin(voa * Math.PI) * 120}px;opacity:${t > 3 && voa < 1 ? 1 : 0};font-size:90px;transform:rotate(${voa * 20}deg)">📄</div>
+  ${dm > 0 ? `<div class="abs card" style="left:150px;right:150px;top:880px;padding:28px 34px;display:flex;gap:24px;align-items:center;border-color:rgba(214,179,108,.6);transform:scale(${dm})">
+    <div style="width:110px;height:130px;border-radius:14px;background:#1D6F42;display:grid;place-items:center;font-family:Anton;font-size:44px;color:#fff;flex-shrink:0">XLS</div>
+    <div><div style="font-weight:800;font-size:34px">planilha-preco-novo.xlsx</div><div style="font-size:28px;color:#8A909C;margin-top:6px">Chegou no teu direct ✓✓</div></div></div>` : ''}
+  <div class="abs body" style="left:80px;right:80px;top:1130px;font-size:32px;text-align:center;${surge(ease((t - 4.8) / .5))}">De graça. Salva o post e manda pra quem vende.</div>`; } });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { document.getElementById('st').innerHTML = fundo(t, i) + S[i].render(t); };
+window.mostrar(0, 0);
+</script></body></html>
