@@ -31,6 +31,10 @@ Regras fixas:
 - Capa: `python3 capa.py ../roteiros/vNN.json` → `saida/vNN-capa.jpg` (1ª cena + chave "capa" no roteiro: texto, tamanho, selo com a pergunta do gancho, selo_y). Tudo dentro do recorte 3:4 da grade.
 - Renderização: ~7 min, 4 processos em paralelo. Manter o mp4 abaixo de 30 MB. Não apagar /tmp/short_* durante render.
 
+**MODO DINÂMICO (teste pedido em 26/10, vídeos de notícia v21/v22):** `"motor": "motor-dinamico.html"` no roteiro. Palavras-chave gigantes cortando no ritmo da fala (`"kw"` por cena: [{em, txt, painel red|white|black|gold|blue, fx punch|slide|stretch|glitch|drop, sub}], faixa em 250–640, referência de "kinetic type" que ele mandou), motion graphics explicativo no centro (props novos `relogio`, `cards`, `apuracao`, `cotacao`, `fluxo`, `queda_bolsa`, `itens_sobe` + os antigos) e boneco pequeno no canto (`escala` .34, x 975). Capa: chave `"kw"` dentro de `"capa"`. Assunto de notícia pode não ter a ver com site; o site só entra no final ("Gostou? Segue... E se teu negócio precisa de site, me chama no direct").
+
+**CARROSSEL ANIMADO (26/10):** cada slide vira um vídeo 1080x1350 (`carrosseis/<pasta>/anim.html` com `window.SLIDES = [{dur, render(t)}]`; `PWPATH=$(npm root -g)/playwright node animado/render-anim.js <pasta>` → `saida/<pasta>/NN.mp4` + capa jpg + zip). Estrutura do guia que ele mandou: 1 gancho · 2 CTA de engajamento (salva) · meio = passo a passo com tela · último = **presente de verdade** ("comenta PALAVRA que eu mando no direct"), e o presente tem que existir (ex.: `c23-dolar-preco/presente/planilha-preco-novo.xlsx`).
+
 ## Artes estáticas (stories/destaques)
 
 `gabriel-augusto/destaques/stories/stories.html` + `render.js` → `saida/*.jpg` (1080x1920). Ele prefere artes estilo Canva a vídeos nos destaques. **Tema sempre escuro, com variações sutis entre artes** (bg-aura, bg-ink, bg-blue, bg-grid, bg-gold, bg-beam, marca d'água discreta). Nada de fundo claro/creme; não variar totalmente e usar **detalhes em vermelho** (etiquetas, sublinhados, pontos) junto com preto/dourado/azul/branco.

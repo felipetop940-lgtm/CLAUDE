@@ -204,8 +204,35 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
             if bt.get("destaque"): put(sino(notas[min(j, len(notas) - 1)] * 1.5, 1.8, 3.2), tb + .38, .32)
             if bt.get("pose") == "chocado": put(tensao(1.1), tb, .45)
             if bt.get("pose") == "comemorando": put(brilho(1175), tb + .05, .28)
+        # texto cinético (modo dinâmico): cada palavra-chave tem seu golpe de som, baixinho
+        for j, kw in enumerate(c.get("kw", [])):
+            tk = quando(c, kw.get("em", 0)); f = kw.get("fx", "punch")
+            if f == "punch": put(ar(.22, 2500, 9000), tk - .1, .32); put(sub(64, .6), tk, .32)
+            elif f == "slide": put(ar(.32, 700, 8000), tk - .18, .5)
+            elif f == "stretch": put(swell(.35, 988), tk - .3, .28); put(sub(58, .5), tk + .02, .25)
+            elif f == "drop": put(sub(72, .7), tk + .12, .4)
+            elif f == "glitch": put(hp(lp(rng.standard_normal(int(.22 * SR)), 6000), 900) * np.repeat(rng.random(23) > .45, int(.22 * SR) // 23 + 1)[: int(.22 * SR)] * .5, tk, .5)
         p = c.get("prop") or {}; pr = p.get("tipo")
-        if pr == "chat_demo":
+        if pr == "relogio":
+            te = quando(c, p.get("em", .3))
+            for q in range(9): put(tecla(), te + q * .17, .5)
+            put(sino(1318.5, 1.8, 3), te + 1.45, .4)
+        elif pr == "cards":
+            for it in p.get("itens", []): tc = quando(c, it.get("em", .2)); put(ar(.32, 900, 7000), tc - .12, .38); put(sino(1046.5 if it.get("cor") != "red" else 784, 1.4, 4), tc + .2, .22)
+        elif pr == "apuracao":
+            put(sub(55, .9), quando(c, p.get("pausa_em", .4)), .5); put(tensao(), quando(c, p.get("pausa_em", .4)) + .1, .35)
+            if p.get("volta_em") is not None: put(brilho(1047), quando(c, p["volta_em"]), .3)
+        elif pr == "cotacao":
+            for j, q in enumerate(p.get("pontos", [])):
+                tq = quando(c, q.get("em", 0))
+                if j: put(swell(.5, 784 + j * 196), tq - .45, .3); put(sub(60, .8), tq + .05, .35); put(tensao(.9), tq + .1, .25)
+        elif pr == "fluxo":
+            te = quando(c, p.get("em", .2))
+            for q in range(9): put(sino(2349 + (q % 3) * 260, .35, 14), te + q * .3, .18)
+        elif pr == "queda_bolsa": put(queda(), quando(c, p.get("em", .2)), .6); put(sub(50, 1.2), quando(c, p.get("pausa_em", .6)), .55)
+        elif pr == "itens_sobe":
+            for j, it in enumerate(p.get("itens", [])): ti = quando(c, it[2] if len(it) > 2 else .2); put(ar(.25, 1500, 8000), ti - .08, .3); put(sino(notas[min(j, len(notas) - 1)], 1.2, 4), ti + .25, .3)
+        elif pr == "chat_demo":
             for m in p.get("msgs", []):
                 tm = quando(c, m.get("em", .2))
                 if m.get("de") == "cli":
@@ -281,7 +308,7 @@ def tratar_voz(v: np.ndarray) -> np.ndarray:
 # ---------------------------------------------------------------- vídeo
 def render_frames(rot: dict, frames: Path, html: Path, total: float, workers: int = os.cpu_count() or 4):
     """Renderiza os quadros em paralelo: cada processo abre um navegador e faz uma fatia intercalada."""
-    html.write_text((HERE / "motor.html").read_text().replace("__ROTEIRO__", json.dumps(rot, ensure_ascii=False)))
+    html.write_text((HERE / rot.get("motor", "motor.html")).read_text().replace("__ROTEIRO__", json.dumps(rot, ensure_ascii=False)))
     js = html.with_suffix(".js")
     js.write_text(f"""
 const {{ chromium }} = require(process.env.PWPATH);

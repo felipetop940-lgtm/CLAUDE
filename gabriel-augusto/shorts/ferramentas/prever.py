@@ -19,7 +19,7 @@ for a, b in zip(cenas, cenas[1:]): a["dur"] = round(b["t0"] - a["t0"], 3)
 rot["total"] = round(t, 2); cenas[-1]["dur"] = round(t - cenas[-1]["t0"], 3)
 tempos = [round(c["t0"] + c["dur"] * (k + 1) / (n + 1), 2) for c in cenas for k in range(n)]
 tmp = Path(tempfile.mkdtemp(prefix="previa_")); html = HERE / f"_previa_{src.stem}.html"
-html.write_text((HERE / "motor.html").read_text().replace("__ROTEIRO__", json.dumps(rot, ensure_ascii=False)))
+html.write_text((HERE / rot.get("motor", "motor.html")).read_text().replace("__ROTEIRO__", json.dumps(rot, ensure_ascii=False)))
 js = tmp / "p.js"
 js.write_text(f"""const {{ chromium }} = require(process.env.PWPATH);
 (async () => {{ const b = await chromium.launch(); const p = await b.newPage({{ viewport: {{ width: 1080, height: 1920 }} }});

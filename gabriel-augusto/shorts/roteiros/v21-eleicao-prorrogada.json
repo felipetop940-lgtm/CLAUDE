@@ -1,0 +1,477 @@
+{
+  "titulo": "Eleição prorrogada: as 2 horas a mais do 2º turno",
+  "motor": "motor-dinamico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "auras",
+  "cenas": [
+    {
+      "fala": "Domingo aconteceu uma coisa que nunca tinha acontecido no Brasil: a eleição pra presidente ganhou duas horas a mais.",
+      "acento": "red",
+      "texto": [
+        "+2 horas"
+      ],
+      "kw": [
+        {
+          "em": "domingo",
+          "txt": "DOMINGO",
+          "painel": "white",
+          "fx": "slide"
+        },
+        {
+          "em": "nunca",
+          "txt": "NUNCA\nACONTECEU",
+          "painel": "red",
+          "fx": "punch"
+        },
+        {
+          "em": "eleicao",
+          "txt": "ELEIÇÃO",
+          "painel": "black",
+          "fx": "glitch",
+          "sub": "PRA PRESIDENTE"
+        },
+        {
+          "em": "duas",
+          "txt": "+2 HORAS",
+          "painel": "red",
+          "fx": "punch"
+        }
+      ],
+      "prop": {
+        "tipo": "relogio",
+        "de": 17,
+        "ate": 19,
+        "em": "duas",
+        "rot": "+2 HORAS"
+      },
+      "boneco": {
+        "pose": "pensando",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "nunca",
+          "pose": "chocado"
+        },
+        {
+          "em": "duas",
+          "pose": "apontando"
+        }
+      ]
+    },
+    {
+      "fala": "Era pra votação acabar às cinco da tarde. Mas as duas campanhas pediram mais tempo: uma por falta de ônibus, a outra por chuva e alagamento.",
+      "acento": "blue",
+      "texto": [
+        "17h"
+      ],
+      "kw": [
+        {
+          "em": "acabar",
+          "txt": "17H",
+          "painel": "white",
+          "fx": "stretch",
+          "sub": "ERA PRA ACABAR"
+        },
+        {
+          "em": "duas",
+          "txt": "AS DUAS\nCAMPANHAS",
+          "painel": "black",
+          "fx": "slide"
+        },
+        {
+          "em": "tempo",
+          "txt": "MAIS TEMPO",
+          "painel": "gold",
+          "fx": "punch"
+        },
+        {
+          "em": "onibus",
+          "txt": "SEM ÔNIBUS",
+          "painel": "black",
+          "fx": "glitch"
+        },
+        {
+          "em": "chuva",
+          "txt": "CHUVA",
+          "painel": "blue",
+          "fx": "drop"
+        }
+      ],
+      "prop": {
+        "tipo": "cards",
+        "w": 830,
+        "x": 70,
+        "itens": [
+          {
+            "icone": "⏰",
+            "titulo": "Era pra fechar às 17h",
+            "txt": "Horário normal de votação",
+            "cor": "gold",
+            "em": "acabar"
+          },
+          {
+            "icone": "🚌",
+            "titulo": "Campanha do Lula",
+            "txt": "Faltou ônibus em cidades da Bahia e de São Paulo",
+            "cor": "red",
+            "em": "onibus"
+          },
+          {
+            "icone": "🌧️",
+            "titulo": "Campanha do Flávio",
+            "txt": "Chuva e alagamento em SP, PR e SC",
+            "cor": "blue",
+            "em": "chuva"
+          }
+        ],
+        "altura": 200
+      },
+      "boneco": {
+        "pose": "pensando",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "onibus",
+          "foco": "c2",
+          "zoom": 1.05,
+          "pose": "apontando"
+        },
+        {
+          "em": "chuva",
+          "foco": "c3",
+          "zoom": 1.05
+        }
+      ]
+    },
+    {
+      "fala": "Quem decidiu foi o ministro Cristiano Zanin, do Supremo: votação até as sete da noite, no país inteiro.",
+      "acento": "gold",
+      "texto": [
+        "19h"
+      ],
+      "kw": [
+        {
+          "em": "decidiu",
+          "txt": "QUEM\nDECIDIU?",
+          "painel": "white",
+          "fx": "punch"
+        },
+        {
+          "em": "zanin",
+          "txt": "ZANIN",
+          "painel": "black",
+          "fx": "slide",
+          "sub": "MINISTRO DO SUPREMO"
+        },
+        {
+          "em": "sete",
+          "txt": "ATÉ 19H",
+          "painel": "red",
+          "fx": "punch"
+        },
+        {
+          "em": "pais",
+          "txt": "NO PAÍS\nINTEIRO",
+          "painel": "white",
+          "fx": "stretch"
+        }
+      ],
+      "prop": {
+        "tipo": "relogio",
+        "de": 17,
+        "ate": 19,
+        "em": "sete",
+        "rot": "ATÉ 19H"
+      },
+      "boneco": {
+        "pose": "ideia",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "sete",
+          "pose": "apontando"
+        }
+      ]
+    },
+    {
+      "fala": "Só que a decisão saiu tão em cima da hora que a maioria das urnas já tinha fechado. E essas não abriram de novo.",
+      "acento": "red",
+      "texto": [
+        "Em cima da hora"
+      ],
+      "kw": [
+        {
+          "em": "so",
+          "txt": "SÓ QUE...",
+          "painel": "black",
+          "fx": "glitch"
+        },
+        {
+          "em": "hora",
+          "txt": "EM CIMA\nDA HORA",
+          "painel": "red",
+          "fx": "stretch"
+        },
+        {
+          "em": "fechado",
+          "txt": "JÁ TINHA\nFECHADO",
+          "painel": "white",
+          "fx": "punch"
+        },
+        {
+          "em": "abriram",
+          "txt": "NÃO\nREABRIU",
+          "painel": "red",
+          "fx": "glitch"
+        }
+      ],
+      "prop": {
+        "tipo": "cards",
+        "w": 830,
+        "x": 70,
+        "itens": [
+          {
+            "icone": "⏱️",
+            "titulo": "Aviso chegou tarde",
+            "txt": "A maioria das urnas já tava lacrada",
+            "cor": "red",
+            "em": "decisao"
+          },
+          {
+            "icone": "🔒",
+            "titulo": "Urna já fechada",
+            "txt": "Não abriu de novo. Os votos dela valeram normal.",
+            "cor": "red",
+            "em": "fechado"
+          },
+          {
+            "icone": "🗳️",
+            "titulo": "Urna ainda aberta",
+            "txt": "Ficou recebendo voto até as 19h",
+            "cor": "gold",
+            "em": "abriram"
+          }
+        ],
+        "altura": 200
+      },
+      "boneco": {
+        "pose": "chocado",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "fechado",
+          "foco": "c2",
+          "zoom": 1.05
+        },
+        {
+          "em": "abriram",
+          "foco": "c3",
+          "zoom": 1.05,
+          "pose": "pensando"
+        }
+      ]
+    },
+    {
+      "fala": "E a contagem dos votos parou. Só voltou depois das sete.",
+      "acento": "red",
+      "texto": [
+        "Parou"
+      ],
+      "kw": [
+        {
+          "em": "contagem",
+          "txt": "CONTAGEM",
+          "painel": "white",
+          "fx": "slide",
+          "sub": "DOS VOTOS"
+        },
+        {
+          "em": "parou",
+          "txt": "PAROU",
+          "painel": "red",
+          "fx": "glitch"
+        },
+        {
+          "em": "voltou",
+          "txt": "VOLTOU\nÀS 19H",
+          "painel": "gold",
+          "fx": "punch"
+        }
+      ],
+      "prop": {
+        "tipo": "apuracao",
+        "pct": 0.25,
+        "pausa_em": "parou",
+        "volta_em": "voltou",
+        "sub": "das urnas contadas"
+      },
+      "boneco": {
+        "pose": "cintura",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "parou",
+          "pose": "chocado"
+        },
+        {
+          "em": "voltou",
+          "pose": "comemorando"
+        }
+      ]
+    },
+    {
+      "fala": "No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois do Flávio.",
+      "acento": "gold",
+      "texto": [
+        "Resultado"
+      ],
+      "kw": [
+        {
+          "em": "fim",
+          "txt": "RESULTADO",
+          "painel": "black",
+          "fx": "slide"
+        },
+        {
+          "em": "lula",
+          "txt": "51,8%",
+          "painel": "gold",
+          "fx": "punch",
+          "sub": "LULA"
+        },
+        {
+          "em": "flavio",
+          "txt": "48,2%",
+          "painel": "blue",
+          "fx": "punch",
+          "sub": "FLÁVIO"
+        }
+      ],
+      "prop": {
+        "tipo": "barras",
+        "rotulo": "VOTOS VÁLIDOS · 2º TURNO",
+        "fonte": "Fonte: TSE",
+        "itens": [
+          {
+            "txt": "Lula (PT)",
+            "pct": 51.8,
+            "rot": "51,8%",
+            "cor": "gold",
+            "em": "lula"
+          },
+          {
+            "txt": "Flávio Bolsonaro (PL)",
+            "pct": 48.2,
+            "rot": "48,2%",
+            "cor": "blue",
+            "em": "flavio"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "pensando",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "lula",
+          "foco": "b1",
+          "zoom": 1.05
+        },
+        {
+          "em": "flavio",
+          "foco": "b2",
+          "zoom": 1.05
+        }
+      ]
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de site, me chama no direct.",
+      "acento": "gold",
+      "texto": [
+        "Gostou?"
+      ],
+      "kw": [
+        {
+          "em": "gostou",
+          "txt": "GOSTOU?",
+          "painel": "gold",
+          "fx": "punch"
+        },
+        {
+          "em": "segue",
+          "txt": "SEGUE",
+          "painel": "black",
+          "fx": "drop",
+          "sub": "NOTÍCIA SEM ENROLAÇÃO"
+        },
+        {
+          "em": "site",
+          "txt": "PRECISA\nDE SITE?",
+          "painel": "white",
+          "fx": "slide"
+        }
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Notícia sem enrolação",
+        "y": 760
+      },
+      "fim": 1.4,
+      "boneco": {
+        "pose": "acenando",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "segue",
+          "pose": "apontando"
+        },
+        {
+          "em": "site",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "capa": {
+    "texto": [
+      "+2 horas"
+    ],
+    "kw": {
+      "txt": "+2 HORAS",
+      "painel": "red",
+      "fx": "punch",
+      "sub": "ELEIÇÃO PRORROGADA"
+    },
+    "selo": "Nunca tinha acontecido",
+    "selo_y": 1450
+  }
+}

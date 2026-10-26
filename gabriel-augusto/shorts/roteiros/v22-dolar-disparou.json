@@ -1,0 +1,472 @@
+{
+  "titulo": "Dólar disparou depois da eleição",
+  "motor": "motor-dinamico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "auras",
+  "cenas": [
+    {
+      "fala": "O dólar disparou nessa segunda. Na sexta, custava quatro e noventa e nove. Na segunda, abriu a cinco e quarenta e dois. E de manhã passou de cinco e sessenta.",
+      "acento": "red",
+      "texto": [
+        "Dólar"
+      ],
+      "kw": [
+        {
+          "em": "dolar",
+          "txt": "DÓLAR",
+          "painel": "red",
+          "fx": "glitch",
+          "sub": "DISPAROU"
+        },
+        {
+          "em": "sexta",
+          "txt": "R$ 4,99",
+          "painel": "white",
+          "fx": "slide",
+          "sub": "SEXTA"
+        },
+        {
+          "em": "abriu",
+          "txt": "R$ 5,42",
+          "painel": "red",
+          "fx": "punch",
+          "sub": "ABRIU NA SEGUNDA"
+        },
+        {
+          "em": "passou",
+          "txt": "R$ 5,60",
+          "painel": "black",
+          "fx": "stretch",
+          "sub": "DE MANHÃ"
+        }
+      ],
+      "prop": {
+        "tipo": "cotacao",
+        "rotulo": "US$ 1 =",
+        "min": 4.85,
+        "max": 5.75,
+        "pontos": [
+          {
+            "rot": "SEXTA",
+            "v": 4.99,
+            "em": 0
+          },
+          {
+            "rot": "ABERTURA",
+            "v": 5.42,
+            "em": "abriu"
+          },
+          {
+            "rot": "MANHÃ",
+            "v": 5.6,
+            "em": "passou"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "pensando",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "abriu",
+          "foco": "valor",
+          "zoom": 1.05,
+          "pose": "chocado"
+        },
+        {
+          "em": "passou",
+          "foco": "pct",
+          "zoom": 1.08
+        }
+      ]
+    },
+    {
+      "fala": "Por quê? O mercado apostava no Flávio. Com o Lula reeleito, quem investe ficou com medo das contas do governo.",
+      "acento": "blue",
+      "texto": [
+        "Por quê?"
+      ],
+      "kw": [
+        {
+          "em": "por",
+          "txt": "POR QUÊ?",
+          "painel": "white",
+          "fx": "punch"
+        },
+        {
+          "em": "apostava",
+          "txt": "A APOSTA",
+          "painel": "black",
+          "fx": "slide",
+          "sub": "DO MERCADO"
+        },
+        {
+          "em": "reeleito",
+          "txt": "VIROU",
+          "painel": "blue",
+          "fx": "glitch"
+        },
+        {
+          "em": "medo",
+          "txt": "MEDO",
+          "painel": "red",
+          "fx": "punch",
+          "sub": "DAS CONTAS DO GOVERNO"
+        }
+      ],
+      "prop": {
+        "tipo": "cards",
+        "w": 830,
+        "x": 70,
+        "altura": 200,
+        "itens": [
+          {
+            "icone": "🎯",
+            "titulo": "A aposta",
+            "txt": "O mercado esperava a vitória do Flávio",
+            "cor": "gold",
+            "em": "apostava"
+          },
+          {
+            "icone": "🗳️",
+            "titulo": "O resultado",
+            "txt": "Lula reeleito: a aposta virou",
+            "cor": "blue",
+            "em": "reeleito"
+          },
+          {
+            "icone": "😰",
+            "titulo": "O medo",
+            "txt": "Das contas do governo, dizem os analistas",
+            "cor": "red",
+            "em": "medo"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "pensando",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "reeleito",
+          "foco": "c2",
+          "zoom": 1.04,
+          "pose": "ideia"
+        },
+        {
+          "em": "medo",
+          "foco": "c3",
+          "zoom": 1.05,
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Aí todo mundo corre pro dólar. E quando muita gente quer a mesma coisa, o preço sobe.",
+      "acento": "gold",
+      "texto": [
+        "Corre pro dólar"
+      ],
+      "kw": [
+        {
+          "em": "corre",
+          "txt": "CORRE PRO\nDÓLAR",
+          "painel": "gold",
+          "fx": "slide"
+        },
+        {
+          "em": "muita",
+          "txt": "MUITA GENTE\nQUERENDO",
+          "painel": "white",
+          "fx": "stretch"
+        },
+        {
+          "em": "preco",
+          "txt": "PREÇO SOBE",
+          "painel": "red",
+          "fx": "punch"
+        }
+      ],
+      "prop": {
+        "tipo": "fluxo",
+        "em": "corre",
+        "de": "R$",
+        "para": "US$",
+        "rot_de": "VENDE REAL",
+        "rot_para": "COMPRA DÓLAR",
+        "txt": "MAIS GENTE QUER ▶ PREÇO SOBE"
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "preco",
+          "pose": "ideia"
+        }
+      ]
+    },
+    {
+      "fala": "A bolsa caiu tanto que parou por meia hora. Isso não acontecia desde dois mil e vinte.",
+      "acento": "red",
+      "texto": [
+        "Bolsa parou"
+      ],
+      "kw": [
+        {
+          "em": "bolsa",
+          "txt": "A BOLSA",
+          "painel": "black",
+          "fx": "slide"
+        },
+        {
+          "em": "parou",
+          "txt": "PAROU",
+          "painel": "red",
+          "fx": "glitch",
+          "sub": "MEIA HORA"
+        },
+        {
+          "em": "desde",
+          "txt": "DESDE 2020",
+          "painel": "white",
+          "fx": "stretch",
+          "sub": "NÃO ACONTECIA"
+        }
+      ],
+      "prop": {
+        "tipo": "queda_bolsa",
+        "em": "caiu",
+        "pausa_em": "parou",
+        "pausa_txt": "PAROU 30 MIN",
+        "pausa_sub": "1ª vez desde 2020",
+        "queda": "DESPENCOU"
+      },
+      "boneco": {
+        "pose": "chocado",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "parou",
+          "foco": "pausa",
+          "zoom": 1.05
+        }
+      ]
+    },
+    {
+      "fala": "E no teu bolso? O que tem dólar no preço tende a subir: celular, eletrônico, viagem e até o pãozinho, porque boa parte do trigo vem de fora.",
+      "acento": "gold",
+      "texto": [
+        "Teu bolso"
+      ],
+      "kw": [
+        {
+          "em": "bolso",
+          "txt": "E NO TEU\nBOLSO?",
+          "painel": "gold",
+          "fx": "punch"
+        },
+        {
+          "em": "celular",
+          "txt": "CELULAR",
+          "painel": "white",
+          "fx": "slide"
+        },
+        {
+          "em": "viagem",
+          "txt": "VIAGEM",
+          "painel": "black",
+          "fx": "slide"
+        },
+        {
+          "em": "paozinho",
+          "txt": "PÃOZINHO",
+          "painel": "red",
+          "fx": "punch",
+          "sub": "O TRIGO VEM DE FORA"
+        }
+      ],
+      "prop": {
+        "tipo": "itens_sobe",
+        "itens": [
+          [
+            "📱",
+            "Celular",
+            "celular"
+          ],
+          [
+            "💻",
+            "Eletrônico",
+            "eletronico"
+          ],
+          [
+            "✈️",
+            "Viagem",
+            "viagem"
+          ],
+          [
+            "🍞",
+            "Pãozinho",
+            "paozinho"
+          ]
+        ]
+      },
+      "boneco": {
+        "pose": "pensando",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "paozinho",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Mas calma: a cotação muda todo dia. Vai comprar algo em dólar? Não decide no susto.",
+      "acento": "blue",
+      "texto": [
+        "Calma"
+      ],
+      "kw": [
+        {
+          "em": "calma",
+          "txt": "CALMA",
+          "painel": "white",
+          "fx": "drop"
+        },
+        {
+          "em": "muda",
+          "txt": "MUDA\nTODO DIA",
+          "painel": "black",
+          "fx": "slide",
+          "sub": "A COTAÇÃO"
+        },
+        {
+          "em": "susto",
+          "txt": "SEM SUSTO",
+          "painel": "gold",
+          "fx": "punch"
+        }
+      ],
+      "prop": {
+        "tipo": "cards",
+        "w": 830,
+        "x": 70,
+        "itens": [
+          {
+            "icone": "📅",
+            "titulo": "Muda todo dia",
+            "txt": "O primeiro dia depois da eleição é o mais nervoso",
+            "cor": "blue",
+            "em": "muda"
+          },
+          {
+            "icone": "🧘",
+            "titulo": "Compra grande?",
+            "txt": "Acompanha uns dias antes de decidir",
+            "cor": "gold",
+            "em": "susto"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "confiante",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "susto",
+          "pose": "ideia"
+        }
+      ]
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de site, me chama no direct.",
+      "acento": "gold",
+      "texto": [
+        "Gostou?"
+      ],
+      "kw": [
+        {
+          "em": "gostou",
+          "txt": "GOSTOU?",
+          "painel": "gold",
+          "fx": "punch"
+        },
+        {
+          "em": "segue",
+          "txt": "SEGUE",
+          "painel": "black",
+          "fx": "drop",
+          "sub": "NOTÍCIA SEM ENROLAÇÃO"
+        },
+        {
+          "em": "site",
+          "txt": "PRECISA\nDE SITE?",
+          "painel": "white",
+          "fx": "slide"
+        }
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Notícia sem enrolação",
+        "y": 760
+      },
+      "fim": 1.4,
+      "boneco": {
+        "pose": "acenando",
+        "x": 975,
+        "y": 1440,
+        "escala": 0.34,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "segue",
+          "pose": "apontando"
+        },
+        {
+          "em": "site",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ],
+  "capa": {
+    "texto": [
+      "Dólar"
+    ],
+    "kw": {
+      "txt": "R$ 5,60",
+      "painel": "red",
+      "fx": "punch",
+      "sub": "O DÓLAR DISPAROU"
+    },
+    "selo": "E no teu bolso?",
+    "selo_y": 1450
+  }
+}
