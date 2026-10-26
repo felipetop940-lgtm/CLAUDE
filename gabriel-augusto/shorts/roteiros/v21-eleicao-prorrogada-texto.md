@@ -1,4 +1,4 @@
-# Vídeo 21: "Eleição prorrogada" (modo dinâmico: texto gigante + motion graphics)
+# Vídeo 21: "Eleição prorrogada" (modo PRETO: fundo 100% preto, sem boneco, texto cinético no meio)
 
 Teste novo pedido em 26/10: palavras-chave enormes cortando no ritmo da fala (faixas vermelha/branca/preta/dourada/azul), motion graphics explicativo no meio (relógio 17h → 19h, cartões, apuração pausada, barras do resultado) e boneco pequeno no canto. Motor: `ferramentas/motor-dinamico.html`. Assunto de eleição, sem venda. Ajuste dele (26/10): texto no MEIO da tela, motion graphics menor em cima só complementando; sem falar de site no fim (ficava deslocado).
 

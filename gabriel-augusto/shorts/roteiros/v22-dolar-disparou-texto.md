@@ -1,4 +1,4 @@
-# Vídeo 22: "O dólar disparou" (modo dinâmico: texto gigante + motion graphics)
+# Vídeo 22: "O dólar disparou" (modo PRETO: fundo 100% preto, sem boneco, texto cinético no meio)
 
 Mesmo estilo novo do v21. Motion graphics: cotação contando 4,99 → 5,42 → 5,60 com gráfico, cartões do porquê, moedas indo do real pro dólar, bolsa despencando com carimbo de parada, itens que ficam mais caros. Os valores são do começo do pregão de segunda (26/10); o fechamento pode ser outro.
 

@@ -1,8 +1,8 @@
 {
   "titulo": "Eleição prorrogada: as 2 horas a mais do 2º turno",
-  "motor": "motor-dinamico.html",
+  "motor": "motor-preto.html",
   "perfil": "@euaugusto_oliv",
-  "fundo": "auras",
+  "fundo": "preto",
   "cenas": [
     {
       "fala": "Domingo aconteceu uma coisa que nunca tinha acontecido no Brasil: a eleição pra presidente ganhou duas horas a mais.",
@@ -14,27 +14,26 @@
         {
           "em": "domingo",
           "txt": "DOMINGO",
-          "painel": "white",
-          "fx": "slide"
+          "fx": "type",
+          "sub": "25 DE OUTUBRO"
         },
         {
           "em": "nunca",
           "txt": "NUNCA\nACONTECEU",
-          "painel": "red",
-          "fx": "punch"
+          "fx": "echo",
+          "acento": "red"
         },
         {
           "em": "eleicao",
           "txt": "ELEIÇÃO",
-          "painel": "black",
-          "fx": "glitch",
+          "fx": "mask",
           "sub": "PRA PRESIDENTE"
         },
         {
           "em": "duas",
           "txt": "+2 HORAS",
-          "painel": "red",
-          "fx": "punch"
+          "fx": "zoomout",
+          "painel": "red"
         }
       ],
       "prop": {
@@ -44,23 +43,7 @@
         "em": "duas",
         "rot": "+2 HORAS"
       },
-      "boneco": {
-        "pose": "pensando",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "nunca",
-          "pose": "chocado"
-        },
-        {
-          "em": "duas",
-          "pose": "apontando"
-        }
-      ]
+      "beats": []
     },
     {
       "fala": "Era pra votação acabar às cinco da tarde. Mas as duas campanhas pediram mais tempo: uma por falta de ônibus, a outra por chuva e alagamento.",
@@ -70,35 +53,38 @@
       ],
       "kw": [
         {
+          "em": 0,
+          "txt": "A VOTAÇÃO",
+          "fx": "type"
+        },
+        {
           "em": "acabar",
           "txt": "17H",
-          "painel": "white",
-          "fx": "stretch",
+          "fx": "count",
           "sub": "ERA PRA ACABAR"
         },
         {
           "em": "duas",
           "txt": "AS DUAS\nCAMPANHAS",
-          "painel": "black",
-          "fx": "slide"
+          "fx": "split"
         },
         {
           "em": "tempo",
           "txt": "MAIS TEMPO",
-          "painel": "gold",
-          "fx": "punch"
+          "fx": "punch",
+          "painel": "box"
         },
         {
           "em": "onibus",
           "txt": "SEM ÔNIBUS",
-          "painel": "black",
-          "fx": "glitch"
+          "fx": "glitch",
+          "cor": "red"
         },
         {
           "em": "chuva",
           "txt": "CHUVA",
-          "painel": "blue",
-          "fx": "drop"
+          "fx": "drop",
+          "cor": "blue"
         }
       ],
       "prop": {
@@ -130,19 +116,11 @@
         ],
         "altura": 200
       },
-      "boneco": {
-        "pose": "pensando",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
       "beats": [
         {
           "em": "onibus",
           "foco": "c2",
-          "zoom": 1.05,
-          "pose": "apontando"
+          "zoom": 1.05
         },
         {
           "em": "chuva",
@@ -161,27 +139,24 @@
         {
           "em": "decidiu",
           "txt": "QUEM\nDECIDIU?",
-          "painel": "white",
           "fx": "punch"
         },
         {
           "em": "zanin",
           "txt": "ZANIN",
-          "painel": "black",
-          "fx": "slide",
+          "fx": "mask",
           "sub": "MINISTRO DO SUPREMO"
         },
         {
           "em": "sete",
           "txt": "ATÉ 19H",
-          "painel": "red",
-          "fx": "punch"
+          "fx": "punch",
+          "painel": "red"
         },
         {
           "em": "pais",
           "txt": "NO PAÍS\nINTEIRO",
-          "painel": "white",
-          "fx": "stretch"
+          "fx": "echo"
         }
       ],
       "prop": {
@@ -191,19 +166,7 @@
         "em": "sete",
         "rot": "ATÉ 19H"
       },
-      "boneco": {
-        "pose": "ideia",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "sete",
-          "pose": "apontando"
-        }
-      ]
+      "beats": []
     },
     {
       "fala": "Só que a decisão saiu tão em cima da hora que a maioria das urnas já tinha fechado. E essas não abriram de novo.",
@@ -215,26 +178,24 @@
         {
           "em": "so",
           "txt": "SÓ QUE...",
-          "painel": "black",
-          "fx": "glitch"
+          "fx": "type"
         },
         {
           "em": "hora",
           "txt": "EM CIMA\nDA HORA",
-          "painel": "red",
-          "fx": "stretch"
+          "fx": "stretch",
+          "cor": "red"
         },
         {
           "em": "fechado",
           "txt": "JÁ TINHA\nFECHADO",
-          "painel": "white",
-          "fx": "punch"
+          "fx": "split"
         },
         {
           "em": "abriram",
           "txt": "NÃO\nREABRIU",
-          "painel": "red",
-          "fx": "glitch"
+          "fx": "glitch",
+          "painel": "red"
         }
       ],
       "prop": {
@@ -266,13 +227,6 @@
         ],
         "altura": 200
       },
-      "boneco": {
-        "pose": "chocado",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
       "beats": [
         {
           "em": "fechado",
@@ -282,8 +236,7 @@
         {
           "em": "abriram",
           "foco": "c3",
-          "zoom": 1.05,
-          "pose": "pensando"
+          "zoom": 1.05
         }
       ]
     },
@@ -295,23 +248,22 @@
       ],
       "kw": [
         {
-          "em": "contagem",
+          "em": 0,
           "txt": "CONTAGEM",
-          "painel": "white",
           "fx": "slide",
           "sub": "DOS VOTOS"
         },
         {
           "em": "parou",
           "txt": "PAROU",
-          "painel": "red",
-          "fx": "glitch"
+          "fx": "glitch",
+          "cor": "red"
         },
         {
           "em": "voltou",
           "txt": "VOLTOU\nÀS 19H",
-          "painel": "gold",
-          "fx": "punch"
+          "fx": "zoomout",
+          "cor": "gold"
         }
       ],
       "prop": {
@@ -321,23 +273,7 @@
         "volta_em": "voltou",
         "sub": "das urnas contadas"
       },
-      "boneco": {
-        "pose": "cintura",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "parou",
-          "pose": "chocado"
-        },
-        {
-          "em": "voltou",
-          "pose": "comemorando"
-        }
-      ]
+      "beats": []
     },
     {
       "fala": "No fim, Lula venceu com cinquenta e um vírgula oito por cento, contra quarenta e oito vírgula dois do Flávio.",
@@ -349,21 +285,20 @@
         {
           "em": "fim",
           "txt": "RESULTADO",
-          "painel": "black",
-          "fx": "slide"
+          "fx": "mask"
         },
         {
           "em": "lula",
           "txt": "51,8%",
-          "painel": "gold",
-          "fx": "punch",
+          "fx": "count",
+          "cor": "gold",
           "sub": "LULA"
         },
         {
-          "em": "flavio",
+          "em": "quarenta",
           "txt": "48,2%",
-          "painel": "blue",
-          "fx": "punch",
+          "fx": "count",
+          "cor": "blue",
           "sub": "FLÁVIO"
         }
       ],
@@ -384,27 +319,20 @@
             "pct": 48.2,
             "rot": "48,2%",
             "cor": "blue",
-            "em": "flavio"
+            "em": "quarenta"
           }
         ]
-      },
-      "boneco": {
-        "pose": "pensando",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
       },
       "beats": [
         {
           "em": "lula",
           "foco": "b1",
-          "zoom": 1.05
+          "zoom": 1.04
         },
         {
-          "em": "flavio",
+          "em": "quarenta",
           "foco": "b2",
-          "zoom": 1.05
+          "zoom": 1.04
         }
       ]
     },
@@ -418,20 +346,18 @@
         {
           "em": "gostou",
           "txt": "GOSTOU?",
-          "painel": "gold",
-          "fx": "punch"
+          "fx": "punch",
+          "painel": "gold"
         },
         {
           "em": "segue",
           "txt": "SEGUE",
-          "painel": "black",
-          "fx": "drop",
+          "fx": "echo",
           "sub": "NOTÍCIA SEM ENROLAÇÃO"
         },
         {
           "em": "manda",
-          "txt": "MANDA PRA\nQUEM FICOU\nPERDIDO",
-          "painel": "white",
+          "txt": "MANDA PRA QUEM\nFICOU PERDIDO",
           "fx": "slide"
         }
       ],
@@ -442,23 +368,7 @@
         "y": 760
       },
       "fim": 1.4,
-      "boneco": {
-        "pose": "acenando",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "segue",
-          "pose": "apontando"
-        },
-        {
-          "em": "manda",
-          "pose": "comemorando"
-        }
-      ]
+      "beats": []
     }
   ],
   "capa": {
@@ -472,6 +382,6 @@
       "sub": "ELEIÇÃO PRORROGADA"
     },
     "selo": "Nunca tinha acontecido",
-    "selo_y": 1230
+    "selo_y": 1330
   }
 }

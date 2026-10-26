@@ -1,8 +1,8 @@
 {
   "titulo": "Dólar disparou depois da eleição",
-  "motor": "motor-dinamico.html",
+  "motor": "motor-preto.html",
   "perfil": "@euaugusto_oliv",
-  "fundo": "auras",
+  "fundo": "preto",
   "cenas": [
     {
       "fala": "O dólar disparou nessa segunda. Na sexta, custava quatro e noventa e nove. Na segunda, abriu a cinco e quarenta e dois. E de manhã passou de cinco e sessenta.",
@@ -14,29 +14,30 @@
         {
           "em": "dolar",
           "txt": "DÓLAR",
-          "painel": "red",
-          "fx": "glitch",
+          "fx": "echo",
+          "acento": "red",
           "sub": "DISPAROU"
         },
         {
           "em": "sexta",
           "txt": "R$ 4,99",
-          "painel": "white",
-          "fx": "slide",
+          "fx": "type",
           "sub": "SEXTA"
         },
         {
           "em": "abriu",
           "txt": "R$ 5,42",
-          "painel": "red",
-          "fx": "punch",
+          "fx": "count",
+          "de": 4.99,
+          "cor": "red",
           "sub": "ABRIU NA SEGUNDA"
         },
         {
           "em": "passou",
           "txt": "R$ 5,60",
-          "painel": "black",
-          "fx": "stretch",
+          "fx": "count",
+          "de": 5.42,
+          "painel": "red",
           "sub": "DE MANHÃ"
         }
       ],
@@ -63,19 +64,11 @@
           }
         ]
       },
-      "boneco": {
-        "pose": "pensando",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
       "beats": [
         {
           "em": "abriu",
           "foco": "valor",
-          "zoom": 1.05,
-          "pose": "chocado"
+          "zoom": 1.05
         },
         {
           "em": "passou",
@@ -94,27 +87,25 @@
         {
           "em": "por",
           "txt": "POR QUÊ?",
-          "painel": "white",
-          "fx": "punch"
+          "fx": "zoomout"
         },
         {
           "em": "apostava",
           "txt": "A APOSTA",
-          "painel": "black",
-          "fx": "slide",
+          "fx": "mask",
           "sub": "DO MERCADO"
         },
         {
           "em": "reeleito",
           "txt": "VIROU",
-          "painel": "blue",
-          "fx": "glitch"
+          "fx": "glitch",
+          "cor": "blue"
         },
         {
           "em": "medo",
           "txt": "MEDO",
-          "painel": "red",
-          "fx": "punch",
+          "fx": "echo",
+          "acento": "red",
           "sub": "DAS CONTAS DO GOVERNO"
         }
       ],
@@ -147,25 +138,16 @@
           }
         ]
       },
-      "boneco": {
-        "pose": "pensando",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
       "beats": [
         {
           "em": "reeleito",
           "foco": "c2",
-          "zoom": 1.04,
-          "pose": "ideia"
+          "zoom": 1.04
         },
         {
           "em": "medo",
           "foco": "c3",
-          "zoom": 1.05,
-          "pose": "chocado"
+          "zoom": 1.05
         }
       ]
     },
@@ -177,22 +159,21 @@
       ],
       "kw": [
         {
-          "em": "corre",
+          "em": 0,
           "txt": "CORRE PRO\nDÓLAR",
-          "painel": "gold",
-          "fx": "slide"
+          "fx": "slide",
+          "cor": "gold"
         },
         {
           "em": "muita",
           "txt": "MUITA GENTE\nQUERENDO",
-          "painel": "white",
-          "fx": "stretch"
+          "fx": "split"
         },
         {
           "em": "preco",
           "txt": "PREÇO SOBE",
-          "painel": "red",
-          "fx": "punch"
+          "fx": "punch",
+          "painel": "red"
         }
       ],
       "prop": {
@@ -204,19 +185,7 @@
         "rot_para": "COMPRA DÓLAR",
         "txt": "MAIS GENTE QUER ▶ PREÇO SOBE"
       },
-      "boneco": {
-        "pose": "apontando",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "preco",
-          "pose": "ideia"
-        }
-      ]
+      "beats": []
     },
     {
       "fala": "A bolsa caiu tanto que parou por meia hora. Isso não acontecia desde dois mil e vinte.",
@@ -228,21 +197,24 @@
         {
           "em": "bolsa",
           "txt": "A BOLSA",
-          "painel": "black",
-          "fx": "slide"
+          "fx": "type"
+        },
+        {
+          "em": "caiu",
+          "txt": "DESPENCOU",
+          "fx": "drop",
+          "cor": "red"
         },
         {
           "em": "parou",
-          "txt": "PAROU",
-          "painel": "red",
+          "txt": "PAROU\n30 MIN",
           "fx": "glitch",
-          "sub": "MEIA HORA"
+          "painel": "red"
         },
         {
           "em": "desde",
           "txt": "DESDE 2020",
-          "painel": "white",
-          "fx": "stretch",
+          "fx": "mask",
           "sub": "NÃO ACONTECIA"
         }
       ],
@@ -253,13 +225,6 @@
         "pausa_txt": "PAROU 30 MIN",
         "pausa_sub": "1ª vez desde 2020",
         "queda": "DESPENCOU"
-      },
-      "boneco": {
-        "pose": "chocado",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
       },
       "beats": [
         {
@@ -277,28 +242,31 @@
       ],
       "kw": [
         {
-          "em": "bolso",
+          "em": 0,
           "txt": "E NO TEU\nBOLSO?",
-          "painel": "gold",
-          "fx": "punch"
+          "fx": "punch",
+          "painel": "gold"
         },
         {
           "em": "celular",
           "txt": "CELULAR",
-          "painel": "white",
+          "fx": "slide"
+        },
+        {
+          "em": "eletronico",
+          "txt": "ELETRÔNICO",
           "fx": "slide"
         },
         {
           "em": "viagem",
           "txt": "VIAGEM",
-          "painel": "black",
           "fx": "slide"
         },
         {
           "em": "paozinho",
-          "txt": "PÃOZINHO",
-          "painel": "red",
-          "fx": "punch",
+          "txt": "ATÉ O\nPÃOZINHO",
+          "fx": "echo",
+          "acento": "red",
           "sub": "O TRIGO VEM DE FORA"
         }
       ],
@@ -327,19 +295,7 @@
           ]
         ]
       },
-      "boneco": {
-        "pose": "pensando",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "paozinho",
-          "pose": "chocado"
-        }
-      ]
+      "beats": []
     },
     {
       "fala": "Mas calma: a cotação muda todo dia. Vai comprar algo em dólar? Não decide no susto.",
@@ -351,21 +307,19 @@
         {
           "em": "calma",
           "txt": "CALMA",
-          "painel": "white",
-          "fx": "drop"
+          "fx": "stretch"
         },
         {
           "em": "muda",
           "txt": "MUDA\nTODO DIA",
-          "painel": "black",
-          "fx": "slide",
+          "fx": "mask",
           "sub": "A COTAÇÃO"
         },
         {
           "em": "susto",
-          "txt": "SEM SUSTO",
-          "painel": "gold",
-          "fx": "punch"
+          "txt": "NÃO DECIDE\nNO SUSTO",
+          "fx": "punch",
+          "painel": "box"
         }
       ],
       "prop": {
@@ -389,19 +343,7 @@
           }
         ]
       },
-      "boneco": {
-        "pose": "confiante",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "susto",
-          "pose": "ideia"
-        }
-      ]
+      "beats": []
     },
     {
       "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem negócio, no meu perfil tem o passo a passo pra ajustar teu preço.",
@@ -413,28 +355,27 @@
         {
           "em": "gostou",
           "txt": "GOSTOU?",
-          "painel": "gold",
-          "fx": "punch"
+          "fx": "punch",
+          "painel": "gold"
         },
         {
           "em": "segue",
           "txt": "SEGUE",
-          "painel": "black",
-          "fx": "drop",
+          "fx": "echo",
           "sub": "NOTÍCIA SEM ENROLAÇÃO"
         },
         {
           "em": "negocio",
           "txt": "TEM\nNEGÓCIO?",
-          "painel": "white",
-          "fx": "slide",
-          "sub": "PASSO A PASSO NO PERFIL"
+          "fx": "type"
         },
         {
           "em": "preco",
           "txt": "AJUSTA\nTEU PREÇO",
-          "painel": "red",
-          "fx": "punch"
+          "fx": "punch",
+          "painel": "box",
+          "acento": "red",
+          "cor": "white"
         }
       ],
       "prop": {
@@ -444,23 +385,7 @@
         "y": 760
       },
       "fim": 1.4,
-      "boneco": {
-        "pose": "acenando",
-        "x": 975,
-        "y": 1440,
-        "escala": 0.34,
-        "espelho": true
-      },
-      "beats": [
-        {
-          "em": "segue",
-          "pose": "apontando"
-        },
-        {
-          "em": "negocio",
-          "pose": "ideia"
-        }
-      ]
+      "beats": []
     }
   ],
   "capa": {
@@ -474,6 +399,6 @@
       "sub": "O DÓLAR DISPAROU"
     },
     "selo": "E no teu bolso?",
-    "selo_y": 1230
+    "selo_y": 1330
   }
 }
