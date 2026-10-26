@@ -111,6 +111,10 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U50 | Vídeo | EM ALTA: Black Friday não é um dia (LWSA: 54% compram aos poucos, 20% no dia 27) + marca 4 sextas | feito 25/10 (v20) |
 | U51 | Carrossel | Bio do Instagram antes x depois: nome, 3 linhas, 1 link, destaques que respondem | feito 25/10 (c22) |
 | U52 | Arte TikTok | EM ALTA: BC vai deixar bloquear ligação de empréstimo (31/03/2027) + painel de dívidas (jul/2027) | feito 25/10 (t22) |
+| U53 | Vídeo (pedido dele) | EM ALTA: eleição prorrogada até 19h (STF/Zanin, 25/10), estilo dinâmico novo | feito 26/10 (v21) |
+| U54 | Vídeo (pedido dele) | EM ALTA: dólar disparou depois do 2º turno (4,99 → 5,60), estilo dinâmico novo | feito 26/10 (v22) |
+| U55 | Carrossel ANIMADO | EM ALTA: dólar subiu, 4 passos pro preço + planilha de presente (comenta PREÇO) | feito 26/10 (c23) |
+| U56 | Arte TikTok | EM ALTA: o dólar disparou, e no teu bolso? (lado de quem compra) | feito 26/10 (t23) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
