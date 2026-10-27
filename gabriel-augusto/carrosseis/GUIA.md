@@ -45,7 +45,7 @@ Modelo pronto: `c23-dolar-preco/anim.html`. Render: `PWPATH=$(npm root -g)/playw
 - Título de qualquer arte: **no máximo 2 linhas**, chamando atenção. Nada de título de 7 linhas como o do c24.
 - Cada slide do meio mostra, animado, algo que a IA/um site profissional melhora pro negócio. Número ilustrativo sempre com a etiqueta EXEMPLO.
 
-- (27/10, fim do dia) Slide 1 da arte: imagem HD feita com IA (Canva) + promessa que dá vontade de arrastar + botão "ARRASTA →". Nada de site de exemplo esquisito no gancho. Último slide: "dá uma olhada na minha bio" (sem WhatsApp/direct). Imagens em `img-hd/`.
+- (27/10, fim do dia) REPROVADO: carpa HD de IA no slide 1 e antes x depois com celular HD ("ficou péssimo"). APROVADO: o slide final "QUER ISSO NO TEU SITE?" (funções com ✓ + título de 2 linhas) com "dá uma olhada na minha bio" (sem WhatsApp/direct na arte).
 
 ## PACOTE DIÁRIO (desde 09/10) · rotina às 11h50, entrega até 13h
 
