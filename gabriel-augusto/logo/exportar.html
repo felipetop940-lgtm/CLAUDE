@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="fontes.css">
+<style>*{margin:0}body{background:transparent;font-family:MS}.lk{display:inline-flex;align-items:center;gap:56px;padding:40px}
+.n{font-weight:800;font-size:118px;letter-spacing:-.02em;line-height:1}.s{font-weight:700;font-size:34px;letter-spacing:.32em;color:#D6B36C;margin-top:20px}</style></head>
+<body><div id="a"></div><script src="simbolos.js"></script><script>
+const q = new URLSearchParams(location.search), claro = q.get('claro') === '1';
+document.getElementById('a').innerHTML = q.get('tipo') === 'simbolo' ? simboloJanela({ tam: 1024, claro })
+  : `<div class="lk">${simboloJanela({ tam: 300, claro })}<div><div class="n" style="color:${claro ? '#07080A' : '#F5F6F8'}">Gabriel Augusto</div><div class="s">SITES PROFISSIONAIS</div></div></div>`;
+</script></body></html>

@@ -1,0 +1,33 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="fontes.css">
+<style>
+*{margin:0;box-sizing:border-box} body{width:1620px;background:#07080A;color:#F5F6F8;font-family:MS}
+.top{padding:70px 80px 30px} .top h1{font-weight:800;font-size:54px;letter-spacing:-.01em} .top p{font-weight:500;font-size:24px;opacity:.6;margin-top:8px}
+.row{display:grid;grid-template-columns:520px 1fr 300px;gap:24px;padding:24px 80px}
+.cel{border-radius:32px;background:radial-gradient(420px 260px at 30% 0%,rgba(214,179,108,.14),transparent 70%),radial-gradient(400px 300px at 100% 100%,rgba(79,123,255,.12),transparent 70%),#0E1015;border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;height:440px;position:relative}
+.tag{position:absolute;left:28px;top:24px;font-weight:700;font-size:20px;letter-spacing:.16em;color:#D6B36C}
+.tag b{color:#fff;margin-left:10px}
+.rec{position:absolute;right:24px;top:20px;background:#C3101F;color:#fff;font-weight:800;font-size:16px;letter-spacing:.12em;padding:8px 14px;border-radius:30px}
+.lock{display:flex;align-items:center;gap:30px}
+.nome{font-weight:800;font-size:58px;letter-spacing:-.02em;line-height:1}
+.sub{font-weight:700;font-size:18px;letter-spacing:.32em;color:#D6B36C;margin-top:12px}
+.claro{background:#F4F1EA;color:#07080A}
+.pilha{display:grid;grid-template-rows:1fr 1fr;gap:24px;height:440px}.pilha .cel{height:auto}
+.av{width:150px;height:150px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#0B0D12;box-shadow:0 0 0 4px #07080A,0 0 0 7px #D6B36C}
+.desc{padding:0 80px 10px;font-weight:500;font-size:22px;opacity:.75;line-height:1.4}
+</style></head><body>
+<div class="top"><h1>Logo · Gabriel Augusto <span style="color:#D6B36C">sites profissionais</span></h1><p>3 caminhos. Símbolo · assinatura horizontal · foto de perfil + versão em fundo claro</p></div>
+<div id="linhas"></div>
+<script src="simbolos.js"></script>
+<script>
+const L = [
+  ['1', 'JANELA', simboloJanela, 'Gabriel Augusto', 'Recomendado. A janela do navegador mostra na hora que é site; o cursor clicando no A dourado é o cliente chegando. Funciona até pequenininho (perfil, favicon).', true],
+  ['2', 'PONTO', simboloPonto, 'gabriel augusto<span style="color:#D6B36C">.</span>', 'Moderno, cara de startup. "ga." parece um endereço de site, e o ponto dourado lembra o .com.br que vem no Premium.', false],
+  ['3', 'SELO', simboloSelo, '<span style="font-family:PF;font-weight:600;letter-spacing:0">Gabriel Augusto</span>', 'Clássico e caro. Monograma serifado em anel dourado, conversa com médico, advogado e clínica. Menos óbvio que é site.', false],
+];
+document.getElementById('linhas').innerHTML = L.map(([n, nome, f, wm, d, rec]) => `
+  <div class="row">
+    <div class="cel"><div class="tag">${n}<b>${nome}</b></div>${rec ? '<div class="rec">RECOMENDADO</div>' : ''}${f({ tam: 300 })}</div>
+    <div class="cel"><div class="lock">${f({ tam: 150 })}<div><div class="nome">${wm}</div><div class="sub">SITES PROFISSIONAIS</div></div></div></div>
+    <div class="pilha"><div class="cel"><div class="av">${f({ tam: nome === 'SELO' ? 150 : 112 })}</div></div><div class="cel claro">${f({ tam: 150, claro: true })}</div></div>
+  </div><div class="desc">${d}</div>`).join('');
+</script></body></html>
