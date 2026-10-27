@@ -1,0 +1,281 @@
+{
+  "titulo": "Golpe do CPF bloqueado",
+  "perfil": "@euaugusto_oliv",
+  "bpm": 100,
+  "fundo": "auras",
+  "capa": {
+    "texto": [
+      "Teu ~CPF~ vai",
+      "ser bloqueado?"
+    ],
+    "tamanho": 120,
+    "selo": "É golpe. Não clica!",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "Chegou mensagem da TIM dizendo que teu CPF vai ser bloqueado? Não clica no link. O Procon soltou alerta disso ontem.",
+      "acento": "red",
+      "fx": "zoom",
+      "texto": [
+        "Teu ~CPF~ vai",
+        "ser bloqueado?"
+      ],
+      "prop": {
+        "tipo": "chat_demo",
+        "nome": "TIM Atendimento",
+        "x": 30,
+        "msgs": [
+          {
+            "de": "cli",
+            "txt": "⚠️ Identificamos uma <b>irregularidade no seu cadastro</b>. Seu <b>CPF será bloqueado</b>.",
+            "em": 0.03
+          },
+          {
+            "de": "cli",
+            "txt": "Regularize agora: <b>site-falso.com/cpf</b>",
+            "em": "link"
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "bloqueado",
+          "foco": "msg1",
+          "zoom": 1.16,
+          "destaque": "msg1",
+          "pose": "chocado"
+        },
+        {
+          "em": "link",
+          "foco": "msg2",
+          "zoom": 1.16,
+          "destaque": "msg2",
+          "pose": "apontando"
+        },
+        {
+          "em": "procon",
+          "pose": "confiante"
+        }
+      ]
+    },
+    {
+      "fala": "O link abre uma página com cara de oficial. Ela pede teus dados e depois gera um boleto pra tal regularização. Esse dinheiro vai direto pro golpista.",
+      "acento": "red",
+      "fx": "flash",
+      "texto": [
+        "O site ~falso~"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "site-falso.com/cpf",
+            "em": 0,
+            "sub": "Regularize seu CPF e evite o bloqueio.",
+            "toque": 2,
+            "toque_em": "boleto",
+            "itens": [
+              [
+                "🔢",
+                "CPF"
+              ],
+              [
+                "👤",
+                "Nome completo"
+              ],
+              [
+                "🧾",
+                "Gerar boleto",
+                "regularização"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "chocado",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "dados",
+          "foco": "tela",
+          "zoom": 1.08,
+          "pose": "pensando"
+        },
+        {
+          "em": "boleto",
+          "foco": "item",
+          "zoom": 1.16,
+          "destaque": "item",
+          "pose": "chocado"
+        }
+      ]
+    },
+    {
+      "fala": "Só que operadora de celular nem tem como bloquear teu CPF. Quem cuida do CPF é a Receita Federal.",
+      "acento": "gold",
+      "fx": "zoom",
+      "texto": [
+        "Operadora",
+        "~não bloqueia CPF~"
+      ],
+      "boneco": {
+        "pose": "ideia",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.0
+      },
+      "beats": [
+        {
+          "em": "nem",
+          "pose": "ideia"
+        },
+        {
+          "em": "receita",
+          "pose": "confiante"
+        }
+      ]
+    },
+    {
+      "fala": "Quer tirar a dúvida? Entra no site da Receita e consulta a situação do teu CPF. É de graça e não pede pagamento nenhum.",
+      "acento": "blue",
+      "fx": "zoom",
+      "texto": [
+        "Confere de graça",
+        "na *Receita*"
+      ],
+      "prop": {
+        "tipo": "tela_menu",
+        "x": 30,
+        "telas": [
+          {
+            "titulo": "Receita Federal · gov.br",
+            "em": 0,
+            "sub": "Situação cadastral do CPF",
+            "toque": 3,
+            "toque_em": "situação",
+            "itens": [
+              [
+                "🔢",
+                "CPF",
+                "000.000.000-00"
+              ],
+              [
+                "📅",
+                "Data de nascimento",
+                "00/00/0000"
+              ],
+              [
+                "🔍",
+                "Consultar"
+              ],
+              [
+                "✅",
+                "Situação: regular",
+                "sem pagar nada",
+                "situação"
+              ]
+            ]
+          }
+        ]
+      },
+      "boneco": {
+        "pose": "apontando",
+        "x": 890,
+        "y": 1430,
+        "escala": 0.72,
+        "espelho": true
+      },
+      "beats": [
+        {
+          "em": "receita",
+          "foco": "tela",
+          "zoom": 1.08,
+          "pose": "apontando"
+        },
+        {
+          "em": "situação",
+          "foco": "item",
+          "zoom": 1.16,
+          "destaque": "item",
+          "pose": "comemorando"
+        },
+        {
+          "em": "graça",
+          "pose": "confiante"
+        }
+      ]
+    },
+    {
+      "fala": "Recebeu? Bloqueia o contato e apaga a mensagem. É isso que o próprio Procon manda fazer.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "*Bloqueia*",
+        "e apaga"
+      ],
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 1.0
+      },
+      "beats": [
+        {
+          "em": "bloqueia",
+          "pose": "apontando"
+        },
+        {
+          "em": "procon",
+          "pose": "confiante"
+        }
+      ]
+    },
+    {
+      "fala": "Manda pra quem sempre cai nesses avisos. E segue que eu te aviso dos golpes antes deles chegarem em você.",
+      "acento": "gold",
+      "fx": "flash",
+      "texto": [
+        "Manda pra",
+        "*quem você ama*"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Encaminha 📲",
+        "sub": "Segue que eu te aviso dos golpes",
+        "y": 600
+      },
+      "fim": 1.6,
+      "boneco": {
+        "pose": "confiante",
+        "x": 540,
+        "y": 1400,
+        "escala": 0.72,
+        "entrada": "andando"
+      },
+      "beats": [
+        {
+          "em": "manda",
+          "pose": "apontando"
+        },
+        {
+          "em": "segue",
+          "pose": "comemorando"
+        }
+      ]
+    }
+  ]
+}

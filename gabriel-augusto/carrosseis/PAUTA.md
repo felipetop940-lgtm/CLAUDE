@@ -115,6 +115,9 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U54 | Vídeo (pedido dele) | EM ALTA: dólar disparou depois do 2º turno (4,99 → 5,60), estilo dinâmico novo | feito 26/10 (v22) |
 | U55 | Carrossel ANIMADO | EM ALTA: dólar subiu, 4 passos pro preço + planilha de presente (comenta PREÇO) | feito 26/10 (c23) |
 | U56 | Arte TikTok | EM ALTA: o dólar disparou, e no teu bolso? (lado de quem compra) | feito 26/10 (t23) |
+| U57 | Vídeo | EM ALTA: golpe da "TIM" dizendo que o CPF vai ser bloqueado (Procon Apucarana 26/10) + consulta grátis na Receita | feito 27/10 (v23) |
+| U58 | Carrossel | EM ALTA: antes da Black Friday tem o 11.11 (Mercado Livre desde 19/10, TikTok Shop desde 27/10) + 4 passos | feito 27/10 (c24) |
+| U59 | Arte TikTok | Cliente sumiu? 3 mensagens pra trazer de volta (lembrança, pergunta, a vez dela) | feito 27/10 (t24) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -142,3 +145,7 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (25/10) Golpe da "cobrança do WhatsApp": pedem Pix pra "liberar o app" usando a notícia da cobrança das empresas (só 1 fonte, E Agora 16/10; achar 2ª antes de usar).
 - (25/10) LWSA/Opinion Box: 63% usam IA (ChatGPT, Gemini) pra pesquisar produto; 45% são influenciados pelo resumo de IA no Google (só O Povo achado; conferir).
 - (25/10) Instagram: propaganda em live (Live Video Ads) liberada no Brasil desde 29/09 pra contas com +1 mil seguidores.
+- (27/10) Instagram testando vídeos horizontais de até 90 min ("Features") com criadores no Brasil (Olhar Digital, Showmetech, Mundo Conectado, 26/10). Sem data pra todo mundo.
+- (27/10) Golpe do falso sorteio de geladeira que pede o código do WhatsApp e depois pede até R$ 650 de Pix pros contatos (Santa Cruz do Capibaribe, out/2026); o v08 já cobriu a proteção.
+- (27/10) TRE-MT: golpe imitando o Disque-Eleitor no WhatsApp (out/2026). Shopee: cupons do 11.11 "a partir de 28/10" (conferir se a fonte é de 2026).
+- (27/10) WhatsApp: agendar mensagem apareceu no beta do iPhone (22/10, Oficina da Net); edição de legenda de Status em teste.
