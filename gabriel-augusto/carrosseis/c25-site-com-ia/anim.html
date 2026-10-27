@@ -7,15 +7,18 @@
 <style>
 @font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
 @font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
 * { box-sizing: border-box; margin: 0; }
 html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
 #st { position: absolute; inset: 0; overflow: hidden; }
 .abs { position: absolute; }
 </style></head><body><div id="st"></div>
 <script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
 <script>
 window.ALTURA = 1350;
-const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 8;
 const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
 const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
 // setinha do mouse; k = clique (0..1)
@@ -24,35 +27,36 @@ const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;
 const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
 const FEITO = (t) => K.kick(t, .1, 'FEITO COM IA', 655);
 
-// 1 · gancho (ajuste dele: impacto já no 1º quadro): celular 3D girando pra dentro da tela, bola 3D quicando até o botão, selos orbitando
-slide(7, [[0, 'red'], [2.5, 'black']], t => {
-  const ent = eio(t / .7), ry = lerp(-200, -22, ent) + (t > .7 ? 6 * Math.sin((t - .7) * 1.2) : 0), sc = lerp(.35, 1, clamp(back(t / .6), 0, 1.08));
-  const hops = [[-10, -80, 0, .5], [60, 150, 0, .9], [150, 250, 0, 1.25], [100, 330, 0, 1.6], [135, 430, 0, 2.0], [135, 448, 0, 2.3]];
-  let bx = 135, by = 448, bz = 0; for (let k = 0; k < hops.length - 1; k++) { const [x0, y0, , t0] = hops[k], [x1, y1, , t1] = hops[k + 1]; if (t >= t0 && t < t1) { const u = (t - t0) / (t1 - t0); bx = lerp(x0, x1, u); by = lerp(y0, y1, u); bz = (k === 0 ? 260 : 150 - k * 22) * 4 * u * (1 - u); } }
-  if (t < .5) { bx = -10; by = -80; bz = 260; }
-  const hit = clamp((t - 2.3) / .6), press = 1 - .1 * Math.sin(clamp((t - 2.3) / .25) * Math.PI), flash = clamp(1 - t / .18);
-  const bola = t < 2.35 ? `<div class="abs" style="left:${bx - 24}px;top:${by - 24}px;width:48px;height:48px;border-radius:50%;transform:translateZ(${bz}px);background:radial-gradient(circle at 34% 30%,#fff 0,#FFB3BA 12%,#FF2E43 38%,#8E0716 78%);box-shadow:0 0 30px rgba(255,46,67,.8)"></div>
-      <div class="abs" style="left:${bx - 22}px;top:${by - 8}px;width:44px;height:16px;border-radius:50%;background:rgba(0,0,0,${.5 - Math.min(.4, bz / 700)});filter:blur(3px);transform:scale(${1 - Math.min(.6, bz / 500)})"></div>` : '';
-  const conf = hit > 0 && hit < 1 ? Array.from({ length: 18 }, (_, i) => { const a = i * 2.39, r = 40 + 220 * eio(hit), z = 160 * Math.sin(i) * hit;
-      return `<div class="abs" style="left:${135 + Math.cos(a) * r}px;top:${448 + Math.sin(a) * r * .7 - 80 * hit}px;width:14px;height:${i % 2 ? 14 : 24}px;border-radius:${i % 3 ? 3 : 7}px;background:${['#fff', '#FF2E43', '#D6B36C', '#25D366'][i % 4]};transform:translateZ(${z}px) rotate(${i * 40 + hit * 400}deg);opacity:${1 - hit}"></div>`; }).join('') : '';
-  const fone = `<div class="abs" style="left:405px;top:120px;width:270px;height:530px;transform-style:preserve-3d;transform:rotateY(${ry}deg) rotateX(12deg) rotateZ(-3deg) scale(${sc})">
-      <div class="abs" style="inset:0;border-radius:44px;background:#111216;border:6px solid #23252C;box-shadow:0 60px 120px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.08) inset;overflow:hidden">
-        <div style="padding:26px 18px 0;color:#fff"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-family:Anton;font-size:26px">DOCE ANA</b><span style="font-size:13px;opacity:.6">☰</span></div>
-          <div style="margin-top:22px;font-weight:800;font-size:27px;line-height:1.1">Bolo de festa<br>em Goiânia 🎂</div>
-          <div style="margin-top:16px;height:150px;border-radius:20px;background:radial-gradient(circle at 50% 40%,#FFD1A8,#D6B36C 45%,#7A4E1E);display:grid;place-items:center;font-size:84px">🎂</div>
-          <div style="margin-top:14px;display:flex;gap:6px">${[1, 2, 3].map(() => '<div style="flex:1;height:52px;border-radius:12px;background:rgba(255,255,255,.08)"></div>').join('')}</div></div>
-        <div class="abs" style="left:22px;right:22px;top:418px;height:60px;border-radius:30px;background:#25D366;color:#06301A;display:grid;place-items:center;font-weight:800;font-size:21px;transform:scale(${press});box-shadow:0 0 ${hit > 0 ? 40 * (1 - hit) + 10 : 10}px rgba(37,211,102,.8)">💬 Pedir no WhatsApp</div></div>
-      <div class="abs" style="inset:0;transform-style:preserve-3d">${bola}${conf}</div></div>`;
-  const chips = ['⭐ 4,9 no Google', '📍 Goiânia e região', '📅 Agenda aberta'].map((c, k) => { const ang = t * .9 + k * 2.094, x = 540 + 300 * Math.cos(ang), z = 170 * Math.sin(ang), y = 260 + k * 120, pop = back((t - .9 - k * .15) / .4);
-      return { z, h: `<div class="abs" style="left:${x - 130}px;top:${y}px;width:260px;padding:14px 0;border-radius:30px;text-align:center;font-weight:800;font-size:25px;color:#fff;${K.vidro()}transform:translateZ(${z}px) scale(${clamp(pop, 0, 1.1)});opacity:${clamp(pop) * (.55 + .45 * (z + 170) / 340)}">${c}</div>` }; });
-  const atras = chips.filter(c => c.z < 0).map(c => c.h).join(''), frente = chips.filter(c => c.z >= 0).map(c => c.h).join('');
-  return `<div class="abs" style="inset:0;perspective:1400px;perspective-origin:50% 35%;transform-style:preserve-3d">${atras}${fone}${frente}</div>
-    ${flash > 0 ? `<div class="abs" style="inset:0;background:#fff;opacity:${.7 * flash}"></div>` : ''}
-    ${K.kin(t, .05, ['Isso aqui', '*é um site*'], { y: 870, max: 200 })}
-    ${K.corpo(t, 3.0, 'Feito com IA: <b>3D, movimento e animação</b> que fazem o cliente parar e clicar.', 1110)}
-    ${K.rodape(t, 3.6)}`; });
+// 1 · gancho (3º ajuste dele): imagem de altíssima definição feita com IA (carpa) + promessa que dá vontade de arrastar
+slide(7.5, [[0, 'black']], t => {
+  const z = lerp(1.28, 1.04, eio(t / 1.0)) + .02 * Math.sin(t * .6), rot = lerp(-4, 0, eio(t / 1.2)) + .6 * Math.sin(t * .5), blur = 14 * (1 - ease(t / .55));
+  const varre = (t - 1.1) / 1.2, seta = Math.sin(t * 4) * 14, chip = back((t - 1.6) / .4), flash = clamp(1 - t / .2);
+  return `<div class="abs" style="inset:0;overflow:hidden">
+      <img src="../img-hd/carpa.jpg" style="position:absolute;left:-60px;top:-110px;width:1200px;transform:scale(${z}) rotate(${rot}deg) translate(${Math.sin(t * .7) * 10}px, ${Math.cos(t * .5) * 8}px);filter:blur(${blur}px) saturate(1.15) contrast(1.05);transform-origin:55% 45%">
+      ${varre > 0 && varre < 1 ? `<div style="position:absolute;inset:0;background:linear-gradient(105deg, transparent ${lerp(-30, 100, varre)}%, rgba(255,255,255,.22) ${lerp(-20, 110, varre)}%, transparent ${lerp(-10, 120, varre)}%);mix-blend-mode:screen"></div>` : ''}
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.35) 0%, transparent 18%, transparent 46%, rgba(0,0,0,.85) 64%, #000 74%)"></div>
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 30%, transparent 55%, rgba(0,0,0,.55))"></div></div>
+    ${flash > 0 ? `<div class="abs" style="inset:0;background:#fff;opacity:${.55 * flash}"></div>` : ''}
+    <div class="abs" style="right:60px;top:130px;padding:10px 20px;border-radius:24px;background:rgba(0,0,0,.45);border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(8px);font-weight:800;font-size:22px;letter-spacing:.14em;transform:scale(${clamp(chip, 0, 1.1)});opacity:${clamp(chip)}">✦ IMAGEM FEITA COM IA</div>
+    ${K.kin(t, .35, ['Teu site nunca mais', '*vai ser o mesmo*'], { y: 1000, max: 170 })}
+    ${K.corpo(t, 2.0, 'Arrasta e vê <b>o que dá pra ter no teu.</b>', 1185, { fs: 36 })}
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 2.4) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:#FF2E43;font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,46,67,.6)">ARRASTA <span style="display:inline-block;transform:translateX(${seta}px)">→</span></span></div>`; });
 
-// 2 · resultados num gráfico que se monta sozinho (valores de EXEMPLO)
+// 2 · antes x depois: o site amador vira um site premium (imagem HD feita com IA)
+slide(7, [[0, 'black']], t => {
+  const inn = ease(t / .5), k = eio((t - 1.4) / 1.0), x = 1080 * k, flut = Math.sin(t * 1.4) * 8;
+  return `<div class="abs" style="left:0;top:120px;width:1080px;height:560px;perspective:1400px">
+      <div class="abs" style="left:90px;top:40px;transform:rotateY(${lerp(-18, -8, inn)}deg) rotateX(6deg) scale(${lerp(.9, .74, clamp(t / 1.4)) * (1 - .15 * k)});transform-origin:50% 50%;opacity:${(1 - k) * inn};filter:grayscale(.2)">${MOCK.amador(900, 540)}</div>
+      <div class="abs" style="left:0;top:-60px;width:1080px;height:620px;clip-path:inset(0 ${1080 - x}px 0 0);overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent)">
+        <img src="../img-hd/celular.jpg" style="-webkit-mask-image:radial-gradient(ellipse 52% 50% at 50% 48%, #000 62%, transparent 100%);position:absolute;left:250px;top:${-10 + flut}px;width:580px;transform:rotate(${-3 + 2 * Math.sin(t * .8)}deg) scale(${lerp(1.15, 1, eio((t - 1.4) / 1.6))});filter:drop-shadow(0 40px 60px rgba(0,0,0,.6))"></div>
+      ${k > 0 && k < 1 ? `<div class="abs" style="left:${x - 4}px;top:-60px;width:8px;height:740px;border-radius:4px;background:#fff;box-shadow:0 0 30px 8px rgba(255,255,255,.7), 0 0 90px 24px rgba(255,46,67,.8)"></div>` : ''}
+      <div class="abs" style="left:70px;top:0;opacity:${(1 - k) * inn}"><span style="display:inline-block;padding:8px 20px;border-radius:24px;background:rgba(0,0,0,.6);font-family:Anton;font-size:34px">ANTES</span></div>
+      <div class="abs" style="right:70px;top:0;opacity:${k}"><span style="display:inline-block;padding:8px 20px;border-radius:24px;background:#fff;color:#C3101F;font-family:Anton;font-size:34px">DEPOIS</span></div></div>
+  ${K.kick(t, .1, 'FEITO COM IA', 690)}${K.kin(t, .3, ['Do amador', '*ao profissional*'], { y: 925, max: 165, ini: 1 })}
+  ${K.corpo(t, 2.6, 'O mesmo negócio, com outra cara. <b>É isso que o cliente vê antes de te chamar.</b>', 1115, { fs: 34 })}
+  ${K.rodape(t, 3.2)}`; });
+
+// 3 · resultados num gráfico que se monta sozinho (valores de EXEMPLO)
 slide(6.5, [[0, 'black'], [2.6, 'red']], t => `
   ${K.linha(t, { y: 140, h: 480, rotulo: 'CLIENTES QUE CHAMARAM PELO SITE', prefixo: '', casas: 0, sem_chip: true, tag: 'EXEMPLO', min: 0, max: 50,
      pontos: [{ rot: 'JUN', v: 8, t: .3 }, { rot: 'JUL', v: 17, t: 1.0 }, { rot: 'AGO', v: 26, t: 1.7 }, { rot: 'SET', v: 41, t: 2.4 }] })}
@@ -60,7 +64,7 @@ slide(6.5, [[0, 'black'], [2.6, 'red']], t => `
   ${K.corpo(t, 3.0, 'Gráfico animado com <b>clientes, pedidos e avaliações</b> do teu negócio. Quem vê, confia.', 1110, { fs: 34 })}
   ${K.rodape(t, 3.6)}`);
 
-// 3 · mapa 3D (ajuste dele: mais dinâmico e com 3D): o mapa vem de cima e deita, gira devagar, pino 3D cai com feixe de luz e as cidades sobem
+// 4 · mapa 3D (ajuste dele: mais dinâmico e com 3D): o mapa vem de cima e deita, gira devagar, pino 3D cai com feixe de luz e as cidades sobem
 slide(7.5, [[0, 'black'], [3.8, 'red']], t => {
   const tilt = lerp(0, 58, eio((t - .1) / 1.1)), ang = -25 + 9 * t, zoom = lerp(1.25, .98, eio(t / 1.4)), W = 1000, cx = 500, cy = 500;
   const cid = [['Goianira', 380, 330], ['Trindade', 250, 530], ['Senador Canedo', 700, 520], ['Aparecida', 520, 710], ['Anápolis', 790, 250]];
@@ -151,10 +155,10 @@ slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
   return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
       return `<div style="padding:26px 30px;${K.vidro()}border-radius:28px;font-weight:800;font-size:34px;display:flex;justify-content:space-between;align-items:center;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
   ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no teu site?*'], { y: 900, max: 185, ini: 6 })}
-  ${K.corpo(t, 2.6, 'Eu faço teu site com tudo isso, <b>a partir de R$ 300.</b> Me chama no direct.', 1110, { fs: 35 })}
-  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">@EUAUGUSTO_OLIV · LINK NA BIO</div>`; });
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
 
 window.SLIDES = S;
-window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + K.topo(i + 1, TOTAL, t, s.dur) + s.render(t); };
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
 window.mostrar(0, 0);
 </script></body></html>
