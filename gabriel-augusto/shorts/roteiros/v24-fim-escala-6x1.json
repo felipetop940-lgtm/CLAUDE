@@ -1,0 +1,264 @@
+{
+  "titulo": "Acabou a escala 6x1",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {
+    "seis por um": "6x1",
+    "quarenta e quatro": "44h",
+    "quarenta e duas horas": "42h",
+    "quarenta horas": "40h",
+    "vinte e um mil": "R$ 21 mil",
+    "dois meses": "2 meses"
+  },
+  "capa": {
+    "texto": [
+      "Acabou a",
+      "*escala 6x1*"
+    ],
+    "selo": "O que muda pra você?",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "Seis dias de trampo e um de folga? Isso acabou. O Congresso promulgou o fim da escala seis por um.",
+      "texto": [
+        "6x1"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "acabou",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "acabou",
+        "folga"
+      ],
+      "prop": {
+        "tipo": "semana",
+        "em": "promulgou",
+        "de": "6x1",
+        "para": "5x2",
+        "rotulo": "TUA SEMANA",
+        "sub": "Emenda Constitucional 141 · 16/10"
+      }
+    },
+    {
+      "fala": "Daqui uns dois meses, a jornada máxima cai de quarenta e quatro pra quarenta e duas horas. E um ano depois, pra quarenta horas.",
+      "texto": [
+        "Jornada"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "cai",
+          "red"
+        ],
+        [
+          "ano",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "jornada",
+        "cai"
+      ],
+      "prop": {
+        "tipo": "linha",
+        "rotulo": "JORNADA MÁXIMA POR SEMANA",
+        "prefixo": "",
+        "sufixo": "h",
+        "casas": 0,
+        "sem_chip": true,
+        "min": 38,
+        "max": 46,
+        "pontos": [
+          {
+            "rot": "HOJE",
+            "v": 44,
+            "em": 0
+          },
+          {
+            "rot": "EM 2 MESES",
+            "v": 42,
+            "em": "duas"
+          },
+          {
+            "rot": "+12 MESES",
+            "v": 40,
+            "em": "depois"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "E sem diminuir o salário. São duas folgas por semana, e uma delas, de preferência, no domingo.",
+      "texto": [
+        "Folga"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "folgas",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "salario",
+        "folgas",
+        "domingo"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "itens": [
+          {
+            "icone": "💰",
+            "txt": "Mesmo salário",
+            "em": "salario"
+          },
+          {
+            "icone": "😴",
+            "txt": "2 folgas",
+            "em": "folgas"
+          },
+          {
+            "icone": "☀️",
+            "txt": "Domingo",
+            "sub": "de preferência",
+            "em": "domingo"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Mas não vale pra todo mundo. Servidor público fica de fora, e quem tem diploma e ganha mais de vinte e um mil também.",
+      "texto": [
+        "Exceções"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "fora",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "todo",
+        "fora",
+        "diploma"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "FICAM DE FORA",
+          "em": "fora"
+        },
+        "itens": [
+          {
+            "icone": "🏛️",
+            "txt": "Servidor público",
+            "em": "servidor"
+          },
+          {
+            "icone": "🎓",
+            "txt": "Diploma + salário alto",
+            "sub": "acima de R$ 21.188",
+            "em": "diploma"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "E se você tem negócio, a conta muda: vai ter menos hora de equipe atendendo. Quem deixa o cliente se resolver sozinho sai na frente.",
+      "texto": [
+        "Teu negócio"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "sozinho",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "negocio",
+        "sozinho",
+        "frente"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "ATENDE SEM VOCÊ",
+          "em": "sozinho"
+        },
+        "itens": [
+          {
+            "icone": "🌐",
+            "txt": "Site",
+            "sub": "preço, horário, endereço",
+            "em": "cliente"
+          },
+          {
+            "icone": "💬",
+            "txt": "WhatsApp",
+            "sub": "resposta pronta",
+            "em": "sozinho"
+          },
+          {
+            "icone": "📅",
+            "txt": "Agenda online",
+            "sub": "marca sem te chamar",
+            "em": "frente"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de um site que atende até no dia de folga, me chama no direct.",
+      "texto": [
+        "Gostou?"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "negocio",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "gostou",
+        "segue",
+        "site",
+        "folga",
+        "direct"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Site que atende até na folga · me chama no direct",
+        "y": 760
+      },
+      "fim": 1.4
+    }
+  ]
+}

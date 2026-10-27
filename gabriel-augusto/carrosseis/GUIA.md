@@ -40,6 +40,11 @@ Fundo alternando preto e vermelho (troca com círculo abrindo), título gigante 
 Layout: gráfico ou tela em cima (140–640), etiqueta + título no meio (~900), texto de apoio embaixo e "ARRASTA →".
 Modelo pronto: `c23-dolar-preco/anim.html`. Render: `PWPATH=$(npm root -g)/playwright node animado/render-anim.js <pasta> [slides]`.
 
+## MODELO NOVO DESDE 27/10 (pedido dele)
+- Pacote: vídeo no modelo cinético (assunto em alta, final com o trabalho dele) + arte animada cinética focada em SITE (serve pro Instagram e pro TikTok). Modelo da arte: `c25-site-com-ia/anim.html`.
+- Título de qualquer arte: **no máximo 2 linhas**, chamando atenção. Nada de título de 7 linhas como o do c24.
+- Cada slide do meio mostra, animado, algo que a IA/um site profissional melhora pro negócio. Número ilustrativo sempre com a etiqueta EXEMPLO.
+
 ## PACOTE DIÁRIO (desde 09/10) · rotina às 11h50, entrega até 13h
 
 Todo dia, 3 itens com **temas diferentes**:

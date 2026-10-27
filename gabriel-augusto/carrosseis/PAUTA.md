@@ -118,6 +118,9 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U57 | Vídeo | EM ALTA: golpe da "TIM" dizendo que o CPF vai ser bloqueado (Procon Apucarana 26/10) + consulta grátis na Receita | feito 27/10 (v23) |
 | U58 | Carrossel | EM ALTA: antes da Black Friday tem o 11.11 (Mercado Livre desde 19/10, TikTok Shop desde 27/10) + 4 passos | feito 27/10 (c24) |
 | U59 | Arte TikTok | Cliente sumiu? 3 mensagens pra trazer de volta (lembrança, pergunta, a vez dela) | feito 27/10 (t24) |
+| U60 | Vídeo (pedido dele) | EM ALTA: fim da escala 6x1 (EC 141, promulgada 16/10): 44h → 42h → 40h, 2 folgas, quem fica de fora + site que atende na folga | feito 27/10 (v24, cinético) |
+| U61 | Vídeo (pedido dele) | EM ALTA: IA no dia a dia (Sebrae: 52% x 21% EUA) + IA entrega rascunho + oferta do site a partir de R$ 300 | feito 27/10 (v25, cinético) |
+| U62 | Arte ANIMADA (pedido dele) | Teu site pode fazer isso: animação, resultados, mapa da região, agenda, avaliações, botão do WhatsApp | feito 27/10 (c25, cinético) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -149,3 +152,4 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (27/10) Golpe do falso sorteio de geladeira que pede o código do WhatsApp e depois pede até R$ 650 de Pix pros contatos (Santa Cruz do Capibaribe, out/2026); o v08 já cobriu a proteção.
 - (27/10) TRE-MT: golpe imitando o Disque-Eleitor no WhatsApp (out/2026). Shopee: cupons do 11.11 "a partir de 28/10" (conferir se a fonte é de 2026).
 - (27/10) WhatsApp: agendar mensagem apareceu no beta do iPhone (22/10, Oficina da Net); edição de legenda de Status em teste.
+- (27/10) Inflação: prévia de outubro (IPCA-15, IBGE 23/10) +0,32%; comida em casa +1,01%; tomate +24,5%, cebola +13,6%, batata +11%, arroz +5,8%; cenoura -10,7%; 12 meses 4,62% (acima do teto de 4,5%). Fontes: Metrópoles, Gazeta do Povo, O Tempo, Mix Vale, SpaceMoney. Bom pra vídeo cinético "o tomate subiu 25% num mês".

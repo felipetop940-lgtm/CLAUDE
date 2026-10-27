@@ -65,7 +65,7 @@
     border:1.5px solid rgba(255,255,255,${K.verm ? .26 : .14});box-shadow:0 50px 110px -40px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.16);`;
   // gráfico de linha em card de vidro (igual ao do v22): pontos [{rot, v, t}] aparecem no tempo t
   K.linha = (t, o) => {
-    const P = o.pontos, Wc = o.w || 940, Hc = o.h || 470, VERM = K.verm, AC = K.viva(), FR = 'rgba(255,255,255,';
+    const F2 = x => fmt(x, o.casas ?? 2) + (o.sufixo || ''), P = o.pontos, Wc = o.w || 940, Hc = o.h || 470, VERM = K.verm, AC = K.viva(), FR = 'rgba(255,255,255,';
     let i = 0; P.forEach((q, j) => { if (t >= q.t) i = j; }); const kk = i ? eio((t - P[i].t) / .8) : 1;
     const gx0 = 40, gx1 = Wc - 110, gy0 = 190, gy1 = Hc - 74, vmin = o.min, vmax = o.max;
     const X = j => gx0 + 30 + j * (gx1 - gx0 - 60) / Math.max(1, P.length - 1), Y = v => gy1 - (v - vmin) / (vmax - vmin) * (gy1 - gy0);
@@ -74,14 +74,14 @@
     const pts = [[X(0), Y(P[0].v)]]; for (let j = 0; j < i; j++) { const f = j === i - 1 ? kk : 1; for (let k = 1; k <= 40; k++) { if (k / 40 > f + 1e-6) break; pts.push(bz(j, k / 40)); } if (j === i - 1 && f < 1) pts.push(bz(j, f)); }
     const v = i ? lerp(P[i - 1].v, P[i].v, kk) : P[0].v, pt = pts[pts.length - 1], sobe = (v - P[0].v) / P[0].v * 100, puls = (t * 1.2) % 1;
     const d = pts.map((q, j) => `${j ? 'L' : 'M'}${q[0].toFixed(1)} ${q[1].toFixed(1)}`).join(' ');
-    const ticks = [0, 1, 2, 3].map(g => { const vv = vmax - g * (vmax - vmin) / 3, yy = Y(vv); return `<line x1="${gx0}" x2="${gx1}" y1="${yy}" y2="${yy}" stroke="${FR}.08)" stroke-width="2"/><text x="${gx1 + 22}" y="${yy + 9}" font-family="IT" font-weight="700" font-size="24" fill="${FR}.45)">${fmt(vv)}</text>`; }).join('');
-    const marcas = P.map((q, j) => j > i || (j === i && i > 0) ? '' : `<circle cx="${X(j)}" cy="${Y(q.v)}" r="11" fill="${VERM ? '#8E0B17' : '#0B0C10'}" stroke="${FR}.95)" stroke-width="4"/><text x="${X(j)}" y="${Y(q.v) - 26}" text-anchor="middle" font-family="IT" font-weight="800" font-size="27" fill="${FR}.85)">${fmt(q.v)}</text>`).join('');
+    const ticks = [0, 1, 2, 3].map(g => { const vv = vmax - g * (vmax - vmin) / 3, yy = Y(vv); return `<line x1="${gx0}" x2="${gx1}" y1="${yy}" y2="${yy}" stroke="${FR}.08)" stroke-width="2"/><text x="${gx1 + 22}" y="${yy + 9}" font-family="IT" font-weight="700" font-size="24" fill="${FR}.45)">${F2(vv)}</text>`; }).join('');
+    const marcas = P.map((q, j) => j > i || (j === i && i > 0) ? '' : `<circle cx="${X(j)}" cy="${Y(q.v)}" r="11" fill="${VERM ? '#8E0B17' : '#0B0C10'}" stroke="${FR}.95)" stroke-width="4"/><text x="${X(j)}" y="${Y(q.v) - 26}" text-anchor="middle" font-family="IT" font-weight="800" font-size="27" fill="${FR}.85)">${F2(q.v)}</text>`).join('');
     const rots = P.map((q, j) => `<text x="${X(j)}" y="${Hc - 30}" text-anchor="middle" font-family="IT" font-weight="800" font-size="23" letter-spacing="3" fill="${j === i ? '#fff' : FR + '.45)'}">${q.rot}</text>`).join('');
     const inn = ease(t / .6), id = 'g' + Math.round(Math.random() * 1e6);
     return `<div style="position:absolute;left:${o.x ?? 70}px;top:${o.y ?? 150}px;width:${Wc}px;height:${Hc}px;${K.vidro()}overflow:hidden;opacity:${inn};transform:translateY(${(1 - inn) * 30}px)">
       <div style="position:absolute;left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:${FR}.65)">${o.rotulo || ''}</div>
-      <div style="position:absolute;left:38px;top:64px;font-family:Anton;font-size:96px;line-height:1;color:#fff">${o.prefixo ?? 'R$ '}${fmt(v)}</div>
-      ${Math.abs(sobe) > .5 ? `<div style="position:absolute;right:36px;top:84px;padding:12px 24px;border-radius:40px;background:${AC};color:${VERM ? '#C3101F' : '#fff'};font-family:Anton;font-size:44px">${sobe > 0 ? '▲' : '▼'} ${fmt(Math.abs(sobe), 1)}%</div>` : ''}
+      <div style="position:absolute;left:38px;top:64px;font-family:Anton;font-size:96px;line-height:1;color:#fff">${o.prefixo ?? 'R$ '}${F2(v)}</div>
+      ${o.tag ? `<div style="position:absolute;right:36px;top:30px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em;color:#fff">${o.tag}</div>` : ''}${!o.sem_chip && Math.abs(sobe) > .5 ? `<div style="position:absolute;right:36px;top:84px;padding:12px 24px;border-radius:40px;background:${AC};color:${VERM ? '#C3101F' : '#fff'};font-family:Anton;font-size:44px">${sobe > 0 ? '▲' : '▼'} ${fmt(Math.abs(sobe), 1)}%</div>` : ''}
       <svg width="${Wc}" height="${Hc}" style="position:absolute;inset:0;overflow:visible"><defs><linearGradient id="a${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${AC}" stop-opacity=".38"/><stop offset="1" stop-color="${AC}" stop-opacity="0"/></linearGradient>
         <linearGradient id="l${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${FR}.55)"/><stop offset=".55" stop-color="${AC}"/><stop offset="1" stop-color="${AC}"/></linearGradient></defs>
         ${ticks}<path d="${d} L${pt[0]} ${gy1} L${X(0)} ${gy1} Z" fill="url(#a${id})"/><line x1="${pt[0]}" x2="${pt[0]}" y1="${pt[1] + 18}" y2="${gy1}" stroke="${FR}.35)" stroke-width="2" stroke-dasharray="5 8"/>

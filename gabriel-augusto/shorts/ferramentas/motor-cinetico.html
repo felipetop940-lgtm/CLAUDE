@@ -406,11 +406,12 @@ function prop(c, lt, t) {
   const fmt = (v, d = 2) => v.toFixed(d).replace('.', ',');
   /* ===== GRÁFICOS ANIMADOS (ajuste dele em 26/10): no espaço entre a barra de progresso e a legenda (y 230–880), sem caixa, leves ===== */
   const VERM = BGATUAL === 'red', AC = VERM ? '#FFFFFF' : '#FF2E43', OU = VERM ? '#FFE3A3' : '#D6B36C', FR = VERM ? 'rgba(255,255,255,' : 'rgba(255,255,255,';
+  const vidroC = `border-radius:44px;background:${VERM ? 'linear-gradient(165deg, rgba(70,0,10,.55), rgba(40,0,6,.38))' : 'radial-gradient(520px 260px at 88% 0%, rgba(255,46,67,.20), transparent 70%), linear-gradient(165deg, rgba(255,255,255,.09), rgba(255,255,255,.02))'};border:1.5px solid rgba(255,255,255,${VERM ? .26 : .14});box-shadow:0 50px 110px -40px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.16);backdrop-filter:blur(14px);`;
   const rotulo = (txt, y) => txt ? `<div style="position:absolute;left:0;right:0;top:${y}px;text-align:center;font-weight:800;font-size:28px;letter-spacing:.18em;color:${FR}.75)">${txt}</div>` : '';
   if (p.tipo === 'linha') {
     // gráfico de linha num card de vidro (ajuste dele em 26/10: "mais elegante, com fundo"): cabeçalho com valor contando,
     // escala de valores, curva suave desenhada ponto a ponto quando cada um é falado, área em degradê e ponta pulsando
-    const P = p.pontos || [], ts = P.map(q => quando(q.em ?? 0)); let i = 0; ts.forEach((x, j) => { if (lt >= x) i = j; });
+    const F2 = x => fmt(x, p.casas ?? 2) + (p.sufixo || ''), P = p.pontos || [], ts = P.map(q => quando(q.em ?? 0)); let i = 0; ts.forEach((x, j) => { if (lt >= x) i = j; });
     const kk = i ? easeIO((lt - ts[i]) / .8) : 1, Wc = 960, Hc = 590, x0 = 60, y0 = 250, MV = p.mostrar_valor !== false;
     const gx0 = 44, gx1 = Wc - (MV ? 120 : 44), gy0 = 225, gy1 = Hc - 84;
     const vmin = p.min ?? Math.min(...P.map(q => q.v)), vmax = p.max ?? Math.max(...P.map(q => q.v));
@@ -422,15 +423,15 @@ function prop(c, lt, t) {
     const v = i ? lerp(P[i - 1].v, P[i].v, kk) : P[0].v, ponta = pts[pts.length - 1];
     const d = pts.map((q, j) => `${j ? 'L' : 'M'}${q[0].toFixed(1)} ${q[1].toFixed(1)}`).join(' '), area = `${d} L${ponta[0]} ${gy1} L${X(0)} ${gy1} Z`;
     const ticks = [0, 1, 2, 3].map(g => { const vv = vmax - g * (vmax - vmin) / 3, yy = Y(vv);
-      return `<line x1="${gx0}" x2="${gx1}" y1="${yy}" y2="${yy}" stroke="${FR}.08)" stroke-width="2"/>${MV ? `<text x="${gx1 + 22}" y="${yy + 9}" font-family="IT" font-weight="700" font-size="25" fill="${FR}.45)">${fmt(vv)}</text>` : ''}`; }).join('');
+      return `<line x1="${gx0}" x2="${gx1}" y1="${yy}" y2="${yy}" stroke="${FR}.08)" stroke-width="2"/>${MV ? `<text x="${gx1 + 22}" y="${yy + 9}" font-family="IT" font-weight="700" font-size="25" fill="${FR}.45)">${F2(vv)}</text>` : ''}`; }).join('');
     const marcas = P.map((q, j) => { if (j > i || (j === i && i > 0)) return ''; const ok = j < i || i === 0;
-      return `<circle cx="${X(j)}" cy="${Y(q.v)}" r="11" fill="${VERM ? '#8E0B17' : '#0B0C10'}" stroke="${FR}.95)" stroke-width="4"/>${MV && ok ? `<text x="${X(j)}" y="${Y(q.v) - 26}" text-anchor="middle" font-family="IT" font-weight="800" font-size="28" fill="${FR}.85)">${fmt(q.v)}</text>` : ''}`; }).join('');
+      return `<circle cx="${X(j)}" cy="${Y(q.v)}" r="11" fill="${VERM ? '#8E0B17' : '#0B0C10'}" stroke="${FR}.95)" stroke-width="4"/>${MV && ok ? `<text x="${X(j)}" y="${Y(q.v) - 26}" text-anchor="middle" font-family="IT" font-weight="800" font-size="28" fill="${FR}.85)">${F2(q.v)}</text>` : ''}`; }).join('');
     const rots = P.map((q, j) => q.rot ? `<text x="${X(j)}" y="${Hc - 34}" text-anchor="middle" font-family="IT" font-weight="800" font-size="24" letter-spacing="3" fill="${j === i ? '#fff' : FR + '.45)'}">${q.rot}</text>` : '').join('');
     const sobe = (v - P[0].v) / P[0].v * 100, pk = p.carimbo ? back((lt - quando(p.carimbo.em)) / .35) : 0, inn = ease(lt / .6), puls = (t * 1.2) % 1;
     const fundo = VERM ? 'linear-gradient(165deg, rgba(70,0,10,.55), rgba(40,0,6,.38))' : `radial-gradient(520px 260px at 88% 0%, rgba(255,46,67,.20), transparent 70%), linear-gradient(165deg, rgba(255,255,255,.09), rgba(255,255,255,.02))`;
     const cab = MV ? `<div style="position:absolute;left:44px;top:34px;font-weight:800;font-size:26px;letter-spacing:.16em;color:${FR}.65)">${p.rotulo || ''}</div>
-        <div data-a="valor" style="position:absolute;left:42px;top:70px;font-family:Anton;font-size:100px;line-height:1;color:#fff">${p.prefixo ?? 'R$ '}${fmt(v)}</div>
-        ${Math.abs(sobe) > .5 ? `<div style="position:absolute;right:40px;top:92px;padding:12px 24px;border-radius:40px;background:${AC};color:${VERM ? '#C3101F' : '#fff'};font-family:Anton;font-size:46px;box-shadow:0 10px 40px -8px ${VERM ? 'rgba(0,0,0,.4)' : 'rgba(255,46,67,.6)'}">${sobe > 0 ? '▲' : '▼'} ${Math.abs(sobe).toFixed(1).replace('.', ',')}%</div>` : ''}`
+        <div data-a="valor" style="position:absolute;left:42px;top:70px;font-family:Anton;font-size:100px;line-height:1;color:#fff">${p.prefixo ?? 'R$ '}${F2(v)}</div>
+        ${!p.sem_chip && Math.abs(sobe) > .5 ? `<div style="position:absolute;right:40px;top:92px;padding:12px 24px;border-radius:40px;background:${AC};color:${VERM ? '#C3101F' : '#fff'};font-family:Anton;font-size:46px;box-shadow:0 10px 40px -8px ${VERM ? 'rgba(0,0,0,.4)' : 'rgba(255,46,67,.6)'}">${sobe > 0 ? '▲' : '▼'} ${Math.abs(sobe).toFixed(1).replace('.', ',')}%</div>` : ''}`
       : `<div style="position:absolute;left:44px;top:34px;font-weight:800;font-size:26px;letter-spacing:.16em;color:${FR}.65)">${p.sub || 'GRÁFICO DO DIA'}</div>
         <div style="position:absolute;left:42px;top:72px;font-family:Anton;font-size:76px;line-height:1;color:#fff">${p.rotulo || ''}</div>
         ${sobe < -.5 ? `<div style="position:absolute;right:40px;top:82px;padding:12px 26px;border-radius:40px;background:${AC};color:${VERM ? '#C3101F' : '#fff'};font-family:Anton;font-size:44px">▼ CAIU</div>` : ''}`;
@@ -518,6 +519,48 @@ function prop(c, lt, t) {
       return `<div style="position:absolute;${j ? 'right:70px;text-align:right' : 'left:70px'};top:${cy - 70}px;opacity:${k};transform:translateY(${(1 - k) * 20}px)"><div style="font-family:Anton;font-size:76px;color:${cor};line-height:1">${it.rot}</div><div style="font-family:Anton;font-size:36px;color:#fff">${it.txt}</div></div>`; }).join('');
     return `<div style="position:absolute;inset:0;opacity:${inn}">${rotulo(p.rotulo, 300)}<svg width="1080" height="1000" style="position:absolute;left:0;top:0"><circle cx="${cx}" cy="${cy}" r="${R0}" fill="none" stroke="${FR}.10)" stroke-width="64"/>${fat}</svg>${leg}
       <div style="position:absolute;left:0;right:0;top:${cy - 26}px;text-align:center;font-weight:800;font-size:26px;letter-spacing:.14em;color:${FR}.7)">${p.centro || ''}</div></div>`;
+  }
+  if (p.tipo === 'semana') {
+    // semana em 7 quadradinhos: 6 de trabalho + 1 folga; quando a palavra é dita, o sábado vira folga (6x1 → 5x2)
+    const te = quando(p.em ?? .5), k = easeIO((lt - te) / .7), inn = ease(lt / .6), D = ['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB', 'DOM'];
+    const tile = (d, j) => { const folga = j === 6 || (j === 5 && k > .5), vira = j === 5 ? Math.abs(Math.cos(k * Math.PI)) : 1, ent = back((lt - .15 - j * .06) / .4);
+      return `<div style="width:112px;height:170px;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transform:scaleX(${vira}) scale(${clamp(ent, 0, 1.1)});
+        background:${folga ? AC : FR + '.08)'};box-shadow:${folga ? `0 0 40px ${VERM ? 'rgba(255,255,255,.35)' : 'rgba(255,46,67,.45)'}` : `inset 0 0 0 2px ${FR}.14)`};color:${folga ? (VERM ? '#C3101F' : '#fff') : '#fff'}">
+        <div style="font-weight:800;font-size:24px;letter-spacing:.1em;opacity:.85">${d}</div><div style="font-size:46px">${folga ? '😴' : '💼'}</div><div style="font-weight:800;font-size:19px;letter-spacing:.08em">${folga ? 'FOLGA' : 'TRAMPO'}</div></div>`; };
+    const tx = k > .5 ? (p.para || '5x2') : (p.de || '6x1'), pulso = 1 + .12 * Math.sin(clamp((lt - te) / .5) * Math.PI);
+    return at(60, 270, `<div style="position:relative;width:960px;height:560px;${vidroC}opacity:${inn}">
+      <div style="position:absolute;left:44px;top:34px;font-weight:800;font-size:26px;letter-spacing:.16em;color:${FR}.65)">${p.rotulo || 'TUA SEMANA'}</div>
+      <div style="position:absolute;right:44px;top:14px;font-family:Anton;font-size:110px;line-height:1;color:${k > .5 ? AC : '#fff'};transform:scale(${pulso});transform-origin:100% 0">${tx}</div>
+      <div style="position:absolute;left:0;right:0;top:220px;display:flex;justify-content:center;gap:14px">${D.map(tile).join('')}</div>
+      <div style="position:absolute;left:0;right:0;bottom:36px;text-align:center;font-weight:700;font-size:28px;color:${FR}.8);opacity:${ease((lt - te - .6) / .4)}">${p.sub || ''}</div></div>`);
+  }
+  if (p.tipo === 'barras_vs') {
+    // barras horizontais num card de vidro: cada barra enche e o número conta quando a palavra é dita
+    const L = p.itens || [], inn = ease(lt / .6), mx = p.max || Math.max(...L.map(i => i.pct));
+    const rows = L.map((it, j) => { const k = easeIO((lt - quando(it.em ?? j * .3)) / 1.0), v = it.pct * k, cor = it.cor === 'dim' ? FR + '.35)' : AC;
+      return `<div style="margin-top:${j ? 40 : 0}px"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:Anton;font-size:52px;color:#fff">${it.txt}</span>
+        <span style="font-family:Anton;font-size:72px;color:${it.cor === 'dim' ? '#fff' : AC}">${Math.round(v)}${p.sufixo ?? '%'}</span></div>
+        <div style="margin-top:10px;height:34px;border-radius:17px;background:${FR}.08)"><div style="height:100%;width:${v / mx * 100}%;border-radius:17px;background:${cor};box-shadow:${it.cor === 'dim' ? 'none' : `0 0 30px ${AC}`}"></div></div></div>`; }).join('');
+    return at(60, 260, `<div style="position:relative;width:960px;padding:40px 48px 36px;${vidroC}opacity:${inn};transform:translateY(${(1 - inn) * 30}px)">
+      <div style="font-weight:800;font-size:26px;letter-spacing:.16em;color:${FR}.65);margin-bottom:26px">${p.rotulo || ''}</div>${rows}
+      ${p.fonte ? `<div style="margin-top:24px;font-weight:600;font-size:22px;color:${FR}.5)">${p.fonte}</div>` : ''}</div>`);
+  }
+  if (p.tipo === 'rascunho') {
+    // janela de site genérico (o que a IA entrega sozinha) + carimbo e o que falta, quando as palavras são ditas
+    const inn = ease(lt / .6), st = back((lt - quando(p.em ?? .4)) / .35), F = p.faltam || [];
+    const cinza = (w, h = 18) => `<div style="width:${w}px;height:${h}px;border-radius:9px;background:${FR}.14);margin-top:12px"></div>`;
+    const chips = F.map((f, j) => { const k = back((lt - quando(f.em ?? .6 + j * .1)) / .35);
+      return k <= 0 ? '' : `<div style="display:inline-block;margin:0 8px 12px 0;padding:10px 20px;border-radius:30px;background:${VERM ? '#fff' : '#FF2E43'};color:${VERM ? '#C3101F' : '#fff'};font-weight:800;font-size:28px;transform:scale(${k})">✕ ${f.txt}</div>`; }).join('');
+    return at(90, 250, `<div style="position:relative;width:900px;height:600px;${vidroC}overflow:hidden;opacity:${inn};transform:translateY(${(1 - inn) * 30}px)">
+      <div style="display:flex;gap:10px;align-items:center;padding:20px 26px;border-bottom:1px solid ${FR}.12)"><i style="width:14px;height:14px;border-radius:50%;background:${FR}.3)"></i><i style="width:14px;height:14px;border-radius:50%;background:${FR}.3)"></i><i style="width:14px;height:14px;border-radius:50%;background:${FR}.3)"></i>
+        <div style="margin-left:16px;flex:1;padding:8px 18px;border-radius:20px;background:${FR}.08);font-size:22px;color:${FR}.55)">${p.url || 'site-gerado-por-ia.com'}</div></div>
+      <div style="padding:34px 44px"><div style="display:flex;justify-content:space-between;align-items:center"><div style="padding:10px 18px;border:2px dashed ${FR}.35);border-radius:12px;font-weight:800;font-size:22px;color:${FR}.6)">[SUA LOGO]</div>
+        <div style="display:flex;gap:18px">${cinza(80, 14)}${cinza(80, 14)}${cinza(80, 14)}</div></div>
+        <div style="margin-top:44px;font-weight:800;font-size:50px;line-height:1.1;color:#fff">${p.titulo || 'Somos referência em qualidade e excelência'}</div>
+        ${cinza(620)}${cinza(540)}${cinza(580)}
+        <div style="margin-top:30px;display:inline-block;padding:16px 34px;border-radius:30px;background:${FR}.2);font-weight:800;font-size:26px;color:#fff">Saiba mais</div>
+        <div style="margin-top:22px">${chips}</div></div>
+      ${st > 0 ? `<div style="position:absolute;right:46px;top:150px;transform:scale(${st}) rotate(-10deg);padding:12px 26px;border:7px solid ${AC};border-radius:18px;color:${AC};font-family:Anton;font-size:78px;line-height:1;background:${VERM ? 'rgba(120,6,17,.6)' : 'rgba(0,0,0,.6)'}">${p.carimbo || 'GENÉRICO'}</div>` : ''}</div>`);
   }
   if (p.tipo === 'relogio') {
     // relógio: o ponteiro anda de "de" até "ate" quando a palavra é dita; arco vermelho marca o tempo extra
@@ -1047,7 +1090,7 @@ function render(t) {
   $('flash').style.opacity = c.fx === 'flash' && lt > .3 ? Math.max(0, .22 - (lt - .3) * 3) : 0;  // depois da transição
   // texto no MEIO da tela (faixa 770–1160); o motion graphics fica menor, em cima (230–740), só complementando (ajuste dele em 26/10)
   $('props').style.transformOrigin = '540px 1040px';
-  const NOVO = c.prop && ['linha', 'gauge', 'icones_sobe', 'onda', 'pictos', 'linha_tempo', 'anel', 'rosca'].includes(c.prop.tipo);
+  const NOVO = c.prop && ['linha', 'gauge', 'icones_sobe', 'onda', 'pictos', 'linha_tempo', 'anel', 'rosca', 'semana', 'barras_vs', 'rascunho'].includes(c.prop.tipo);
   $('props').style.transform = NOVO ? `translateY(${Math.sin(t * 1) * 4}px)` : `translateY(${-440 + Math.sin(t * 1) * 4}px) scale(.84)`;
   c._i = i; drawFundo(c, lt, t); C.red = BGATUAL === 'red' ? '#FFFFFF' : '#FF4D5E'; C.gold = BGATUAL === 'red' ? '#FFE3A3' : '#D6B36C';
   $('props').innerHTML = prop(c, lt, t);

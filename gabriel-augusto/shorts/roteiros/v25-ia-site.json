@@ -1,0 +1,246 @@
+{
+  "titulo": "IA faz teu site? Quase",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {
+    "cinquenta e dois por cento": "52%",
+    "vinte e um por cento": "21%",
+    "trezentos reais": "R$ 300"
+  },
+  "capa": {
+    "texto": [
+      "IA faz teu site?",
+      "*Quase.*"
+    ],
+    "selo": "O detalhe que ninguém conta",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "Pequeno negócio no Brasil usa mais inteligência artificial que nos Estados Unidos. Cinquenta e dois por cento contra vinte e um por cento.",
+      "texto": [
+        "IA"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "cinquenta",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "brasil",
+        "mais"
+      ],
+      "prop": {
+        "tipo": "barras_vs",
+        "rotulo": "USARAM IA NAS ÚLTIMAS 2 SEMANAS",
+        "fonte": "Pesquisa Sebrae com 7 mil pequenos negócios, 2026",
+        "itens": [
+          {
+            "txt": "BRASIL",
+            "pct": 52,
+            "em": "cinquenta"
+          },
+          {
+            "txt": "EUA",
+            "pct": 21,
+            "em": "contra",
+            "cor": "dim"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "E dá pra fazer muita coisa: arte pro Instagram, legenda, logo, e até um site inteiro em poucos minutos.",
+      "texto": [
+        "Faz tudo"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "site",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "arte",
+        "logo",
+        "site",
+        "minutos"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "EM POUCOS MINUTOS",
+          "em": "minutos"
+        },
+        "itens": [
+          {
+            "icone": "🎨",
+            "txt": "Arte",
+            "em": "arte"
+          },
+          {
+            "icone": "🔤",
+            "txt": "Logo",
+            "em": "logo"
+          },
+          {
+            "icone": "🌐",
+            "txt": "Site",
+            "em": "site"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Só que tem um detalhe. A IA te entrega um rascunho. Ela não sabe teu preço, tua cidade, nem o teu WhatsApp.",
+      "texto": [
+        "Rascunho"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "detalhe",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "detalhe",
+        "rascunho"
+      ],
+      "prop": {
+        "tipo": "rascunho",
+        "em": "rascunho",
+        "faltam": [
+          {
+            "txt": "Teu preço",
+            "em": "preco"
+          },
+          {
+            "txt": "Tua cidade",
+            "em": "cidade"
+          },
+          {
+            "txt": "Teu WhatsApp",
+            "em": "whatsapp"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "E site que parece com todos os outros não passa confiança. O cliente entra, não acha o que procura, e vai pro concorrente.",
+      "texto": [
+        "Confiança"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "concorrente",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "confianca",
+        "concorrente"
+      ],
+      "prop": {
+        "tipo": "gauge",
+        "em": "concorrente",
+        "de": "CONFIA",
+        "ate": "VAI EMBORA",
+        "rotulo": "O QUE O CLIENTE SENTE"
+      }
+    },
+    {
+      "fala": "Eu uso IA todo dia no meu trabalho. Mas o site sai com teu nome, teus preços e teu WhatsApp, pronto pra vender.",
+      "texto": [
+        "Pronto"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "pronto",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "nome",
+        "precos",
+        "whatsapp",
+        "vender"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "PRONTO PRA VENDER",
+          "em": "pronto"
+        },
+        "itens": [
+          {
+            "icone": "✅",
+            "txt": "Teu nome",
+            "em": "nome"
+          },
+          {
+            "icone": "💰",
+            "txt": "Teus preços",
+            "em": "precos"
+          },
+          {
+            "icone": "💬",
+            "txt": "Teu WhatsApp",
+            "em": "whatsapp"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Gostou? Segue pra mais. E se teu negócio ainda não tem site, me chama no direct. Eu faço o teu a partir de trezentos reais.",
+      "texto": [
+        "Gostou?"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "negocio",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "gostou",
+        "segue",
+        "site",
+        "direct",
+        "trezentos"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Site profissional a partir de R$ 300 · direct",
+        "y": 760
+      },
+      "fim": 1.4
+    }
+  ]
+}
