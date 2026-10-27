@@ -5,25 +5,27 @@ Emenda Constitucional 141/2026, promulgada pelo Congresso em 16/10/2026. Final c
 ## Roteiro para gravar (sua voz)
 Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem explica pra um amigo.
 
-1. Seis dias de trampo e um de folga? Isso acabou. O Congresso promulgou o fim da escala seis por um.
-2. Daqui uns dois meses, a jornada máxima cai de quarenta e quatro pra quarenta e duas horas. E um ano depois, pra quarenta horas.
-3. E sem diminuir o salário. São duas folgas por semana, e uma delas, de preferência, no domingo.
-4. Mas não vale pra todo mundo. Servidor público fica de fora, e quem tem diploma e ganha mais de vinte e um mil também.
-5. E se você tem negócio, a conta muda: vai ter menos hora de equipe atendendo. Quem deixa o cliente se resolver sozinho sai na frente.
-6. Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de um site que atende até no dia de folga, me chama no direct.
+1. A escala seis por um acabou mesmo? Já tá valendo? Calma, que tem um detalhe que quase ninguém entendeu.
+2. Foi aprovada, sim. O Congresso já promulgou a mudança. Mas ela não começa de uma vez.
+3. Primeiro, lá pra dezembro, a jornada da semana diminui e entram as duas folgas. Um ano depois, ela diminui de novo.
+4. E o salário não pode diminuir. E uma das folgas, de preferência, cai no domingo.
+5. Mas não vale pra todo mundo: servidor público fica de fora, e quem tem diploma e ganha bem acima da média também.
+6. E se você tem negócio, vai ter menos gente atendendo. Quem deixa o cliente se resolver sozinho sai na frente.
+7. Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de um site que atende até no dia de folga, me chama no direct.
 
 ## Título
-Acabou a escala 6x1. O que muda pra você? 🗓️
+A escala 6x1 acabou mesmo? 🤔
 
 ## Legenda do post (TikTok / Reels)
-Acabou a escala 6x1 🗓️ O Congresso promulgou a mudança no dia 16/10.
+A escala 6x1 acabou mesmo? Já tá valendo? 🤔
 
-⏳ Daqui uns 2 meses: jornada máxima cai de 44h pra 42h por semana, com 2 folgas.
+Foi aprovada, sim: o Senado aprovou (14/10) e o Congresso promulgou (16/10). Mas não começa de uma vez:
+⏳ Lá pra dezembro: a jornada da semana cai de 44h pra 42h e entram as 2 folgas.
 ⏳ Um ano depois: cai pra 40h.
-💰 Sem diminuir o salário. Uma das folgas, de preferência, no domingo.
-🚫 Fica de fora: servidor público e quem tem diploma e ganha mais de R$ 21 mil.
+💰 O salário não pode diminuir. Uma das folgas, de preferência, no domingo.
+🚫 Fica de fora: servidor público e quem tem diploma e ganha a partir de R$ 21.188.
 
-Tem negócio? Vai ter menos hora de equipe atendendo. Quem deixa o cliente se resolver sozinho (site com preço, horário e pedido pelo WhatsApp) sai na frente.
+Tem negócio? Vai ter menos gente atendendo. Quem deixa o cliente se resolver sozinho sai na frente.
 
 ➕ Segue pra entender a notícia sem enrolação.
 💬 Precisa de um site que atende até no dia de folga? Me chama no direct.

@@ -5,24 +5,26 @@ Vídeo de venda (pedido dele em 27/10): informação primeiro, depois o trabalho
 ## Roteiro para gravar (sua voz)
 Grave em ordem, com **3 segundos de silêncio** entre as partes.
 
-1. Pequeno negócio no Brasil usa mais inteligência artificial que nos Estados Unidos. Cinquenta e dois por cento contra vinte e um por cento.
-2. E dá pra fazer muita coisa: arte pro Instagram, legenda, logo, e até um site inteiro em poucos minutos.
-3. Só que tem um detalhe. A IA te entrega um rascunho. Ela não sabe teu preço, tua cidade, nem o teu WhatsApp.
-4. E site que parece com todos os outros não passa confiança. O cliente entra, não acha o que procura, e vai pro concorrente.
-5. Eu uso IA todo dia no meu trabalho. Mas o site sai com teu nome, teus preços e teu WhatsApp, pronto pra vender.
-6. Gostou? Segue pra mais. E se teu negócio ainda não tem site, me chama no direct. Eu faço o teu a partir de trezentos reais.
+1. O pequeno negócio brasileiro já usa mais inteligência artificial que o americano. E o teu, tá usando?
+2. Dá pra usar pra responder cliente, criar post, organizar a agenda e até as contas do mês.
+3. Quem não usa vai ficar pra trás. Porque o cliente compara, e escolhe quem parece mais profissional.
+4. E a primeira coisa que ele compara é o teu site. Olha a diferença.
+5. É isso que eu faço. Uso as melhores ferramentas, inclusive inteligência artificial, pra transformar teu negócio num site que passa confiança e leva o cliente direto pro teu WhatsApp.
+6. Gostou? Segue pra mais. E se teu negócio precisa de um site que passa confiança, me chama no direct.
 
 ## Título
-IA faz teu site? Quase. 🤖
+Quem não usa IA vai ficar pra trás 🤖
 
 ## Legenda do post (TikTok / Reels)
-Pequeno negócio no Brasil usa mais IA que nos Estados Unidos: 52% contra 21% 🤖 (pesquisa do Sebrae, 2026)
+O pequeno negócio brasileiro já usa mais IA que o americano (Sebrae, 2026). E o teu? 🤖
 
-Dá pra fazer arte, legenda, logo e até um site inteiro em minutos. Mas a IA te entrega um RASCUNHO: ela não sabe teu preço, tua cidade nem teu WhatsApp. E site que parece com todos os outros não passa confiança.
+Dá pra usar pra responder cliente, criar post, organizar a agenda e até as contas do mês.
 
-Eu uso IA todo dia no meu trabalho. A diferença é que o teu site sai com teu nome, teus preços e teu WhatsApp, pronto pra vender.
+Quem não usa fica pra trás: o cliente compara e escolhe quem parece mais profissional. E a primeira coisa que ele compara é o teu site. 👀 Olha a diferença no vídeo.
 
-💬 Teu negócio ainda não tem site? Me chama no direct. A partir de R$ 300.
+É isso que eu faço: uso as melhores ferramentas, inclusive IA, pra transformar teu negócio num site que passa confiança e leva o cliente direto pro teu WhatsApp.
+
+💬 Precisa de um site assim? Me chama no direct. A partir de R$ 300.
 
 #inteligenciaartificial #ia #site #pequenosnegocios #empreendedor
 

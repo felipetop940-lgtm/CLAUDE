@@ -1,24 +1,20 @@
 {
-  "titulo": "IA faz teu site? Quase",
+  "titulo": "Quem não usa IA vai ficar pra trás",
   "motor": "motor-cinetico.html",
   "perfil": "@euaugusto_oliv",
   "fundo": "preto",
-  "exibir": {
-    "cinquenta e dois por cento": "52%",
-    "vinte e um por cento": "21%",
-    "trezentos reais": "R$ 300"
-  },
+  "exibir": {},
   "capa": {
     "texto": [
-      "IA faz teu site?",
-      "*Quase.*"
+      "Quem não usa IA",
+      "*vai ficar pra trás*"
     ],
-    "selo": "O detalhe que ninguém conta",
+    "selo": "E o teu negócio?",
     "selo_y": 1450
   },
   "cenas": [
     {
-      "fala": "Pequeno negócio no Brasil usa mais inteligência artificial que nos Estados Unidos. Cinquenta e dois por cento contra vinte e um por cento.",
+      "fala": "O pequeno negócio brasileiro já usa mais inteligência artificial que o americano. E o teu, tá usando?",
       "texto": [
         "IA"
       ],
@@ -28,13 +24,13 @@
           "black"
         ],
         [
-          "cinquenta",
+          "teu",
           "red"
         ]
       ],
       "enfase": [
-        "brasil",
-        "mais"
+        "mais",
+        "teu"
       ],
       "prop": {
         "tipo": "barras_vs",
@@ -44,21 +40,21 @@
           {
             "txt": "BRASIL",
             "pct": 52,
-            "em": "brasil"
+            "em": "brasileiro"
           },
           {
             "txt": "EUA",
             "pct": 21,
-            "em": "estados",
+            "em": "americano",
             "cor": "dim"
           }
         ]
       }
     },
     {
-      "fala": "E dá pra fazer muita coisa: arte pro Instagram, legenda, logo, e até um site inteiro em poucos minutos.",
+      "fala": "Dá pra usar pra responder cliente, criar post, organizar a agenda e até as contas do mês.",
       "texto": [
-        "Faz tudo"
+        "Pra quê"
       ],
       "fundo_cor": [
         [
@@ -66,45 +62,46 @@
           "red"
         ],
         [
-          "site",
+          "contas",
           "black"
         ]
       ],
       "enfase": [
-        "arte",
-        "logo",
-        "site",
-        "minutos"
+        "cliente",
+        "post",
+        "agenda",
+        "contas"
       ],
       "prop": {
         "tipo": "pictos",
-        "selo": {
-          "txt": "EM POUCOS MINUTOS",
-          "em": "minutos"
-        },
         "itens": [
           {
+            "icone": "💬",
+            "txt": "Atendimento",
+            "em": "responder"
+          },
+          {
             "icone": "🎨",
-            "txt": "Arte",
-            "em": "arte"
+            "txt": "Posts",
+            "em": "post"
           },
           {
-            "icone": "🔤",
-            "txt": "Logo",
-            "em": "logo"
+            "icone": "📅",
+            "txt": "Agenda",
+            "em": "agenda"
           },
           {
-            "icone": "🌐",
-            "txt": "Site",
-            "em": "site"
+            "icone": "📊",
+            "txt": "Contas",
+            "em": "contas"
           }
         ]
       }
     },
     {
-      "fala": "Só que tem um detalhe. A IA te entrega um rascunho. Ela não sabe teu preço, tua cidade, nem o teu WhatsApp.",
+      "fala": "Quem não usa vai ficar pra trás. Porque o cliente compara, e escolhe quem parece mais profissional.",
       "texto": [
-        "Rascunho"
+        "Pra trás"
       ],
       "fundo_cor": [
         [
@@ -112,64 +109,51 @@
           "black"
         ],
         [
-          "detalhe",
+          "compara",
           "red"
         ]
       ],
       "enfase": [
-        "detalhe",
-        "rascunho"
-      ],
-      "prop": {
-        "tipo": "rascunho",
-        "em": "rascunho",
-        "faltam": [
-          {
-            "txt": "Teu preço",
-            "em": "preco"
-          },
-          {
-            "txt": "Tua cidade",
-            "em": "cidade"
-          },
-          {
-            "txt": "Teu WhatsApp",
-            "em": "whatsapp"
-          }
-        ]
-      }
-    },
-    {
-      "fala": "E site que parece com todos os outros não passa confiança. O cliente entra, não acha o que procura, e vai pro concorrente.",
-      "texto": [
-        "Confiança"
-      ],
-      "fundo_cor": [
-        [
-          0,
-          "red"
-        ],
-        [
-          "concorrente",
-          "black"
-        ]
-      ],
-      "enfase": [
-        "confianca",
-        "concorrente"
+        "tras",
+        "profissional"
       ],
       "prop": {
         "tipo": "gauge",
-        "em": "concorrente",
-        "de": "CONFIA",
-        "ate": "VAI EMBORA",
-        "rotulo": "O QUE O CLIENTE SENTE"
+        "em": "tras",
+        "de": "NA FRENTE",
+        "ate": "PRA TRÁS",
+        "rotulo": "TEU NEGÓCIO"
       }
     },
     {
-      "fala": "Eu uso IA todo dia no meu trabalho. Mas o site sai com teu nome, teus preços e teu WhatsApp, pronto pra vender.",
+      "fala": "E a primeira coisa que ele compara é o teu site. Olha a diferença.",
       "texto": [
-        "Pronto"
+        "Diferença"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "diferenca",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "site",
+        "diferenca"
+      ],
+      "prop": {
+        "tipo": "antes_depois",
+        "em": "diferenca"
+      },
+      "fim": 1.6
+    },
+    {
+      "fala": "É isso que eu faço. Uso as melhores ferramentas, inclusive inteligência artificial, pra transformar teu negócio num site que passa confiança e leva o cliente direto pro teu WhatsApp.",
+      "texto": [
+        "Transformo"
       ],
       "fundo_cor": [
         [
@@ -177,43 +161,42 @@
           "black"
         ],
         [
-          "pronto",
+          "transformar",
           "red"
         ]
       ],
       "enfase": [
-        "nome",
-        "precos",
-        "whatsapp",
-        "vender"
+        "transformar",
+        "confianca",
+        "whatsapp"
       ],
       "prop": {
         "tipo": "pictos",
         "selo": {
           "txt": "PRONTO PRA VENDER",
-          "em": "pronto"
+          "em": "whatsapp"
         },
         "itens": [
           {
-            "icone": "✅",
-            "txt": "Teu nome",
-            "em": "nome"
+            "icone": "✨",
+            "txt": "Visual profissional",
+            "em": "transformar"
           },
           {
-            "icone": "💰",
-            "txt": "Teus preços",
-            "em": "precos"
+            "icone": "⭐",
+            "txt": "Confiança",
+            "em": "confianca"
           },
           {
             "icone": "💬",
-            "txt": "Teu WhatsApp",
+            "txt": "Direto no WhatsApp",
             "em": "whatsapp"
           }
         ]
       }
     },
     {
-      "fala": "Gostou? Segue pra mais. E se teu negócio ainda não tem site, me chama no direct. Eu faço o teu a partir de trezentos reais.",
+      "fala": "Gostou? Segue pra mais. E se teu negócio precisa de um site que passa confiança, me chama no direct.",
       "texto": [
         "Gostou?"
       ],
@@ -231,13 +214,12 @@
         "gostou",
         "segue",
         "site",
-        "direct",
-        "trezentos"
+        "direct"
       ],
       "prop": {
         "tipo": "cta",
         "botao": "Seguir ➕",
-        "sub": "Site profissional a partir de R$ 300 · direct",
+        "sub": "Site profissional a partir de R$ 300 · me chama no direct",
         "y": 760
       },
       "fim": 1.4

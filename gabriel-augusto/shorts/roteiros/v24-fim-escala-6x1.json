@@ -1,27 +1,22 @@
 {
-  "titulo": "Acabou a escala 6x1",
+  "titulo": "A escala 6x1 acabou mesmo?",
   "motor": "motor-cinetico.html",
   "perfil": "@euaugusto_oliv",
   "fundo": "preto",
   "exibir": {
-    "seis por um": "6x1",
-    "quarenta e quatro": "44h",
-    "quarenta e duas horas": "42h",
-    "quarenta horas": "40h",
-    "vinte e um mil": "R$ 21 mil",
-    "dois meses": "2 meses"
+    "seis por um": "6x1"
   },
   "capa": {
     "texto": [
-      "Acabou a",
-      "*escala 6x1*"
+      "A 6x1 acabou",
+      "*mesmo?*"
     ],
-    "selo": "O que muda pra você?",
+    "selo": "O detalhe que ninguém entendeu",
     "selo_y": 1450
   },
   "cenas": [
     {
-      "fala": "Seis dias de trampo e um de folga? Isso acabou. O Congresso promulgou o fim da escala seis por um.",
+      "fala": "A escala seis por um acabou mesmo? Já tá valendo? Calma, que tem um detalhe que quase ninguém entendeu.",
       "texto": [
         "6x1"
       ],
@@ -31,25 +26,68 @@
           "black"
         ],
         [
-          "acabou",
+          "detalhe",
           "red"
         ]
       ],
       "enfase": [
         "acabou",
-        "folga"
+        "valendo",
+        "detalhe"
       ],
       "prop": {
         "tipo": "semana",
-        "em": "promulgou",
+        "em": "acabou",
         "de": "6x1",
         "para": "5x2",
         "rotulo": "TUA SEMANA",
-        "sub": "Emenda Constitucional 141 · 16/10"
+        "sub": "Fim da escala 6x1 · Emenda Constitucional 141"
       }
     },
     {
-      "fala": "Daqui uns dois meses, a jornada máxima cai de quarenta e quatro pra quarenta e duas horas. E um ano depois, pra quarenta horas.",
+      "fala": "Foi aprovada, sim. O Congresso já promulgou a mudança. Mas ela não começa de uma vez.",
+      "texto": [
+        "Aprovada"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "vez",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "aprovada",
+        "promulgou",
+        "vez"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "MAS NÃO É NA HORA",
+          "em": "vez"
+        },
+        "itens": [
+          {
+            "icone": "🏛️",
+            "txt": "Aprovada",
+            "sub": "Senado · 14/10",
+            "em": "aprovada"
+          },
+          {
+            "icone": "📜",
+            "txt": "Promulgada",
+            "sub": "Congresso · 16/10",
+            "em": "promulgou"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Primeiro, lá pra dezembro, a jornada da semana diminui e entram as duas folgas. Um ano depois, ela diminui de novo.",
       "texto": [
         "Jornada"
       ],
@@ -59,7 +97,7 @@
           "black"
         ],
         [
-          "cai",
+          "folgas",
           "red"
         ],
         [
@@ -68,8 +106,9 @@
         ]
       ],
       "enfase": [
-        "jornada",
-        "cai"
+        "dezembro",
+        "diminui",
+        "folgas"
       ],
       "prop": {
         "tipo": "linha",
@@ -87,22 +126,22 @@
             "em": 0
           },
           {
-            "rot": "EM 2 MESES",
+            "rot": "DEZEMBRO",
             "v": 42,
-            "em": "duas"
+            "em": "diminui"
           },
           {
-            "rot": "+12 MESES",
+            "rot": "DEZ/2027",
             "v": 40,
-            "em": "depois"
+            "em": "novo"
           }
         ]
       }
     },
     {
-      "fala": "E sem diminuir o salário. São duas folgas por semana, e uma delas, de preferência, no domingo.",
+      "fala": "E o salário não pode diminuir. E uma das folgas, de preferência, cai no domingo.",
       "texto": [
-        "Folga"
+        "Salário"
       ],
       "fundo_cor": [
         [
@@ -110,13 +149,12 @@
           "red"
         ],
         [
-          "folgas",
+          "domingo",
           "black"
         ]
       ],
       "enfase": [
         "salario",
-        "folgas",
         "domingo"
       ],
       "prop": {
@@ -142,7 +180,7 @@
       }
     },
     {
-      "fala": "Mas não vale pra todo mundo. Servidor público fica de fora, e quem tem diploma e ganha mais de vinte e um mil também.",
+      "fala": "Mas não vale pra todo mundo: servidor público fica de fora, e quem tem diploma e ganha bem acima da média também.",
       "texto": [
         "Exceções"
       ],
@@ -176,14 +214,14 @@
           {
             "icone": "🎓",
             "txt": "Diploma + salário alto",
-            "sub": "acima de R$ 21.188",
+            "sub": "a partir de R$ 21.188",
             "em": "diploma"
           }
         ]
       }
     },
     {
-      "fala": "E se você tem negócio, a conta muda: vai ter menos hora de equipe atendendo. Quem deixa o cliente se resolver sozinho sai na frente.",
+      "fala": "E se você tem negócio, vai ter menos gente atendendo. Quem deixa o cliente se resolver sozinho sai na frente.",
       "texto": [
         "Teu negócio"
       ],
@@ -238,11 +276,11 @@
       "fundo_cor": [
         [
           0,
-          "red"
+          "black"
         ],
         [
           "negocio",
-          "black"
+          "red"
         ]
       ],
       "enfase": [
