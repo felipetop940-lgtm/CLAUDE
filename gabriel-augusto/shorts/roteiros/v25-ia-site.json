@@ -44,12 +44,12 @@
           {
             "txt": "BRASIL",
             "pct": 52,
-            "em": "cinquenta"
+            "em": "brasil"
           },
           {
             "txt": "EUA",
             "pct": 21,
-            "em": "contra",
+            "em": "estados",
             "cor": "dim"
           }
         ]
