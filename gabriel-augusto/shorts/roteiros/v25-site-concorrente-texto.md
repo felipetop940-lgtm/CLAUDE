@@ -10,7 +10,7 @@ Grave em ordem, com **3 segundos de silêncio** entre as partes.
 3. Aí, se o teu site parece largado, ele nem te chama. Fecha com o concorrente.
 4. Agora olha o mesmo negócio com um site profissional. Esse aqui é o site do doutor Fernando, que eu fiz.
 5. É isso que eu faço: transformo teu negócio num site que passa confiança e leva o cliente direto pro teu WhatsApp.
-6. Gostou? Segue pra mais. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você. E se o teu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.
+6. Gostou? Segue pra mais. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.
 
 ## Título
 Por que o cliente fecha com o concorrente? 🤔
@@ -26,7 +26,6 @@ No vídeo: o mesmo negócio com um site amador e com um site profissional, o do 
 
 ➕ Segue pra mais.
 👀 Tem um negócio? Dá uma olhada na minha bio, que tem uma oportunidade lá pra você.
-💬 Teu negócio tá começando agora? Me manda uma mensagem no direct que eu te ajudo.
 
 #site #sitesprofissionais #pequenosnegocios #empreendedor #vendas
 

@@ -230,7 +230,7 @@
       }
     },
     {
-      "fala": "Gostou? Segue pra mais. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você. E se o teu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
+      "fala": "Gostou? Segue pra mais. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
       "texto": [
         "Gostou?"
       ],
@@ -248,17 +248,15 @@
         "gostou",
         "segue",
         "bio",
-        "oportunidade",
-        "direct",
-        "ajudo"
+        "oportunidade"
       ],
       "prop": {
         "tipo": "cta",
         "botao": "Seguir ➕",
-        "sub": "Tem uma oportunidade na bio · começando agora? me chama no direct",
+        "sub": "Tem uma oportunidade pra você na bio",
         "y": 760
       },
-      "fim": 1.6
+      "fim": 1.4
     }
   ]
 }
