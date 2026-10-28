@@ -121,6 +121,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U60 | Vídeo (pedido dele) | EM ALTA: fim da escala 6x1 (EC 141, promulgada 16/10): 44h → 42h → 40h, 2 folgas, quem fica de fora + site que atende na folga | feito 27/10 (v24, cinético) |
 | U61 | Vídeo (pedido dele) | EM ALTA: IA no dia a dia (Sebrae: 52% x 21% EUA) + IA entrega rascunho + oferta do site a partir de R$ 300 | feito 27/10 (v25, cinético) |
 | U62 | Arte ANIMADA (pedido dele) | Teu site pode fazer isso: animação, resultados, mapa da região, agenda, avaliações, botão do WhatsApp | feito 27/10 (c25, cinético) |
+| U63 | Vídeo | EM ALTA: 13º salário 2026 (1ª até 30/11, 2ª até 18/12 porque 20/12 é domingo) + quem não recebe | feito 28/10 (v26, cinético) |
+| U64 | Arte ANIMADA | Com isso você capta muito mais cliente: site real do Dr. Fernando, mapa 3D, preços, avaliações, WhatsApp | feito 28/10 (c26) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -153,3 +155,4 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (27/10) TRE-MT: golpe imitando o Disque-Eleitor no WhatsApp (out/2026). Shopee: cupons do 11.11 "a partir de 28/10" (conferir se a fonte é de 2026).
 - (27/10) WhatsApp: agendar mensagem apareceu no beta do iPhone (22/10, Oficina da Net); edição de legenda de Status em teste.
 - (27/10) Inflação: prévia de outubro (IPCA-15, IBGE 23/10) +0,32%; comida em casa +1,01%; tomate +24,5%, cebola +13,6%, batata +11%, arroz +5,8%; cenoura -10,7%; 12 meses 4,62% (acima do teto de 4,5%). Fontes: Metrópoles, Gazeta do Povo, O Tempo, Mix Vale, SpaceMoney. Bom pra vídeo cinético "o tomate subiu 25% num mês".
+- (28/10) Mercado: Ibovespa caindo e dólar a R$ 5,35 depois da reeleição (Mercado Hoje, 28/10). Copom: próxima reunião 3 e 4/11 (Selic 13,75%, mercado espera corte pra 13,50%). Flávio Bolsonaro nos EUA (conferir antes de usar). Dilma: indenização mensal por perseguição na ditadura.

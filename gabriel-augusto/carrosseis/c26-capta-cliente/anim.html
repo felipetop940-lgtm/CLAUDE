@@ -1,0 +1,147 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 26 ANIMADO (1080x1350, cada slide é um vídeo) · "Com isso você capta muito mais cliente" · estilo CINÉTICO focado em SITE
+     Regras de 27-28/10: gancho com promessa + animação coerente (notificações de cliente novo), sem imagem de IA, sem falar de IA; site real do Dr. Fernando
+     (fernandoaugustodr.com.br) no computador e no celular; mapa 3D; preços claros (EXEMPLO); avaliações (EXEMPLO); botão do WhatsApp; final aprovado "Quer isso no teu site?" + bio.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c26-capta-cliente -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO TEU SITE', 655);
+
+// 1 · gancho: promessa + notificações de cliente novo chegando pelo site (EXEMPLO)
+slide(7, [[0, 'black'], [2.8, 'red']], t => {
+  const msgs = [['M', 'Marina', 'Oi! Vi teu site, quero agendar 🙂'], ['P', 'Paulo', 'Vocês atendem no sábado?'], ['L', 'Lu', 'Qual o valor do pacote?'], ['D', 'Diego', 'Tem horário amanhã?']];
+  const cards = msgs.map(([ini, nome, txt], j) => { const t0 = .5 + j * .55, k = back((t - t0) / .45), y = 160 + j * 118, ok = back((t - t0 - .35) / .35);
+    return k <= 0 ? '' : `<div class="abs" style="left:100px;right:100px;top:${y}px;height:100px;display:flex;align-items:center;gap:20px;padding:0 24px;${K.vidro()}border-radius:26px;transform:translateX(${(1 - clamp(k)) * 300}px) scale(${clamp(k, 0, 1.06)});opacity:${clamp(k)}">
+      <div style="width:60px;height:60px;border-radius:50%;background:${['#D6B36C', '#4F7BFF', '#FF2E43', '#25D366'][j]};display:grid;place-items:center;font-family:Anton;font-size:30px;color:#0B0B0D;flex-shrink:0">${ini}</div>
+      <div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between"><b style="font-size:26px">💬 Novo cliente pelo site</b><span style="font-size:20px;opacity:.6">agora</span></div>
+        <div style="font-size:24px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${nome}: ${txt}</div></div>
+      <div style="width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;font-weight:800;transform:scale(${clamp(ok, 0, 1.15)});flex-shrink:0">✓</div></div>`; }).join('');
+  const seta = Math.sin(t * 4) * 14;
+  return `${cards}<div class="abs" style="right:100px;top:118px;padding:4px 14px;border-radius:16px;border:2px solid rgba(255,255,255,.45);font-weight:800;font-size:18px;letter-spacing:.14em;opacity:${ease((t - .6) / .4)}">EXEMPLO</div>
+    ${K.kin(t, .05, ['Com isso você capta', '*muito mais cliente*'], { y: 900, max: 170 })}
+    ${K.corpo(t, 3.2, 'Arrasta e vê <b>o que dá pra ter no teu site.</b>', 1105, { fs: 36 })}
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${seta}px)">→</span></span></div>`; });
+
+// 2 · site REAL do Dr. Fernando rodando no computador e no celular
+const REAL = { desk: '../../video/src/fernando-site/desk-strip.jpg', cel: '../../video/src/fernando-site/cel-strip.jpg', deskW: 1200, deskH: 2225, celW: 585, celH: 5250, url: 'fernandoaugustodr.com.br' };
+slide(7.5, [[0, 'black'], [3.2, 'red']], t => { const inn = ease(t / .6);
+  return `<div class="abs" style="left:90px;top:120px;opacity:${inn};transform:translateY(${(1 - inn) * 40}px)">${MOCK.duplo(900, 540, eio((t - .9) / 5.6), REAL)}</div>
+  ${K.kick(t, .1, 'SITE REAL', 690)}${K.kin(t, .3, ['Um site que', '*passa confiança*'], { y: 925, max: 165, ini: 1 })}
+  ${K.corpo(t, 2.4, 'Esse é o site do <b>Dr. Fernando</b>, que eu fiz: no computador e no celular.', 1115, { fs: 34 })}
+  ${K.rodape(t, 3.0)}`; });
+
+
+// 3 · mapa 3D (ajuste dele: mais dinâmico e com 3D): o mapa vem de cima e deita, gira devagar, pino 3D cai com feixe de luz e as cidades sobem
+slide(7.5, [[0, 'black'], [3.8, 'red']], t => {
+  const tilt = lerp(0, 58, eio((t - .1) / 1.1)), ang = -25 + 9 * t, zoom = lerp(1.25, .98, eio(t / 1.4)), W = 1000, cx = 500, cy = 500;
+  const cid = [['Goianira', 380, 330], ['Trindade', 250, 530], ['Senador Canedo', 700, 520], ['Aparecida', 520, 710], ['Anápolis', 790, 250]];
+  const ruas = [[0, 180, 1000, 140], [0, 420, 1000, 470], [0, 610, 1000, 560], [0, 820, 1000, 860], [160, 0, 210, 1000], [420, 0, 390, 1000], [640, 0, 700, 1000], [860, 0, 820, 1000], [0, 60, 900, 1000], [250, 0, 1000, 700]];
+  const anel = k => { const q = ((t - 1.6) / 1.5 + k) % 1; return t > 1.6 ? `<circle cx="${cx}" cy="${cy}" r="${30 + 330 * q}" fill="none" stroke="${K.viva()}" stroke-width="5" opacity="${.8 * (1 - q)}"/>` : ''; };
+  const linhas = cid.map(([, x, y], j) => { const k = eio((t - 2.1 - j * .2) / .5); return `<line x1="${cx}" y1="${cy}" x2="${lerp(cx, x, k)}" y2="${lerp(cy, y, k)}" stroke="#fff" stroke-width="4" stroke-dasharray="14 12" stroke-dashoffset="${-t * 60}" opacity=".75"/>`; }).join('');
+  const ergue = (x, y, h) => `position:absolute;left:${x}px;top:${y}px;width:0;height:0;transform-style:preserve-3d;transform:rotateZ(${-ang}deg) rotateX(${-tilt}deg)`;
+  const pinos = cid.map(([n, x, y], j) => { const k = back((t - 2.5 - j * .2) / .45);
+      return k <= 0 ? '' : `<div style="${ergue(x, y)}"><div style="position:absolute;left:-60px;bottom:0;width:120px;text-align:center;transform:scale(${clamp(k, 0, 1.15)});transform-origin:50% 100%">
+        <div style="display:inline-block;padding:6px 14px;border-radius:16px;background:#fff;color:#0B0B0D;font-weight:800;font-size:27px;white-space:nowrap">${n}</div>
+        <div style="margin:0 auto;width:4px;height:44px;background:linear-gradient(#fff,rgba(255,255,255,.2))"></div></div></div>`; }).join('');
+  const queda = back((t - 1.1) / .55), alt = (1 - clamp(queda)) * 260, feixe = clamp((t - 1.5) / .4) * (.75 + .25 * Math.sin(t * 5));
+  const centro = queda > 0 ? `<div style="${ergue(cx, cy)}">
+      <div style="position:absolute;left:-22px;bottom:0;width:44px;height:380px;border-radius:22px;background:linear-gradient(to top, ${K.verm ? 'rgba(255,255,255,.45)' : 'rgba(255,46,67,.5)'}, transparent 85%);opacity:${feixe};filter:blur(9px)"></div>
+      <div style="position:absolute;left:-55px;bottom:${alt}px;width:110px;height:140px;transform:scale(${clamp(queda, 0, 1.1)});transform-origin:50% 100%">
+        <svg width="110" height="140" viewBox="0 0 110 140"><defs><radialGradient id="pg" cx="35%" cy="30%"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="${K.verm ? '#fff' : '#FF6B78'}"/><stop offset="1" stop-color="${K.verm ? '#E7E7EC' : '#B00A1B'}"/></radialGradient></defs>
+          <path d="M55 138 C30 100 6 78 6 52 A49 49 0 1 1 104 52 C104 78 80 100 55 138Z" fill="url(#pg)" stroke="#fff" stroke-width="4"/><circle cx="55" cy="52" r="18" fill="${K.verm ? '#C3101F' : '#fff'}"/></svg></div>
+      <div style="position:absolute;left:-110px;bottom:${alt + 150}px;width:220px;text-align:center;font-family:Anton;font-size:50px;color:#fff;opacity:${clamp(queda)};text-shadow:0 6px 20px rgba(0,0,0,.6)">GOIÂNIA</div></div>` : '';
+  const plano = `<div style="position:absolute;left:${470 - W / 2}px;top:${300 - W / 2}px;width:${W}px;height:${W}px;transform-style:preserve-3d;transform:scale(${zoom}) rotateX(${tilt}deg) rotateZ(${ang}deg)">
+      <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 50%, ${K.verm ? 'rgba(120,0,14,.75)' : 'rgba(40,42,52,.9)'} 0, ${K.verm ? 'rgba(90,0,10,.5)' : 'rgba(20,21,26,.75)'} 55%, transparent 71%)"></div>
+      <svg width="${W}" height="${W}" style="position:absolute;inset:0">
+        ${ruas.map(([a, b, c, d], j) => `<line x1="${a}" y1="${b}" x2="${lerp(a, c, eio((t - j * .06) / .9))}" y2="${lerp(b, d, eio((t - j * .06) / .9))}" stroke="rgba(255,255,255,.16)" stroke-width="${j % 3 ? 4 : 10}" stroke-linecap="round"/>`).join('')}
+        ${anel(0)}${anel(.5)}${linhas}
+        ${cid.map(([, x, y], j) => { const k = back((t - 2.5 - j * .2) / .4); return k > 0 ? `<circle cx="${x}" cy="${y}" r="${14 * clamp(k, 0, 1.2)}" fill="#fff"/><circle cx="${x}" cy="${y}" r="${30 * clamp(k)}" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/>` : ''; }).join('')}</svg>
+      ${pinos}${centro}</div>`;
+  return `<div class="abs" style="left:70px;top:130px;width:940px;height:520px;perspective:1300px;perspective-origin:50% 20%;overflow:hidden;-webkit-mask-image:radial-gradient(ellipse 75% 85% at 50% 50%, #000 60%, transparent 100%)">${plano}</div>
+    <div class="abs" style="left:0;right:0;top:560px;text-align:center;${K.surge(back((t - 3.8) / .45))}"><span style="display:inline-block;padding:14px 30px;border-radius:34px;background:#fff;color:#C3101F;font-weight:800;font-size:31px;box-shadow:0 20px 50px -10px rgba(0,0,0,.5)">📍 Atendemos Goiânia e região</span></div>
+  ${K.kick(t, .1, 'NO TEU SITE', 660)}${K.kin(t, .3, ['Mostra onde', '*você atende*'], { y: 925, max: 165, ini: 2 })}
+  ${K.corpo(t, 4.4, 'Em vez de só escrever o endereço: <b>mapa 3D com tua cidade e região.</b>', 1120, { fs: 34 })}
+  ${K.rodape(t, 5)}`; });
+
+
+// 5 · preços claros (EXEMPLO): menos "quanto é?" no WhatsApp
+slide(6.5, [[0, 'black'], [3.0, 'red']], t => {
+  const L = [['✂️', 'Corte', 'R$ 45'], ['💇', 'Escova', 'R$ 60'], ['🎨', 'Coloração', 'R$ 120'], ['👰', 'Pacote noiva', 'sob consulta']];
+  const pergunta = back((t - .4) / .4), risca = ease((t - 2.4) / .4);
+  return `<div style="${CARD(70, 140, 940, 500)}">
+      <div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">SERVIÇOS E VALORES</div>
+      <div class="abs" style="right:36px;top:28px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>
+      ${L.map(([ic, n, v], j) => { const k = ease((t - .7 - j * .3) / .45);
+        return `<div class="abs" style="left:40px;right:40px;top:${90 + j * 92}px;height:76px;display:flex;align-items:center;gap:18px;padding:0 22px;border-radius:18px;background:rgba(255,255,255,.07);opacity:${k};transform:translateX(${(1 - k) * -60}px)">
+          <span style="font-size:36px">${ic}</span><b style="font-size:30px">${n}</b><span style="margin-left:auto;font-family:Anton;font-size:36px;color:${K.verm ? '#fff' : '#FF2E43'}">${v}</span></div>`; }).join('')}</div>
+    ${pergunta > 0 ? `<div class="abs" style="right:90px;top:600px;padding:14px 22px;border-radius:22px 22px 6px 22px;background:#005C4B;font-size:28px;font-weight:600;transform:scale(${clamp(pergunta, 0, 1.1)})">Quanto é? 🤔
+      <div style="position:absolute;left:10px;right:10px;top:50%;height:5px;background:#fff;transform:scaleX(${risca});transform-origin:0 50%"></div></div>` : ''}
+  ${K.kick(t, .1, 'NO TEU SITE', 690)}${K.kin(t, .3, ['Preço claro,', '*menos pergunta*'], { y: 925, max: 170, ini: 3 })}
+  ${K.corpo(t, 3.2, 'Cliente que já sabe o valor chega decidido. <b>Você para de responder "quanto é?" o dia todo.</b>', 1112, { fs: 32 })}
+  ${K.rodape(t, 3.8)}`; });
+
+
+// 6 · avaliações passando sozinhas (EXEMPLO)
+slide(6.5, [[0, 'red'], [2.3, 'black']], t => {
+  const nota = lerp(0, 4.9, eio((t - .6) / 1.4)), rev = [['Marina S.', 'Chegou certinho e no horário. Atendimento nota 10!'], ['Paulo R.', 'Fiz o pedido pelo site em 1 minuto 👏'], ['Lu C.', 'Melhor bolo que já comi em Goiânia 😋'], ['Diego A.', 'Voltei pela terceira vez. Recomendo!']];
+  const desl = (t * 110) % (4 * 400);
+  return `<div style="${CARD(70, 140, 940, 480)}">
+      <div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">AVALIAÇÕES NO GOOGLE</div>
+      <div class="abs" style="right:36px;top:28px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>
+      <div class="abs" style="left:40px;top:66px;display:flex;align-items:center;gap:22px"><span style="font-family:Anton;font-size:120px;line-height:1">${fmt(nota, 1)}</span>
+        <span style="font-size:58px;letter-spacing:4px">${[0, 1, 2, 3, 4].map(i => `<span style="color:${nota >= i + .9 ? '#FFC93C' : 'rgba(255,255,255,.2)'};text-shadow:${nota >= i + .9 ? '0 0 18px rgba(255,201,60,.7)' : 'none'}">★</span>`).join('')}</span></div>
+      <div class="abs" style="left:0;top:240px;width:4000px;display:flex;gap:20px;transform:translateX(${40 - desl}px);opacity:${ease((t - 1.6) / .5)}">
+        ${[...rev, ...rev, ...rev].map(([n, x]) => `<div style="width:380px;flex-shrink:0;padding:24px 26px;border-radius:26px;background:#fff;color:#0B0B0D">
+          <div style="display:flex;justify-content:space-between"><b style="font-size:26px">${n}</b><span style="color:#F5A623;font-size:24px">★★★★★</span></div><div style="margin-top:10px;font-size:25px;line-height:1.3;color:#333">${x}</div></div>`).join('')}</div></div>
+  ${FEITO(t)}${K.kin(t, .3, ['Elogio que', '*vende sozinho*'], { y: 900, max: 175, ini: 4 })}
+  ${K.corpo(t, 2.8, 'As avaliações do Google <b>passam no teu site</b>, bem na hora que o cliente tá decidindo.', 1110, { fs: 34 })}
+  ${K.rodape(t, 3.4)}`; });
+
+// 7 · botão que já abre o WhatsApp com a mensagem pronta
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const msg = 'Olá! Vi teu site e quero encomendar um bolo pra sábado 🎂', troca = eio((t - 1.9) / .5), n = Math.floor(clamp((t - 2.4) / .7) * msg.length), env = t > 3.4;
+  const site = `<div class="abs" style="inset:0;transform:translateX(${-troca * 100}%);padding:40px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-family:Anton;font-size:40px">DOCE ANA</b><span style="font-size:22px;color:rgba(255,255,255,.6)">Cardápio · Preços · Onde fica</span></div>
+      <div style="margin-top:46px;font-weight:800;font-size:56px;line-height:1.08">Bolo de festa por<br>encomenda em Goiânia</div>
+      <div style="margin-top:34px;display:inline-flex;align-items:center;gap:14px;padding:22px 40px;border-radius:44px;background:#25D366;color:#06301A;font-weight:800;font-size:32px;transform:scale(${(1 + .04 * Math.sin(t * 6)) * (1 - .08 * Math.sin(clamp((t - 1.5) / .3) * Math.PI))});box-shadow:0 0 ${30 + 20 * Math.sin(t * 6)}px rgba(37,211,102,.6)">💬 Pedir pelo WhatsApp</div></div>`;
+  const zap = `<div class="abs" style="inset:0;transform:translateX(${(1 - troca) * 100}%);display:flex;flex-direction:column;background:#0B141A">
+      <div style="display:flex;align-items:center;gap:16px;padding:22px 28px;background:#1F2C34"><div style="width:54px;height:54px;border-radius:50%;background:#D6B36C;color:#111;display:grid;place-items:center;font-family:Anton;font-size:26px">DA</div><b style="font-size:29px">Doce Ana</b></div>
+      <div style="flex:1;padding:24px 28px">${env ? `<div style="margin-left:auto;max-width:80%;padding:18px 22px;border-radius:20px 20px 6px 20px;background:#005C4B;font-size:28px;line-height:1.3;transform:scale(${back((t - 3.4) / .35)});transform-origin:100% 100%">${msg}<div style="text-align:right;font-size:20px;color:#9FC9BD;margin-top:4px">✓✓</div></div>` : ''}</div>
+      <div style="display:flex;gap:12px;padding:14px 20px 22px"><div style="flex:1;min-height:62px;padding:16px 22px;border-radius:31px;background:#1F2C34;font-size:25px;color:${env ? '#8696A0' : '#E9EDEF'}">${env ? 'Mensagem' : msg.slice(0, n)}</div><div style="width:62px;height:62px;border-radius:50%;background:#00A884;display:grid;place-items:center;font-size:28px">➤</div></div></div>`;
+  return `<div style="${CARD(70, 140, 940, 480)}">${site}${zap}${t > .6 && t < 1.9 ? cursor(lerp(700, 330, eio((t - .6) / .8)), lerp(440, 330, eio((t - .6) / .8)), clamp((t - 1.5) / .3)) : ''}</div>
+  ${FEITO(t)}${K.kin(t, .3, ['Um clique', '*e cai no WhatsApp*'], { y: 900, max: 175, ini: 5 })}
+  ${K.corpo(t, 4.0, 'O botão já abre a conversa com a <b>mensagem pronta</b>. O cliente nem precisa pensar no que escrever.', 1110, { fs: 33 })}
+  ${K.rodape(t, 4.6)}`; });
+
+// 8 · oferta do trabalho dele
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['🌐 PC e celular', '📍 Mapa da região', '💲 Preços claros', '⭐ Avaliações', '💬 WhatsApp', '✨ Animação'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 30px;${K.vidro()}border-radius:28px;font-weight:800;font-size:34px;display:flex;justify-content:space-between;align-items:center;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no teu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>

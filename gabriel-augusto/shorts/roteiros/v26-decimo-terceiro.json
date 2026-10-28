@@ -1,0 +1,304 @@
+{
+  "titulo": "Teu 13º já tem dia pra cair?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {
+    "décimo terceiro": "13º"
+  },
+  "capa": {
+    "texto": [
+      "Teu 13º já tem",
+      "*dia pra cair?*"
+    ],
+    "selo": "O detalhe que pega muita gente",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "O teu décimo terceiro já tem dia pra cair? Tem um prazo que muita gente não sabe, e um detalhe que pega muita gente de surpresa.",
+      "texto": [
+        "13º"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "detalhe",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "dia",
+        "prazo",
+        "detalhe"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "2 PARTES · 2 PRAZOS",
+          "em": "detalhe"
+        },
+        "itens": [
+          {
+            "icone": "💰",
+            "txt": "1ª parte",
+            "sub": "até 30/11",
+            "em": "dia"
+          },
+          {
+            "icone": "💰",
+            "txt": "2ª parte",
+            "sub": "até 18/12",
+            "em": "prazo"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "A primeira parte tem que cair até o fim de novembro. E vem inteira, sem desconto nenhum.",
+      "texto": [
+        "1ª parte"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "inteira",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "primeira",
+        "novembro",
+        "inteira",
+        "desconto"
+      ],
+      "prop": {
+        "tipo": "calendario",
+        "rotulo": "1ª PARTE DO 13º",
+        "mes": {
+          "nome": "NOVEMBRO 2026",
+          "dias": 30,
+          "inicio": 0
+        },
+        "dia": 30,
+        "em": "novembro",
+        "txt": "ATÉ 30/11",
+        "sub": "Metade do salário, sem nenhum desconto."
+      }
+    },
+    {
+      "fala": "A segunda parte é que vem com os descontos. E esse ano o prazo cai num domingo, então o certo é pagar até a sexta antes.",
+      "texto": [
+        "2ª parte"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "domingo",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "segunda",
+        "descontos",
+        "domingo",
+        "sexta"
+      ],
+      "prop": {
+        "tipo": "calendario",
+        "rotulo": "2ª PARTE DO 13º",
+        "mes": {
+          "nome": "DEZEMBRO 2026",
+          "dias": 31,
+          "inicio": 2
+        },
+        "dia": 18,
+        "em": "sexta",
+        "risca": 20,
+        "risca_em": "domingo",
+        "txt2": "20/12 É DOMINGO",
+        "sub2": "O prazo da lei cai no fim de semana.",
+        "txt": "ATÉ 18/12",
+        "sub": "Com o desconto do INSS e do imposto de renda."
+      }
+    },
+    {
+      "fala": "E esse dinheiro faz diferença: ajuda a pagar as contas do fim de ano, a fazer o Natal das crianças, a sair daquela dívida. Por isso vale planejar antes de gastar.",
+      "texto": [
+        "Planeja"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "planejar",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "contas",
+        "natal",
+        "divida",
+        "planejar"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "PLANEJA ANTES DE GASTAR",
+          "em": "planejar"
+        },
+        "itens": [
+          {
+            "icone": "🧾",
+            "txt": "Contas",
+            "em": "contas"
+          },
+          {
+            "icone": "🎄",
+            "txt": "Natal",
+            "em": "natal"
+          },
+          {
+            "icone": "💳",
+            "txt": "Dívida",
+            "em": "divida"
+          },
+          {
+            "icone": "🐷",
+            "txt": "Guardar",
+            "em": "planejar"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Mas, infelizmente, nem todo mundo recebe. Quem trabalha por conta própria, como autônomo ou MEI, não tem décimo terceiro.",
+      "texto": [
+        "Quem não recebe"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "recebe",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "infelizmente",
+        "recebe",
+        "autonomo",
+        "mei"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "NÃO TEM 13º",
+          "em": "recebe"
+        },
+        "itens": [
+          {
+            "icone": "🧰",
+            "txt": "Autônomo",
+            "em": "autonomo"
+          },
+          {
+            "icone": "🏪",
+            "txt": "MEI",
+            "sub": "por conta própria",
+            "em": "mei"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "E se você tem um negócio, presta atenção: esse dinheiro vai sair procurando onde gastar no fim do ano.",
+      "texto": [
+        "Teu negócio"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "gastar",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "negocio",
+        "atencao",
+        "gastar"
+      ],
+      "prop": {
+        "tipo": "icones_sobe",
+        "rotulo": "PRA ONDE O 13º VAI",
+        "itens": [
+          [
+            "🎄",
+            "Natal",
+            "natal"
+          ],
+          [
+            "🎁",
+            "Presentes",
+            "dinheiro"
+          ],
+          [
+            "🛒",
+            "Mercado",
+            "procurando"
+          ],
+          [
+            "✈️",
+            "Viagem",
+            "gastar"
+          ]
+        ]
+      }
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": [
+        "Gostou?"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "olhada",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "gostou",
+        "segue",
+        "bio",
+        "oportunidade"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Tem uma oportunidade pra você na bio",
+        "y": 760
+      },
+      "fim": 1.4
+    }
+  ]
+}
