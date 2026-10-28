@@ -1,22 +1,22 @@
 {
-  "titulo": "Quem não usa IA vai ficar pra trás",
+  "titulo": "Por que o cliente fecha com o concorrente?",
   "motor": "motor-cinetico.html",
   "perfil": "@euaugusto_oliv",
   "fundo": "preto",
   "exibir": {},
   "capa": {
     "texto": [
-      "Quem não usa IA",
-      "*vai ficar pra trás*"
+      "Por que ele fecha",
+      "*com o concorrente?*"
     ],
-    "selo": "E o teu negócio?",
+    "selo": "A resposta tá no teu site",
     "selo_y": 1450
   },
   "cenas": [
     {
-      "fala": "O pequeno negócio brasileiro já usa mais inteligência artificial que o americano. E o teu, tá usando?",
+      "fala": "Por que dois negócios iguais vendem tão diferente? A resposta tá no site.",
       "texto": [
-        "IA"
+        "Site"
       ],
       "fundo_cor": [
         [
@@ -24,84 +24,86 @@
           "black"
         ],
         [
-          "teu",
+          "resposta",
           "red"
         ]
       ],
       "enfase": [
-        "mais",
-        "teu"
+        "iguais",
+        "diferente",
+        "site"
+      ],
+      "prop": {
+        "tipo": "linha",
+        "rotulo": "SITE × CLIENTES QUE CHAMAM",
+        "tag": "EXEMPLO",
+        "prefixo": "",
+        "casas": 0,
+        "sem_chip": true,
+        "min": 0,
+        "max": 45,
+        "pontos": [
+          {
+            "rot": "AMADOR",
+            "v": 6,
+            "em": 0
+          },
+          {
+            "rot": "BÁSICO",
+            "v": 15,
+            "em": "vendem"
+          },
+          {
+            "rot": "PROFISSIONAL",
+            "v": 38,
+            "em": "site"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "O cliente compara, e decide se confia em você só de olhar. Numa pesquisa famosa, o visual do site foi o principal motivo pra confiar ou não numa empresa.",
+      "texto": [
+        "Confiança"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "visual",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "confia",
+        "olhar",
+        "visual"
       ],
       "prop": {
         "tipo": "barras_vs",
-        "rotulo": "USARAM IA NAS ÚLTIMAS 2 SEMANAS",
-        "fonte": "Pesquisa Sebrae com 7 mil pequenos negócios, 2026",
+        "rotulo": "O QUE MAIS PESA PRA CONFIAR NUM SITE",
+        "fonte": "Pesquisa de Stanford com 2.684 pessoas (2002)",
         "itens": [
           {
-            "txt": "BRASIL",
-            "pct": 52,
-            "em": "brasileiro"
+            "txt": "VISUAL DO SITE",
+            "pct": 46,
+            "em": "visual"
           },
           {
-            "txt": "EUA",
-            "pct": 21,
-            "em": "americano",
+            "txt": "ORGANIZAÇÃO",
+            "pct": 28,
+            "em": "principal",
             "cor": "dim"
           }
         ]
       }
     },
     {
-      "fala": "Dá pra usar pra responder cliente, criar post, organizar a agenda e até as contas do mês.",
+      "fala": "Aí, se o teu site parece largado, ele nem te chama. Fecha com o concorrente.",
       "texto": [
-        "Pra quê"
-      ],
-      "fundo_cor": [
-        [
-          0,
-          "red"
-        ],
-        [
-          "contas",
-          "black"
-        ]
-      ],
-      "enfase": [
-        "cliente",
-        "post",
-        "agenda",
-        "contas"
-      ],
-      "prop": {
-        "tipo": "pictos",
-        "itens": [
-          {
-            "icone": "💬",
-            "txt": "Atendimento",
-            "em": "responder"
-          },
-          {
-            "icone": "🎨",
-            "txt": "Posts",
-            "em": "post"
-          },
-          {
-            "icone": "📅",
-            "txt": "Agenda",
-            "em": "agenda"
-          },
-          {
-            "icone": "📊",
-            "txt": "Contas",
-            "em": "contas"
-          }
-        ]
-      }
-    },
-    {
-      "fala": "Quem não usa vai ficar pra trás. Porque o cliente compara, e escolhe quem parece mais profissional.",
-      "texto": [
-        "Pra trás"
+        "Concorrente"
       ],
       "fundo_cor": [
         [
@@ -109,24 +111,22 @@
           "black"
         ],
         [
-          "compara",
+          "concorrente",
           "red"
         ]
       ],
       "enfase": [
-        "tras",
-        "profissional"
+        "largado",
+        "concorrente"
       ],
       "prop": {
-        "tipo": "gauge",
-        "em": "tras",
-        "de": "NA FRENTE",
-        "ate": "PRA TRÁS",
-        "rotulo": "TEU NEGÓCIO"
-      }
+        "tipo": "escolha",
+        "em": "concorrente"
+      },
+      "fim": 1.0
     },
     {
-      "fala": "E a primeira coisa que ele compara é o teu site. Olha a diferença.",
+      "fala": "Agora olha o mesmo negócio com um site profissional.",
       "texto": [
         "Diferença"
       ],
@@ -136,22 +136,22 @@
           "red"
         ],
         [
-          "diferenca",
+          "profissional",
           "black"
         ]
       ],
       "enfase": [
-        "site",
-        "diferenca"
+        "mesmo",
+        "profissional"
       ],
       "prop": {
         "tipo": "antes_depois",
-        "em": "diferenca"
+        "em": "profissional"
       },
       "fim": 1.6
     },
     {
-      "fala": "É isso que eu faço. Uso as melhores ferramentas, inclusive inteligência artificial, pra transformar teu negócio num site que passa confiança e leva o cliente direto pro teu WhatsApp.",
+      "fala": "É isso que eu faço: transformo teu negócio num site que passa confiança e leva o cliente direto pro teu WhatsApp.",
       "texto": [
         "Transformo"
       ],
@@ -161,12 +161,12 @@
           "black"
         ],
         [
-          "transformar",
+          "transformo",
           "red"
         ]
       ],
       "enfase": [
-        "transformar",
+        "transformo",
         "confianca",
         "whatsapp"
       ],
@@ -180,7 +180,7 @@
           {
             "icone": "✨",
             "txt": "Visual profissional",
-            "em": "transformar"
+            "em": "transformo"
           },
           {
             "icone": "⭐",
