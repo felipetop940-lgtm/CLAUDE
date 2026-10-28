@@ -10,7 +10,7 @@ Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem exp
 3. Lá pra dezembro, a jornada da semana diminui e entram as duas folgas. E um ano depois, ela diminui de novo.
 4. E o salário continua o mesmo. É mais tempo pra descansar, pra ficar com a família, pra cuidar da saúde. E quem descansa melhor, trabalha melhor.
 5. Mas, infelizmente, não vale pra todo mundo. Servidor público fica de fora, e quem tem diploma e ganha bem acima da média também.
-6. Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você. E se o teu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.
+6. Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.
 
 ## Título
 Lula voltou atrás na 6x1? É mentira 🚫
@@ -27,7 +27,6 @@ A mudança foi aprovada pelo Senado (14/10) e promulgada pelo Congresso (16/10),
 
 ➕ Segue pra entender a notícia sem enrolação.
 👀 Tem um negócio? Dá uma olhada na minha bio, que tem uma oportunidade lá pra você.
-💬 Teu negócio tá começando agora? Me manda uma mensagem no direct que eu te ajudo.
 
 #escala6x1 #trabalho #clt #fakenews #noticias
 
