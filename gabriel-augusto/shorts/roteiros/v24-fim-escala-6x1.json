@@ -16,7 +16,7 @@
   },
   "cenas": [
     {
-      "fala": "Tá circulando que o Lula voltou atrás no fim da escala seis por um depois que ganhou a eleição. Isso é mentira.",
+      "fala": "Tá circulando que o Lula voltou atrás no fim da escala seis por um depois que ganhou a eleição, mas isso é mentira.",
       "texto": [
         "Fake"
       ],
@@ -143,7 +143,7 @@
       }
     },
     {
-      "fala": "E o salário continua o mesmo. É mais tempo pra descansar, pra ficar com a família, pra cuidar da saúde. E quem descansa melhor, trabalha melhor.",
+      "fala": "E o salário continua o mesmo. É mais tempo pra descansar, ficar com a família, pra cuidar da saúde. E quem descansa melhor, trabalha melhor.",
       "texto": [
         "Qualidade de vida"
       ],
@@ -232,13 +232,14 @@
             "sub": "a partir de R$ 21.188",
             "em": "diploma"
           }
-        ]
+        ],
+        "ruim": true
       }
     },
     {
-      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "fala": "Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade pra você.",
       "texto": [
-        "Gostou?"
+        "Segue"
       ],
       "fundo_cor": [
         [
@@ -251,7 +252,6 @@
         ]
       ],
       "enfase": [
-        "gostou",
         "segue",
         "bio",
         "oportunidade"

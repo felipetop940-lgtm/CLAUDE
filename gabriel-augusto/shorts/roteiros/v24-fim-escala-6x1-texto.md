@@ -2,21 +2,21 @@
 
 Emenda Constitucional 141/2026, promulgada pelo Congresso em 16/10/2026. Final com o trabalho dele (site que atende até na folga).
 
-## Roteiro para gravar (sua voz)
-Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem explica pra um amigo.
+## Falas (como ele gravou em 28/10)
+Gravação: `gravacoes/v24-voz.m4a`, cortes em `roteiros/v24-cortes.json` (último take de cada parte).
 
-1. Tá circulando que o Lula voltou atrás no fim da escala seis por um depois que ganhou a eleição. Isso é mentira.
+1. Tá circulando que o Lula voltou atrás no fim da escala seis por um depois que ganhou a eleição, mas isso é mentira.
 2. A mudança já tinha sido aprovada e promulgada pelo Congresso antes mesmo do segundo turno. E o governo já desmentiu esse boato.
 3. Lá pra dezembro, a jornada da semana diminui e entram as duas folgas. E um ano depois, ela diminui de novo.
-4. E o salário continua o mesmo. É mais tempo pra descansar, pra ficar com a família, pra cuidar da saúde. E quem descansa melhor, trabalha melhor.
+4. E o salário continua o mesmo. É mais tempo pra descansar, ficar com a família, pra cuidar da saúde. E quem descansa melhor, trabalha melhor.
 5. Mas, infelizmente, não vale pra todo mundo. Servidor público fica de fora, e quem tem diploma e ganha bem acima da média também.
-6. Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.
+6. Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade pra você.
 
 ## Título
 Lula voltou atrás na 6x1? É mentira 🚫
 
 ## Legenda do post (TikTok / Reels)
-Tá circulando que o Lula voltou atrás no fim da escala 6x1 depois da eleição. É MENTIRA. 🚫
+Tá circulando que o Lula voltou atrás no fim da escala 6x1 depois da eleição, mas isso é MENTIRA. 🚫
 
 A mudança foi aprovada pelo Senado (14/10) e promulgada pelo Congresso (16/10), antes do segundo turno. O governo e as agências de checagem já desmentiram o boato.
 
@@ -26,7 +26,7 @@ A mudança foi aprovada pelo Senado (14/10) e promulgada pelo Congresso (16/10),
 😔 Infelizmente não vale pra todo mundo: servidor público fica de fora, e quem tem diploma e ganha a partir de R$ 21.188 também.
 
 ➕ Segue pra entender a notícia sem enrolação.
-👀 Tem um negócio? Dá uma olhada na minha bio, que tem uma oportunidade lá pra você.
+👀 Tem um negócio? Dá uma olhada na minha bio, que tem uma oportunidade pra você.
 
 #escala6x1 #trabalho #clt #fakenews #noticias
 

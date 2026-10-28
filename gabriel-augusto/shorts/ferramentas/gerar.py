@@ -90,9 +90,12 @@ def falas_gravadas(wav: Path, n: int, cortes: list = None) -> list:
     a = limpar_gravacao(ler_audio(wav))
     if cortes:
         out = []
-        for x, y in cortes:
+        def pedaco(x, y):
             seg = a[max(0, int((x - .06) * SR)): int((y + .15) * SR)].copy(); f = int(.02 * SR)
-            seg[:f] *= np.linspace(0, 1, f); seg[-f:] *= np.linspace(1, 0, f); out.append(seg)
+            seg[:f] *= np.linspace(0, 1, f); seg[-f:] *= np.linspace(1, 0, f); return seg
+        for c in cortes:  # [ini, fim] ou [[ini, fim], [ini, fim], ...] (fala montada de takes diferentes)
+            ps = c if isinstance(c[0], list) else [c]
+            out.append(np.concatenate([np.concatenate([pedaco(x, y), np.zeros(int(.22 * SR))]) for x, y in ps])[: -int(.22 * SR)])
         return out
     fr = int(.01 * SR); e = np.array([np.sqrt(np.mean(a[i:i + fr] ** 2)) for i in range(0, len(a) - fr, fr)])
     db = 20 * np.log10(e + 1e-9); voiced = db > np.percentile(db, 10) + 14
@@ -184,6 +187,57 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
     def queda(dur=1.2):
         k = T(dur); fr = 700 * (200 / 700) ** (k / dur); return np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.sin(np.pi * k / dur) * .3
 
+    # paleta extra (28/10, pedido dele: sons mais variados, que combinem com o que acontece na tela)
+    def riser(dur=1.2, f0=180, f1=1400):   # sobe e cresce até o golpe (gancho)
+        k = T(dur); x = k / dur; fr = f0 * (f1 / f0) ** (x ** 1.6)
+        ton = np.sin(2 * np.pi * np.cumsum(fr) / SR) * .35 + np.sin(2 * np.pi * np.cumsum(fr * 1.5) / SR) * .15
+        n = rng.standard_normal(len(k)); ns = lp(n, 1500) * (1 - x) + lp(n, 9000) * x
+        return hp(ton + ns * .6, 120) * x ** 2.2 * .8
+    def hit(f=46):                         # golpe de cinema em camadas: sub + estalo abafado + anel metálico
+        k = T(1.8); fr = f + 90 * np.exp(-k * 18)
+        corpo = np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.exp(-k * 2.2)
+        estalo = lp(rng.standard_normal(len(k)), 3500) * np.exp(-k * 28) * .8
+        anel = sum(np.sin(2 * np.pi * f2 * k) * np.exp(-k * d) for f2, d in ((311, 5), (523, 7), (1187, 11))) * .12
+        return (corpo + estalo + anel) * .9
+    def carimbo():                         # carimbo batendo no papel: baque seco + tapa de papel
+        k = T(.5); baque = np.sin(2 * np.pi * np.cumsum(95 + 60 * np.exp(-k * 40)) / SR) * np.exp(-k * 14)
+        tapa = hp(lp(rng.standard_normal(len(k)), 4200), 700) * np.exp(-k * 45) * .9
+        return (baque + tapa) * .8
+    def papel(dur=.4):                     # papel deslizando na mesa
+        k = T(dur); n = hp(lp(rng.standard_normal(len(k)), 6500), 1400)
+        return n * np.sin(np.pi * k / dur) ** 1.5 * (1 + .4 * np.sin(2 * np.pi * 23 * k)) * .4
+    def marimba(f=784, dec=7.):            # baqueta de madeira: quente e curta
+        k = T(.9); return (np.sin(2 * np.pi * f * k) + .25 * np.sin(2 * np.pi * f * 3.93 * k) * np.exp(-k * 30) + .5 * np.sin(2 * np.pi * f / 2 * k) * np.exp(-k * 9)) * env(k, .001, dec) * .45
+    def pluck(f=392, dur=1.2):             # corda dedilhada (Karplus-Strong)
+        n = int(SR / f); buf = rng.uniform(-1, 1, n); out = np.zeros(int(dur * SR))
+        for i in range(len(out)): out[i] = buf[i % n]; buf[i % n] = .497 * (buf[i % n] + buf[(i + 1) % n])
+        return lp(out, 5000) * .5
+    def pop(f=900):                        # bolhinha de ícone aparecendo
+        k = T(.14); return np.sin(2 * np.pi * np.cumsum(f * (1 + .6 * (1 - np.exp(-k * 60)))) / SR) * env(k, .002, 30) * .5
+    def moeda():                           # dinheiro: dois toques metálicos
+        out = np.zeros(int(.9 * SR))
+        for j, f in enumerate((2093, 2637)):
+            k = T(.8); x = (np.sin(2 * np.pi * f * k) + .4 * np.sin(2 * np.pi * f * 2.4 * k)) * env(k, .001, 7) * .35; i = int(j * .09 * SR); out[i:i + len(x)] += x[: len(out) - i]
+        return out
+    def clique():                          # clique de mouse
+        k = T(.05); x = hp(rng.standard_normal(len(k)), 2500) * env(k, .0005, 260) * .6
+        return np.concatenate([x, np.zeros(int(.045 * SR)), x * .6])
+    def subida(f0=300, f1=900, dur=.8):    # tom que sobe junto com a barra enchendo
+        k = T(dur); fr = f0 * (f1 / f0) ** (k / dur); return np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.sin(np.pi * k / dur) ** .8 * .22
+    def contagem(dur=1., n=14):            # número contando: ticks que desaceleram
+        out = np.zeros(int((dur + .1) * SR))
+        for j in range(n):
+            x = tecla() * (.5 + .5 * j / n); i = int(dur * (1 - (1 - j / n) ** 2) * SR); out[i:i + len(x)] += x[: len(out) - i]
+        return out
+    def brilho_varre(dur=1.1):             # barra de luz passando (revelação)
+        k = T(dur); n = rng.standard_normal(len(k)); x = k / dur
+        return hp(lp(n, 3000) * (1 - x) + lp(n, 12000) * x, 1800) * np.sin(np.pi * x) ** 2 * .35 + sum(sino(f, dur, 4)[: len(k)] * .12 for f in (1568, 2093, 2637))
+    def reverso(dur=.5):                   # sopro ao contrário (puxa pra próxima cena)
+        x = ar(dur, 600, 8000)[::-1]; return x * np.linspace(.3, 1, len(x))
+    def grave_suave(): return sub(62, .9) * .7 + marimba(196, 9) * .5
+    def sucesso(): x = marimba(1047, 6); y = marimba(1568, 5); out = np.zeros(int(1.1 * SR)); out[: len(x)] += x; out[int(.11 * SR): int(.11 * SR) + len(y)] += y; return out
+    escala = [523.3, 587.3, 659.3, 784, 880, 1046.5, 1174.7, 1318.5]
+
     def norm(x): return "".join(ch for ch in __import__("unicodedata").normalize("NFD", x.lower()) if ch.isalnum() or ch in "/?=")
     def quando(c, ref):                    # mesmo "em" do motor: fração da cena ou palavra da fala (tempo absoluto)
         if isinstance(ref, (int, float)): return c["t0"] + ref * c["dur"]
@@ -194,9 +248,13 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
     notas = [523.3, 587.3, 659.3, 784, 880, 1046.5, 1174.7]   # sobe a cada pedaço montado (sensação de progresso)
     for i, c in enumerate(rot["cenas"]):
         t0 = c["t0"]
-        if i == 0: put(swell(.9, 659), max(0, t0 + .05), .5); put(sub(), t0 + .35, .85)      # abertura: puxa e bate
+        cin = rot.get("motor") == "motor-cinetico.html"
+        if i == 0 and cin: put(hit(), max(0, t0 + .02), .75); put(brilho_varre(.9), t0 + .05, .35)   # gancho: golpe + brilho
+        elif i == 0: put(swell(.9, 659), max(0, t0 + .05), .5); put(sub(), t0 + .35, .85)    # abertura: puxa e bate
+        elif cin: [lambda: put(reverso(.55), t0 - .5, .5), lambda: put(ar(.6, 400, 5000), t0 - .3, .5),
+                   lambda: (put(papel(.35), t0 - .25, .5), put(grave_suave(), t0 + .02, .35)), lambda: put(ar(.5, 1500, 9000), t0 - .25, .4)][i % 4]()
         else: put(ar(.6, 400, 5000), t0 - .3, .55)                                           # troca de cena: sopro
-        put(ar(.35, 2000, 9000), t0 + .05, .18)                                              # título entrando: ar fino
+        if not cin: put(ar(.35, 2000, 9000), t0 + .05, .18)                                  # título entrando: ar fino
         if c.get("fx") == "tremer": put(sub(48, 1.4), t0 + .02, .6)
         bs = c.get("boneco") or []; bs = bs if isinstance(bs, list) else [bs]
         for bo in bs:
@@ -213,7 +271,11 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
             if bt.get("pose") == "comemorando": put(brilho(1175), tb + .05, .28)
         # fundo trocando de cor (motor cinético): sopro + impacto grave
         for j, (em, cor) in enumerate(c.get("fundo_cor", [])):
-            if j or em: tf = quando(c, em); put(ar(.4, 500, 7000), tf - .2, .45); put(sub(58, .8), tf + .02, .5)
+            if j or em:
+                tf = quando(c, em); v = (i + j) % 3
+                if v == 0: put(ar(.4, 500, 7000), tf - .2, .4); put(sub(58, .8), tf + .02, .45)
+                elif v == 1: put(reverso(.4), tf - .4, .4); put(sub(66, .6), tf + .01, .35)
+                else: put(ar(.3, 1200, 9000), tf - .15, .3); put(marimba(392, 8), tf + .02, .3); put(sub(52, .7), tf + .02, .3)
         # texto cinético (modo dinâmico): cada palavra-chave tem seu golpe de som, baixinho
         for j, kw in enumerate(c.get("kw", [])):
             tk = quando(c, kw.get("em", 0)); f = kw.get("fx", "punch")
@@ -294,6 +356,45 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
             for j in range(8): put(tecla(), t0 + .2 + j * .12, .3)
             put(brilho(1175), t0 + 1.3, .4)
         elif pr == "enquete": put(bolha(600), t0 + .3, .5); put(bolha(760), t0 + .5, .5)
+        elif pr == "manchete":   # post entra deslizando; a tensão sobe e o carimbo FALSO bate
+            te = quando(c, p.get("em", .5)); put(papel(.5), t0 + .02, .55)
+            put(riser(1.3, 160, 1100), te - 1.25, .42); put(carimbo(), te + .02, .9); put(hit(40), te + .02, .55); put(tensao(1.4), te + .15, .3)
+        elif pr == "pictos":     # cada ícone com seu som (moeda, mensagem ou nota de madeira subindo)
+            ruim = p.get("ruim")
+            for j, it in enumerate(p.get("itens", [])):
+                ti = quando(c, it.get("em", j * .3)); ic = it.get("icone", "")
+                put(pop(700 + 90 * j), ti, .35)
+                if ic in ("💰", "💵", "🪙"): put(moeda(), ti + .04, .4)
+                elif ic in ("💬", "📱"): put(bolha(600), ti + .04, .5)
+                else: put(marimba((escala[::-1] if ruim else escala)[min(j * 2, 7)] / (2 if ruim else 1), 7), ti + .03, .45)
+            if p.get("selo"):
+                ts = quando(c, p["selo"].get("em", 0))
+                if ruim: put(carimbo(), ts + .05, .5); put(tensao(1.1), ts + .1, .28)
+                else: put(pluck(523.3), ts + .05, .45); put(pluck(659.3), ts + .12, .35); put(pluck(784), ts + .19, .35)
+        elif pr == "linha":      # a linha desenha; cada ponto novo sobe ou desce de nota conforme o valor
+            put(subida(250, 500, 1.0), t0 + .1, .5); pts = p.get("pontos", [])
+            for j, q in enumerate(pts[1:], 1):
+                tq = quando(c, q.get("em", .5)); desce = q.get("v", 0) < pts[j - 1].get("v", 0)
+                put(subida(900, 520, .7) if desce else subida(520, 900, .7), tq - .05, .6); put(marimba(659.3 if desce else 784, 6) if j == 1 else marimba(523.3 if desce else 1046.5, 6), tq + .55, .45)
+        elif pr == "degraus":    # cada degrau sobe com seu tom (mais alto a cada nível); a seta atravessa e brilha
+            for j, it in enumerate(p.get("itens", [])):
+                ti = quando(c, it.get("em", j * .25)); put(subida(220 * (1.4 ** j), 440 * (1.4 ** j), .8), ti, .55); put(marimba(escala[j * 2], 7), ti + .7, .4)
+            ts = quando(c, p.get("seta_em", .7)); put(ar(.9, 600, 9000), ts, .35); put(brilho(1175), ts + .85, .3)
+        elif pr == "barras_vs":  # barra enche (tom subindo) + número contando; a principal fecha com sino
+            for j, it in enumerate(p.get("itens", [])):
+                ti = quando(c, it.get("em", j * .3)); dim = it.get("cor") == "dim"
+                put(subida(300, 600 if dim else 1000, 1.0), ti, .45); put(contagem(1.0, 10 if dim else 16), ti, .45)
+                put(grave_suave() if dim else sino(1568, 1.6, 3.4), ti + 1.0, .35)
+        elif pr == "escolha":    # cliente olha um, olha o outro, clica no concorrente e fecha lá
+            te = quando(c, p.get("em", .55)); put(papel(.4), t0 + .02, .4); put(clique(), t0 + 1.0, .35)
+            put(ar(.45, 1500, 9000), te - .3, .35); put(grave_suave(), te + .1, .4); put(clique(), te + .2, .6); put(sucesso(), te + .3, .5)
+        elif pr == "antes_depois":  # a barra de luz passa revelando o site novo; brilho quando termina
+            te = quando(c, p.get("em", .4)); put(reverso(.6), te - .6, .35); put(brilho_varre(1.2), te, .6); put(brilho(1047), te + 1.1, .3)
+            for q in range(3): put(ar(.5, 300, 2500), te + 1.8 + q * 1.6, .12)                # rolagem do site, bem baixinho
+        elif pr == "cta" and rot.get("motor") == "motor-cinetico.html":
+            put(reverso(.8), t0 - .35, .35); put(sub(55, 1.), t0 + .4, .35)
+            for j, f in enumerate((392, 523.3, 659.3, 784)): put(pluck(f, 1.6), t0 + .5 + j * .09, .35)
+            put(sino(1568, 2.2, 2.6), t0 + .9, .2)
         elif pr == "cta": put(swell(1.0, 784), t0 - .2, .35); put(resolve(), t0 + .45, .55); put(brilho(1568), t0 + .6, .22)
         elif pr == "conta_off": put(tensao(), t0 + .3, .6); put(sub(), t0 + 1.2, .7)
         elif pr == "grafico": put(queda(), t0 + .2, .6)

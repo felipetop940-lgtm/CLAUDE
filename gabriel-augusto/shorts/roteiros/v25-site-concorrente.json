@@ -14,7 +14,7 @@
   },
   "cenas": [
     {
-      "fala": "Por que dois negócios iguais vendem tão diferente? Porque quanto mais profissional o site, mais cliente te chama.",
+      "fala": "Por que dois negócios iguais vendem tão diferente? Porque quanto mais profissional o site, mais o cliente te chama.",
       "texto": [
         "Site"
       ],
@@ -60,7 +60,7 @@
       }
     },
     {
-      "fala": "O cliente compara, e decide se confia em você só de olhar. Numa pesquisa famosa, o visual do site foi o principal motivo pra confiar ou não numa empresa.",
+      "fala": "O cliente compara e decide se confia em você só de olhar. Em diversas pesquisas, o visual do site foi o principal motivo pra confiar ou não numa empresa.",
       "texto": [
         "Confiança"
       ],
@@ -99,7 +99,7 @@
       }
     },
     {
-      "fala": "Aí, se o teu site parece largado, ele nem te chama. Fecha com o concorrente.",
+      "fala": "Se o seu site parece largado, ele nem te chama e fecha com o concorrente.",
       "texto": [
         "Concorrente"
       ],
@@ -230,9 +230,9 @@
       }
     },
     {
-      "fala": "Gostou? Segue pra mais. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "fala": "Segue pra mais. Se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade pra você.",
       "texto": [
-        "Gostou?"
+        "Segue"
       ],
       "fundo_cor": [
         [
@@ -245,7 +245,6 @@
         ]
       ],
       "enfase": [
-        "gostou",
         "segue",
         "bio",
         "oportunidade"
