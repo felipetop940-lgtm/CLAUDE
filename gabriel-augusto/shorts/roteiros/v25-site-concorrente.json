@@ -14,7 +14,7 @@
   },
   "cenas": [
     {
-      "fala": "Por que dois negócios iguais vendem tão diferente? A resposta tá no site.",
+      "fala": "Por que dois negócios iguais vendem tão diferente? Porque quanto mais profissional o site, mais cliente te chama.",
       "texto": [
         "Site"
       ],
@@ -24,39 +24,37 @@
           "black"
         ],
         [
-          "resposta",
+          "profissional",
           "red"
         ]
       ],
       "enfase": [
         "iguais",
         "diferente",
-        "site"
+        "profissional",
+        "cliente"
       ],
       "prop": {
-        "tipo": "linha",
-        "rotulo": "SITE × CLIENTES QUE CHAMAM",
-        "tag": "EXEMPLO",
-        "prefixo": "",
-        "casas": 0,
-        "sem_chip": true,
-        "min": 0,
-        "max": 45,
-        "pontos": [
+        "tipo": "degraus",
+        "seta_em": "cliente",
+        "itens": [
           {
-            "rot": "AMADOR",
-            "v": 6,
-            "em": 0
+            "txt": "AMADOR",
+            "v": 1,
+            "gente": 1,
+            "em": "iguais"
           },
           {
-            "rot": "BÁSICO",
-            "v": 15,
-            "em": "vendem"
+            "txt": "BÁSICO",
+            "v": 2.3,
+            "gente": 3,
+            "em": "diferente"
           },
           {
-            "rot": "PROFISSIONAL",
-            "v": 38,
-            "em": "site"
+            "txt": "PROFISSIONAL",
+            "v": 5,
+            "gente": 7,
+            "em": "profissional"
           }
         ]
       }
@@ -121,12 +119,29 @@
       ],
       "prop": {
         "tipo": "escolha",
-        "em": "concorrente"
+        "em": "concorrente",
+        "amador": {
+          "url": "drfernando.sitegratis.exemplo",
+          "titulo": "BEM VINDO AO SITE DO DR. FERNANDO!!!",
+          "img": "foto_consultorio(2).jpg",
+          "texto": "Consultas, emagrecimento, reposição hormonal, exames e muito mais!!! Marque com antecedência. Convênio? Ligar para saber.",
+          "horario": "Atendemos de seg a sex.",
+          "email": "consultorio2015@exemplo.com"
+        },
+        "real": {
+          "desk": "../../video/src/fernando-site/desk-strip.jpg",
+          "cel": "../../video/src/fernando-site/cel-strip.jpg",
+          "deskW": 1200,
+          "deskH": 2225,
+          "celW": 585,
+          "celH": 5250,
+          "url": "fernandoaugustodr.com.br"
+        }
       },
       "fim": 1.0
     },
     {
-      "fala": "Agora olha o mesmo negócio com um site profissional.",
+      "fala": "Agora olha o mesmo negócio com um site profissional. Esse aqui é o site do doutor Fernando, que eu fiz.",
       "texto": [
         "Diferença"
       ],
@@ -142,13 +157,32 @@
       ],
       "enfase": [
         "mesmo",
-        "profissional"
+        "profissional",
+        "fernando",
+        "fiz"
       ],
       "prop": {
         "tipo": "antes_depois",
-        "em": "profissional"
+        "em": "profissional",
+        "amador": {
+          "url": "drfernando.sitegratis.exemplo",
+          "titulo": "BEM VINDO AO SITE DO DR. FERNANDO!!!",
+          "img": "foto_consultorio(2).jpg",
+          "texto": "Consultas, emagrecimento, reposição hormonal, exames e muito mais!!! Marque com antecedência. Convênio? Ligar para saber.",
+          "horario": "Atendemos de seg a sex.",
+          "email": "consultorio2015@exemplo.com"
+        },
+        "real": {
+          "desk": "../../video/src/fernando-site/desk-strip.jpg",
+          "cel": "../../video/src/fernando-site/cel-strip.jpg",
+          "deskW": 1200,
+          "deskH": 2225,
+          "celW": 585,
+          "celH": 5250,
+          "url": "fernandoaugustodr.com.br"
+        }
       },
-      "fim": 1.6
+      "fim": 2.6
     },
     {
       "fala": "É isso que eu faço: transformo teu negócio num site que passa confiança e leva o cliente direto pro teu WhatsApp.",
@@ -196,7 +230,7 @@
       }
     },
     {
-      "fala": "Gostou? Segue pra mais. E se teu negócio precisa de um site que passa confiança, me chama no direct.",
+      "fala": "Gostou? Segue pra mais. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você. E se o teu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
       "texto": [
         "Gostou?"
       ],
@@ -213,16 +247,18 @@
       "enfase": [
         "gostou",
         "segue",
-        "site",
-        "direct"
+        "bio",
+        "oportunidade",
+        "direct",
+        "ajudo"
       ],
       "prop": {
         "tipo": "cta",
         "botao": "Seguir ➕",
-        "sub": "Site profissional a partir de R$ 300 · me chama no direct",
+        "sub": "Tem uma oportunidade na bio · começando agora? me chama no direct",
         "y": 760
       },
-      "fim": 1.4
+      "fim": 1.6
     }
   ]
 }

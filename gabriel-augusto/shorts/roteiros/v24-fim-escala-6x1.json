@@ -1,5 +1,5 @@
 {
-  "titulo": "A escala 6x1 acabou mesmo?",
+  "titulo": "Lula voltou atrás na 6x1?",
   "motor": "motor-cinetico.html",
   "perfil": "@euaugusto_oliv",
   "fundo": "preto",
@@ -8,17 +8,17 @@
   },
   "capa": {
     "texto": [
-      "A 6x1 acabou",
-      "*mesmo?*"
+      "Lula voltou atrás",
+      "*na 6x1?*"
     ],
-    "selo": "O detalhe que ninguém entendeu",
+    "selo": "Veja o que é verdade",
     "selo_y": 1450
   },
   "cenas": [
     {
-      "fala": "A escala seis por um acabou mesmo? Já tá valendo? Calma, que tem um detalhe que quase ninguém entendeu.",
+      "fala": "Tá circulando que o Lula voltou atrás no fim da escala seis por um depois que ganhou a eleição. Isso é mentira.",
       "texto": [
-        "6x1"
+        "Fake"
       ],
       "fundo_cor": [
         [
@@ -26,26 +26,24 @@
           "black"
         ],
         [
-          "detalhe",
+          "mentira",
           "red"
         ]
       ],
       "enfase": [
-        "acabou",
-        "valendo",
-        "detalhe"
+        "voltou",
+        "mentira"
       ],
       "prop": {
-        "tipo": "semana",
-        "em": "acabou",
-        "de": "6x1",
-        "para": "5x2",
-        "rotulo": "TUA SEMANA",
-        "sub": "Fim da escala 6x1 · Emenda Constitucional 141"
+        "tipo": "manchete",
+        "em": "mentira",
+        "fonte_txt": "Post que circulou nas redes",
+        "titulo": "Após vencer, Lula recua e mantém escala 6x1",
+        "sub": "Mensagem que se espalhou depois do segundo turno."
       }
     },
     {
-      "fala": "Foi aprovada, sim. O Congresso já promulgou a mudança. Mas ela não começa de uma vez.",
+      "fala": "A mudança já tinha sido aprovada e promulgada pelo Congresso antes mesmo do segundo turno. E o governo já desmentiu esse boato.",
       "texto": [
         "Aprovada"
       ],
@@ -55,20 +53,20 @@
           "red"
         ],
         [
-          "vez",
+          "desmentiu",
           "black"
         ]
       ],
       "enfase": [
         "aprovada",
-        "promulgou",
-        "vez"
+        "promulgada",
+        "desmentiu"
       ],
       "prop": {
         "tipo": "pictos",
         "selo": {
-          "txt": "MAS NÃO É NA HORA",
-          "em": "vez"
+          "txt": "ANTES DA ELEIÇÃO",
+          "em": "turno"
         },
         "itens": [
           {
@@ -81,13 +79,19 @@
             "icone": "📜",
             "txt": "Promulgada",
             "sub": "Congresso · 16/10",
-            "em": "promulgou"
+            "em": "promulgada"
+          },
+          {
+            "icone": "🚫",
+            "txt": "Boato desmentido",
+            "sub": "governo e checagem",
+            "em": "desmentiu"
           }
         ]
       }
     },
     {
-      "fala": "Primeiro, lá pra dezembro, a jornada da semana diminui e entram as duas folgas. Um ano depois, ela diminui de novo.",
+      "fala": "Lá pra dezembro, a jornada da semana diminui e entram as duas folgas. E um ano depois, ela diminui de novo.",
       "texto": [
         "Jornada"
       ],
@@ -139,9 +143,9 @@
       }
     },
     {
-      "fala": "E o salário não pode diminuir. E uma das folgas, de preferência, cai no domingo.",
+      "fala": "E o salário continua o mesmo. É mais tempo pra descansar, pra ficar com a família, pra cuidar da saúde. E quem descansa melhor, trabalha melhor.",
       "texto": [
-        "Salário"
+        "Qualidade de vida"
       ],
       "fundo_cor": [
         [
@@ -149,16 +153,23 @@
           "red"
         ],
         [
-          "domingo",
+          "familia",
           "black"
         ]
       ],
       "enfase": [
         "salario",
-        "domingo"
+        "descansar",
+        "familia",
+        "saude",
+        "melhor"
       ],
       "prop": {
         "tipo": "pictos",
+        "selo": {
+          "txt": "MAIS QUALIDADE DE VIDA",
+          "em": "trabalha"
+        },
         "itens": [
           {
             "icone": "💰",
@@ -167,20 +178,24 @@
           },
           {
             "icone": "😴",
-            "txt": "2 folgas",
-            "em": "folgas"
+            "txt": "Descanso",
+            "em": "descansar"
           },
           {
-            "icone": "☀️",
-            "txt": "Domingo",
-            "sub": "de preferência",
-            "em": "domingo"
+            "icone": "👨‍👩‍👧",
+            "txt": "Família",
+            "em": "familia"
+          },
+          {
+            "icone": "💪",
+            "txt": "Trabalha melhor",
+            "em": "trabalha"
           }
         ]
       }
     },
     {
-      "fala": "Mas não vale pra todo mundo: servidor público fica de fora, e quem tem diploma e ganha bem acima da média também.",
+      "fala": "Mas, infelizmente, não vale pra todo mundo. Servidor público fica de fora, e quem tem diploma e ganha bem acima da média também.",
       "texto": [
         "Exceções"
       ],
@@ -195,7 +210,7 @@
         ]
       ],
       "enfase": [
-        "todo",
+        "infelizmente",
         "fora",
         "diploma"
       ],
@@ -221,55 +236,7 @@
       }
     },
     {
-      "fala": "E se você tem negócio, vai ter menos gente atendendo. Quem deixa o cliente se resolver sozinho sai na frente.",
-      "texto": [
-        "Teu negócio"
-      ],
-      "fundo_cor": [
-        [
-          0,
-          "red"
-        ],
-        [
-          "sozinho",
-          "black"
-        ]
-      ],
-      "enfase": [
-        "negocio",
-        "sozinho",
-        "frente"
-      ],
-      "prop": {
-        "tipo": "pictos",
-        "selo": {
-          "txt": "ATENDE SEM VOCÊ",
-          "em": "sozinho"
-        },
-        "itens": [
-          {
-            "icone": "🌐",
-            "txt": "Site",
-            "sub": "preço, horário, endereço",
-            "em": "cliente"
-          },
-          {
-            "icone": "💬",
-            "txt": "WhatsApp",
-            "sub": "resposta pronta",
-            "em": "sozinho"
-          },
-          {
-            "icone": "📅",
-            "txt": "Agenda online",
-            "sub": "marca sem te chamar",
-            "em": "frente"
-          }
-        ]
-      }
-    },
-    {
-      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se teu negócio precisa de um site que atende até no dia de folga, me chama no direct.",
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você. E se o teu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
       "texto": [
         "Gostou?"
       ],
@@ -286,17 +253,18 @@
       "enfase": [
         "gostou",
         "segue",
-        "site",
-        "folga",
-        "direct"
+        "bio",
+        "oportunidade",
+        "direct",
+        "ajudo"
       ],
       "prop": {
         "tipo": "cta",
         "botao": "Seguir ➕",
-        "sub": "Site que atende até na folga · me chama no direct",
+        "sub": "Tem uma oportunidade na bio · começando agora? me chama no direct",
         "y": 760
       },
-      "fim": 1.4
+      "fim": 1.6
     }
   ]
 }

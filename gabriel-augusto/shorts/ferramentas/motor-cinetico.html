@@ -481,12 +481,12 @@ function prop(c, lt, t) {
   }
   if (p.tipo === 'pictos') {
     // pictogramas grandes que aparecem quando são falados (ônibus, chuva...) + selo opcional
-    const L = p.itens || [], n = L.length, gap = 900 / n, sk = p.selo ? back((lt - quando(p.selo.em ?? 0)) / .4) : 0;
+    const L = p.itens || [], n = L.length, gap = 900 / n, F4 = n >= 4, sk = p.selo ? back((lt - quando(p.selo.em ?? 0)) / .4) : 0;
     return `<div style="position:absolute;inset:0">${sk > 0 ? `<div style="position:absolute;left:0;right:0;top:300px;text-align:center;transform:scale(${sk})"><span style="display:inline-block;padding:12px 30px;border-radius:40px;background:${OU};color:#1A1205;font-family:Anton;font-size:44px">${p.selo.txt}</span></div>` : ''}
       ${L.map((it, j) => { const v = back((lt - quando(it.em ?? j * .3)) / .5); if (v <= 0) return ''; const x = 90 + gap * j + gap / 2, bob = Math.sin(t * 2 + j) * 8;
-        return `<div style="position:absolute;left:${x - 200}px;top:${430 + bob}px;width:400px;text-align:center;transform:scale(${clamp(v, 0, 1.15)})">
-          <div style="font-size:170px;line-height:1;filter:drop-shadow(0 20px 30px rgba(0,0,0,.4))">${it.icone}</div>
-          <div style="margin-top:18px;font-family:Anton;font-size:46px;color:#fff;text-transform:uppercase">${it.txt}</div>
+        return `<div style="position:absolute;left:${x - gap / 2}px;top:${430 + bob}px;width:${gap}px;text-align:center;transform:scale(${clamp(v, 0, 1.15)})">
+          <div style="font-size:${F4 ? 130 : 170}px;line-height:1;filter:drop-shadow(0 20px 30px rgba(0,0,0,.4))">${it.icone}</div>
+          <div style="margin-top:18px;font-family:Anton;font-size:${F4 ? 36 : 46}px;line-height:1.05;color:#fff;text-transform:uppercase">${it.txt}</div>
           <div style="font-weight:700;font-size:28px;color:${FR}.75)">${it.sub || ''}</div></div>`; }).join('')}</div>`;
   }
   if (p.tipo === 'linha_tempo') {
@@ -570,8 +570,8 @@ function prop(c, lt, t) {
     const inn = ease(lt / .6), k = easeIO((lt - quando(p.em ?? .4)) / 1.1), x = 900 * k, push = 1 + .03 * clamp((lt - quando(p.em ?? .4)) / 3);
     const etq = (txt, cor, op) => `<span style="display:inline-block;padding:8px 20px;border-radius:24px;background:${cor};color:${cor === '#fff' ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;opacity:${op}">${txt}</span>`;
     return at(90, 250, `<div style="position:relative;width:900px;height:620px;opacity:${inn};transform:translateY(${(1 - inn) * 30}px) scale(${push})">
-      <div style="position:absolute;left:0;top:70px">${MOCK.amador(900, 540)}</div>
-      <div style="position:absolute;left:0;top:70px;clip-path:inset(0 ${900 - x}px 0 0 round 18px)">${MOCK.premium(900, 540, t)}</div>
+      <div style="position:absolute;left:0;top:70px">${MOCK.amador(900, 540, p.amador || {})}</div>
+      <div style="position:absolute;left:0;top:70px;clip-path:inset(-40px ${900 - x}px -40px 0 round 18px)">${p.real ? MOCK.duplo(900, 540, easeIO((lt - quando(p.em ?? .4) - .9) / Math.max(2, c.dur - 1.5)), p.real) : MOCK.premium(900, 540, t)}</div>
       ${k > 0 && k < 1 ? `<div style="position:absolute;left:${x - 4}px;top:60px;width:8px;height:560px;border-radius:4px;background:#fff;box-shadow:0 0 30px 8px rgba(255,255,255,.7), 0 0 80px 20px ${AC}"></div>` : ''}
       <div style="position:absolute;left:0;top:0">${etq('ANTES', 'rgba(0,0,0,.55)', 1 - k)}</div>
       <div style="position:absolute;right:0;top:0">${etq(p.depois || 'DEPOIS', VERM ? '#fff' : '#FF2E43', k)}</div></div>`);
@@ -586,11 +586,37 @@ function prop(c, lt, t) {
         <div style="width:${W}px;height:${H}px;overflow:hidden;border-radius:14px;transform:scale(${esc});filter:${esc < 1 ? 'grayscale(.7) brightness(.6)' : 'none'};transition:none">${html}</div></div>`;
     return at(60, 250, `<div style="position:relative;width:960px;height:470px;${vidroC}opacity:${inn};transform:translateY(${(1 - inn) * 30}px)">
       <div style="position:absolute;left:44px;top:34px;font-weight:800;font-size:26px;letter-spacing:.16em;color:${FR}.65)">${p.rotulo || 'O CLIENTE COMPARANDO'}</div>
-      ${lado(50, `<div style="transform:scale(${W / 900});transform-origin:0 0">${MOCK.amador(900, 548)}</div>`, 'TEU NEGÓCIO', 'rgba(255,255,255,.18)', 1 - .06 * no)}
-      ${lado(500, `<div style="transform:scale(${W / 900});transform-origin:0 0">${MOCK.premium(900, 548, t)}</div>`, 'CONCORRENTE', VERM ? 'rgba(0,0,0,.35)' : 'rgba(255,46,67,.85)', 1 + .04 * clamp(ok))}
+      ${lado(50, `<div style="transform:scale(${W / 900});transform-origin:0 0">${MOCK.amador(900, 548, p.amador || {})}</div>`, 'TEU NEGÓCIO', 'rgba(255,255,255,.18)', 1 - .06 * no)}
+      ${lado(500, `<div style="transform:scale(${W / 900});transform-origin:0 0">${p.real ? `<div style="width:900px;height:548px;border-radius:18px;overflow:hidden;position:relative;background:#0B0B0E"><img src="${p.real.desk}" style="position:absolute;left:0;top:0;width:900px"></div>` : MOCK.premium(900, 548, t)}</div>`, 'CONCORRENTE', VERM ? 'rgba(0,0,0,.35)' : 'rgba(255,46,67,.85)', 1 + .04 * clamp(ok))}
       ${no > 0 ? `<div style="position:absolute;left:${50 + W / 2 - 34}px;top:${90 + 50 + H / 2 - 34}px;width:68px;height:68px;border-radius:50%;background:#2A2A30;border:3px solid ${FR}.5);display:grid;place-items:center;font-size:36px;color:#fff;opacity:${no}">✕</div>` : ''}
       ${ok > 0 ? `<div style="position:absolute;left:${500 + W / 2 - 110}px;top:${90 + 50 + H + 18}px;padding:10px 22px;border-radius:30px;background:#25D366;color:#06301A;font-weight:800;font-size:26px;transform:scale(${clamp(ok, 0, 1.1)})">✓ FECHOU AQUI</div>` : ''}
       <svg style="position:absolute;left:${cx}px;top:${cy}px;overflow:visible" width="40" height="56"><path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round" transform="scale(${1 - .15 * Math.sin(k * Math.PI)})"/></svg></div>`);
+  }
+  if (p.tipo === 'degraus') {
+    // "quanto mais profissional o site, mais clientes": 3 barras subindo, bonequinhos de cliente em cima e uma seta atravessando
+    const L = p.itens || [], inn = ease(lt / .6), mx = Math.max(...L.map(i => i.v)), seta = easeIO((lt - quando(p.seta_em ?? .7)) / .9);
+    const cols = L.map((it, j) => { const k = easeIO((lt - quando(it.em ?? j * .25)) / .8), h = 250 * it.v / mx * k, x = 110 + j * 260, gente = Math.round(it.gente * clamp(k * 1.2));
+      const cor = j === L.length - 1 ? AC : `${FR}${.25 + j * .2})`;
+      return `<div style="position:absolute;left:${x}px;bottom:84px;width:170px;height:${h}px;border-radius:16px 16px 6px 6px;background:${cor};box-shadow:${j === L.length - 1 ? `0 0 40px ${AC}` : 'none'}"></div>
+        <div style="position:absolute;left:${x - 20}px;width:210px;bottom:${96 + h}px;text-align:center;font-size:30px;line-height:1.05;letter-spacing:-2px;opacity:${clamp(k * 2)}">${'👤'.repeat(gente)}</div>
+        <div style="position:absolute;left:${x - 30}px;width:230px;bottom:34px;text-align:center;font-family:Anton;font-size:32px;color:${j === L.length - 1 ? '#fff' : FR + '.75)'}">${it.txt}</div>`; }).join('');
+    return at(60, 250, `<div style="position:relative;width:960px;height:560px;${vidroC}opacity:${inn};transform:translateY(${(1 - inn) * 30}px);overflow:hidden">
+      <div style="position:absolute;left:44px;top:30px;font-family:Anton;font-size:44px;line-height:1.1;color:#fff">QUANTO MAIS PROFISSIONAL O SITE,<br><span style="color:${VERM ? '#fff' : AC}">MAIS CLIENTE TE CHAMA</span></div>
+      <div style="position:absolute;right:30px;top:30px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em;color:#fff">${p.tag || 'EXEMPLO'}</div>
+      <div style="position:absolute;left:60px;right:60px;bottom:82px;height:2px;background:${FR}.25)"></div>${cols}
+      <svg style="position:absolute;inset:0;overflow:visible" width="960" height="560"><path d="M150 ${430} C 420 ${410}, 600 ${330}, ${lerp(150, 830, seta)} ${lerp(430, 190, seta * seta)}" fill="none" stroke="#fff" stroke-width="6" stroke-dasharray="14 10" stroke-linecap="round" opacity="${seta > 0 ? .9 : 0}"/>
+        ${seta > .95 ? `<path d="M830 190 l-34 6 l20 26 z" fill="#fff"/>` : ''}</svg></div>`);
+  }
+  if (p.tipo === 'manchete') {
+    // post/manchete que circula no WhatsApp e no Instagram, e o carimbo FALSO no "em"
+    const inn = ease(lt / .5), st = back((lt - quando(p.em ?? .5)) / .35), sh = st > 0 && st < 1 ? Math.sin(lt * 60) * 4 * (1 - st) : 0;
+    return at(80, 280, `<div style="position:relative;width:920px;height:520px;opacity:${inn};transform:translateY(${(1 - inn) * 30}px) translateX(${sh}px)">
+      <div style="position:absolute;inset:0;border-radius:30px;background:#fff;color:#111;box-shadow:0 50px 110px -30px rgba(0,0,0,.9);overflow:hidden;filter:${st > 0 ? 'grayscale(.6) brightness(.85)' : 'none'}">
+        <div style="display:flex;align-items:center;gap:16px;padding:26px 30px;border-bottom:1px solid #e5e5e5"><div style="width:58px;height:58px;border-radius:50%;background:#ddd;display:grid;place-items:center;font-size:28px">📰</div>
+          <div><b style="font-size:26px">${p.fonte_txt || 'Portal de notícias'}</b><div style="font-size:20px;color:#777">reprodução do que circulou nas redes</div></div></div>
+        <div style="padding:30px 34px"><div style="font-family:Georgia,serif;font-weight:700;font-size:52px;line-height:1.12">${p.titulo || ''}</div>
+          <div style="margin-top:18px;font-size:26px;color:#555;line-height:1.35">${p.sub || ''}</div></div></div>
+      ${st > 0 ? `<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-12deg) scale(${clamp(st, 0, 1.2) * (1 + .1 * (1 - clamp(st)))});padding:14px 40px;border:10px solid #E0182D;border-radius:22px;color:#E0182D;font-family:Anton;font-size:150px;line-height:1;background:rgba(255,255,255,.85);box-shadow:0 20px 60px rgba(0,0,0,.4)">${p.carimbo || 'FALSO'}</div>` : ''}</div>`);
   }
   if (p.tipo === 'relogio') {
     // relógio: o ponteiro anda de "de" até "ate" quando a palavra é dita; arco vermelho marca o tempo extra
@@ -1120,7 +1146,7 @@ function render(t) {
   $('flash').style.opacity = c.fx === 'flash' && lt > .3 ? Math.max(0, .22 - (lt - .3) * 3) : 0;  // depois da transição
   // texto no MEIO da tela (faixa 770–1160); o motion graphics fica menor, em cima (230–740), só complementando (ajuste dele em 26/10)
   $('props').style.transformOrigin = '540px 1040px';
-  const NOVO = c.prop && ['linha', 'gauge', 'icones_sobe', 'onda', 'pictos', 'linha_tempo', 'anel', 'rosca', 'semana', 'barras_vs', 'rascunho', 'antes_depois', 'escolha'].includes(c.prop.tipo);
+  const NOVO = c.prop && ['linha', 'gauge', 'icones_sobe', 'onda', 'pictos', 'linha_tempo', 'anel', 'rosca', 'semana', 'barras_vs', 'rascunho', 'antes_depois', 'escolha', 'degraus', 'manchete'].includes(c.prop.tipo);
   $('props').style.transform = NOVO ? `translateY(${Math.sin(t * 1) * 4}px)` : `translateY(${-440 + Math.sin(t * 1) * 4}px) scale(.84)`;
   c._i = i; drawFundo(c, lt, t); C.red = BGATUAL === 'red' ? '#FFFFFF' : '#FF4D5E'; C.gold = BGATUAL === 'red' ? '#FFE3A3' : '#D6B36C';
   $('props').innerHTML = prop(c, lt, t);

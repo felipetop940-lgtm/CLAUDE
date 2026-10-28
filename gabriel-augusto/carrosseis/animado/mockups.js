@@ -6,13 +6,13 @@
     ${['#FF5F57', '#FEBC2E', '#28C840'].map(c => `<i style="width:11px;height:11px;border-radius:50%;background:${c}"></i>`).join('')}
     <div style="margin-left:12px;flex:1;height:22px;border-radius:11px;background:${escuro ? '#0C0D10' : '#fff'};font:500 13px IT,sans-serif;color:${escuro ? '#8A8F99' : '#555'};display:flex;align-items:center;padding:0 12px">${escuro ? '🔒 ' : '⚠️ '}${url}</div></div>`;
   window.MOCK = {
-    amador: (w = 900, h = 540) => `<div style="width:${w}px;height:${h}px;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)">${barra('anadoces.sitegratis.exemplo', false)}
+    amador: (w = 900, h = 540, o = {}) => `<div style="width:${w}px;height:${h}px;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)">${barra(o.url || 'anadoces.sitegratis.exemplo', false)}
       <div style="font-family:'Times New Roman',serif;color:#222;text-align:center;padding:16px 26px">
-        <div style="background:#FFF200;color:#E4007C;font-weight:700;font-size:${w * .042}px;padding:8px 0;border:3px dashed #1a3cff">BEM VINDO AO SITE DA ANA DOCES!!!</div>
+        <div style="background:#FFF200;color:#E4007C;font-weight:700;font-size:${w * .042}px;padding:8px 0;border:3px dashed #1a3cff">${o.titulo || 'BEM VINDO AO SITE DA ANA DOCES!!!'}</div>
         <div style="display:flex;gap:16px;margin-top:16px;text-align:left">
-          <div style="width:${w * .3}px;height:${h * .34}px;background:#C9C9C9;display:grid;place-items:center;font-size:15px;color:#666;border:1px solid #999">imagem_bolo2_final(1).jpg</div>
-          <div style="flex:1;font-size:${w * .021}px;line-height:1.35">Fazemos bolos, doces, salgados, tortas, docinhos, bolo de pote, cento de salgado e muito mais!!! Encomendas com antecedência. Pagamento a combinar. <u style="color:#1a3cff">clique aqui</u> para ver mais fotos no facebook. Atendemos de seg a sab.</div></div>
-        <div style="margin-top:14px;font-size:${w * .024}px;color:#1a3cff;text-decoration:underline">Contato: (62) 9XXXX-XXXX · anadoces2015@hotmail.com</div>
+          <div style="width:${w * .3}px;height:${h * .34}px;background:#C9C9C9;display:grid;place-items:center;font-size:15px;color:#666;border:1px solid #999">${o.img || 'imagem_bolo2_final(1).jpg'}</div>
+          <div style="flex:1;font-size:${w * .021}px;line-height:1.35">${o.texto || 'Fazemos bolos, doces, salgados, tortas, docinhos, bolo de pote, cento de salgado e muito mais!!! Encomendas com antecedência. Pagamento a combinar.'} <u style="color:#1a3cff">clique aqui</u> para ver mais fotos no facebook. ${o.horario || 'Atendemos de seg a sab.'}</div></div>
+        <div style="margin-top:14px;font-size:${w * .024}px;color:#1a3cff;text-decoration:underline">Contato: (62) 9XXXX-XXXX · ${o.email || 'anadoces2015@hotmail.com'}</div>
         <div style="margin-top:10px;font-size:13px;color:#999">Visitantes: 000127 · Melhor visualizado no Internet Explorer</div></div></div>`,
     premium: (w = 900, h = 540, t = 0) => { const s = w / 900;
       return `<div style="width:${w}px;height:${h}px;border-radius:18px;overflow:hidden;background:#0B0B0E;box-shadow:0 50px 110px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.08);font-family:IT,sans-serif;color:#F5F6F8;position:relative">${barra('seunome.com.br', true)}
@@ -35,4 +35,15 @@
             <div style="position:absolute;right:${0}px;top:${30 * s}px;padding:${10 * s}px ${14 * s}px;border-radius:${16 * s}px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);font-size:${13 * s}px;transform:translateY(${-5 * Math.sin(t * 1.3)}px)"><b>⭐ 4,9</b> · 120 avaliações</div>
             <div style="position:absolute;left:0;bottom:${8 * s}px;padding:${10 * s}px ${14 * s}px;border-radius:${16 * s}px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:${13 * s}px;transform:translateY(${5 * Math.sin(t * 1.1)}px)">📍 Entrega em Goiânia e região</div></div></div></div>`; },
   };
+
+  // site REAL de cliente rodando: computador + celular lado a lado (faixas de rolagem capturadas do site no ar)
+  // o: {desk, cel, deskW, deskH, celW, celH} — caminhos e tamanhos das faixas; k = progresso da rolagem (0..1)
+  window.MOCK.duplo = (w, h, k, o) => { const DW = w * .78, DH = DW * .62, PW = w * .25, PH = PW * 2.05;
+    const sd = Math.max(0, o.deskH * DW / o.deskW - (DH - 34)) * k, sc = Math.max(0, o.celH * (PW - 16) / o.celW - (PH - 16)) * k;
+    return `<div style="position:relative;width:${w}px;height:${h}px">
+      <div style="position:absolute;left:0;top:${(h - DH) / 2 - 20}px;width:${DW}px;height:${DH}px;border-radius:14px;overflow:hidden;background:#0B0B0E;box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.1)">
+        ${barra(o.url || 'seunome.com.br', true).replace('height:38px', 'height:34px')}
+        <div style="position:absolute;left:0;top:34px;right:0;bottom:0;overflow:hidden"><img src="${o.desk}" style="position:absolute;left:0;top:${-sd}px;width:${DW}px"></div></div>
+      <div style="position:absolute;right:0;top:${(h - PH) / 2 + 10}px;width:${PW}px;height:${PH}px;border-radius:${PW * .16}px;background:#111216;padding:8px;box-shadow:0 40px 80px -20px rgba(0,0,0,.9),0 0 0 2px #2A2C33">
+        <div style="position:relative;width:100%;height:100%;border-radius:${PW * .13}px;overflow:hidden"><img src="${o.cel}" style="position:absolute;left:0;top:${-sc}px;width:100%"></div></div></div>`; };
 })();
