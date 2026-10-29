@@ -43,19 +43,19 @@
         ]}
     },
     {
-      "fala": "Manda esse vídeo pra quem recebe. Pode ser tua mãe, tua vó, um vizinho. Um vídeo desse pode salvar o mês de uma família.",
+      "fala": "Manda esse vídeo pra quem recebe. Pode ser sua mãe, sua vó, um vizinho. Um vídeo desse pode salvar o mês de uma família.",
       "texto": ["Manda"],
       "fundo_cor": [[0, "black"], ["salvar", "red"]],
       "enfase": ["manda", "mae", "vo", "salvar"],
       "prop": {"tipo": "pictos", "selo": {"txt": "MANDA PRA QUEM RECEBE", "em": "salvar"},
         "itens": [
-          {"icone": "👩", "txt": "Tua mãe", "em": "mae"},
-          {"icone": "👵", "txt": "Tua vó", "em": "vo"},
-          {"icone": "🏠", "txt": "Teu vizinho", "em": "vizinho"}
+          {"icone": "👩", "txt": "Sua mãe", "em": "mae"},
+          {"icone": "👵", "txt": "Sua vó", "em": "vo"},
+          {"icone": "🏠", "txt": "Seu vizinho", "em": "vizinho"}
         ]}
     },
     {
-      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se o teu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se o seu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
       "texto": ["Gostou?"],
       "fundo_cor": [[0, "red"], ["negocio", "black"]],
       "enfase": ["gostou", "segue", "negocio", "direct"],

@@ -9,8 +9,8 @@ Grave em ordem, com **3 segundos de silêncio** entre as partes. Tom de quem avi
 2. O governo já desmentiu, e o pagamento de novembro tá mantido. Esse mês ele cai mais cedo, tudo na mesma semana, conforme o final do NIS.
 3. O perigo é outro. Os golpistas tão usando esse boato pra mandar link de recadastramento urgente. A pessoa clica, coloca os dados e perde o dinheiro.
 4. Então guarda isso: o Bolsa Família não manda link por mensagem e não liga pedindo senha. Pra conferir, só no aplicativo do Bolsa Família ou no Caixa Tem.
-5. Manda esse vídeo pra quem recebe. Pode ser tua mãe, tua vó, um vizinho. Um vídeo desse pode salvar o mês de uma família.
-6. Gostou? Segue pra entender a notícia sem enrolação. E se o teu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.
+5. Manda esse vídeo pra quem recebe. Pode ser sua mãe, sua vó, um vizinho. Um vídeo desse pode salvar o mês de uma família.
+6. Gostou? Segue pra entender a notícia sem enrolação. E se o seu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.
 
 ## Título
 O Bolsa Família vai acabar? 🚫 Cuidado com esse link
@@ -28,10 +28,10 @@ O governo já desmentiu, e o pagamento de novembro tá mantido. Esse mês ele ca
 ✅ O Bolsa Família não manda link por mensagem e não liga pedindo senha.
 ✅ Pra conferir, só no app Bolsa Família ou no Caixa Tem.
 
-📲 Manda pra quem recebe: tua mãe, tua vó, teu vizinho.
+📲 Manda pra quem recebe: sua mãe, sua vó, seu vizinho.
 
 ➕ Segue pra entender a notícia sem enrolação.
-💬 Teu negócio tá começando agora? Me manda uma mensagem no direct que eu te ajudo.
+💬 Seu negócio tá começando agora? Me manda uma mensagem no direct que eu te ajudo.
 
 #bolsafamilia #golpe #fakenews #noticias #caixatem
 
