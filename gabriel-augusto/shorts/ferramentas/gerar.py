@@ -359,6 +359,11 @@ def efeitos(rot: dict, total: float) -> np.ndarray:
         elif pr == "manchete":   # post entra deslizando; a tensão sobe e o carimbo FALSO bate
             te = quando(c, p.get("em", .5)); put(papel(.5), t0 + .02, .55)
             put(riser(1.3, 160, 1100), te - 1.25, .42); put(carimbo(), te + .02, .9); put(hit(40), te + .02, .55); put(tensao(1.4), te + .15, .3)
+        elif pr == "mensagem":   # digitando..., a mensagem chega, o link é sublinhado e o carimbo GOLPE bate
+            tc = quando(c, p.get("chega_em", .08))
+            for q in range(4): put(tecla(), tc - .75 + q * .17, .22)
+            put(bolha(560), tc, .6); put(subida(500, 800, .5), quando(c, p.get("link_em", .45)), .4)
+            te = quando(c, p.get("em", .7)); put(riser(1.0, 200, 1000), te - .95, .32); put(carimbo(), te + .02, .85); put(tensao(1.2), te + .12, .3)
         elif pr == "pictos":     # cada ícone com seu som (moeda, mensagem ou nota de madeira subindo)
             ruim = p.get("ruim")
             for j, it in enumerate(p.get("itens", [])):

@@ -1,0 +1,66 @@
+{
+  "titulo": "O Bolsa Família vai acabar?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["O Bolsa Família", "*vai acabar?*"], "selo": "Cuidado com esse link", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "O Bolsa Família vai acabar agora que a eleição passou? Tá circulando isso no WhatsApp, mas é mentira.",
+      "texto": ["Boato"],
+      "fundo_cor": [[0, "black"], ["mentira", "red"]],
+      "enfase": ["acabar", "eleicao", "mentira"],
+      "prop": {"tipo": "manchete", "em": "mentira", "fonte_txt": "Mensagem que circula no WhatsApp",
+        "titulo": "Bolsa Família vai acabar depois da eleição", "sub": "Boato que voltou a circular depois do segundo turno."}
+    },
+    {
+      "fala": "O governo já desmentiu, e o pagamento de novembro tá mantido. Esse mês ele cai mais cedo, tudo na mesma semana, conforme o final do NIS.",
+      "texto": ["Mantido"],
+      "fundo_cor": [[0, "red"], ["cedo", "black"]],
+      "enfase": ["desmentiu", "mantido", "cedo", "semana"],
+      "prop": {"tipo": "calendario", "rotulo": "PAGAMENTO DE NOVEMBRO", "mes": {"nome": "NOVEMBRO 2026", "dias": 30, "inicio": 0},
+        "dia": 16, "em": "semana", "txt": "16 A 18/11", "sub": "NIS final 1 no dia 16, final 2 no dia 17, do 3 ao 0 no dia 18."}
+    },
+    {
+      "fala": "O perigo é outro. Os golpistas tão usando esse boato pra mandar link de recadastramento urgente. A pessoa clica, coloca os dados e perde o dinheiro.",
+      "texto": ["Golpe"],
+      "fundo_cor": [[0, "black"], ["perde", "red"]],
+      "enfase": ["perigo", "golpistas", "link", "perde"],
+      "prop": {"tipo": "mensagem", "de": "Número desconhecido", "chega_em": "golpistas", "link_em": "link", "em": "perde",
+        "txt": "⚠️ BOLSA FAMÍLIA: seu benefício será BLOQUEADO. Faça o recadastramento urgente:", "link": "bolsafamilia-recadastro.exemplo", "hora": "09:41"}
+    },
+    {
+      "fala": "Então guarda isso: o Bolsa Família não manda link por mensagem e não liga pedindo senha. Pra conferir, só no aplicativo do Bolsa Família ou no Caixa Tem.",
+      "texto": ["Guarda isso"],
+      "fundo_cor": [[0, "red"], ["conferir", "black"]],
+      "enfase": ["link", "senha", "aplicativo", "caixa"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "SÓ NOS CANAIS OFICIAIS", "em": "conferir"},
+        "itens": [
+          {"icone": "🚫", "txt": "Não manda link", "em": "link"},
+          {"icone": "📵", "txt": "Não liga pedindo senha", "em": "senha"},
+          {"icone": "📱", "txt": "Confere no app", "sub": "Bolsa Família ou Caixa Tem", "em": "aplicativo"}
+        ]}
+    },
+    {
+      "fala": "Manda esse vídeo pra quem recebe. Pode ser tua mãe, tua vó, um vizinho. Um vídeo desse pode salvar o mês de uma família.",
+      "texto": ["Manda"],
+      "fundo_cor": [[0, "black"], ["salvar", "red"]],
+      "enfase": ["manda", "mae", "vo", "salvar"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "MANDA PRA QUEM RECEBE", "em": "salvar"},
+        "itens": [
+          {"icone": "👩", "txt": "Tua mãe", "em": "mae"},
+          {"icone": "👵", "txt": "Tua vó", "em": "vo"},
+          {"icone": "🏠", "txt": "Teu vizinho", "em": "vizinho"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se o teu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "negocio", "direct"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Negócio começando? Me chama no direct", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}

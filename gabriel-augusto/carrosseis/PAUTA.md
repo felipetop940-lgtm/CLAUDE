@@ -123,6 +123,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U62 | Arte ANIMADA (pedido dele) | Teu site pode fazer isso: animação, resultados, mapa da região, agenda, avaliações, botão do WhatsApp | feito 27/10 (c25, cinético) |
 | U63 | Vídeo | EM ALTA: 13º salário 2026 (1ª até 30/11, 2ª até 18/12 porque 20/12 é domingo) + quem não recebe | feito 28/10 (v26, cinético) |
 | U64 | Arte ANIMADA | Com isso você capta muito mais cliente: site real do Dr. Fernando, mapa 3D, preços, avaliações, WhatsApp | feito 28/10 (c26) |
+| U65 | Vídeo | EM ALTA: boato do fim do Bolsa Família depois da eleição (FALSO, MDS) + golpe do link de recadastramento (28/10) + calendário de novembro 16 a 18/11 | feito 29/10 (v27, cinético) |
+| U66 | Arte ANIMADA | Com isso teu negócio vira outro: Google achando o site, site do Dr. Fernando no celular, domínio próprio, vídeo na página, perguntas respondidas, agenda | feito 29/10 (c27) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -156,3 +158,7 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (27/10) WhatsApp: agendar mensagem apareceu no beta do iPhone (22/10, Oficina da Net); edição de legenda de Status em teste.
 - (27/10) Inflação: prévia de outubro (IPCA-15, IBGE 23/10) +0,32%; comida em casa +1,01%; tomate +24,5%, cebola +13,6%, batata +11%, arroz +5,8%; cenoura -10,7%; 12 meses 4,62% (acima do teto de 4,5%). Fontes: Metrópoles, Gazeta do Povo, O Tempo, Mix Vale, SpaceMoney. Bom pra vídeo cinético "o tomate subiu 25% num mês".
 - (28/10) Mercado: Ibovespa caindo e dólar a R$ 5,35 depois da reeleição (Mercado Hoje, 28/10). Copom: próxima reunião 3 e 4/11 (Selic 13,75%, mercado espera corte pra 13,50%). Flávio Bolsonaro nos EUA (conferir antes de usar). Dilma: indenização mensal por perseguição na ditadura.
+- (29/10) Boatos checados: prisão de Jair Renan (falso, Boatos.org), Flávio Bolsonaro "fugiu pros EUA" (vídeo antigo, Aos Fatos/Boatos.org), "a IA vai ler todas as conversas do WhatsApp" (falso, Boatos.org).
+- (29/10) Golpe da "votação de balé" no WhatsApp: QR Code que conecta tua conta no aparelho do golpista (Metrópoles, Mix Vale 28/10, TJPE). Bom pra vídeo "confere os aparelhos conectados".
+- (29/10) Golpe do falso aluguel de temporada pras férias (Procon Londrina, 27-28/10). CNI baixou o PIB de 2026 pra 1,6% e prevê Selic de 13,25% no fim do ano (28/10). IGP-M de outubro +1,47% (aluguel). Bolsa caindo 4 dias seguidos, dólar subindo (29/10).
+
