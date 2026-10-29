@@ -49,6 +49,8 @@ Modelo pronto: `c23-dolar-preco/anim.html`. Render: `PWPATH=$(npm root -g)/playw
 
 ## PACOTE DIÁRIO (desde 09/10) · rotina às 11h50, entrega até 13h
 
+**Pronome (29/10, pedido dele):** sempre "seu/sua", nunca "teu/tua" (vídeo, arte e legenda).
+
 Todo dia, 3 itens com **temas diferentes**:
 1. **Vídeo curto (vNN)** no modelo aprovado dos shorts (`../shorts/roteiros/MODELO.json`, regras no CLAUDE.md). Sai com a
    voz-guia; ele grava as falas do `vNN-tema-texto.md` e eu troco pela voz dele. Postar 18h no TikTok e no Reels.
