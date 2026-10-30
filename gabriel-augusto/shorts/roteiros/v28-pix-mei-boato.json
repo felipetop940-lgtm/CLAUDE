@@ -1,0 +1,70 @@
+{
+  "titulo": "O Pix do MEI virou troco?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["O Pix do MEI", "*virou troco?*"], "selo": "Veja o que é verdade", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "O Pix do MEI encolheu e virou troco? Tá circulando isso no WhatsApp, mas é mentira.",
+      "texto": ["Boato"],
+      "fundo_cor": [[0, "black"], ["mentira", "red"]],
+      "enfase": ["encolheu", "troco", "mentira"],
+      "prop": {"tipo": "manchete", "em": "mentira", "fonte_txt": "Post que circula no WhatsApp",
+        "titulo": "Governo prometeu R$ 5 mil, mas só vai pagar R$ 363 no Pix MEI", "sub": "Boato espalhado depois do segundo turno."}
+    },
+    {
+      "fala": "Esse valor saiu de uma conta errada. Pegaram o dinheiro previsto pro programa e dividiram por todos os MEIs do Brasil. O governo não cortou nada.",
+      "texto": ["Conta errada"],
+      "fundo_cor": [[0, "red"], ["cortou", "black"]],
+      "enfase": ["errada", "dividiram", "todos", "cortou"],
+      "prop": {"tipo": "pictos", "ruim": true, "selo": {"txt": "CONTA ERRADA", "em": "cortou"},
+        "itens": [
+          {"icone": "💰", "txt": "R$ 5 bilhões", "sub": "previsão do programa", "em": "dinheiro"},
+          {"icone": "➗", "txt": "Todos os MEIs", "sub": "mais de 13 milhões", "em": "dividiram"},
+          {"icone": "🤏", "txt": "R$ 363", "sub": "o número do boato", "em": "brasil"}
+        ]}
+    },
+    {
+      "fala": "O que existe é uma proposta de dinheiro pro MEI, sem juros e sem precisar devolver. Mas ela ainda não tá valendo: não tem cadastro aberto nem data pra pagar.",
+      "texto": ["Proposta"],
+      "fundo_cor": [[0, "black"], ["valendo", "red"]],
+      "enfase": ["proposta", "juros", "devolver", "valendo"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "AINDA É PROPOSTA", "em": "valendo"},
+        "itens": [
+          {"icone": "💵", "txt": "Até R$ 5 mil", "sub": "por MEI", "em": "proposta"},
+          {"icone": "🤝", "txt": "Sem juros", "sub": "e sem devolver", "em": "juros"},
+          {"icone": "⏳", "txt": "Sem cadastro", "sub": "e sem data ainda", "em": "cadastro"}
+        ]}
+    },
+    {
+      "fala": "E aí entra o golpe. Chega mensagem pedindo uma taxa ou a sua chave Pix pra liberar o dinheiro hoje. Isso é golpe.",
+      "texto": ["Golpe"],
+      "fundo_cor": [[0, "red"], ["hoje", "black"]],
+      "enfase": ["golpe", "taxa", "chave", "hoje"],
+      "prop": {"tipo": "mensagem", "de": "Número desconhecido", "chega_em": "mensagem", "link_em": "taxa", "em": 0.82,
+        "txt": "✅ PIX MEI LIBERADO! Pague a taxa de liberação e receba hoje. Cadastre sua chave Pix:", "link": "pixmei-liberacao.exemplo", "hora": "10:12"}
+    },
+    {
+      "fala": "Se você é MEI, já trabalha demais pra perder dinheiro com golpista. Pediu pagamento antes? Para. Confere só no site do governo e avisa outro MEI.",
+      "texto": ["Cuidado"],
+      "fundo_cor": [[0, "black"], ["confere", "red"]],
+      "enfase": ["trabalha", "para", "confere", "avisa"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "PROTEJA SEU DINHEIRO", "em": "avisa"},
+        "itens": [
+          {"icone": "✋", "txt": "Pediu taxa? Para", "em": "pagamento"},
+          {"icone": "🔎", "txt": "Confere no gov.br", "em": "confere"},
+          {"icone": "📲", "txt": "Avisa outro MEI", "em": "avisa"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se o seu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "negocio", "direct"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Negócio começando? Me chama no direct", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}

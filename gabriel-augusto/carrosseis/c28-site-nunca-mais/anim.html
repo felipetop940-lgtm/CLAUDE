@@ -1,0 +1,127 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 28 ANIMADO (1080x1350, cada slide é um vídeo) · "Seu site nunca mais vai ser o mesmo" · estilo CINÉTICO focado em SITE
+     Regras de 27-29/10: gancho com promessa + animação coerente (o site sendo montado, ✓ entrando), sem imagem de IA, sem falar de IA, sempre "seu/sua";
+     site real do Dr. Fernando no computador e no celular; catálogo com filtro (EXEMPLO); pedido de orçamento (EXEMPLO); aberto agora + como chegar (EXEMPLO);
+     resultados em gráfico (EXEMPLO); final aprovado "Quer isso no seu site?" + bio.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c28-site-nunca-mais -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO SEU SITE', 655);
+
+const TAG = (x = 36, y = 28) => `<div class="abs" style="right:${x}px;top:${y}px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>`;
+const ROT = txt => `<div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">${txt}</div>`;
+
+const VIVA = () => K.verm ? '#fff' : '#FF2E43';
+
+// 1 · gancho: o site sendo montado peça por peça, cada peça ganha ✓ e a nota sobe até 100
+slide(7, [[0, 'black'], [3.0, 'red']], t => {
+  const P = [['🎨', 'Visual que passa confiança'], ['📱', 'Perfeito no celular'], ['⚡', 'Abre rápido'], ['💬', 'Leva pro seu WhatsApp']];
+  const nota = Math.round(100 * eio((t - .5) / 2.4)), R = 92, C2 = 2 * Math.PI * R;
+  return `<div style="${CARD(70, 150, 940, 500)}">${ROT('MONTANDO SEU SITE')}
+      <svg class="abs" style="left:640px;top:110px" width="260" height="260"><circle cx="130" cy="130" r="${R}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="22"/>
+        <circle cx="130" cy="130" r="${R}" fill="none" stroke="${VIVA()}" stroke-width="22" stroke-linecap="round" stroke-dasharray="${C2 * nota / 100} ${C2}" transform="rotate(-90 130 130)" style="filter:drop-shadow(0 0 12px ${VIVA()})"/>
+        <text x="130" y="148" text-anchor="middle" font-family="Anton" font-size="66" fill="#fff">${nota}%</text></svg>
+      <div class="abs" style="left:640px;top:380px;width:260px;text-align:center;font-weight:800;font-size:22px;letter-spacing:.14em;color:rgba(255,255,255,.7)">PRONTO PRA VENDER</div>
+      ${P.map(([ic, tx], j) => { const k = ease((t - .5 - j * .55) / .4), ok = back((t - .85 - j * .55) / .35);
+        return `<div class="abs" style="left:40px;top:${96 + j * 96}px;width:560px;height:80px;display:flex;align-items:center;gap:16px;padding:0 22px;border-radius:22px;background:rgba(255,255,255,.08);opacity:${k};transform:translateX(${(1 - k) * -60}px)">
+          <span style="font-size:34px">${ic}</span><b style="font-size:29px;flex:1">${tx}</b>
+          <span style="width:44px;height:44px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:26px;font-weight:800;transform:scale(${clamp(ok, 0, 1.15)})">✓</span></div>`; }).join('')}</div>
+    ${K.kin(t, .05, ['Seu site nunca mais', '*vai ser o mesmo*'], { y: 890, max: 175 })}
+    ${K.corpo(t, 3.2, 'Arrasta e vê <b>o que um site profissional faz pelo seu negócio.</b>', 1095, { fs: 36 })}
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${Math.sin(t * 4) * 14}px)">→</span></span></div>`; });
+
+// 2 · site REAL do Dr. Fernando no computador e no celular
+const REAL = { desk: '../../video/src/fernando-site/desk-strip.jpg', cel: '../../video/src/fernando-site/cel-strip.jpg', deskW: 1200, deskH: 2225, celW: 585, celH: 5250, url: 'fernandoaugustodr.com.br' };
+slide(7.5, [[0, 'black'], [3.2, 'red']], t => { const inn = ease(t / .6);
+  return `<div class="abs" style="left:90px;top:120px;opacity:${inn};transform:translateY(${(1 - inn) * 40}px)">${MOCK.duplo(900, 540, eio((t - .9) / 5.6), REAL)}</div>
+  ${K.kick(t, .1, 'SITE REAL', 690)}${K.kin(t, .3, ['Bonito no PC', '*e no celular*'], { y: 925, max: 170, ini: 1 })}
+  ${K.corpo(t, 2.4, 'Esse é o site do <b>Dr. Fernando</b>, que eu fiz. O mesmo cuidado na tela grande e na pequena.', 1115, { fs: 33 })}
+  ${K.rodape(t, 3.0)}`; });
+
+// 3 · catálogo com filtro: o cliente toca na categoria e só aparece o que ele quer (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const cats = ['Todos', 'Bolos', 'Doces', 'Salgados'], sel = t < 1.6 ? 0 : t < 3.2 ? 1 : 2;
+  const L = [['🎂', 'Bolo de chocolate', 'R$ 90', 1], ['🍓', 'Bolo de morango', 'R$ 110', 1], ['🍫', 'Brigadeiro (cento)', 'R$ 120', 2], ['🥥', 'Beijinho (cento)', 'R$ 120', 2], ['🥟', 'Coxinha (cento)', 'R$ 95', 3], ['🧀', 'Pão de queijo (kg)', 'R$ 45', 3]];
+  const vis = L.filter(x => sel === 0 || x[3] === sel).slice(0, 4), troca = sel === 0 ? ease((t - .4) / .4) : ease((t - (sel === 1 ? 1.6 : 3.2)) / .4);
+  const cx = t < 1.6 ? lerp(700, 330, eio((t - .9) / .6)) : lerp(330, 500, eio((t - 2.5) / .6)), cy = 128;
+  return `<div style="${CARD(70, 140, 940, 500)}">${ROT('CARDÁPIO')}${TAG()}
+      <div class="abs" style="left:40px;top:80px;display:flex;gap:12px">${cats.map((c, j) => `<span style="padding:10px 24px;border-radius:26px;font-weight:800;font-size:26px;background:${j === sel ? '#fff' : 'rgba(255,255,255,.1)'};color:${j === sel ? '#C3101F' : '#fff'}">${c}</span>`).join('')}</div>
+      <div class="abs" style="left:40px;right:40px;top:160px;display:grid;grid-template-columns:1fr 1fr;gap:16px">${vis.map(([ic, n, v], j) => { const k = ease((troca - j * .12) / .6);
+        return `<div style="height:140px;padding:18px 20px;border-radius:22px;background:rgba(255,255,255,.08);opacity:${k};transform:scale(${.9 + .1 * k})"><div style="font-size:44px">${ic}</div><b style="display:block;font-size:26px;margin-top:6px">${n}</b><span style="font-family:Anton;font-size:30px;color:${K.verm ? '#fff' : '#FF2E43'}">${v}</span></div>`; }).join('')}</div>
+      ${t > .9 && t < 3.0 ? cursor(cx, cy + 30, t < 1.7 ? clamp((t - 1.4) / .25) : clamp((t - 2.9) / .25)) : ''}</div>
+  ${FEITO(t)}${K.kin(t, .3, ['O cliente acha', '*o que quer*'], { y: 900, max: 175, ini: 2 })}
+  ${K.corpo(t, 3.6, 'Cardápio ou catálogo com <b>filtro e preço</b>: o cliente escolhe sozinho e já chega sabendo o que quer.', 1110, { fs: 32 })}
+  ${K.rodape(t, 4.2)}`; });
+
+// 4 · pedido de orçamento: o formulário se preenche, envia e chega o aviso pro dono (EXEMPLO)
+slide(7, [[0, 'black'], [3.6, 'red']], t => {
+  const F = [['Nome', 'Carla Souza'], ['WhatsApp', '(62) 9 0000-0000'], ['O que você precisa?', 'Bolo pra 40 pessoas, dia 15']];
+  const env = back((t - 2.9) / .35), noti = back((t - 3.5) / .45);
+  return `<div style="${CARD(70, 140, 940, 500)}">${ROT('PEÇA SEU ORÇAMENTO')}${TAG()}
+      ${F.map(([r, v], j) => { const t0 = .5 + j * .7, n = Math.floor(clamp((t - t0) / .55) * v.length);
+        return `<div class="abs" style="left:40px;right:40px;top:${82 + j * 98}px"><div style="font-weight:700;font-size:21px;color:rgba(255,255,255,.65)">${r}</div>
+          <div style="margin-top:6px;height:56px;padding:0 20px;display:flex;align-items:center;border-radius:16px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 2px rgba(255,255,255,${t > t0 && t < t0 + .7 ? .6 : .12});font-size:27px">${v.slice(0, n)}</div></div>`; }).join('')}
+      <div class="abs" style="left:40px;top:392px;padding:16px 36px;border-radius:30px;background:${t > 2.9 ? '#25D366' : '#fff'};color:${t > 2.9 ? '#06301A' : '#C3101F'};font-weight:800;font-size:28px;transform:scale(${t > 2.7 && t < 2.9 ? .94 : 1})">${t > 2.9 ? '✓ Pedido enviado' : 'Enviar pedido'}</div>
+      ${noti > 0 ? `<div class="abs" style="right:30px;top:376px;width:420px;padding:16px 20px;border-radius:22px;background:#fff;color:#111;box-shadow:0 20px 50px rgba(0,0,0,.45);transform:translateY(${(1 - clamp(noti)) * 40}px) scale(${clamp(noti, 0, 1.05)})">
+        <b style="font-size:22px">🔔 Novo orçamento pelo site</b><div style="font-size:21px;color:#444;margin-top:4px">Carla · Bolo pra 40 pessoas</div></div>` : ''}</div>
+  ${FEITO(t)}${K.kin(t, .3, ['Orçamento chega', '*organizado*'], { y: 900, max: 175, ini: 3 })}
+  ${K.corpo(t, 4.0, 'O cliente manda tudo que você precisa saber <b>de uma vez</b>. Nada de dez mensagens pra entender o pedido.', 1110, { fs: 32 })}
+  ${K.rodape(t, 4.6)}`; });
+
+// 5 · aberto agora + como chegar: o selo muda sozinho e o botão abre a rota (EXEMPLO)
+slide(6.5, [[0, 'red'], [3.0, 'black']], t => {
+  const H = [['Seg a sex', '8h às 18h'], ['Sábado', '8h às 13h'], ['Domingo', 'Fechado']], rota = eio((t - 2.4) / 1.4), pulso = 1 + .06 * Math.sin(t * 5);
+  return `<div style="${CARD(70, 140, 940, 500)}">${ROT('HORÁRIO E ENDEREÇO')}${TAG()}
+      <div class="abs" style="left:40px;top:84px;display:inline-flex;align-items:center;gap:12px;padding:12px 24px;border-radius:30px;background:rgba(37,211,102,.18);color:#4BE38A;font-weight:800;font-size:30px;transform:scale(${back((t - .4) / .4)})">
+        <i style="width:18px;height:18px;border-radius:50%;background:#25D366;box-shadow:0 0 ${10 + 8 * Math.sin(t * 5)}px #25D366"></i>Aberto agora · fecha às 18h</div>
+      ${H.map(([d, h], j) => { const k = ease((t - .8 - j * .2) / .35); return `<div class="abs" style="left:40px;width:400px;top:${178 + j * 62}px;display:flex;justify-content:space-between;font-size:28px;opacity:${k}"><b>${d}</b><span style="color:rgba(255,255,255,.75)">${h}</span></div>`; }).join('')}
+      <div class="abs" style="left:490px;top:96px;width:410px;height:290px;border-radius:24px;overflow:hidden;background:${K.verm ? 'rgba(90,0,10,.6)' : 'rgba(255,255,255,.06)'}">
+        <svg width="410" height="290">${[[0, 70, 410, 50], [0, 200, 410, 230], [90, 0, 120, 290], [280, 0, 250, 290]].map(([a, b, c, d]) => `<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="rgba(255,255,255,.15)" stroke-width="10"/>`).join('')}
+          <path d="M60 250 L110 205 L250 215 L270 120 L330 90" fill="none" stroke="${VIVA()}" stroke-width="8" stroke-linecap="round" stroke-dasharray="520" stroke-dashoffset="${520 * (1 - rota)}" style="filter:drop-shadow(0 0 10px ${VIVA()})"/>
+          <circle cx="60" cy="250" r="12" fill="#fff"/>${rota > .95 ? `<circle cx="330" cy="90" r="16" fill="${VIVA()}"/>` : ''}</svg>
+        ${rota > .2 ? `<div class="abs" style="right:14px;bottom:14px;padding:8px 16px;border-radius:16px;background:#fff;color:#111;font-weight:800;font-size:22px;opacity:${ease((rota - .2) * 3)}">🚗 12 min</div>` : ''}</div>
+      <div class="abs" style="left:40px;top:400px;padding:16px 30px;border-radius:30px;background:#fff;color:#C3101F;font-weight:800;font-size:28px;transform:scale(${t > 1.8 && t < 2.4 ? pulso : 1})">📍 Como chegar</div>
+      ${t > 1.4 && t < 2.5 ? cursor(lerp(700, 200, eio((t - 1.4) / .6)), lerp(470, 420, eio((t - 1.4) / .6)), clamp((t - 2.1) / .25)) : ''}</div>
+  ${FEITO(t)}${K.kin(t, .3, ['Aberto agora?', '*Ele já sabe*'], { y: 900, max: 180, ini: 4 })}
+  ${K.corpo(t, 3.2, 'Horário que se atualiza e um toque pra abrir a rota. <b>O cliente sai de casa certo de que vai te achar.</b>', 1110, { fs: 32 })}
+  ${K.rodape(t, 3.8)}`; });
+
+// 6 · resultado: contatos pelo site subindo mês a mês (EXEMPLO)
+slide(7, [[0, 'black'], [3.6, 'red']], t => `${K.linha(t, { x: 70, y: 140, w: 940, h: 500, rotulo: 'CONTATOS PELO SITE POR MÊS', tag: 'EXEMPLO', prefixo: '', casas: 0, sem_chip: true, min: 0, max: 60,
+    pontos: [{ rot: 'MÊS 1', v: 8, t: 0 }, { rot: 'MÊS 2', v: 17, t: 1.0 }, { rot: 'MÊS 3', v: 29, t: 2.0 }, { rot: 'MÊS 4', v: 46, t: 3.0 }] })}
+  ${FEITO(t)}${K.kin(t, .3, ['Cliente chegando', '*todo mês*'], { y: 900, max: 175, ini: 5 })}
+  ${K.corpo(t, 3.6, 'Site bem feito trabalha <b>todo dia</b>, até quando você tá atendendo ou dormindo.', 1110, { fs: 34 })}
+  ${K.rodape(t, 4.2)}`);
+
+// 7 · final aprovado
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['💻 PC e celular', '🧁 Catálogo com filtro', '📝 Orçamento', '🟢 Aberto agora', '📍 Como chegar', '💬 WhatsApp'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 26px;${K.vidro()}border-radius:28px;font-weight:800;font-size:31px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>

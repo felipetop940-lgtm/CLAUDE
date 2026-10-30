@@ -125,6 +125,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U64 | Arte ANIMADA | Com isso você capta muito mais cliente: site real do Dr. Fernando, mapa 3D, preços, avaliações, WhatsApp | feito 28/10 (c26) |
 | U65 | Vídeo | EM ALTA: boato do fim do Bolsa Família depois da eleição (FALSO, MDS) + golpe do link de recadastramento (28/10) + calendário de novembro 16 a 18/11 | feito 29/10 (v27, cinético) |
 | U66 | Arte ANIMADA | Com isso teu negócio vira outro: Google achando o site, site do Dr. Fernando no celular, domínio próprio, vídeo na página, perguntas respondidas, agenda | feito 29/10 (c27) |
+| U67 | Vídeo | EM ALTA: boato do Pix MEI "R$ 5 mil virou R$ 363" (FALSO, Aos Fatos/Lupa 29/10) + golpe da taxa pra liberar | feito 30/10 (v28, cinético) |
+| U68 | Arte ANIMADA | Seu site nunca mais vai ser o mesmo: site montando, Dr. Fernando PC+celular, catálogo com filtro, orçamento, aberto agora + rota, contatos subindo | feito 30/10 (c28) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -161,4 +163,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (29/10) Boatos checados: prisão de Jair Renan (falso, Boatos.org), Flávio Bolsonaro "fugiu pros EUA" (vídeo antigo, Aos Fatos/Boatos.org), "a IA vai ler todas as conversas do WhatsApp" (falso, Boatos.org).
 - (29/10) Golpe da "votação de balé" no WhatsApp: QR Code que conecta tua conta no aparelho do golpista (Metrópoles, Mix Vale 28/10, TJPE). Bom pra vídeo "confere os aparelhos conectados".
 - (29/10) Golpe do falso aluguel de temporada pras férias (Procon Londrina, 27-28/10). CNI baixou o PIB de 2026 pra 1,6% e prevê Selic de 13,25% no fim do ano (28/10). IGP-M de outubro +1,47% (aluguel). Bolsa caindo 4 dias seguidos, dólar subindo (29/10).
+- (30/10) Lupa 29/10: outros boatos pós-eleição sobre benefícios (corte no Gás do Povo, saúde, educação). Ministério da Justiça notificou empresas que recusaram "clientes petistas" (discriminação no CDC, 29-30/10; conferir 2ª fonte isenta). Dia do Servidor: folga federal em 30/10 (ponto facultativo, não é feriado pro comércio).
+- (30/10) Golpes: falso juiz/desembargador pedindo pagamento pra liberar ação (TJMS); falso representante de e-commerce por chamada de vídeo, vítima perdeu R$ 10 mil (Polícia Civil RJ, 29/10); falsos policiais civis (SC).
 
