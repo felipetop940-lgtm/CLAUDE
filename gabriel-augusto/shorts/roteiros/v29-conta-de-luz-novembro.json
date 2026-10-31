@@ -1,0 +1,272 @@
+{
+  "titulo": "A conta de luz vai cair em novembro?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {
+    "texto": [
+      "A conta de luz",
+      "*vai cair?*"
+    ],
+    "selo": "Veja antes de pagar",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "A conta de luz vai ficar mais barata em novembro? Tem uma notícia boa, mas tem um detalhe.",
+      "texto": [
+        "Conta de luz"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "detalhe",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "barata",
+        "novembro",
+        "detalhe"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "TEM UM DETALHE",
+          "em": "detalhe"
+        },
+        "itens": [
+          {
+            "icone": "💡",
+            "txt": "Conta de luz",
+            "em": "conta"
+          },
+          {
+            "icone": "🧾",
+            "txt": "Novembro",
+            "em": "novembro"
+          },
+          {
+            "icone": "🤔",
+            "txt": "Vai cair?",
+            "em": "detalhe"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "A notícia boa: a Aneel manteve a bandeira verde. Ou seja, não tem cobrança extra na conta, pelo segundo mês seguido.",
+      "texto": [
+        "Bandeira verde"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "extra",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "verde",
+        "extra",
+        "segundo"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "SEM COBRANÇA EXTRA",
+          "em": "extra"
+        },
+        "itens": [
+          {
+            "icone": "🟡",
+            "txt": "Maio a setembro",
+            "sub": "amarela: + R$ 1,88 a cada 100 kWh",
+            "em": "aneel"
+          },
+          {
+            "icone": "🟢",
+            "txt": "Outubro",
+            "sub": "verde",
+            "em": "verde"
+          },
+          {
+            "icone": "🟢",
+            "txt": "Novembro",
+            "sub": "verde de novo",
+            "em": "segundo"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Isso porque choveu, as represas encheram e o país precisa ligar menos as usinas que gastam mais pra gerar energia.",
+      "texto": [
+        "Choveu"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "usinas",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "choveu",
+        "encheram",
+        "menos"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "ENERGIA MAIS BARATA DE GERAR",
+          "em": "energia"
+        },
+        "itens": [
+          {
+            "icone": "🌧️",
+            "txt": "Choveu",
+            "em": "choveu"
+          },
+          {
+            "icone": "💧",
+            "txt": "Represas cheias",
+            "em": "encheram"
+          },
+          {
+            "icone": "🏭",
+            "txt": "Menos usina cara",
+            "sub": "termelétrica",
+            "em": "usinas"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Mas, infelizmente, bandeira verde não quer dizer conta menor. O que manda é o quanto você gasta. Se ligar mais o ventilador e o ar, a conta sobe do mesmo jeito.",
+      "texto": [
+        "Consumo"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "gasta",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "infelizmente",
+        "menor",
+        "gasta",
+        "sobe"
+      ],
+      "prop": {
+        "tipo": "barras_vs",
+        "rotulo": "MESMA BANDEIRA VERDE, CONSUMO DIFERENTE",
+        "sufixo": " kWh",
+        "max": 300,
+        "fonte": "EXEMPLO ilustrativo: quanto mais kWh, maior a conta",
+        "itens": [
+          {
+            "txt": "CASA ECONÔMICA",
+            "pct": 150,
+            "em": "gasta",
+            "cor": "dim"
+          },
+          {
+            "txt": "VENTILADOR E AR DIRETO",
+            "pct": 260,
+            "em": "ventilador"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Então aproveita: tira da tomada o que não tá usando e encurta o banho quente. O dinheiro que sobra faz diferença no fim do mês.",
+      "texto": [
+        "Economiza"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "sobra",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "tomada",
+        "banho",
+        "sobra"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "SOBRA NO FIM DO MÊS",
+          "em": "sobra"
+        },
+        "itens": [
+          {
+            "icone": "🔌",
+            "txt": "Tira da tomada",
+            "em": "tomada"
+          },
+          {
+            "icone": "🚿",
+            "txt": "Banho mais curto",
+            "em": "banho"
+          },
+          {
+            "icone": "💰",
+            "txt": "Sobra dinheiro",
+            "em": "dinheiro"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": [
+        "Gostou?"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "negocio",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "gostou",
+        "segue",
+        "bio",
+        "oportunidade"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Tem uma oportunidade pra você na bio",
+        "y": 760
+      },
+      "fim": 1.4
+    }
+  ]
+}
