@@ -613,7 +613,7 @@ function prop(c, lt, t) {
     return at(80, 280, `<div style="position:relative;width:920px;height:520px;opacity:${inn};transform:translateY(${(1 - inn) * 30}px) translateX(${sh}px)">
       <div style="position:absolute;inset:0;border-radius:30px;background:#fff;color:#111;box-shadow:0 50px 110px -30px rgba(0,0,0,.9);overflow:hidden;filter:${st > 0 ? 'grayscale(.6) brightness(.85)' : 'none'}">
         <div style="display:flex;align-items:center;gap:16px;padding:26px 30px;border-bottom:1px solid #e5e5e5"><div style="width:58px;height:58px;border-radius:50%;background:#ddd;display:grid;place-items:center;font-size:28px">📰</div>
-          <div><b style="font-size:26px">${p.fonte_txt || 'Portal de notícias'}</b><div style="font-size:20px;color:#777">reprodução do que circulou nas redes</div></div></div>
+          <div><b style="font-size:26px">${p.fonte_txt || 'Portal de notícias'}</b><div style="font-size:20px;color:#777">${p.fonte_sub || 'reprodução do que circulou nas redes'}</div></div></div>
         <div style="padding:30px 34px"><div style="font-family:Georgia,serif;font-weight:700;font-size:52px;line-height:1.12">${p.titulo || ''}</div>
           <div style="margin-top:18px;font-size:26px;color:#555;line-height:1.35">${p.sub || ''}</div></div></div>
       ${st > 0 ? `<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-12deg) scale(${clamp(st, 0, 1.2) * (1 + .1 * (1 - clamp(st)))});padding:14px 40px;border:10px solid #E0182D;border-radius:22px;color:#E0182D;font-family:Anton;font-size:150px;line-height:1;background:rgba(255,255,255,.85);box-shadow:0 20px 60px rgba(0,0,0,.4)">${p.carimbo || 'FALSO'}</div>` : ''}</div>`);

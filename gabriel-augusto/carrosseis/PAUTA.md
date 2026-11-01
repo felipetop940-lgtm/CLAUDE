@@ -129,6 +129,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U68 | Arte ANIMADA | Seu site nunca mais vai ser o mesmo: site montando, Dr. Fernando PC+celular, catálogo com filtro, orçamento, aberto agora + rota, contatos subindo | feito 30/10 (c28) |
 | U69 | Vídeo | EM ALTA: bandeira verde mantida em novembro (Aneel, 30/10) + bandeira verde não quer dizer conta menor + dicas | feito 31/10 (v29, cinético) |
 | U70 | Arte ANIMADA | Com isso seu negócio vira referência: selos de confiança, Dr. Fernando no celular, antes x depois, avaliações, mapa 3D, WhatsApp | feito 31/10 (c29) |
+| U71 | Vídeo | EM ALTA: VR/VA em qualquer maquininha (Decreto 12.712, prazo nov/2026) + lado do comércio (taxa até 3,6%, repasse em 15 dias) | feito 01/11 (v30, cinético) |
+| U72 | Arte ANIMADA | Com isso seu cliente nem olha o concorrente: caminho do cliente, Dr. Fernando PC+celular, formas de pagamento com vales, agenda, perguntas, domínio | feito 01/11 (c30) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -169,4 +171,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (30/10) Golpes: falso juiz/desembargador pedindo pagamento pra liberar ação (TJMS); falso representante de e-commerce por chamada de vídeo, vítima perdeu R$ 10 mil (Polícia Civil RJ, 29/10); falsos policiais civis (SC).
 - (31/10) Black Friday 27/11: Procons (Sorocaba, Piauí, Campos) alertando lojas falsas com visual profissional e preço muito baixo, links patrocinados falsos, site que só aceita Pix, preço inflado antes da data; Procon-SP tem a lista "Evite estes sites". Bom pra vídeo "como saber se a loja é de verdade" (cuidado: não falar mal de site bonito; o ponto é CNPJ, endereço, avaliação, domínio).
 - (31/10) Combustível subiu na prévia de outubro (IPCA-15: diesel +3,7%, etanol +2,7%, gasolina +0,9%). Inflação prévia de outubro 0,32%.
+- (01/11) Copom 3 e 4/11: Selic 13,75%; opções da B3 (26/10) davam 63% de chance de manter e 28% de corte de 0,25; Focus de outubro esperava corte pra 13,50%. Decisão sai na noite de 4/11: bom pra vídeo no dia 5.
+- (01/11) Governo (31/10) reforçou: Pix MEI não tem cadastro e não sai este ano (ministro); golpes com o tema seguem. INSS: golpe da prova de vida com link e Pix; site falso de concurso do INSS (Mix Vale 29/10); boato de bloqueio por falta de biometria é falso.
 

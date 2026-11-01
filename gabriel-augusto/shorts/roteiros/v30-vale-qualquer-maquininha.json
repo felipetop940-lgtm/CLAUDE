@@ -1,0 +1,269 @@
+{
+  "titulo": "Seu vale vai passar em qualquer maquininha?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {
+    "texto": [
+      "Seu vale-refeição",
+      "*em qualquer maquininha?*"
+    ],
+    "selo": "O que muda em novembro",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "Seu vale-refeição vai passar em qualquer maquininha? Em novembro, isso começa a mudar.",
+      "texto": [
+        "Vale"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "mudar",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "qualquer",
+        "maquininha",
+        "novembro"
+      ],
+      "prop": {
+        "tipo": "manchete",
+        "em": "mudar",
+        "carimbo": "NOVA REGRA",
+        "fonte_txt": "Ministério do Trabalho",
+        "titulo": "Vale-refeição e vale-alimentação em qualquer maquininha",
+        "sub": "Regra do decreto de novembro de 2025, com prazo até novembro de 2026.",
+        "fonte_sub": "resumo da regra nova"
+      }
+    },
+    {
+      "fala": "Antes, cada cartão só passava na máquina da própria empresa. Agora as empresas de vale têm que abrir a rede, e uma maquininha pode aceitar todos.",
+      "texto": [
+        "Todos"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "agora",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "antes",
+        "propria",
+        "abrir",
+        "todos"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "UMA MAQUININHA, TODOS OS VALES",
+          "em": "todos"
+        },
+        "itens": [
+          {
+            "icone": "🙅",
+            "txt": "Antes",
+            "sub": "\"aqui não aceita esse\"",
+            "em": "antes"
+          },
+          {
+            "icone": "💳",
+            "txt": "Rede aberta",
+            "sub": "todas as bandeiras",
+            "em": "abrir"
+          },
+          {
+            "icone": "🛍️",
+            "txt": "Mesma maquininha",
+            "em": "maquininha"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Mas, infelizmente, não é da noite pro dia. Vai acontecendo aos poucos, e a loja ainda precisa estar habilitada pra aceitar vale.",
+      "texto": [
+        "Aos poucos"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "habilitada",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "infelizmente",
+        "poucos",
+        "habilitada"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "ruim": true,
+        "selo": {
+          "txt": "NÃO É AUTOMÁTICO",
+          "em": "habilitada"
+        },
+        "itens": [
+          {
+            "icone": "⏳",
+            "txt": "Aos poucos",
+            "em": "poucos"
+          },
+          {
+            "icone": "✅",
+            "txt": "Loja habilitada",
+            "sub": "pra aceitar vale",
+            "em": "loja"
+          },
+          {
+            "icone": "📋",
+            "txt": "Não é obrigada",
+            "sub": "a aceitar",
+            "em": "aceitar"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "E o vale continua sendo só pra comida. Farmácia, academia e outras coisas continuam de fora.",
+      "texto": [
+        "Só comida"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "fora",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "comida",
+        "farmacia",
+        "academia",
+        "fora"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "O SALDO NÃO MUDA",
+          "em": "fora"
+        },
+        "itens": [
+          {
+            "icone": "🛒",
+            "txt": "Mercado e restaurante",
+            "sub": "✓ pode",
+            "em": "comida"
+          },
+          {
+            "icone": "💊",
+            "txt": "Farmácia",
+            "sub": "✕ não pode",
+            "em": "farmacia"
+          },
+          {
+            "icone": "🏋️",
+            "txt": "Academia",
+            "sub": "✕ não pode",
+            "em": "academia"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Agora, se você tem restaurante, padaria ou mercado, isso é cliente novo chegando. A taxa ganhou limite e o dinheiro cai mais rápido na sua conta.",
+      "texto": [
+        "Seu negócio"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "cliente",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "restaurante",
+        "padaria",
+        "mercado",
+        "rapido"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "BOM PRO COMÉRCIO",
+          "em": "conta"
+        },
+        "itens": [
+          {
+            "icone": "🍽️",
+            "txt": "Cliente novo",
+            "em": "cliente"
+          },
+          {
+            "icone": "📉",
+            "txt": "Taxa com limite",
+            "sub": "até 3,6% por venda",
+            "em": "taxa"
+          },
+          {
+            "icone": "⚡",
+            "txt": "Dinheiro mais rápido",
+            "sub": "repasse em até 15 dias",
+            "em": "rapido"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": [
+        "Gostou?"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "negocio",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "gostou",
+        "segue",
+        "bio",
+        "oportunidade"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Tem uma oportunidade pra você na bio",
+        "y": 760
+      },
+      "fim": 1.4
+    }
+  ]
+}
