@@ -131,6 +131,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U70 | Arte ANIMADA | Com isso seu negócio vira referência: selos de confiança, Dr. Fernando no celular, antes x depois, avaliações, mapa 3D, WhatsApp | feito 31/10 (c29) |
 | U71 | Vídeo | EM ALTA: VR/VA em qualquer maquininha (Decreto 12.712, prazo nov/2026) + lado do comércio (taxa até 3,6%, repasse em 15 dias) | feito 01/11 (v30, cinético) |
 | U72 | Arte ANIMADA | Com isso seu cliente nem olha o concorrente: caminho do cliente, Dr. Fernando PC+celular, formas de pagamento com vales, agenda, perguntas, domínio | feito 01/11 (c30) |
+| U73 | Vídeo | EM ALTA: MP 1.396 contra ligação de golpe (autenticação, bloqueio de 15 dias a partir de 12/11, nome e logo da empresa na tela) | feito 02/11 (v31, cinético) |
+| U74 | Arte ANIMADA | Com isso o cliente te chama na hora: celular tocando, antes x depois, cardápio, vídeo na página, aberto agora, avaliações | feito 02/11 (c31) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -173,4 +175,6 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (31/10) Combustível subiu na prévia de outubro (IPCA-15: diesel +3,7%, etanol +2,7%, gasolina +0,9%). Inflação prévia de outubro 0,32%.
 - (01/11) Copom 3 e 4/11: Selic 13,75%; opções da B3 (26/10) davam 63% de chance de manter e 28% de corte de 0,25; Focus de outubro esperava corte pra 13,50%. Decisão sai na noite de 4/11: bom pra vídeo no dia 5.
 - (01/11) Governo (31/10) reforçou: Pix MEI não tem cadastro e não sai este ano (ministro); golpes com o tema seguem. INSS: golpe da prova de vida com link e Pix; site falso de concurso do INSS (Mix Vale 29/10); boato de bloqueio por falta de biometria é falso.
+- (02/11) Black Friday 2026 deve movimentar R$ 14,5 bi (Stefanini, ~30/10); desconto no Pix 36% x parcelado 34% (Stefanini), 59% decidem pelo desconto no Pix (LWSA/Opinion Box). Bom pra arte/vídeo "prepare seu negócio pra Black Friday" (ex.: deixar Pix com desconto claro no site).
+- (02/11) Governo quer remanejar R$ 20 bi no Orçamento 2027 pra promessas de campanha, incluindo reajuste do Bolsa Família (Metrópoles 02/11). Galípolo descarta intervir no dólar (Times Brasil). Boato: "Isabela Casahuga deportada dos EUA" é falso (Boatos.org 01/11).
 

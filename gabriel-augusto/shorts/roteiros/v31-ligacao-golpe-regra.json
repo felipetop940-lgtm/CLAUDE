@@ -1,0 +1,70 @@
+{
+  "titulo": "Vai acabar a ligação de golpe?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["Vai acabar a", "*ligação de golpe?*"], "selo": "Regra nova das operadoras", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "Vai acabar aquela ligação de golpe que fica tocando o dia inteiro? Saiu uma regra nova.",
+      "texto": ["Ligação"],
+      "fundo_cor": [[0, "black"], ["regra", "red"]],
+      "enfase": ["acabar", "golpe", "regra"],
+      "prop": {"tipo": "manchete", "em": "regra", "carimbo": "REGRA NOVA", "fonte_txt": "Medida Provisória 1.396/2026", "fonte_sub": "resumo da regra nova",
+        "titulo": "Operadoras vão ter que autenticar as ligações", "sub": "Chamada que não passar na conferência é bloqueada."}
+    },
+    {
+      "fala": "Agora as operadoras têm que conferir se a ligação é de verdade. Se não passar na conferência, a chamada é bloqueada antes de tocar no seu celular.",
+      "texto": ["Conferência"],
+      "fundo_cor": [[0, "red"], ["bloqueada", "black"]],
+      "enfase": ["conferir", "verdade", "bloqueada"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "BLOQUEADA ANTES DE TOCAR", "em": "tocar"},
+        "itens": [
+          {"icone": "📞", "txt": "Ligação", "em": "ligacao"},
+          {"icone": "🔍", "txt": "Operadora confere", "em": "conferir"},
+          {"icone": "🚫", "txt": "Não passou?", "sub": "bloqueia", "em": "bloqueada"}
+        ]}
+    },
+    {
+      "fala": "E quem fica disparando ligação curta aos montes, aquelas que caem quando você atende, pode ficar com a linha bloqueada. Essa parte começa a valer agora em novembro.",
+      "texto": ["Bloqueio"],
+      "fundo_cor": [[0, "black"], ["valer", "red"]],
+      "enfase": ["disparando", "caem", "bloqueada", "novembro"],
+      "prop": {"tipo": "calendario", "rotulo": "BLOQUEIO DE LIGAÇÃO ABUSIVA", "mes": {"nome": "NOVEMBRO 2026", "dias": 30, "inicio": 0},
+        "dia": 12, "em": "valer", "txt": "A PARTIR DE 12/11", "sub": "Mais de mil ligações num dia, quase todas curtas: linha bloqueada por 15 dias."}
+    },
+    {
+      "fala": "Mas, infelizmente, não some tudo de uma vez. A regra ainda depende do Congresso e de ajuste da Anatel. Então continua valendo: banco não liga pedindo senha.",
+      "texto": ["Cuidado"],
+      "fundo_cor": [[0, "red"], ["senha", "black"]],
+      "enfase": ["infelizmente", "congresso", "senha"],
+      "prop": {"tipo": "pictos", "ruim": true, "selo": {"txt": "AINDA NÃO ACABOU", "em": "senha"},
+        "itens": [
+          {"icone": "🏛️", "txt": "Congresso", "sub": "ainda vota", "em": "congresso"},
+          {"icone": "⚙️", "txt": "Anatel", "sub": "ainda ajusta", "em": "anatel"},
+          {"icone": "🔑", "txt": "Banco não pede senha", "em": "senha"}
+        ]}
+    },
+    {
+      "fala": "E uma parte boa pra quem tem negócio: quando uma empresa ligar, o nome e a logo vão aparecer na tela. O cliente sabe que é você e atende.",
+      "texto": ["Seu nome"],
+      "fundo_cor": [[0, "black"], ["atende", "red"]],
+      "enfase": ["negocio", "nome", "logo", "atende"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "BOM PRO SEU NEGÓCIO", "em": "atende"},
+        "itens": [
+          {"icone": "🏢", "txt": "Nome da empresa", "em": "nome"},
+          {"icone": "🖼️", "txt": "Logo na tela", "em": "logo"},
+          {"icone": "✅", "txt": "Cliente atende", "em": "atende"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "bio", "oportunidade"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Tem uma oportunidade pra você na bio", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}
