@@ -1,0 +1,76 @@
+{
+  "titulo": "Cansou de falar com robô?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["Cansou de falar", "*com robô?*"], "selo": "Regra nova do SAC", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "Cansou de falar com robô quando liga pra operadora ou pro banco? Desde essa semana, a empresa é obrigada a te passar pra uma pessoa.",
+      "texto": ["Robô"],
+      "fundo_cor": [[0, "black"], ["obrigada", "red"]],
+      "enfase": ["robo", "obrigada", "pessoa"],
+      "prop": {"tipo": "manchete", "em": "obrigada", "carimbo": "JÁ VALE", "fonte_txt": "Decreto federal do SAC", "fonte_sub": "resumo da regra nova",
+        "titulo": "Atendimento humano passa a ser obrigatório", "sub": "Vale desde 2 de novembro de 2026."}
+    },
+    {
+      "fala": "Agora tem que ter gente de verdade atendendo, no telefone e pela internet, todo dia, até no fim de semana e no feriado. E tem que atender rápido.",
+      "texto": ["Gente de verdade"],
+      "fundo_cor": [[0, "red"], ["feriado", "black"]],
+      "enfase": ["verdade", "todo", "feriado", "rapido"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "ATENDENTE DE VERDADE", "em": "rapido"},
+        "itens": [
+          {"icone": "🙋", "txt": "Pessoa atendendo", "em": "verdade"},
+          {"icone": "🕗", "txt": "8h às 20h", "em": "internet"},
+          {"icone": "📅", "txt": "Até feriado", "em": "feriado"},
+          {"icone": "⏱️", "txt": "Em até 20 s", "em": "rapido"}
+        ]}
+    },
+    {
+      "fala": "E cancelar ficou mais fácil. A opção tem que aparecer em qualquer parte do atendimento. Nada de ficar te jogando de um menu pro outro.",
+      "texto": ["Cancelar"],
+      "fundo_cor": [[0, "black"], ["menu", "red"]],
+      "enfase": ["cancelar", "facil", "qualquer", "menu"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "CANCELAR SEM ENROLAÇÃO", "em": "menu"},
+        "itens": [
+          {"icone": "❌", "txt": "Cancela em qualquer menu", "em": "qualquer"},
+          {"icone": "🔁", "txt": "Sem ficar pulando", "sub": "de atendente em atendente", "em": "jogando"},
+          {"icone": "📄", "txt": "Seu histórico", "sub": "em até 5 dias úteis", "em": "menu"}
+        ]}
+    },
+    {
+      "fala": "Mas, infelizmente, não vale pra todo lugar. É pras empresas que o governo federal fiscaliza, como operadora de celular, plano de saúde, conta de luz e banco.",
+      "texto": ["Quem entra"],
+      "fundo_cor": [[0, "red"], ["fiscaliza", "black"]],
+      "enfase": ["infelizmente", "fiscaliza", "banco"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "VALE PRA ESSAS EMPRESAS", "em": "fiscaliza"},
+        "itens": [
+          {"icone": "📱", "txt": "Operadora", "em": "operadora"},
+          {"icone": "🏥", "txt": "Plano de saúde", "em": "plano"},
+          {"icone": "💡", "txt": "Conta de luz", "em": "luz"},
+          {"icone": "🏦", "txt": "Banco", "em": "banco"}
+        ]}
+    },
+    {
+      "fala": "E pra quem tem negócio, fica a lição: o cliente quer ser atendido por gente. Responder rápido e de verdade é o que faz ele voltar.",
+      "texto": ["Lição"],
+      "fundo_cor": [[0, "black"], ["voltar", "red"]],
+      "enfase": ["negocio", "gente", "rapido", "voltar"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "LIÇÃO PRO SEU NEGÓCIO", "em": "voltar"},
+        "itens": [
+          {"icone": "🤝", "txt": "Gente de verdade", "em": "gente"},
+          {"icone": "⚡", "txt": "Resposta rápida", "em": "rapido"},
+          {"icone": "🔁", "txt": "Cliente volta", "em": "voltar"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "bio", "oportunidade"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Tem uma oportunidade pra você na bio", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}

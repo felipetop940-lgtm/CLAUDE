@@ -133,6 +133,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U72 | Arte ANIMADA | Com isso seu cliente nem olha o concorrente: caminho do cliente, Dr. Fernando PC+celular, formas de pagamento com vales, agenda, perguntas, domínio | feito 01/11 (c30) |
 | U73 | Vídeo | EM ALTA: MP 1.396 contra ligação de golpe (autenticação, bloqueio de 15 dias a partir de 12/11, nome e logo da empresa na tela) | feito 02/11 (v31, cinético) |
 | U74 | Arte ANIMADA | Com isso o cliente te chama na hora: celular tocando, antes x depois, cardápio, vídeo na página, aberto agora, avaliações | feito 02/11 (c31) |
+| U75 | Vídeo | EM ALTA: SAC com atendimento humano obrigatório desde 02/11 (8h às 20h, 20 s, cancelamento fácil) + lição pro negócio | feito 03/11 (v32, cinético) |
+| U76 | Arte ANIMADA | Seu site atende enquanto você dorme: madrugada com pedidos, Dr. Fernando no celular, WhatsApp, orçamento, mapa, contatos subindo | feito 03/11 (c32) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -177,4 +179,5 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (01/11) Governo (31/10) reforçou: Pix MEI não tem cadastro e não sai este ano (ministro); golpes com o tema seguem. INSS: golpe da prova de vida com link e Pix; site falso de concurso do INSS (Mix Vale 29/10); boato de bloqueio por falta de biometria é falso.
 - (02/11) Black Friday 2026 deve movimentar R$ 14,5 bi (Stefanini, ~30/10); desconto no Pix 36% x parcelado 34% (Stefanini), 59% decidem pelo desconto no Pix (LWSA/Opinion Box). Bom pra arte/vídeo "prepare seu negócio pra Black Friday" (ex.: deixar Pix com desconto claro no site).
 - (02/11) Governo quer remanejar R$ 20 bi no Orçamento 2027 pra promessas de campanha, incluindo reajuste do Bolsa Família (Metrópoles 02/11). Galípolo descarta intervir no dólar (Times Brasil). Boato: "Isabela Casahuga deportada dos EUA" é falso (Boatos.org 01/11).
+- (03/11) Procon-SP atualizou a lista "Evite estes sites" pra Black Friday 2026: 83 sites, 9 ainda no ar (O Tempo, 28/10). Procon-ES: sites clonados e perfis falsos no Instagram são as principais fraudes. STF afastou idade mínima pra aposentadoria especial em atividade insalubre (só manchete; conferir antes de usar). Copom decide a Selic amanhã (04/11).
 
