@@ -135,6 +135,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U74 | Arte ANIMADA | Com isso o cliente te chama na hora: celular tocando, antes x depois, cardápio, vídeo na página, aberto agora, avaliações | feito 02/11 (c31) |
 | U75 | Vídeo | EM ALTA: SAC com atendimento humano obrigatório desde 02/11 (8h às 20h, 20 s, cancelamento fácil) + lição pro negócio | feito 03/11 (v32, cinético) |
 | U76 | Arte ANIMADA | Seu site atende enquanto você dorme: madrugada com pedidos, Dr. Fernando no celular, WhatsApp, orçamento, mapa, contatos subindo | feito 03/11 (c32) |
+| U77 | Vídeo | EM ALTA: Black Friday e o "metade do dobro" (Procon Vitória 2025: 80% mais caros antes; Procon/AL 03-04/11) + como checar + reclamar | feito 04/11 (v33, cinético) |
+| U78 | Arte ANIMADA | Com isso você vende mais na Black Friday: contagem até 27/11, Dr. Fernando PC+celular, preço claro, Pix, avaliações, domínio | feito 04/11 (c33) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -180,4 +182,5 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (02/11) Black Friday 2026 deve movimentar R$ 14,5 bi (Stefanini, ~30/10); desconto no Pix 36% x parcelado 34% (Stefanini), 59% decidem pelo desconto no Pix (LWSA/Opinion Box). Bom pra arte/vídeo "prepare seu negócio pra Black Friday" (ex.: deixar Pix com desconto claro no site).
 - (02/11) Governo quer remanejar R$ 20 bi no Orçamento 2027 pra promessas de campanha, incluindo reajuste do Bolsa Família (Metrópoles 02/11). Galípolo descarta intervir no dólar (Times Brasil). Boato: "Isabela Casahuga deportada dos EUA" é falso (Boatos.org 01/11).
 - (03/11) Procon-SP atualizou a lista "Evite estes sites" pra Black Friday 2026: 83 sites, 9 ainda no ar (O Tempo, 28/10). Procon-ES: sites clonados e perfis falsos no Instagram são as principais fraudes. STF afastou idade mínima pra aposentadoria especial em atividade insalubre (só manchete; conferir antes de usar). Copom decide a Selic amanhã (04/11).
+- (04/11) Serasa: inadimplentes batem recorde de 84,2 milhões (manchete CNN, 04/11; achar 2ª fonte). Copom decide a Selic hoje às 18h30 (consenso: manter 13,75%). Caged de setembro sai hoje (projeção ~150 mil vagas). Golpe do "concurso de balé da Mia" no WhatsApp continua (Boatos.org 03/11).
 

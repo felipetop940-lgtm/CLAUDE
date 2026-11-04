@@ -1,0 +1,276 @@
+{
+  "titulo": "Esse desconto é de verdade?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {
+    "texto": [
+      "Esse desconto",
+      "*é de verdade?*"
+    ],
+    "selo": "Black Friday sem cair em cilada",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "Esse desconto da Black Friday é de verdade? Tem loja que sobe o preço antes, só pra baixar depois.",
+      "texto": [
+        "Desconto"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "depois",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "verdade",
+        "sobe",
+        "baixar"
+      ],
+      "prop": {
+        "tipo": "linha",
+        "rotulo": "PREÇO DO MESMO PRODUTO",
+        "tag": "EXEMPLO",
+        "prefixo": "R$ ",
+        "casas": 0,
+        "sem_chip": true,
+        "min": 300,
+        "max": 550,
+        "pontos": [
+          {
+            "rot": "OUTUBRO",
+            "v": 399,
+            "em": 0
+          },
+          {
+            "rot": "INÍCIO DE NOV",
+            "v": 499,
+            "em": "sobe"
+          },
+          {
+            "rot": "BLACK FRIDAY",
+            "v": 399,
+            "em": "baixar"
+          }
+        ],
+        "carimbo": {
+          "txt": "MESMO PREÇO",
+          "sub": "de antes",
+          "em": "depois"
+        }
+      }
+    },
+    {
+      "fala": "É o famoso metade do dobro. O produto sobe umas semanas antes e, na Black Friday, volta pro mesmo preço com cara de promoção.",
+      "texto": [
+        "Metade do dobro"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "promocao",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "metade",
+        "dobro",
+        "promocao"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "ruim": true,
+        "selo": {
+          "txt": "METADE DO DOBRO",
+          "em": "promocao"
+        },
+        "itens": [
+          {
+            "icone": "📈",
+            "txt": "Sobe antes",
+            "em": "sobe"
+          },
+          {
+            "icone": "🏷️",
+            "txt": "Desconto de mentira",
+            "em": "black"
+          },
+          {
+            "icone": "🔁",
+            "txt": "Volta pro mesmo preço",
+            "em": "volta"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "E acontece muito. Num levantamento do Procon de Vitória no ano passado, a maioria dos produtos ficou mais cara bem antes da Black Friday.",
+      "texto": [
+        "Procon"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "maioria",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "muito",
+        "maioria",
+        "cara"
+      ],
+      "prop": {
+        "tipo": "barras_vs",
+        "rotulo": "PRODUTOS MONITORADOS ANTES DA BLACK FRIDAY",
+        "fonte": "Procon Vitória, 30/10 a 24/11/2025",
+        "itens": [
+          {
+            "txt": "FICARAM MAIS CAROS",
+            "pct": 80,
+            "em": "maioria"
+          },
+          {
+            "txt": "OS OUTROS",
+            "pct": 20,
+            "em": "cara",
+            "cor": "dim"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Pra não cair: começa a anotar o preço desde já, tira print com a data, e usa site que mostra o histórico de preço.",
+      "texto": [
+        "Anota"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "historico",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "anotar",
+        "print",
+        "historico"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "FAZ ISSO DESDE JÁ",
+          "em": "historico"
+        },
+        "itens": [
+          {
+            "icone": "📝",
+            "txt": "Anota o preço",
+            "em": "anotar"
+          },
+          {
+            "icone": "📸",
+            "txt": "Print com a data",
+            "em": "print"
+          },
+          {
+            "icone": "📊",
+            "txt": "Histórico de preço",
+            "sub": "Zoom, Buscapé",
+            "em": "historico"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Preço maquiado é propaganda enganosa, e dá pra reclamar no Procon com o seu print. E se você tem loja, fica a dica: desconto de verdade é o que faz o cliente voltar.",
+      "texto": [
+        "Procon"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "loja",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "enganosa",
+        "procon",
+        "verdade",
+        "voltar"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "SEU PRINT É PROVA",
+          "em": "print"
+        },
+        "itens": [
+          {
+            "icone": "⚖️",
+            "txt": "Propaganda enganosa",
+            "em": "enganosa"
+          },
+          {
+            "icone": "📣",
+            "txt": "Reclama no Procon",
+            "em": "procon"
+          },
+          {
+            "icone": "🤝",
+            "txt": "Desconto real fideliza",
+            "em": "voltar"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": [
+        "Gostou?"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "negocio",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "gostou",
+        "segue",
+        "bio",
+        "oportunidade"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Tem uma oportunidade pra você na bio",
+        "y": 760
+      },
+      "fim": 1.4
+    }
+  ]
+}
