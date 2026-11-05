@@ -1,0 +1,262 @@
+{
+  "titulo": "Os juros pararam de cair",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {
+    "texto": [
+      "Os juros pararam",
+      "*de cair. E agora?*"
+    ],
+    "selo": "O que muda no seu bolso",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "Os juros pararam de cair. E o que isso muda no seu bolso?",
+      "texto": [
+        "Juros"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "bolso",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "pararam",
+        "bolso"
+      ],
+      "prop": {
+        "tipo": "manchete",
+        "em": "pararam",
+        "carimbo": "PAROU",
+        "fonte_txt": "Banco Central · Copom",
+        "fonte_sub": "decisão de 4/11/2026",
+        "titulo": "Copom mantém a Selic em 13,75% ao ano",
+        "sub": "Decisão unânime, depois de cinco cortes seguidos."
+      }
+    },
+    {
+      "fala": "Nessa quarta, o Banco Central decidiu deixar a taxa básica de juros parada, depois de vários cortes seguidos desde março.",
+      "texto": [
+        "Selic"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "parada",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "parada",
+        "cortes",
+        "marco"
+      ],
+      "prop": {
+        "tipo": "linha",
+        "rotulo": "TAXA SELIC (AO ANO)",
+        "prefixo": "",
+        "sufixo": "%",
+        "casas": 2,
+        "sem_chip": true,
+        "min": 13.25,
+        "max": 15.25,
+        "pontos": [
+          {
+            "rot": "JAN 2026",
+            "v": 15,
+            "em": 0
+          },
+          {
+            "rot": "5 CORTES",
+            "v": 13.75,
+            "em": "cortes"
+          },
+          {
+            "rot": "NOVEMBRO",
+            "v": 13.75,
+            "em": 0.78
+          }
+        ],
+        "carimbo": {
+          "txt": "PAROU",
+          "sub": "13,75%",
+          "em": 0.86
+        }
+      }
+    },
+    {
+      "fala": "E isso pesa em tudo que é parcelado: cartão, empréstimo, financiamento. O dinheiro emprestado continua caro.",
+      "texto": [
+        "Crédito caro"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "caro",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "parcelado",
+        "emprestado",
+        "caro"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "ruim": true,
+        "selo": {
+          "txt": "CRÉDITO CONTINUA CARO",
+          "em": "caro"
+        },
+        "itens": [
+          {
+            "icone": "💳",
+            "txt": "Cartão",
+            "em": "cartao"
+          },
+          {
+            "icone": "🏦",
+            "txt": "Empréstimo",
+            "em": "emprestimo"
+          },
+          {
+            "icone": "🏠",
+            "txt": "Financiamento",
+            "em": "financiamento"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Mas, infelizmente, quem tá endividado sente mais. Então, antes de parcelar alguma coisa na Black Friday, faz a conta do total.",
+      "texto": [
+        "Faz a conta"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "conta",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "infelizmente",
+        "endividado",
+        "total"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "ANTES DE PARCELAR",
+          "em": "black"
+        },
+        "itens": [
+          {
+            "icone": "🧮",
+            "txt": "Faz a conta do total",
+            "em": "parcelar"
+          },
+          {
+            "icone": "🏷️",
+            "txt": "Compara com o preço à vista",
+            "em": "conta"
+          },
+          {
+            "icone": "⏳",
+            "txt": "Foge de parcela longa",
+            "em": "total"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Do outro lado, quem deixa o dinheiro guardado em renda fixa continua ganhando bem. Juro alto é ruim pra quem deve e bom pra quem guarda.",
+      "texto": [
+        "Quem guarda"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "guarda",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "guardado",
+        "ganhando",
+        "deve",
+        "guarda"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "SELIC EM 13,75%",
+          "em": "guarda"
+        },
+        "itens": [
+          {
+            "icone": "💰",
+            "txt": "Quem guarda",
+            "sub": "renda fixa rende mais",
+            "em": "guardado"
+          },
+          {
+            "icone": "📉",
+            "txt": "Quem deve",
+            "sub": "paga mais juros",
+            "em": "deve"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se o seu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
+      "texto": [
+        "Gostou?"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "negocio",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "gostou",
+        "segue",
+        "negocio",
+        "direct"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Negócio começando? Me chama no direct",
+        "y": 760
+      },
+      "fim": 1.4
+    }
+  ]
+}

@@ -137,6 +137,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U76 | Arte ANIMADA | Seu site atende enquanto você dorme: madrugada com pedidos, Dr. Fernando no celular, WhatsApp, orçamento, mapa, contatos subindo | feito 03/11 (c32) |
 | U77 | Vídeo | EM ALTA: Black Friday e o "metade do dobro" (Procon Vitória 2025: 80% mais caros antes; Procon/AL 03-04/11) + como checar + reclamar | feito 04/11 (v33, cinético) |
 | U78 | Arte ANIMADA | Com isso você vende mais na Black Friday: contagem até 27/11, Dr. Fernando PC+celular, preço claro, Pix, avaliações, domínio | feito 04/11 (c33) |
+| U79 | Vídeo | EM ALTA: Copom manteve a Selic em 13,75% (04/11), fim da sequência de cortes + o que muda no bolso | feito 05/11 (v34, cinético) |
+| U80 | Arte ANIMADA | Com isso o cliente acha você sozinho: busca no Google, Dr. Fernando no celular, agenda, perguntas, vídeo na página, cardápio | feito 05/11 (c34) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -183,4 +185,5 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (02/11) Governo quer remanejar R$ 20 bi no Orçamento 2027 pra promessas de campanha, incluindo reajuste do Bolsa Família (Metrópoles 02/11). Galípolo descarta intervir no dólar (Times Brasil). Boato: "Isabela Casahuga deportada dos EUA" é falso (Boatos.org 01/11).
 - (03/11) Procon-SP atualizou a lista "Evite estes sites" pra Black Friday 2026: 83 sites, 9 ainda no ar (O Tempo, 28/10). Procon-ES: sites clonados e perfis falsos no Instagram são as principais fraudes. STF afastou idade mínima pra aposentadoria especial em atividade insalubre (só manchete; conferir antes de usar). Copom decide a Selic amanhã (04/11).
 - (04/11) Serasa: inadimplentes batem recorde de 84,2 milhões (manchete CNN, 04/11; achar 2ª fonte). Copom decide a Selic hoje às 18h30 (consenso: manter 13,75%). Caged de setembro sai hoje (projeção ~150 mil vagas). Golpe do "concurso de balé da Mia" no WhatsApp continua (Boatos.org 03/11).
+- (05/11) Boato: greve nacional dos caminhoneiros em 5/11 é falsa (Boatos.org, IstoÉ, Gazeta do Paraná; entidades negam, usam notícia antiga). Serasa (05/11): sites falsos são 53% dos golpes citados na Black Friday. Defensoria do PR faz mutirão "Golpe Tem Jeito" em Curitiba em 11/11. Ata do Copom sai 10/11.
 

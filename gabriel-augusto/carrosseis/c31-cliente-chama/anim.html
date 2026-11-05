@@ -81,7 +81,7 @@ slide(7, [[0, 'red'], [3.4, 'black']], t => {
 slide(6.5, [[0, 'black'], [2.6, 'red']], t => {
   const play = back((t - .5) / .4), toca = t > 1.4, pr = clamp((t - 1.4) / 4.5), ondas = Array.from({ length: 34 }, (_, j) => 12 + 46 * Math.abs(Math.sin(j * .7 + t * 6) * Math.sin(j * .23 + t * 2.3)));
   const leg = ['Oi, eu sou a Ana 👋', 'Aqui no salão a gente cuida de você', 'Agenda pelo site, é rapidinho!'][Math.min(2, Math.floor(pr * 3))];
-  return `<div style="${CARD(70, 150, 940, 480)}">${ROT('VÍDEO NA TUA PÁGINA')}${TAG()}
+  return `<div style="${CARD(70, 150, 940, 480)}">${ROT('VÍDEO NA SUA PÁGINA')}${TAG()}
       <div class="abs" style="left:40px;right:40px;top:80px;height:320px;border-radius:26px;overflow:hidden;background:radial-gradient(circle at 30% 30%, ${K.verm ? '#8E0B17' : '#2A2B33'}, #0B0B0D 80%)">
         ${toca ? `<div class="abs" style="left:40px;right:40px;bottom:80px;height:70px;display:flex;align-items:center;gap:8px">${ondas.map(h => `<i style="flex:1;height:${h}px;border-radius:4px;background:rgba(255,255,255,.55)"></i>`).join('')}</div>
           <div class="abs" style="left:0;right:0;top:70px;text-align:center"><span style="display:inline-block;padding:10px 22px;border-radius:14px;background:rgba(0,0,0,.6);font-weight:700;font-size:30px">${leg}</span></div>` : ''}
