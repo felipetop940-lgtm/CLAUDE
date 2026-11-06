@@ -1,0 +1,251 @@
+{
+  "titulo": "Você tá com o nome sujo?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {
+    "texto": [
+      "Tá com o",
+      "*nome sujo?*"
+    ],
+    "selo": "Recorde no Brasil + feirão",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "Você tá com o nome sujo? Então presta atenção, porque nunca teve tanta gente assim no Brasil.",
+      "texto": [
+        "Nome sujo"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "brasil",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "sujo",
+        "nunca",
+        "tanta"
+      ],
+      "prop": {
+        "tipo": "barras_vs",
+        "rotulo": "BRASILEIROS ADULTOS (SET/2026)",
+        "fonte": "Serasa: 84,2 milhões de pessoas com nome negativado",
+        "casas": 1,
+        "max": 60,
+        "itens": [
+          {
+            "txt": "NOME NEGATIVADO",
+            "pct": 51.1,
+            "em": "nunca"
+          },
+          {
+            "txt": "NOME LIMPO",
+            "pct": 48.9,
+            "em": "brasil",
+            "cor": "dim"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "É mais da metade dos adultos com alguma conta atrasada. E, pela primeira vez, a dívida com banco e financeira passou a conta de luz, água e gás.",
+      "texto": [
+        "Recorde"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "primeira",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "metade",
+        "primeira",
+        "financeira"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "PELA 1ª VEZ",
+          "em": "primeira"
+        },
+        "itens": [
+          {
+            "icone": "🏦",
+            "txt": "Banco e financeira",
+            "sub": "20,66% das dívidas",
+            "em": "financeira"
+          },
+          {
+            "icone": "💡",
+            "txt": "Luz, água e gás",
+            "sub": "20,32% das dívidas",
+            "em": "gas"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "A notícia boa: começou o maior Feirão Limpa Nome da Serasa, com desconto que chega a quase toda a dívida.",
+      "texto": [
+        "Feirão"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "desconto",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "boa",
+        "maior",
+        "desconto"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "FEIRÃO LIMPA NOME",
+          "em": "feirao"
+        },
+        "itens": [
+          {
+            "icone": "🏷️",
+            "txt": "Até 99% de desconto",
+            "em": "desconto"
+          },
+          {
+            "icone": "🏢",
+            "txt": "Mais de 3 mil empresas",
+            "em": "serasa"
+          },
+          {
+            "icone": "📅",
+            "txt": "De 3/11 a 6/12",
+            "em": "divida"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "E nas dívidas que entram no feirão, se pagar no Pix, o nome fica limpo na hora.",
+      "texto": [
+        "Na hora"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "hora",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "pix",
+        "limpo",
+        "hora"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "NOME LIMPO NA HORA",
+          "em": "hora"
+        },
+        "itens": [
+          {
+            "icone": "📲",
+            "txt": "Negocia no app",
+            "em": "dividas"
+          },
+          {
+            "icone": "⚡",
+            "txt": "Paga no Pix",
+            "em": "pix"
+          },
+          {
+            "icone": "✅",
+            "txt": "Nome limpo",
+            "em": "limpo"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Mas, infelizmente, golpista aproveita. Só negocia no site ou no aplicativo oficial da Serasa, e nunca paga boleto que chegou do nada.",
+      "texto": [
+        "Golpe"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "nada",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "infelizmente",
+        "golpista",
+        "oficial",
+        "nada"
+      ],
+      "prop": {
+        "tipo": "mensagem",
+        "de": "Número desconhecido",
+        "chega_em": "golpista",
+        "link_em": "oficial",
+        "em": 0.84,
+        "txt": "🔔 SERASA: seu nome será limpo HOJE com 95% de desconto! Pague o acordo pelo link:",
+        "link": "serasa-acordo-limpanome.exemplo",
+        "hora": "08:15"
+      }
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": [
+        "Gostou?"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "negocio",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "gostou",
+        "segue",
+        "bio",
+        "oportunidade"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Tem uma oportunidade pra você na bio",
+        "y": 760
+      },
+      "fim": 1.4
+    }
+  ]
+}

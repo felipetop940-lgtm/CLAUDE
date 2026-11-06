@@ -542,7 +542,7 @@ function prop(c, lt, t) {
     const L = p.itens || [], inn = ease(lt / .6), mx = p.max || Math.max(...L.map(i => i.pct));
     const rows = L.map((it, j) => { const k = easeIO((lt - quando(it.em ?? j * .3)) / 1.0), v = it.pct * k, cor = it.cor === 'dim' ? FR + '.35)' : AC;
       return `<div style="margin-top:${j ? 40 : 0}px"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:Anton;font-size:52px;color:#fff">${it.txt}</span>
-        <span style="font-family:Anton;font-size:72px;color:${it.cor === 'dim' ? '#fff' : AC}">${Math.round(v)}${p.sufixo ?? '%'}</span></div>
+        <span style="font-family:Anton;font-size:72px;color:${it.cor === 'dim' ? '#fff' : AC}">${p.casas ? v.toFixed(p.casas).replace('.', ',') : Math.round(v)}${p.sufixo ?? '%'}</span></div>
         <div style="margin-top:10px;height:34px;border-radius:17px;background:${FR}.08)"><div style="height:100%;width:${v / mx * 100}%;border-radius:17px;background:${cor};box-shadow:${it.cor === 'dim' ? 'none' : `0 0 30px ${AC}`}"></div></div></div>`; }).join('');
     return at(60, 260, `<div style="position:relative;width:960px;padding:40px 48px 36px;${vidroC}opacity:${inn};transform:translateY(${(1 - inn) * 30}px)">
       <div style="font-weight:800;font-size:26px;letter-spacing:.16em;color:${FR}.65);margin-bottom:26px">${p.rotulo || ''}</div>${rows}
