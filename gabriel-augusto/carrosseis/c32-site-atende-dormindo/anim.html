@@ -34,7 +34,7 @@ const VIVA = () => K.verm ? '#fff' : '#FF2E43';
 // 1 · gancho: madrugada, o relógio andando e os pedidos chegando sozinhos pelo site, cada um com ✓ (EXEMPLO)
 slide(7, [[0, 'black'], [3.0, 'red']], t => {
   const min = Math.floor(lerp(0, 74, clamp(t / 3.2))), hh = 23 + Math.floor((47 + min) / 60), mm = (47 + min) % 60, hora = `${String(hh % 24).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
-  const P = [['📝', 'Orçamento recebido', 'Carla · bolo pra 40 pessoas'], ['📅', 'Horário marcado', 'Paulo · sábado, 10h'], ['❓', 'Dúvida respondida', 'Lu · aceita Pix? Sim!']];
+  const P = [['📝', 'Orçamento recebido', 'Carla · bolo pra 40 pessoas'], ['🕗', 'Horário marcado', 'Paulo · sábado, 10h'], ['❓', 'Dúvida respondida', 'Lu · aceita Pix? Sim!']];
   return `<div style="${CARD(70, 160, 940, 460)}">${ROT('ENQUANTO VOCÊ DORME')}${TAG(36, 398)}
       <div class="abs" style="left:40px;top:80px;width:290px;text-align:center"><div style="font-size:70px">🌙</div><div style="font-family:Anton;font-size:96px;line-height:1">${hora}</div><div style="font-size:22px;color:rgba(255,255,255,.65);margin-top:6px">você dormindo 😴</div></div>
       ${P.map(([ic, tx, sub], j) => { const k = back((t - .7 - j * .7) / .4), ok = back((t - 1.0 - j * .7) / .3);

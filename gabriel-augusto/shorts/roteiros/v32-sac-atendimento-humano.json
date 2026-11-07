@@ -23,7 +23,7 @@
         "itens": [
           {"icone": "🙋", "txt": "Pessoa atendendo", "em": "verdade"},
           {"icone": "🕗", "txt": "8h às 20h", "em": "internet"},
-          {"icone": "📅", "txt": "Até feriado", "em": "feriado"},
+          {"icone": "🎉", "txt": "Até feriado", "em": "feriado"},
           {"icone": "⏱️", "txt": "Em até 20 s", "em": "rapido"}
         ]}
     },

@@ -141,6 +141,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U80 | Arte ANIMADA | Com isso o cliente acha você sozinho: busca no Google, Dr. Fernando no celular, agenda, perguntas, vídeo na página, cardápio | feito 05/11 (c34) |
 | U81 | Vídeo | EM ALTA: recorde de 84,2 mi de inadimplentes (Serasa) + Feirão Limpa Nome 03/11 a 06/12 + golpe | feito 06/11 (v35, cinético) |
 | U82 | Arte ANIMADA | Com isso o cliente confia em você na hora: cronômetro, antes x depois, orçamento, aberto agora, mapa, WhatsApp | feito 06/11 (c35) |
+| U83 | Vídeo | EM ALTA: imposto do pecado (MP 04/11): alíquotas de cigarro, bebidas e carros pra 2027 + calma, só em 2027 + SUS pra parar de fumar | feito 07/11 (v36, cinético) |
+| U84 | Arte ANIMADA | Seu site vende até no fim de semana: semana com sábado/domingo, Dr. Fernando PC+celular, pagamento, avaliações, domínio, contatos | feito 07/11 (c36) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -189,4 +191,5 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (04/11) Serasa: inadimplentes batem recorde de 84,2 milhões (manchete CNN, 04/11; achar 2ª fonte). Copom decide a Selic hoje às 18h30 (consenso: manter 13,75%). Caged de setembro sai hoje (projeção ~150 mil vagas). Golpe do "concurso de balé da Mia" no WhatsApp continua (Boatos.org 03/11).
 - (05/11) Boato: greve nacional dos caminhoneiros em 5/11 é falsa (Boatos.org, IstoÉ, Gazeta do Paraná; entidades negam, usam notícia antiga). Serasa (05/11): sites falsos são 53% dos golpes citados na Black Friday. Defensoria do PR faz mutirão "Golpe Tem Jeito" em Curitiba em 11/11. Ata do Copom sai 10/11.
 - (06/11) Governo definiu alíquotas do Imposto Seletivo ("imposto do pecado"); testes de gasolina com 35% de etanol; tomate subindo de novo. INSS não bloqueia pagamento por falta de biometria (boato de novo). Conferir em 2 fontes antes de usar.
+- (07/11) Regras novas do VR/VA começaram hoje (07/11), mas maquininhas ainda podem recusar (ND+, O Tempo, DGABC); o v30 já cobriu. 11.11: Mercado Livre na quarta 11/11 (mais de R$ 100 mi em cupons), Shopee até 12/11 (R$ 25 mi em cupons); cupom só no app oficial. Assaí condenado em R$ 50 mil (funcionária esperou 1h30 pra ir ao banheiro).
 

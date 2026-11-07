@@ -122,7 +122,7 @@ slide(7, [[0, 'red'], [3.4, 'black']], t => {
 
 // 7 · final aprovado
 slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
-  const it = ['🔎 Achado no Google', '📱 Perfeito no celular', '📅 Agenda online', '❓ Dúvidas respondidas', '🎬 Vídeo na página', '🧁 Cardápio com filtro'];
+  const it = ['🔎 Achado no Google', '📱 Perfeito no celular', '🕗 Agenda online', '❓ Dúvidas respondidas', '🎬 Vídeo na página', '🧁 Cardápio com filtro'];
   return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
       return `<div style="padding:26px 24px;${K.vidro()}border-radius:28px;font-weight:800;font-size:30px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
   ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
