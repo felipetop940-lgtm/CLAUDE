@@ -1,0 +1,66 @@
+{
+  "titulo": "Compra no 11.11 ou espera a Black Friday?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {"onze onze": "11.11"},
+  "capa": {"texto": ["11.11 ou", "*Black Friday?*"], "selo": "Onde sai mais barato", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "Compra no onze onze ou espera a Black Friday? A resposta não é a data.",
+      "texto": ["11.11"],
+      "fundo_cor": [[0, "black"], ["data", "red"]],
+      "enfase": ["onze", "black", "data"],
+      "prop": {"tipo": "calendario", "rotulo": "AS DUAS DATAS", "mes": {"nome": "NOVEMBRO 2026", "dias": 30, "inicio": 0},
+        "dia": 11, "em": "onze", "txt": "11.11 · QUARTA", "sub": "Black Friday só no dia 27 (sexta)."}
+    },
+    {
+      "fala": "Uma análise comparou os preços com o histórico e viu que esperar até a Black Friday não garante preço menor.",
+      "texto": ["Não garante"],
+      "fundo_cor": [[0, "red"], ["garante", "black"]],
+      "enfase": ["historico", "nao", "garante"],
+      "prop": {"tipo": "linha", "rotulo": "PREÇO DO MESMO PRODUTO", "tag": "EXEMPLO", "prefixo": "R$ ", "casas": 0, "sem_chip": true, "min": 700, "max": 950,
+        "pontos": [{"rot": "HOJE", "v": 899, "em": 0}, {"rot": "11.11", "v": 799, "em": "historico"}, {"rot": "BLACK FRIDAY", "v": 849, "em": "black"}],
+        "carimbo": {"txt": "NÃO GARANTE", "sub": "preço menor", "em": "garante"}}
+    },
+    {
+      "fala": "Então o segredo é outro: escolhe o produto agora, anota o preço total, com frete e cupom, e compara nas lojas.",
+      "texto": ["Segredo"],
+      "fundo_cor": [[0, "black"], ["compara", "red"]],
+      "enfase": ["segredo", "total", "compara"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "FAZ ISSO ANTES", "em": "compara"},
+        "itens": [
+          {"icone": "📝", "txt": "Escolhe o produto", "em": "produto"},
+          {"icone": "🧾", "txt": "Preço total", "sub": "com frete e cupom", "em": "total"},
+          {"icone": "🔎", "txt": "Compara as lojas", "em": "lojas"}
+        ]}
+    },
+    {
+      "fala": "Se o preço tá no menor valor dos últimos meses e você precisa, compra. Se não é urgente, espera e acompanha.",
+      "texto": ["A regra"],
+      "fundo_cor": [[0, "red"], ["urgente", "black"]],
+      "enfase": ["menor", "precisa", "urgente", "espera"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "A REGRA É ESSA", "em": "acompanha"},
+        "itens": [
+          {"icone": "✅", "txt": "Menor preço e precisa", "sub": "compra", "em": "precisa"},
+          {"icone": "⏳", "txt": "Não é urgente", "sub": "espera e acompanha", "em": "urgente"}
+        ]}
+    },
+    {
+      "fala": "Mas, infelizmente, cupom falso circula muito nessa época. Só pega cupom dentro do aplicativo oficial da loja.",
+      "texto": ["Cupom falso"],
+      "fundo_cor": [[0, "black"], ["oficial", "red"]],
+      "enfase": ["infelizmente", "falso", "oficial"],
+      "prop": {"tipo": "mensagem", "de": "Número desconhecido", "chega_em": "cupom", "link_em": "epoca", "em": 0.82,
+        "txt": "🎁 CUPOM 11.11 DE R$ 200 LIBERADO! Só hoje. Resgate pelo link:", "link": "cupom-1111-liberado.exemplo", "hora": "11:11"}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "bio", "oportunidade"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Tem uma oportunidade pra você na bio", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}
