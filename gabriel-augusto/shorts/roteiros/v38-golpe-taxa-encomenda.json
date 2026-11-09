@@ -1,0 +1,261 @@
+{
+  "titulo": "Sua encomenda foi taxada?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {
+    "onze onze": "11.11"
+  },
+  "capa": {
+    "texto": [
+      "Sua encomenda",
+      "*foi taxada?*"
+    ],
+    "selo": "Cuidado antes de pagar",
+    "selo_y": 1450
+  },
+  "cenas": [
+    {
+      "fala": "Chegou mensagem dizendo que sua encomenda tá retida e precisa pagar uma taxa? Cuidado, porque pode ser golpe.",
+      "texto": [
+        "Encomenda"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "golpe",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "retida",
+        "taxa",
+        "golpe"
+      ],
+      "prop": {
+        "tipo": "mensagem",
+        "de": "Número desconhecido",
+        "chega_em": "mensagem",
+        "link_em": "taxa",
+        "em": "golpe",
+        "txt": "📦 CORREIOS: sua encomenda foi TAXADA e será devolvida. Pague a taxa de liberação até hoje:",
+        "link": "correios-taxa-liberacao.exemplo",
+        "hora": "14:03"
+      }
+    },
+    {
+      "fala": "O golpista manda um link pra uma página igualzinha a dos Correios. Às vezes aparece até seu nome e seu CPF, pra parecer de verdade.",
+      "texto": [
+        "Página falsa"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "verdade",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "igualzinha",
+        "nome",
+        "cpf"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "ruim": true,
+        "selo": {
+          "txt": "PARECE DE VERDADE",
+          "em": "verdade"
+        },
+        "itens": [
+          {
+            "icone": "📩",
+            "txt": "Mensagem com link",
+            "em": "link"
+          },
+          {
+            "icone": "🖥️",
+            "txt": "Página clonada",
+            "em": "igualzinha"
+          },
+          {
+            "icone": "🪪",
+            "txt": "Seu nome e CPF",
+            "em": "cpf"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Só que a Receita não cobra taxa por mensagem, nem por link, QR Code ou Pix.",
+      "texto": [
+        "Receita"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "pix",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "nao",
+        "link",
+        "pix"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "A RECEITA NÃO FAZ ISSO",
+          "em": "pix"
+        },
+        "itens": [
+          {
+            "icone": "✉️",
+            "txt": "Não cobra por mensagem",
+            "em": "mensagem"
+          },
+          {
+            "icone": "🔗",
+            "txt": "Não manda link nem QR Code",
+            "em": "link"
+          },
+          {
+            "icone": "⚡",
+            "txt": "Não pede Pix",
+            "em": "pix"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Pra conferir se tem taxa de verdade, entra no site dos Correios, em Minhas Importações, digitando o endereço você mesmo.",
+      "texto": [
+        "Confere"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "mesmo",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "conferir",
+        "correios",
+        "importacoes",
+        "mesmo"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "SÓ PELO CANAL OFICIAL",
+          "em": "mesmo"
+        },
+        "itens": [
+          {
+            "icone": "🌐",
+            "txt": "Site dos Correios",
+            "em": "correios"
+          },
+          {
+            "icone": "📦",
+            "txt": "Minhas Importações",
+            "em": "importacoes"
+          },
+          {
+            "icone": "⌨️",
+            "txt": "Digita o endereço",
+            "em": "digitando"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "E com as compras do onze onze chegando, esse golpe vai aparecer muito. Manda esse vídeo pra quem compra pela internet.",
+      "texto": [
+        "Manda"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "black"
+        ],
+        [
+          "manda",
+          "red"
+        ]
+      ],
+      "enfase": [
+        "chegando",
+        "muito",
+        "manda"
+      ],
+      "prop": {
+        "tipo": "pictos",
+        "selo": {
+          "txt": "AVISA QUEM VOCÊ GOSTA",
+          "em": "internet"
+        },
+        "itens": [
+          {
+            "icone": "🛒",
+            "txt": "Compras chegando",
+            "em": "chegando"
+          },
+          {
+            "icone": "⚠️",
+            "txt": "Golpe aparece mais",
+            "em": "muito"
+          },
+          {
+            "icone": "📲",
+            "txt": "Manda pra família",
+            "em": "manda"
+          }
+        ]
+      }
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": [
+        "Gostou?"
+      ],
+      "fundo_cor": [
+        [
+          0,
+          "red"
+        ],
+        [
+          "negocio",
+          "black"
+        ]
+      ],
+      "enfase": [
+        "gostou",
+        "segue",
+        "bio",
+        "oportunidade"
+      ],
+      "prop": {
+        "tipo": "cta",
+        "botao": "Seguir ➕",
+        "sub": "Tem uma oportunidade pra você na bio",
+        "y": 760
+      },
+      "fim": 1.4
+    }
+  ]
+}

@@ -145,6 +145,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U84 | Arte ANIMADA | Seu site vende até no fim de semana: semana com sábado/domingo, Dr. Fernando PC+celular, pagamento, avaliações, domínio, contatos | feito 07/11 (c36) |
 | U85 | Vídeo | EM ALTA: 11.11 (quarta) ou Black Friday? Esperar não garante preço menor (TechTudo) + regra prática + cupom falso | feito 08/11 (v37, cinético) |
 | U86 | Arte ANIMADA | Com isso o cliente compra direto de você: marketplace x site, Dr. Fernando no celular, preço, cardápio, perguntas, vídeo | feito 08/11 (c37) |
+| U87 | Vídeo | EM ALTA: golpe da encomenda taxada/falsa taxa de importação (Receita fim de out.) com as compras do 11.11 chegando | feito 09/11 (v38, cinético) |
+| U88 | Arte ANIMADA | Com isso ninguém acha que você é golpe: escudo de confiança, antes x depois, mapa, aberto agora, WhatsApp, agenda | feito 09/11 (c38) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -195,4 +197,5 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (06/11) Governo definiu alíquotas do Imposto Seletivo ("imposto do pecado"); testes de gasolina com 35% de etanol; tomate subindo de novo. INSS não bloqueia pagamento por falta de biometria (boato de novo). Conferir em 2 fontes antes de usar.
 - (07/11) Regras novas do VR/VA começaram hoje (07/11), mas maquininhas ainda podem recusar (ND+, O Tempo, DGABC); o v30 já cobriu. 11.11: Mercado Livre na quarta 11/11 (mais de R$ 100 mi em cupons), Shopee até 12/11 (R$ 25 mi em cupons); cupom só no app oficial. Assaí condenado em R$ 50 mil (funcionária esperou 1h30 pra ir ao banheiro).
 - (08/11) Reclame Aqui: 76% temem golpes com IA na Black Friday, 63% não sabem identificar. Receita (fim de out.): golpe da taxa de importação falsa por link/QR/Pix. Polícia do DF prendeu 5 no golpe do reembolso (05/11). 1 em cada 3 brasileiros já sofreu golpe financeiro (CNDL).
+- (09/11) Focus (09/11): Selic no fim de 2026 voltou pra 13,75%; IPCA 2026 em 5,22%. IPC-S da FGV +0,38% na 1ª quadrissemana de novembro (tomate puxando). Dólar perto de R$ 5,49. Ata do Copom sai amanhã (10/11).
 
