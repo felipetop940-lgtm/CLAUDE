@@ -1,0 +1,77 @@
+{
+  "titulo": "Por que o tomate tá tão caro?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["Por que o tomate", "*tá tão caro?*"], "selo": "E quando ele baixa", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "Por que o tomate tá tão caro? E quando que ele volta a baixar?",
+      "texto": ["Tomate"],
+      "fundo_cor": [[0, "black"], ["baixar", "red"]],
+      "enfase": ["tomate", "caro", "baixar"],
+      "prop": {"tipo": "barras_vs", "rotulo": "QUANTO SUBIU EM 2026 (JAN A OUT)", "fonte": "IBGE: tomate no IPCA; inflação geral no IPCA-15 de outubro", "casas": 1, "max": 65,
+        "itens": [
+          {"txt": "TOMATE", "pct": 58.7, "em": "caro"},
+          {"txt": "INFLAÇÃO GERAL", "pct": 4.15, "em": "baixar", "cor": "dim"}
+        ]}
+    },
+    {
+      "fala": "O motivo é o clima. Choveu demais onde planta, fez frio, e o tomate demorou pra amadurecer.",
+      "texto": ["Clima"],
+      "fundo_cor": [[0, "red"], ["amadurecer", "black"]],
+      "enfase": ["clima", "choveu", "frio"],
+      "prop": {"tipo": "pictos", "ruim": true, "selo": {"txt": "CULPA DO CLIMA", "em": "amadurecer"},
+        "itens": [
+          {"icone": "🌧️", "txt": "Chuva demais", "em": "choveu"},
+          {"icone": "🥶", "txt": "Frio", "em": "frio"},
+          {"icone": "🍅", "txt": "Demora pra amadurecer", "em": "amadurecer"}
+        ]}
+    },
+    {
+      "fala": "Aí chega menos tomate no mercado. E até o tomate daqui de Goiás tá sendo disputado por compradores de outros estados.",
+      "texto": ["Menos tomate"],
+      "fundo_cor": [[0, "black"], ["goias", "red"]],
+      "enfase": ["menos", "goias", "disputado"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "OFERTA CAIU", "em": "estados"},
+        "itens": [
+          {"icone": "📉", "txt": "Menos tomate", "sub": "1/3 a menos em outubro (Ceagesp)", "em": "menos"},
+          {"icone": "🚚", "txt": "Goiás disputado", "em": "goias"},
+          {"icone": "💸", "txt": "Frete pesa", "em": "estados"}
+        ]}
+    },
+    {
+      "fala": "A boa notícia: a Ceagesp já vê o volume voltando e espera o preço estabilizar nas próximas semanas. Mas, infelizmente, ainda não tem data certa.",
+      "texto": ["Quando baixa"],
+      "fundo_cor": [[0, "red"], ["infelizmente", "black"]],
+      "enfase": ["boa", "voltando", "infelizmente", "certa"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "PREVISÃO", "em": "semanas"},
+        "itens": [
+          {"icone": "📈", "txt": "Volume voltando", "em": "voltando"},
+          {"icone": "⏳", "txt": "Estabiliza em semanas", "em": "semanas"},
+          {"icone": "❓", "txt": "Sem data certa", "em": "certa"}
+        ]}
+    },
+    {
+      "fala": "Enquanto isso, dá pra trocar por outro legume no prato, comprar só o que vai usar e comparar preço na feira. A cenoura, por exemplo, ficou mais barata.",
+      "texto": ["Economiza"],
+      "fundo_cor": [[0, "black"], ["cenoura", "red"]],
+      "enfase": ["trocar", "usar", "feira", "cenoura"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "DICA PRA ECONOMIZAR", "em": "barata"},
+        "itens": [
+          {"icone": "🛒", "txt": "Compra só o que usa", "em": "usar"},
+          {"icone": "🔎", "txt": "Compara na feira", "em": "feira"},
+          {"icone": "🥕", "txt": "Cenoura caiu", "sub": "-10,7% no IPCA-15 de outubro", "em": "cenoura"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se o seu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "negocio", "direct"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Negócio começando? Me chama no direct", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}
