@@ -149,6 +149,8 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 | U88 | Arte ANIMADA | Com isso ninguém acha que você é golpe: escudo de confiança, antes x depois, mapa, aberto agora, WhatsApp, agenda | feito 09/11 (c38) |
 | U89 | Vídeo | EM ALTA: tomate caro (58,7% no ano, IBGE; IPC-S 09/11) por chuva/frio, oferta menor, Goiás disputado + quando baixa + dicas | feito 10/11 (v39, cinético) |
 | U90 | Arte ANIMADA | Com isso seu cliente sempre volta: cliente fiel, Dr. Fernando PC+celular, orçamento, avaliações, pagamento, contatos | feito 10/11 (c39) |
+| U91 | Vídeo | EM ALTA: boato "taxa das blusinhas volta em 2027" é falso (governo 29/10, Lupa 10/11); imposto federal zerado desde maio (Lei 15.502/26); CBS de 2027 vale pra tudo; ICMS continua + dicas de compra | feito 11/11 (v40, cinético) |
+| U92 | Arte ANIMADA | Com isso sua loja encara os sites de fora: site de fora x sua loja, preço claro, catálogo com filtro, WhatsApp, mapa de entrega, domínio | feito 11/11 (c40) |
 
 ## Assuntos em alta pra usar nos próximos dias (pesquisados em 18/10, conferir de novo antes de usar)
 - WhatsApp: mensagens agendadas (beta Android desde 11/10; usar quando liberar pra todos) · chamadas pra quem não tem conta, pelo navegador (lançado 14/10): orçamento/consulta por vídeo.
@@ -201,4 +203,4 @@ Sempre: dica aplicável na hora + ligada ao trabalho dele. Conferir cada passo (
 - (08/11) Reclame Aqui: 76% temem golpes com IA na Black Friday, 63% não sabem identificar. Receita (fim de out.): golpe da taxa de importação falsa por link/QR/Pix. Polícia do DF prendeu 5 no golpe do reembolso (05/11). 1 em cada 3 brasileiros já sofreu golpe financeiro (CNDL).
 - (09/11) Focus (09/11): Selic no fim de 2026 voltou pra 13,75%; IPCA 2026 em 5,22%. IPC-S da FGV +0,38% na 1ª quadrissemana de novembro (tomate puxando). Dólar perto de R$ 5,49. Ata do Copom sai amanhã (10/11).
 - (10/11) Justiça Federal do DF suspendeu parte das regras novas do VR/VA só pras associadas da ABBT (Alelo, Pluxee, VR, ValeShop); a maquininha aceitar todos os vales continua (Correio Braziliense, Banda B). Senacon notificou Uber e mais 5 empresas por suspeita de discriminação política e hotéis de Brasília por diárias de até R$ 25 mil na posse de 2027. IPCA cheio de outubro sai 12/11.
-
+- (11/11) Governo prorrogou até 9/12 a desoneração da gasolina e do etanol. Ajuste fiscal: aliados preparam projeto pra cortar despesas (Alcolumbre, 11/11). TSE multou a Meta em R$ 7,5 mi. 13º: 1ª parte até 30/11 (segunda-feira), 2ª até 18/12 (dia 20 cai no domingo); INSS já pagou o 13º em abril/maio. Bom pra vídeo no fim do mês: "seu 13º já caiu? até quando a empresa tem que pagar".

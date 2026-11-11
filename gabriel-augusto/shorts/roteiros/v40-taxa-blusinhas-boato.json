@@ -1,0 +1,70 @@
+{
+  "titulo": "A taxa das blusinhas vai voltar?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["A taxa das blusinhas", "*vai voltar?*"], "selo": "Veja o que é verdade", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "A taxa das blusinhas vai voltar no ano que vem? Tá circulando isso nas redes. Mas o governo já respondeu: é mentira.",
+      "texto": ["Boato"],
+      "fundo_cor": [[0, "black"], ["mentira", "red"]],
+      "enfase": ["blusinhas", "voltar", "mentira"],
+      "prop": {"tipo": "manchete", "em": "mentira", "fonte_txt": "Post que circula nas redes",
+        "titulo": "Taxa das blusinhas volta em 2027", "sub": "Governo desmentiu em 29/10. Checagem da Lupa em 10/11."}
+    },
+    {
+      "fala": "Desde maio, a comprinha pequena em site de fora não paga mais o imposto do governo federal. E isso virou lei em setembro.",
+      "texto": ["Tá zerado"],
+      "fundo_cor": [[0, "red"], ["lei", "black"]],
+      "enfase": ["comprinha", "federal", "lei"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "CONTINUA VALENDO", "em": "lei"},
+        "itens": [
+          {"icone": "🛍️", "txt": "Até US$ 50", "sub": "compra de pessoa física", "em": "comprinha"},
+          {"icone": "✅", "txt": "Imposto federal zero", "sub": "desde maio de 2026", "em": "federal"},
+          {"icone": "⚖️", "txt": "Virou lei", "sub": "Lei 15.502, setembro", "em": "lei"}
+        ]}
+    },
+    {
+      "fala": "Então de onde saiu esse boato? É que no ano que vem começa um imposto novo, o da reforma. Ele troca dois impostos antigos e vale pra tudo, produto daqui e de fora. Não é a taxa das blusinhas de volta.",
+      "texto": ["De onde saiu"],
+      "fundo_cor": [[0, "black"], ["volta", "red"]],
+      "enfase": ["boato", "novo", "tudo", "volta"],
+      "prop": {"tipo": "fluxo", "em": "troca", "de": "PIS/Cofins", "para": "CBS",
+        "rot_de": "ANTIGOS", "rot_para": "NOVO, 2027", "txt": "VALE PRA PRODUTO DAQUI E DE FORA"}
+    },
+    {
+      "fala": "Mas, infelizmente, isso não quer dizer que ficou de graça. O imposto do estado continua, e em vários estados ele até subiu. E compra acima do limite continua pagando tudo.",
+      "texto": ["Não é de graça"],
+      "fundo_cor": [[0, "red"], ["subiu", "black"]],
+      "enfase": ["graça", "estado", "subiu", "tudo"],
+      "prop": {"tipo": "barras_vs", "rotulo": "IMPOSTO DO ESTADO (ICMS) NA COMPRA DE FORA", "sufixo": "%", "max": 25,
+        "fonte": "Comsefaz: 10 estados subiram de 17% pra 20% em abril de 2025",
+        "itens": [
+          {"txt": "ANTES", "pct": 17, "em": "continua", "cor": "dim"},
+          {"txt": "EM 10 ESTADOS", "pct": 20, "em": "subiu"}
+        ]}
+    },
+    {
+      "fala": "Então antes de fechar a compra, olha o valor final no carrinho, com imposto e frete. E compara com a loja daqui, que às vezes entrega mais rápido e troca sem dor de cabeça.",
+      "texto": ["Antes de comprar"],
+      "fundo_cor": [[0, "black"], ["compara", "red"]],
+      "enfase": ["final", "frete", "compara", "rápido"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "COMPRA CERTA", "em": "troca"},
+        "itens": [
+          {"icone": "🛒", "txt": "Valor final", "sub": "com imposto e frete", "em": "carrinho"},
+          {"icone": "⚖️", "txt": "Compara", "sub": "com a loja daqui", "em": "compara"},
+          {"icone": "🚚", "txt": "Entrega e troca", "sub": "mais rápida perto", "em": "entrega"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem uma loja e quer vender pela internet também, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["loja", "black"]],
+      "enfase": ["gostou", "segue", "loja", "bio"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Tem loja? Dá uma olhada na bio", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}
