@@ -1,0 +1,78 @@
+{
+  "titulo": "A inflação caiu? E o mercado?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["A inflação ficou baixa.", "*E o mercado?*"], "selo": "Por que tá tão caro?", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "A inflação ficou baixinha em outubro. Então por que o mercado continua tão caro?",
+      "texto": ["Inflação"],
+      "fundo_cor": [[0, "black"], ["mercado", "red"]],
+      "enfase": ["baixinha", "mercado", "caro"],
+      "prop": {"tipo": "barras_vs", "rotulo": "QUANTO SUBIU EM OUTUBRO", "sufixo": "%", "casas": 2, "max": 1.5,
+        "fonte": "IBGE, IPCA de outubro (divulgado em 12/11/2026)",
+        "itens": [
+          {"txt": "INFLAÇÃO GERAL", "pct": 0.14, "em": "baixinha", "cor": "dim"},
+          {"txt": "COMIDA EM CASA", "pct": 1.31, "em": "mercado"}
+        ]}
+    },
+    {
+      "fala": "É que a inflação é uma média de tudo. E em outubro a conta de luz ficou mais barata, a passagem de avião caiu e a gasolina também. Isso puxou a média pra baixo.",
+      "texto": ["Média"],
+      "fundo_cor": [[0, "red"], ["baixo", "black"]],
+      "enfase": ["média", "luz", "avião", "gasolina", "baixo"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "PUXARAM PRA BAIXO", "em": "baixo"},
+        "itens": [
+          {"icone": "⚡", "txt": "Luz", "sub": "−1,92% (bandeira verde)", "em": "luz"},
+          {"icone": "✈️", "txt": "Avião", "sub": "−9,21% na passagem", "em": "avião"},
+          {"icone": "⛽", "txt": "Gasolina", "sub": "−0,56% no mês", "em": "gasolina"}
+        ]}
+    },
+    {
+      "fala": "Só que no mercado foi o contrário. Tomate, cebola e carne subiram. E quem gasta quase tudo com comida sente bem mais do que esse número mostra.",
+      "texto": ["No mercado"],
+      "fundo_cor": [[0, "black"], ["sente", "red"]],
+      "enfase": ["contrário", "tomate", "cebola", "carne", "sente"],
+      "prop": {"tipo": "pictos", "ruim": true, "selo": {"txt": "SUBIU NO MERCADO", "em": "sente"},
+        "itens": [
+          {"icone": "🍅", "txt": "Tomate", "sub": "+19,57% no mês", "em": "tomate"},
+          {"icone": "🧅", "txt": "Cebola", "sub": "+11,29% no mês", "em": "cebola"},
+          {"icone": "🥩", "txt": "Carne", "sub": "+2,27% no mês", "em": "carne"}
+        ]}
+    },
+    {
+      "fala": "E, infelizmente, somando o último ano, a inflação ainda tá acima do limite que o governo definiu.",
+      "texto": ["No ano"],
+      "fundo_cor": [[0, "red"], ["limite", "black"]],
+      "enfase": ["ano", "acima", "limite"],
+      "prop": {"tipo": "barras_vs", "rotulo": "INFLAÇÃO EM 12 MESES", "sufixo": "%", "casas": 2, "max": 5,
+        "fonte": "IBGE (12/11/2026) · meta de 3%, limite de 4,5%",
+        "itens": [
+          {"txt": "LIMITE DA META", "pct": 4.5, "em": "ano", "cor": "dim"},
+          {"txt": "ÚLTIMOS 12 MESES", "pct": 4.63, "em": "acima"}
+        ]}
+    },
+    {
+      "fala": "Enquanto isso, dá pra fugir do que subiu. A cenoura e a batata ficaram mais baratas. Compara preço entre mercados e vai com lista pra não levar o que não precisa.",
+      "texto": ["Dica"],
+      "fundo_cor": [[0, "black"], ["compara", "red"]],
+      "enfase": ["fugir", "cenoura", "batata", "compara", "lista"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "ECONOMIZA NO MERCADO", "em": "lista"},
+        "itens": [
+          {"icone": "🥕", "txt": "Cenoura e batata", "sub": "−9,72% e −2,95%", "em": "cenoura"},
+          {"icone": "🔎", "txt": "Compara preço", "sub": "entre mercados", "em": "compara"},
+          {"icone": "📝", "txt": "Vai com lista", "sub": "e leva só o que precisa", "em": "lista"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se o seu negócio tá sentindo o cliente mais apertado, me manda uma mensagem no direct que eu te ajudo.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "negocio", "direct"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Cliente apertado? Me chama no direct", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}

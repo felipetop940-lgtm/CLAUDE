@@ -1,0 +1,135 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 41 ANIMADO (1080x1350, cada slide é um vídeo) · "Com isso o cliente não escolhe só pelo preço" · estilo CINÉTICO focado em SITE
+     Liga com o v41 (inflação baixa, mercado caro: cliente apertado comparando preço). Regras: gancho com promessa + animação coerente (medidor de confiança enchendo com o que o cliente vê, EXEMPLO), sem imagem de IA, sem falar de IA, sempre "seu/sua", sem o emoji de calendário;
+     antes x depois com o site real do Dr. Fernando; avaliações (EXEMPLO); vídeo na página (EXEMPLO); perguntas frequentes (EXEMPLO); agenda online (EXEMPLO); final aprovado. Sem repetir os slides do c40.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c41-cliente-nao-escolhe-so-preco -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO SEU SITE', 655);
+
+const TAG = (x = 36, y = 28) => `<div class="abs" style="right:${x}px;top:${y}px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>`;
+const ROT = txt => `<div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">${txt}</div>`;
+
+const VIVA = () => K.verm ? '#fff' : '#FF2E43';
+
+// 1 · gancho: o escudo de confiança se enchendo com o que o cliente vê no site antes de comparar preço (EXEMPLO)
+slide(7, [[0, 'black'], [3.0, 'red']], t => {
+  const P = [['⭐', 'Avaliações de quem já comprou', .7], ['🎬', 'Vídeo mostrando seu trabalho', 1.2], ['❓', 'Dúvidas já respondidas', 1.7], ['🕗', 'Horário fácil de marcar', 2.2]];
+  const enche = eio((t - .6) / 2.2);
+  return `<div style="${CARD(70, 170, 940, 440)}">${ROT('O QUE FAZ ELE ESCOLHER VOCÊ')}${TAG(36, 26)}
+      <svg class="abs" style="left:50px;top:80px" width="240" height="280" viewBox="0 0 240 280"><defs><clipPath id="esc"><path d="M120 10 L220 50 V140 C220 205 175 250 120 270 C65 250 20 205 20 140 V50 Z"/></clipPath></defs>
+        <path d="M120 10 L220 50 V140 C220 205 175 250 120 270 C65 250 20 205 20 140 V50 Z" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.35)" stroke-width="4"/>
+        <rect clip-path="url(#esc)" x="0" y="${280 - 280 * enche}" width="240" height="280" fill="${VIVA()}" opacity=".9"/>
+        <text x="120" y="165" text-anchor="middle" font-family="Anton" font-size="${enche > .98 ? 88 : 64}" fill="#fff">${enche > .98 ? '✓' : Math.round(enche * 100) + '%'}</text></svg>
+      ${P.map(([ic, tx, t0], j) => { const k = back((t - t0) / .4), ok = back((t - t0 - .3) / .3);
+        return `<div class="abs" style="left:330px;width:570px;top:${78 + j * 86}px;height:72px;display:flex;align-items:center;gap:14px;padding:0 20px;border-radius:20px;background:rgba(255,255,255,.08);opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 60}px)">
+          <span style="font-size:30px">${ic}</span><b style="font-size:26px;flex:1">${tx}</b><span style="width:40px;height:40px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:22px;font-weight:800;transform:scale(${clamp(ok, 0, 1.15)})">✓</span></div>`; }).join('')}</div>
+    ${K.kin(t, .05, ['Com isso o cliente', '*não escolhe só pelo preço*'], { y: 890, max: 175 })}
+    ${K.corpo(t, 3.2, 'Arrasta e vê <b>o que faz o cliente escolher você pelo valor, e não só pelo mais barato.</b>', 1095, { fs: 36 })}
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${Math.sin(t * 4) * 14}px)">→</span></span></div>`; });
+
+// 3 · antes x depois: o site largado vira o site real do Dr. Fernando com a barra de luz passando
+const AMADOR = { url: 'drfernando.sitegratis.exemplo', titulo: 'BEM VINDO AO SITE DO DR. FERNANDO!!!', img: 'foto_consultorio(2).jpg', texto: 'Consultas, emagrecimento, reposição hormonal, exames e muito mais!!! Marque com antecedência.', horario: 'Atendemos de seg a sex.', email: 'consultorio2015@exemplo.com' };
+const REAL2 = { desk: '../../video/src/fernando-site/desk-strip.jpg', cel: '../../video/src/fernando-site/cel-strip.jpg', deskW: 1200, deskH: 2225, celW: 585, celH: 5250, url: 'fernandoaugustodr.com.br' };
+slide(7.5, [[0, 'black'], [3.0, 'red']], t => {
+  const inn = ease(t / .5), k = eio((t - 1.4) / 1.2), x = 900 * k;
+  const etq = (txt, cor, op) => `<span style="display:inline-block;padding:8px 20px;border-radius:24px;background:${cor};color:#fff;font-family:Anton;font-size:32px;opacity:${op}">${txt}</span>`;
+  return `<div class="abs" style="left:90px;top:100px;width:900px;height:600px;opacity:${inn}">
+      <div class="abs" style="left:0;top:50px">${MOCK.amador(900, 540, AMADOR)}</div>
+      <div class="abs" style="left:0;top:50px;clip-path:inset(-40px ${900 - x}px -40px 0 round 18px)">${MOCK.duplo(900, 540, eio((t - 2.6) / 4.5), REAL2)}</div>
+      ${k > 0 && k < 1 ? `<div class="abs" style="left:${x - 4}px;top:40px;width:8px;height:560px;border-radius:4px;background:#fff;box-shadow:0 0 30px 8px rgba(255,255,255,.7)"></div>` : ''}
+      <div class="abs" style="left:0;top:0">${etq('ANTES', 'rgba(0,0,0,.55)', 1 - k)}</div><div class="abs" style="right:0;top:0">${etq('DEPOIS', K.verm ? '#0B0B0D' : '#FF2E43', k)}</div></div>
+  ${K.kick(t, .1, 'NO SEU SITE', 698)}${K.kin(t, .3, ['Do amador', '*ao profissional*'], { y: 935, max: 175, ini: 2 })}
+  ${K.corpo(t, 3.0, 'O mesmo negócio, outra cara. O depois é o site do <b>Dr. Fernando</b>, que eu fiz.', 1112, { fs: 34 })}
+  ${K.rodape(t, 3.6)}`; });
+
+// 6 · avaliações passando sozinhas (EXEMPLO)
+slide(6.5, [[0, 'red'], [2.3, 'black']], t => {
+  const nota = lerp(0, 4.9, eio((t - .6) / 1.4)), rev = [['Marina S.', 'Chegou certinho e no horário. Atendimento nota 10!'], ['Paulo R.', 'Fiz o pedido pelo site em 1 minuto 👏'], ['Lu C.', 'Melhor bolo que já comi em Goiânia 😋'], ['Diego A.', 'Voltei pela terceira vez. Recomendo!']];
+  const desl = (t * 110) % (4 * 400);
+  return `<div style="${CARD(70, 140, 940, 480)}">
+      <div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">AVALIAÇÕES NO GOOGLE</div>
+      <div class="abs" style="right:36px;top:28px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>
+      <div class="abs" style="left:40px;top:66px;display:flex;align-items:center;gap:22px"><span style="font-family:Anton;font-size:120px;line-height:1">${fmt(nota, 1)}</span>
+        <span style="font-size:58px;letter-spacing:4px">${[0, 1, 2, 3, 4].map(i => `<span style="color:${nota >= i + .9 ? '#FFC93C' : 'rgba(255,255,255,.2)'};text-shadow:${nota >= i + .9 ? '0 0 18px rgba(255,201,60,.7)' : 'none'}">★</span>`).join('')}</span></div>
+      <div class="abs" style="left:0;top:240px;width:4000px;display:flex;gap:20px;transform:translateX(${40 - desl}px);opacity:${ease((t - 1.6) / .5)}">
+        ${[...rev, ...rev, ...rev].map(([n, x]) => `<div style="width:380px;flex-shrink:0;padding:24px 26px;border-radius:26px;background:#fff;color:#0B0B0D">
+          <div style="display:flex;justify-content:space-between"><b style="font-size:26px">${n}</b><span style="color:#F5A623;font-size:24px">★★★★★</span></div><div style="margin-top:10px;font-size:25px;line-height:1.3;color:#333">${x}</div></div>`).join('')}</div></div>
+  ${FEITO(t)}${K.kin(t, .3, ['Elogio que', '*vende sozinho*'], { y: 900, max: 175, ini: 4 })}
+  ${K.corpo(t, 2.8, 'As avaliações do Google <b>passam no seu site</b>, bem na hora que o cliente tá decidindo.', 1110, { fs: 34 })}
+  ${K.rodape(t, 3.4)}`; });
+
+// 4 · vídeo na página: o player abre e toca, com legenda e barra andando
+slide(6.5, [[0, 'black'], [2.6, 'red']], t => {
+  const play = back((t - .5) / .4), toca = t > 1.4, pr = clamp((t - 1.4) / 4.5), ondas = Array.from({ length: 34 }, (_, j) => 12 + 46 * Math.abs(Math.sin(j * .7 + t * 6) * Math.sin(j * .23 + t * 2.3)));
+  const leg = ['Oi, eu sou a Ana 👋', 'Aqui no salão a gente cuida de você', 'Agenda pelo site, é rapidinho!'][Math.min(2, Math.floor(pr * 3))];
+  return `<div style="${CARD(70, 150, 940, 480)}">${ROT('VÍDEO NA SUA PÁGINA')}${TAG()}
+      <div class="abs" style="left:40px;right:40px;top:80px;height:320px;border-radius:26px;overflow:hidden;background:radial-gradient(circle at 30% 30%, ${K.verm ? '#8E0B17' : '#2A2B33'}, #0B0B0D 80%)">
+        ${toca ? `<div class="abs" style="left:40px;right:40px;bottom:80px;height:70px;display:flex;align-items:center;gap:8px">${ondas.map(h => `<i style="flex:1;height:${h}px;border-radius:4px;background:rgba(255,255,255,.55)"></i>`).join('')}</div>
+          <div class="abs" style="left:0;right:0;top:70px;text-align:center"><span style="display:inline-block;padding:10px 22px;border-radius:14px;background:rgba(0,0,0,.6);font-weight:700;font-size:30px">${leg}</span></div>` : ''}
+        ${!toca || t < 1.6 ? `<div class="abs" style="left:50%;top:50%;width:130px;height:130px;margin:-65px 0 0 -65px;border-radius:50%;background:#fff;display:grid;place-items:center;transform:scale(${clamp(play, 0, 1.1) * (t > 1.2 ? 1 - clamp((t - 1.2) / .4) : 1)})"><span style="margin-left:10px;width:0;height:0;border-left:44px solid #C3101F;border-top:28px solid transparent;border-bottom:28px solid transparent"></span></div>` : ''}
+        <div class="abs" style="left:24px;right:24px;bottom:22px;height:8px;border-radius:4px;background:rgba(255,255,255,.2)"><div style="height:100%;width:${pr * 100}%;border-radius:4px;background:${K.verm ? '#fff' : '#FF2E43'}"></div></div></div>
+      ${t > 1.0 && t < 1.5 ? cursor(lerp(760, 470, eio((t - 1.0) / .3)), lerp(440, 250, eio((t - 1.0) / .3)), clamp((t - 1.3) / .2)) : ''}</div>
+  ${FEITO(t)}${K.kin(t, .3, ['Seu cliente', '*te conhece antes*'], { y: 900, max: 175, ini: 3 })}
+  ${K.corpo(t, 3.0, 'Um vídeo seu apresentando o negócio. <b>Quem te vê falando confia mais pra chamar.</b>', 1110, { fs: 34 })}
+  ${K.rodape(t, 3.6)}`; });
+
+// 5 · perguntas respondidas: as dúvidas abrem sozinhas (EXEMPLO)
+slide(6.5, [[0, 'red'], [3.2, 'black']], t => {
+  const P = [['Aceita cartão e Pix?', 'Sim! Crédito, débito e Pix.'], ['Atende no sábado?', 'Sim, das 8h às 14h.'], ['Tem estacionamento?', 'Tem, na frente do salão.']];
+  return `<div style="${CARD(70, 140, 940, 500)}">${ROT('PERGUNTAS FREQUENTES')}${TAG()}
+      ${P.map(([p, r], j) => { const t0 = .6 + j * .8, k = ease((t - t0) / .35), ab = eio((t - t0 - .35) / .4), y = 86 + j * 135;
+        return `<div class="abs" style="left:40px;right:40px;top:${y}px;padding:20px 26px;border-radius:22px;background:rgba(255,255,255,.08);opacity:${k};transform:translateY(${(1 - k) * 30}px)">
+          <div style="display:flex;justify-content:space-between;font-weight:800;font-size:30px">${p}<span style="display:inline-block;transform:rotate(${ab * 45}deg);font-size:34px;line-height:1">+</span></div>
+          <div style="overflow:hidden;height:${ab * 44}px;margin-top:${ab * 8}px;font-size:28px;color:${K.verm ? '#fff' : '#FF8A95'};font-weight:600">${r}</div></div>`; }).join('')}</div>
+  ${FEITO(t)}${K.kin(t, .3, ['Responde antes', '*de perguntarem*'], { y: 900, max: 175, ini: 4 })}
+  ${K.corpo(t, 3.2, 'As dúvidas de sempre já ficam respondidas no site. <b>Menos mensagem repetida, mais cliente decidido.</b>', 1110, { fs: 32 })}
+  ${K.rodape(t, 3.8)}`; });
+
+// 6 · agenda online: o cliente escolhe o horário e já fica marcado (EXEMPLO)
+slide(7, [[0, 'black'], [3.6, 'red']], t => {
+  const dias = [['SEG', '16'], ['TER', '17'], ['QUA', '18'], ['QUI', '19'], ['SEX', '20'], ['SÁB', '21']], hrs = ['08:00', '09:30', '10:00', '11:30', '14:00', '15:30'];
+  const escD = t > 1.3, escH = t > 2.5, ok = back((t - 3.0) / .4), cx = t < 1.3 ? lerp(760, 820, eio((t - .7) / .5)) : lerp(820, 450, eio((t - 1.7) / .7)), cy = t < 1.3 ? lerp(520, 150, eio((t - .7) / .5)) : lerp(150, 340, eio((t - 1.7) / .7));
+  return `<div style="${CARD(70, 140, 940, 500)}">${ROT('AGENDE SEU HORÁRIO')}${TAG()}
+      <div class="abs" style="left:40px;right:40px;top:84px;display:flex;gap:12px">${dias.map(([d, n], j) => { const sel = escD && j === 5, k = ease((t - .2 - j * .06) / .3);
+        return `<div style="flex:1;padding:14px 0;border-radius:20px;text-align:center;background:${sel ? '#fff' : 'rgba(255,255,255,.08)'};color:${sel ? '#C3101F' : '#fff'};opacity:${k}"><div style="font-weight:800;font-size:20px;letter-spacing:.1em;opacity:.8">${d}</div><div style="font-family:Anton;font-size:40px">${n}</div></div>`; }).join('')}</div>
+      <div class="abs" style="left:40px;right:40px;top:220px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px">${hrs.map((h, j) => { const sel = escH && j === 2, ocup = j === 1 || j === 4, k = ease((t - 1.4 - j * .07) / .3);
+        return `<div style="padding:18px 0;border-radius:18px;text-align:center;font-weight:800;font-size:30px;background:${sel ? '#25D366' : 'rgba(255,255,255,.08)'};color:${sel ? '#06301A' : ocup ? 'rgba(255,255,255,.3)' : '#fff'};text-decoration:${ocup ? 'line-through' : 'none'};opacity:${escD ? k : 0}">${h}</div>`; }).join('')}</div>
+      ${ok > 0 ? `<div class="abs" style="left:0;right:0;top:400px;text-align:center"><span style="display:inline-block;padding:14px 30px;border-radius:34px;background:#fff;color:#C3101F;font-weight:800;font-size:30px;transform:scale(${clamp(ok, 0, 1.1)})">✓ Sábado, 21 · 10:00 · marcado!</span></div>` : ''}
+      ${t > .7 && t < 2.8 ? cursor(cx, cy, escD && t < 1.6 ? clamp((t - 1.1) / .3) : clamp((t - 2.3) / .3)) : ''}</div>
+  ${FEITO(t)}${K.kin(t, .3, ['Agenda aberta', '*até de madrugada*'], { y: 900, max: 175, ini: 5 })}
+  ${K.corpo(t, 3.6, 'O cliente escolhe o dia e o horário sozinho, <b>até quando você tá dormindo.</b>', 1110, { fs: 34 })}
+  ${K.rodape(t, 4.2)}`; });
+
+// 7 · final aprovado
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['✨ Visual profissional', '⭐ Avaliações na tela', '🎬 Vídeo na página', '❓ Dúvidas respondidas', '🕗 Agenda online', '🤝 Cliente que confia'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 22px;${K.vidro()}border-radius:28px;font-weight:800;font-size:29px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>
