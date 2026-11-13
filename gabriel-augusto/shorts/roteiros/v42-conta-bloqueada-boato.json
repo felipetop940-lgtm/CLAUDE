@@ -1,0 +1,74 @@
+{
+  "titulo": "Sua conta vai ser bloqueada?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["Sua conta vai", "*ser bloqueada?*"], "selo": "Veja o que é verdade", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "Sua conta no banco vai ser bloqueada esse mês? Tá circulando isso no WhatsApp. Mas é mentira.",
+      "texto": ["Boato"],
+      "fundo_cor": [[0, "black"], ["mentira", "red"]],
+      "enfase": ["conta", "bloqueada", "mentira"],
+      "prop": {"tipo": "manchete", "em": "mentira", "fonte_txt": "Post que circula no WhatsApp e no Facebook",
+        "titulo": "Todas as contas bancárias serão bloqueadas em novembro", "sub": "Checado pela Lupa (10/11) e pela Gazeta do Paraná (11/11)."}
+    },
+    {
+      "fala": "Não existe bloqueio de conta pra todo mundo. Ninguém vai acordar com o dinheiro preso só porque mudou o mês.",
+      "texto": ["Não existe"],
+      "fundo_cor": [[0, "red"], ["preso", "black"]],
+      "enfase": ["existe", "todo", "preso"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "SUA CONTA SEGUE NORMAL", "em": "mês"},
+        "itens": [
+          {"icone": "🏦", "txt": "Bloqueio geral", "sub": "não existe", "em": "bloqueio"},
+          {"icone": "⚖️", "txt": "Sem ordem de juiz", "sub": "ninguém bloqueia", "em": "ninguém"},
+          {"icone": "✅", "txt": "Seu dinheiro", "sub": "continua livre", "em": "dinheiro"}
+        ]}
+    },
+    {
+      "fala": "O boato saiu de uma mudança verdadeira. O sistema que a Justiça usa pra bloquear dinheiro de quem deve ficou mais rápido. E já tá em teste em alguns bancos grandes.",
+      "texto": ["De onde saiu"],
+      "fundo_cor": [[0, "black"], ["teste", "red"]],
+      "enfase": ["verdadeira", "Justiça", "rápido", "teste"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "SÓ COM ORDEM DO JUIZ", "em": "bancos"},
+        "itens": [
+          {"icone": "⚖️", "txt": "Sistema da Justiça", "sub": "o Sisbajud", "em": "sistema"},
+          {"icone": "⚡", "txt": "Bloqueio mais rápido", "sub": "pra quem deve em processo", "em": "rápido"},
+          {"icone": "🏦", "txt": "Teste em 5 bancos", "sub": "Caixa, BB, Itaú, Nubank e XP", "em": "teste"}
+        ]}
+    },
+    {
+      "fala": "Mas, infelizmente, se você tem dívida na Justiça, precisa ficar atento. O juiz pode mandar segurar o dinheiro que for entrando na sua conta, e não só o que já tá lá.",
+      "texto": ["Atenção"],
+      "fundo_cor": [[0, "red"], ["entrando", "black"]],
+      "enfase": ["dívida", "atento", "segurar", "entrando"],
+      "prop": {"tipo": "pictos", "ruim": true, "selo": {"txt": "QUEM DEVE NA JUSTIÇA", "em": "lá"},
+        "itens": [
+          {"icone": "📄", "txt": "Dívida em processo", "sub": "com ordem do juiz", "em": "dívida"},
+          {"icone": "💸", "txt": "Dinheiro que entra", "sub": "pode ficar preso", "em": "entrando"},
+          {"icone": "⏳", "txt": "A busca continua", "sub": "enquanto valer a ordem", "em": "só"}
+        ]}
+    },
+    {
+      "fala": "Se for o seu caso, tenta negociar antes e procura a Defensoria Pública, que ajuda de graça quem não pode pagar advogado. E se chegar mensagem pedindo Pix pra desbloquear sua conta, desconfia.",
+      "texto": ["O que fazer"],
+      "fundo_cor": [[0, "black"], ["desconfia", "red"]],
+      "enfase": ["negociar", "Defensoria", "graça", "desconfia"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "PROTEJA SEU DINHEIRO", "em": "desconfia"},
+        "itens": [
+          {"icone": "🤝", "txt": "Negocia antes", "sub": "a dívida", "em": "negociar"},
+          {"icone": "🏛️", "txt": "Defensoria Pública", "sub": "ajuda de graça", "em": "defensoria"},
+          {"icone": "🚫", "txt": "Pix pra desbloquear?", "sub": "desconfia", "em": "pix"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "negocio", "bio"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Tem um negócio? Dá uma olhada na bio", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}
