@@ -1,31 +1,32 @@
-# Carrossel 43 ANIMADO · "Seu negócio atende até no domingo" (1080x1350, 7 slides em vídeo, estilo CINÉTICO)
+# Carrossel 43 ANIMADO v2 · "Como fazer seu negócio atender até no domingo" (1080x1350, 7 slides em vídeo, estilo CINÉTICO)
 
+**Ajuste do Felipe (14/11):** título do gancho em cima e grande (o gráfico menor embaixo), título ensinando ("Como fazer..."), slides do meio com dicas úteis de verdade e o site entrando como ligação no fim.
 **Slides:** 7 vídeos · `saida/c43-atende-ate-domingo/01.mp4 … 07.mp4` (+ capa .jpg) · zip `saida/c43-atende-ate-domingo.zip` · versão TikTok num vídeo só (9:16): `saida/c43-atende-ate-domingo-tiktok.mp4`
-**Postar:** 13h30 no TikTok e 19h no Instagram (sábado; põe uma música baixinha).
-Slides: 1 a semana com sábado e domingo acendendo e pedidos chegando (EXEMPLO) · 2 mapa 3D "atendemos Goiânia e região" · 3 um clique e cai no WhatsApp · 4 catálogo com filtro (EXEMPLO) · 5 preço claro (EXEMPLO) · 6 contatos subindo (EXEMPLO) · 7 "Quer isso no seu site?" → olha a bio.
+Slides: 1 gancho "Como fazer seu negócio atender até no domingo" · 2 DICA 1 mensagem de ausência · 3 DICA 2 horário no perfil · 4 DICA 3 respostas rápidas · 5 DICA 4 catálogo no WhatsApp · 6 o site leva o cliente pro seu WhatsApp · 7 "Quer isso no seu site?" → olha a bio.
 
 ## Legenda Instagram
-Seu negócio atende até no domingo 🌙
+Como fazer seu negócio atender até no domingo 🌙
 
-Você descansa no fim de semana. Seu site, não: o cliente acha você, vê o preço, escolhe o que quer e já manda o pedido no seu WhatsApp.
+Salva e configura hoje no WhatsApp Business:
 
-📍 Mapa da sua cidade e região
-💬 Um clique e cai no WhatsApp com a mensagem pronta
-🛍️ Catálogo com filtro
-🏷️ Preço claro, sem "quanto é?"
-📈 Cliente chegando todo mês
+💤 Mensagem de ausência: ⋮ › Ferramentas comerciais › Mensagem de ausência › "fora do horário comercial". Quem chama no domingo recebe resposta na hora.
+🕗 Horário no perfil: Ferramentas comerciais › Perfil comercial › Horário de atendimento. O cliente sabe quando você volta.
+⚡ Respostas rápidas: crie um atalho tipo /preco e responda a fila do fim de semana em segundos.
+🛍️ Catálogo: foto, nome e preço. O cliente vê tudo mesmo com você offline.
+
+🌐 E no site que eu faço, o cliente te acha no Google, vê tudo e cai no seu WhatsApp com a mensagem pronta, até no domingo.
 
 Quer isso no seu site? Dá uma olhada na minha bio, que tá tudo lá. 👆
 👉 Segue @euaugusto_oliv
 
-#site #sitesprofissionais #pequenosnegocios #empreendedor #goiania
+#whatsappbusiness #dicas #pequenosnegocios #empreendedor #site
 
-**Primeiro comentário (fixar):** Quantas mensagens de cliente você perde no fim de semana? Comenta 👇
+**Primeiro comentário (fixar):** Qual dessas você ainda não usa? Comenta o número 👇
 
 ## TikTok
 **Título (escolha um):**
-1. Seu negócio atende até no domingo 🌙
-2. Você descansa, seu site trabalha
-3. Pedido chegando com a loja fechada
+1. Como fazer seu negócio atender até no domingo 🌙
+2. 4 configurações do WhatsApp que atendem por você
+3. Configura isso hoje e para de perder cliente no fim de semana
 
-**Descrição:** Você descansa no fim de semana e o site continua atendendo: mapa da região, pedido no WhatsApp, catálogo e preço claro. Quer isso no seu? Dá uma olhada na minha bio 👆 #site #pequenosnegocios #empreendedor #vendas #dicas
+**Descrição:** Mensagem de ausência, horário no perfil, respostas rápidas e catálogo: configura hoje no WhatsApp Business e ninguém fica sem resposta no fim de semana. E o site leva o cliente direto pro seu WhatsApp. Dá uma olhada na minha bio 👆 #whatsappbusiness #dicas #pequenosnegocios #empreendedor #vendas
