@@ -1,0 +1,78 @@
+{
+  "titulo": "Vai fazer o Enem amanhã?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["Vai fazer o Enem", "*amanhã?*"], "selo": "Isso pode te tirar da prova", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "Vai fazer o Enem amanhã? Tem coisa boba que pode te tirar da prova antes mesmo de ela começar.",
+      "texto": ["Enem"],
+      "fundo_cor": [[0, "black"], ["boba", "red"]],
+      "enfase": ["enem", "amanhã", "tirar"],
+      "prop": {"tipo": "pictos", "ruim": true, "selo": {"txt": "PODE TE ELIMINAR", "em": "começar"},
+        "itens": [
+          {"icone": "⏰", "txt": "Atraso", "sub": "nem um minuto", "em": 0.15},
+          {"icone": "🪪", "txt": "Sem documento", "sub": "não entra", "em": "tirar"},
+          {"icone": "📱", "txt": "Celular que toca", "sub": "elimina na hora", "em": "prova"}
+        ]}
+    },
+    {
+      "fala": "O portão fecha pontualmente, no horário de Brasília. E, infelizmente, chegou um minuto depois, não entra. Nem quem já tá na calçada.",
+      "texto": ["Horário"],
+      "fundo_cor": [[0, "red"], ["infelizmente", "black"]],
+      "enfase": ["pontualmente", "brasília", "minuto", "calçada"],
+      "prop": {"tipo": "linha_tempo", "de": 11, "ate": 14, "rotulo": "DOMINGO, 15/11 · HORÁRIO DE BRASÍLIA",
+        "marcos": [
+          {"h": 12, "txt": "PORTÃO ABRE", "icone": "🚪", "em": 0},
+          {"h": 13, "txt": "PORTÃO FECHA", "icone": "🔒", "em": "pontualmente"},
+          {"h": 13.5, "txt": "PROVA COMEÇA", "icone": "✏️", "em": "calçada"}
+        ]}
+    },
+    {
+      "fala": "Leva documento oficial com foto e caneta preta de tubo transparente. Lanche pode, mas vai ser olhado na entrada da sala.",
+      "texto": ["O que levar"],
+      "fundo_cor": [[0, "black"], ["lanche", "red"]],
+      "enfase": ["documento", "foto", "caneta", "transparente", "lanche"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "SEPARA HOJE", "em": "sala"},
+        "itens": [
+          {"icone": "🪪", "txt": "Documento com foto", "sub": "RG, CNH ou passaporte", "em": "documento"},
+          {"icone": "🖊️", "txt": "Caneta preta", "sub": "de tubo transparente", "em": "caneta"},
+          {"icone": "🍫", "txt": "Lanche", "sub": "vai ser olhado", "em": "lanche"}
+        ]}
+    },
+    {
+      "fala": "E o celular não pode ficar só no silencioso. Tem que estar desligado, dentro do envelope que eles entregam. Se ele tocar, mesmo ali dentro, você é eliminado. E isso vale pro relógio também.",
+      "texto": ["Celular"],
+      "fundo_cor": [[0, "red"], ["eliminado", "black"]],
+      "enfase": ["silencioso", "desligado", "envelope", "eliminado", "relógio"],
+      "prop": {"tipo": "pictos", "ruim": true, "selo": {"txt": "SE TOCAR, ELIMINA", "em": "eliminado"},
+        "itens": [
+          {"icone": "🔕", "txt": "Silencioso", "sub": "não basta", "em": "silencioso"},
+          {"icone": "📴", "txt": "Desligado", "sub": "dentro do envelope", "em": "desligado"},
+          {"icone": "⌚", "txt": "Relógio também", "sub": "nada pode apitar", "em": "relógio"}
+        ]}
+    },
+    {
+      "fala": "É muita pressão, eu sei. Então hoje dorme cedo, deixa tudo na mochila e confere o caminho até o local. Amanhã é chegar com calma e fazer o seu melhor. E manda esse vídeo pra quem vai fazer a prova.",
+      "texto": ["Você consegue"],
+      "fundo_cor": [[0, "black"], ["calma", "red"]],
+      "enfase": ["pressão", "dorme", "mochila", "caminho", "melhor"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "VOCÊ CONSEGUE", "em": "melhor"},
+        "itens": [
+          {"icone": "😴", "txt": "Dorme cedo", "sub": "hoje", "em": "dorme"},
+          {"icone": "🎒", "txt": "Tudo na mochila", "sub": "documento e caneta", "em": "mochila"},
+          {"icone": "🗺️", "txt": "Confere o caminho", "sub": "até o local", "em": "caminho"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se você tem um negócio, dá uma olhada na minha bio, que tem uma oportunidade lá pra você.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "negocio", "bio"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Tem um negócio? Dá uma olhada na bio", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}
