@@ -1,0 +1,9 @@
+/* Paletas guardadas em 14/11 (referência @brunobastos.dg). Uso: <body class="paleta-3"> e var(--p-fundo) etc. */
+.paleta-1 { --p-fundo: #252323; --p-destaque: #70798c; --p-apoio: #dad2bc; --p-claro: #f5f1ed; --p-texto: #f5f1ed; }
+.paleta-2 { --p-fundo: #01101d; --p-destaque: #41ead4; --p-apoio: #858786; --p-claro: #fdfffc; --p-texto: #fdfffc; }
+.paleta-3 { --p-fundo: #122b43; --p-destaque: #01bb88; --p-apoio: #191d27; --p-claro: #f5f5f5; --p-texto: #f5f5f5; }
+.paleta-4 { --p-fundo: #bc2548; --p-destaque: #e9e5d0; --p-apoio: #f7bdbc; --p-claro: #e9e5d0; --p-texto: #000000; }
+.paleta-5 { --p-fundo: #000000; --p-destaque: #c6f91f; --p-apoio: #66666e; --p-claro: #ffffff; --p-texto: #ffffff; }
+.paleta-6 { --p-fundo: #424b54; --p-destaque: #ff4e00; --p-apoio: #93a8ac; --p-claro: #ffffff; --p-texto: #ffffff; }
+.paleta-7 { --p-fundo: #0d1823; --p-destaque: #2adfb8; --p-apoio: #5210ce; --p-claro: #f5f3f5; --p-texto: #f5f3f5; }
+.paleta-8 { --p-fundo: #0b0916; --p-destaque: #f49300; --p-apoio: #4e0c92; --p-claro: #f5f5f5; --p-texto: #f5f5f5; }
