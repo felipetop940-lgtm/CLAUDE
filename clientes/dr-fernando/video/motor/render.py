@@ -139,8 +139,21 @@ import grade as G3
 GRI = [np.round(g).astype(np.int16) for g in GR]
 
 
+def shot_params(t):
+    def pr(k): return SHOTS[k].get("ex", 1.0), SHOTS[k].get("rec", 0.0)
+    i = max(k for k in range(len(SHOTS)) if ST[k] <= t + 1e-6)
+    ex, rec = pr(i)
+    for j in (i, i + 1):  # transição suave dos parâmetros perto do corte
+        if 1 <= j < len(SHOTS) and abs(t - ST[j]) < D / FPS:
+            m = ease((t - ST[j] + D / FPS) / (2 * D / FPS))
+            (e0, r0), (e1, r1) = pr(j - 1), pr(j)
+            ex, rec = e0 + (e1 - e0) * m, r0 + (r1 - r0) * m
+    return round(ex, 3), rec
+
+
 def grade(img, f):
-    return G3.grade(img, GRI[f % 6], VIG)
+    ex, rec = shot_params(f / FPS)
+    return G3.grade(img, GRI[f % 6], VIG, ex, rec)
 
 
 def grade_old(img, f):

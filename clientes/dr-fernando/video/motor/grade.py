@@ -28,7 +28,20 @@ SPLIT = np.stack([
 SPLIT = (SPLIT * 255 + .5).astype(np.uint8).reshape(1, 256, 3)
 
 
-def grade(img, grain=None, vig=None):
+_EXL = {}
+
+
+def expo_lut(ex):
+    # exposição em luz linear (gama 2.2) com joelho suave nas altas
+    if ex not in _EXL:
+        x = np.arange(256, dtype=np.float32) / 255.
+        lin = x ** 2.2 * ex
+        _EXL[ex] = (np.clip(lin, 0, 1) ** (1 / 2.2) * 255 + .5).astype(np.uint8)
+    return _EXL[ex]
+
+
+def grade(img, grain=None, vig=None, ex=1.0, rec=0.0):
+    if ex != 1.0: img = cv2.LUT(img, expo_lut(ex))
     img = cv2.LUT(img, TONE)
     f = img.astype(np.float32) * (1 / 255.)
     Y = f[..., 0] * .114 + f[..., 1] * .587 + f[..., 2] * .299
@@ -41,6 +54,11 @@ def grade(img, grain=None, vig=None):
     big = cv2.resize(cv2.GaussianBlur(small, (0, 0), 22), (Y.shape[1], Y.shape[0]), interpolation=cv2.INTER_LINEAR)
     hl = np.clip((big - .62) / .28, 0, 1); hl = hl * hl * (3 - 2 * hl)
     dY -= .085 * hl * (.6 + .4 * Y)
+    if rec > 0:  # planos dominados por branco (luvas): baixa o nível das altas e realça o volume/sombreado delas
+        half = cv2.resize(Y, (Y.shape[1] // 2, Y.shape[0] // 2), interpolation=cv2.INTER_AREA)
+        hc = cv2.resize(cv2.GaussianBlur(half, (0, 0), 9), (Y.shape[1], Y.shape[0]), interpolation=cv2.INTER_LINEAR)
+        hi = np.clip((hc - .50) / .38, 0, 1); hi = hi * hi * (3 - 2 * hi)
+        dY += rec * (1.6 * np.clip(Y - hc, -.25, .04) - .16) * hi
     # nitidez fina na luminância
     dY += .40 * (Y - cv2.GaussianBlur(Y, (0, 0), 1.1))
     # vibrance: satura mais o que está pouco saturado, protege pele/amarelo do avental
