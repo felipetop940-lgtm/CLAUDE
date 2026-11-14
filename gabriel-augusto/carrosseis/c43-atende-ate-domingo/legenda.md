@@ -21,7 +21,7 @@ Quer isso no seu site? Dá uma olhada na minha bio, que tá tudo lá. 👆
 
 #whatsappbusiness #dicas #pequenosnegocios #empreendedor #site
 
-**Primeiro comentário (fixar):** Qual dessas você ainda não usa? Comenta o número 👇
+**Primeiro comentário (fixar):** Quer mais dicas pra seu negócio atender sozinho? 👇 Comenta "EU QUERO" que eu mando pra você no direct! 📩
 
 ## TikTok
 **Título (escolha um):**
