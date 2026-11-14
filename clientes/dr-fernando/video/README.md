@@ -1,6 +1,6 @@
 # Dr. Fernando Augusto de Oliveira — vídeo institucional (Reels)
 
-Vídeo vertical 1080x1920, 30 fps, 25 s, sem falas, com legendas discretas. Saída: `drfernando-v2.mp4`.
+Vídeo vertical 1080x1920, 30 fps, 25 s, sem falas, com legendas discretas. Saída: `drfernando-v3.mp4` (v3: altas luzes recuperadas e cor refeita).
 
 ## Regras do cliente
 - **Não mostrar a pedra da bancada** (granito). Os planos com bancada foram recortados ou ficaram de fora.
@@ -15,7 +15,7 @@ Fica na pasta do Drive "Gabriel" (8 vídeos .MOV 4K HDR HLG + 12 fotos .HEIC). O
 python3 -I motor/heic2jpg.py <drive> <fotos>                    # HEIC -> JPG
 python3 motor/extrair.py <drive> <seg>                          # recorta + HDR->SDR (1188x2112 @60fps)
 python3 motor/audio.py trilha.wav                                # trilha original sintetizada + efeitos
-python3 motor/render.py <seg> <fotos> <fontes> video_mudo.mp4    # edição, grade, motion graphics
+python3 motor/render.py <seg> <fotos> <fontes> video_mudo.mp4    # edição, grade (motor/grade.py), motion graphics
 ffmpeg -i video_mudo.mp4 -i trilha.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart drfernando.mp4
 ```
 - `motor/timeline.py`: planos (arquivo, início, velocidade, recorte, zoom), transições, legendas, nome e cartela final.

@@ -23,8 +23,8 @@ SHOTS = [
 
 # Transições na ENTRADA de cada plano (índice do plano)
 TRANS = {
-    1: "whip_up", 2: "flash", 3: "zoom_in", 4: "whip_left", 5: "leak",
-    6: "whip_right", 7: "zoom_in", 8: "whip_up", 9: "leak", 10: "whip_left", 11: "fade_white",
+    1: "whip_up", 2: "dip", 3: "zoom_in", 4: "whip_left", 5: "zoom_in",
+    6: "whip_right", 7: "zoom_in", 8: "whip_up", 9: "whip_right", 10: "whip_left", 11: "fade_white",
 }
 
 # Legendas discretas (texto, ini, fim)

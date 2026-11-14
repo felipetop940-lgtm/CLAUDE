@@ -131,11 +131,19 @@ LUT = np.dstack([
 ]).reshape(1, 256, 3)
 r2 = ((xx - W / 2) / (W * .75)) ** 2 + ((yy - H / 2) / (H * .72)) ** 2
 VIG = (1 - .22 * np.clip(r2, 0, 1) ** 1.6).astype(np.float32)[..., None]
-GR = [np.random.RandomState(k).normal(0, 3.2, (H // 2, W // 2, 1)).astype(np.float32) for k in range(6)]
+GR = [np.random.RandomState(k).normal(0, 1.5, (H // 2, W // 2, 1)).astype(np.float32) for k in range(6)]
 GR = [cv2.resize(g, (W, H), interpolation=cv2.INTER_NEAREST)[..., None] for g in GR]
 
 
+import grade as G3
+GRI = [np.round(g).astype(np.int16) for g in GR]
+
+
 def grade(img, f):
+    return G3.grade(img, GRI[f % 6], VIG)
+
+
+def grade_old(img, f):
     img = cv2.LUT(img, LUT)
     gray = cv2.cvtColor(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY), cv2.COLOR_GRAY2BGR)
     img = cv2.addWeighted(img, 1.10, gray, -0.10, 0)
@@ -317,14 +325,15 @@ def transition(kind, ia, ta, ib, tb, p, seed):
     a = shot_frame(ia, ta); b = shot_frame(ib, tb)
     m = ease(p)
     img = cv2.addWeighted(a, 1 - m, b, m, 0)
-    if kind == "flash":
-        pk = (1 - abs(2 * p - 1)) ** 2
-        img = screen(img, np.full((1, 1, 3), .85 * pk, np.float32))
-    elif kind == "leak":
-        img = screen(img, leak(p, (1 - abs(2 * p - 1)) ** 1.5 * .75, seed))
-    elif kind == "fade_white":
-        pk = (1 - abs(2 * p - 1)) ** 2
-        img = screen(img, leak(p, .7 * pk, seed))
+    pk = (1 - abs(2 * p - 1)) ** 2
+    if kind in ("flash", "dip"):          # mergulho rápido no escuro (sem véu branco)
+        img = (img.astype(np.float32) * (1 - .45 * pk)).astype(np.uint8)
+    elif kind == "leak":                   # brilho dourado discreto
+        img = (img.astype(np.float32) * (1 - .18 * pk)).astype(np.uint8)
+        img = screen(img, leak(p, .32 * pk, seed))
+    elif kind == "fade_white":             # entrada da cartela: escurece e acende
+        img = (img.astype(np.float32) * (1 - .40 * pk)).astype(np.uint8)
+        img = screen(img, leak(p, .22 * pk, seed))
     return img
 
 
@@ -345,7 +354,7 @@ def frame(f):
     img = endcard_dim(img, t)
     # abertura: do preto com vazamento de luz
     if t < .7:
-        img = screen(img, leak(t * 1.4, 1.0 * (1 - ease(t / .7)), 7))
+        img = screen(img, leak(t * 1.4, .55 * (1 - ease(t / .7)), 7))
         img = (img.astype(np.float32) * ease(t / .35)).astype(np.uint8)
     L = Layer(); graphics(t, L); img = L.comp(img)
     if t > TOTAL - .6:
@@ -361,7 +370,7 @@ if A.quadros:
 
 n = A.ate or NF
 enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}", "-r", str(FPS),
-                        "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-maxrate", "9M", "-bufsize", "18M", "-pix_fmt", "yuv420p",
+                        "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-maxrate", "11M", "-bufsize", "22M", "-tune", "film", "-pix_fmt", "yuv420p",
                         "-color_primaries", "bt709", "-color_trc", "bt709", "-colorspace", "bt709", A.out], stdin=subprocess.PIPE)
 for f in range(n):
     enc.stdin.write(frame(f).tobytes())

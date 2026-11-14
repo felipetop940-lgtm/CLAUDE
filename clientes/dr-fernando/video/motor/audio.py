@@ -150,7 +150,7 @@ for j, kind in TRANS.items():
         put(whoosh(.42, 1.0, .7), tb - .30, .55, pan=(-.4 if "left" in kind else .4 if "right" in kind else 0))
     elif kind == "zoom_in":
         put(whoosh(.5, .8, .75), tb - .37, .5)
-    elif kind in ("flash", "leak"):
+    elif kind in ("flash", "leak", "dip"):
         put(whoosh(.7, .7, .55), tb - .38, .35); put(shimmer(1.2), tb - .05, .18)
     elif kind == "fade_white":
         put(riser(2.0), tb - 2.0, .35); put(boom(), tb, .75); put(shimmer(2.2), tb, .2)
