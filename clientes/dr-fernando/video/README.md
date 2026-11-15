@@ -1,11 +1,12 @@
 # Dr. Fernando Augusto de Oliveira — vídeo institucional (Reels)
 
-Vídeo vertical 1080x1920, 30 fps, 25 s, sem falas, com legendas discretas. Saída: `drfernando-v4.mp4` (v4: exposição e recuperação de altas por plano, ex. luvas).
+Vídeo vertical 1080x1920, 30 fps, 25 s, sem falas, com legendas discretas. Saída: `drfernando-v5.mp4` (v5: sem a entrega do implante na mão dele).
 
 ## Regras do cliente
 - **Não mostrar a pedra da bancada** (granito). Os planos com bancada foram recortados ou ficaram de fora.
 - A paciente pode aparecer sem desfoque (ela autorizou a filmagem). Ela fica em quadro para mostrar o atendimento.
 - Sem falas. As legendas são poucas e discretas, e o foco fica no vídeo.
+- Não mostrar a instrumentadora colocando o implante na mão dele, nem ele segurando o implante (IMG_0757 de 0 a 5 s).
 
 ## Material bruto
 Fica na pasta do Drive "Gabriel" (8 vídeos .MOV 4K HDR HLG + 12 fotos .HEIC). O material não fica no repositório por causa do tamanho (~860 MB).
