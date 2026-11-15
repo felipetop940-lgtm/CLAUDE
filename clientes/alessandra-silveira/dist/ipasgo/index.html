@@ -118,7 +118,7 @@ button { font: inherit; color: inherit; }
 .nav a:not(.btn)::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--brass); transform: scaleX(0); transform-origin: right; transition: transform .45s var(--ease); }
 .nav a:not(.btn):hover, .nav a.is-active { color: var(--forest); }
 .nav a:not(.btn):hover::after, .nav a.is-active::after { transform: scaleX(1); transform-origin: left; }
-.nav__cta { min-height: 44px; padding: 10px 22px; }
+.nav__cta { min-height: 44px; padding: 10px 22px; white-space: nowrap; }
 .header__wa { display: none; }
 .burger { display: none; width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 50%; background: #fff; cursor: pointer; position: relative; }
 .burger span { position: absolute; left: 14px; right: 14px; height: 1.8px; background: var(--forest); border-radius: 2px; transition: transform .45s var(--ease), top .45s var(--ease); }
@@ -389,8 +389,8 @@ button { font: inherit; color: inherit; }
 .footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .1); font-size: .8rem; }
 
 /* WhatsApp flutuante */
-.wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 40; display: flex; align-items: center; padding: 6px; border-radius: 999px; background: var(--wa); color: #fff; box-shadow: 0 18px 36px -14px rgba(18, 140, 74, .75); transform: translateY(130px); transition: transform .8s var(--ease) 1.9s; }
-.is-ready .wa-float { transform: none; }
+.wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 40; display: flex; align-items: center; padding: 6px; border-radius: 999px; background: var(--wa); color: #fff; box-shadow: 0 18px 36px -14px rgba(18, 140, 74, .75); transform: translateY(130px); transition: transform .8s var(--ease); }
+.is-ready.past-hero .wa-float { transform: none; }
 .wa-float__ic { position: relative; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: rgba(255, 255, 255, .14); }
 .wa-float__ic::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--wa); animation: ping 2.6s var(--ease) infinite; }
 .wa-float .i { width: 28px; height: 28px; }
@@ -502,6 +502,17 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
 .js .hero .hero__ctas { transition-delay: 2.05s; } .js .hero .hero__note { transition-delay: 2.15s; }
 
 /* ---------- Responsivo ---------- */
+@media (max-width: 1100px) {
+  .burger { display: block; }
+  .header__wa { display: grid; place-items: center; width: 46px; height: 46px; margin-left: auto; margin-right: -14px; border-radius: 50%; background: var(--wa); color: #fff; box-shadow: 0 10px 22px -10px rgba(18, 140, 74, .8); }
+  .header__wa .i { width: 24px; height: 24px; }
+  .nav { position: fixed; inset: 70px 0 auto 0; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 24px 28px; background: var(--white); box-shadow: 0 30px 40px -30px rgba(46, 54, 44, .4); clip-path: inset(0 0 100% 0); visibility: hidden; transition: clip-path .6s var(--ease), visibility .6s; }
+  .nav.is-open { clip-path: inset(0 0 0 0); visibility: visible; }
+  .nav a:not(.btn) { padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 1.1rem; color: var(--forest); }
+  .nav a:not(.btn)::after { display: none; }
+  .nav__cta { margin-top: 20px; min-height: 54px; }
+  .header__in, .header.is-scrolled .header__in { height: 70px; }
+}
 @media (max-width: 1080px) {
   .nav { gap: 20px; }
   .hero__grid { gap: 40px; }
@@ -638,6 +649,28 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
   .js .hero__visual.reveal--clip { opacity: 0; transition: opacity 1.2s var(--ease) 1.4s; }
   .js .hero__visual.reveal--clip.is-in { opacity: 1; }
 }
+/* ---------- Celular ou tablet deitado (tela baixa): texto + botão à esquerda, foto à direita ---------- */
+@media (orientation: landscape) and (max-height: 560px) and (max-width: 1100px) {
+  .hero { padding: 14px 0 22px; background: #FFFFFF; }
+  .hero__net, .hero__glow, .hero__block, .hero__badge, .scroll-cue { display: none; }
+  .hero__grid, .site--ipasgo .hero__grid { display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 16px; min-height: 0; padding-top: 0; }
+  .hero__text { padding-bottom: 0; }
+  .hero__title, .site--ipasgo .hero__title--long { text-align: left; font-size: clamp(1.8rem, 4.6vw, 2.5rem); }
+  .hero__title--long em { font-size: .9em; }
+  .hero__name { max-width: none; margin-top: 10px; font-size: 1.02rem; }
+  .hero__spec { max-width: none; margin-top: 4px; font-size: .95rem; }
+  .hero__tags { max-width: none; gap: 6px; margin-top: 10px; }
+  .hero__tags li { padding: 5px 12px; font-size: .8rem; }
+  .hero__ctas { margin-top: 14px; text-align: left; }
+  .hero__ctas .btn { width: auto; min-width: 0; min-height: 50px; padding: 12px 24px; font-size: 1rem; }
+  .hero__note { display: flex; justify-content: flex-start; width: auto; margin: 10px 0 0; padding: 0; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; font-size: .82rem; }
+  .hero__visual, .site--ipasgo .hero__visual { position: relative; order: 0; top: auto; right: auto; bottom: auto; width: 100%; max-width: 300px; height: calc(100vh - 70px - 36px); max-height: 460px; margin: 0; justify-self: end; }
+  .hero__frame, .site--ipasgo .hero__frame { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; background: none; box-shadow: none; }
+  .hero__frame::after { display: none; }
+  .hero__frame img { object-fit: contain; object-position: 50% 100%; transform: none; }
+  .js .hero__visual.reveal--clip .hero__frame, .js .hero__visual.reveal--clip.is-in .hero__frame { clip-path: none; }
+  .wa-bar { display: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -764,8 +797,6 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 120; pointer-even
       <div class="hero__frame" data-depth="6">
         <img src="assets/img/alessandra-hero.webp" alt="Alessandra Silveira, neuropsicóloga, de jaleco" width="968" height="1470" fetchpriority="high">
       </div>
-      <figcaption class="float float--a" data-depth="24"><svg class="i" aria-hidden="true"><use href="#i-brain"/></svg><span><strong>Avaliação neuropsicológica</strong><small>Presencial e online</small></span></figcaption>
-      <div class="float float--b" aria-hidden="true" data-depth="32"><svg class="i"><use href="#i-doc"/></svg><span><strong>Laudo claro e embasado</strong><small>Orientação para pais e escola</small></span></div>
     </figure>
   </div>
   <a class="scroll-cue" href="#beneficios" aria-label="Rolar para a próxima seção"><span></span></a>
