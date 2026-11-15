@@ -1,0 +1,13 @@
+RANKING LOCAL — instalação na Hostinger
+
+1. hPanel > Domínios > Subdomínios: criar "ranking" em consultoriodesucessoo.com
+2. hPanel > Gerenciador de Arquivos: abrir a pasta do subdomínio, enviar este .zip e extrair
+3. hPanel > Bancos de Dados > MySQL: criar banco + usuário + senha
+4. Abrir o phpMyAdmin desse banco > aba Importar > enviar install.sql
+5. Na pasta app/: renomear config.sample.php para config.php e preencher
+   (chave do Google, dados do banco, senha do painel, e-mail do relatório)
+6. hPanel > E-mails: criar a caixa ranking@consultoriodesucessoo.com (remetente do relatório)
+7. hPanel > Avançado > Cron Jobs: comando PHP, toda segunda às 06:00
+   caminho: /home/SEU_USUARIO/domains/consultoriodesucessoo.com/public_html/ranking/cron.php
+   (o caminho exato aparece no Gerenciador de Arquivos)
+8. Acessar https://ranking.consultoriodesucessoo.com e entrar com a senha do config.php
