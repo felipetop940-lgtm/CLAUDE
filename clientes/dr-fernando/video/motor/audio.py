@@ -147,14 +147,14 @@ mus = reverb(mus)
 for j, kind in TRANS.items():
     tb = ST[j]
     if kind.startswith("whip"):
-        put(whoosh(.42, 1.0, .7), tb - .30, .55, pan=(-.4 if "left" in kind else .4 if "right" in kind else 0))
+        put(whoosh(.42, .6, .7), tb - .30, .19, pan=(-.4 if "left" in kind else .4 if "right" in kind else 0))
     elif kind == "zoom_in":
-        put(whoosh(.5, .8, .75), tb - .37, .5)
+        put(whoosh(.5, .55, .75), tb - .37, .17)
     elif kind in ("flash", "leak", "dip"):
-        put(whoosh(.7, .7, .55), tb - .38, .35); put(shimmer(1.2), tb - .05, .18)
+        put(whoosh(.7, .5, .55), tb - .38, .13); put(shimmer(1.2), tb - .05, .08)
     elif kind == "fade_white":
-        put(riser(2.0), tb - 2.0, .35); put(boom(), tb, .75); put(shimmer(2.2), tb, .2)
-put(shimmer(1.5), 0.0, .22); put(whoosh(.9, .6, .4), 0.0, .3)              # abertura
+        put(riser(2.0), tb - 2.0, .16); put(boom(), tb, .5); put(shimmer(2.2), tb, .12)
+put(shimmer(1.5), 0.0, .12); put(whoosh(.9, .5, .4), 0.0, .12)              # abertura
 put(tick(2400), NAME[2] + .02, .16); put(tick(3200), NAME[2] + .17, .10)       # nome
 put(tick(2800), END["t0"] + 1.52, .12)                                         # CTA
 
