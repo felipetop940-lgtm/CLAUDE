@@ -1,10 +1,20 @@
 <?php
 // Renomeie este arquivo para config.php e preencha os campos.
 return [
-    // Chave da Places API (New), criada no Google Cloud
+    // Motor da varredura: 'places' (Google Places API, grátis) ou 'dataforseo' (pago)
+    'engine' => 'places',
+
+    // Chave da Places API (New), criada no Google Cloud. Fica só no servidor (restringir por IP).
     'google_api_key' => 'COLE_A_CHAVE_AQUI',
 
-    // DataForSEO (app.dataforseo.com/api-access) — posições reais do Google Maps
+    // Raio (em metros) da preferência de localização em cada ponto da grade (motor 'places')
+    'places_bias_radius' => 2000,
+
+    // Chave de NAVEGADOR da Maps JavaScript API (restrita por referenciador HTTP ao domínio do painel).
+    // Deixe vazio para usar o mapa de reserva (Leaflet).
+    'maps_js_key' => '',
+
+    // DataForSEO (app.dataforseo.com/api-access) — só é usado com 'engine' => 'dataforseo'
     'dfs_login'    => 'LOGIN_DA_API',
     'dfs_password' => 'SENHA_DA_API',
 

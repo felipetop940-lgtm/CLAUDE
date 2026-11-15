@@ -116,7 +116,7 @@ function grid_points(float $lat, float $lng, int $size, float $radiusKm): array 
     return $pts;
 }
 
-/* ---------- DataForSEO (resultado real do Google Maps por coordenada) ---------- */
+/* ---------- DataForSEO (chamadas em paralelo) ---------- */
 function dfs_multi(array $bodies, int $conc = 10): array {
     $results = []; $queue = array_keys($bodies); $active = [];
     $auth = base64_encode(cfg('dfs_login') . ':' . cfg('dfs_password'));
@@ -153,31 +153,80 @@ function dfs_multi(array $bodies, int $conc = 10): array {
     return $results;
 }
 
-function run_scan(int $kid): array {
-    @set_time_limit(300); // grade grande no modo Live pode passar de 1 min
-    $k = q('SELECT k.*, c.place_id, c.lat, c.lng FROM keywords k JOIN clients c ON c.id = k.client_id WHERE k.id = ?', [$kid])->fetch();
-    if (!$k) throw new RuntimeException('Palavra-chave não encontrada.');
-    if (!cfg('dfs_login') || !cfg('dfs_password')) throw new RuntimeException('Preencha dfs_login e dfs_password no config.php.');
+/* ---------- Motores de varredura ----------
+   Cada motor devolve, por ponto da grade:
+   [indice => ['list' => [['id' => place_id, 'name' => nome|null], ...]] | ['_error' => msg]] */
+function scan_engine(): string {
+    return strtolower((string)(cfg('engine') ?? 'places')) === 'dataforseo' ? 'dataforseo' : 'places';
+}
 
-    $pts = grid_points((float)$k['lat'], (float)$k['lng'], (int)$k['grid_size'], (float)$k['radius_km']);
+// Google Places API (New) Text Search. Pontos da grade pedem só places.id (SKU "IDs Only", gratuito).
+// O ponto central pede também o nome (SKU Pro, 1 chamada por varredura) para a lista de concorrentes.
+function scan_places(array $pts, string $keyword): array {
+    if (!cfg('google_api_key')) throw new RuntimeException('Preencha google_api_key no config.php.');
+    $radius = max(100.0, min(50000.0, (float)(cfg('places_bias_radius') ?? 2000)));
+    $bodies = [];
+    foreach ($pts as $i => $p) {
+        $bodies[$i] = [
+            'textQuery' => $keyword, 'languageCode' => 'pt-BR', 'regionCode' => 'BR', 'pageSize' => 20,
+            'locationBias' => ['circle' => [
+                'center' => ['latitude' => $p['lat'], 'longitude' => $p['lng']],
+                'radius' => $radius,
+            ]],
+        ];
+    }
+    $mid = intdiv(count($pts), 2);
+    $fetch = function (array $idx) use ($bodies, $mid): array {
+        $out = [];
+        $ids = array_intersect_key($bodies, array_flip(array_diff($idx, [$mid])));
+        if ($ids) $out = places_multi($ids, 'places.id');
+        if (in_array($mid, $idx, true)) $out[$mid] = places_multi([$mid => $bodies[$mid]], 'places.id,places.displayName')[$mid];
+        return $out;
+    };
+    $res = $fetch(array_keys($bodies));
+    // uma segunda tentativa só nos pontos que falharam (limite de requisições, instabilidade)
+    $failed = array_keys(array_filter($res, fn($r) => isset($r['_error'])));
+    if ($failed && count($failed) < count($pts)) { sleep(2); $res = $fetch($failed) + $res; }
+
+    $out = [];
+    foreach ($res as $i => $r) {
+        $out[$i] = isset($r['_error']) ? $r : ['list' => array_map(
+            fn($pl) => ['id' => $pl['id'] ?? '', 'name' => $pl['displayName']['text'] ?? null],
+            $r['places'] ?? []
+        )];
+    }
+    return $out;
+}
+
+// DataForSEO: resultado do Google Maps por coordenada (pago)
+function scan_dataforseo(array $pts, string $keyword): array {
+    if (!cfg('dfs_login') || !cfg('dfs_password')) throw new RuntimeException('Preencha dfs_login e dfs_password no config.php.');
     $zoom = (int)(cfg('maps_zoom') ?? 15);
     $bodies = [];
     foreach ($pts as $i => $p) {
         $bodies[$i] = [
-            'keyword' => $k['keyword'], 'language_code' => 'pt', 'device' => 'mobile', 'depth' => 20,
+            'keyword' => $keyword, 'language_code' => 'pt', 'device' => 'mobile', 'depth' => 20,
             'location_coordinate' => sprintf('%.7f,%.7f,%dz', $p['lat'], $p['lng'], $zoom),
         ];
     }
-    $res = dfs_multi($bodies);
-    $errors = array_filter($res, fn($r) => isset($r['_error']));
-    if (count($errors) > count($pts) / 4) throw new RuntimeException('DataForSEO: ' . reset($errors)['_error']);
+    $out = [];
+    foreach (dfs_multi($bodies) as $i => $r) {
+        $out[$i] = isset($r['_error']) ? $r : ['list' => array_map(
+            fn($it) => ['id' => $it['place_id'] ?? '', 'name' => $it['title'] ?? null],
+            $r['items']
+        )];
+    }
+    return $out;
+}
 
+// Transforma o resultado do motor em posições por ponto, KPIs e concorrentes do centro
+function summarize_scan(array $pts, array $res, string $placeId): array {
     $found = 0; $top3 = 0; $sum = 0; $valid = 0;
     foreach ($pts as $i => &$p) {
-        if (isset($res[$i]['_error'])) { $p['rank'] = null; $p['err'] = 1; continue; }
+        if (!isset($res[$i]['list'])) { $p['rank'] = null; $p['err'] = 1; continue; }
         $valid++; $rank = null;
-        foreach ($res[$i]['items'] as $n => $it) {
-            if (($it['place_id'] ?? '') === $k['place_id']) { $rank = $n + 1; break; }
+        foreach (array_slice($res[$i]['list'], 0, 20) as $n => $it) {
+            if ($it['id'] === $placeId) { $rank = $n + 1; break; }
         }
         $p['rank'] = $rank;
         if ($rank) { $found++; if ($rank <= 3) $top3++; }
@@ -185,20 +234,35 @@ function run_scan(int $kid): array {
     }
     unset($p);
 
-    // Concorrentes no ponto central = resultado do ponto do meio da grade (sem custo extra)
     $mid = intdiv(count($pts), 2); $comp = [];
-    foreach (array_slice($res[$mid]['items'] ?? [], 0, 5) as $n => $it) {
-        $comp[] = ['pos' => $n + 1, 'name' => $it['title'] ?? '?', 'me' => ($it['place_id'] ?? '') === $k['place_id']];
+    foreach (array_slice($res[$mid]['list'] ?? [], 0, 5) as $n => $it) {
+        $comp[] = ['pos' => $n + 1, 'name' => $it['name'] ?? '?', 'me' => $it['id'] === $placeId];
     }
-
-    $row = [
+    return [
+        'points' => $pts, 'competitors' => $comp,
         'avg_rank' => round($sum / max(1, $valid), 2),
         'top3_pct' => round($top3 * 100 / max(1, $valid), 1),
         'found_pct' => round($found * 100 / max(1, $valid), 1),
     ];
+}
+
+function run_scan(int $kid): array {
+    @set_time_limit(300); // grade grande pode passar de 1 min
+    $k = q('SELECT k.*, c.place_id, c.lat, c.lng FROM keywords k JOIN clients c ON c.id = k.client_id WHERE k.id = ?', [$kid])->fetch();
+    if (!$k) throw new RuntimeException('Palavra-chave não encontrada.');
+
+    $pts = grid_points((float)$k['lat'], (float)$k['lng'], (int)$k['grid_size'], (float)$k['radius_km']);
+    $engine = scan_engine();
+    $res = $engine === 'dataforseo' ? scan_dataforseo($pts, $k['keyword']) : scan_places($pts, $k['keyword']);
+    $errors = array_filter($res, fn($r) => isset($r['_error']));
+    if (count($errors) > count($pts) / 4) {
+        throw new RuntimeException(($engine === 'dataforseo' ? 'DataForSEO: ' : 'Google Places: ') . reset($errors)['_error']);
+    }
+
+    $s = summarize_scan($pts, $res, (string)$k['place_id']);
     q('INSERT INTO scans (keyword_id, avg_rank, top3_pct, found_pct, points, competitors) VALUES (?,?,?,?,?,?)',
-        [$kid, $row['avg_rank'], $row['top3_pct'], $row['found_pct'], json_encode($pts), json_encode($comp, JSON_UNESCAPED_UNICODE)]);
-    return $row;
+        [$kid, $s['avg_rank'], $s['top3_pct'], $s['found_pct'], json_encode($s['points']), json_encode($s['competitors'], JSON_UNESCAPED_UNICODE)]);
+    return ['avg_rank' => $s['avg_rank'], 'top3_pct' => $s['top3_pct'], 'found_pct' => $s['found_pct']];
 }
 
 /* ---------- Layout ---------- */
@@ -210,6 +274,11 @@ function page_header(string $title, bool $nav = true): void { ?>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/map.js?v=3"></script>
+<?php if ($mk = trim((string)cfg('maps_js_key'))): ?>
+<script>RL.useGoogle();</script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=<?= h(rawurlencode($mk)) ?>&amp;v=weekly&amp;loading=async&amp;language=pt-BR&amp;region=BR&amp;callback=rlGmapsReady" onerror="RL.googleFailed()"></script>
+<?php endif; ?>
 </head><body>
 <header class="top"><a href="index.php" class="brand">Ranking Local <span>· Consultório de Sucesso</span></a>
 <?php if ($nav): ?><nav><a href="index.php">Clientes</a><a href="logout.php">Sair</a></nav><?php endif; ?></header>
@@ -271,27 +340,12 @@ function render_client(array $c, bool $readonly): void {
         echo '</table></details></section>';
 
         $hist = array_reverse(array_map(fn($s) => ['d' => date('d/m', strtotime($s['created_at'])), 'v' => (float)$s['avg_rank']], $scans));
-        ?>
-<script>
-(function(){
-  const pts = <?= $last['points'] ?>;
-  const m = L.map('<?= $mapId ?>', {scrollWheelZoom:false});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO'}).addTo(m);
-  const b = [];
-  pts.forEach(p => {
-    const r = p.rank, cls = p.err?'r-err':r==null?'r-none':r<=3?'r-top':r<=10?'r-mid':'r-low';
-    L.marker([p.lat,p.lng],{icon:L.divIcon({className:'pin '+cls,html:p.err?'–':r==null?'20+':r,iconSize:[30,30]})}).addTo(m);
-    b.push([p.lat,p.lng]);
-  });
-  L.marker([<?= (float)$c['lat'] ?>,<?= (float)$c['lng'] ?>],{icon:L.divIcon({className:'home',html:'★',iconSize:[18,18]})}).addTo(m);
-  m.fitBounds(b,{padding:[18,18]});
-  const el = document.getElementById('<?= $chartId ?>');
-  if (el) { const h = <?= json_encode($hist) ?>;
-    new Chart(el,{type:'line',data:{labels:h.map(x=>x.d),datasets:[{data:h.map(x=>x.v),borderColor:'#0f766e',backgroundColor:'rgba(15,118,110,.08)',fill:true,tension:.3}]},
-      options:{plugins:{legend:{display:false}},scales:{y:{reverse:true,min:1,title:{display:true,text:'posição (menor = melhor)'}}}}});
-  }
-})();
-</script>
-<?php
+        $flags = JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE;
+        echo '<script>RL.add(' . json_encode([
+            'map' => $mapId, 'chart' => $chartId,
+            'pts' => json_decode($last['points'] ?? '[]', true) ?: [],
+            'home' => [(float)$c['lat'], (float)$c['lng']],
+            'hist' => $hist,
+        ], $flags) . ');</script>';
     }
 }
