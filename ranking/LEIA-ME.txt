@@ -1,13 +1,18 @@
-RANKING LOCAL — instalação na Hostinger
+RANKING LOCAL — Consultório de Sucesso
 
-1. hPanel > Domínios > Subdomínios: criar "ranking" em consultoriodesucessoo.com
-2. hPanel > Gerenciador de Arquivos: abrir a pasta do subdomínio, enviar este .zip e extrair
-3. hPanel > Bancos de Dados > MySQL: criar banco + usuário + senha
-4. Abrir o phpMyAdmin desse banco > aba Importar > enviar install.sql
-5. Na pasta app/: renomear config.sample.php para config.php e preencher
-   (chave do Google, dados do banco, senha do painel, e-mail do relatório)
-6. hPanel > E-mails: criar a caixa ranking@consultoriodesucessoo.com (remetente do relatório)
-7. hPanel > Avançado > Cron Jobs: comando PHP, toda segunda às 06:00
-   caminho: /home/SEU_USUARIO/domains/consultoriodesucessoo.com/public_html/ranking/cron.php
-   (o caminho exato aparece no Gerenciador de Arquivos)
-8. Acessar https://ranking.consultoriodesucessoo.com e entrar com a senha do config.php
+ATUALIZAR (servidor já instalado)
+1. hPanel > Gerenciador de Arquivos > pasta ranking: enviar o .zip e extrair por cima (substituir tudo).
+   O zip NÃO traz app/config.php, então suas chaves e senhas continuam como estão.
+2. As tabelas novas são criadas sozinhas no primeiro acesso. Não precisa mexer no phpMyAdmin.
+3. Opcional no app/config.php (veja app/config.sample.php):
+   'engine' => 'places'            motor grátis do Google (padrão)
+   'maps_js_key' => '...'          chave de navegador da Maps JavaScript API (sem ela, usa o mapa de reserva)
+   'track_reviews' => true         lê nota e nº de avaliações do cliente (padrão ligado)
+
+INSTALAR DO ZERO
+1. hPanel > Domínios > Subdomínios: criar "ranking"
+2. Enviar o .zip na pasta do subdomínio e extrair
+3. hPanel > Bancos de Dados > MySQL: criar banco + usuário + senha; no phpMyAdmin, importar install.sql
+4. Na pasta app/: copiar config.sample.php para config.php e preencher
+5. hPanel > Avançado > Cron Jobs: php .../ranking/cron.php toda segunda às 9h (0 9 * * 1)
+6. Acessar o endereço e entrar com a senha do config.php

@@ -29,6 +29,10 @@ CREATE TABLE IF NOT EXISTS scans (
   found_pct DECIMAL(5,1),
   points LONGTEXT,
   competitors LONGTEXT,
+  engine VARCHAR(20) NULL,
+  area LONGTEXT NULL,
   INDEX idx_kw_date (keyword_id, created_at),
   FOREIGN KEY (keyword_id) REFERENCES keywords(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- As tabelas meta, places_cache, notes, tasks e profile_stats são criadas sozinhas pelo sistema no primeiro acesso.

@@ -14,6 +14,10 @@ return [
     // Deixe vazio para usar o mapa de reserva (Leaflet).
     'maps_js_key' => '',
 
+    // Lê nota e nº de avaliações do perfil do cliente (1 consulta por cliente a cada 6 dias).
+    // Coloque false para desligar.
+    'track_reviews' => true,
+
     // DataForSEO (app.dataforseo.com/api-access) — só é usado com 'engine' => 'dataforseo'
     'dfs_login'    => 'LOGIN_DA_API',
     'dfs_password' => 'SENHA_DA_API',

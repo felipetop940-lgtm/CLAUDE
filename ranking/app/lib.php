@@ -17,8 +17,35 @@ function db(): PDO {
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
         );
         $pdo->exec("SET time_zone = '" . (new DateTime())->format('P') . "'");
+        migrate($pdo);
     }
     return $pdo;
+}
+
+// Cria/atualiza as tabelas novas sozinho (não precisa mexer no phpMyAdmin)
+function migrate(PDO $pdo): void {
+    try { $v = (int)$pdo->query("SELECT v FROM meta WHERE k = 'schema'")->fetchColumn(); } catch (Throwable $e) { $v = 0; }
+    if ($v >= 2) return;
+    $t = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4';
+    $stmts = [
+        "CREATE TABLE IF NOT EXISTS meta (k VARCHAR(40) PRIMARY KEY, v VARCHAR(190)) $t",
+        "ALTER TABLE scans ADD COLUMN engine VARCHAR(20) NULL",
+        "ALTER TABLE scans ADD COLUMN area LONGTEXT NULL",
+        "CREATE TABLE IF NOT EXISTS places_cache (place_id VARCHAR(190) PRIMARY KEY, name VARCHAR(255) NOT NULL,
+            updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP) $t",
+        "CREATE TABLE IF NOT EXISTS notes (id INT AUTO_INCREMENT PRIMARY KEY, client_id INT NOT NULL, note_date DATE NOT NULL,
+            body TEXT NOT NULL, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, INDEX idx_client_date (client_id, note_date),
+            FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE) $t",
+        "CREATE TABLE IF NOT EXISTS tasks (client_id INT NOT NULL, task_key VARCHAR(40) NOT NULL,
+            done_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (client_id, task_key),
+            FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE) $t",
+        "CREATE TABLE IF NOT EXISTS profile_stats (id INT AUTO_INCREMENT PRIMARY KEY, client_id INT NOT NULL,
+            created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, rating DECIMAL(2,1) NULL, reviews INT NULL,
+            INDEX idx_client_date (client_id, created_at),
+            FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE) $t",
+    ];
+    foreach ($stmts as $sql) { try { $pdo->exec($sql); } catch (Throwable $e) { /* coluna/tabela já existe */ } }
+    $pdo->exec("REPLACE INTO meta (k, v) VALUES ('schema', '2')");
 }
 function q(string $sql, array $p = []): PDOStatement { $s = db()->prepare($sql); $s->execute($p); return $s; }
 function h($s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
@@ -34,6 +61,8 @@ function require_login(): void {
     start_session();
     if (empty($_SESSION['ok'])) { header('Location: login.php'); exit; }
 }
+function flash(string $type, string $msg): void { start_session(); $_SESSION['flash'] = [$type, $msg]; }
+function take_flash(): ?array { start_session(); $f = $_SESSION['flash'] ?? null; unset($_SESSION['flash']); return $f; }
 function csrf(): string {
     start_session();
     if (empty($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(16));
@@ -48,12 +77,59 @@ function check_csrf(): void {
 }
 
 /* ---------- Google Places API (New) ---------- */
+function places_base(): string { return rtrim((string)(cfg('places_base') ?? 'https://places.googleapis.com/v1'), '/'); }
+
+// Detalhes de um perfil pelo place_id (nome, nota, nº de avaliações)
+function place_details(string $placeId, string $mask): array {
+    $ch = curl_init(places_base() . '/places/' . rawurlencode($placeId) . '?languageCode=pt-BR&regionCode=BR');
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 20,
+        CURLOPT_HTTPHEADER => ['X-Goog-Api-Key: ' . cfg('google_api_key'), 'X-Goog-FieldMask: ' . $mask],
+    ]);
+    $raw = curl_exec($ch); $code = curl_getinfo($ch, CURLINFO_HTTP_CODE); $err = curl_error($ch); curl_close($ch);
+    $data = json_decode($raw ?: '', true);
+    if ($code !== 200 || !is_array($data)) throw new RuntimeException($data['error']['message'] ?? ('HTTP ' . $code . ' ' . $err));
+    return $data;
+}
+
+// Nomes dos concorrentes: usa o que já está guardado e só consulta o Google para os que faltam
+function place_names(array $ids, int $maxLookups = 6): array {
+    $ids = array_values(array_unique(array_filter($ids)));
+    if (!$ids) return [];
+    $in = implode(',', array_fill(0, count($ids), '?'));
+    $names = q("SELECT place_id, name FROM places_cache WHERE place_id IN ($in)", $ids)->fetchAll(PDO::FETCH_KEY_PAIR);
+    if (!cfg('google_api_key')) return $names;
+    foreach ($ids as $id) {
+        if (isset($names[$id]) || $maxLookups-- <= 0) continue;
+        try {
+            $name = place_details($id, 'displayName')['displayName']['text'] ?? '';
+            if ($name !== '') { $names[$id] = $name; remember_place($id, $name); }
+        } catch (Throwable $e) { /* segue sem o nome */ }
+    }
+    return $names;
+}
+function remember_place(string $id, string $name): void {
+    q('REPLACE INTO places_cache (place_id, name) VALUES (?, ?)', [mb_substr($id, 0, 190), mb_substr($name, 0, 255)]);
+}
+
+// Nota e nº de avaliações do perfil do cliente, no máximo 1 leitura a cada 6 dias
+function profile_snapshot(int $clientId, string $placeId): void {
+    if (cfg('track_reviews') === false || !cfg('google_api_key')) return;
+    $last = q('SELECT created_at FROM profile_stats WHERE client_id = ? ORDER BY id DESC LIMIT 1', [$clientId])->fetchColumn();
+    if ($last && strtotime($last) > time() - 6 * 86400) return;
+    try {
+        $d = place_details($placeId, 'rating,userRatingCount');
+        if (!isset($d['rating']) && !isset($d['userRatingCount'])) return;
+        q('INSERT INTO profile_stats (client_id, rating, reviews) VALUES (?,?,?)', [$clientId, $d['rating'] ?? null, $d['userRatingCount'] ?? null]);
+    } catch (Throwable $e) { /* não trava a varredura por causa disso */ }
+}
+
 // Executa várias buscas em paralelo. Retorna [indice => resposta decodificada | ['_error'=>msg]]
 function places_multi(array $bodies, string $mask, int $conc = 8): array {
     $results = []; $queue = array_keys($bodies); $active = [];
     $mh = curl_multi_init();
     $make = function ($i) use ($bodies, $mask) {
-        $ch = curl_init('https://places.googleapis.com/v1/places:searchText');
+        $ch = curl_init(places_base() . '/places:searchText');
         curl_setopt_array($ch, [
             CURLOPT_POST => true, CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTPHEADER => [
@@ -219,14 +295,18 @@ function scan_dataforseo(array $pts, string $keyword): array {
     return $out;
 }
 
-// Transforma o resultado do motor em posições por ponto, KPIs e concorrentes do centro
+// Transforma o resultado do motor em posições por ponto, KPIs, concorrentes do centro e ranking da área
 function summarize_scan(array $pts, array $res, string $placeId): array {
-    $found = 0; $top3 = 0; $sum = 0; $valid = 0;
+    $found = 0; $top3 = 0; $sum = 0; $valid = 0; $agg = []; $names = [];
     foreach ($pts as $i => &$p) {
         if (!isset($res[$i]['list'])) { $p['rank'] = null; $p['err'] = 1; continue; }
         $valid++; $rank = null;
         foreach (array_slice($res[$i]['list'], 0, 20) as $n => $it) {
-            if ($it['id'] === $placeId) { $rank = $n + 1; break; }
+            $id = (string)($it['id'] ?? ''); if ($id === '') continue;
+            if ($id === $placeId && $rank === null) $rank = $n + 1;
+            if (!isset($agg[$id])) $agg[$id] = ['sum' => 0, 'n' => 0, 'top3' => 0];
+            $agg[$id]['sum'] += $n + 1; $agg[$id]['n']++; if ($n < 3) $agg[$id]['top3']++;
+            if (!empty($it['name'])) $names[$id] = $it['name'];
         }
         $p['rank'] = $rank;
         if ($rank) { $found++; if ($rank <= 3) $top3++; }
@@ -236,19 +316,36 @@ function summarize_scan(array $pts, array $res, string $placeId): array {
 
     $mid = intdiv(count($pts), 2); $comp = [];
     foreach (array_slice($res[$mid]['list'] ?? [], 0, 5) as $n => $it) {
-        $comp[] = ['pos' => $n + 1, 'name' => $it['name'] ?? '?', 'me' => $it['id'] === $placeId];
+        $comp[] = ['pos' => $n + 1, 'name' => $it['name'] ?? '?', 'me' => ($it['id'] ?? '') === $placeId];
     }
+
+    // Ranking da área inteira: mesma régua do cliente (ausente no ponto = 21)
+    $area = []; $v = max(1, $valid);
+    if (!isset($agg[$placeId])) $agg[$placeId] = ['sum' => 0, 'n' => 0, 'top3' => 0];
+    foreach ($agg as $id => $a) {
+        $area[] = ['id' => (string)$id, 'name' => $names[$id] ?? null, 'me' => (string)$id === $placeId,
+            'avg' => round(($a['sum'] + 21 * ($valid - $a['n'])) / $v, 2),
+            'top3' => round($a['top3'] * 100 / $v, 1), 'found' => round($a['n'] * 100 / $v, 1)];
+    }
+    usort($area, fn($x, $y) => [$x['avg'], -$x['top3']] <=> [$y['avg'], -$y['top3']]);
+    foreach ($area as $n => &$a) $a['pos'] = $n + 1;
+    unset($a);
+    $top = array_slice($area, 0, 6);
+    if (!array_filter($top, fn($a) => $a['me'])) {
+        foreach ($area as $a) if ($a['me']) { $top[] = $a; break; }
+    }
+
     return [
-        'points' => $pts, 'competitors' => $comp,
-        'avg_rank' => round($sum / max(1, $valid), 2),
-        'top3_pct' => round($top3 * 100 / max(1, $valid), 1),
-        'found_pct' => round($found * 100 / max(1, $valid), 1),
+        'points' => $pts, 'competitors' => $comp, 'area' => $valid ? $top : [], 'area_total' => count($area),
+        'avg_rank' => round($sum / $v, 2),
+        'top3_pct' => round($top3 * 100 / $v, 1),
+        'found_pct' => round($found * 100 / $v, 1),
     ];
 }
 
 function run_scan(int $kid): array {
     @set_time_limit(300); // grade grande pode passar de 1 min
-    $k = q('SELECT k.*, c.place_id, c.lat, c.lng FROM keywords k JOIN clients c ON c.id = k.client_id WHERE k.id = ?', [$kid])->fetch();
+    $k = q('SELECT k.*, c.place_id, c.lat, c.lng, c.name AS client_name FROM keywords k JOIN clients c ON c.id = k.client_id WHERE k.id = ?', [$kid])->fetch();
     if (!$k) throw new RuntimeException('Palavra-chave não encontrada.');
 
     $pts = grid_points((float)$k['lat'], (float)$k['lng'], (int)$k['grid_size'], (float)$k['radius_km']);
@@ -260,92 +357,26 @@ function run_scan(int $kid): array {
     }
 
     $s = summarize_scan($pts, $res, (string)$k['place_id']);
-    q('INSERT INTO scans (keyword_id, avg_rank, top3_pct, found_pct, points, competitors) VALUES (?,?,?,?,?,?)',
-        [$kid, $s['avg_rank'], $s['top3_pct'], $s['found_pct'], json_encode($s['points']), json_encode($s['competitors'], JSON_UNESCAPED_UNICODE)]);
+
+    // nomes do ranking da área (o que vier com nome fica guardado; o resto é consultado uma única vez)
+    $missing = [];
+    foreach ($s['area'] as $a) {
+        if ($a['me']) continue;
+        if ($a['name']) remember_place($a['id'], $a['name']); else $missing[] = $a['id'];
+    }
+    $names = $missing ? place_names($missing) : [];
+    foreach ($s['area'] as &$a) {
+        if ($a['me']) $a['name'] = $k['client_name'];
+        elseif (!$a['name']) $a['name'] = $names[$a['id']] ?? null;
+    }
+    unset($a);
+
+    q('INSERT INTO scans (keyword_id, avg_rank, top3_pct, found_pct, points, competitors, engine, area) VALUES (?,?,?,?,?,?,?,?)',
+        [$kid, $s['avg_rank'], $s['top3_pct'], $s['found_pct'], json_encode($s['points']),
+         json_encode($s['competitors'], JSON_UNESCAPED_UNICODE), $engine, json_encode($s['area'], JSON_UNESCAPED_UNICODE)]);
+    profile_snapshot((int)$k['client_id'], (string)$k['place_id']);
     return ['avg_rank' => $s['avg_rank'], 'top3_pct' => $s['top3_pct'], 'found_pct' => $s['found_pct']];
 }
 
-/* ---------- Layout ---------- */
-function page_header(string $title, bool $nav = true): void { ?>
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title><?= h($title) ?> · Ranking Local</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<link rel="stylesheet" href="assets/style.css">
-<script src="assets/map.js?v=3"></script>
-<?php if ($mk = trim((string)cfg('maps_js_key'))): ?>
-<script>RL.useGoogle();</script>
-<script async src="https://maps.googleapis.com/maps/api/js?key=<?= h(rawurlencode($mk)) ?>&amp;v=weekly&amp;loading=async&amp;language=pt-BR&amp;region=BR&amp;callback=rlGmapsReady" onerror="RL.googleFailed()"></script>
-<?php endif; ?>
-</head><body>
-<header class="top"><a href="index.php" class="brand">Ranking Local <span>· Consultório de Sucesso</span></a>
-<?php if ($nav): ?><nav><a href="index.php">Clientes</a><a href="logout.php">Sair</a></nav><?php endif; ?></header>
-<main>
-<?php }
-function page_footer(): void { echo '</main></body></html>'; }
-
-function rank_class(?int $r): string {
-    if ($r === null) return 'r-none';
-    if ($r <= 3) return 'r-top';
-    if ($r <= 10) return 'r-mid';
-    return 'r-low';
-}
-
-/* Visão do cliente (usada no painel e no link de compartilhamento) */
-function render_client(array $c, bool $readonly): void {
-    $kws = q('SELECT * FROM keywords WHERE client_id = ? ORDER BY id', [$c['id']])->fetchAll();
-    if (!$kws) { echo '<p class="muted">Nenhuma palavra-chave cadastrada ainda.</p>'; return; }
-    foreach ($kws as $k) {
-        $scans = q('SELECT * FROM scans WHERE keyword_id = ? ORDER BY created_at DESC LIMIT 26', [$k['id']])->fetchAll();
-        $last = $scans[0] ?? null; $prev = $scans[1] ?? null;
-        echo '<section class="card"><div class="card-head"><div><h2>' . h($k['keyword']) . '</h2>';
-        echo '<p class="muted">Grade ' . (int)$k['grid_size'] . '×' . (int)$k['grid_size'] . ' · raio ' . h(rtrim(rtrim($k['radius_km'], '0'), '.')) . ' km';
-        if ($last) echo ' · última varredura ' . h(date('d/m/Y H:i', strtotime($last['created_at'])));
-        echo '</p></div>';
-        if (!$readonly) {
-            echo '<div class="actions"><form method="post">' . csrf_field() . '<input type="hidden" name="action" value="scan"><input type="hidden" name="kid" value="' . $k['id'] . '"><button class="btn">Varrer agora</button></form>';
-            echo '<form method="post" onsubmit="return confirm(\'Apagar esta palavra-chave e todo o histórico dela?\')">' . csrf_field() . '<input type="hidden" name="action" value="del_kw"><input type="hidden" name="kid" value="' . $k['id'] . '"><button class="btn ghost">Apagar</button></form></div>';
-        }
-        echo '</div>';
-        if (!$last) { echo '<p class="muted">Ainda sem varredura. ' . ($readonly ? '' : 'Clique em “Varrer agora”.') . '</p></section>'; continue; }
-
-        $delta = function ($cur, $old, $lowerIsBetter) {
-            if ($old === null) return '';
-            $d = (float)$cur - (float)$old; if (abs($d) < 0.01) return '<small class="eq">=</small>';
-            $good = $lowerIsBetter ? $d < 0 : $d > 0;
-            return '<small class="' . ($good ? 'up' : 'down') . '">' . ($d > 0 ? '+' : '') . rtrim(rtrim(number_format($d, 1, ',', ''), '0'), ',') . '</small>';
-        };
-        echo '<div class="kpis">';
-        echo '<div><b>' . number_format((float)$last['avg_rank'], 1, ',', '') . '</b>' . $delta($last['avg_rank'], $prev['avg_rank'] ?? null, true) . '<span>posição média</span></div>';
-        echo '<div><b>' . number_format((float)$last['top3_pct'], 0) . '%</b>' . $delta($last['top3_pct'], $prev['top3_pct'] ?? null, false) . '<span>da área no top 3</span></div>';
-        echo '<div><b>' . number_format((float)$last['found_pct'], 0) . '%</b>' . $delta($last['found_pct'], $prev['found_pct'] ?? null, false) . '<span>da área no top 20</span></div>';
-        echo '</div>';
-
-        $mapId = 'map' . $k['id']; $chartId = 'ch' . $k['id'];
-        echo '<div class="grid2"><div><div id="' . $mapId . '" class="map"></div>';
-        echo '<p class="legend"><i class="r-top"></i>1–3 <i class="r-mid"></i>4–10 <i class="r-low"></i>11–20 <i class="r-none"></i>fora do top 20</p></div><div>';
-        $comp = json_decode($last['competitors'] ?? '[]', true) ?: [];
-        if ($comp) {
-            echo '<h3>Quem aparece no centro</h3><ol class="comp">';
-            foreach ($comp as $cp) echo '<li' . ($cp['me'] ? ' class="me"' : '') . '>' . h($cp['name']) . '</li>';
-            echo '</ol>';
-        }
-        if (count($scans) > 1) echo '<h3>Evolução da posição média</h3><canvas id="' . $chartId . '" height="160"></canvas>';
-        echo '</div></div>';
-
-        echo '<details><summary>Histórico (' . count($scans) . ')</summary><table><tr><th>Data</th><th>Posição média</th><th>Top 3</th><th>Top 20</th></tr>';
-        foreach ($scans as $s) echo '<tr><td>' . h(date('d/m/Y', strtotime($s['created_at']))) . '</td><td>' . number_format((float)$s['avg_rank'], 1, ',', '') . '</td><td>' . (int)$s['top3_pct'] . '%</td><td>' . (int)$s['found_pct'] . '%</td></tr>';
-        echo '</table></details></section>';
-
-        $hist = array_reverse(array_map(fn($s) => ['d' => date('d/m', strtotime($s['created_at'])), 'v' => (float)$s['avg_rank']], $scans));
-        $flags = JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE;
-        echo '<script>RL.add(' . json_encode([
-            'map' => $mapId, 'chart' => $chartId,
-            'pts' => json_decode($last['points'] ?? '[]', true) ?: [],
-            'home' => [(float)$c['lat'], (float)$c['lng']],
-            'hist' => $hist,
-        ], $flags) . ');</script>';
-    }
-}
+require __DIR__ . '/insights.php';
+require __DIR__ . '/view.php';

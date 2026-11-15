@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 page_header('Entrar', false); ?>
 <div class="card login">
+  <img src="assets/logo.png" alt="Consultório de Sucesso" width="84" height="84">
   <h1>Ranking Local</h1>
   <p class="muted">Acesso da equipe</p>
   <?php if ($err): ?><div class="alert"><?= h($err) ?></div><?php endif; ?>
