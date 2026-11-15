@@ -1,0 +1,74 @@
+{
+  "titulo": "Golpe do Pix em loja de verdade?",
+  "motor": "motor-cinetico.html",
+  "perfil": "@euaugusto_oliv",
+  "fundo": "preto",
+  "exibir": {},
+  "capa": {"texto": ["Golpe comprando", "*em loja de verdade?*"], "selo": "Cuidado com o Pix na Black Friday", "selo_y": 1450},
+  "cenas": [
+    {
+      "fala": "Dá pra cair em golpe comprando em loja de verdade? Na Black Friday, dá. E o golpe tá na hora do Pix.",
+      "texto": ["Golpe"],
+      "fundo_cor": [[0, "black"], ["dá", "red"]],
+      "enfase": ["golpe", "verdade", "pix"],
+      "prop": {"tipo": "pictos", "ruim": true, "selo": {"txt": "ALERTA DO PROCON", "em": "pix"},
+        "itens": [
+          {"icone": "🏬", "txt": "Loja de verdade", "sub": "preço certo", "em": 0.12},
+          {"icone": "🔁", "txt": "QR Code trocado", "sub": "na hora de pagar", "em": "golpe"},
+          {"icone": "💸", "txt": "Dinheiro some", "sub": "vai pro golpista", "em": "pix"}
+        ]}
+    },
+    {
+      "fala": "O golpista troca o QR Code ou o Pix copia e cola bem na hora do pagamento. A loja é real, o preço tá certo, mas o dinheiro cai na conta dele.",
+      "texto": ["Como funciona"],
+      "fundo_cor": [[0, "red"], ["conta", "black"]],
+      "enfase": ["troca", "copia", "real", "conta"],
+      "prop": {"tipo": "fluxo", "em": "troca", "de": "LOJA", "para": "GOLPE",
+        "rot_de": "ERA PRA", "rot_para": "CAI NO", "txt": "QR CODE TROCADO NA HORA DE PAGAR"}
+    },
+    {
+      "fala": "Então, antes de confirmar, olha a tela do banco. Confere o nome de quem vai receber, o CNPJ e o valor. Se o nome não bater com a loja, cancela.",
+      "texto": ["Confere"],
+      "fundo_cor": [[0, "black"], ["cancela", "red"]],
+      "enfase": ["banco", "nome", "valor", "cancela"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "NÃO BATEU? CANCELA", "em": "cancela"},
+        "itens": [
+          {"icone": "👤", "txt": "Nome", "sub": "de quem recebe", "em": "nome"},
+          {"icone": "🏢", "txt": "CNPJ", "sub": "da loja", "em": "cnpj"},
+          {"icone": "💰", "txt": "Valor", "sub": "igual ao da compra", "em": "valor"}
+        ]}
+    },
+    {
+      "fala": "Mas, infelizmente, se você já caiu, não fica com vergonha. Avisa o banco na hora, pede a devolução pelo MED do Pix e faz boletim de ocorrência.",
+      "texto": ["Se caiu"],
+      "fundo_cor": [[0, "red"], ["ocorrência", "black"]],
+      "enfase": ["vergonha", "banco", "devolução", "boletim"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "AGE RÁPIDO", "em": "ocorrência"},
+        "itens": [
+          {"icone": "🏦", "txt": "Avisa o banco", "sub": "na hora", "em": "banco"},
+          {"icone": "↩️", "txt": "Pede o MED", "sub": "até 80 dias", "em": "devolução"},
+          {"icone": "📄", "txt": "Boletim", "sub": "de ocorrência", "em": "boletim"}
+        ]}
+    },
+    {
+      "fala": "E se você vende, deixa o nome e o CNPJ da sua empresa bem à vista. Cliente que consegue conferir compra sem medo.",
+      "texto": ["Se você vende"],
+      "fundo_cor": [[0, "black"], ["medo", "red"]],
+      "enfase": ["vende", "cnpj", "vista", "medo"],
+      "prop": {"tipo": "pictos", "selo": {"txt": "CLIENTE CONFIA", "em": "medo"},
+        "itens": [
+          {"icone": "🏢", "txt": "Nome e CNPJ", "sub": "à vista", "em": "nome"},
+          {"icone": "✅", "txt": "Cliente confere", "sub": "antes de pagar", "em": "conferir"},
+          {"icone": "🤝", "txt": "Compra sem medo", "em": "medo"}
+        ]}
+    },
+    {
+      "fala": "Gostou? Segue pra entender a notícia sem enrolação. E se o seu negócio tá começando agora, me manda uma mensagem no direct que eu te ajudo.",
+      "texto": ["Gostou?"],
+      "fundo_cor": [[0, "red"], ["negocio", "black"]],
+      "enfase": ["gostou", "segue", "negocio", "direct"],
+      "prop": {"tipo": "cta", "botao": "Seguir ➕", "sub": "Negócio começando? Me chama no direct", "y": 760},
+      "fim": 1.4
+    }
+  ]
+}
