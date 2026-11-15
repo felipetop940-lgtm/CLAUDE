@@ -35,4 +35,4 @@ CREATE TABLE IF NOT EXISTS scans (
   FOREIGN KEY (keyword_id) REFERENCES keywords(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- As tabelas meta, places_cache, notes, tasks e profile_stats são criadas sozinhas pelo sistema no primeiro acesso.
+-- As colunas e tabelas novas (ranks, kind, meta, places_cache, notes, tasks e profile_stats etc.) são criadas sozinhas pelo sistema no primeiro acesso.

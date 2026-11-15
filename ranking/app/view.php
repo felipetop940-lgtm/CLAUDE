@@ -13,8 +13,8 @@ function page_header(string $title, bool $nav = true): void { ?>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<link rel="stylesheet" href="assets/style.css?v=5">
-<script src="assets/map.js?v=4"></script>
+<link rel="stylesheet" href="assets/style.css?v=7">
+<script src="assets/map.js?v=7"></script>
 <?php if ($mk = trim((string)cfg('maps_js_key'))): ?>
 <script>RL.useGoogle();</script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=<?= h(rawurlencode($mk)) ?>&amp;v=weekly&amp;loading=async&amp;language=pt-BR&amp;region=BR&amp;callback=rlGmapsReady" onerror="RL.googleFailed()"></script>
@@ -54,6 +54,36 @@ function delta_badge($cur, $old, bool $lowerIsBetter, string $suffix = ''): stri
     $txt = rtrim(rtrim(number_format(abs($d), 1, ',', '.'), '0'), ',');
     return '<small class="delta ' . ($good ? 'up' : 'down') . '">' . ($good ? '▲' : '▼') . ' ' . $txt . $suffix . '</small>';
 }
+// Visibilidade: 100% = 1º em todos os pontos; 0% = fora do top 20 em todos. Sai direto da posição média.
+function visibility($avg): ?int { return $avg === null ? null : (int)round(max(0, min(100, (21 - (float)$avg) / 20 * 100))); }
+function vis_class(?int $v): string { return $v === null ? '' : ($v >= 70 ? 'v-hi' : ($v >= 40 ? 'v-mid' : 'v-lo')); }
+function pos_badge(?int $pos): string {
+    if (!$pos) return '<span class="pos p-none">–</span>';
+    return '<span class="pos ' . ($pos <= 3 ? 'p-top' : ($pos <= 10 ? 'p-mid' : 'p-low')) . '">Pos. ' . $pos . '</span>';
+}
+function stars($rating, $reviews): string {
+    if ($rating === null) return $reviews !== null ? '<span class="rev">' . (int)$reviews . ' avaliações</span>' : '';
+    $r = (float)$rating;
+    return '<span class="stars" style="--r:' . round($r / 5 * 100) . '%" aria-hidden="true">★★★★★</span><span class="rev">' . number_format($r, 1, ',', '')
+         . ($reviews !== null ? ' · ' . number_format((int)$reviews, 0, ',', '.') . ' avaliações' : '') . '</span>';
+}
+function place_photo(?array $info, string $name): string {
+    $src = $info['photo'] ?? '';
+    if ($src) return '<img class="ph" src="' . h($src) . '" alt="" loading="lazy" width="64" height="64">';
+    return '<span class="ph ph-none">' . h(mb_strtoupper(mb_substr(trim(preg_replace('/^(dra?\.?|cl[ií]nica)\s+/iu', '', $name)) ?: $name, 0, 1))) . '</span>';
+}
+function maps_link(string $placeId, ?array $info): string {
+    return !empty($info['maps_url']) ? $info['maps_url'] : 'https://www.google.com/maps/place/?q=place_id:' . rawurlencode($placeId);
+}
+// Dificuldade da área: estimativa nossa, pela média de avaliações dos 5 primeiros concorrentes
+function area_difficulty(array $area, array $infos): ?array {
+    $rv = [];
+    foreach ($area as $a) { if (!empty($a['me'])) continue; $r = $infos[$a['id']]['reviews'] ?? null; if ($r !== null) $rv[] = (int)$r; if (count($rv) >= 5) break; }
+    if (count($rv) < 3) return null;
+    $m = array_sum($rv) / count($rv);
+    return $m < 40 ? ['BAIXA', 'v-hi', 25, $m] : ($m < 150 ? ['MÉDIA', 'v-mid', 60, $m] : ['ALTA', 'v-lo', 92, $m]);
+}
+
 // Mini gráfico em SVG. Valores de posição: menor é melhor, então o eixo é invertido.
 function sparkline(array $vals, int $w = 120, int $h = 34): string {
     $vals = array_values(array_map('floatval', $vals));
@@ -82,6 +112,11 @@ function client_keywords(int $clientId): array {
         $k['last'] = $rows[0] ?? null; $k['prev'] = $rows[1] ?? null; $k['n_scans'] = count($rows);
         $k['first'] = $rows ? end($rows) : null;
         $k['series'] = array_reverse(array_column($rows, 'avg_rank'));
+        $k['pos'] = null;
+        if ($rows) {
+            $area = json_decode((string)q('SELECT area FROM scans WHERE keyword_id = ? ORDER BY id DESC LIMIT 1', [$k['id']])->fetchColumn(), true) ?: [];
+            foreach ($area as $a) if (!empty($a['me'])) $k['pos'] = (int)($a['pos'] ?? 0) ?: null;
+        }
     }
     unset($k);
     return $kws;
@@ -113,6 +148,8 @@ function render_client_kpis(array $kws, array $profile): void {
     $s = client_summary($kws); $p = $profile['last'];
     $active = count(array_filter($kws, fn($k) => $k['active']));
     echo '<div class="kpis">';
+    $vis = visibility($s['avg']);
+    echo '<div class="kpi"><span>Visibilidade</span><b>' . ($vis !== null ? $vis . '%' : '–') . '</b>' . ($vis !== null ? '<div class="vbar ' . vis_class($vis) . '"><i style="width:' . $vis . '%"></i></div>' : '') . '<em>presença no mapa, 100% = 1º em tudo</em></div>';
     echo '<div class="kpi"><span>Posição média</span><b>' . ($s['avg'] !== null ? fmt($s['avg']) : '–') . '</b>' . delta_badge($s['avg_cmp'], $s['avg_prev'], true) . '<em>todas as palavras ativas</em></div>';
     echo '<div class="kpi"><span>Área no top 3</span><b>' . ($s['top3'] !== null ? round($s['top3']) . '%' : '–') . '</b>' . delta_badge($s['top3_cmp'], $s['top3_prev'], false, ' p.p.') . '<em>presença entre os 3 primeiros</em></div>';
     echo '<div class="kpi"><span>Nota no Google</span><b>' . ($p && $p['rating'] !== null ? fmt($p['rating']) : '–') . '</b><em>' . ($p ? 'lida em ' . fdate($p['created_at']) : 'lida na próxima varredura') . '</em></div>';
@@ -128,18 +165,18 @@ function render_client_kpis(array $kws, array $profile): void {
 
 // Tabela de palavras-chave. $url(k_id) monta o link de cada linha.
 function render_keyword_table(array $kws, int $selId, bool $readonly, callable $url): void {
-    echo '<div class="table-wrap"><table class="kw"><thead><tr><th>Palavra-chave</th><th>Grade</th><th class="num">Posição média</th><th class="num">Top 3</th><th class="num">Top 20</th><th>Evolução</th><th>Última</th>' . ($readonly ? '' : '<th></th>') . '</tr></thead><tbody>';
+    echo '<div class="table-wrap"><table class="kw"><thead><tr><th>Palavra-chave</th><th>Grade</th><th>Ranking</th><th class="num">Posição média</th><th class="num">Top 3</th><th class="num">Top 20</th><th>Evolução</th><th>Última</th>' . ($readonly ? '' : '<th></th>') . '</tr></thead><tbody>';
     foreach ($kws as $k) {
         $l = $k['last']; $p = $k['prev'];
         echo '<tr class="' . ((int)$k['id'] === $selId ? 'sel' : '') . ($k['active'] ? '' : ' off') . '">';
         echo '<td><a class="kw-name" href="' . h($url((int)$k['id'])) . '">' . h($k['keyword']) . '</a>' . ($k['active'] ? '' : ' <span class="chip">pausada</span>') . '</td>';
         echo '<td class="muted">' . (int)$k['grid_size'] . '×' . (int)$k['grid_size'] . ' · ' . h(rtrim(rtrim((string)$k['radius_km'], '0'), '.')) . ' km</td>';
         if ($l) {
-            echo '<td class="num">' . avg_tag($l['avg_rank']) . ' ' . delta_badge($l['avg_rank'], $p['avg_rank'] ?? null, true) . '</td>';
+            echo '<td>' . pos_badge($k['pos']) . '</td><td class="num">' . avg_tag($l['avg_rank']) . ' ' . delta_badge($l['avg_rank'], $p['avg_rank'] ?? null, true) . '</td>';
             echo '<td class="num">' . round((float)$l['top3_pct']) . '%</td><td class="num">' . round((float)$l['found_pct']) . '%</td>';
             echo '<td>' . sparkline($k['series']) . '</td><td class="muted">' . fdate($l['created_at'], 'd/m/y') . '</td>';
         } else {
-            echo '<td class="num muted" colspan="5">ainda sem varredura</td>';
+            echo '<td class="num muted" colspan="6">ainda sem varredura</td>';
         }
         if (!$readonly) {
             $f = fn(string $action, string $label, string $cls = 'link', string $confirm = '') =>
@@ -154,58 +191,82 @@ function render_keyword_table(array $kws, int $selId, bool $readonly, callable $
     echo '</tbody></table></div>';
 }
 
-// Detalhe de uma palavra-chave: mapa com linha do tempo, concorrentes, evolução, orientações e histórico
-function render_keyword_detail(array $c, array $k, bool $readonly, ?array $profile): void {
+// Detalhe de uma palavra-chave: coluna de concorrentes + mapa com linha do tempo, evolução, orientações e histórico
+function render_keyword_detail(array $c, array $k, bool $readonly, ?array $profile, array $kws = [], ?callable $url = null): void {
     $scans = q('SELECT * FROM scans WHERE keyword_id = ? ORDER BY id DESC LIMIT 60', [$k['id']])->fetchAll();
     $total = (int)q('SELECT COUNT(*) FROM scans WHERE keyword_id = ?', [$k['id']])->fetchColumn();
     $last = $scans[0] ?? null; $prev = $scans[1] ?? null; $first = $scans ? end($scans) : null;
     $id = (int)$k['id'];
     $size = (int)$k['grid_size']; $step = $size > 1 ? (float)$k['radius_km'] / intdiv($size, 2) : 0;
 
-    echo '<section class="card" id="kw"><div class="card-head"><div><p class="eyebrow">Palavra-chave</p><h2>' . h($k['keyword']) . '</h2>';
+    echo '<section class="card" id="kw"><div class="card-head"><div><p class="eyebrow">Mapa de posições</p><h2>' . h($k['keyword']) . '</h2>';
     echo '<p class="muted">Grade ' . $size . '×' . $size . ' · ' . ($size * $size) . ' pontos a cada ' . fmt($step) . ' km · raio ' . h(rtrim(rtrim((string)$k['radius_km'], '0'), '.')) . ' km</p></div>';
     if (!$readonly && $last) echo '<div class="actions"><a class="btn ghost" href="export.php?k=' . $id . '">Exportar CSV</a><form method="post">' . csrf_field() . '<input type="hidden" name="action" value="scan"><input type="hidden" name="kid" value="' . $id . '"><button class="btn" data-busy="Varrendo…">Varrer agora</button></form></div>';
     echo '</div>';
     if (!$last) { echo '<p class="empty">Ainda sem varredura. ' . ($readonly ? '' : 'Clique em “Varrer” na tabela acima.') . '</p></section>'; return; }
+
+    $area = json_decode($last['area'] ?? '[]', true) ?: [];
+    $infos = places_info(array_merge(array_column($area, 'id'), [$c['place_id']]));
+    $me = null; foreach ($area as $a) if (!empty($a['me'])) $me = $a;
+    $vis = visibility($last['avg_rank']); $mapId = 'map' . $id; $tlId = 'tl' . $id; $n = count($scans);
+    $diff = area_difficulty($area, $infos);
+
+    echo '<div class="posmap"><aside class="pm-side">';
+    // palavras-chave como atalhos
+    if ($url && count($kws) > 1) {
+        echo '<p class="pm-label">Palavras-chave (' . count($kws) . ')</p><div class="chips">';
+        foreach ($kws as $kk) echo '<a class="kchip' . ((int)$kk['id'] === $id ? ' on' : '') . '" href="' . h($url((int)$kk['id'])) . '">' . h($kk['keyword']) . '</a>';
+        echo '</div>';
+    }
+    // cartão do cliente
+    $mi = $infos[$c['place_id']] ?? null;
+    echo '<div class="pcard me"><div class="pc-top">' . pos_badge($me['pos'] ?? null) . '</div><div class="pc-body">' . place_photo($mi, $c['name']) . '<div class="pc-txt"><b>' . h($c['name']) . '</b>';
+    echo '<div class="meter"><span>Visibilidade</span><div class="vbar ' . vis_class($vis) . '"><i style="width:' . $vis . '%"></i></div><em class="' . vis_class($vis) . '">' . $vis . '%</em></div>';
+    if ($diff) echo '<div class="meter" title="Estimativa nossa: média de ' . round($diff[3]) . ' avaliações entre os primeiros concorrentes"><span>Dificuldade da área</span><div class="vbar ' . $diff[1] . '"><i style="width:' . $diff[2] . '%"></i></div><em class="' . $diff[1] . '">' . $diff[0] . '</em></div>';
+    echo '<a class="glink" target="_blank" rel="noopener" href="' . h(maps_link($c['place_id'], $mi)) . '">Abrir no Google ↗</a></div></div></div>';
+
+    // concorrentes, na ordem do ranking da área, com o cliente marcado na posição dele
+    $hasRanks = !empty($last['ranks']);
+    if ($area) {
+        echo '<p class="pm-label">Ranking da área (' . count($area) . ')' . ($hasRanks ? '<small>clique para ver o mapa de cada um</small>' : '') . '</p><div class="plist">';
+        foreach ($area as $a) {
+            $isMe = !empty($a['me']); $in = $infos[$a['id']] ?? null; $nm = $a['name'] ?? ($in['name'] ?? 'Perfil sem nome'); $v = visibility($a['avg']);
+            echo '<div class="pcard' . ($isMe ? ' me' : '') . '" data-pid="' . h($a['id']) . '"><div class="pc-top">' . pos_badge((int)($a['pos'] ?? 0))
+               . '<span class="pc-vis ' . vis_class($v) . '" title="Visibilidade na grade">' . $v . '%</span></div>';
+            echo '<div class="pc-body">' . place_photo($in, $nm) . '<div class="pc-txt"><b>' . h($nm) . '</b>';
+            if (!$isMe && !empty($in['address'])) echo '<span class="addr">' . h($in['address']) . '</span>';
+            if (!empty($in['category'])) echo '<span class="cat">' . h($in['category']) . '</span>';
+            $st = stars($in['rating'] ?? null, $in['reviews'] ?? null); if ($st) echo '<div class="rating">' . $st . '</div>';
+            echo '<div class="pc-links">';
+            if ($hasRanks && !$isMe) echo '<button type="button" class="link" data-focus="' . h($a['id']) . '" data-name="' . h($nm) . '">Ver no mapa</button>';
+            echo '<a class="glink" target="_blank" rel="noopener" href="' . h(maps_link($a['id'], $in)) . '">Abrir no Google ↗</a></div></div></div></div>';
+        }
+        echo '</div><p class="hint">Ranking pela posição média na grade inteira, com a mesma régua para todos (ausente no ponto = 21).</p>';
+    } else {
+        echo '<p class="hint">O ranking de concorrentes aparece a partir da próxima varredura.</p>';
+    }
+    echo '</aside><div class="pm-main">';
+    echo '<div class="focusbar" id="fb' . $id . '" hidden><span></span><button type="button" class="btn ghost">← Voltar para ' . h($c['name']) . '</button></div>';
+    echo '<div id="' . $mapId . '" class="map"></div>';
+    echo '<div class="timeline" id="' . $tlId . '"><button type="button" data-d="-1" aria-label="Varredura anterior">‹</button>'
+       . '<input type="range" min="0" max="' . max(0, $n - 1) . '" value="' . max(0, $n - 1) . '"' . ($n < 2 ? ' disabled' : '') . ' aria-label="Linha do tempo das varreduras">'
+       . '<button type="button" data-d="1" aria-label="Próxima varredura">›</button><span class="tl-label"></span></div>';
+    echo '<p class="legend"><i class="r-top"></i>1–3 <i class="r-mid"></i>4–10 <i class="r-low"></i>11–20 <i class="r-none"></i>fora do top 20 <i class="r-err"></i>sem leitura <span>★ endereço do cliente</span></p>';
 
     echo '<div class="kpis">';
     $since = ($first && $first !== $last) ? fn($cur, $old, $low, $suf = '') => '<em>desde ' . fdate($first['created_at'], 'd/m/y') . ': ' . (delta_badge($cur, $old, $low, $suf) ?: '=') . '</em>' : fn() => '<em>primeira varredura</em>';
     echo '<div class="kpi"><span>Posição média</span><b>' . fmt($last['avg_rank']) . '</b>' . delta_badge($last['avg_rank'], $prev['avg_rank'] ?? null, true) . $since($last['avg_rank'], $first['avg_rank'], true) . '</div>';
     echo '<div class="kpi"><span>Área no top 3</span><b>' . round((float)$last['top3_pct']) . '%</b>' . delta_badge($last['top3_pct'], $prev['top3_pct'] ?? null, false, ' p.p.') . $since($last['top3_pct'], $first['top3_pct'], false, ' p.p.') . '</div>';
     echo '<div class="kpi"><span>Área no top 20</span><b>' . round((float)$last['found_pct']) . '%</b>' . delta_badge($last['found_pct'], $prev['found_pct'] ?? null, false, ' p.p.') . $since($last['found_pct'], $first['found_pct'], false, ' p.p.') . '</div>';
-    $st = grid_stats(json_decode($last['points'] ?? '[]', true) ?: []);
-    echo '<div class="kpi"><span>No endereço</span><b>' . ($st['center_err'] ? '–' : ($st['center'] === null ? '20+' : $st['center'] . 'º')) . '</b><em>posição no ponto central</em></div>';
-    echo '</div>';
-
-    // mapa + linha do tempo
-    $mapId = 'map' . $id; $tlId = 'tl' . $id; $n = count($scans);
-    echo '<div class="grid2"><div><div id="' . $mapId . '" class="map"></div>';
-    echo '<div class="timeline" id="' . $tlId . '"><button type="button" data-d="-1" aria-label="Varredura anterior">‹</button>'
-       . '<input type="range" min="0" max="' . max(0, $n - 1) . '" value="' . max(0, $n - 1) . '"' . ($n < 2 ? ' disabled' : '') . ' aria-label="Linha do tempo das varreduras">'
-       . '<button type="button" data-d="1" aria-label="Próxima varredura">›</button><span class="tl-label"></span></div>';
-    echo '<p class="legend"><i class="r-top"></i>1–3 <i class="r-mid"></i>4–10 <i class="r-low"></i>11–20 <i class="r-none"></i>fora do top 20 <i class="r-err"></i>sem leitura <span>★ endereço do cliente</span></p></div><div>';
-
-    $comp = json_decode($last['competitors'] ?? '[]', true) ?: [];
-    if ($comp) {
-        echo '<h3>Quem aparece no centro</h3><ol class="comp">';
-        foreach ($comp as $cp) echo '<li' . (!empty($cp['me']) ? ' class="me"' : '') . '>' . h($cp['name']) . '</li>';
-        echo '</ol>';
-    }
-    $area = json_decode($last['area'] ?? '[]', true) ?: [];
-    if ($area) {
-        echo '<h3>Quem domina a área</h3><table class="area"><thead><tr><th>#</th><th>Perfil</th><th class="num">Média</th><th class="num">Top 3</th></tr></thead><tbody>';
-        foreach ($area as $a) {
-            echo '<tr' . (!empty($a['me']) ? ' class="me"' : '') . '><td>' . (int)($a['pos'] ?? 0) . '</td><td>' . h($a['name'] ?? 'Perfil sem nome') . '</td><td class="num">' . fmt($a['avg']) . '</td><td class="num">' . round((float)$a['top3']) . '%</td></tr>';
-        }
-        echo '</tbody></table><p class="hint">Média na grade inteira, com a mesma régua do cliente (ausente no ponto = 21).</p>';
-    }
-    echo '</div></div>';
+    $stt = grid_stats(json_decode($last['points'] ?? '[]', true) ?: []);
+    echo '<div class="kpi"><span>No endereço</span><b>' . ($stt['center_err'] ? '–' : ($stt['center'] === null ? '20+' : $stt['center'] . 'º')) . '</b><em>posição no ponto central</em></div>';
+    echo '</div></div></div>';
 
     // evolução
     $asc = array_reverse($scans);
     if ($n > 1) {
         echo '<div class="grid2 charts"><div><h3>Posição média ao longo do tempo</h3><canvas id="ca' . $id . '" height="150"></canvas></div>';
-        echo '<div><h3>% da área no top 3</h3><canvas id="cb' . $id . '" height="150"></canvas></div></div>';
+        echo '<div><h3>Visibilidade ao longo do tempo</h3><canvas id="cb' . $id . '" height="150"></canvas></div></div>';
     }
 
     // orientações (só para a equipe)
@@ -224,10 +285,10 @@ function render_keyword_detail(array $c, array $k, bool $readonly, ?array $profi
     }
 
     // histórico
-    echo '<details' . ($readonly ? '' : '') . '><summary>Histórico de varreduras (' . $total . ')</summary><div class="table-wrap"><table><thead><tr><th>Data</th><th class="num">Posição média</th><th class="num">Top 3</th><th class="num">Top 20</th></tr></thead><tbody>';
+    echo '<details><summary>Histórico de varreduras (' . $total . ')</summary><div class="table-wrap"><table><thead><tr><th>Data</th><th class="num">Posição média</th><th class="num">Visibilidade</th><th class="num">Top 3</th><th class="num">Top 20</th></tr></thead><tbody>';
     foreach ($scans as $i => $s) {
         $older = $scans[$i + 1] ?? null;
-        echo '<tr><td>' . fdate($s['created_at'], 'd/m/Y H:i') . '</td><td class="num">' . fmt($s['avg_rank']) . ' ' . delta_badge($s['avg_rank'], $older['avg_rank'] ?? null, true) . '</td><td class="num">' . round((float)$s['top3_pct']) . '%</td><td class="num">' . round((float)$s['found_pct']) . '%</td></tr>';
+        echo '<tr><td>' . fdate($s['created_at'], 'd/m/Y H:i') . '</td><td class="num">' . fmt($s['avg_rank']) . ' ' . delta_badge($s['avg_rank'], $older['avg_rank'] ?? null, true) . '</td><td class="num">' . visibility($s['avg_rank']) . '%</td><td class="num">' . round((float)$s['top3_pct']) . '%</td><td class="num">' . round((float)$s['found_pct']) . '%</td></tr>';
     }
     echo '</tbody></table></div>' . ($total > $n && !$readonly ? '<p class="hint">Mostrando as ' . $n . ' mais recentes. O CSV traz todas.</p>' : '') . '</details></section>';
 
@@ -238,11 +299,14 @@ function render_keyword_detail(array $c, array $k, bool $readonly, ?array $profi
         'pts' => json_decode($s['points'] ?? '[]', true) ?: [],
         'avg' => fmt($s['avg_rank']), 'top3' => (string)round((float)$s['top3_pct']), 'found' => (string)round((float)$s['found_pct']),
     ], $asc);
-    echo '<script>RL.add(' . json_encode(['map' => $mapId, 'ctrl' => $tlId, 'scans' => $items, 'home' => [(float)$c['lat'], (float)$c['lng']]], $flags) . ');';
+    echo '<script>RL.add(' . json_encode([
+        'map' => $mapId, 'ctrl' => $tlId, 'focusbar' => 'fb' . $id, 'scans' => $items, 'home' => [(float)$c['lat'], (float)$c['lng']],
+        'step' => $step, 'ranks' => json_decode($last['ranks'] ?? 'null', true), 'me' => $c['place_id'],
+    ], $flags) . ');';
     if ($n > 1) {
         $labels = json_encode(array_map(fn($s) => fdate($s['created_at'], 'd/m'), $asc));
         echo 'RL.chart("ca' . $id . '",' . $labels . ',' . json_encode(array_map(fn($s) => (float)$s['avg_rank'], $asc)) . ',{reverse:true,label:"posição média"});';
-        echo 'RL.chart("cb' . $id . '",' . $labels . ',' . json_encode(array_map(fn($s) => (float)$s['top3_pct'], $asc)) . ',{suffix:"%",max:100,label:"% no top 3"});';
+        echo 'RL.chart("cb' . $id . '",' . $labels . ',' . json_encode(array_map(fn($s) => visibility($s['avg_rank']), $asc)) . ',{suffix:"%",max:100,label:"visibilidade"});';
     }
     echo '</script>';
 }

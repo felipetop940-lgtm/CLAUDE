@@ -20,7 +20,7 @@ else {
     echo '<section class="card"><div class="card-head"><div><p class="eyebrow">Acompanhamento</p><h2>Palavras-chave</h2><p class="muted">Clique em uma para ver o mapa e a evolução.</p></div></div>';
     render_keyword_table($kws, (int)$sel['id'], true, fn(int $kid) => 'share.php?t=' . $t . '&k=' . $kid . '#kw');
     echo '</section>';
-    render_keyword_detail($c, $sel, true, null);
+    render_keyword_detail($c, $sel, true, null, $kws, fn(int $kid) => 'share.php?t=' . $t . '&k=' . $kid . '#kw');
     echo '<p class="hint center">Posição média: menor é melhor. Fora do top 20 conta como 21. O resultado do Google varia por aparelho e histórico de busca; o que vale é a evolução medida sempre com a mesma régua.</p>';
 }
 page_footer();

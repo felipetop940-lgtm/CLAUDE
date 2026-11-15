@@ -18,6 +18,14 @@ return [
     // Coloque false para desligar.
     'track_reviews' => true,
 
+    // Coluna de concorrentes: endereço, categoria, nota, nº de avaliações e foto de cada perfil.
+    // Usa consultas pagas do Google (com cota grátis mensal). false = só nomes, custo zero.
+    'competitor_details' => true,
+    'competitor_photos'  => true,
+
+    // Trava de custo: máximo de consultas pagas por mês, para cada tipo (busca, detalhes, fotos).
+    'monthly_cap' => 800,
+
     // DataForSEO (app.dataforseo.com/api-access) — só é usado com 'engine' => 'dataforseo'
     'dfs_login'    => 'LOGIN_DA_API',
     'dfs_password' => 'SENHA_DA_API',

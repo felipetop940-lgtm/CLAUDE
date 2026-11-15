@@ -53,7 +53,7 @@ function keyword_insights(array $k, array $scans, ?array $profile): array {
                 'do' => [
                     'Conferir se o perfil continua verificado, sem aviso de suspensão ou edição pendente.',
                     'Ver se alguém mudou categoria, nome, endereço ou horário nos últimos dias.',
-                    'Olhar a tabela “Quem domina a área”: entrou concorrente novo ou alguém disparou em avaliações?',
+                    'Olhar o ranking da área ao lado do mapa: entrou concorrente novo ou alguém disparou em avaliações?',
                     'Registrar em Anotações o que foi mexido no perfil e confirmar na próxima varredura antes de mudar a estratégia.',
                 ]];
         } elseif ($d <= -1.5) {
@@ -90,7 +90,7 @@ function keyword_insights(array $k, array $scans, ?array $profile): array {
         $out[] = ['pri' => 'media', 'title' => 'Forte na porta, some com a distância',
             'why' => 'No endereço o perfil está em ' . $center . 'º, mas na borda da grade a média é ' . $n1($st['borda']) . '. O Google está tratando o perfil como opção só do bairro.',
             'do' => [
-                'Aumentar autoridade: mais avaliações (volume e frequência) do que os concorrentes da tabela ao lado.',
+                'Aumentar autoridade: mais avaliações (volume e frequência) do que os concorrentes do ranking ao lado do mapa.',
                 'Pedir que pacientes de outros bairros citem o bairro na avaliação.',
                 'Criar no site conteúdo por bairro ou região atendida e citar as regiões na descrição do perfil.',
                 'Padronizar nome, endereço e telefone em site, Instagram, Doctoralia e diretórios.',
@@ -108,7 +108,7 @@ function keyword_insights(array $k, array $scans, ?array $profile): array {
         $out[] = ['pri' => 'alta', 'title' => 'Na briga, mas fora do top 3 (' . $center . 'º no centro)',
             'why' => 'O Google já entende que o perfil é relevante para esta busca. O que separa do top 3 costuma ser autoridade: avaliações, atividade e completude do perfil.',
             'do' => [
-                'Comparar nº de avaliações e nota com os três primeiros de “Quem aparece no centro” e montar meta para encostar.',
+                'Comparar nº de avaliações e nota com os três primeiros do ranking da área e montar meta para encostar.',
                 'Completar 100% do perfil: serviços, atributos, horários, link de agendamento e descrição.',
                 'Subir fotos novas toda semana (fachada, recepção, sala, equipe).',
                 'Responder todas as avaliações, inclusive as antigas.',
@@ -142,7 +142,7 @@ function keyword_insights(array $k, array $scans, ?array $profile): array {
     if ($leader && $me && ($me['pos'] ?? 1) > 1 && !empty($leader['name'])) {
         $out[] = ['pri' => 'baixa', 'title' => 'Quem lidera a área: ' . $leader['name'],
             'why' => 'Média ' . $n1($leader['avg']) . ' na grade contra ' . $n1($me['avg']) . ' do cliente, e top 3 em ' . round((float)$leader['top3']) . '% dos pontos.',
-            'do' => ['Abrir o perfil dele no Google e comparar: categoria, nº de avaliações, fotos, serviços e frequência de postagens.', 'Copiar o que ele faz melhor antes de inventar algo novo.']];
+            'do' => ['Clicar em “Ver no mapa” no perfil dele para ver onde ele ganha, e abrir no Google para comparar: categoria, nº de avaliações, fotos, serviços e frequência de postagens.', 'Copiar o que ele faz melhor antes de inventar algo novo.']];
     }
 
     // 5. Avaliações do perfil

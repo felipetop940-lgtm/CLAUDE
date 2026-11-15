@@ -10,11 +10,14 @@
   /* ---- Leaflet ---- */
   function leafletApi(el, it) {
     var m = L.map(el, { scrollWheelZoom: true });
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { attribution: '© OpenStreetMap © CARTO' }).addTo(m);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap', maxZoom: 19 }).addTo(m);
     var layer = L.layerGroup().addTo(m), fitted = false;
     L.marker(it.home, { icon: L.divIcon({ className: 'home', html: '★', iconSize: [18, 18], iconAnchor: [-3, 21] }), zIndexOffset: 1000 }).addTo(m);
     return { setPoints: function (pts) {
       layer.clearLayers();
+      pts.forEach(function (p) {
+        if (it.step) L.circle([p.lat, p.lng], { radius: it.step * 620, stroke: false, fillColor: COLORS[kind(p)], fillOpacity: .17, interactive: false }).addTo(layer);
+      });
       pts.forEach(function (p) {
         L.marker([p.lat, p.lng], { title: title(p), icon: L.divIcon({ className: 'pin r-' + kind(p), html: label(p), iconSize: [30, 30] }) }).addTo(layer);
       });
@@ -43,6 +46,7 @@
       var bounds = new g.LatLngBounds();
       pts.forEach(function (p) {
         var pos = { lat: p.lat, lng: p.lng }, t = label(p);
+        if (it.step) markers.push(new g.Circle({ map: map, center: pos, radius: it.step * 620, strokeWeight: 0, fillColor: COLORS[kind(p)], fillOpacity: .17, clickable: false }));
         markers.push(new g.Marker({
           map: map, position: pos, title: title(p),
           icon: { path: g.SymbolPath.CIRCLE, scale: 15, fillColor: COLORS[kind(p)], fillOpacity: 1, strokeColor: '#ffffff', strokeWeight: 2 },
@@ -55,11 +59,33 @@
   }
 
   /* ---- linha do tempo ---- */
+  // posições de outro perfil na última varredura, a partir da lista compacta de ids por ponto
+  function ptsFor(it, pid) {
+    var last = it.scans[it.scans.length - 1], ix = it.ranks.ids.indexOf(pid);
+    return last.pts.map(function (p, i) {
+      var row = it.ranks.pts[i];
+      if (!row) return { lat: p.lat, lng: p.lng, rank: null, err: 1 };
+      var r = ix < 0 ? -1 : row.indexOf(ix);
+      return { lat: p.lat, lng: p.lng, rank: r < 0 ? null : r + 1 };
+    });
+  }
+  function focus(it, pid, name) {
+    if (!it.ranks || !it.scans.length) return;
+    it.focus = pid ? { pid: pid, name: name, pts: ptsFor(it, pid) } : null;
+    var fb = document.getElementById(it.focusbar);
+    if (fb) { fb.hidden = !it.focus; if (it.focus) fb.querySelector('span').textContent = 'Mostrando as posições de ' + name + ' na última varredura'; }
+    document.querySelectorAll('.pcard[data-pid]').forEach(function (c) { c.classList.toggle('focus', !!pid && c.getAttribute('data-pid') === pid); });
+    if (it.ctrlEl) it.ctrlEl.classList.toggle('off', !!it.focus);
+    show(it, it.focus ? it.scans.length - 1 : it.idx);
+    var el = document.getElementById(it.map);
+    if (pid && el && el.getBoundingClientRect().top < 0) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   function show(it, i) {
     var n = it.scans.length; if (!n) return;
     it.idx = Math.max(0, Math.min(n - 1, i));
     var s = it.scans[it.idx];
-    if (it.api) it.api.setPoints(s.pts);
+    if (it.api) it.api.setPoints(it.focus ? it.focus.pts : s.pts);
     var c = it.ctrlEl; if (!c) return;
     var range = c.querySelector('input'), lab = c.querySelector('.tl-label'), btns = c.querySelectorAll('button');
     if (range) range.value = it.idx;
@@ -68,6 +94,11 @@
     if (lab) lab.textContent = s.d + (it.idx === n - 1 ? ' (mais recente)' : '') + ' · média ' + s.avg + ' · top 3 ' + s.top3 + '% · top 20 ' + s.found + '%';
   }
   function wire(it) {
+    document.querySelectorAll('[data-focus]').forEach(function (b) {
+      b.addEventListener('click', function () { focus(it, b.getAttribute('data-focus'), b.getAttribute('data-name')); });
+    });
+    var fb = document.getElementById(it.focusbar);
+    if (fb) fb.querySelector('button').addEventListener('click', function () { focus(it, null); });
     var c = it.ctrlEl = document.getElementById(it.ctrl); if (!c) return;
     var range = c.querySelector('input');
     if (range) range.addEventListener('input', function () { show(it, parseInt(range.value, 10)); });

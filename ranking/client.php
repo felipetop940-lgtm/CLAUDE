@@ -62,6 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 q('DELETE FROM notes WHERE id = ? AND client_id = ?', [(int)$_POST['nid'], $id]);
                 $hash = '#notas';
                 break;
+            case 'toggle_kind':
+                q("UPDATE clients SET kind = IF(kind = 'prospecto', 'cliente', 'prospecto') WHERE id = ?", [$id]);
+                break;
             case 'del_client':
                 q('DELETE FROM clients WHERE id = ?', [$id]);
                 flash('ok', 'Cliente apagado.');
@@ -82,9 +85,10 @@ $flash = take_flash();
 page_header($c['name']); ?>
 <p class="crumb"><a href="index.php">← Clientes</a></p>
 <div class="page-head">
-  <div><p class="eyebrow">Cliente</p><h1><?= h($c['name']) ?></h1><p class="muted"><?= h($c['address']) ?></p></div>
+  <div><p class="eyebrow"><?= ($c['kind'] ?? 'cliente') === 'prospecto' ? 'Prospecto · fora da varredura semanal' : 'Cliente' ?></p><h1><?= h($c['name']) ?></h1><p class="muted"><?= h($c['address']) ?></p></div>
   <div class="actions">
     <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/place/?q=place_id:<?= h(rawurlencode($c['place_id'])) ?>">Abrir no Google Maps</a>
+    <form method="post"><?= csrf_field() ?><input type="hidden" name="action" value="toggle_kind"><button class="btn ghost"><?= ($c['kind'] ?? 'cliente') === 'prospecto' ? 'Virou cliente' : 'Marcar como prospecto' ?></button></form>
     <?php if ($kws): ?><form method="post"><?= csrf_field() ?><input type="hidden" name="action" value="scan_all"><button class="btn" data-busy="Varrendo tudo…">Varrer todas</button></form><?php endif; ?>
   </div>
 </div>
@@ -107,7 +111,7 @@ page_header($c['name']); ?>
   <p class="hint">Raio = distância do endereço até a borda da grade. Palavra sozinha (“pediatra”) mostra melhor o efeito da distância do que com a cidade junto.</p>
 </section>
 
-<?php if ($sel) render_keyword_detail($c, $sel, false, $profile['last']); ?>
+<?php if ($sel) render_keyword_detail($c, $sel, false, $profile['last'], $kws, fn(int $kid) => 'client.php?id=' . $id . '&k=' . $kid . '#kw'); ?>
 <?php render_checklist($id); render_notes($id); ?>
 
 <section class="card">

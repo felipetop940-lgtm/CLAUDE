@@ -5,7 +5,7 @@ require __DIR__ . '/app/lib.php';
 set_time_limit(0);
 
 $kws = q('SELECT k.id, k.keyword, c.id AS cid, c.name FROM keywords k JOIN clients c ON c.id = k.client_id
-          WHERE k.active = 1 ORDER BY c.name, k.keyword')->fetchAll();
+          WHERE k.active = 1 AND c.kind = "cliente" ORDER BY c.name, k.keyword')->fetchAll();
 
 $rows = [];
 foreach ($kws as $k) {

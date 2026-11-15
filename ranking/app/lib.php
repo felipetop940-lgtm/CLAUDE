@@ -25,9 +25,10 @@ function db(): PDO {
 // Cria/atualiza as tabelas novas sozinho (não precisa mexer no phpMyAdmin)
 function migrate(PDO $pdo): void {
     try { $v = (int)$pdo->query("SELECT v FROM meta WHERE k = 'schema'")->fetchColumn(); } catch (Throwable $e) { $v = 0; }
-    if ($v >= 2) return;
+    if ($v >= 3) return;
     $t = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4';
-    $stmts = [
+    $steps = [
+      2 => [
         "CREATE TABLE IF NOT EXISTS meta (k VARCHAR(40) PRIMARY KEY, v VARCHAR(190)) $t",
         "ALTER TABLE scans ADD COLUMN engine VARCHAR(20) NULL",
         "ALTER TABLE scans ADD COLUMN area LONGTEXT NULL",
@@ -43,12 +44,38 @@ function migrate(PDO $pdo): void {
             created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, rating DECIMAL(2,1) NULL, reviews INT NULL,
             INDEX idx_client_date (client_id, created_at),
             FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE) $t",
+      ],
+      3 => [
+        "ALTER TABLE scans ADD COLUMN ranks LONGTEXT NULL",
+        "ALTER TABLE clients ADD COLUMN kind VARCHAR(12) NOT NULL DEFAULT 'cliente'",
+        "ALTER TABLE places_cache ADD COLUMN address VARCHAR(255) NULL",
+        "ALTER TABLE places_cache ADD COLUMN category VARCHAR(120) NULL",
+        "ALTER TABLE places_cache ADD COLUMN rating DECIMAL(2,1) NULL",
+        "ALTER TABLE places_cache ADD COLUMN reviews INT NULL",
+        "ALTER TABLE places_cache ADD COLUMN maps_url VARCHAR(500) NULL",
+        "ALTER TABLE places_cache ADD COLUMN photo VARCHAR(500) NULL",
+        "ALTER TABLE places_cache ADD COLUMN details_at DATETIME NULL",
+        "CREATE TABLE IF NOT EXISTS api_usage (ym CHAR(7) NOT NULL, sku VARCHAR(30) NOT NULL, n INT NOT NULL DEFAULT 0, PRIMARY KEY (ym, sku)) $t",
+      ],
     ];
-    foreach ($stmts as $sql) { try { $pdo->exec($sql); } catch (Throwable $e) { /* coluna/tabela já existe */ } }
-    $pdo->exec("REPLACE INTO meta (k, v) VALUES ('schema', '2')");
+    foreach ($steps as $ver => $stmts) {
+        if ($v >= $ver) continue;
+        foreach ($stmts as $sql) { try { $pdo->exec($sql); } catch (Throwable $e) { /* coluna/tabela já existe */ } }
+    }
+    $pdo->exec("REPLACE INTO meta (k, v) VALUES ('schema', '3')");
 }
 function q(string $sql, array $p = []): PDOStatement { $s = db()->prepare($sql); $s->execute($p); return $s; }
 function h($s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
+
+// Trava de custo: conta as consultas pagas do mês e para ao chegar no limite (config 'monthly_cap')
+function paid_ok(string $sku): bool {
+    $cap = (int)(cfg('monthly_cap') ?? 800); $ym = date('Y-m');
+    $n = (int)q('SELECT n FROM api_usage WHERE ym = ? AND sku = ?', [$ym, $sku])->fetchColumn();
+    if ($n >= $cap) return false;
+    q('INSERT INTO api_usage (ym, sku, n) VALUES (?,?,1) ON DUPLICATE KEY UPDATE n = n + 1', [$ym, $sku]);
+    return true;
+}
+function api_usage_month(): array { return q('SELECT sku, n FROM api_usage WHERE ym = ?', [date('Y-m')])->fetchAll(PDO::FETCH_KEY_PAIR); }
 
 /* ---------- Sessão / login ---------- */
 function start_session(): void {
@@ -92,24 +119,87 @@ function place_details(string $placeId, string $mask): array {
     return $data;
 }
 
-// Nomes dos concorrentes: usa o que já está guardado e só consulta o Google para os que faltam
-function place_names(array $ids, int $maxLookups = 6): array {
+const PLACE_FIELDS = ['id', 'displayName', 'formattedAddress', 'primaryTypeDisplayName', 'rating', 'userRatingCount', 'googleMapsUri', 'photos'];
+function details_on(): bool { return cfg('competitor_details') !== false; }
+
+// Converte um lugar da API no formato que guardamos
+function place_info(array $pl): array {
+    return [
+        'name' => $pl['displayName']['text'] ?? null,
+        'address' => $pl['formattedAddress'] ?? null,
+        'category' => $pl['primaryTypeDisplayName']['text'] ?? null,
+        'rating' => $pl['rating'] ?? null,
+        'reviews' => $pl['userRatingCount'] ?? null,
+        'maps_url' => $pl['googleMapsUri'] ?? null,
+        'photo_ref' => $pl['photos'][0]['name'] ?? null, // vale por pouco tempo: a foto é baixada na hora
+        'full' => array_key_exists('formattedAddress', $pl) || array_key_exists('rating', $pl),
+    ];
+}
+function remember_place(string $id, array $info): void {
+    $name = trim((string)($info['name'] ?? '')); if ($id === '' || $name === '') return;
+    $id = mb_substr($id, 0, 190); $name = mb_substr($name, 0, 255);
+    if (empty($info['full'])) {
+        q('INSERT INTO places_cache (place_id, name) VALUES (?,?) ON DUPLICATE KEY UPDATE name = VALUES(name)', [$id, $name]);
+        return;
+    }
+    q('INSERT INTO places_cache (place_id, name, address, category, rating, reviews, maps_url, details_at) VALUES (?,?,?,?,?,?,?,NOW())
+       ON DUPLICATE KEY UPDATE name = VALUES(name), address = VALUES(address), category = VALUES(category), rating = VALUES(rating),
+       reviews = VALUES(reviews), maps_url = VALUES(maps_url), details_at = NOW(), updated_at = NOW()',
+      [$id, $name, isset($info['address']) ? mb_substr((string)$info['address'], 0, 255) : null,
+       isset($info['category']) ? mb_substr((string)$info['category'], 0, 120) : null,
+       $info['rating'] ?? null, $info['reviews'] ?? null, isset($info['maps_url']) ? mb_substr((string)$info['maps_url'], 0, 500) : null]);
+}
+function places_info(array $ids): array {
     $ids = array_values(array_unique(array_filter($ids)));
     if (!$ids) return [];
     $in = implode(',', array_fill(0, count($ids), '?'));
-    $names = q("SELECT place_id, name FROM places_cache WHERE place_id IN ($in)", $ids)->fetchAll(PDO::FETCH_KEY_PAIR);
-    if (!cfg('google_api_key')) return $names;
-    foreach ($ids as $id) {
-        if (isset($names[$id]) || $maxLookups-- <= 0) continue;
-        try {
-            $name = place_details($id, 'displayName')['displayName']['text'] ?? '';
-            if ($name !== '') { $names[$id] = $name; remember_place($id, $name); }
-        } catch (Throwable $e) { /* segue sem o nome */ }
-    }
-    return $names;
+    $out = [];
+    foreach (q("SELECT * FROM places_cache WHERE place_id IN ($in)", $ids) as $r) $out[$r['place_id']] = $r;
+    return $out;
 }
-function remember_place(string $id, string $name): void {
-    q('REPLACE INTO places_cache (place_id, name) VALUES (?, ?)', [mb_substr($id, 0, 190), mb_substr($name, 0, 255)]);
+// Baixa a foto de capa do perfil uma única vez e guarda em assets/photos
+function fetch_photo(string $placeId, string $photoRef): ?string {
+    $dir = dirname(__DIR__) . '/assets/photos';
+    if (!is_dir($dir) && !@mkdir($dir, 0755, true)) return null;
+    $ch = curl_init(places_base() . '/' . $photoRef . '/media?maxWidthPx=240&maxHeightPx=240&skipHttpRedirect=true');
+    curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 15, CURLOPT_HTTPHEADER => ['X-Goog-Api-Key: ' . cfg('google_api_key')]]);
+    $meta = json_decode((string)curl_exec($ch), true); curl_close($ch);
+    $uri = $meta['photoUri'] ?? null; if (!$uri) return null;
+    $ch = curl_init($uri);
+    curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 15, CURLOPT_FOLLOWLOCATION => true]);
+    $img = curl_exec($ch); $ok = curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200; curl_close($ch);
+    if (!$ok || !$img || strlen($img) < 200 || strlen($img) > 600000 || !@getimagesizefromstring($img)) return null;
+    $file = 'assets/photos/' . sha1($placeId) . '.jpg';
+    if (@file_put_contents(dirname(__DIR__) . '/' . $file, $img) === false) return null;
+    q('UPDATE places_cache SET photo = ? WHERE place_id = ?', [$file, mb_substr($placeId, 0, 190)]);
+    return $file;
+}
+// Completa os dados dos perfis do ranking: usa o que já está guardado (30 dias) e consulta só o que falta
+function enrich_places(array $ids, array $photoRefs, int $maxLookups = 8, int $maxPhotos = 12): void {
+    if (!cfg('google_api_key') || !$ids) return;
+    $cache = places_info($ids);
+    foreach ($ids as $id) {
+        $c = $cache[$id] ?? null;
+        $fresh = $c && $c['details_at'] && strtotime($c['details_at']) > time() - 30 * 86400;
+        if (details_on() ? $fresh : (bool)$c) continue;
+        if ($maxLookups-- <= 0) break;
+        try {
+            if (details_on() && paid_ok('detalhes')) {
+                $pl = place_details($id, implode(',', PLACE_FIELDS)); $info = place_info($pl); $info['full'] = true;
+                remember_place($id, $info);
+                if ($info['photo_ref']) $photoRefs[$id] = $info['photo_ref'];
+            } else {
+                remember_place($id, ['name' => place_details($id, 'displayName')['displayName']['text'] ?? '']);
+            }
+        } catch (Throwable $e) { /* segue sem os dados deste perfil */ }
+    }
+    if (!details_on() || cfg('competitor_photos') === false) return;
+    $cache = places_info($ids);
+    foreach ($ids as $id) {
+        if (empty($photoRefs[$id]) || !isset($cache[$id]) || !empty($cache[$id]['photo'])) continue;
+        if ($maxPhotos-- <= 0 || !paid_ok('fotos')) break;
+        try { fetch_photo($id, $photoRefs[$id]); } catch (Throwable $e) { /* sem foto */ }
+    }
 }
 
 // Nota e nº de avaliações do perfil do cliente, no máximo 1 leitura a cada 6 dias
@@ -117,13 +207,17 @@ function profile_snapshot(int $clientId, string $placeId): void {
     if (cfg('track_reviews') === false || !cfg('google_api_key')) return;
     $last = q('SELECT created_at FROM profile_stats WHERE client_id = ? ORDER BY id DESC LIMIT 1', [$clientId])->fetchColumn();
     if ($last && strtotime($last) > time() - 6 * 86400) return;
+    if (!paid_ok('detalhes')) return;
     try {
-        $d = place_details($placeId, 'rating,userRatingCount');
+        $d = place_details($placeId, implode(',', PLACE_FIELDS));
+        $info = place_info($d); $info['full'] = true; remember_place($placeId, $info);
+        if ($info['photo_ref'] && cfg('competitor_photos') !== false && paid_ok('fotos')) fetch_photo($placeId, $info['photo_ref']);
         if (!isset($d['rating']) && !isset($d['userRatingCount'])) return;
         q('INSERT INTO profile_stats (client_id, rating, reviews) VALUES (?,?,?)', [$clientId, $d['rating'] ?? null, $d['userRatingCount'] ?? null]);
     } catch (Throwable $e) { /* não trava a varredura por causa disso */ }
 }
 
+/* ---------- Busca em paralelo ---------- */
 // Executa várias buscas em paralelo. Retorna [indice => resposta decodificada | ['_error'=>msg]]
 function places_multi(array $bodies, string $mask, int $conc = 8): array {
     $results = []; $queue = array_keys($bodies); $active = [];
@@ -237,7 +331,7 @@ function scan_engine(): string {
 }
 
 // Google Places API (New) Text Search. Pontos da grade pedem só places.id (SKU "IDs Only", gratuito).
-// O ponto central pede também o nome (SKU Pro, 1 chamada por varredura) para a lista de concorrentes.
+// O ponto central pede também os dados dos perfis (1 chamada paga por varredura) para a coluna de concorrentes.
 function scan_places(array $pts, string $keyword): array {
     if (!cfg('google_api_key')) throw new RuntimeException('Preencha google_api_key no config.php.');
     $radius = max(100.0, min(50000.0, (float)(cfg('places_bias_radius') ?? 2000)));
@@ -256,7 +350,11 @@ function scan_places(array $pts, string $keyword): array {
         $out = [];
         $ids = array_intersect_key($bodies, array_flip(array_diff($idx, [$mid])));
         if ($ids) $out = places_multi($ids, 'places.id');
-        if (in_array($mid, $idx, true)) $out[$mid] = places_multi([$mid => $bodies[$mid]], 'places.id,places.displayName')[$mid];
+        if (in_array($mid, $idx, true)) {
+            $rich = details_on() && paid_ok('busca');
+            $mask = $rich ? implode(',', array_map(fn($f) => 'places.' . $f, PLACE_FIELDS)) : 'places.id,places.displayName';
+            $out[$mid] = places_multi([$mid => $bodies[$mid]], $mask)[$mid];
+        }
         return $out;
     };
     $res = $fetch(array_keys($bodies));
@@ -267,7 +365,7 @@ function scan_places(array $pts, string $keyword): array {
     $out = [];
     foreach ($res as $i => $r) {
         $out[$i] = isset($r['_error']) ? $r : ['list' => array_map(
-            fn($pl) => ['id' => $pl['id'] ?? '', 'name' => $pl['displayName']['text'] ?? null],
+            fn($pl) => ['id' => $pl['id'] ?? '', 'name' => $pl['displayName']['text'] ?? null, 'info' => isset($pl['displayName']) ? place_info($pl) : null],
             $r['places'] ?? []
         )];
     }
@@ -288,7 +386,10 @@ function scan_dataforseo(array $pts, string $keyword): array {
     $out = [];
     foreach (dfs_multi($bodies) as $i => $r) {
         $out[$i] = isset($r['_error']) ? $r : ['list' => array_map(
-            fn($it) => ['id' => $it['place_id'] ?? '', 'name' => $it['title'] ?? null],
+            fn($it) => ['id' => $it['place_id'] ?? '', 'name' => $it['title'] ?? null, 'info' => [
+                'name' => $it['title'] ?? null, 'address' => $it['address'] ?? null, 'category' => $it['category'] ?? null,
+                'rating' => $it['rating']['value'] ?? null, 'reviews' => $it['rating']['votes_count'] ?? null,
+                'maps_url' => null, 'photo_ref' => null, 'full' => true]],
             $r['items']
         )];
     }
@@ -297,12 +398,15 @@ function scan_dataforseo(array $pts, string $keyword): array {
 
 // Transforma o resultado do motor em posições por ponto, KPIs, concorrentes do centro e ranking da área
 function summarize_scan(array $pts, array $res, string $placeId): array {
-    $found = 0; $top3 = 0; $sum = 0; $valid = 0; $agg = []; $names = [];
+    $found = 0; $top3 = 0; $sum = 0; $valid = 0; $agg = []; $names = []; $infos = []; $dict = []; $rk = [];
     foreach ($pts as $i => &$p) {
-        if (!isset($res[$i]['list'])) { $p['rank'] = null; $p['err'] = 1; continue; }
-        $valid++; $rank = null;
+        if (!isset($res[$i]['list'])) { $p['rank'] = null; $p['err'] = 1; $rk[] = null; continue; }
+        $valid++; $rank = null; $row = [];
         foreach (array_slice($res[$i]['list'], 0, 20) as $n => $it) {
             $id = (string)($it['id'] ?? ''); if ($id === '') continue;
+            if (!isset($dict[$id])) $dict[$id] = count($dict);
+            $row[] = $dict[$id];
+            if (!empty($it['info'])) $infos[$id] = $it['info'];
             if ($id === $placeId && $rank === null) $rank = $n + 1;
             if (!isset($agg[$id])) $agg[$id] = ['sum' => 0, 'n' => 0, 'top3' => 0];
             $agg[$id]['sum'] += $n + 1; $agg[$id]['n']++; if ($n < 3) $agg[$id]['top3']++;
@@ -311,6 +415,7 @@ function summarize_scan(array $pts, array $res, string $placeId): array {
         $p['rank'] = $rank;
         if ($rank) { $found++; if ($rank <= 3) $top3++; }
         $sum += $rank ?? 21; // fora do top 20 conta como 21
+        $rk[] = $row;
     }
     unset($p);
 
@@ -330,13 +435,15 @@ function summarize_scan(array $pts, array $res, string $placeId): array {
     usort($area, fn($x, $y) => [$x['avg'], -$x['top3']] <=> [$y['avg'], -$y['top3']]);
     foreach ($area as $n => &$a) $a['pos'] = $n + 1;
     unset($a);
-    $top = array_slice($area, 0, 6);
+    $top = array_slice($area, 0, 15);
     if (!array_filter($top, fn($a) => $a['me'])) {
         foreach ($area as $a) if ($a['me']) { $top[] = $a; break; }
     }
 
     return [
-        'points' => $pts, 'competitors' => $comp, 'area' => $valid ? $top : [], 'area_total' => count($area),
+        'points' => $pts, 'competitors' => $comp, 'area' => $valid ? $top : [], 'area_total' => count($area), 'infos' => $infos,
+        // posição de todos os perfis em cada ponto, compacto: lista de ids + índices por ponto
+        'ranks' => ['ids' => array_keys($dict), 'pts' => $rk],
         'avg_rank' => round($sum / $v, 2),
         'top3_pct' => round($top3 * 100 / $v, 1),
         'found_pct' => round($found * 100 / $v, 1),
@@ -358,22 +465,21 @@ function run_scan(int $kid): array {
 
     $s = summarize_scan($pts, $res, (string)$k['place_id']);
 
-    // nomes do ranking da área (o que vier com nome fica guardado; o resto é consultado uma única vez)
-    $missing = [];
-    foreach ($s['area'] as $a) {
-        if ($a['me']) continue;
-        if ($a['name']) remember_place($a['id'], $a['name']); else $missing[] = $a['id'];
-    }
-    $names = $missing ? place_names($missing) : [];
+    // guarda os dados que vieram na busca e completa o que falta dos perfis do ranking
+    $refs = [];
+    foreach ($s['infos'] as $pid => $info) { remember_place((string)$pid, $info); if (!empty($info['photo_ref'])) $refs[$pid] = $info['photo_ref']; }
+    $ids = array_column($s['area'], 'id');
+    if ($engine === 'places') enrich_places(array_values(array_diff($ids, [(string)$k['place_id']])), $refs);
+    $cache = places_info($ids);
     foreach ($s['area'] as &$a) {
         if ($a['me']) $a['name'] = $k['client_name'];
-        elseif (!$a['name']) $a['name'] = $names[$a['id']] ?? null;
+        elseif (!$a['name']) $a['name'] = $cache[$a['id']]['name'] ?? null;
     }
     unset($a);
 
-    q('INSERT INTO scans (keyword_id, avg_rank, top3_pct, found_pct, points, competitors, engine, area) VALUES (?,?,?,?,?,?,?,?)',
+    q('INSERT INTO scans (keyword_id, avg_rank, top3_pct, found_pct, points, competitors, engine, area, ranks) VALUES (?,?,?,?,?,?,?,?,?)',
         [$kid, $s['avg_rank'], $s['top3_pct'], $s['found_pct'], json_encode($s['points']),
-         json_encode($s['competitors'], JSON_UNESCAPED_UNICODE), $engine, json_encode($s['area'], JSON_UNESCAPED_UNICODE)]);
+         json_encode($s['competitors'], JSON_UNESCAPED_UNICODE), $engine, json_encode($s['area'], JSON_UNESCAPED_UNICODE), json_encode($s['ranks'])]);
     profile_snapshot((int)$k['client_id'], (string)$k['place_id']);
     return ['avg_rank' => $s['avg_rank'], 'top3_pct' => $s['top3_pct'], 'found_pct' => $s['found_pct']];
 }
