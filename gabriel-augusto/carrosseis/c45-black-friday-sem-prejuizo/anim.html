@@ -1,0 +1,143 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 45 ANIMADO (1080x1350, cada slide é um vídeo) · "Como fazer Black Friday sem perder dinheiro" · estilo CINÉTICO, formato do ajuste de 14/11
+     Título ensinando EM CIMA no gancho (etiqueta de preço e lucro menor embaixo, EXEMPLO); 4 DICAS úteis (conta da margem antes do desconto, desconto no que tá parado, combo, testar tudo antes);
+     ligação com o site (ofertas num catálogo com preço) + final aprovado. Fontes das dicas: InfinitePay, O Tempo, O Brasilianista, Band, Vivo Meu Negócio (out-nov/2026). Valores são EXEMPLO.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c45-black-friday-sem-prejuizo -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO SEU SITE', 655);
+
+const TAG = (x = 36, y = 28) => `<div class="abs" style="right:${x}px;top:${y}px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>`;
+const ROT = txt => `<div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">${txt}</div>`;
+
+const VIVA = () => K.verm ? '#fff' : '#FF2E43';
+
+// ---------- celular com a tela do WhatsApp Business (tema escuro) ----------
+const ZB = '#0B141A', ZH = '#1F2C34', ZT = '#E9EDEF', ZS = '#8696A0', ZG = '#00A884';
+const FONE = (t, inner) => { const inn = ease(t / .6);
+  return `<div class="abs" style="left:110px;top:112px;width:344px;height:600px;border-radius:52px;background:#0B0B0D;padding:12px;box-shadow:0 0 0 3px rgba(255,255,255,.25), 0 50px 100px -30px rgba(0,0,0,.9);opacity:${inn};transform:translateY(${(1 - inn) * 40}px) rotate(-2deg)">
+    <div style="width:320px;height:576px;border-radius:42px;overflow:hidden;position:relative;background:${ZB};font-family:IT,sans-serif;color:${ZT}">${inner}</div>
+    <div style="position:absolute;left:50%;top:22px;width:90px;height:24px;margin-left:-45px;border-radius:12px;background:#0B0B0D"></div></div>`; };
+const TOPO = (tit, sub = '') => `<div style="height:104px;padding:50px 20px 0;background:${ZH};display:flex;align-items:center;gap:14px"><span style="font-size:26px;color:${ZS}">←</span><div><b style="font-size:23px">${tit}</b>${sub ? `<div style="font-size:15px;color:${ZS}">${sub}</div>` : ''}</div></div>`;
+// lista de opções; sel = índice tocado, k = progresso do toque
+const LISTA = (itens, sel = -1, k = 0) => itens.map(([ic, tx, sub], j) => `<div style="display:flex;align-items:center;gap:14px;padding:15px 20px;position:relative;background:${j === sel && k > 0 ? `rgba(0,168,132,${.28 * Math.sin(clamp(k) * Math.PI) + (k >= 1 ? .14 : 0)})` : 'transparent'}">
+    <span style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:21px">${ic}</span><div><div style="font-size:19px;font-weight:600">${tx}</div>${sub ? `<div style="font-size:14px;color:${ZS}">${sub}</div>` : ''}</div></div>`).join('');
+const CHAVE = (on) => `<span style="flex-shrink:0;width:52px;height:30px;border-radius:15px;background:${on > .5 ? ZG : '#3B4A54'};position:relative"><span style="position:absolute;top:4px;left:${4 + 22 * clamp(on)}px;width:22px;height:22px;border-radius:50%;background:#fff"></span></span>`;
+// passos do lado direito (o caminho dentro do app), cada um entra com ✓
+const PASSOS = (t, L, t0 = .5, dt = .55) => L.map((tx, j) => { const k = back((t - t0 - j * dt) / .4), ok = back((t - t0 - j * dt - .3) / .3);
+  return k <= 0 ? '' : `<div class="abs" style="left:500px;width:480px;top:${150 + j * 112}px;padding:18px 22px;${K.vidro()}border-radius:24px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:25px;line-height:1.2;opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 70}px)">
+    <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-family:Anton;font-size:22px;transform:scale(${clamp(ok, 0, 1.15)})">${j + 1}</span>${tx}</div>`; }).join('');
+const FERR = [['🏪', 'Perfil comercial'], ['🛍️', 'Catálogo'], ['💤', 'Mensagem de ausência'], ['👋', 'Mensagem de saudação'], ['⚡', 'Respostas rápidas']];
+const DICA = (t, n, tit, txt, ini) => `${K.kick(t, .1, 'DICA ' + n, 736)}${K.kin(t, .3, tit, { y: 978, max: 148, ini })}${K.corpo(t, 3.0, txt, 1150, { fs: 31 })}${K.rodape(t, 3.6)}`;
+
+// tela de app de banco genérico (sem marca)
+const BB = '#111316', BH = '#1B1F24', BA = '#21C38B', BT = '#F2F4F5', BS = '#8B95A1';
+const BTOPO = (tit) => `<div style="height:100px;padding:48px 20px 0;background:${BH};display:flex;align-items:center;gap:14px"><span style="font-size:24px;color:${BS}">←</span><b style="font-size:22px;color:${BT}">${tit}</b></div>`;
+const BANCO = (inner) => `<div style="position:absolute;inset:0;background:${BB};color:${BT}">${inner}</div>`;
+const EXE = `<div style="position:absolute;right:16px;bottom:12px;font-size:12px;color:${BS};letter-spacing:.12em;font-weight:800">EXEMPLO</div>`;
+
+const LIN = (a, b, cor = BT, peso = 600, t0 = 0, t = 99) => `<div style="display:flex;justify-content:space-between;padding:11px 4px;border-bottom:1px solid rgba(255,255,255,.07);font-size:18px;opacity:${ease((t - t0) / .35)}"><span style="color:${BS}">${a}</span><b style="color:${cor};font-weight:${peso}">${b}</b></div>`;
+
+// 1 · gancho: TÍTULO em cima ensinando; embaixo, menor, a etiqueta de preço caindo e o lucro encolhendo (EXEMPLO)
+slide(7, [[0, 'black'], [3.0, 'red']], t => {
+  const inn = ease((t - 1.0) / .6), k = eio((t - 1.8) / 1.0), preco = Math.round(lerp(100, 80, k)), lucro = Math.round(lerp(40, 20, k)), aviso = back((t - 3.0) / .4);
+  return `${K.kin(t, .05, ['Como fazer Black Friday', '*sem perder dinheiro*'], { y: 300, max: 165 })}
+    ${K.corpo(t, 1.0, 'Desconto sem conta vira prejuízo. Arrasta e vê <b>4 dicas</b> pra vender mais e ainda sobrar lucro.', 470, { fs: 34 })}
+    <div style="${CARD(150, 640, 780, 420, `opacity:${.92 * inn};transform:translateY(${(1 - inn) * 40}px)`)}">${ROT('O QUE O DESCONTO FAZ COM O LUCRO')}${TAG(30, 360)}
+      <div class="abs" style="left:40px;top:90px;width:300px">
+        <div style="font-size:20px;color:rgba(255,255,255,.7)">Preço</div><div style="font-family:Anton;font-size:72px;line-height:1.1">R$ ${preco}</div>
+        ${k > 0 ? `<span style="display:inline-block;padding:4px 14px;border-radius:14px;background:#fff;color:#C3101F;font-weight:800;font-size:22px;transform:scale(${clamp(back((t - 1.8) / .4), 0, 1.1)})">−20%</span>` : ''}</div>
+      <div class="abs" style="left:380px;right:40px;top:96px">
+        <div style="font-size:20px;color:rgba(255,255,255,.7)">Lucro por venda</div>
+        <div style="margin-top:12px;height:34px;border-radius:17px;background:rgba(255,255,255,.12);overflow:hidden"><div style="height:100%;width:${lucro / 40 * 100}%;border-radius:17px;background:${VIVA()}"></div></div>
+        <div style="font-family:Anton;font-size:46px;margin-top:6px">R$ ${lucro}</div></div>
+      ${aviso > 0 ? `<div class="abs" style="left:40px;right:40px;top:272px;padding:14px 20px;border-radius:18px;background:rgba(255,255,255,.12);font-weight:800;font-size:25px;transform:scale(${clamp(aviso, 0, 1.06)})">⚠️ Pra lucrar o mesmo, precisa vender o DOBRO</div>` : ''}</div>
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${Math.sin(t * 4) * 14}px)">→</span></span></div>`; });
+
+// 2 · DICA 1 · faz a conta antes do desconto: preço, custo e lucro, e o desconto máximo que cabe (EXEMPLO)
+slide(7.5, [[0, 'black'], [3.4, 'red']], t => {
+  const inner = BANCO(BTOPO('Conta do desconto') + `<div style="padding:16px 20px">
+      ${LIN('Preço normal', 'R$ 100', BT, 700, .6, t)}${LIN('Custo do produto', '− R$ 60', '#F15C6D', 700, 1.0, t)}${LIN('Lucro', 'R$ 40', BA, 800, 1.4, t)}
+      <div style="height:14px"></div>
+      ${LIN('Com 20% de desconto', 'R$ 80', BT, 700, 2.0, t)}${LIN('Lucro agora', 'R$ 20', '#F15C6D', 800, 2.4, t)}
+      <div style="margin-top:16px;padding:14px;border-radius:14px;background:rgba(241,92,109,.15);border:2px solid #F15C6D;font-size:17px;font-weight:800;text-align:center;transform:scale(${back((t - 3.0) / .4)})">Precisa vender o dobro pra lucrar igual</div></div>${EXE}`);
+  return `${FONE(t, inner)}${PASSOS(t, ['Anota o custo de cada produto', 'Vê quanto sobra de lucro', 'Só dá o desconto que cabe nesse lucro'])}
+  ${DICA(t, 1, ['Faz a conta', '*antes do desconto*'], 'Desconto bonito que come todo o lucro <b>é trabalhar de graça.</b>', 1)}`; });
+
+// 3 · DICA 2 · desconto maior no que tá parado: os itens parados ganham a etiqueta (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const L = [['👟', 'Tênis branco', 'vende toda semana', 0], ['👜', 'Bolsa caramelo', 'parada há 3 meses', 1], ['🧢', 'Boné preto', 'vende toda semana', 0], ['🧥', 'Jaqueta jeans', 'parada há 4 meses', 1]];
+  const inner = BANCO(BTOPO('Seu estoque') + `<div style="padding:12px 18px">${L.map(([ic, n, s, parado], j) => { const k = ease((t - .5 - j * .3) / .35), tag = parado ? back((t - 1.9 - j * .2) / .4) : 0;
+      return `<div style="display:flex;align-items:center;gap:12px;padding:13px 6px;border-bottom:1px solid rgba(255,255,255,.07);opacity:${k}"><span style="font-size:26px">${ic}</span><div><b style="font-size:18px">${n}</b><div style="font-size:14px;color:${parado ? '#F15C6D' : BS}">${s}</div></div>
+        ${tag > 0 ? `<span style="margin-left:auto;padding:5px 12px;border-radius:12px;background:${BA};color:#06301A;font-weight:800;font-size:16px;transform:scale(${clamp(tag, 0, 1.15)}) rotate(-4deg)">−30%</span>` : ''}</div>`; }).join('')}</div>${EXE}`);
+  return `${FONE(t, inner)}${PASSOS(t, ['Lista o que tá parado no estoque', 'Põe o desconto maior nesses', 'O que já vende bem fica com desconto menor'])}
+  ${DICA(t, 2, ['Desconto no que', '*tá parado*'], 'Você vira estoque parado em dinheiro <b>sem queimar o que já vende sozinho.</b>', 3)}`; });
+
+// 4 · DICA 3 · combo: dois produtos viram um kit com preço especial (EXEMPLO)
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const j1 = back((t - .5) / .4), j2 = back((t - .9) / .4), junta = eio((t - 1.6) / .6), kit = back((t - 2.3) / .45);
+  const card = (ic, n, v, k, x) => `<div style="position:absolute;top:0;left:${x}px;width:118px;padding:12px;border-radius:14px;background:${ZH};text-align:center;opacity:${clamp(k) * (1 - .35 * junta)};transform:scale(${clamp(k, 0, 1.1) * (1 - .08 * junta)})"><div style="font-size:44px">${ic}</div><div style="font-size:14px;font-weight:600;margin-top:4px">${n}</div><div style="font-size:15px;color:${ZS}">${v}</div></div>`;
+  const inner = TOPO('Catálogo', 'Doce Ana') + `<div style="position:relative;height:440px;padding:16px">
+      <div style="position:relative;height:150px">${card('🎂', 'Bolo de festa', 'R$ 90', j1, 8)}<div style="position:absolute;left:132px;top:46px;width:24px;text-align:center;font-family:Anton;font-size:36px;opacity:${clamp(j2)}">+</div>${card('🍫', 'Brigadeiro (50)', 'R$ 80', j2, 162)}</div>
+      ${kit > 0 ? `<div style="margin-top:20px;padding:16px;border-radius:16px;background:#005C4B;transform:scale(${clamp(kit, 0, 1.06)})"><div style="font-size:14px;color:#9FC9BD;font-weight:800;letter-spacing:.1em">COMBO FESTA</div><b style="font-size:19px">Bolo + 50 brigadeiros</b>
+        <div style="margin-top:6px;font-size:16px"><span style="text-decoration:line-through;color:#9FC9BD">R$ 170</span> <b style="font-size:22px">R$ 150</b></div></div>` : ''}
+      <div style="position:absolute;right:16px;bottom:12px;font-size:12px;color:${ZS};letter-spacing:.12em;font-weight:800">EXEMPLO</div></div>`;
+  return `${FONE(t, inner)}${PASSOS(t, ['Junta produtos que combinam', 'Dá um preço especial no kit', 'O cliente leva mais numa compra só'])}
+  ${DICA(t, 3, ['Monta um', '*combo*'], 'Em vez de baixar o preço de tudo, <b>o cliente leva mais de uma vez.</b>', 4)}`; });
+
+// 5 · DICA 4 · testa tudo antes do dia: o checklist vai ligando (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const L = [['💸', 'Pix', 'compra teste feita'], ['💳', 'Maquininha', 'bateria e sinal ok'], ['🔗', 'Link de pagamento', 'abrindo certo'], ['💤', 'Resposta automática', 'pronta no WhatsApp']];
+  const inner = BANCO(BTOPO('Antes da Black Friday') + `<div style="padding:12px 18px">${L.map(([ic, n, s], j) => { const k = ease((t - .5 - j * .25) / .35), on = clamp((t - 1.4 - j * .45) / .25);
+      return `<div style="display:flex;align-items:center;gap:12px;padding:14px 6px;border-bottom:1px solid rgba(255,255,255,.07);opacity:${k}"><span style="font-size:24px">${ic}</span><div><b style="font-size:18px">${n}</b><div style="font-size:14px;color:${on > .5 ? BA : BS}">${on > .5 ? s : 'ainda não testado'}</div></div><span style="margin-left:auto"></span>${CHAVE(on)}</div>`; }).join('')}
+      <div style="margin-top:16px;text-align:center;padding:14px;border-radius:24px;background:${BA};color:#06301A;font-weight:800;font-size:18px;transform:scale(${back((t - 3.4) / .4)})">✓ Pronto pro movimento</div></div>${EXE}`);
+  return `${FONE(t, inner)}${PASSOS(t, ['Faz uma compra teste antes', 'Confere Pix, cartão e maquininha', 'Deixa resposta pronta no WhatsApp'])}
+  ${DICA(t, 4, ['Testa tudo', '*antes do dia*'], 'No dia do movimento, <b>Pix que não cai é cliente que vai embora.</b>', 2)}`; });
+
+// 6 · ligação com o site: as ofertas num catálogo com filtro e preço: o cliente toca na categoria e só aparece o que ele quer (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const cats = ['Todos', 'Bolos', 'Doces', 'Salgados'], sel = t < 1.6 ? 0 : t < 3.2 ? 1 : 2;
+  const L = [['🎂', 'Bolo de chocolate', 'R$ 90', 1], ['🍓', 'Bolo de morango', 'R$ 110', 1], ['🍫', 'Brigadeiro (cento)', 'R$ 120', 2], ['🥥', 'Beijinho (cento)', 'R$ 120', 2], ['🥟', 'Coxinha (cento)', 'R$ 95', 3], ['🧀', 'Pão de queijo (kg)', 'R$ 45', 3]];
+  const vis = L.filter(x => sel === 0 || x[3] === sel).slice(0, 4), troca = sel === 0 ? ease((t - .4) / .4) : ease((t - (sel === 1 ? 1.6 : 3.2)) / .4);
+  const cx = t < 1.6 ? lerp(700, 330, eio((t - .9) / .6)) : lerp(330, 500, eio((t - 2.5) / .6)), cy = 128;
+  return `<div style="${CARD(70, 140, 940, 500)}">${ROT('CARDÁPIO')}${TAG()}
+      <div class="abs" style="left:40px;top:80px;display:flex;gap:12px">${cats.map((c, j) => `<span style="padding:10px 24px;border-radius:26px;font-weight:800;font-size:26px;background:${j === sel ? '#fff' : 'rgba(255,255,255,.1)'};color:${j === sel ? '#C3101F' : '#fff'}">${c}</span>`).join('')}</div>
+      <div class="abs" style="left:40px;right:40px;top:160px;display:grid;grid-template-columns:1fr 1fr;gap:16px">${vis.map(([ic, n, v], j) => { const k = ease((troca - j * .12) / .6);
+        return `<div style="height:140px;padding:18px 20px;border-radius:22px;background:rgba(255,255,255,.08);opacity:${k};transform:scale(${.9 + .1 * k})"><div style="font-size:44px">${ic}</div><b style="display:block;font-size:26px;margin-top:6px">${n}</b><span style="font-family:Anton;font-size:30px;color:${K.verm ? '#fff' : '#FF2E43'}">${v}</span></div>`; }).join('')}</div>
+      ${t > .9 && t < 3.0 ? cursor(cx, cy + 30, t < 1.7 ? clamp((t - 1.4) / .25) : clamp((t - 2.9) / .25)) : ''}</div>
+  ${K.kick(t, .1, 'E O SEU SITE?', 655)}${K.kin(t, .3, ['Suas ofertas', '*num lugar só*'], { y: 900, max: 175, ini: 5 })}
+  ${K.corpo(t, 3.6, 'No site que eu faço, suas ofertas ficam num <b>catálogo com filtro e preço</b>, e o cliente chama no WhatsApp pra comprar.', 1110, { fs: 32 })}
+  ${K.rodape(t, 4.2)}`; });
+
+// 7 · final aprovado
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['🏷️ Ofertas com preço claro', '🛍️ Catálogo com filtro', '💬 Botão do WhatsApp', '💳 Formas de pagamento', '📍 Onde fica', '🤝 Cliente que volta'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 22px;${K.vidro()}border-radius:28px;font-weight:800;font-size:29px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>
