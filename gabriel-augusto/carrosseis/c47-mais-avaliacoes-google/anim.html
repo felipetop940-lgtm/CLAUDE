@@ -1,0 +1,154 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 47 ANIMADO (1080x1350, cada slide é um vídeo) · "Como conseguir mais avaliações no Google" · estilo CINÉTICO, formato do ajuste de 14/11
+     Título ensinando EM CIMA (estrelas e avaliações chegando, menor embaixo, EXEMPLO); 4 DICAS: link "Pedir avaliações" do Perfil da Empresa, pedir logo depois da entrega (sem brinde em troca), QR Code no balcão, responder toda avaliação;
+     ligação com o site (avaliações passando na página) + final aprovado. Liga com a Black Friday (cliente desconfiado de loja falsa e avaliação falsa). Dados de exemplo marcados EXEMPLO.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c47-mais-avaliacoes-google -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO SEU SITE', 655);
+
+const TAG = (x = 36, y = 28) => `<div class="abs" style="right:${x}px;top:${y}px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>`;
+const ROT = txt => `<div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">${txt}</div>`;
+
+const VIVA = () => K.verm ? '#fff' : '#FF2E43';
+
+// ---------- celular com a tela do WhatsApp Business (tema escuro) ----------
+const ZB = '#0B141A', ZH = '#1F2C34', ZT = '#E9EDEF', ZS = '#8696A0', ZG = '#00A884';
+const FONE = (t, inner) => { const inn = ease(t / .6);
+  return `<div class="abs" style="left:110px;top:112px;width:344px;height:600px;border-radius:52px;background:#0B0B0D;padding:12px;box-shadow:0 0 0 3px rgba(255,255,255,.25), 0 50px 100px -30px rgba(0,0,0,.9);opacity:${inn};transform:translateY(${(1 - inn) * 40}px) rotate(-2deg)">
+    <div style="width:320px;height:576px;border-radius:42px;overflow:hidden;position:relative;background:${ZB};font-family:IT,sans-serif;color:${ZT}">${inner}</div>
+    <div style="position:absolute;left:50%;top:22px;width:90px;height:24px;margin-left:-45px;border-radius:12px;background:#0B0B0D"></div></div>`; };
+const TOPO = (tit, sub = '') => `<div style="height:104px;padding:50px 20px 0;background:${ZH};display:flex;align-items:center;gap:14px"><span style="font-size:26px;color:${ZS}">←</span><div><b style="font-size:23px">${tit}</b>${sub ? `<div style="font-size:15px;color:${ZS}">${sub}</div>` : ''}</div></div>`;
+// lista de opções; sel = índice tocado, k = progresso do toque
+const LISTA = (itens, sel = -1, k = 0) => itens.map(([ic, tx, sub], j) => `<div style="display:flex;align-items:center;gap:14px;padding:15px 20px;position:relative;background:${j === sel && k > 0 ? `rgba(0,168,132,${.28 * Math.sin(clamp(k) * Math.PI) + (k >= 1 ? .14 : 0)})` : 'transparent'}">
+    <span style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:21px">${ic}</span><div><div style="font-size:19px;font-weight:600">${tx}</div>${sub ? `<div style="font-size:14px;color:${ZS}">${sub}</div>` : ''}</div></div>`).join('');
+const CHAVE = (on) => `<span style="flex-shrink:0;width:52px;height:30px;border-radius:15px;background:${on > .5 ? ZG : '#3B4A54'};position:relative"><span style="position:absolute;top:4px;left:${4 + 22 * clamp(on)}px;width:22px;height:22px;border-radius:50%;background:#fff"></span></span>`;
+// passos do lado direito (o caminho dentro do app), cada um entra com ✓
+const PASSOS = (t, L, t0 = .5, dt = .55) => L.map((tx, j) => { const k = back((t - t0 - j * dt) / .4), ok = back((t - t0 - j * dt - .3) / .3);
+  return k <= 0 ? '' : `<div class="abs" style="left:500px;width:480px;top:${150 + j * 112}px;padding:18px 22px;${K.vidro()}border-radius:24px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:25px;line-height:1.2;opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 70}px)">
+    <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-family:Anton;font-size:22px;transform:scale(${clamp(ok, 0, 1.15)})">${j + 1}</span>${tx}</div>`; }).join('');
+const FERR = [['🏪', 'Perfil comercial'], ['🛍️', 'Catálogo'], ['💤', 'Mensagem de ausência'], ['👋', 'Mensagem de saudação'], ['⚡', 'Respostas rápidas']];
+const DICA = (t, n, tit, txt, ini) => `${K.kick(t, .1, 'DICA ' + n, 736)}${K.kin(t, .3, tit, { y: 978, max: 148, ini })}${K.corpo(t, 3.0, txt, 1150, { fs: 31 })}${K.rodape(t, 3.6)}`;
+
+// tela de app de banco genérico (sem marca)
+const BB = '#111316', BH = '#1B1F24', BA = '#21C38B', BT = '#F2F4F5', BS = '#8B95A1';
+const BTOPO = (tit) => `<div style="height:100px;padding:48px 20px 0;background:${BH};display:flex;align-items:center;gap:14px"><span style="font-size:24px;color:${BS}">←</span><b style="font-size:22px;color:${BT}">${tit}</b></div>`;
+const BANCO = (inner) => `<div style="position:absolute;inset:0;background:${BB};color:${BT}">${inner}</div>`;
+const EXE = `<div style="position:absolute;right:16px;bottom:12px;font-size:12px;color:${BS};letter-spacing:.12em;font-weight:800">EXEMPLO</div>`;
+
+// tela do Google (tema escuro, sem logo)
+const GB = '#202124', GH = '#2D2E31', GT = '#E8EAED', GS = '#9AA0A6', GA = '#8AB4F8', GY = '#FBBC04';
+const GTOPO = (tit) => `<div style="height:100px;padding:48px 20px 0;background:${GH};display:flex;align-items:center;gap:14px"><span style="font-size:24px;color:${GS}">←</span><b style="font-size:21px;color:${GT}">${tit}</b></div>`;
+const GTELA = (inner) => `<div style="position:absolute;inset:0;background:${GB};color:${GT}">${inner}</div>`;
+const EST = (n, tam = 18) => `<span style="color:${GY};font-size:${tam}px;letter-spacing:1px">${'★'.repeat(n)}</span>`;
+
+// 1 · gancho: TÍTULO em cima ensinando; embaixo, menor, a nota e as avaliações chegando (EXEMPLO)
+slide(7, [[0, 'black'], [3.0, 'red']], t => {
+  const inn = ease((t - 1.0) / .6), n = Math.round(lerp(3, 48, eio((t - 1.6) / 2.0)));
+  const R = [['Carla S.', 'Atendimento rápido e entrega no dia!'], ['João P.', 'Produto igual à foto. Recomendo!'], ['Bia M.', 'Já é a terceira vez que compro.']];
+  return `${K.kin(t, .05, ['Como conseguir mais', '*avaliações no Google*'], { y: 300, max: 165 })}
+    ${K.corpo(t, 1.0, 'Com tanta loja falsa, o cliente confere as estrelas antes de comprar. Arrasta e vê <b>4 dicas</b>.', 470, { fs: 34 })}
+    <div style="${CARD(130, 640, 820, 420, `opacity:${.92 * inn};transform:translateY(${(1 - inn) * 40}px)`)}">${ROT('SUAS AVALIAÇÕES')}${TAG(30, 360)}
+      <div class="abs" style="left:36px;top:78px;display:flex;align-items:baseline;gap:14px"><b style="font-family:Anton;font-size:64px">4,9</b>${EST(5, 34)}<span style="font-size:22px;color:rgba(255,255,255,.75)">(${n} avaliações)</span></div>
+      ${R.map(([nm, tx], j) => { const k = back((t - 1.9 - j * .5) / .4);
+        return `<div class="abs" style="left:36px;right:36px;top:${172 + j * 62}px;height:52px;display:flex;align-items:center;gap:12px;padding:0 16px;border-radius:16px;background:rgba(255,255,255,.08);opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 60}px)">
+          <b style="font-size:19px;width:96px">${nm}</b>${EST(5, 16)}<span style="font-size:18px;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${tx}</span></div>`; }).join('')}</div>
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${Math.sin(t * 4) * 14}px)">→</span></span></div>`; });
+
+// 2 · DICA 1 · o link de avaliação: pesquisa a empresa no Google › Pedir avaliações › copia o link (EXEMPLO)
+slide(7.5, [[0, 'black'], [3.4, 'red']], t => {
+  const tela2 = t > 1.9, k = clamp((t - 1.2) / .5);
+  const inner = !tela2 ? GTELA(GTOPO('Sua empresa no Google') + `<div style="padding:16px 18px">
+        <b style="font-size:21px">Doce Ana</b><div style="margin-top:4px;font-size:15px;color:${GS}">4,9 ${EST(5, 14)} · Confeitaria</div>
+        <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px">${[['✏️', 'Editar perfil'], ['⭐', 'Pedir avaliações'], ['📊', 'Desempenho'], ['📷', 'Adicionar foto']].map(([ic, n], j) => `<div style="padding:16px 10px;border-radius:14px;text-align:center;font-size:15px;font-weight:700;background:${j === 1 && k > 0 ? `rgba(138,180,248,${.35 * Math.sin(k * Math.PI) + (k >= 1 ? .2 : .08)})` : 'rgba(255,255,255,.07)'}"><div style="font-size:24px">${ic}</div>${n}</div>`).join('')}</div></div>`) + (t > 1.1 && t < 1.9 ? onda(240, 300, k, GA) : '')
+    : GTELA(GTOPO('Pedir avaliações') + `<div style="padding:22px 20px">
+        <div style="font-size:16px;color:${GS};line-height:1.4">Compartilhe este link com seus clientes:</div>
+        <div style="margin-top:14px;padding:16px;border-radius:14px;background:rgba(255,255,255,.07);font-size:17px;font-weight:700;color:${GA};transform:scale(${back((t - 2.1) / .4)})">g.page/r/doceana/review</div>
+        <div style="margin-top:18px;text-align:center;padding:14px;border-radius:24px;background:${GA};color:#202124;font-weight:800;font-size:18px;transform:scale(${t > 2.9 && t < 3.3 ? .94 : 1});opacity:${ease((t - 2.5) / .4)}">Copiar link</div>
+        ${t > 3.3 ? `<div style="margin-top:14px;text-align:center;font-size:15px;color:#81C995;font-weight:800;opacity:${ease((t - 3.3) / .3)}">✓ Link copiado</div>` : ''}
+        <div style="margin-top:16px;text-align:right;font-size:12px;color:${GS};letter-spacing:.12em;font-weight:800">EXEMPLO</div></div>`);
+  return `${FONE(t, inner)}${PASSOS(t, ['Pesquisa o nome da sua empresa no Google', 'Toca em "Pedir avaliações"', 'Copia o link e salva no celular'])}
+  ${DICA(t, 1, ['Pega o seu', '*link de avaliação*'], 'Com o link, o cliente cai <b>direto na tela das estrelas</b>, sem procurar nada.', 1)}`; });
+
+// 3 · DICA 2 · pede logo depois da entrega, com o link (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const inner = TOPO('Carla Souza', 'online') + `<div style="padding:16px">
+      <div style="max-width:78%;padding:10px 14px;border-radius:4px 14px 14px 14px;background:${ZH};font-size:16px;transform:scale(${back((t - .5) / .35)});transform-origin:0 0">Chegou! Ficou lindo, amei 😍</div>
+      ${t > 1.3 ? `<div style="margin:12px 0 0 auto;max-width:86%;padding:12px 14px;border-radius:14px 4px 14px 14px;background:#005C4B;font-size:16px;line-height:1.35;transform:scale(${back((t - 1.3) / .4)});transform-origin:100% 0">Que bom, Carla! 💛 Se puder, deixa sua opinião aqui, leva 1 minutinho e ajuda muito: <span style="color:#53BDEB;text-decoration:underline">g.page/r/doceana/review</span></div>` : ''}
+      ${t > 2.6 ? `<div style="margin-top:12px;max-width:60%;padding:10px 14px;border-radius:4px 14px 14px 14px;background:${ZH};font-size:16px;transform:scale(${back((t - 2.6) / .35)});transform-origin:0 0">Feito! ⭐⭐⭐⭐⭐</div>` : ''}
+      <div style="margin-top:16px;text-align:right;font-size:12px;color:${ZS};letter-spacing:.12em;font-weight:800">EXEMPLO</div></div>`;
+  return `${FONE(t, inner)}${PASSOS(t, ['Pede no mesmo dia da entrega', 'Manda o link junto, curto e gentil', 'Nada de brinde em troca: o Google proíbe'])}
+  ${DICA(t, 2, ['Pede na hora', '*certa*'], 'Logo depois da entrega o cliente ainda tá feliz: <b>é quando ele mais avalia.</b>', 3)}`; });
+
+// 4 · DICA 3 · QR Code no balcão: a placa aparece e o celular lê (EXEMPLO)
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const QN = 15, qr = Array.from({ length: QN * QN }, (_, j) => { const x = j % QN, y = Math.floor(j / QN), fz = (cx, cy) => { const dx = x - cx, dy = y - cy; if (dx < 0 || dy < 0 || dx > 4 || dy > 4) return -1; return (dx === 0 || dy === 0 || dx === 4 || dy === 4 || (dx >= 2 && dx <= 2 && dy >= 2 && dy <= 2) || (dx >= 1 && dx <= 3 && dy >= 1 && dy <= 3 && !(dx === 1 || dx === 3 || dy === 1 || dy === 3))) ? 1 : 0; }; for (const [cx, cy] of [[0, 0], [10, 0], [0, 10]]) { const f = fz(cx, cy); if (f >= 0) return f; } if ((x === 5 || x === 9) && y < 6 || (y === 5 || y === 9) && x < 6 || x === 9 && y > 9) return 0; return ((((x * 73856093) ^ (y * 19349663)) >>> 0) % 7) < 3 ? 1 : 0; }), sc = clamp((t - 1.6) / .9), ok = back((t - 2.6) / .4);
+  const inner = `<div style="position:absolute;inset:0;background:#111;color:#fff">
+      <div style="position:absolute;left:30px;right:30px;top:70px;padding:18px;border-radius:18px;background:#fff;color:#111;text-align:center;transform:scale(${back((t - .5) / .45)})">
+        <b style="font-size:19px">Gostou? Avalia a gente! ⭐</b>
+        <div style="margin:12px auto 0;width:150px;height:150px;display:grid;grid-template-columns:repeat(15,1fr);gap:0;position:relative">${qr.map(v => `<i style="background:${v ? '#111' : '#fff'}"></i>`).join('')}
+          <div style="position:absolute;left:-6px;right:-6px;top:${-6 + 162 * sc}px;height:4px;background:#21C38B;box-shadow:0 0 12px #21C38B;opacity:${sc > 0 && sc < 1 ? 1 : 0}"></div></div>
+        <div style="margin-top:10px;font-size:14px;color:#555">Aponta a câmera do celular</div></div>
+      ${ok > 0 ? `<div style="position:absolute;left:30px;right:30px;top:390px;padding:14px;border-radius:16px;background:#202124;font-size:16px;transform:scale(${clamp(ok, 0, 1.06)})"><b>Avaliar Doce Ana</b><div style="margin-top:6px">${EST(5, 26)}</div></div>` : ''}
+      <div style="position:absolute;right:16px;bottom:12px;font-size:12px;letter-spacing:.12em;font-weight:800;opacity:.7">EXEMPLO</div></div>`;
+  return `${FONE(t, inner)}${PASSOS(t, ['Transforma o link num QR Code', 'Imprime e põe no balcão e na embalagem', 'O cliente avalia ali mesmo, na hora'])}
+  ${DICA(t, 3, ['QR Code', '*no balcão*'], 'Quem compra pessoalmente <b>avalia antes de sair da loja</b>, sem você nem pedir.', 4)}`; });
+
+// 5 · DICA 4 · responde toda avaliação, até a ruim (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const resp = 'Oi, Marcos! Sentimos muito pelo atraso. Já ajustamos as entregas e queremos te atender melhor na próxima. 🙏', n = Math.floor(clamp((t - 1.6) / 1.4) * resp.length);
+  const inner = GTELA(GTOPO('Avaliações') + `<div style="padding:16px 18px">
+      <div style="padding:14px;border-radius:14px;background:rgba(255,255,255,.06);transform:scale(${back((t - .5) / .4)})"><b style="font-size:17px">Marcos R.</b><div>${EST(3, 16)}<span style="color:#5F6368;font-size:16px">★★</span></div><div style="margin-top:6px;font-size:15px;color:${GT}">Bolo bom, mas chegou atrasado.</div></div>
+      ${t > 1.3 ? `<div style="margin-top:12px;margin-left:24px;padding:14px;border-radius:14px;border-left:3px solid ${GA};background:rgba(138,180,248,.08);font-size:15px;line-height:1.4"><b style="font-size:14px;color:${GA}">Resposta do proprietário</b><div style="margin-top:4px">${resp.slice(0, n)}</div></div>` : ''}
+      <div style="margin-top:14px;text-align:right;font-size:12px;color:${GS};letter-spacing:.12em;font-weight:800">EXEMPLO</div></div>`);
+  return `${FONE(t, inner)}${PASSOS(t, ['Abre as avaliações no seu perfil', 'Responde todas em até 2 dias', 'Na ruim: agradece, pede desculpa e resolve'])}
+  ${DICA(t, 4, ['Responde', '*toda avaliação*'], 'Quem lê vê que tem gente de verdade cuidando. <b>Até a nota ruim vira prova de confiança.</b>', 2)}`; });
+
+// 6 · ligação com o site: as avaliações do Google passando na página (EXEMPLO)
+slide(6.5, [[0, 'red'], [2.3, 'black']], t => {
+  const nota = lerp(0, 4.9, eio((t - .6) / 1.4)), rev = [['Marina S.', 'Chegou certinho e no horário. Atendimento nota 10!'], ['Paulo R.', 'Fiz o pedido pelo site em 1 minuto 👏'], ['Lu C.', 'Melhor bolo que já comi em Goiânia 😋'], ['Diego A.', 'Voltei pela terceira vez. Recomendo!']];
+  const desl = (t * 110) % (4 * 400);
+  return `<div style="${CARD(70, 140, 940, 480)}">
+      <div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">AVALIAÇÕES NO GOOGLE</div>
+      <div class="abs" style="right:36px;top:28px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>
+      <div class="abs" style="left:40px;top:66px;display:flex;align-items:center;gap:22px"><span style="font-family:Anton;font-size:120px;line-height:1">${fmt(nota, 1)}</span>
+        <span style="font-size:58px;letter-spacing:4px">${[0, 1, 2, 3, 4].map(i => `<span style="color:${nota >= i + .9 ? '#FFC93C' : 'rgba(255,255,255,.2)'};text-shadow:${nota >= i + .9 ? '0 0 18px rgba(255,201,60,.7)' : 'none'}">★</span>`).join('')}</span></div>
+      <div class="abs" style="left:0;top:240px;width:4000px;display:flex;gap:20px;transform:translateX(${40 - desl}px);opacity:${ease((t - 1.6) / .5)}">
+        ${[...rev, ...rev, ...rev].map(([n, x]) => `<div style="width:380px;flex-shrink:0;padding:24px 26px;border-radius:26px;background:#fff;color:#0B0B0D">
+          <div style="display:flex;justify-content:space-between"><b style="font-size:26px">${n}</b><span style="color:#F5A623;font-size:24px">★★★★★</span></div><div style="margin-top:10px;font-size:25px;line-height:1.3;color:#333">${x}</div></div>`).join('')}</div></div>
+  ${K.kick(t, .1, 'E O SEU SITE?', 655)}${K.kin(t, .3, ['Suas avaliações', '*vendendo por você*'], { y: 900, max: 175, ini: 5 })}
+  ${K.corpo(t, 3.0, 'No site que eu faço, as avaliações do Google <b>aparecem na hora que o cliente tá decidindo.</b>', 1110, { fs: 34 })}
+  ${K.rodape(t, 3.4)}`; });
+
+// 7 · final aprovado
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['⭐ Avaliações na tela', '🏢 Nome e CNPJ à vista', '📍 Onde fica', '💬 Botão do WhatsApp', '🔒 Seu nome no endereço', '🤝 Cliente que confia'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 22px;${K.vidro()}border-radius:28px;font-weight:800;font-size:29px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>
