@@ -35,8 +35,8 @@ CAPS = [
     ("Técnica em cada etapa.", 10.20, 12.30),
     ("Cuidado do início ao fim.", 15.20, 17.30),
 ]
-NAME = ("Dr. Fernando", "Augusto de Oliveira", 7.65, 9.85)   # lower third
-END = dict(t0=20.0, linha1="Dr. Fernando", linha2="Augusto de Oliveira", cta="Agende sua avaliação")
+NAME = ("Fernando Augusto", "Médico · CRM-GO 29.367", 7.65, 9.85)   # lower third
+END = dict(t0=20.0, logo="logo/logo_dourada.png", cta="Agende sua avaliação")
 
 
 def starts():

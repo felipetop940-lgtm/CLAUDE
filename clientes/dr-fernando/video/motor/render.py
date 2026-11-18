@@ -16,7 +16,7 @@ INTER = "/usr/share/fonts/opentype/inter/"
 CORM = os.path.join(A.fonts, "CormorantGaramond.ttf")
 GOLD = (214, 182, 122)
 GOLD_L = (232, 208, 160)
-NAVY = (14, 24, 48)
+NAVY = (27, 45, 67)   # marinho da marca (logo)
 
 ST, TOTAL = starts()
 NF = int(round(TOTAL * FPS))
@@ -280,19 +280,28 @@ def graphics(t, L):
     e = END; t0 = e["t0"]
     if t >= t0:
         op_all = 1.
-        cy = 760
-        lw = 180 * eout((t - t0 - .45) / .6)
-        L.rect(W / 2 - lw / 2, cy - 120, W / 2 + lw / 2, cy - 118, GOLD, op_all)
-        a = eout((t - t0 - .6) / .7)
-        L.paste(text_img(e["linha1"], font(CORM, 132, 500), track=1, shadow=.55), W / 2, cy - 30 + (1 - a) * 26, a * op_all)
-        a = eout((t - t0 - .9) / .7)
-        L.paste(text_img(e["linha2"], font(INTER + "Inter-Medium.otf", 30), track=10, fill=GOLD_L, shadow=.6, upper=True),
-                W / 2, cy + 62 + (1 - a) * 18, a * op_all)
+        cy = 700
+        # logo dourada: monograma entra com escala suave + reflexo de luz; textos entram em seguida
+        mono, txt1, txt2 = LOGO
+        a = eout((t - t0 - .45) / .9)
+        if a > 0:
+            sc = 1.06 - .06 * a
+            m = cv2.resize(mono, None, fx=sc, fy=sc, interpolation=cv2.INTER_AREA) if abs(sc - 1) > .002 else mono.copy()
+            sw = (t - t0 - 1.2) / 1.1                      # reflexo atravessando o metal
+            if 0 < sw < 1:
+                hh, ww = m.shape[:2]; yy_, xx_ = np.mgrid[0:hh, 0:ww].astype(np.float32)
+                band = np.exp(-(((xx_ + yy_ * .45) / (ww + hh * .45) - (sw * 1.4 - .2)) / .06) ** 2)
+                m[..., :3] = np.clip(m[..., :3] + band[..., None] * .55 * m[..., 3:4], 0, 1)
+            L.paste(m, W / 2, cy - 95 + (1 - a) * 20, a * op_all)
+        a = eout((t - t0 - .95) / .7)
+        L.paste(txt1, W / 2, cy + 112 + (1 - a) * 14, a * op_all)
+        a = eout((t - t0 - 1.15) / .7)
+        L.paste(txt2, W / 2, cy + 160 + (1 - a) * 12, a * op_all)
         a = eout((t - t0 - 1.5) / .6)
         if a > 0:
             cta = text_img(e["cta"], font(INTER + "Inter-Regular.otf", 40), track=2, shadow=.0)
             bw, bh = cta.shape[1] - 80 + 110, 96
-            by = cy + 200 + (1 - a) * 16
+            by = cy + 300 + (1 - a) * 16
             o = a * op_all
             L.rect(W / 2 - bw / 2, by - bh / 2, W / 2 + bw / 2, by + bh / 2, NAVY, .55 * o)
             for (x0, y0, x1, y1) in [(-bw / 2, -bh / 2, bw / 2, -bh / 2 + 2), (-bw / 2, bh / 2 - 2, bw / 2, bh / 2),
@@ -305,6 +314,33 @@ def graphics(t, L):
                 px = W / 2 - bw / 2 + sx * bw
                 for k in range(-18, 19, 3):
                     L.rect(px + k, by - bh / 2 + 2, px + k + 3, by + bh / 2 - 2, (255, 255, 255), .18 * (1 - abs(k) / 18) * o)
+
+
+def load_logo(path, width=640):
+    im = cv2.imread(path, cv2.IMREAD_UNCHANGED)
+    im = cv2.cvtColor(im, cv2.COLOR_BGRA2RGBA).astype(np.float32) / 255.
+    sc = width / im.shape[1]
+    im = cv2.resize(im, None, fx=sc, fy=sc, interpolation=cv2.INTER_AREA)
+    rows = np.where(im[..., 3].max(1) > .3)[0]
+    gaps = np.where(np.diff(rows) > 6)[0]
+    edges = [rows[0]] + [v for g in gaps for v in (rows[g], rows[g + 1])] + [rows[-1]]
+    parts = []
+    for i in range(0, len(edges), 2):
+        y0, y1 = max(0, edges[i] - 4), edges[i + 1] + 5
+        part = im[y0:y1]
+        cols = np.where(part[..., 3].max(0) > .02)[0]
+        parts.append(np.pad(part[:, max(0, cols[0] - 4):cols[-1] + 5], ((40, 40), (40, 40), (0, 0))))
+    # sombra suave marinho atrás de cada parte p/ leitura
+    out = []
+    for p_ in parts:
+        sh = cv2.GaussianBlur(p_[..., 3], (0, 0), 10) * .5
+        a = p_[..., 3] + sh * (1 - p_[..., 3])
+        rgb = (p_[..., :3] * p_[..., 3:4] + np.array(NAVY, np.float32)[None, None] / 255. * (sh * (1 - p_[..., 3]))[..., None]) / np.maximum(a, 1e-4)[..., None]
+        out.append(np.dstack([rgb, a]).astype(np.float32))
+    return out
+
+
+LOGO = load_logo(os.path.join(os.path.dirname(os.path.abspath(__file__)), END["logo"]))
 
 
 # ---------------------------------------------------------------- composição
@@ -354,7 +390,7 @@ def endcard_dim(img, t):
     if t < END["t0"]: return img
     a = ease((t - END["t0"] - .1) / .8)
     f = img.astype(np.float32)
-    grad = np.clip(1 - (yy / H - .30) / .45, 0, 1)[..., None] * .62 + .22
+    grad = np.clip(1 - (yy / H - .50) / .35, 0, 1)[..., None] * .66 + .26
     nav = np.array(NAVY[::-1], np.float32)
     f = f * (1 - grad * a) + nav * grad * a
     return np.clip(f, 0, 255).astype(np.uint8)

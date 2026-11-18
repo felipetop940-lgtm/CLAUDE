@@ -24,4 +24,4 @@ ffmpeg -i video_mudo.mp4 -i trilha.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a
 - Dependências: ffmpeg com zscale, `opencv-python-headless`, `scipy`, `pillow`, `pillow-heif`.
 
 ## Pendências para a versão final
-- CRM (e RQE, se a especialidade for citada). A Resolução CFM 2.336/2023 exige esses dados em publicidade médica.
+- CRM-GO 29.367 aplicado (lower third e cartela). RQE só se a especialidade for citada.
