@@ -1,6 +1,6 @@
 # Dr. Fernando Augusto de Oliveira — vídeo institucional (Reels)
 
-Vídeo vertical 1080x1920, 30 fps, 25 s, sem falas, com legendas discretas. Saída: `drfernando-v6.mp4` (v6: whooshes das transições ~10 dB mais baixos).
+Vídeo vertical 1080x1920, 30 fps, 25 s, sem falas, com legendas discretas. Saída: `drfernando-v7.mp4` (v7: logo dourada na cartela final e CRM na lower third).
 
 ## Regras do cliente
 - **Não mostrar a pedra da bancada** (granito). Os planos com bancada foram recortados ou ficaram de fora.
