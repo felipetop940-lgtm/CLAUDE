@@ -1,0 +1,149 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 48 ANIMADO (1080x1350, cada slide é um vídeo) · "Como proteger o WhatsApp da sua empresa" · estilo CINÉTICO, formato do ajuste de 14/11
+     Título ensinando EM CIMA (cadeado com a checklist de proteção, menor embaixo); 4 DICAS: confirmação em duas etapas, aparelhos conectados, nunca passar o código de 6 dígitos, esconder o código na tela bloqueada;
+     ligação com o site (botão que leva sempre pro número oficial) + final aprovado. Fontes: Exame, Polícia Civil-SE, TechTudo, guias de WhatsApp clonado (nov/2026). Dados de exemplo marcados EXEMPLO.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c48-whatsapp-sem-clonagem -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO SEU SITE', 655);
+
+const TAG = (x = 36, y = 28) => `<div class="abs" style="right:${x}px;top:${y}px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>`;
+const ROT = txt => `<div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">${txt}</div>`;
+
+const VIVA = () => K.verm ? '#fff' : '#FF2E43';
+
+// ---------- celular com a tela do WhatsApp Business (tema escuro) ----------
+const ZB = '#0B141A', ZH = '#1F2C34', ZT = '#E9EDEF', ZS = '#8696A0', ZG = '#00A884';
+const FONE = (t, inner) => { const inn = ease(t / .6);
+  return `<div class="abs" style="left:110px;top:112px;width:344px;height:600px;border-radius:52px;background:#0B0B0D;padding:12px;box-shadow:0 0 0 3px rgba(255,255,255,.25), 0 50px 100px -30px rgba(0,0,0,.9);opacity:${inn};transform:translateY(${(1 - inn) * 40}px) rotate(-2deg)">
+    <div style="width:320px;height:576px;border-radius:42px;overflow:hidden;position:relative;background:${ZB};font-family:IT,sans-serif;color:${ZT}">${inner}</div>
+    <div style="position:absolute;left:50%;top:22px;width:90px;height:24px;margin-left:-45px;border-radius:12px;background:#0B0B0D"></div></div>`; };
+const TOPO = (tit, sub = '') => `<div style="height:104px;padding:50px 20px 0;background:${ZH};display:flex;align-items:center;gap:14px"><span style="font-size:26px;color:${ZS}">←</span><div><b style="font-size:23px">${tit}</b>${sub ? `<div style="font-size:15px;color:${ZS}">${sub}</div>` : ''}</div></div>`;
+// lista de opções; sel = índice tocado, k = progresso do toque
+const LISTA = (itens, sel = -1, k = 0) => itens.map(([ic, tx, sub], j) => `<div style="display:flex;align-items:center;gap:14px;padding:15px 20px;position:relative;background:${j === sel && k > 0 ? `rgba(0,168,132,${.28 * Math.sin(clamp(k) * Math.PI) + (k >= 1 ? .14 : 0)})` : 'transparent'}">
+    <span style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:21px">${ic}</span><div><div style="font-size:19px;font-weight:600">${tx}</div>${sub ? `<div style="font-size:14px;color:${ZS}">${sub}</div>` : ''}</div></div>`).join('');
+const CHAVE = (on) => `<span style="flex-shrink:0;width:52px;height:30px;border-radius:15px;background:${on > .5 ? ZG : '#3B4A54'};position:relative"><span style="position:absolute;top:4px;left:${4 + 22 * clamp(on)}px;width:22px;height:22px;border-radius:50%;background:#fff"></span></span>`;
+// passos do lado direito (o caminho dentro do app), cada um entra com ✓
+const PASSOS = (t, L, t0 = .5, dt = .55) => L.map((tx, j) => { const k = back((t - t0 - j * dt) / .4), ok = back((t - t0 - j * dt - .3) / .3);
+  return k <= 0 ? '' : `<div class="abs" style="left:500px;width:480px;top:${150 + j * 112}px;padding:18px 22px;${K.vidro()}border-radius:24px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:25px;line-height:1.2;opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 70}px)">
+    <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-family:Anton;font-size:22px;transform:scale(${clamp(ok, 0, 1.15)})">${j + 1}</span>${tx}</div>`; }).join('');
+const FERR = [['🏪', 'Perfil comercial'], ['🛍️', 'Catálogo'], ['💤', 'Mensagem de ausência'], ['👋', 'Mensagem de saudação'], ['⚡', 'Respostas rápidas']];
+const DICA = (t, n, tit, txt, ini) => `${K.kick(t, .1, 'DICA ' + n, 736)}${K.kin(t, .3, tit, { y: 978, max: 148, ini })}${K.corpo(t, 3.0, txt, 1150, { fs: 31 })}${K.rodape(t, 3.6)}`;
+
+// tela de app de banco genérico (sem marca)
+const BB = '#111316', BH = '#1B1F24', BA = '#21C38B', BT = '#F2F4F5', BS = '#8B95A1';
+const BTOPO = (tit) => `<div style="height:100px;padding:48px 20px 0;background:${BH};display:flex;align-items:center;gap:14px"><span style="font-size:24px;color:${BS}">←</span><b style="font-size:22px;color:${BT}">${tit}</b></div>`;
+const BANCO = (inner) => `<div style="position:absolute;inset:0;background:${BB};color:${BT}">${inner}</div>`;
+const EXE = `<div style="position:absolute;right:16px;bottom:12px;font-size:12px;color:${BS};letter-spacing:.12em;font-weight:800">EXEMPLO</div>`;
+
+// 1 · gancho: TÍTULO em cima ensinando; embaixo, menor, o cadeado fechando enquanto a checklist de proteção é marcada
+slide(7, [[0, 'black'], [3.0, 'red']], t => {
+  const inn = ease((t - 1.0) / .6), fecha = eio((t - 3.0) / .5);
+  const P = [['🔐', 'Confirmação em duas etapas'], ['📱', 'Aparelhos conectados conferidos'], ['🔢', 'Código de 6 dígitos só seu'], ['🙈', 'Código escondido na tela bloqueada']];
+  return `${K.kin(t, .05, ['Como proteger o WhatsApp', '*da sua empresa*'], { y: 300, max: 165 })}
+    ${K.corpo(t, 1.0, 'WhatsApp clonado pede Pix pros seus clientes no seu nome. Arrasta e vê <b>4 travas</b> pra fazer hoje.', 470, { fs: 34 })}
+    <div style="${CARD(130, 640, 820, 420, `opacity:${.92 * inn};transform:translateY(${(1 - inn) * 40}px)`)}">${ROT('SUAS TRAVAS')}
+      <svg class="abs" style="left:40px;top:96px" width="170" height="230" viewBox="0 0 170 230"><path d="M40 ${100 - 26 * (1 - fecha)} V70 a45 45 0 0 1 90 0 V100" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" transform="translate(0 ${-18 * (1 - fecha)})"/>
+        <rect x="15" y="100" width="140" height="115" rx="22" fill="${fecha > .9 ? VIVA() : 'rgba(255,255,255,.18)'}"/><circle cx="85" cy="150" r="14" fill="#fff"/><rect x="79" y="155" width="12" height="30" rx="5" fill="#fff"/></svg>
+      ${P.map(([ic, tx], j) => { const k = back((t - 1.5 - j * .4) / .4), ok = back((t - 1.8 - j * .4) / .3);
+        return `<div class="abs" style="left:240px;right:36px;top:${80 + j * 76}px;height:62px;display:flex;align-items:center;gap:12px;padding:0 16px;border-radius:16px;background:rgba(255,255,255,.08);opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 60}px)">
+          <span style="font-size:24px">${ic}</span><b style="font-size:21px;flex:1">${tx}</b>
+          <span style="width:34px;height:34px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:19px;font-weight:800;transform:scale(${clamp(ok, 0, 1.15)})">✓</span></div>`; }).join('')}</div>
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${Math.sin(t * 4) * 14}px)">→</span></span></div>`; });
+
+// 2 · DICA 1 · confirmação em duas etapas: Configurações › Conta › Confirmação em duas etapas › PIN
+slide(7.5, [[0, 'black'], [3.4, 'red']], t => {
+  const tela2 = t > 1.8, k = clamp((t - 1.1) / .5), pin = Math.floor(clamp((t - 2.3) / 1.2) * 6);
+  const inner = !tela2 ? TOPO('Conta') + LISTA([['🔔', 'Notificações de segurança'], ['🔑', 'Chaves de acesso'], ['✉️', 'Endereço de e-mail'], ['🔐', 'Confirmação em duas etapas'], ['📱', 'Mudar número']], 3, k) + (t > 1.0 && t < 1.8 ? onda(160, 450, k, ZG) : '')
+    : TOPO('Confirmação em duas etapas') + `<div style="padding:26px 22px;text-align:center">
+        <div style="font-size:40px">🔐</div><div style="margin-top:8px;font-size:17px;color:${ZS}">Crie um PIN de 6 dígitos</div>
+        <div style="margin-top:20px;display:flex;justify-content:center;gap:10px">${Array.from({ length: 6 }, (_, j) => `<span style="width:30px;height:40px;border-bottom:3px solid ${j < pin ? ZG : '#3B4A54'};font-size:26px;font-weight:800;color:${ZT}">${j < pin ? '•' : ''}</span>`).join('')}</div>
+        <div style="margin-top:22px;font-size:15px;color:${ZS};opacity:${ease((t - 3.6) / .4)}">+ e-mail pra recuperar a conta</div>
+        <div style="margin-top:20px;padding:14px;border-radius:24px;background:${ZG};color:#06301A;font-weight:800;font-size:18px;opacity:${ease((t - 3.8) / .4)}">Ativar</div></div>`;
+  return `${FONE(t, inner)}${PASSOS(t, ['Configurações › Conta', 'Confirmação em duas etapas › Ativar', 'Cria um PIN que não seja seu aniversário', 'Cadastra um e-mail de recuperação'])}
+  ${DICA(t, 1, ['Confirmação em', '*duas etapas*'], 'Mesmo que roubem o código do SMS, <b>sem o seu PIN ninguém entra.</b>', 1)}`; });
+
+// 3 · DICA 2 · aparelhos conectados: aparece um computador estranho e é desconectado (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const sai = clamp((t - 2.4) / .5);
+  const L = [['📱', 'Este celular', 'ativo agora', 0], ['💻', 'Computador da loja', 'ativo hoje', 0], ['🖥️', 'Windows · Chrome', 'local desconhecido', 1]];
+  const inner = TOPO('Dispositivos conectados') + `<div style="padding:12px 18px">${L.map(([ic, n, s, mau], j) => { const k = ease((t - .5 - j * .35) / .35);
+      return `<div style="display:flex;align-items:center;gap:12px;padding:14px 8px;border-radius:12px;border-bottom:1px solid rgba(255,255,255,.07);opacity:${k * (mau ? 1 - .75 * sai : 1)};background:${mau && t > 1.6 && sai < 1 ? 'rgba(241,92,109,.15)' : 'transparent'};transform:translateX(${mau ? sai * 40 : 0}px)"><span style="font-size:26px">${ic}</span><div><b style="font-size:17px">${n}</b><div style="font-size:14px;color:${mau ? '#F15C6D' : ZS}">${s}</div></div></div>`; }).join('')}
+      ${t > 1.6 && t < 2.4 ? `<div style="margin-top:14px;text-align:center;padding:12px;border-radius:22px;background:#F15C6D;color:#fff;font-weight:800;font-size:17px;transform:scale(${back((t - 1.6) / .3)})">Desconectar</div>` : ''}
+      ${t >= 2.9 ? `<div style="margin-top:14px;text-align:center;font-size:16px;color:${ZG};font-weight:800;opacity:${ease((t - 2.9) / .3)}">✓ Aparelho desconectado</div>` : ''}
+      <div style="margin-top:12px;text-align:right;font-size:12px;color:${ZS};letter-spacing:.12em;font-weight:800">EXEMPLO</div></div>`;
+  return `${FONE(t, inner)}${PASSOS(t, ['⋮ › Dispositivos conectados', 'Não reconhece algum? Toca nele', 'Desconectar, e confere toda semana'])}
+  ${DICA(t, 2, ['Confere os aparelhos', '*conectados*'], 'Golpista que entra pelo computador lê tudo calado. <b>Aparelho estranho, desconecta na hora.</b>', 3)}`; });
+
+// 4 · DICA 3 · o código de 6 dígitos nunca sai do seu celular: a mensagem chega e leva o carimbo GOLPE (EXEMPLO)
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const carimbo = back((t - 2.2) / .35);
+  const inner = TOPO('+55 62 9••••-••••', 'número desconhecido') + `<div style="padding:16px;position:relative;height:440px">
+      <div style="max-width:84%;padding:12px 14px;border-radius:4px 14px 14px 14px;background:${ZH};font-size:16px;line-height:1.35;transform:scale(${back((t - .5) / .4)});transform-origin:0 0">Oi! Te mandei um código de 6 dígitos sem querer 😅 pode me passar? É urgente 🙏</div>
+      <div style="margin-top:12px;max-width:70%;padding:12px 14px;border-radius:4px 14px 14px 14px;background:#182229;font-size:15px;color:${ZS};transform:scale(${back((t - 1.2) / .4)});transform-origin:0 0">💬 SMS: Seu código do WhatsApp: <b style="color:${ZT}">482-913</b>. Não compartilhe.</div>
+      ${carimbo > 0 ? `<div style="position:absolute;left:50%;top:120px;margin-left:-110px;width:220px;text-align:center;padding:10px;border:5px solid #F15C6D;border-radius:14px;color:#F15C6D;font-family:Anton;font-size:44px;transform:rotate(-10deg) scale(${clamp(carimbo, 0, 1.15)});background:rgba(11,20,26,.85)">GOLPE</div>` : ''}
+      <div style="position:absolute;right:16px;bottom:12px;font-size:12px;color:${ZS};letter-spacing:.12em;font-weight:800">EXEMPLO</div></div>`;
+  return `${FONE(t, inner)}${PASSOS(t, ['Chegou código sem você pedir?', 'Não passa pra ninguém, nem pra "parente"', 'O WhatsApp e o banco nunca pedem esse código'])}
+  ${DICA(t, 3, ['O código de 6 dígitos', '*é só seu*'], 'Quem passa o código <b>entrega o WhatsApp inteiro</b> pro golpista.', 4)}`; });
+
+// 5 · DICA 4 · esconde o código na tela bloqueada: a notificação passa de mostrar o código pra "conteúdo oculto"
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const esconde = clamp((t - 2.2) / .4);
+  const inner = `<div style="position:absolute;inset:0;background:linear-gradient(170deg,#1B2430,#0B0F14);color:#fff">
+      <div style="position:absolute;left:0;right:0;top:70px;text-align:center;font-family:Anton;font-size:64px;opacity:.9">14:52</div>
+      <div style="position:absolute;left:0;right:0;top:150px;text-align:center;font-size:16px;opacity:.7">quinta-feira</div>
+      <div style="position:absolute;left:18px;right:18px;top:220px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.14);transform:scale(${back((t - .6) / .4)})">
+        <div style="font-size:13px;opacity:.75">💬 Mensagens · agora</div>
+        <div style="margin-top:6px;font-size:16px;line-height:1.35">${esconde < .5 ? 'Seu código do WhatsApp: <b>482-913</b>. Não compartilhe.' : '<span style="opacity:.8">🔒 Conteúdo oculto</span>'}</div></div>
+      ${esconde >= 1 ? `<div style="position:absolute;left:18px;right:18px;top:330px;text-align:center;padding:12px;border-radius:20px;background:#21C38B;color:#06301A;font-weight:800;font-size:16px;transform:scale(${back((t - 2.6) / .4)})">✓ Ninguém lê o código de longe</div>` : ''}</div>`;
+  return `${FONE(t, inner)}${PASSOS(t, ['Configurações do celular › Notificações', 'Tela de bloqueio', 'Ocultar conteúdo das mensagens'])}
+  ${DICA(t, 4, ['Esconde o código', '*na tela bloqueada*'], 'Celular em cima do balcão? <b>Ninguém espia o código</b> que chega por SMS.', 2)}`; });
+
+// 6 · ligação com o site: o botão leva sempre pro número oficial
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const msg = 'Olá! Vi seu site e quero encomendar um bolo pra sábado 🎂', troca = eio((t - 1.9) / .5), n = Math.floor(clamp((t - 2.4) / .7) * msg.length), env = t > 3.4;
+  const site = `<div class="abs" style="inset:0;transform:translateX(${-troca * 100}%);padding:40px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-family:Anton;font-size:40px">DOCE ANA</b><span style="font-size:22px;color:rgba(255,255,255,.6)">Cardápio · Preços · Onde fica</span></div>
+      <div style="margin-top:46px;font-weight:800;font-size:56px;line-height:1.08">Bolo de festa por<br>encomenda em Goiânia</div>
+      <div style="margin-top:34px;display:inline-flex;align-items:center;gap:14px;padding:22px 40px;border-radius:44px;background:#25D366;color:#06301A;font-weight:800;font-size:32px;transform:scale(${(1 + .04 * Math.sin(t * 6)) * (1 - .08 * Math.sin(clamp((t - 1.5) / .3) * Math.PI))});box-shadow:0 0 ${30 + 20 * Math.sin(t * 6)}px rgba(37,211,102,.6)">💬 Pedir pelo WhatsApp</div></div>`;
+  const zap = `<div class="abs" style="inset:0;transform:translateX(${(1 - troca) * 100}%);display:flex;flex-direction:column;background:#0B141A">
+      <div style="display:flex;align-items:center;gap:16px;padding:22px 28px;background:#1F2C34"><div style="width:54px;height:54px;border-radius:50%;background:#D6B36C;color:#111;display:grid;place-items:center;font-family:Anton;font-size:26px">DA</div><b style="font-size:29px">Doce Ana</b></div>
+      <div style="flex:1;padding:24px 28px">${env ? `<div style="margin-left:auto;max-width:80%;padding:18px 22px;border-radius:20px 20px 6px 20px;background:#005C4B;font-size:28px;line-height:1.3;transform:scale(${back((t - 3.4) / .35)});transform-origin:100% 100%">${msg}<div style="text-align:right;font-size:20px;color:#9FC9BD;margin-top:4px">✓✓</div></div>` : ''}</div>
+      <div style="display:flex;gap:12px;padding:14px 20px 22px"><div style="flex:1;min-height:62px;padding:16px 22px;border-radius:31px;background:#1F2C34;font-size:25px;color:${env ? '#8696A0' : '#E9EDEF'}">${env ? 'Mensagem' : msg.slice(0, n)}</div><div style="width:62px;height:62px;border-radius:50%;background:#00A884;display:grid;place-items:center;font-size:28px">➤</div></div></div>`;
+  return `<div style="${CARD(70, 140, 940, 480)}">${site}${zap}${t > .6 && t < 1.9 ? cursor(lerp(700, 330, eio((t - .6) / .8)), lerp(440, 330, eio((t - .6) / .8)), clamp((t - 1.5) / .3)) : ''}</div>
+  ${K.kick(t, .1, 'E O SEU SITE?', 655)}${K.kin(t, .3, ['O site mostra', '*o número oficial*'], { y: 900, max: 175, ini: 5 })}
+  ${K.corpo(t, 4.0, 'No site que eu faço, o botão leva sempre pro <b>seu número de verdade</b>. Se alguém se passar por você, o cliente sabe onde conferir.', 1110, { fs: 33 })}
+  ${K.rodape(t, 4.6)}`; });
+
+// 7 · final aprovado
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['💬 Número oficial no botão', '🏢 Nome e CNPJ à vista', '🔒 Seu nome no endereço', '📍 Onde fica', '⭐ Avaliações', '🤝 Cliente que confia'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 22px;${K.vidro()}border-radius:28px;font-weight:800;font-size:29px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>
