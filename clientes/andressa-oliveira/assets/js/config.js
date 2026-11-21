@@ -20,13 +20,13 @@ window.SITE = {
   email: "",
 
   endereco: {
-    local: "",  // Ex.: "Edifício Tal, sala 101"  [ENDEREÇO DO CONSULTÓRIO]
-    rua: "",    // Ex.: "Av. Tal, nº 100, Setor Bueno"
+    local: "Medicorum Centro Clínico · Sala 212, 2º andar",
+    rua: "R. C-139, nº 853, Qd. 341 · Jardim América",
     cidade: "Goiânia · GO",
-    cep: "",
+    cep: "CEP 74275-070",
     // Link do Google Maps (botão "Ver no mapa") e mapa embutido (Compartilhar > Incorporar mapa > só o link do src)
-    mapa: "",
-    mapaEmbed: ""
+    mapa: "https://www.google.com/maps/search/?api=1&query=Medicorum+Centro+Cl%C3%ADnico%2C+R.+C-139%2C+853+-+Jardim+Am%C3%A9rica%2C+Goi%C3%A2nia+-+GO%2C+74275-070",
+    mapaEmbed: "https://www.google.com/maps?q=Medicorum+Centro+Cl%C3%ADnico%2C+R.+C-139%2C+853+-+Jardim+Am%C3%A9rica%2C+Goi%C3%A2nia+-+GO%2C+74275-070&output=embed"
   },
 
   horario: "", // Ex.: "Segunda a sexta, 8h às 18h · sábado com agendamento"
@@ -44,6 +44,11 @@ window.SITE = {
     performance: "Olá, Dra. Andressa! Vim pelo site e gostaria de saber mais sobre performance e energia.",
     metabolica: "Olá, Dra. Andressa! Vim pelo site e gostaria de saber mais sobre saúde metabólica.",
     longevidade: "Olá, Dra. Andressa! Vim pelo site e gostaria de saber mais sobre longevidade.",
+    lipedema: "Olá, Dra. Andressa! Vim pelo site e gostaria de uma avaliação para lipedema.",
+    intestino: "Olá, Dra. Andressa! Vim pelo site e gostaria de uma avaliação sobre saúde intestinal.",
+    menopausa: "Olá, Dra. Andressa! Vim pelo site e gostaria de acompanhamento na menopausa.",
+    dislipidemia: "Olá, Dra. Andressa! Vim pelo site e gostaria de tratar colesterol/triglicerídeos.",
+    deficiencias: "Olá, Dra. Andressa! Vim pelo site e gostaria de investigar deficiências nutricionais.",
     equipe: "Olá, Dra. Andressa! Vim pelo site e gostaria de saber mais sobre o acompanhamento com equipe multidisciplinar.",
     duvida: "Olá, Dra. Andressa! Vim pelo site e tenho uma dúvida antes de agendar."
   }
