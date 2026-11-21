@@ -1,0 +1,140 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 50 ANIMADO (1080x1350, cada slide é um vídeo) · "Como tirar foto de produto com o celular" · estilo CINÉTICO, formato do ajuste de 14/11
+     Título ensinando EM CIMA (antes x depois de uma foto, menor embaixo, EXEMPLO); 4 DICAS: luz de janela (sem flash), fundo liso de cartolina, tocar pra travar foco e brilho, sem zoom (aproxima o celular);
+     ligação com o site (site do Dr. Fernando no celular: foto boa merece vitrine boa) + final aprovado. Fontes: Loggi, Nuvemshop, Shopify, Pertise (guias de foto de produto com celular).
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c50-foto-produto-celular -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO SEU SITE', 655);
+
+const TAG = (x = 36, y = 28) => `<div class="abs" style="right:${x}px;top:${y}px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>`;
+const ROT = txt => `<div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">${txt}</div>`;
+
+const VIVA = () => K.verm ? '#fff' : '#FF2E43';
+
+// ---------- celular com a tela do WhatsApp Business (tema escuro) ----------
+const ZB = '#0B141A', ZH = '#1F2C34', ZT = '#E9EDEF', ZS = '#8696A0', ZG = '#00A884';
+const FONE = (t, inner) => { const inn = ease(t / .6);
+  return `<div class="abs" style="left:110px;top:112px;width:344px;height:600px;border-radius:52px;background:#0B0B0D;padding:12px;box-shadow:0 0 0 3px rgba(255,255,255,.25), 0 50px 100px -30px rgba(0,0,0,.9);opacity:${inn};transform:translateY(${(1 - inn) * 40}px) rotate(-2deg)">
+    <div style="width:320px;height:576px;border-radius:42px;overflow:hidden;position:relative;background:${ZB};font-family:IT,sans-serif;color:${ZT}">${inner}</div>
+    <div style="position:absolute;left:50%;top:22px;width:90px;height:24px;margin-left:-45px;border-radius:12px;background:#0B0B0D"></div></div>`; };
+const TOPO = (tit, sub = '') => `<div style="height:104px;padding:50px 20px 0;background:${ZH};display:flex;align-items:center;gap:14px"><span style="font-size:26px;color:${ZS}">←</span><div><b style="font-size:23px">${tit}</b>${sub ? `<div style="font-size:15px;color:${ZS}">${sub}</div>` : ''}</div></div>`;
+// lista de opções; sel = índice tocado, k = progresso do toque
+const LISTA = (itens, sel = -1, k = 0) => itens.map(([ic, tx, sub], j) => `<div style="display:flex;align-items:center;gap:14px;padding:15px 20px;position:relative;background:${j === sel && k > 0 ? `rgba(0,168,132,${.28 * Math.sin(clamp(k) * Math.PI) + (k >= 1 ? .14 : 0)})` : 'transparent'}">
+    <span style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:21px">${ic}</span><div><div style="font-size:19px;font-weight:600">${tx}</div>${sub ? `<div style="font-size:14px;color:${ZS}">${sub}</div>` : ''}</div></div>`).join('');
+const CHAVE = (on) => `<span style="flex-shrink:0;width:52px;height:30px;border-radius:15px;background:${on > .5 ? ZG : '#3B4A54'};position:relative"><span style="position:absolute;top:4px;left:${4 + 22 * clamp(on)}px;width:22px;height:22px;border-radius:50%;background:#fff"></span></span>`;
+// passos do lado direito (o caminho dentro do app), cada um entra com ✓
+const PASSOS = (t, L, t0 = .5, dt = .55) => L.map((tx, j) => { const k = back((t - t0 - j * dt) / .4), ok = back((t - t0 - j * dt - .3) / .3);
+  return k <= 0 ? '' : `<div class="abs" style="left:500px;width:480px;top:${150 + j * 112}px;padding:18px 22px;${K.vidro()}border-radius:24px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:25px;line-height:1.2;opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 70}px)">
+    <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-family:Anton;font-size:22px;transform:scale(${clamp(ok, 0, 1.15)})">${j + 1}</span>${tx}</div>`; }).join('');
+const FERR = [['🏪', 'Perfil comercial'], ['🛍️', 'Catálogo'], ['💤', 'Mensagem de ausência'], ['👋', 'Mensagem de saudação'], ['⚡', 'Respostas rápidas']];
+const DICA = (t, n, tit, txt, ini) => `${K.kick(t, .1, 'DICA ' + n, 736)}${K.kin(t, .3, tit, { y: 978, max: 148, ini })}${K.corpo(t, 3.0, txt, 1150, { fs: 31 })}${K.rodape(t, 3.6)}`;
+
+// tela de app de banco genérico (sem marca)
+const BB = '#111316', BH = '#1B1F24', BA = '#21C38B', BT = '#F2F4F5', BS = '#8B95A1';
+const BTOPO = (tit) => `<div style="height:100px;padding:48px 20px 0;background:${BH};display:flex;align-items:center;gap:14px"><span style="font-size:24px;color:${BS}">←</span><b style="font-size:22px;color:${BT}">${tit}</b></div>`;
+const BANCO = (inner) => `<div style="position:absolute;inset:0;background:${BB};color:${BT}">${inner}</div>`;
+const EXE = `<div style="position:absolute;right:16px;bottom:12px;font-size:12px;color:${BS};letter-spacing:.12em;font-weight:800">EXEMPLO</div>`;
+
+// tela de câmera do celular (genérica): visor com o produto, barra de cima e botão de foto
+const CAM = (t, fundo, prod, o = {}) => `<div style="position:absolute;inset:0;background:#000;color:#fff">
+    <div style="position:absolute;left:0;right:0;top:46px;text-align:center;font-size:14px;opacity:.8">${o.topo || '⚡ desligado · HDR'}</div>
+    <div style="position:absolute;left:10px;right:10px;top:76px;height:380px;border-radius:14px;overflow:hidden;background:${fundo};filter:${o.filtro || 'none'}">
+      <div style="position:absolute;left:50%;top:${o.py ?? 52}%;transform:translate(-50%,-50%) scale(${o.esc ?? 1});font-size:120px;filter:${o.pfiltro || 'drop-shadow(0 18px 14px rgba(0,0,0,.25))'}">${prod}</div>${o.extra || ''}</div>
+    <div style="position:absolute;left:0;right:0;top:466px;text-align:center;font-size:13px;letter-spacing:.1em;color:#FFD60A;font-weight:800">${o.modo || 'FOTO'}</div>
+    <div style="position:absolute;left:50%;bottom:22px;margin-left:-32px;width:64px;height:64px;border-radius:50%;border:4px solid #fff;display:grid;place-items:center"><div style="width:50px;height:50px;border-radius:50%;background:#fff;transform:scale(${o.clique ? .85 : 1})"></div></div></div>`;
+
+// 1 · gancho: TÍTULO em cima ensinando; embaixo, menor, a mesma foto antes e depois (EXEMPLO)
+slide(7, [[0, 'black'], [3.0, 'red']], t => {
+  const inn = ease((t - 1.0) / .6), vira = eio((t - 1.8) / 1.0);
+  return `${K.kin(t, .05, ['Como tirar foto de', '*produto com o celular*'], { y: 300, max: 165 })}
+    ${K.corpo(t, 1.0, 'Foto escura e bagunçada espanta cliente. Arrasta e vê <b>4 dicas</b> pra suas ofertas venderem mais.', 470, { fs: 34 })}
+    <div style="${CARD(130, 640, 820, 420, `opacity:${.92 * inn};transform:translateY(${(1 - inn) * 40}px)`)}">${ROT('A MESMA FOTO')}${TAG(30, 360)}
+      ${[['ANTES', 0], ['DEPOIS', 1]].map(([r, bom], j) => { const k = ease((t - 1.2 - j * .7) / .5), x = 40 + j * 390;
+        return `<div class="abs" style="left:${x}px;top:78px;width:350px;height:280px;border-radius:20px;overflow:hidden;opacity:${k};background:${bom ? 'linear-gradient(180deg,#F4F1EC,#E6E1D9)' : 'linear-gradient(160deg,#5A4A3A,#2B231C)'};filter:${bom ? 'none' : 'brightness(.65) saturate(.6)'}">
+          ${bom ? '' : '<div style="position:absolute;left:20px;top:30px;font-size:44px;opacity:.7">🧺</div><div style="position:absolute;right:24px;top:40px;font-size:40px;opacity:.6">🔌</div>'}
+          <div style="position:absolute;left:50%;top:54%;transform:translate(-50%,-50%) rotate(${bom ? 0 : -12}deg);font-size:110px;filter:${bom ? 'drop-shadow(0 16px 12px rgba(0,0,0,.25))' : 'blur(1.5px)'}">👟</div>
+          <div style="position:absolute;left:12px;top:12px;padding:4px 12px;border-radius:12px;background:${bom ? '#C3101F' : 'rgba(0,0,0,.6)'};color:#fff;font-weight:800;font-size:16px;letter-spacing:.1em">${r}</div>
+          ${bom && vira > 0 ? `<div style="position:absolute;right:12px;bottom:12px;padding:4px 12px;border-radius:12px;background:#fff;color:#C3101F;font-weight:800;font-size:16px;transform:scale(${back((t - 2.8) / .4)})">✓ vende mais</div>` : ''}</div>`; }).join('')}</div>
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${Math.sin(t * 4) * 14}px)">→</span></span></div>`; });
+
+// 2 · DICA 1 · luz de janela: a foto escura com flash vira clara e macia perto da janela (EXEMPLO)
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const k = eio((t - 1.4) / 1.0);
+  const janela = `<div style="position:absolute;left:0;top:0;bottom:0;width:${60 * k}px;background:linear-gradient(90deg,rgba(255,255,240,.9),transparent)"></div>`;
+  const inner = CAM(t, `linear-gradient(90deg, ${k > .5 ? '#FFFDF7' : '#3A332C'}, ${k > .5 ? '#E9E3D8' : '#1D1915'})`, '🧴', { filtro: `brightness(${lerp(.7, 1.05, k)})`, topo: k > .5 ? '⚡ flash desligado' : '⚡ flash ligado', extra: janela + (k < .3 ? '<div style="position:absolute;left:45%;top:35%;width:60px;height:60px;border-radius:50%;background:radial-gradient(#fff,transparent 70%);opacity:.9"></div>' : ''), clique: t > 2.6 && t < 2.8 });
+  return `${FONE(t, inner)}${PASSOS(t, ['Leva o produto pra perto da janela', 'Sol forte? Põe um pano branco na frente', 'Desliga o flash'])}
+  ${DICA(t, 1, ['Luz de', '*janela*'], 'Luz natural deixa a cor de verdade. <b>Flash achata a cor e faz reflexo.</b>', 1)}`; });
+
+// 3 · DICA 2 · fundo liso: a bagunça some e entra a cartolina curvada (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const k = eio((t - 1.2) / 1.0);
+  const bag = `<div style="position:absolute;left:16px;top:24px;font-size:46px;opacity:${1 - k}">🧺</div><div style="position:absolute;right:20px;top:36px;font-size:42px;opacity:${1 - k}">🔌</div><div style="position:absolute;left:26px;bottom:24px;font-size:40px;opacity:${1 - k}">🥤</div>`;
+  const inner = CAM(t, `linear-gradient(180deg, ${k > .5 ? '#F6F3EE' : '#6B5B4B'} 0%, ${k > .5 ? '#E8E3DB' : '#3F352C'} 100%)`, '👜', { extra: bag + `<div style="position:absolute;left:0;right:0;bottom:0;height:${45 * k}%;background:linear-gradient(180deg,rgba(0,0,0,.06),transparent);opacity:${k}"></div>`, clique: t > 2.7 && t < 2.9 });
+  return `${FONE(t, inner)}${PASSOS(t, ['Tira tudo que tá em volta', 'Cartolina branca ou de cor neutra', 'Curva da parede pra mesa, sem dobra'])}
+  ${DICA(t, 2, ['Fundo', '*liso*'], 'Sem bagunça atrás, <b>o olho do cliente vai direto no produto.</b>', 3)}`; });
+
+// 4 · DICA 3 · toca no produto pra travar o foco e o brilho (EXEMPLO)
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const toque = clamp((t - 1.1) / .3), foco = clamp((t - 1.4) / .5), trava = t > 2.2;
+  const quad = toque > 0 ? `<div style="position:absolute;left:50%;top:52%;width:${lerp(150, 110, foco)}px;height:${lerp(150, 110, foco)}px;transform:translate(-50%,-50%);border:3px solid #FFD60A;border-radius:6px"></div>
+    ${trava ? `<div style="position:absolute;left:50%;top:18%;transform:translateX(-50%) scale(${back((t - 2.2) / .35)});padding:4px 10px;border-radius:6px;background:#FFD60A;color:#000;font-weight:800;font-size:13px">BLOQUEIO AE/AF</div>` : ''}` : '';
+  const inner = CAM(t, 'linear-gradient(180deg,#F4F1EC,#E6E1D9)', '⌚', { pfiltro: `blur(${(1 - foco) * 4}px) drop-shadow(0 16px 12px rgba(0,0,0,.25))`, extra: quad + (t > .9 && t < 1.4 ? onda(150, 200, clamp((t - 1.0) / .4), '#FFD60A') : ''), clique: t > 3.0 && t < 3.2 });
+  return `${FONE(t, inner)}${PASSOS(t, ['Toca em cima do produto na tela', 'Segura até travar o foco e o brilho', 'Apoia o celular e tira várias fotos'])}
+  ${DICA(t, 3, ['Toca pra', '*travar o foco*'], 'O produto fica nítido e <b>a luz não muda de uma foto pra outra.</b>', 4)}`; });
+
+// 5 · DICA 4 · sem zoom: o zoom de 5x borra, aproximar o celular deixa nítido (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const fase2 = t > 2.0, k = clamp((t - .6) / .6);
+  const inner = CAM(t, 'linear-gradient(180deg,#F4F1EC,#E6E1D9)', '💍', { esc: lerp(1, 1.6, k), pfiltro: fase2 ? 'drop-shadow(0 16px 12px rgba(0,0,0,.25))' : `blur(${3 * k}px) drop-shadow(0 16px 12px rgba(0,0,0,.25))`,
+    extra: `<div style="position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:flex;gap:8px">${['1x', '2x', '5x'].map(z => { const on = fase2 ? z === '1x' : (k > .5 ? z === '5x' : z === '1x'); return `<span style="width:40px;height:40px;border-radius:50%;background:${on ? 'rgba(0,0,0,.75)' : 'rgba(0,0,0,.35)'};color:${on ? '#FFD60A' : '#fff'};display:grid;place-items:center;font-weight:800;font-size:13px">${z}</span>`; }).join('')}</div>
+      ${t > 1.2 ? `<div style="position:absolute;left:12px;top:12px;padding:4px 10px;border-radius:8px;background:${fase2 ? '#21C38B' : '#F15C6D'};color:#fff;font-weight:800;font-size:13px">${fase2 ? '✓ celular mais perto' : '✕ zoom: borrou'}</div>` : ''}`, clique: t > 3.0 && t < 3.2 });
+  return `${FONE(t, inner)}${PASSOS(t, ['Deixa a câmera no 1x', 'Quer detalhe? Chega o celular mais perto', 'Zoom de longe deixa a foto borrada'])}
+  ${DICA(t, 4, ['Sem zoom,', '*chega perto*'], 'Zoom no celular estica a foto. <b>Chegar perto mostra o detalhe nítido.</b>', 2)}`; });
+
+// 6 · ligação com o site: site REAL do Dr. Fernando rolando no celular
+const CEL = '../../video/src/fernando-site/cel-strip.jpg', CW = 585, CH = 5250;
+slide(7.5, [[0, 'black'], [3.4, 'red']], t => {
+  const inn = ease(t / .6), PW = 300, PH = 560, esc = PW / CW, rol = eio((t - .8) / 6) * (CH * esc - PH + 40);
+  const tags = [['📱', 'Abre perfeito no celular', .9], ['👆', 'Botão grande, fácil de tocar', 1.6], ['⚡', 'Leve, carrega rápido', 2.3]];
+  return `<div class="abs" style="left:150px;top:118px;width:${PW + 24}px;height:${PH + 24}px;border-radius:52px;background:#0B0B0D;padding:12px;box-shadow:0 0 0 3px rgba(255,255,255,.25), 0 50px 100px -30px rgba(0,0,0,.9);opacity:${inn};transform:translateY(${(1 - inn) * 40}px) rotate(-3deg)">
+      <div style="width:${PW}px;height:${PH}px;border-radius:42px;overflow:hidden;position:relative;background:#111"><img src="${CEL}" style="position:absolute;left:0;top:${-rol}px;width:${PW}px"></div>
+      <div style="position:absolute;left:50%;top:22px;width:90px;height:24px;margin-left:-45px;border-radius:12px;background:#0B0B0D"></div></div>
+    ${tags.map(([ic, tx, t0], j) => { const k = back((t - t0) / .4); return k <= 0 ? '' : `<div class="abs" style="left:520px;top:${200 + j * 130}px;width:460px;padding:20px 24px;${K.vidro()}border-radius:26px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:28px;transform:translateX(${(1 - clamp(k)) * 80}px) scale(${clamp(k, 0, 1.06)});opacity:${clamp(k)}"><span style="font-size:36px">${ic}</span>${tx}</div>`; }).join('')}
+    <div class="abs" style="left:520px;top:600px;font-weight:700;font-size:22px;color:rgba(255,255,255,.7);opacity:${ease((t - 2.8) / .4)}">fernandoaugustodr.com.br</div>
+  ${K.kick(t, .1, 'E O SEU SITE?', 676)}${K.kin(t, .3, ['Foto boa merece', '*vitrine boa*'], { y: 930, max: 170, ini: 5 })}
+  ${K.corpo(t, 3.0, 'Suas fotos num site profissional, como o do <b>Dr. Fernando</b>, que eu fiz: bonito no celular e no computador.', 1115, { fs: 33 })}
+  ${K.rodape(t, 3.6)}`; });
+
+// 7 · final aprovado
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['📸 Suas fotos em destaque', '🛍️ Catálogo com preço', '📱 Perfeito no celular', '💬 Botão do WhatsApp', '🔒 Seu nome no endereço', '🤝 Cliente que compra'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 22px;${K.vidro()}border-radius:28px;font-weight:800;font-size:29px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>
