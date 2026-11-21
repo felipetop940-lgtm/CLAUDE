@@ -11,7 +11,7 @@
 
   /* ---------- Dados do config.js ---------- */
   $$('[data-f]').forEach(function (el) { el.textContent = get(el.getAttribute('data-f')) || ''; });
-  $$('[data-need]').forEach(function (el) { if (!get(el.getAttribute('data-need'))) el.hidden = true; });
+  $$('[data-need]').forEach(function (el) { if (!el.getAttribute('data-need').split('|').some(get)) el.hidden = true; });
   var y = $('[data-year]'); if (y) y.textContent = new Date().getFullYear();
   var end = SITE.endereco || {};
   $$('[data-map]').forEach(function (a) { if (end.mapa) a.href = end.mapa; });

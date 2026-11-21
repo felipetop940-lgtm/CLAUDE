@@ -11,7 +11,7 @@ const PARES = [
   { id: 'b', tema: 'claro' },
   { id: 'c', tema: 'escuro' },
 ];
-const assinatura = 'Nutrologia'; // troque pelo @ do Instagram quando tiver, ex.: '@draandressaoliveira'
+const assinatura = '@draandressanutro';
 
 const fonts = `
 @font-face{font-family:Jost;src:url(${b64('../../assets/fonts/jost-latin-wght-normal.woff2','font/woff2')});font-weight:100 900}
@@ -36,7 +36,7 @@ body{width:1080px;height:1350px;overflow:hidden;background:${c.bg};font-family:J
 .av{width:92px;height:92px;border-radius:50%;padding:3px;background:${GOLD}}
 .av img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:3px solid ${dark ? '#2A1B13' : '#F6F0E7'}}
 .name{font:400 42px/1 Corm;letter-spacing:.01em}
-.sub{margin-top:10px;font:500 15px/1 Jost;letter-spacing:.38em;text-transform:uppercase;color:${c.label}}
+.sub{margin-top:10px;font:500 15px/1 Jost;letter-spacing:.12em;color:${c.label}}
 .labels{position:absolute;top:226px;left:60px;right:60px;display:flex;justify-content:space-between}
 .labels span{width:468px;text-align:center;font:italic 400 54px/1 Corm;color:${c.ink}}
 .photos{position:absolute;top:306px;left:60px;right:60px;display:flex;gap:24px}
