@@ -1,0 +1,145 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 51 ANIMADO (1080x1350, cada slide é um vídeo) · "Como fazer um vídeo de produto que vende" · estilo CINÉTICO, formato do ajuste de 14/11
+     Título ensinando EM CIMA (linha do tempo de um vídeo de 15 s, menor embaixo, EXEMPLO); 4 DICAS: começa pelo resultado, mostra o produto em uso, legenda na tela (muita gente assiste sem som), termina com preço e como comprar;
+     ligação com o site (vídeo na página, incluso no Premium) + final aprovado. Fontes: Acelera Social, Envox, Artmos, Let's Grow (guias de Reels pra negócio). Dados de exemplo marcados EXEMPLO.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c51-video-produto-vende -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO SEU SITE', 655);
+
+const TAG = (x = 36, y = 28) => `<div class="abs" style="right:${x}px;top:${y}px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>`;
+const ROT = txt => `<div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">${txt}</div>`;
+
+const VIVA = () => K.verm ? '#fff' : '#FF2E43';
+
+// ---------- celular com a tela do WhatsApp Business (tema escuro) ----------
+const ZB = '#0B141A', ZH = '#1F2C34', ZT = '#E9EDEF', ZS = '#8696A0', ZG = '#00A884';
+const FONE = (t, inner) => { const inn = ease(t / .6);
+  return `<div class="abs" style="left:110px;top:112px;width:344px;height:600px;border-radius:52px;background:#0B0B0D;padding:12px;box-shadow:0 0 0 3px rgba(255,255,255,.25), 0 50px 100px -30px rgba(0,0,0,.9);opacity:${inn};transform:translateY(${(1 - inn) * 40}px) rotate(-2deg)">
+    <div style="width:320px;height:576px;border-radius:42px;overflow:hidden;position:relative;background:${ZB};font-family:IT,sans-serif;color:${ZT}">${inner}</div>
+    <div style="position:absolute;left:50%;top:22px;width:90px;height:24px;margin-left:-45px;border-radius:12px;background:#0B0B0D"></div></div>`; };
+const TOPO = (tit, sub = '') => `<div style="height:104px;padding:50px 20px 0;background:${ZH};display:flex;align-items:center;gap:14px"><span style="font-size:26px;color:${ZS}">←</span><div><b style="font-size:23px">${tit}</b>${sub ? `<div style="font-size:15px;color:${ZS}">${sub}</div>` : ''}</div></div>`;
+// lista de opções; sel = índice tocado, k = progresso do toque
+const LISTA = (itens, sel = -1, k = 0) => itens.map(([ic, tx, sub], j) => `<div style="display:flex;align-items:center;gap:14px;padding:15px 20px;position:relative;background:${j === sel && k > 0 ? `rgba(0,168,132,${.28 * Math.sin(clamp(k) * Math.PI) + (k >= 1 ? .14 : 0)})` : 'transparent'}">
+    <span style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:21px">${ic}</span><div><div style="font-size:19px;font-weight:600">${tx}</div>${sub ? `<div style="font-size:14px;color:${ZS}">${sub}</div>` : ''}</div></div>`).join('');
+const CHAVE = (on) => `<span style="flex-shrink:0;width:52px;height:30px;border-radius:15px;background:${on > .5 ? ZG : '#3B4A54'};position:relative"><span style="position:absolute;top:4px;left:${4 + 22 * clamp(on)}px;width:22px;height:22px;border-radius:50%;background:#fff"></span></span>`;
+// passos do lado direito (o caminho dentro do app), cada um entra com ✓
+const PASSOS = (t, L, t0 = .5, dt = .55) => L.map((tx, j) => { const k = back((t - t0 - j * dt) / .4), ok = back((t - t0 - j * dt - .3) / .3);
+  return k <= 0 ? '' : `<div class="abs" style="left:500px;width:480px;top:${150 + j * 112}px;padding:18px 22px;${K.vidro()}border-radius:24px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:25px;line-height:1.2;opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 70}px)">
+    <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-family:Anton;font-size:22px;transform:scale(${clamp(ok, 0, 1.15)})">${j + 1}</span>${tx}</div>`; }).join('');
+const FERR = [['🏪', 'Perfil comercial'], ['🛍️', 'Catálogo'], ['💤', 'Mensagem de ausência'], ['👋', 'Mensagem de saudação'], ['⚡', 'Respostas rápidas']];
+const DICA = (t, n, tit, txt, ini) => `${K.kick(t, .1, 'DICA ' + n, 736)}${K.kin(t, .3, tit, { y: 978, max: 148, ini })}${K.corpo(t, 3.0, txt, 1150, { fs: 31 })}${K.rodape(t, 3.6)}`;
+
+// tela de app de banco genérico (sem marca)
+const BB = '#111316', BH = '#1B1F24', BA = '#21C38B', BT = '#F2F4F5', BS = '#8B95A1';
+const BTOPO = (tit) => `<div style="height:100px;padding:48px 20px 0;background:${BH};display:flex;align-items:center;gap:14px"><span style="font-size:24px;color:${BS}">←</span><b style="font-size:22px;color:${BT}">${tit}</b></div>`;
+const BANCO = (inner) => `<div style="position:absolute;inset:0;background:${BB};color:${BT}">${inner}</div>`;
+const EXE = `<div style="position:absolute;right:16px;bottom:12px;font-size:12px;color:${BS};letter-spacing:.12em;font-weight:800">EXEMPLO</div>`;
+
+// tela de vídeo curto vertical (genérica, sem marca): fundo do vídeo, ícones do lado, legenda embaixo, barra de tempo
+const REEL = (t, fundo, meio, o = {}) => `<div style="position:absolute;inset:0;background:${fundo};color:#fff;overflow:hidden">${meio}
+    <div style="position:absolute;right:12px;bottom:120px;display:flex;flex-direction:column;gap:18px;align-items:center;font-size:24px;text-shadow:0 2px 8px rgba(0,0,0,.5)">♥<span style="font-size:20px">💬</span><span style="font-size:20px">➤</span></div>
+    ${o.leg ? `<div style="position:absolute;left:16px;right:60px;bottom:${o.legY ?? 200}px;text-align:center"><span style="display:inline-block;padding:6px 12px;border-radius:8px;background:rgba(0,0,0,.7);font-weight:800;font-size:19px;line-height:1.25">${o.leg}</span></div>` : ''}
+    <div style="position:absolute;left:16px;right:60px;bottom:58px;font-size:14px;line-height:1.3;text-shadow:0 2px 6px rgba(0,0,0,.6)"><b>@doceana</b> · ${o.desc || 'Bolo de pote'}</div>
+    <div style="position:absolute;left:0;right:0;bottom:40px;height:3px;background:rgba(255,255,255,.25)"><div style="height:100%;width:${(o.prog ?? 0) * 100}%;background:#fff"></div></div></div>`;
+
+// 1 · gancho: TÍTULO em cima ensinando; embaixo, menor, a linha do tempo de um vídeo de 15 segundos (EXEMPLO)
+slide(7, [[0, 'black'], [3.0, 'red']], t => {
+  const inn = ease((t - 1.0) / .6), cab = clamp((t - 1.4) / 2.4);
+  const P = [['0–3 s', 'O resultado', '🍰'], ['3–9 s', 'O produto em uso', '🥄'], ['9–12 s', 'Legenda na tela', '💬'], ['12–15 s', 'Preço e como comprar', '🛒']];
+  return `${K.kin(t, .05, ['Como fazer um vídeo', '*de produto que vende*'], { y: 300, max: 165 })}
+    ${K.corpo(t, 1.0, 'Vídeo curto vende mais que foto parada. Arrasta e vê <b>4 dicas</b> pra gravar suas ofertas no celular.', 470, { fs: 34 })}
+    <div style="${CARD(130, 640, 820, 420, `opacity:${.92 * inn};transform:translateY(${(1 - inn) * 40}px)`)}">${ROT('UM VÍDEO DE 15 SEGUNDOS')}${TAG(30, 360)}
+      <div class="abs" style="left:36px;right:36px;top:84px;height:12px;border-radius:6px;background:rgba(255,255,255,.12)"><div style="height:100%;width:${cab * 100}%;border-radius:6px;background:${VIVA()}"></div></div>
+      ${P.map(([tm, tx, ic], j) => { const k = back((t - 1.5 - j * .55) / .4);
+        return `<div class="abs" style="left:${36 + j * 188}px;top:118px;width:176px;height:200px;padding:16px 12px;border-radius:18px;background:rgba(255,255,255,.08);text-align:center;opacity:${clamp(k)};transform:translateY(${(1 - clamp(k)) * 30}px)">
+          <div style="font-size:38px">${ic}</div><div style="margin-top:8px;font-family:Anton;font-size:24px;color:${VIVA()}">${tm}</div><b style="display:block;margin-top:6px;font-size:19px;line-height:1.2">${tx}</b></div>`; }).join('')}</div>
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${Math.sin(t * 4) * 14}px)">→</span></span></div>`; });
+
+// 2 · DICA 1 · começa pelo resultado: em vez de "oi, gente", o bolo pronto já no primeiro segundo (EXEMPLO)
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const bom = t > 1.8, k = back((t - 2.0) / .45);
+  const meio = !bom ? `<div style="position:absolute;inset:0;display:grid;place-items:center;background:#2B2B2E"><div style="text-align:center;opacity:.8"><div style="font-size:70px">🙋‍♀️</div><div style="margin-top:8px;font-size:18px">"Oi, gente, tudo bem? Hoje eu vou..."</div></div>
+      <div style="position:absolute;left:14px;top:60px;padding:4px 10px;border-radius:8px;background:#F15C6D;font-weight:800;font-size:13px">✕ o povo já passou</div></div>`
+    : `<div style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#FFE3C7,#C98A55)"><div style="font-size:150px;transform:scale(${clamp(k, 0, 1.08)});filter:drop-shadow(0 18px 16px rgba(0,0,0,.3))">🍰</div>
+      <div style="position:absolute;left:14px;top:60px;padding:4px 10px;border-radius:8px;background:#21C38B;color:#06301A;font-weight:800;font-size:13px">✓ 1º segundo</div></div>`;
+  const inner = REEL(t, '#000', meio, { leg: bom ? 'Olha esse recheio 😮' : '', prog: clamp(t / 6) * .2, desc: 'Bolo de pote · EXEMPLO' });
+  return `${FONE(t, inner)}${PASSOS(t, ['Nada de "oi, gente" no começo', 'Mostra o resultado no 1º segundo', 'Grava duas aberturas e posta a melhor'])}
+  ${DICA(t, 1, ['Começa pelo', '*resultado*'], 'Quem rola o feed decide em segundos. <b>Mostra logo o que ele vai querer.</b>', 1)}`; });
+
+// 3 · DICA 2 · mostra o produto em uso: a colher entra no pote (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const desce = eio((t - .8) / 1.0), sobe = eio((t - 2.2) / .8);
+  const meio = `<div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 60%,#FFE9D2,#D9A06A)">
+      <div style="position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);font-size:140px;filter:drop-shadow(0 18px 16px rgba(0,0,0,.3))">🍮</div>
+      <div style="position:absolute;left:52%;top:${lerp(8, 40, desce) - 18 * sobe}%;transform:rotate(-25deg);font-size:90px">🥄</div></div>`;
+  const inner = REEL(t, '#000', meio, { leg: t > 2.2 ? 'Cremoso de verdade 🤤' : '', prog: .2 + clamp(t / 6) * .4, desc: 'Bolo de pote · EXEMPLO' });
+  return `${FONE(t, inner)}${PASSOS(t, ['Mostra a mão usando o produto', 'Chega perto do detalhe que vende', 'Cortes curtos, de 2 a 3 segundos'])}
+  ${DICA(t, 2, ['Mostra o produto', '*em uso*'], 'Ver alguém usando faz o cliente <b>se imaginar com ele na mão.</b>', 3)}`; });
+
+// 4 · DICA 3 · legenda na tela: o som tá no mudo e a legenda aparece (EXEMPLO)
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const fr = ['Feito no dia ☀️', 'Recheio de verdade 🍫', 'Entrega na região 🛵'], i = Math.min(2, Math.floor(clamp((t - 1.2) / 2.4) * 3)), tem = t > 1.2;
+  const meio = `<div style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#FFE3C7,#C98A55)"><div style="font-size:130px;filter:drop-shadow(0 18px 16px rgba(0,0,0,.3))">🧁</div>
+      <div style="position:absolute;left:14px;top:60px;padding:6px 10px;border-radius:10px;background:rgba(0,0,0,.65);font-size:14px;font-weight:800;letter-spacing:.08em">SEM SOM</div></div>`;
+  const inner = REEL(t, '#000', meio, { leg: tem ? fr[i] : '', legY: 210, prog: .6 + clamp(t / 6) * .2, desc: 'Cupcake · EXEMPLO' });
+  return `${FONE(t, inner)}${PASSOS(t, ['Muita gente assiste no mudo', 'Escreve o principal na tela', 'Letra grande, no meio, fácil de ler'])}
+  ${DICA(t, 3, ['Legenda', '*na tela*'], 'Sem legenda, quem tá no mudo <b>passa reto e nem sabe o que é.</b>', 4)}`; });
+
+// 5 · DICA 4 · termina com preço e como comprar (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const p = back((t - .8) / .45), c = back((t - 1.8) / .45);
+  const meio = `<div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#FFE3C7,#C98A55)"><div style="position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);font-size:120px;filter:drop-shadow(0 18px 16px rgba(0,0,0,.3))">🍰</div>
+      <div style="position:absolute;left:50%;top:56%;transform:translate(-50%,-50%) scale(${clamp(p, 0, 1.1)});padding:8px 18px;border-radius:14px;background:#C3101F;font-family:Anton;font-size:34px">R$ 15</div>
+      <div style="position:absolute;left:24px;right:70px;top:66%;text-align:center;transform:scale(${clamp(c, 0, 1.06)})"><span style="display:inline-block;padding:10px 14px;border-radius:12px;background:#fff;color:#111;font-weight:800;font-size:17px">💬 Pede no link da bio</span></div></div>`;
+  const inner = REEL(t, '#000', meio, { prog: .8 + clamp(t / 6) * .2, desc: 'Bolo de pote · EXEMPLO' });
+  return `${FONE(t, inner)}${PASSOS(t, ['Mostra o preço no fim', 'Diz como comprar: link da bio ou WhatsApp', 'Repete na legenda do post'])}
+  ${DICA(t, 4, ['Termina com o preço', '*e como comprar*'], 'Quem gostou já sabe <b>quanto custa e onde pedir</b>, sem precisar perguntar.', 2)}`; });
+
+// 6 · ligação com o site: vídeo na página
+slide(6.5, [[0, 'black'], [2.6, 'red']], t => {
+  const play = back((t - .5) / .4), toca = t > 1.4, pr = clamp((t - 1.4) / 4.5), ondas = Array.from({ length: 34 }, (_, j) => 12 + 46 * Math.abs(Math.sin(j * .7 + t * 6) * Math.sin(j * .23 + t * 2.3)));
+  const leg = ['Oi, eu sou a Ana 👋', 'Aqui no salão a gente cuida de você', 'Agenda pelo site, é rapidinho!'][Math.min(2, Math.floor(pr * 3))];
+  return `<div style="${CARD(70, 150, 940, 480)}">${ROT('VÍDEO NA SUA PÁGINA')}${TAG()}
+      <div class="abs" style="left:40px;right:40px;top:80px;height:320px;border-radius:26px;overflow:hidden;background:radial-gradient(circle at 30% 30%, ${K.verm ? '#8E0B17' : '#2A2B33'}, #0B0B0D 80%)">
+        ${toca ? `<div class="abs" style="left:40px;right:40px;bottom:80px;height:70px;display:flex;align-items:center;gap:8px">${ondas.map(h => `<i style="flex:1;height:${h}px;border-radius:4px;background:rgba(255,255,255,.55)"></i>`).join('')}</div>
+          <div class="abs" style="left:0;right:0;top:70px;text-align:center"><span style="display:inline-block;padding:10px 22px;border-radius:14px;background:rgba(0,0,0,.6);font-weight:700;font-size:30px">${leg}</span></div>` : ''}
+        ${!toca || t < 1.6 ? `<div class="abs" style="left:50%;top:50%;width:130px;height:130px;margin:-65px 0 0 -65px;border-radius:50%;background:#fff;display:grid;place-items:center;transform:scale(${clamp(play, 0, 1.1) * (t > 1.2 ? 1 - clamp((t - 1.2) / .4) : 1)})"><span style="margin-left:10px;width:0;height:0;border-left:44px solid #C3101F;border-top:28px solid transparent;border-bottom:28px solid transparent"></span></div>` : ''}
+        <div class="abs" style="left:24px;right:24px;bottom:22px;height:8px;border-radius:4px;background:rgba(255,255,255,.2)"><div style="height:100%;width:${pr * 100}%;border-radius:4px;background:${K.verm ? '#fff' : '#FF2E43'}"></div></div></div>
+      ${t > 1.0 && t < 1.5 ? cursor(lerp(760, 470, eio((t - 1.0) / .3)), lerp(440, 250, eio((t - 1.0) / .3)), clamp((t - 1.3) / .2)) : ''}</div>
+  ${K.kick(t, .1, 'E O SEU SITE?', 655)}${K.kin(t, .3, ['Seu vídeo', '*no seu site*'], { y: 900, max: 175, ini: 5 })}
+  ${K.corpo(t, 3.0, 'No site que eu faço, seu vídeo fica na página: <b>quem chega já te conhece antes de chamar.</b>', 1110, { fs: 34 })}
+  ${K.rodape(t, 3.6)}`; });
+
+// 7 · final aprovado
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['🎬 Vídeo na página', '🛍️ Catálogo com preço', '📱 Perfeito no celular', '💬 Botão do WhatsApp', '🔒 Seu nome no endereço', '🤝 Cliente que compra'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 22px;${K.vidro()}border-radius:28px;font-weight:800;font-size:29px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>
