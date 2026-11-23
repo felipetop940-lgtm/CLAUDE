@@ -230,7 +230,7 @@
 
   /* ---------- Resultados: ampliar ---------- */
   var lb = $('.lightbox'), lbImg = lb && $('img', lb), lastFocus = null, zooms = $$('[data-zoom]'), lbIdx = 0;
-  function showLb(i) { lbIdx = (i + zooms.length) % zooms.length; var b = zooms[lbIdx]; lbImg.src = b.getAttribute('data-zoom'); lbImg.alt = $('img', b).alt; }
+  function showLb(i) { lbIdx = (i + zooms.length) % zooms.length; var b = zooms[lbIdx]; var im = $('img', b); lbImg.src = im.currentSrc || im.src; lbImg.alt = $('img', b).alt; }
   function closeLb() { lb.hidden = true; root.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
   zooms.forEach(function (b, i) {
     b.addEventListener('click', function (e) {

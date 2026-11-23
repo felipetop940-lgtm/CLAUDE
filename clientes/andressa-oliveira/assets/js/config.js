@@ -11,9 +11,9 @@ window.SITE = {
   rqe: "", // Ex.: "RQE 0000"       [RQE, SE TIVER]
 
   // WhatsApp com DDI + DDD, só números. Ex.: "5562999999999"
-  whatsapp: "", // [WHATSAPP DA DRA. ANDRESSA]
+  whatsapp: "5562984930443", // (62) 98493-0443
   // Ou cole aqui o link pronto (wa.me, link de agenda…). Se preenchido, tem prioridade.
-  whatsappLink: "https://wa.me/message/VNIH6DPHFMXOF1", // link da bio do Instagram
+  whatsappLink: "", // vazio = usa o número acima com mensagem automática (link da bio: https://wa.me/message/VNIH6DPHFMXOF1)
 
   instagram: "draandressanutro",
   telefone: "",  // Ex.: "(62) 3000-0000"

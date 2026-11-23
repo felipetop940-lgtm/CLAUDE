@@ -93,6 +93,15 @@ def main() -> None:
     size = (DIST / "index.html").stat().st_size / 1024
     print(f"dist/index.html: {size:.0f} KB · pacote: {zip_path.name}")
 
+    # Versão em arquivo único: todas as imagens embutidas (abre sem pasta assets/)
+    html = (DIST / "index.html").read_text()
+    html = re.sub(r'(src|href)="(assets/img/[^"]+)"',
+                  lambda m: f'{m.group(1)}="{data_uri(DIST / m.group(2))}"' if (DIST / m.group(2)).exists() else m.group(0),
+                  html)
+    single = ROOT / "andressa-oliveira.html"
+    single.write_text(html)
+    print(f"{single.name}: {single.stat().st_size / 1024:.0f} KB (arquivo único)")
+
 
 if __name__ == "__main__":
     main()
