@@ -547,6 +547,7 @@ b, strong { font-weight: 500; color: var(--ink); }
     <symbol id="i-team" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.8-3.4 3.2-5.2 6-5.2s5.2 1.8 6 5.2"/><circle cx="17" cy="9" r="2.4"/><path d="M16.5 14.2c2.3.2 4 1.7 4.5 4.3"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="m16 10.5 5-3v9l-5-3"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
     <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
@@ -600,14 +601,14 @@ b, strong { font-weight: 500; color: var(--ink); }
   <figure class="hero__photo">
     <img src="assets/img/andressa-hero.webp" alt="Dra. Andressa Oliveira, médica nutróloga, de blusa branca em seu consultório" width="960" height="1280" fetchpriority="high" decoding="async">
     <svg class="hero__ring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96"/></svg>
-    <figcaption class="hero__badge"><i class="dot" aria-hidden="true"></i><span>Atendimento <b>presencial</b><span data-need="endereco.cidade"> · <span data-f="endereco.cidade"></span></span></span></figcaption>
+    <figcaption class="hero__badge"><i class="dot" aria-hidden="true"></i><span>Atendimento <b>presencial</b> e <b>online</b><span data-need="endereco.cidade"> · <span data-f="endereco.cidade"></span></span></span></figcaption>
   </figure>
 
   <div class="wrap hero__in">
     <div class="hero__copy">
       <p class="eyebrow hero__eyebrow"><span>Médica · Nutrologia</span><span class="js-crm"></span></p>
       <h1 class="hero__title" id="hero-title" data-split>Emagrecer com ciência,<br> <em>viver com leveza.</em></h1>
-      <p class="hero__lead">Nutrologia médica com protocolos individualizados para emagrecimento, saúde metabólica, longevidade e mais energia no dia a dia — com acompanhamento próximo, do primeiro encontro a cada retorno.</p>
+      <p class="hero__lead">Nutrologia médica com protocolos individualizados para emagrecimento, saúde metabólica, longevidade e mais energia no dia a dia — presencial em Goiânia ou online, com acompanhamento próximo a cada retorno.</p>
       <div class="hero__ctas">
         <a class="btn btn--gold btn--lg magnetic" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar consulta agora</a>
         <a class="btn btn--line btn--lg" href="#sobre">Conhecer a Dra. Andressa</a>
@@ -785,7 +786,7 @@ b, strong { font-weight: 500; color: var(--ink); }
     <div class="space__copy">
       <p class="eyebrow reveal">O consultório</p>
       <h2 class="h2 reveal" id="space-title">Um espaço pensado<br>para o seu <em>cuidado</em></h2>
-      <p class="reveal">Ambiente reservado e acolhedor no Medicorum Centro Clínico, no Jardim América, para que cada consulta aconteça com calma, privacidade e atenção total a você.</p>
+      <p class="reveal">Ambiente reservado e acolhedor no Medicorum Centro Clínico, no Jardim América, para que cada consulta aconteça com calma, privacidade e atenção total a você. Se preferir, a consulta também pode ser online.</p>
       <div class="space__addr reveal">
         <span class="info__ic"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg></span>
         <div><strong>Medicorum Centro Clínico</strong><span>Sala 212 · 2º andar</span><span>R. C-139, nº 853 · Jardim América · Goiânia</span></div>
@@ -843,6 +844,10 @@ b, strong { font-weight: 500; color: var(--ink); }
         <div class="qa__a"><p>Não. Qualquer terapia só é indicada depois da avaliação médica, considerando o seu histórico, os seus exames e os seus objetivos — sempre com acompanhamento.</p></div>
       </details>
       <details class="qa reveal">
+        <summary><span>A Dra. Andressa atende online?</span><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+        <div class="qa__a"><p>Sim. Além do atendimento presencial no consultório em Goiânia, a consulta também pode ser feita online, por teleconsulta. Fale com a equipe pelo WhatsApp para agendar no formato que preferir.</p></div>
+      </details>
+      <details class="qa reveal">
         <summary><span>Como funciona o acompanhamento?</span><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></summary>
         <div class="qa__a"><p>Depois da primeira consulta, você tem retornos periódicos para avaliar a evolução e ajustar o protocolo. O objetivo é que o resultado aconteça com segurança e se mantenha no longo prazo.</p></div>
       </details>
@@ -873,13 +878,14 @@ b, strong { font-weight: 500; color: var(--ink); }
       <ul class="info" role="list">
         <li class="reveal" data-need="whatsapp|whatsappLink"><span class="info__ic"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg></span><div><small>WhatsApp</small><a href="#contato" data-wa="padrao" class="js-wa-num">Agendar pelo WhatsApp →</a></div></li>
         <li class="reveal" data-need="endereco.cidade"><span class="info__ic"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg></span><div><small>Endereço</small><strong data-need="endereco.rua" data-f="endereco.rua"></strong><span data-f="endereco.local"></span><span><span data-f="endereco.cidade"></span> · <span data-f="endereco.cep"></span></span><a class="info__map" href="#" data-map target="_blank" rel="noopener" data-need="endereco.mapa">Ver no mapa →</a></div></li>
+        <li class="reveal"><span class="info__ic"><svg class="i" aria-hidden="true"><use href="#i-video"/></svg></span><div><small>Atendimento</small><strong>Presencial e online</strong><span>No consultório em Goiânia ou por teleconsulta, de onde você estiver.</span><a class="info__map" href="#contato" data-wa="online">Agendar consulta online →</a></div></li>
         <li class="reveal" data-need="horario"><span class="info__ic"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg></span><div><small>Horário</small><strong data-f="horario"></strong></div></li>
         <li class="reveal" data-need="telefone"><span class="info__ic"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg></span><div><small>Telefone</small><strong data-f="telefone"></strong></div></li>
         <li class="reveal" data-need="instagram"><span class="info__ic"><svg class="i" aria-hidden="true"><use href="#i-ig"/></svg></span><div><small>Instagram</small><a href="#" data-ig target="_blank" rel="noopener"><span data-ig-handle></span></a></div></li>
         <li class="reveal" data-need="email"><span class="info__ic"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg></span><div><small>E-mail</small><strong data-f="email"></strong></div></li>
       </ul>
       <div class="ready reveal">
-        <div><h3>Pronta para começar?</h3><p>O primeiro passo é uma conversa.</p></div>
+        <div><h3>Pronta para começar?</h3><p>Consultas presenciais em Goiânia ou online.</p></div>
         <a class="btn btn--wa magnetic" href="#contato" data-wa="padrao"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo WhatsApp</a>
       </div>
     </div>
@@ -973,6 +979,7 @@ window.SITE = {
     dislipidemia: "Olá, Dra. Andressa! Vim pelo site e gostaria de tratar colesterol/triglicerídeos.",
     deficiencias: "Olá, Dra. Andressa! Vim pelo site e gostaria de investigar deficiências nutricionais.",
     equipe: "Olá, Dra. Andressa! Vim pelo site e gostaria de saber mais sobre o acompanhamento com equipe multidisciplinar.",
+    online: "Olá, Dra. Andressa! Vim pelo site e gostaria de agendar uma consulta online.",
     duvida: "Olá, Dra. Andressa! Vim pelo site e tenho uma dúvida antes de agendar."
   }
 };
