@@ -50,6 +50,7 @@ window.SITE = {
     dislipidemia: "Olá, Dra. Andressa! Vim pelo site e gostaria de tratar colesterol/triglicerídeos.",
     deficiencias: "Olá, Dra. Andressa! Vim pelo site e gostaria de investigar deficiências nutricionais.",
     equipe: "Olá, Dra. Andressa! Vim pelo site e gostaria de saber mais sobre o acompanhamento com equipe multidisciplinar.",
+    presencial: "Olá, Dra. Andressa! Vim pelo site e gostaria de agendar uma consulta presencial.",
     online: "Olá, Dra. Andressa! Vim pelo site e gostaria de agendar uma consulta online.",
     duvida: "Olá, Dra. Andressa! Vim pelo site e tenho uma dúvida antes de agendar."
   }
