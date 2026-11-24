@@ -12,7 +12,7 @@ SHOTS = [
     dict(id="s02", src="IMG_0757", t=5.60,  spd=.80, dur=2.50, crop=(0.00, 0.00, 1.00), z=(1.00, 1.07), ex=.95, rec=.3),
     dict(id="s03", src="IMG_0739", t=2.60,  spd=.60, dur=1.25, crop=(0.04, 0.31, 0.66), z=(1.00, 1.06), ex=.92, rec=.4),
     dict(id="s04", src="IMG_0754", t=9.20,  spd=.60, dur=1.25, crop=(0.54, 0.16, 0.44), z=(1.00, 1.05), ex=.85, rec=.6),
-    dict(id="s05", src="IMG_0756", t=0.00,  spd=.80, dur=2.50, crop=(0.00, 0.00, 1.00), z=(1.08, 1.00), ex=.95, rec=.3),
+    dict(id="s05", src="IMG_0740", t=2.20,  spd=.60, dur=2.50, crop=(0.46, 0.00, 0.54), z=(1.00, 1.06), ex=.92, rec=.4),
     dict(id="s06", src="IMG_0757", t=13.0,  spd=1.0, dur=2.50, crop=(0.00, 0.00, 1.00), z=(1.00, 1.06), ex=.95, rec=.35),
     dict(id="s07", src="IMG_0757", t=16.2,  spd=.80, dur=1.25, crop=(0.00, 0.00, 1.00), z=(1.05, 1.00), ex=.95, rec=.35),
     dict(id="s08", src="IMG_0758", t=3.00,  spd=.80, dur=1.25, crop=(0.00, 0.00, 1.00), z=(1.00, 1.05), ex=.95, rec=.3),
@@ -29,11 +29,11 @@ TRANS = {
 
 # Legendas discretas (texto, ini, fim)
 CAPS = [
-    ("Cada detalhe importa.", 0.35, 2.30),
-    ("Do preparo", 2.75, 4.75),
-    ("à técnica.", 5.15, 7.30),
-    ("Técnica em cada etapa.", 10.20, 12.30),
-    ("Cuidado do início ao fim.", 15.20, 17.30),
+    ("Tudo começa pela", 0.35, 2.30),
+    ("indicação correta.", 2.75, 4.75),
+    ("Depois, a técnica.", 5.15, 7.30),
+    ("Precisão em cada etapa.", 10.20, 12.30),
+    ("E uma finalização cuidadosa.", 15.20, 17.30),
 ]
 NAME = ("Fernando Augusto", "Médico · CRM-GO 29.367", 7.65, 9.85)   # lower third
 END = dict(t0=20.0, logo="logo/logo_dourada.png", cta="Agende sua avaliação")

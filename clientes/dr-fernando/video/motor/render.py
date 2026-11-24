@@ -9,7 +9,7 @@ from timeline import SHOTS, TRANS, CAPS, NAME, END, FPS, W, H, MW, MH, starts
 
 ap = argparse.ArgumentParser()
 ap.add_argument("seg"); ap.add_argument("fotos"); ap.add_argument("fonts"); ap.add_argument("out")
-ap.add_argument("--quadros", default=""); ap.add_argument("--ate", type=int, default=0)
+ap.add_argument("--quadros", default=""); ap.add_argument("--ate", type=int, default=0); ap.add_argument("--de", type=int, default=0)
 A = ap.parse_args()
 
 INTER = "/usr/share/fonts/opentype/inter/"
@@ -421,7 +421,7 @@ n = A.ate or NF
 enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}", "-r", str(FPS),
                         "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-maxrate", "11M", "-bufsize", "22M", "-tune", "film", "-pix_fmt", "yuv420p",
                         "-color_primaries", "bt709", "-color_trc", "bt709", "-colorspace", "bt709", A.out], stdin=subprocess.PIPE)
-for f in range(n):
+for f in range(A.de, n):
     enc.stdin.write(frame(f).tobytes())
     if f % 60 == 0: print(f"{f}/{n}", flush=True)
 enc.stdin.close(); enc.wait()
