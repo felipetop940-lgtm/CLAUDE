@@ -1,0 +1,142 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 53 ANIMADO (1080x1350, cada slide é um vídeo) · "Como anunciar sua Black Friday sem problema com o Procon" · estilo CINÉTICO, formato do ajuste de 14/11
+     Título ensinando EM CIMA (checklist do anúncio certo, menor embaixo); 4 DICAS: não subir o preço antes (desconto sobre o menor preço recente), mostrar o preço de antes e o de agora, preço à vista + parcelas e juros, troca e arrependimento de 7 dias online;
+     ligação com o site (pagamento e regras à vista) + final aprovado. Fontes: Procon-PR, Procon Londrina, Procon Pato Branco, Procon-SP (via ConnectWeek), Procon-ES (nov/2026). Dados de exemplo marcados EXEMPLO.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c53-black-friday-sem-procon -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO SEU SITE', 655);
+
+const TAG = (x = 36, y = 28) => `<div class="abs" style="right:${x}px;top:${y}px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>`;
+const ROT = txt => `<div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">${txt}</div>`;
+
+const VIVA = () => K.verm ? '#fff' : '#FF2E43';
+
+// ---------- celular com a tela do WhatsApp Business (tema escuro) ----------
+const ZB = '#0B141A', ZH = '#1F2C34', ZT = '#E9EDEF', ZS = '#8696A0', ZG = '#00A884';
+const FONE = (t, inner) => { const inn = ease(t / .6);
+  return `<div class="abs" style="left:110px;top:112px;width:344px;height:600px;border-radius:52px;background:#0B0B0D;padding:12px;box-shadow:0 0 0 3px rgba(255,255,255,.25), 0 50px 100px -30px rgba(0,0,0,.9);opacity:${inn};transform:translateY(${(1 - inn) * 40}px) rotate(-2deg)">
+    <div style="width:320px;height:576px;border-radius:42px;overflow:hidden;position:relative;background:${ZB};font-family:IT,sans-serif;color:${ZT}">${inner}</div>
+    <div style="position:absolute;left:50%;top:22px;width:90px;height:24px;margin-left:-45px;border-radius:12px;background:#0B0B0D"></div></div>`; };
+const TOPO = (tit, sub = '') => `<div style="height:104px;padding:50px 20px 0;background:${ZH};display:flex;align-items:center;gap:14px"><span style="font-size:26px;color:${ZS}">←</span><div><b style="font-size:23px">${tit}</b>${sub ? `<div style="font-size:15px;color:${ZS}">${sub}</div>` : ''}</div></div>`;
+// lista de opções; sel = índice tocado, k = progresso do toque
+const LISTA = (itens, sel = -1, k = 0) => itens.map(([ic, tx, sub], j) => `<div style="display:flex;align-items:center;gap:14px;padding:15px 20px;position:relative;background:${j === sel && k > 0 ? `rgba(0,168,132,${.28 * Math.sin(clamp(k) * Math.PI) + (k >= 1 ? .14 : 0)})` : 'transparent'}">
+    <span style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:21px">${ic}</span><div><div style="font-size:19px;font-weight:600">${tx}</div>${sub ? `<div style="font-size:14px;color:${ZS}">${sub}</div>` : ''}</div></div>`).join('');
+const CHAVE = (on) => `<span style="flex-shrink:0;width:52px;height:30px;border-radius:15px;background:${on > .5 ? ZG : '#3B4A54'};position:relative"><span style="position:absolute;top:4px;left:${4 + 22 * clamp(on)}px;width:22px;height:22px;border-radius:50%;background:#fff"></span></span>`;
+// passos do lado direito (o caminho dentro do app), cada um entra com ✓
+const PASSOS = (t, L, t0 = .5, dt = .55) => L.map((tx, j) => { const k = back((t - t0 - j * dt) / .4), ok = back((t - t0 - j * dt - .3) / .3);
+  return k <= 0 ? '' : `<div class="abs" style="left:500px;width:480px;top:${150 + j * 112}px;padding:18px 22px;${K.vidro()}border-radius:24px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:25px;line-height:1.2;opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 70}px)">
+    <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-family:Anton;font-size:22px;transform:scale(${clamp(ok, 0, 1.15)})">${j + 1}</span>${tx}</div>`; }).join('');
+const FERR = [['🏪', 'Perfil comercial'], ['🛍️', 'Catálogo'], ['💤', 'Mensagem de ausência'], ['👋', 'Mensagem de saudação'], ['⚡', 'Respostas rápidas']];
+const DICA = (t, n, tit, txt, ini) => `${K.kick(t, .1, 'DICA ' + n, 736)}${K.kin(t, .3, tit, { y: 978, max: 148, ini })}${K.corpo(t, 3.0, txt, 1150, { fs: 31 })}${K.rodape(t, 3.6)}`;
+
+// tela de app de banco genérico (sem marca)
+const BB = '#111316', BH = '#1B1F24', BA = '#21C38B', BT = '#F2F4F5', BS = '#8B95A1';
+const BTOPO = (tit) => `<div style="height:100px;padding:48px 20px 0;background:${BH};display:flex;align-items:center;gap:14px"><span style="font-size:24px;color:${BS}">←</span><b style="font-size:22px;color:${BT}">${tit}</b></div>`;
+const BANCO = (inner) => `<div style="position:absolute;inset:0;background:${BB};color:${BT}">${inner}</div>`;
+const EXE = `<div style="position:absolute;right:16px;bottom:12px;font-size:12px;color:${BS};letter-spacing:.12em;font-weight:800">EXEMPLO</div>`;
+
+// cartão de oferta do Instagram/catálogo (genérico)
+const OFERTA = (t, o) => `<div style="position:absolute;inset:0;background:#0F0F10;color:#fff">
+    <div style="height:100px;padding:48px 20px 0;display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;border-radius:50%;background:#C3101F;display:grid;place-items:center;font-weight:800;font-size:14px">DA</span><b style="font-size:17px">doceana</b></div>
+    <div style="margin:0 14px;height:210px;border-radius:14px;background:radial-gradient(circle at 50% 45%,#2B2B2E,#111);display:grid;place-items:center;position:relative"><span style="font-size:96px">${o.ic || '🎂'}</span>
+      <span style="position:absolute;left:12px;top:12px;padding:4px 10px;border-radius:8px;background:#000;border:1px solid #444;font-weight:800;font-size:13px;letter-spacing:.08em">BLACK FRIDAY</span></div>
+    <div style="padding:14px 18px">${o.corpo}</div></div>`;
+
+// 1 · gancho: TÍTULO em cima ensinando; embaixo, menor, o checklist do anúncio certo
+slide(7, [[0, 'black'], [3.0, 'red']], t => {
+  const inn = ease((t - 1.0) / .6);
+  const P = [['📉', 'Desconto de verdade, sem subir antes'], ['🏷️', 'Preço de antes e de agora visíveis'], ['💳', 'À vista, parcelas e juros claros'], ['🔁', 'Troca e arrependimento informados']];
+  return `${K.kin(t, .05, ['Como anunciar sua', '*Black Friday do jeito certo*'], { y: 300, max: 165 })}
+    ${K.corpo(t, 1.0, 'Os Procons tão de olho no desconto falso. Arrasta e vê <b>4 cuidados</b> pra vender sem reclamação.', 470, { fs: 34 })}
+    <div style="${CARD(130, 640, 820, 420, `opacity:${.92 * inn};transform:translateY(${(1 - inn) * 40}px)`)}">${ROT('SEU ANÚNCIO CERTO')}
+      ${P.map(([ic, tx], j) => { const k = back((t - 1.5 - j * .45) / .4), ok = back((t - 1.8 - j * .45) / .3);
+        return `<div class="abs" style="left:36px;right:36px;top:${80 + j * 76}px;height:62px;display:flex;align-items:center;gap:14px;padding:0 18px;border-radius:16px;background:rgba(255,255,255,.08);opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 60}px)">
+          <span style="font-size:26px">${ic}</span><b style="font-size:22px;flex:1">${tx}</b>
+          <span style="width:34px;height:34px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:19px;font-weight:800;transform:scale(${clamp(ok, 0, 1.15)})">✓</span></div>`; }).join('')}</div>
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${Math.sin(t * 4) * 14}px)">→</span></span></div>`; });
+
+// 2 · DICA 1 · desconto de verdade: o gráfico de preço dos últimos 60 dias mostra a "metade do dobro" e o certo (EXEMPLO)
+slide(7.5, [[0, 'black'], [3.4, 'red']], t => {
+  const ruim = t < 2.4, d = eio((t - .6) / 1.4), W = 280, H = 150;
+  const pts = ruim ? [[0, 90], [.6, 90], [.75, 140], [.9, 140], [1, 90]] : [[0, 90], [.6, 90], [.9, 90], [1, 72]];
+  const path = pts.map(([x, v], j) => `${j ? 'L' : 'M'}${x * W * d} ${H - (v - 50) / 100 * H}`).join(' ');
+  const inner = BANCO(BTOPO('Preço nos últimos 60 dias') + `<div style="padding:18px">
+      <svg width="${W}" height="${H + 10}" style="overflow:visible"><line x1="0" x2="${W}" y1="${H - 40 / 100 * H}" y2="${H - 40 / 100 * H}" stroke="rgba(255,255,255,.15)" stroke-dasharray="4 4"/>
+        <path d="${path}" fill="none" stroke="${ruim ? '#F15C6D' : BA}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div style="margin-top:12px;font-size:15px;color:${BS}">${ruim ? 'Subiu pra R$ 140 e "baixou" pra R$ 90' : 'Era R$ 90 e agora sai por R$ 72'}</div>
+      <div style="margin-top:12px;text-align:center;padding:12px;border-radius:14px;font-weight:800;font-size:17px;background:${ruim ? 'rgba(241,92,109,.18)' : 'rgba(33,195,139,.18)'};color:${ruim ? '#F15C6D' : BA};transform:scale(${back((t - (ruim ? 1.8 : 2.8)) / .35)})">${ruim ? '✕ Metade do dobro' : '✓ Desconto de verdade'}</div></div>${EXE}`);
+  return `${FONE(t, inner)}${PASSOS(t, ['Não sobe o preço antes da data', 'Calcula o desconto em cima do menor preço recente', 'Guarda print do preço de antes'])}
+  ${DICA(t, 1, ['Desconto', '*de verdade*'], 'Subir antes pra "baixar" no dia é o que o Procon chama de <b>metade do dobro</b>, e pode dar multa.', 1)}`; });
+
+// 3 · DICA 2 · preço de antes e de agora visíveis (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const de = ease((t - .6) / .4), por = back((t - 1.2) / .45), pct = back((t - 1.9) / .4);
+  const inner = OFERTA(t, { ic: '🎂', corpo: `<b style="font-size:18px">Bolo de chocolate (1 kg)</b>
+      <div style="margin-top:8px;font-size:17px;color:#9A9A9F;opacity:${de}">De <span style="text-decoration:line-through">R$ 90</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:2px"><span style="font-family:Anton;font-size:38px;transform:scale(${clamp(por, 0, 1.1)});display:inline-block">por R$ 72</span>${pct > 0 ? `<span style="padding:4px 10px;border-radius:10px;background:#C3101F;font-weight:800;font-size:16px;transform:scale(${clamp(pct, 0, 1.12)})">−20%</span>` : ''}</div>
+      <div style="margin-top:6px;font-size:12px;color:#8E8E93;letter-spacing:.12em;font-weight:800;text-align:right">EXEMPLO</div>` });
+  return `${FONE(t, inner)}${PASSOS(t, ['Mostra o preço de antes riscado', 'E o preço de agora, grande', 'A porcentagem tem que bater com a conta'])}
+  ${DICA(t, 2, ['Preço de antes', '*e de agora*'], 'O cliente vê o desconto na hora e <b>confia que é de verdade.</b>', 3)}`; });
+
+// 4 · DICA 3 · à vista, parcelas, juros e total (EXEMPLO)
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const L = [['À vista no Pix', 'R$ 72,00', '#21C38B', .6], ['Ou 3x no cartão', 'R$ 25,20', '#fff', 1.1], ['Juros', '2,5% ao mês', '#fff', 1.6], ['Total parcelado', 'R$ 75,60', '#FFD60A', 2.1]];
+  const inner = OFERTA(t, { ic: '🎂', corpo: `${L.map(([a, v, c, t0]) => `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:16px;opacity:${ease((t - t0) / .35)};transform:translateX(${(1 - ease((t - t0) / .35)) * 20}px)"><span style="color:#B0B0B5">${a}</span><b style="color:${c}">${v}</b></div>`).join('')}
+      <div style="margin-top:6px;font-size:12px;color:#8E8E93;letter-spacing:.12em;font-weight:800;text-align:right">EXEMPLO</div>` });
+  return `${FONE(t, inner)}${PASSOS(t, ['Preço à vista bem visível', 'Número de parcelas e o valor de cada', 'Juros e o total, se tiver juros'])}
+  ${DICA(t, 3, ['À vista, parcela', '*e juros claros*'], 'Esconder juros no parcelado <b>vira reclamação depois da compra.</b>', 4)}`; });
+
+// 5 · DICA 4 · troca e arrependimento informados (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const R = [['🔁', 'Troca na loja', 'conforme sua política (EXEMPLO: até 30 dias, com nota)'], ['📦', 'Compra online ou por WhatsApp', '7 dias pra desistir, depois de receber (lei)'], ['🚚', 'Frete e prazo', 'informados antes de fechar']];
+  const inner = OFERTA(t, { ic: '🛍️', corpo: `<b style="font-size:16px;color:#B0B0B5;letter-spacing:.08em">REGRAS DA OFERTA</b>${R.map(([ic, a, b], j) => { const k = back((t - .7 - j * .5) / .4);
+      return `<div style="display:flex;gap:10px;margin-top:10px;opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 30}px)"><span style="font-size:22px">${ic}</span><div><b style="font-size:15px">${a}</b><div style="font-size:13px;color:#B0B0B5;line-height:1.3">${b}</div></div></div>`; }).join('')}` });
+  return `${FONE(t, inner)}${PASSOS(t, ['Escreve sua regra de troca no anúncio', 'Online: o cliente tem 7 dias pra desistir', 'Frete e prazo antes de fechar a compra'])}
+  ${DICA(t, 4, ['Troca e arrependimento', '*informados*'], 'Regra combinada antes <b>evita briga depois</b>, e mostra que você é sério.', 2)}`; });
+
+// 6 · ligação com o site: pagamento e regras à vista: os jeitos de pagar entram com ✓, incluindo os vales (EXEMPLO)
+slide(6.5, [[0, 'red'], [3.0, 'black']], t => {
+  const P = [['⚡', 'Pix'], ['💳', 'Crédito'], ['💳', 'Débito'], ['🍽️', 'Vale-refeição'], ['🛒', 'Vale-alimentação'], ['💵', 'Dinheiro']];
+  const selo = back((t - 2.6) / .4);
+  return `<div style="${CARD(70, 140, 940, 500)}">${ROT('FORMAS DE PAGAMENTO')}${TAG()}
+      <div class="abs" style="left:40px;right:40px;top:86px;display:grid;grid-template-columns:1fr 1fr;gap:16px">${P.map(([ic, tx], j) => { const k = back((t - .4 - j * .25) / .35);
+        return `<div style="height:80px;display:flex;align-items:center;gap:14px;padding:0 20px;border-radius:20px;background:rgba(255,255,255,.08);opacity:${clamp(k)};transform:scale(${clamp(k, 0, 1.06)})">
+          <span style="font-size:32px">${ic}</span><b style="font-size:28px;flex:1">${tx}</b><span style="width:40px;height:40px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:22px;font-weight:800">✓</span></div>`; }).join('')}</div>
+      ${selo > 0 ? `<div class="abs" style="left:0;right:0;top:400px;text-align:center"><span style="display:inline-block;padding:12px 28px;border-radius:30px;background:#fff;color:#C3101F;font-weight:800;font-size:28px;transform:scale(${clamp(selo, 0, 1.1)})">🍽️ Aceitamos todos os vales</span></div>` : ''}</div>
+  ${K.kick(t, .1, 'E O SEU SITE?', 655)}${K.kin(t, .3, ['Preço e regras', '*às claras*'], { y: 900, max: 175, ini: 5 })}
+  ${K.corpo(t, 3.2, 'No site que eu faço, preço, formas de pagamento e regras de troca <b>ficam à vista</b>: menos dúvida e menos reclamação.', 1110, { fs: 33 })}
+  ${K.rodape(t, 3.8)}`; });
+
+// 7 · final aprovado
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['🏷️ Preço claro', '💳 Formas de pagamento', '🔁 Regras de troca', '❓ Dúvidas respondidas', '🏢 Nome e CNPJ à vista', '🤝 Cliente sem reclamação'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 22px;${K.vidro()}border-radius:28px;font-weight:800;font-size:29px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>
