@@ -1,0 +1,152 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Carrossel 55 ANIMADO (1080x1350, cada slide é um vídeo) · "Como vender mais no dia da Black Friday" · estilo CINÉTICO, formato do ajuste de 14/11
+     Título ensinando EM CIMA (o dia em 4 horários, menor embaixo, EXEMPLO); 4 DICAS: programar hoje o post de amanhã cedo, atualizar o story durante o dia (só com o que é verdade), ocultar no catálogo o que esgotou, anotar quem perguntou e chamar na Cyber Monday (30/11);
+     ligação com o site (preço claro e botão pra pedir) + final aprovado. Fontes: Tecnoblog (programar post no app), InfinitePay e Nuvemshop (Cyber Monday 30/11). Dados de exemplo marcados EXEMPLO.
+     Render: PWPATH=$(npm root -g)/playwright node animado/render-anim.js c55-dia-da-black-friday -->
+<style>
+@font-face { font-family: "IT"; font-weight: 400 800; src: url("../../assets/fonts/inter-tight-var.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; src: url("../../shorts/ferramentas/fontes/anton.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-weight: 600; src: url("../fontes/playfair-600.woff2") format("woff2"); }
+@font-face { font-family: "PF"; font-style: italic; font-weight: 600; src: url("../fontes/playfair-600-italic.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; font-family: "IT", sans-serif; color: #F5F6F8; -webkit-font-smoothing: antialiased; }
+#st { position: absolute; inset: 0; overflow: hidden; }
+.abs { position: absolute; }
+</style></head><body><div id="st"></div>
+<script src="../animado/cinetico.js"></script>
+<script src="../animado/mockups.js"></script>
+<script>
+window.ALTURA = 1350;
+const { clamp, ease, eio, back, lerp, fmt } = K, TOTAL = 7;
+const S = [], slide = (dur, trocas, render) => S.push({ dur, trocas, render });
+const CARD = (x, y, w, h, extra = '') => `position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;${K.vidro()}overflow:hidden;${extra}`;
+// setinha do mouse; k = clique (0..1)
+const cursor = (x, y, k = 0) => `<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="40" height="56"><g transform="scale(${1 - .15 * Math.sin(clamp(k) * Math.PI)})">
+  <path d="M0 0 L0 44 L11 34 L19 52 L28 48 L20 30 L35 30 Z" fill="#fff" stroke="#0B0B0D" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+const onda = (x, y, k, cor = '#fff') => k > 0 && k < 1 ? `<div class="abs" style="left:${x - 60 * k}px;top:${y - 60 * k}px;width:${120 * k}px;height:${120 * k}px;border-radius:50%;border:4px solid ${cor};opacity:${1 - k}"></div>` : '';
+const FEITO = (t) => K.kick(t, .1, 'NO SEU SITE', 655);
+
+const TAG = (x = 36, y = 28) => `<div class="abs" style="right:${x}px;top:${y}px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>`;
+const ROT = txt => `<div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">${txt}</div>`;
+
+const VIVA = () => K.verm ? '#fff' : '#FF2E43';
+
+// ---------- celular com a tela do WhatsApp Business (tema escuro) ----------
+const ZB = '#0B141A', ZH = '#1F2C34', ZT = '#E9EDEF', ZS = '#8696A0', ZG = '#00A884';
+const FONE = (t, inner) => { const inn = ease(t / .6);
+  return `<div class="abs" style="left:110px;top:112px;width:344px;height:600px;border-radius:52px;background:#0B0B0D;padding:12px;box-shadow:0 0 0 3px rgba(255,255,255,.25), 0 50px 100px -30px rgba(0,0,0,.9);opacity:${inn};transform:translateY(${(1 - inn) * 40}px) rotate(-2deg)">
+    <div style="width:320px;height:576px;border-radius:42px;overflow:hidden;position:relative;background:${ZB};font-family:IT,sans-serif;color:${ZT}">${inner}</div>
+    <div style="position:absolute;left:50%;top:22px;width:90px;height:24px;margin-left:-45px;border-radius:12px;background:#0B0B0D"></div></div>`; };
+const TOPO = (tit, sub = '') => `<div style="height:104px;padding:50px 20px 0;background:${ZH};display:flex;align-items:center;gap:14px"><span style="font-size:26px;color:${ZS}">←</span><div><b style="font-size:23px">${tit}</b>${sub ? `<div style="font-size:15px;color:${ZS}">${sub}</div>` : ''}</div></div>`;
+// lista de opções; sel = índice tocado, k = progresso do toque
+const LISTA = (itens, sel = -1, k = 0) => itens.map(([ic, tx, sub], j) => `<div style="display:flex;align-items:center;gap:14px;padding:15px 20px;position:relative;background:${j === sel && k > 0 ? `rgba(0,168,132,${.28 * Math.sin(clamp(k) * Math.PI) + (k >= 1 ? .14 : 0)})` : 'transparent'}">
+    <span style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:21px">${ic}</span><div><div style="font-size:19px;font-weight:600">${tx}</div>${sub ? `<div style="font-size:14px;color:${ZS}">${sub}</div>` : ''}</div></div>`).join('');
+const CHAVE = (on) => `<span style="flex-shrink:0;width:52px;height:30px;border-radius:15px;background:${on > .5 ? ZG : '#3B4A54'};position:relative"><span style="position:absolute;top:4px;left:${4 + 22 * clamp(on)}px;width:22px;height:22px;border-radius:50%;background:#fff"></span></span>`;
+// passos do lado direito (o caminho dentro do app), cada um entra com ✓
+const PASSOS = (t, L, t0 = .5, dt = .55) => L.map((tx, j) => { const k = back((t - t0 - j * dt) / .4), ok = back((t - t0 - j * dt - .3) / .3);
+  return k <= 0 ? '' : `<div class="abs" style="left:500px;width:480px;top:${150 + j * 112}px;padding:18px 22px;${K.vidro()}border-radius:24px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:25px;line-height:1.2;opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 70}px)">
+    <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-family:Anton;font-size:22px;transform:scale(${clamp(ok, 0, 1.15)})">${j + 1}</span>${tx}</div>`; }).join('');
+const FERR = [['🏪', 'Perfil comercial'], ['🛍️', 'Catálogo'], ['💤', 'Mensagem de ausência'], ['👋', 'Mensagem de saudação'], ['⚡', 'Respostas rápidas']];
+const DICA = (t, n, tit, txt, ini) => `${K.kick(t, .1, 'DICA ' + n, 736)}${K.kin(t, .3, tit, { y: 978, max: 148, ini })}${K.corpo(t, 3.0, txt, 1150, { fs: 31 })}${K.rodape(t, 3.6)}`;
+
+// tela de app de banco genérico (sem marca)
+const BB = '#111316', BH = '#1B1F24', BA = '#21C38B', BT = '#F2F4F5', BS = '#8B95A1';
+const BTOPO = (tit) => `<div style="height:100px;padding:48px 20px 0;background:${BH};display:flex;align-items:center;gap:14px"><span style="font-size:24px;color:${BS}">←</span><b style="font-size:22px;color:${BT}">${tit}</b></div>`;
+const BANCO = (inner) => `<div style="position:absolute;inset:0;background:${BB};color:${BT}">${inner}</div>`;
+const EXE = `<div style="position:absolute;right:16px;bottom:12px;font-size:12px;color:${BS};letter-spacing:.12em;font-weight:800">EXEMPLO</div>`;
+
+const IG = (inner) => `<div style="position:absolute;inset:0;background:#000;color:#F5F5F5">${inner}</div>`;
+
+// 1 · gancho: TÍTULO em cima ensinando; embaixo, menor, o dia da Black Friday em 4 horários (EXEMPLO)
+slide(7, [[0, 'black'], [3.0, 'red']], t => {
+  const inn = ease((t - 1.0) / .6);
+  const P = [['8h', 'Post da oferta no ar', '📣'], ['12h', 'Story: "ainda dá tempo"', '⏳'], ['16h', 'Esgotou? Some do catálogo', '🛍️'], ['22h', 'Anota quem não comprou', '📝']];
+  return `${K.kin(t, .05, ['Como vender mais no dia', '*da Black Friday*'], { y: 300, max: 165 })}
+    ${K.corpo(t, 1.0, 'É amanhã. Arrasta e vê <b>o que fazer em cada hora</b> pra não perder venda no dia mais corrido.', 470, { fs: 34 })}
+    <div style="${CARD(130, 640, 820, 420, `opacity:${.92 * inn};transform:translateY(${(1 - inn) * 40}px)`)}">${ROT('SEU DIA AMANHÃ')}${TAG(30, 360)}
+      ${P.map(([h, tx, ic], j) => { const k = back((t - 1.5 - j * .45) / .4), ok = back((t - 1.8 - j * .45) / .3);
+        return `<div class="abs" style="left:36px;right:36px;top:${76 + j * 68}px;height:56px;display:flex;align-items:center;gap:14px;padding:0 16px;border-radius:16px;background:rgba(255,255,255,.08);opacity:${clamp(k)};transform:translateX(${(1 - clamp(k)) * 60}px)">
+          <b style="font-family:Anton;font-size:26px;width:54px;color:${VIVA()}">${h}</b><span style="font-size:22px">${ic}</span><b style="font-size:21px;flex:1">${tx}</b>
+          <span style="width:32px;height:32px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:18px;font-weight:800;transform:scale(${clamp(ok, 0, 1.15)})">✓</span></div>`; }).join('')}</div>
+    <div class="abs" style="left:0;right:0;bottom:46px;text-align:center;opacity:${ease((t - 3.6) / .4)}"><span style="display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:40px;background:${K.verm ? '#fff' : '#FF2E43'};color:${K.verm ? '#C3101F' : '#fff'};font-family:Anton;font-size:34px;letter-spacing:.06em;box-shadow:0 0 ${30 + 14 * Math.sin(t * 4)}px rgba(255,255,255,.35)">ARRASTA <span style="display:inline-block;transform:translateX(${Math.sin(t * 4) * 14}px)">→</span></span></div>`; });
+
+// 2 · DICA 1 · programa hoje o post de amanhã cedo (EXEMPLO)
+slide(7.5, [[0, 'black'], [3.4, 'red']], t => {
+  const on = clamp((t - 1.3) / .25), hora = t > 2.0, ok = back((t - 3.0) / .4);
+  const inner = IG(`<div style="height:100px;padding:48px 18px 0;display:flex;align-items:center"><b style="font-size:18px">Configurações avançadas</b></div>
+      <div style="padding:12px 18px">
+        <div style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:#1C1C1E"><span style="width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,#C3101F,#3A0008);display:grid;place-items:center;font-family:Anton;font-size:12px;text-align:center;line-height:1">BLACK<br>FRIDAY</span><span style="font-size:15px;color:#A8A8A8">Começou! 🖤 Ofertas só hoje...</span></div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:12px;font-size:17px;font-weight:600">Programar este post<span style="margin-left:auto"></span><span style="width:52px;height:30px;border-radius:15px;background:${on > .5 ? '#0095F6' : '#3A3A3C'};position:relative"><span style="position:absolute;top:4px;left:${4 + 22 * on}px;width:22px;height:22px;border-radius:50%;background:#fff"></span></span></div>
+        <div style="margin-top:14px;padding:14px;border-radius:12px;background:#1C1C1E;opacity:${hora ? 1 : .3};transform:scale(${hora ? clamp(back((t - 2.0) / .35), 0, 1.04) : 1})"><div style="font-size:13px;color:#A8A8A8">Data e hora</div><b style="font-size:18px">sex, 27/11 · 08:00</b></div>
+        <div style="margin-top:16px;text-align:center;padding:12px;border-radius:12px;background:#0095F6;font-weight:800;font-size:16px;opacity:${ease((t - 2.6) / .3)}">Programar</div>
+        ${ok > 0 ? `<div style="margin-top:12px;text-align:center;font-size:15px;color:#21C38B;font-weight:800;transform:scale(${clamp(ok, 0, 1.1)})">✓ Post programado</div>` : ''}
+        <div style="margin-top:8px;text-align:right;font-size:12px;letter-spacing:.12em;font-weight:800;opacity:.7">EXEMPLO</div></div>`);
+  return `${FONE(t, inner)}${PASSOS(t, ['Cria o post da oferta hoje', 'Configurações avançadas › Programar', 'Escolhe amanhã, 8h, e pronto'])}
+  ${DICA(t, 1, ['Programa hoje', '*o post de amanhã*'], 'Amanhã cedo você tá atendendo, e <b>a oferta já tá no ar sozinha.</b>', 1)}`; });
+
+// 3 · DICA 2 · atualiza o story durante o dia, só com o que é verdade (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const S = [['10:00', 'COMEÇOU! 🖤', 'Ofertas até meia-noite'], ['14:00', 'AINDA DÁ TEMPO ⏳', 'Bolo de pote voltou pro estoque'], ['18:00', 'ÚLTIMAS 5 CAIXAS 🎁', 'Combo festa quase acabando']];
+  const i = Math.min(2, Math.floor(clamp((t - .5) / 3.0) * 3)), [h, a, b] = S[i];
+  const inner = IG(`<div style="position:absolute;inset:0;background:linear-gradient(160deg,#C3101F,#3A0008)">
+      <div style="position:absolute;left:14px;right:14px;top:50px;display:flex;gap:4px">${S.map((_, j) => `<div style="flex:1;height:4px;border-radius:2px;background:${j <= i ? '#fff' : 'rgba(255,255,255,.3)'}"></div>`).join('')}</div>
+      <div style="position:absolute;left:18px;top:66px;font-size:14px;opacity:.85"><b>doceana</b> · ${h}</div>
+      <div style="position:absolute;left:20px;right:20px;top:200px;text-align:center"><div style="font-family:Anton;font-size:42px;line-height:1.05">${a}</div><div style="margin-top:12px;font-size:18px">${b}</div></div>
+      <div style="position:absolute;right:16px;bottom:14px;font-size:12px;letter-spacing:.12em;font-weight:800;opacity:.75">EXEMPLO</div></div>`);
+  return `${FONE(t, inner)}${PASSOS(t, ['Um story de manhã, um à tarde, um à noite', 'Mostra o que ainda tem', '"Últimas unidades" só se for verdade'])}
+  ${DICA(t, 2, ['Atualiza o story', '*durante o dia*'], 'Quem viu de manhã e não comprou <b>lembra de você à tarde.</b>', 3)}`; });
+
+// 4 · DICA 3 · esgotou? oculta do catálogo (EXEMPLO)
+slide(7, [[0, 'black'], [3.4, 'red']], t => {
+  const some = clamp((t - 2.0) / .5);
+  const L = [['🎂', 'Bolo de chocolate', 'R$ 72', 0], ['🍫', 'Brigadeiro (cento)', 'R$ 96', 1], ['🍓', 'Bolo de morango', 'R$ 88', 0]];
+  const inner = TOPO('Catálogo', 'Doce Ana') + `<div style="padding:12px 16px">${L.map(([ic, n, v, esg]) => `<div style="display:flex;align-items:center;gap:12px;padding:12px 6px;border-bottom:1px solid rgba(255,255,255,.07);opacity:${esg ? 1 - .7 * some : 1}">
+        <span style="width:46px;height:46px;border-radius:8px;background:#2A3942;display:grid;place-items:center;font-size:26px">${ic}</span><div><b style="font-size:16px">${n}</b><div style="font-size:14px;color:${esg && t > 1.0 ? '#F15C6D' : ZG}">${esg && t > 1.0 ? 'esgotado' : v}</div></div>
+        ${esg && t > 1.2 ? `<span style="margin-left:auto;padding:5px 10px;border-radius:10px;background:${some > .5 ? '#3B4A54' : '#F15C6D'};color:#fff;font-weight:800;font-size:13px">${some > .5 ? '👁️‍🗨️ oculto' : 'Ocultar'}</span>` : ''}</div>`).join('')}
+      <div style="margin-top:10px;text-align:right;font-size:12px;color:${ZS};letter-spacing:.12em;font-weight:800">EXEMPLO</div></div>`;
+  return `${FONE(t, inner)}${PASSOS(t, ['Acabou um produto?', 'Catálogo › toca no item › Ocultar', 'Volta a mostrar quando repor'])}
+  ${DICA(t, 3, ['Esgotou? Some', '*do catálogo*'], 'Cliente que pede o que acabou <b>se frustra e pode nem comprar o resto.</b>', 4)}`; });
+
+// 5 · DICA 4 · anota quem perguntou e não comprou, e chama na Cyber Monday (EXEMPLO)
+slide(7, [[0, 'red'], [3.4, 'black']], t => {
+  const L = [['Marcos', 'perguntou do combo festa'], ['Julia', 'queria brigadeiro, acabou'], ['Paulo', 'achou caro o bolo de 2 kg']];
+  const seg = back((t - 2.4) / .45);
+  const inner = `<div style="position:absolute;inset:0;background:#1C1C1E;color:#F2F2F7">
+      <div style="height:100px;padding:48px 20px 0;display:flex;align-items:center"><span style="color:#FFD60A;font-size:20px">‹ Notas</span></div>
+      <div style="padding:0 20px"><b style="font-size:22px">Não compraram na sexta</b>
+        ${L.map(([n, s], j) => `<div style="margin-top:12px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.06);opacity:${ease((t - .6 - j * .35) / .35)}"><b style="font-size:16px">${n}</b> · <span style="font-size:14px;color:#AEAEB2">${s}</span></div>`).join('')}
+        ${seg > 0 ? `<div style="margin-top:14px;padding:12px 14px;border-radius:12px;background:#FFD60A;color:#111;font-weight:800;font-size:15px;transform:scale(${clamp(seg, 0, 1.06)})">💬 Segunda (30/11), Cyber Monday: chamar com uma oferta de segunda</div>` : ''}
+        <div style="margin-top:10px;text-align:right;font-size:12px;color:#8E8E93;letter-spacing:.12em;font-weight:800">EXEMPLO</div></div></div>`;
+  return `${FONE(t, inner)}${PASSOS(t, ['Anota quem perguntou e não comprou', 'E o motivo: preço, acabou, prazo', 'Chama de novo na Cyber Monday (30/11)'])}
+  ${DICA(t, 4, ['Anota quem', '*não comprou*'], 'Quem perguntou já tava interessado: <b>na segunda, é só uma mensagem.</b>', 2)}`; });
+
+// 6 · ligação com o site: preço claro e botão pra pedir (EXEMPLO)
+slide(6.5, [[0, 'black'], [3.0, 'red']], t => {
+  const L = [['🎂', 'Bolo de chocolate', 'R$ 72'], ['🍫', 'Brigadeiro (cento)', 'R$ 96'], ['🍓', 'Bolo de morango', 'R$ 88'], ['🎁', 'Combo festa', 'R$ 150']];
+  const pergunta = back((t - .4) / .4), risca = ease((t - 2.4) / .4);
+  return `<div style="${CARD(70, 140, 940, 500)}">
+      <div class="abs" style="left:40px;top:30px;font-weight:800;font-size:25px;letter-spacing:.16em;color:rgba(255,255,255,.65)">OFERTAS DA BLACK FRIDAY</div>
+      <div class="abs" style="right:36px;top:28px;padding:6px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.5);font-weight:800;font-size:20px;letter-spacing:.14em">EXEMPLO</div>
+      ${L.map(([ic, n, v], j) => { const k = ease((t - .7 - j * .3) / .45);
+        return `<div class="abs" style="left:40px;right:40px;top:${90 + j * 92}px;height:76px;display:flex;align-items:center;gap:18px;padding:0 22px;border-radius:18px;background:rgba(255,255,255,.07);opacity:${k};transform:translateX(${(1 - k) * -60}px)">
+          <span style="font-size:36px">${ic}</span><b style="font-size:30px">${n}</b><span style="margin-left:auto;font-family:Anton;font-size:36px;color:${K.verm ? '#fff' : '#FF2E43'}">${v}</span></div>`; }).join('')}</div>
+    ${pergunta > 0 ? `<div class="abs" style="right:90px;top:600px;padding:14px 22px;border-radius:22px 22px 6px 22px;background:#005C4B;font-size:28px;font-weight:600;transform:scale(${clamp(pergunta, 0, 1.1)})">Quanto é? 🤔
+      <div style="position:absolute;left:10px;right:10px;top:50%;height:5px;background:#fff;transform:scaleX(${risca});transform-origin:0 50%"></div></div>` : ''}
+  ${K.kick(t, .1, 'E O SEU SITE?', 690)}${K.kin(t, .3, ['Preço claro no dia', '*mais corrido do ano*'], { y: 925, max: 170, ini: 5 })}
+  ${K.corpo(t, 3.2, 'No site que eu faço, cada oferta tem preço e botão pra pedir: <b>menos "quanto é?" e mais pedido pronto.</b>', 1112, { fs: 32 })}
+  ${K.rodape(t, 3.8)}`; });
+
+
+// 7 · final aprovado
+slide(6.5, [[0, 'black'], [1.4, 'red']], t => {
+  const it = ['🏷️ Ofertas com preço', '💬 Botão pra pedir', '🛍️ Catálogo com filtro', '💳 Formas de pagamento', '🔒 Seu nome no endereço', '🤝 Cliente decidido'];
+  return `<div class="abs" style="left:70px;top:170px;width:940px;display:grid;grid-template-columns:1fr 1fr;gap:20px">${it.map((x, j) => { const k = back((t - .3 - j * .15) / .4);
+      return `<div style="padding:26px 22px;${K.vidro()}border-radius:28px;font-weight:800;font-size:29px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform:scale(${clamp(k, 0, 1.1)});opacity:${clamp(k)}">${x}<span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#fff;color:#C3101F;display:grid;place-items:center;font-size:28px;transform:scale(${back((t - .6 - j * .15) / .3)})">✓</span></div>`; }).join('')}</div>
+  ${K.kick(t, 1.4, 'SITE PROFISSIONAL', 655)}${K.kin(t, 1.6, ['Quer isso', '*no seu site?*'], { y: 900, max: 185, ini: 6 })}
+  ${K.corpo(t, 2.6, 'Dá uma olhada na <b>minha bio</b>: tem tudo lá. 👆', 1110, { fs: 38 })}
+  <div class="abs" style="left:0;right:0;bottom:44px;text-align:center;opacity:${ease((t - 3.2) / .4)};font-weight:800;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.8)">OLHA A BIO DO @EUAUGUSTO_OLIV 👆</div>`; });
+
+window.SLIDES = S;
+window.mostrar = (i, t) => { const s = S[i]; const f = K.fundo(t, s.trocas); document.getElementById('st').innerHTML = f + s.render(t) + K.topo(i + 1, TOTAL, t, s.dur); };
+window.mostrar(0, 0);
+</script></body></html>
